@@ -1,6 +1,6 @@
+import 'package:deliverzler/core/services/init_services/history_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AppLocalizations {
   AppLocalizations._();
@@ -17,15 +17,18 @@ class AppLocalizations {
   }
 
   Future setUserStoredLocale(Locale locale) async {
-    (await SharedPreferences.getInstance()).setString(
-      'user_stored_locale',
-      locale.toString(),
+    await HistoryService.instance.saveData(
+      key: 'user_stored_locale',
+      value: locale.toString(),
+      dataType: DataType.string,
     );
   }
 
   Future<Locale> getUserStoredLocale() async {
-    String locale = (await SharedPreferences.getInstance())
-            .getString('user_stored_locale') ??
+    String locale = await HistoryService.instance.restoreData(
+          key: 'user_stored_locale',
+          dataType: DataType.string,
+        ) ??
         defaultLocal;
     return Locale(locale);
   }

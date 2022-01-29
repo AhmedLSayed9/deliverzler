@@ -1,6 +1,6 @@
+import 'package:deliverzler/core/services/init_services/history_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeService {
   ThemeService._();
@@ -14,15 +14,18 @@ class ThemeService {
 
   Future setUserStoredTheme(ThemeMode themeMode) async {
     final theme = themeMode == ThemeMode.light ? 'light' : 'dark';
-    (await SharedPreferences.getInstance()).setString(
-      'user_stored_theme',
-      theme,
+    await HistoryService.instance.saveData(
+      key: 'user_stored_theme',
+      value: theme,
+      dataType: DataType.string,
     );
   }
 
   Future<ThemeMode> getUserStoredTheme() async {
-    String? userStoredTheme =
-        (await SharedPreferences.getInstance()).getString('user_stored_theme');
+    String? userStoredTheme = await HistoryService.instance.restoreData(
+      key: 'user_stored_theme',
+      dataType: DataType.string,
+    );
     if (userStoredTheme == null) {
       return ThemeMode.system;
     } else {
