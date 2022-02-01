@@ -26,7 +26,7 @@ final upcomingOrdersStreamProvider = StreamProvider<List<OrderModel>>((ref) {
 final mainOrdersViewModel = ChangeNotifierProvider<MainOrdersViewModel>(
     (ref) => MainOrdersViewModel(ref));
 
-class MainOrdersViewModel with ChangeNotifier {
+class MainOrdersViewModel extends ChangeNotifier {
   MainOrdersViewModel(this.ref) {
     init();
   }

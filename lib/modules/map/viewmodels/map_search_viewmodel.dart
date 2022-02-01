@@ -10,7 +10,7 @@ final mapSearchViewModel =
     ChangeNotifierProvider.autoDispose<MapSearchViewModel>(
         (ref) => MapSearchViewModel(ref));
 
-class MapSearchViewModel with ChangeNotifier {
+class MapSearchViewModel extends ChangeNotifier {
   MapSearchViewModel(this.ref);
 
   Ref ref;

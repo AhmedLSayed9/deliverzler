@@ -8,7 +8,7 @@ final notificationOrderViewModel =
     ChangeNotifierProvider.family<NotificationOrderViewModel, String?>(
         (ref, orderId) => NotificationOrderViewModel(ref, orderId));
 
-class NotificationOrderViewModel with ChangeNotifier {
+class NotificationOrderViewModel extends ChangeNotifier {
   NotificationOrderViewModel(this.ref, this.notificationOrderId) {
     if (notificationOrderId != null) {
       navigateToNotificationOrder();

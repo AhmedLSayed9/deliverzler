@@ -20,7 +20,7 @@ final mapSelectedPlaceViewModel =
     ChangeNotifierProvider.autoDispose<MapSelectedPlaceViewModel>(
         (ref) => MapSelectedPlaceViewModel(ref));
 
-class MapSelectedPlaceViewModel with ChangeNotifier {
+class MapSelectedPlaceViewModel extends ChangeNotifier {
   MapSelectedPlaceViewModel(this.ref) {
     _mainMapVM = ref.read(mainMapViewModel);
   }

@@ -15,7 +15,7 @@ final mapCurrentLocationViewModel =
     ChangeNotifierProvider.autoDispose<MapCurrentLocationViewModel>(
         (ref) => MapCurrentLocationViewModel(ref));
 
-class MapCurrentLocationViewModel with ChangeNotifier {
+class MapCurrentLocationViewModel extends ChangeNotifier {
   MapCurrentLocationViewModel(this.ref) {
     _mainCoreVM = ref.read(mainCoreViewModel);
     _mainMapVM = ref.read(mainMapViewModel);

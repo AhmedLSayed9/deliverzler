@@ -17,7 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final authViewModel =
     ChangeNotifierProvider<AuthViewModel>((ref) => AuthViewModel(ref));
 
-class AuthViewModel with ChangeNotifier {
+class AuthViewModel extends ChangeNotifier {
   AuthViewModel(this.ref) {
     _mainCoreVM = ref.read(mainCoreViewModel);
   }

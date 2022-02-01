@@ -6,7 +6,7 @@ import 'package:deliverzler/modules/map/services/map_service.dart';
 final mainMapViewModel = ChangeNotifierProvider.autoDispose<MainMapViewModel>(
     (ref) => MainMapViewModel());
 
-class MainMapViewModel with ChangeNotifier {
+class MainMapViewModel extends ChangeNotifier {
   bool _disposed = false;
 
   GoogleMapController? mapController;

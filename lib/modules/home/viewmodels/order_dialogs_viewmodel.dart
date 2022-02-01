@@ -19,7 +19,7 @@ import 'package:deliverzler/modules/home/viewmodels/selected_order_providers.dar
 final orderDialogsViewModel = ChangeNotifierProvider<OrderDialogsViewModel>(
     (ref) => OrderDialogsViewModel(ref));
 
-class OrderDialogsViewModel with ChangeNotifier {
+class OrderDialogsViewModel extends ChangeNotifier {
   OrderDialogsViewModel(this.ref) {
     _ordersVM = ref.read(mainOrdersViewModel);
   }
