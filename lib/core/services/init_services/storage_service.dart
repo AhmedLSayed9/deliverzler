@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum DataType {
@@ -9,29 +8,29 @@ enum DataType {
   stringList,
 }
 
-class HistoryService {
+class StorageService {
+  StorageService._();
+
+  static final instance = StorageService._();
+
   late final bool hasHistory;
   late SharedPreferences _prefs;
 
-  HistoryService._();
-
-  static final instance = HistoryService._();
-
   initialize() async {
     _prefs = await SharedPreferences.getInstance();
-    hasHistory = await restoreData(
-          key: 'has_history',
-          dataType: DataType.bool,
-        ) ??
+    /*hasHistory = await restoreData(
+      key: 'has_history',
+      dataType: DataType.bool,
+    ) ??
         false;
     debugPrint(hasHistory.toString());
     debugPrint("hasHistory");
-    if (!hasHistory) _setHistory();
+    if (!hasHistory) _setHistory();*/
   }
 
-  _setHistory() async {
+  /*_setHistory() async {
     saveData(key: 'has_history', value: true, dataType: DataType.bool);
-  }
+  }*/
 
   saveData({
     required String key,

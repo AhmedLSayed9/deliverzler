@@ -1,4 +1,4 @@
-import 'package:deliverzler/core/services/init_services/history_service.dart';
+import 'package:deliverzler/core/services/init_services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class AppLocalizations {
   }
 
   Future setUserStoredLocale(Locale locale) async {
-    await HistoryService.instance.saveData(
+    await StorageService.instance.saveData(
       key: 'user_stored_locale',
       value: locale.toString(),
       dataType: DataType.string,
@@ -25,7 +25,7 @@ class AppLocalizations {
   }
 
   Future<Locale> getUserStoredLocale() async {
-    String locale = await HistoryService.instance.restoreData(
+    String locale = await StorageService.instance.restoreData(
           key: 'user_stored_locale',
           dataType: DataType.string,
         ) ??

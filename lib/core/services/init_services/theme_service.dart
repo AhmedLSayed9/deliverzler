@@ -1,4 +1,4 @@
-import 'package:deliverzler/core/services/init_services/history_service.dart';
+import 'package:deliverzler/core/services/init_services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,7 @@ class ThemeService {
 
   Future setUserStoredTheme(ThemeMode themeMode) async {
     final theme = themeMode == ThemeMode.light ? 'light' : 'dark';
-    await HistoryService.instance.saveData(
+    await StorageService.instance.saveData(
       key: 'user_stored_theme',
       value: theme,
       dataType: DataType.string,
@@ -22,7 +22,7 @@ class ThemeService {
   }
 
   Future<ThemeMode> getUserStoredTheme() async {
-    String? userStoredTheme = await HistoryService.instance.restoreData(
+    String? userStoredTheme = await StorageService.instance.restoreData(
       key: 'user_stored_theme',
       dataType: DataType.string,
     );

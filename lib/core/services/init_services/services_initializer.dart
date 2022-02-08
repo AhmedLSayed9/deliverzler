@@ -2,6 +2,7 @@ import 'package:deliverzler/core/localization/app_localization.dart';
 import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
 import 'package:deliverzler/core/services/init_services/firebase_messaging_service.dart';
 import 'package:deliverzler/core/services/init_services/local_notification_service.dart';
+import 'package:deliverzler/core/services/init_services/storage_service.dart';
 import 'package:deliverzler/core/services/init_services/theme_service.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +22,7 @@ class ServiceInitializer {
       initializeLocalization(),
       initializeTheme(),
       initializeConnectivity(),
+      initializeStorageService(),
       initializeNotificationSettings(),
       initializeFirebase(),
       //initializeScreensOrientation(),
@@ -39,6 +41,10 @@ class ServiceInitializer {
 
   initializeConnectivity() async {
     ConnectivityService.instance.initializeConnectivityListeners();
+  }
+
+  initializeStorageService() async {
+    await StorageService.instance.initialize();
   }
 
   initializeNotificationSettings() async {
