@@ -65,6 +65,18 @@ class MainCoreViewModel extends ChangeNotifier {
     return await LocationService.instance.enableBackgroundMode();
   }
 
+  Future initLocationSettings({
+    LocationAccuracy? accuracy,
+    int? interval,
+    double? distanceFilter,
+  }) async {
+    return await LocationService.instance.initSettings(
+      accuracy: accuracy,
+      interval: interval,
+      distanceFilter: distanceFilter,
+    );
+  }
+
   Future<LocationData?> getCurrentUserLocation() async {
     return await LocationService.instance.getLocation();
   }

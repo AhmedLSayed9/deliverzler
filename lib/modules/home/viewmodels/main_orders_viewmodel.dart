@@ -45,6 +45,7 @@ class MainOrdersViewModel extends ChangeNotifier {
   Future requestForCurrentLocationAndBgMode() async {
     await ref.read(mainCoreViewModel).enableLocationAndRequestPermission();
     await ref.read(mainCoreViewModel).enableBackgroundMode();
+    await ref.read(mainCoreViewModel).initLocationSettings();
   }
 
   subscribeToLocationChangeStream() {

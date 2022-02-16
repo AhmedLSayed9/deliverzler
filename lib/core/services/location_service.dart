@@ -8,7 +8,6 @@ class LocationService {
   static final instance = LocationService._();
 
   Location location = Location();
-  bool _isInitialized = false;
   bool? _serviceEnabled;
   PermissionStatus? _permissionGranted;
   bool? _bgModeEnabled;
@@ -39,6 +38,11 @@ class LocationService {
       return true;
     } else {
       try {
+        await location.enableBackgroundMode();
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+      try {
         _bgModeEnabled = await location.enableBackgroundMode();
       } catch (e) {
         debugPrint(e.toString());
@@ -47,16 +51,24 @@ class LocationService {
     }
   }
 
+  initSettings({
+    LocationAccuracy? accuracy,
+    int? interval,
+    double? distanceFilter,
+  }) async {
+    try {
+      await location.changeSettings(
+        accuracy: accuracy ?? LocationAccuracy.high,
+        interval: interval ?? locationChangeInterval,
+        distanceFilter: distanceFilter ?? locationChangeDistance,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   Future<LocationData?> getLocation() async {
     try {
-      if (!_isInitialized) {
-        await location.changeSettings(
-          accuracy: LocationAccuracy.high,
-          interval: locationChangeInterval,
-          distanceFilter: locationChangeDistance,
-        );
-        _isInitialized = true;
-      }
       return location.getLocation();
     } catch (e) {
       debugPrint(e.toString());

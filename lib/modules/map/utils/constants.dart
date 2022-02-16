@@ -5,6 +5,6 @@ const LatLng defaultLatLng = LatLng(30.033333, 31.233334);
 const googleMapAPIKey = 'EnterYourGoogleMapAPIKey';
 const double defaultMapZoom = 17.0;
 const double mediumMapZoom = 14.0;
-const int locationChangeInterval = 5000; //in milliseconds
+const int locationChangeInterval = 10000; //in milliseconds
 const double locationChangeDistance = 5.0; //in meters
 const double locationArriveDistance = 200.0; //in meters
