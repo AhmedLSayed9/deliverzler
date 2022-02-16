@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             // For apps with a light background:
             // For Android (dark icons)
             statusBarIconBrightness: Brightness.dark,
-            // For iOS (dark icons)
+            // For iOS (daSliverAppBar'dateFormat'rk icons)
             statusBarBrightness: Brightness.light,
           ),
           child: GestureDetector(

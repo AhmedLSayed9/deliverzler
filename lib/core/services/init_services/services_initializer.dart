@@ -19,10 +19,8 @@ class ServiceInitializer {
   initializeSettings() async {
     //This method is used to initialize any service before the app runs (in main method)
     List futures = [
-      initializeLocalization(),
-      initializeTheme(),
       initializeConnectivity(),
-      initializeStorageService(),
+      initializeLocalServices(),
       initializeNotificationSettings(),
       initializeFirebase(),
       //initializeScreensOrientation(),
@@ -31,20 +29,22 @@ class ServiceInitializer {
     return result;
   }
 
+  initializeConnectivity() async {
+    ConnectivityService.instance.initializeConnectivityListeners();
+  }
+
+  initializeLocalServices() async {
+    await StorageService.instance.initialize();
+    initializeLocalization();
+    initializeTheme();
+  }
+
   initializeLocalization() async {
     return await AppLocalizations.instance.getUserStoredLocale();
   }
 
   initializeTheme() async {
     return await ThemeService.instance.getUserStoredTheme();
-  }
-
-  initializeConnectivity() async {
-    ConnectivityService.instance.initializeConnectivityListeners();
-  }
-
-  initializeStorageService() async {
-    await StorageService.instance.initialize();
   }
 
   initializeNotificationSettings() async {
