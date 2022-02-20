@@ -1,6 +1,6 @@
 import 'package:deliverzler/modules/profile/components/profile_text_field_component.dart';
 import 'package:deliverzler/modules/profile/viewmodels/profile_viewmodel.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +20,15 @@ class ProfileFormComponent extends ConsumerWidget {
       child: Column(
         children: [
           ProfileTextFieldComponent(
-            title: tr('fullName'),
-            hint: tr('enterYourName'),
+            title: tr(context).fullName,
+            hint: tr(context).enterYourName,
             controller: profileVM.profileNameController,
             validator: profileVM.validateName(),
             keyboardType: TextInputType.name,
           ),
           ProfileTextFieldComponent(
-            title: tr('mobileNumber'),
-            hint: tr('enterYourNumber'),
+            title: tr(context).mobileNumber,
+            hint: tr(context).enterYourNumber,
             controller: profileVM.profileMobileController,
             validator: profileVM.validateMobile(),
             keyboardType: TextInputType.phone,
@@ -38,7 +38,7 @@ class ProfileFormComponent extends ConsumerWidget {
             height: Sizes.vMarginHigh,
           ),
           CustomButton(
-            text: tr('confirm'),
+            text: tr(context).confirm,
             onPressed: () {
               if (_profileFormKey.currentState!.validate()) {
                 profileVM.updateProfile();

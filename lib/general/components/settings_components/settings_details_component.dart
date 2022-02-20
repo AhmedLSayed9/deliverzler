@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:deliverzler/authentication/models/user_model.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -20,6 +19,7 @@ class SettingsDetailsComponent extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               CustomText.h2(
                 context,
@@ -33,12 +33,11 @@ class SettingsDetailsComponent extends StatelessWidget {
               CustomText.h4(
                 context,
                 userModel.email,
-                color: context.textTheme.headline5!.color,
+                color: Theme.of(context).textTheme.headline5!.color,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
-            crossAxisAlignment: CrossAxisAlignment.start,
           ),
         ),
         SizedBox(

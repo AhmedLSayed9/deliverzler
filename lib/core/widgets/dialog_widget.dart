@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/utils/dialog_message_state.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/utils/dialog_widget_state.dart';
 import 'package:deliverzler/core/widgets/custom_dialog.dart';

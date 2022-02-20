@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
-import 'package:deliverzler/core/widgets/snack_bar.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/widgets/custom_snack_bar.dart';
 import 'package:deliverzler/modules/home/viewmodels/main_orders_viewmodel.dart';
 import 'package:deliverzler/modules/home/viewmodels/selected_order_providers.dart';
 import 'package:deliverzler/modules/map/models/place_directions_model.dart';
@@ -48,10 +48,10 @@ class MapSelectedPlaceViewModel extends ChangeNotifier {
       ));
       await addSelectedPlaceToMap();
     } else {
-      CustomSnackBar.showCommonRawSnackBar(
-        Get.context!,
-        title: tr('pleaseSearchForLocation'),
-        description: tr('userHasNotProvidedLocation'),
+      CustomSnackBar.showDefaultSnackBar(
+        NavigationService.context,
+        title: tr(NavigationService.context).pleaseSearchForLocation,
+        description: tr(NavigationService.context).userHasNotProvidedLocation,
       );
     }
   }

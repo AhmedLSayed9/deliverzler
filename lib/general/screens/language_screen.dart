@@ -6,7 +6,7 @@ import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/general/components/settings_components/language_item_component.dart';
 import 'package:deliverzler/general/model/language_model.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({
@@ -20,7 +20,7 @@ class LanguageScreen extends StatelessWidget {
       appbarItems: [
         AppBarWithIconComponent(
           icon: AppImages.languageScreenIcon,
-          title: tr('language'),
+          title: tr(context).language,
         ),
       ],
       child: SingleChildScrollView(
@@ -33,7 +33,7 @@ class LanguageScreen extends StatelessWidget {
             children: <Widget>[
               CustomText.h3(
                 context,
-                tr('selectYourPreferredLanguage'),
+                tr(context).selectYourPreferredLanguage,
                 alignment: Alignment.center,
               ),
               SizedBox(

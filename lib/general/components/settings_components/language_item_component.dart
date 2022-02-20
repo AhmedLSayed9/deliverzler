@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get_utils/src/extensions/context_extensions.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/general/model/language_model.dart';
@@ -63,7 +61,7 @@ class LanguageItemComponent extends ConsumerWidget {
                             child: Icon(
                               Icons.check,
                               size: Sizes.iconsSizes['s5'],
-                              color: context.theme.primaryColor,
+                              color: Theme.of(context).primaryColor,
                             ),
                           )
                         : const SizedBox();
@@ -77,7 +75,7 @@ class LanguageItemComponent extends ConsumerWidget {
             Expanded(
               child: CustomText.h4(
                 context,
-                tr(languageModel.name),
+                getCurrentLanguageName(context, languageModel.code),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),

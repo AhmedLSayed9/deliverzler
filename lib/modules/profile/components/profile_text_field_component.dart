@@ -1,6 +1,5 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
@@ -35,8 +34,8 @@ class ProfileTextFieldComponent extends StatelessWidget {
         CustomText.h4(
           context,
           title,
-          color: context.textTheme.headline5!.color,
-          padding: AppLocalizations.instance.isAr()
+          color: Theme.of(context).textTheme.headline5!.color,
+          padding: LocalizationService.instance.isAr()
               ? EdgeInsets.only(right: Sizes.hPaddingTiny)
               : EdgeInsets.only(left: Sizes.hPaddingTiny),
         ),

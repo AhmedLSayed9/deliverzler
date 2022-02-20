@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
@@ -39,7 +38,7 @@ class CustomDialog extends AlertDialog {
     Widget? child,
   }) : super(
           key: key,
-          backgroundColor: context.theme.scaffoldBackgroundColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           shape: shape,
           contentPadding: contentPadding ??
               EdgeInsets.symmetric(

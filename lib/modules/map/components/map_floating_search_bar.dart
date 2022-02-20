@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/modules/map/components/map_search_menu_component.dart';
@@ -23,7 +22,7 @@ class MapFloatingSearchBar extends ConsumerWidget {
       padding: EdgeInsets.symmetric(horizontal: Sizes.hPaddingTiny),
       borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
       elevation: 4,
-      hint: tr('searchForAPlace'),
+      hint: tr(context).searchForAPlace,
       hintStyle: FontStyles.mapSearchBarFontStyle,
       queryStyle: FontStyles.mapSearchBarFontStyle,
       physics: const BouncingScrollPhysics(),
@@ -41,7 +40,7 @@ class MapFloatingSearchBar extends ConsumerWidget {
           showIfOpened: false,
           icon: Icon(
             Icons.place,
-            color: context.textTheme.subtitle1!.color,
+            color: Theme.of(context).textTheme.subtitle1!.color,
           ),
           onTap: () {},
         ),

@@ -1,4 +1,5 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 
 class Validators {
   Validators._();
@@ -11,18 +12,18 @@ class Validators {
     return (value) {
       value = value?.trim();
       if (value!.isEmpty) {
-        return tr("ThisFieldIsEmpty");
+        return tr(NavigationService.context).thisFieldIsEmpty;
       } else if (value.contains("+") &&
           value.contains(RegExp(r'[0-9]|٩|٠|١|٢|٣|٤|٥|٦|٧|٨')) &&
           !value.contains(RegExp(r'[a-zA-Z]')) &&
           !value.contains(RegExp(r'[ء-ي]'))) {
-        return tr("pleaseEnterValidNumber");
+        return tr(NavigationService.context).pleaseEnterValidNumber;
       } else if (!value.contains(RegExp(r'[a-zA-Z]')) &&
           value.contains(RegExp(r'[0-9]|٩|٠|١|٢|٣|٤|٥|٦|٧|٨')) &&
           !value.contains("+") &&
           !value.contains(RegExp(r'[ء-ي]'))) {
         if (checkPattern(pattern: patternMobileNumber, value: value)) {
-          return tr("pleaseEnterValidNumber");
+          return tr(NavigationService.context).pleaseEnterValidNumber;
         }
       }
     };
@@ -33,14 +34,14 @@ class Validators {
         r"^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$";
     return (value) {
       if (value!.isEmpty) {
-        return tr("ThisFieldIsEmpty");
+        return tr(NavigationService.context).thisFieldIsEmpty;
       } else if (value.toString().length < 2 &&
           !checkPattern(pattern: patternName, value: value)) {
-        return tr("nameMustBeAtLeast2Letters");
+        return tr(NavigationService.context).nameMustBeAtLeast2Letters;
       } else if (value.toString().length > 30) {
-        return tr("nameMustBeAtMost30Letters");
+        return tr(NavigationService.context).nameMustBeAtMost30Letters;
       } /*else if (checkPattern(pattern: patternName, value: value)) {
-        return tr("pleaseEnterValidName");
+        return tr(NavigationService.context).pleaseEnterValidName;
       }*/
     };
   }
@@ -49,9 +50,9 @@ class Validators {
     String patternEmail = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)";
     return (value) {
       if (value!.isEmpty) {
-        return tr('ThisFieldIsEmpty');
+        return tr(NavigationService.context).thisFieldIsEmpty;
       } else if (checkPattern(pattern: patternEmail, value: value)) {
-        return tr('pleaseEnterValidEmail');
+        return tr(NavigationService.context).pleaseEnterValidEmail;
       }
     };
   }
@@ -59,9 +60,14 @@ class Validators {
   String? Function(String?)? validateLoginPassword() {
     return (value) {
       if (value!.isEmpty) {
-        return tr("ThisFieldIsEmpty");
+        return tr(NavigationService.context).thisFieldIsEmpty;
       }
     };
+  }
+
+  bool isNumeric(String str) {
+    Pattern patternInteger = r'^-?[0-9]+$';
+    return checkPattern(pattern: patternInteger, value: str);
   }
 
   bool checkPattern({pattern, value}) {

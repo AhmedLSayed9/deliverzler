@@ -1,10 +1,9 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 class CustomTextField extends Container {
   CustomTextField({
@@ -91,7 +90,7 @@ class CustomTextField extends Container {
                   fillColor: fillColor,
                   filled: true,
                   contentPadding: contentPadding ??
-                      (AppLocalizations.instance.isAr()
+                      (LocalizationService.instance.isAr()
                           ? EdgeInsets.only(
                               right: Sizes.textFieldHPaddingMedium,
                             )
@@ -147,7 +146,7 @@ class CustomTextField extends Container {
                       color: validationColor ?? const Color(0xffff0000),
                     ),
                   ),
-                  hintText: hintText ?? hintText!.tr,
+                  hintText: hintText,
                   hintStyle: TextStyle(
                     fontFamily: FontStyles.fontFamily,
                     fontSize: Sizes.fontSizes['h5'],

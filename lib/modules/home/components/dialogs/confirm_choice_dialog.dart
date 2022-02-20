@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -26,14 +26,14 @@ class ConfirmChoiceDialog extends StatelessWidget {
           children: [
             CustomText.h3(
               context,
-              tr('areYouSure'),
+              tr(context).areYouSure,
               weight: FontStyles.fontWeightMedium,
             ),
             SizedBox(
               height: Sizes.vMarginComment,
             ),
             Align(
-              alignment: AppLocalizations.instance.isAr()
+              alignment: LocalizationService.instance.isAr()
                   ? Alignment.centerRight
                   : Alignment.centerLeft,
               child: FittedBox(
@@ -56,7 +56,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
                   CustomButton(
                     child: CustomText.h4(
                       context,
-                      tr('cancel'),
+                      tr(context).cancel,
                       color: const Color(0xffffffff),
                       weight: FontStyles.fontWeightMedium,
                       alignment: Alignment.center,
@@ -69,7 +69,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
                     },
                   ),
                   CustomButton(
-                    text: tr('confirm'),
+                    text: tr(context).confirm,
                     height: Sizes.roundedButtonDialogHeight,
                     width: Sizes.roundedButtonSmallWidth,
                     onPressed: () {

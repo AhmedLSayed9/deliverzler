@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart' as gl;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 
@@ -24,7 +24,7 @@ class MapService {
   }
 
   getDeliveryIcon() async {
-    ByteData _byteData = await DefaultAssetBundle.of(Get.context!)
+    ByteData _byteData = await DefaultAssetBundle.of(NavigationService.context)
         .load(AppImages.mapDeliveryIcon);
     return _byteData.buffer.asUint8List();
   }
@@ -47,7 +47,7 @@ class MapService {
       zIndex: 2,
       flat: true,
       infoWindow: InfoWindow(
-        title: tr('myCurrentLocation'),
+        title: tr(NavigationService.context).myCurrentLocation,
       ),
       anchor: const Offset(0.5, 0.5),
       icon: BitmapDescriptor.fromBytes(_markerIcon),

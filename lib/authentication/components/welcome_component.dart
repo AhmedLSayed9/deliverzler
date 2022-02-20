@@ -1,7 +1,7 @@
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/widgets/custom_image.dart';
@@ -19,7 +19,7 @@ class WelcomeComponent extends StatelessWidget {
           children: [
             CustomText.h2(
               context,
-              tr('welcome'),
+              tr(context).welcome,
               color: AppColors.primaryColor,
               textAlign: TextAlign.start,
             ),
@@ -34,7 +34,7 @@ class WelcomeComponent extends StatelessWidget {
         ),
         CustomText.h4(
           context,
-          tr('signInToYourAccount'),
+          tr(context).signInToYourAccount,
           color: AppColors.grey,
           weight: FontStyles.fontWeightMedium,
         ),

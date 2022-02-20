@@ -1,17 +1,32 @@
-import 'package:get/get.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/utils/dialog_message_state.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/widgets/dialog_widget.dart';
 
 class AppDialogs {
+  static Future showServerErrorDialog({required String message}) async {
+    await DialogWidget.showCustomDialog(
+      context: NavigationService.context,
+      dialogWidgetState: DialogWidgetState.error,
+      title: tr(NavigationService.context).oops,
+      description:
+          tr(NavigationService.context).somethingWentWrong + '\n' + message,
+      textButton: tr(NavigationService.context).oK,
+      onPressed: () {
+        NavigationService.goBack();
+      },
+    );
+  }
+
   static Future showDefaultErrorDialog() async {
     await DialogWidget.showCustomDialog(
-      context: Get.context!,
+      context: NavigationService.context,
       dialogWidgetState: DialogWidgetState.error,
-      title: tr('oops'),
-      description: tr('somethingWentWrong') + '\n' + tr('pleaseTryAgainLater'),
-      textButton: tr('OK'),
+      title: tr(NavigationService.context).oops,
+      description: tr(NavigationService.context).somethingWentWrong +
+          '\n' +
+          tr(NavigationService.context).pleaseTryAgainLater,
+      textButton: tr(NavigationService.context).oK,
       onPressed: () {
         NavigationService.goBack();
       },
@@ -20,22 +35,10 @@ class AppDialogs {
 
   static Future showOperationCanceledDialog() async {
     await DialogWidget.showCustomDialog(
-      context: Get.context!,
+      context: NavigationService.context,
       dialogWidgetState: DialogWidgetState.error,
-      title: tr('operationCanceledByUser'),
-      textButton: tr('OK'),
-      onPressed: () {
-        NavigationService.goBack();
-      },
-    );
-  }
-
-  static Future showEmailOrPassIncorrectDialog() async {
-    DialogWidget.showCustomDialog(
-      context: Get.context!,
-      dialogWidgetState: DialogWidgetState.error,
-      title: tr('emailOrPasswordIsInCorrect'),
-      textButton: tr('OK'),
+      title: tr(NavigationService.context).operationCanceledByUser,
+      textButton: tr(NavigationService.context).oK,
       onPressed: () {
         NavigationService.goBack();
       },

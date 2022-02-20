@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -26,7 +25,7 @@ class CardButtonComponent extends StatelessWidget {
       child: CustomText.h5(
         context,
         title,
-        color: isColored ? AppColors.white : context.textTheme.headline4!.color,
+        color: isColored ? AppColors.white : Theme.of(context).textTheme.headline4!.color,
         weight: FontStyles.fontWeightBold,
         alignment: Alignment.center,
       ),

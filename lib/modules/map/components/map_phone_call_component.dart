@@ -1,6 +1,6 @@
+import 'package:deliverzler/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get_utils/src/extensions/string_extensions.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
@@ -19,7 +19,7 @@ class MapPhoneCallComponent extends ConsumerWidget {
 
     return isArrivedSelectedPlace &&
             selectedOrderPhone.isNotEmpty &&
-            selectedOrderPhone.isNum
+            Validators.instance.isNumeric(selectedOrderPhone)
         ? Positioned(
             top: Sizes.mapDirectionsInfoTop,
             right: Sizes.hPaddingMedium,

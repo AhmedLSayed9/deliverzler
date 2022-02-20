@@ -1,7 +1,7 @@
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -14,7 +14,7 @@ class MainDrawerBottomComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return Padding(
-      padding: AppLocalizations.instance.isAr()
+      padding: LocalizationService.instance.isAr()
           ? EdgeInsets.only(
               right: Sizes.mainDrawerHPadding,
             )
@@ -26,7 +26,7 @@ class MainDrawerBottomComponent extends ConsumerWidget {
         children: [
           CustomText.h3(
             context,
-            tr('appName'),
+            tr(context).appName,
             weight: FontStyles.fontWeightExtraBold,
             color: AppColors.primaryColor,
           ),

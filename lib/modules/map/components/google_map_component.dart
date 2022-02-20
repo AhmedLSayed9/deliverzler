@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:deliverzler/modules/map/viewmodels/main_map_viewmodel.dart';
 import 'package:deliverzler/modules/map/viewmodels/map_current_location_viewmodel.dart';
@@ -53,7 +52,7 @@ class _GoogleMapComponentState extends ConsumerState<GoogleMapComponent>
       onMapCreated: (GoogleMapController controller) async {
         mainMapVM.onMapCreated(
           controller: controller,
-          isDarkMode: context.isDarkMode,
+          isDarkMode: Theme.of(context).brightness == Brightness.dark,
         );
       },
     );

@@ -1,41 +1,50 @@
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
 import 'package:deliverzler/authentication/models/user_model.dart';
-import 'package:deliverzler/authentication/services/firebase_auth_api.dart';
+import 'package:deliverzler/core/errors/exceptions.dart';
+import 'package:deliverzler/core/errors/failures.dart';
 import 'package:deliverzler/core/services/firebase_services/firebase_caller.dart';
 import 'package:deliverzler/core/services/firebase_services/firestore_paths.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final userRepoProvider = Provider<UserRepo>((ref) => UserRepo());
 
 class UserRepo {
-  UserRepo._();
-
-  static final UserRepo instance = UserRepo._();
-
-  factory UserRepo({required String? userId}) {
-    instance.uid = userId;
-    return instance;
-  }
-
   final FirebaseCaller _firebaseCaller = FirebaseCaller.instance;
+
   String? uid;
   UserModel? userModel;
 
-  Future<UserModel?> setUserData({required UserModel userData}) async {
-    final _currentStoredUser = await getUserData();
-    if (_currentStoredUser == null) {
-      _firebaseCaller.setData(
-        path: FirestorePaths.userDocument(userData.uId),
-        data: userData.toMap(),
-      );
-      userModel = userData;
-      return userModel;
-    } else {
-      return _currentStoredUser;
+  Future<Either<Failure, UserModel>> setUserDataToFirebase(
+      UserModel userData) async {
+    try {
+      final _firebaseStoredUser = await getUserDataFromFirebase(userData.uId);
+      if (_firebaseStoredUser == null) {
+        _firebaseCaller.setData(
+          path: FirestorePaths.userDocument(userData.uId),
+          data: userData.toMap(),
+        );
+        userModel = userData;
+        return Right(userData);
+      } else {
+        return Right(_firebaseStoredUser);
+      }
+    } on FirebaseAuthException catch (e) {
+      final _errorMessage = Exceptions.firebaseAuthErrorMessage(e);
+      return Left(ServerFailure(message: _errorMessage));
+    } catch (e) {
+      debugPrint(e.toString());
+      final _errorMessage = Exceptions.errorMessage(e);
+      return Left(ServerFailure(message: _errorMessage));
     }
   }
 
-  Future<UserModel?> getUserData() async {
+  Future<UserModel?> getUserDataFromFirebase(String userId) async {
     return await _firebaseCaller.getData(
-      path: FirestorePaths.userDocument(uid!),
+      path: FirestorePaths.userDocument(userId),
       builder: (data, docId) {
         if (data != null) {
           userModel = UserModel.fromMap(data, docId!);
@@ -88,9 +97,8 @@ class UserRepo {
     }
   }
 
-  Future logoutUser() async {
+  Future clearUserLocalData() async {
     uid = null;
     userModel = null;
-    await FirebaseAuthAPI.instance.signOut();
   }
 }

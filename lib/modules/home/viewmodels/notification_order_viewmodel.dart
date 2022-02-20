@@ -20,8 +20,9 @@ class NotificationOrderViewModel extends ChangeNotifier {
 
   navigateToNotificationOrder() async {
     try {
-      final _order =
-          await OrdersRepo.instance.getOrderById(orderId: notificationOrderId!);
+      final _order = await ref
+          .read(ordersRepoProvider)
+          .getOrderById(orderId: notificationOrderId!);
       if (_order != null) {
         //Few delay to ensure dispose of old map viewmodels.
         await Future.delayed(const Duration(seconds: 1));

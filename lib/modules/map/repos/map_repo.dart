@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import 'package:deliverzler/core/errors/failures.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:deliverzler/core/services/apis_services/apis_caller.dart';
 import 'package:deliverzler/core/services/apis_services/apis_paths.dart';
@@ -13,7 +15,7 @@ class MapRepo {
 
   final ApisCaller _apiCaller = ApisCaller.instance;
 
-  Future<List<PlaceSearchModel>> getPlaceSearchSuggestions({
+  Future<Either<Failure, List<PlaceSearchModel>>> getPlaceSearchSuggestions({
     required String placeName,
     required String sessionToken,
   }) async {
@@ -27,14 +29,16 @@ class MapRepo {
           'sessiontoken': sessionToken,
         },
         builder: (data) {
-          if (data != null && data['status'] == 'OK') {
-            return List<PlaceSearchModel>.from(
+          if (data is Failure) {
+            return Left(data);
+          } else if (data != null && data['status'] == 'OK') {
+            return Right(List<PlaceSearchModel>.from(
               data['predictions'].map(
                 (e) => PlaceSearchModel.fromMap(e),
               ),
-            );
+            ));
           }
-          return [];
+          return const Right([]);
         });
   }
 

@@ -1,17 +1,30 @@
 import 'dart:async';
 
+import 'package:dartz/dartz.dart';
 import 'package:deliverzler/authentication/models/user_model.dart';
+import 'package:deliverzler/authentication/repos/auth_repo.dart';
 import 'package:deliverzler/authentication/repos/user_repo.dart';
+import 'package:deliverzler/core/errors/failures.dart';
+import 'package:deliverzler/core/services/init_services/firebase_messaging_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:location/location.dart';
 import 'package:deliverzler/core/services/location_service.dart';
 
-final mainCoreViewModel =
-    ChangeNotifierProvider<MainCoreViewModel>((ref) => MainCoreViewModel());
+final mainCoreProvider =
+    Provider<MainCoreProvider>((ref) => MainCoreProvider(ref));
 
-class MainCoreViewModel extends ChangeNotifier {
+class MainCoreProvider {
+  MainCoreProvider(this.ref) {
+    _userRepo = ref.read(userRepoProvider);
+    _authRepo = ref.read(authRepoProvider);
+  }
+
+  final Ref ref;
+  late UserRepo _userRepo;
+  late AuthRepo _authRepo;
+
   ///User module methods
   String? getCurrentUserAuthUid() {
     if (FirebaseAuth.instance.currentUser != null) {
@@ -20,9 +33,9 @@ class MainCoreViewModel extends ChangeNotifier {
     return null;
   }
 
-  Future<UserModel?>? getUserDataFromFirebase({required String uid}) async {
+  Future<UserModel?>? getUserFromFirebase({required String uid}) async {
     try {
-      return await UserRepo(userId: uid).getUserData();
+      return await _userRepo.getUserDataFromFirebase(uid);
     } catch (e) {
       debugPrint(e.toString());
       return null;
@@ -30,16 +43,25 @@ class MainCoreViewModel extends ChangeNotifier {
   }
 
   UserModel? getCurrentUser() {
-    return UserRepo.instance.userModel;
+    return _userRepo.userModel;
+  }
+
+  Future<Either<Failure, UserModel>> setUserInFirebase(
+    UserModel userModel,
+  ) async {
+    return await _userRepo.setUserDataToFirebase(userModel);
   }
 
   setCurrentUser({required UserModel userModel}) {
-    UserRepo.instance.uid = userModel.uId;
-    UserRepo.instance.userModel = userModel;
+    _userRepo.uid = userModel.uId;
+    _userRepo.userModel = userModel;
   }
 
   Future logoutUser() async {
-    await UserRepo.instance.logoutUser();
+    await _authRepo.signOut();
+    await FirebaseMessagingService.instance
+        .unsubscribeFromTopic(topic: 'general');
+    await _userRepo.clearUserLocalData();
   }
 
   ///Location module related...

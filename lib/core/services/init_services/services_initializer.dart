@@ -1,4 +1,5 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
 import 'package:deliverzler/core/services/init_services/firebase_messaging_service.dart';
 import 'package:deliverzler/core/services/init_services/local_notification_service.dart';
@@ -8,7 +9,6 @@ import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:deliverzler/firebase_options.dart';
 
 class ServiceInitializer {
@@ -36,7 +36,7 @@ class ServiceInitializer {
   }
 
   initializeLocalization() async {
-    return await AppLocalizations.instance.getUserStoredLocale();
+    return await LocalizationService.instance.getUserStoredLocale();
   }
 
   initializeTheme() async {
@@ -77,7 +77,9 @@ class ServiceInitializer {
   }
 
   cacheDefaultImages() async {
-    precacheImage(const AssetImage(AppImages.appLogoIcon), Get.context!);
-    precacheImage(const AssetImage(AppImages.splash), Get.context!);
+    precacheImage(
+        const AssetImage(AppImages.appLogoIcon), NavigationService.context);
+    precacheImage(
+        const AssetImage(AppImages.splash), NavigationService.context);
   }
 }

@@ -1,18 +1,19 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/models/payload_model.dart';
 import 'package:deliverzler/core/services/init_services/local_notification_service.dart';
 import 'package:deliverzler/core/services/location_service.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
-import 'package:deliverzler/core/utils/routes.dart';
-import 'package:deliverzler/core/viewmodels/main_core_viewmodel.dart';
+import 'package:deliverzler/core/routing/route_paths.dart';
+import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 import 'package:deliverzler/modules/home/models/order_model.dart';
 import 'package:deliverzler/modules/home/repos/orders_repo.dart';
 import 'package:deliverzler/modules/map/models/delivering_order_model.dart';
@@ -20,7 +21,7 @@ import 'package:deliverzler/modules/map/services/map_service.dart';
 import 'package:deliverzler/modules/map/utils/constants.dart';
 
 final upcomingOrdersStreamProvider = StreamProvider<List<OrderModel>>((ref) {
-  return OrdersRepo.instance.getUpcomingOrdersStream();
+  return ref.read(ordersRepoProvider).getUpcomingOrdersStream();
 });
 
 final mainOrdersViewModel = ChangeNotifierProvider<MainOrdersViewModel>(
@@ -43,9 +44,9 @@ class MainOrdersViewModel extends ChangeNotifier {
   }
 
   Future requestForCurrentLocationAndBgMode() async {
-    await ref.read(mainCoreViewModel).enableLocationAndRequestPermission();
-    await ref.read(mainCoreViewModel).enableBackgroundMode();
-    await ref.read(mainCoreViewModel).initLocationSettings();
+    await ref.read(mainCoreProvider).enableLocationAndRequestPermission();
+    await ref.read(mainCoreProvider).enableBackgroundMode();
+    await ref.read(mainCoreProvider).initLocationSettings();
   }
 
   subscribeToLocationChangeStream() {
@@ -86,10 +87,10 @@ class MainOrdersViewModel extends ChangeNotifier {
   updateOrdersDeliveryGeoPoint({required GeoPoint deliveryGeoPoint}) {
     try {
       for (var order in deliveringOrdersList) {
-        OrdersRepo.instance.updateDeliveryGeoPoint(
-          orderId: order.orderId,
-          deliveryGeoPoint: deliveryGeoPoint,
-        );
+        ref.read(ordersRepoProvider).updateDeliveryGeoPoint(
+              orderId: order.orderId,
+              deliveryGeoPoint: deliveryGeoPoint,
+            );
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -127,8 +128,8 @@ class MainOrdersViewModel extends ChangeNotifier {
       data: {'orderId': orderId},
     );
     LocalNotificationService.instance.showInstantNotification(
-      title: tr('arrivedLocation'),
-      body: tr('youAreCloseToLocationArea'),
+      title: tr(NavigationService.context).arrivedLocation,
+      body: tr(NavigationService.context).youAreCloseToLocationArea,
       payload: _payloadModel.toJsonString(),
     );
   }

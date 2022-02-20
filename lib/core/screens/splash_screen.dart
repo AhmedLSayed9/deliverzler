@@ -1,9 +1,9 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/core/viewmodels/splash_viewmodel.dart';
+import 'package:deliverzler/core/viewmodels/splash_provider.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,7 +30,7 @@ class _SplashState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(splashViewModel.notifier);
+    ref.watch(splashProvider);
 
     return PopUpPage(
       child: Stack(
@@ -74,7 +74,7 @@ class _SplashState extends ConsumerState<SplashScreen> {
                         duration: const Duration(seconds: 1),
                         child: CustomText.h1(
                           context,
-                          tr('appName'),
+                          tr(context).appName,
                           weight: FontStyles.fontWeightExtraBold,
                         ),
                       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -43,7 +43,7 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
           children: [
             CustomText.h4(
               context,
-              tr('reasonForCancelingTheOrder') + ':',
+              tr(context).reasonForCancelingTheOrder + ':',
             ),
             SizedBox(
               height: Sizes.vMarginSmallest,
@@ -52,7 +52,7 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
               maxLines: 6,
               maxLength: 200,
               textInputAction: TextInputAction.newline,
-              hintText: tr('typeYourNote') + '...',
+              hintText: tr(context).typeYourNote + '...',
               contentPadding: EdgeInsets.symmetric(
                 vertical: Sizes.vPaddingSmall,
                 horizontal: Sizes.hPaddingSmall,
@@ -74,7 +74,7 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
                   CustomButton(
                     child: CustomText.h4(
                       context,
-                      tr('cancel'),
+                      tr(context).cancel,
                       color: const Color(0xffffffff),
                       weight: FontStyles.fontWeightMedium,
                       alignment: Alignment.center,
@@ -87,7 +87,7 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
                     },
                   ),
                   CustomButton(
-                    text: tr('confirm'),
+                    text: tr(context).confirm,
                     height: Sizes.roundedButtonDialogHeight,
                     width: Sizes.roundedButtonSmallWidth,
                     onPressed: () {

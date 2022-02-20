@@ -1,3 +1,4 @@
+import 'package:deliverzler/authentication/viewmodels/auth_viewmodel.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +13,8 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    ref.watch(authViewModel.notifier);
+
     return PopUpPage(
       child: SingleChildScrollView(
         child: Container(

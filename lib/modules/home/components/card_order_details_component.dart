@@ -1,4 +1,4 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/modules/home/utils/enums.dart';
 import 'package:flutter/foundation.dart';
@@ -22,7 +22,7 @@ class CardOrderDetailsComponent extends StatelessWidget {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: AppLocalizations.instance.isAr()
+          crossAxisAlignment: LocalizationService.instance.isAr()
               ? CrossAxisAlignment.baseline
               : CrossAxisAlignment.center,
           textBaseline: TextBaseline.alphabetic,
@@ -46,8 +46,8 @@ class CardOrderDetailsComponent extends StatelessWidget {
                 context,
                 orderModel.orderDeliveryStatus ==
                         describeEnum(OrderDeliveryStatus.upcoming)
-                    ? tr('orderUpcoming')
-                    : tr('orderOnTheWay'),
+                    ? tr(context).orderUpcoming
+                    : tr(context).orderOnTheWay,
                 weight: FontStyles.fontWeightExtraBold,
                 color: orderModel.orderDeliveryStatus ==
                         describeEnum(OrderDeliveryStatus.upcoming)

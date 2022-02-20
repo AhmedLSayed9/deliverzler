@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 
 class SettingsTileComponent extends StatelessWidget {
@@ -28,7 +27,7 @@ class SettingsTileComponent extends StatelessWidget {
           CustomText.h5(
             context,
             title!,
-            color: context.textTheme.headline4!.color,
+            color: Theme.of(context).textTheme.headline4!.color,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

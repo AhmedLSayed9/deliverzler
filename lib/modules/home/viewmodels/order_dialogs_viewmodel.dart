@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
-import 'package:deliverzler/core/utils/routes.dart';
-import 'package:deliverzler/core/viewmodels/main_core_viewmodel.dart';
+import 'package:deliverzler/core/routing/route_paths.dart';
+import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 import 'package:deliverzler/core/widgets/dialog_widget.dart';
-import 'package:deliverzler/core/widgets/snack_bar.dart';
+import 'package:deliverzler/core/widgets/custom_snack_bar.dart';
 import 'package:deliverzler/modules/home/components/dialogs/cancel_order_dialog.dart';
 import 'package:deliverzler/modules/home/components/dialogs/confirm_choice_dialog.dart';
 import 'package:deliverzler/modules/home/components/dialogs/order_details_dialog.dart';
@@ -21,17 +21,19 @@ final orderDialogsViewModel = ChangeNotifierProvider<OrderDialogsViewModel>(
 
 class OrderDialogsViewModel extends ChangeNotifier {
   OrderDialogsViewModel(this.ref) {
+    _ordersRepo = ref.read(ordersRepoProvider);
     _ordersVM = ref.read(mainOrdersViewModel);
   }
 
   Ref ref;
+  late OrdersRepo _ordersRepo;
   late MainOrdersViewModel _ordersVM;
 
   String cancelNote = '';
 
   showOrderDetailsDialog({required OrderModel orderModel}) {
     DialogWidget.showCustomDialog(
-      context: Get.context!,
+      context: NavigationService.context,
       child: OrderDetailsDialog(
         orderModel: orderModel,
       ),
@@ -41,14 +43,14 @@ class OrderDialogsViewModel extends ChangeNotifier {
   showCancelOrderDialog({required OrderModel orderModel}) async {
     if (_confirmDeliveryId(orderModel.deliveryId)) {
       await DialogWidget.showCustomDialog(
-        context: Get.context!,
+        context: NavigationService.context,
         child: CancelOrderDialog(
           orderModel: orderModel,
         ),
       ).then((value) async {
         if (value != null && value[0] == true) {
           try {
-            await OrdersRepo.instance.cancelUserOrder(
+            await _ordersRepo.cancelUserOrder(
               orderId: orderModel.orderId!,
               employeeCancelNote: cancelNote,
             );
@@ -65,13 +67,12 @@ class OrderDialogsViewModel extends ChangeNotifier {
   }
 
   showDeliverOrderDialog({required OrderModel orderModel}) async {
-    bool _confirm =
-        await _confirmChoiceDialog(tr('doYouWantToDeliverTheOrder'));
+    bool _confirm = await _confirmChoiceDialog(
+        tr(NavigationService.context).doYouWantToDeliverTheOrder);
     if (_confirm) {
       try {
         setSelectedOrderProvidersAndGoToMap(orderModel);
-        await OrdersRepo.instance
-            .deliverUserOrder(orderId: orderModel.orderId!);
+        await _ordersRepo.deliverUserOrder(orderId: orderModel.orderId!);
         _ordersVM.addOrderToDeliveringOrders(orderId: orderModel.orderId!);
       } catch (e) {
         debugPrint(e.toString());
@@ -82,12 +83,11 @@ class OrderDialogsViewModel extends ChangeNotifier {
 
   Future<bool> showConfirmOrderDialog({required OrderModel orderModel}) async {
     if (_confirmDeliveryId(orderModel.deliveryId)) {
-      bool _confirm =
-          await _confirmChoiceDialog(tr('doYouWantToConfirmTheOrder'));
+      bool _confirm = await _confirmChoiceDialog(
+          tr(NavigationService.context).doYouWantToConfirmTheOrder);
       if (_confirm) {
         try {
-          await OrdersRepo.instance
-              .confirmUserOrder(orderId: orderModel.orderId!);
+          await _ordersRepo.confirmUserOrder(orderId: orderModel.orderId!);
           _ordersVM.deleteOrderFromDeliveringOrders(
             orderId: orderModel.orderId!,
           );
@@ -109,13 +109,14 @@ class OrderDialogsViewModel extends ChangeNotifier {
   }
 
   bool _confirmDeliveryId(String? deliveryId) {
-    if (deliveryId == ref.read(mainCoreViewModel).getCurrentUser()!.uId) {
+    if (deliveryId == ref.read(mainCoreProvider).getCurrentUser()!.uId) {
       return true;
     } else {
-      CustomSnackBar.showCommonRawSnackBar(
-        Get.context!,
-        title: tr('youCanNotProceedThisOrder'),
-        description: tr('youCanOnlyProceedOrdersYouDelivering'),
+      CustomSnackBar.showDefaultSnackBar(
+        NavigationService.context,
+        title: tr(NavigationService.context).youCanNotProceedThisOrder,
+        description:
+            tr(NavigationService.context).youCanOnlyProceedOrdersYouDelivering,
       );
       return false;
     }
@@ -124,7 +125,7 @@ class OrderDialogsViewModel extends ChangeNotifier {
   Future<bool> _confirmChoiceDialog(String message) async {
     bool _isConfirm = false;
     _isConfirm = await DialogWidget.showCustomDialog(
-      context: Get.context!,
+      context: NavigationService.context,
       child: ConfirmChoiceDialog(
         message: message,
       ),
@@ -141,8 +142,7 @@ class OrderDialogsViewModel extends ChangeNotifier {
         .firstWhereOrNull((order) => order.orderId == orderModel.orderId);
     ref.read(selectedOrderGeoPointProvider.notifier).state =
         _deliveringOrder?.orderGeoPoint ?? orderModel.addressModel?.geoPoint;
-    NavigationService.navigateTo(
-      navigationMethod: NavigationMethod.push,
+    NavigationService.push(
       isNamed: true,
       page: RoutePaths.map,
     );

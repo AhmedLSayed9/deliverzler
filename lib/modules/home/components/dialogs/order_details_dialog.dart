@@ -2,8 +2,8 @@ import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
@@ -45,7 +45,7 @@ class OrderDetailsDialog extends StatelessWidget {
                       children: [
                         CustomText.h4(
                           context,
-                          tr('orderDetails') + ':',
+                          tr(context).orderDetails + ':',
                           underline: true,
                           weight: FontStyles.fontWeightSemiBold,
                         ),
@@ -57,7 +57,7 @@ class OrderDetailsDialog extends StatelessWidget {
                           children: [
                             CustomText.h4(
                               context,
-                              tr('id') + ':',
+                              tr(context).id + ':',
                             ),
                             CustomText.h4(
                               context,
@@ -70,7 +70,7 @@ class OrderDetailsDialog extends StatelessWidget {
                           children: [
                             CustomText.h4(
                               context,
-                              tr('status') + ':',
+                              tr(context).status + ':',
                             ),
                             CustomText.h4(
                               context,
@@ -83,7 +83,7 @@ class OrderDetailsDialog extends StatelessWidget {
                           children: [
                             CustomText.h4(
                               context,
-                              tr('payment') + ':',
+                              tr(context).payment + ':',
                             ),
                             CustomText.h4(
                               context,
@@ -101,7 +101,7 @@ class OrderDetailsDialog extends StatelessWidget {
               ),
               CustomText.h4(
                 context,
-                tr('userDetails') + ':',
+                tr(context).userDetails + ':',
                 underline: true,
                 weight: FontStyles.fontWeightSemiBold,
               ),
@@ -111,9 +111,9 @@ class OrderDetailsDialog extends StatelessWidget {
               CustomText.h4(
                 context,
                 orderModel.userName.isEmpty
-                    ? tr('user') + orderModel.userId.substring(0, 6)
+                    ? tr(context).user + orderModel.userId.substring(0, 6)
                     : orderModel.userName,
-                padding: AppLocalizations.instance.isAr()
+                padding: LocalizationService.instance.isAr()
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),
@@ -124,14 +124,14 @@ class OrderDetailsDialog extends StatelessWidget {
                     orderModel.addressModel!.city +
                     ', ' +
                     orderModel.addressModel!.street,
-                padding: AppLocalizations.instance.isAr()
+                padding: LocalizationService.instance.isAr()
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),
               CustomText.h4(
                 context,
                 orderModel.addressModel!.mobile,
-                padding: AppLocalizations.instance.isAr()
+                padding: LocalizationService.instance.isAr()
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),
@@ -140,7 +140,7 @@ class OrderDetailsDialog extends StatelessWidget {
               ),
               CustomText.h4(
                 context,
-                tr('note') + ':',
+                tr(context).note + ':',
                 underline: true,
                 weight: FontStyles.fontWeightSemiBold,
               ),
@@ -149,8 +149,10 @@ class OrderDetailsDialog extends StatelessWidget {
               ),
               CustomText.h4(
                 context,
-                orderModel.userNote.isEmpty ? tr('none') : orderModel.userNote,
-                padding: AppLocalizations.instance.isAr()
+                orderModel.userNote.isEmpty
+                    ? tr(context).none
+                    : orderModel.userNote,
+                padding: LocalizationService.instance.isAr()
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),
@@ -158,7 +160,7 @@ class OrderDetailsDialog extends StatelessWidget {
                 height: Sizes.vMarginSmall,
               ),
               CustomButton(
-                text: tr('back'),
+                text: tr(context).back,
                 height: Sizes.roundedButtonDialogHeight,
                 width: Sizes.roundedButtonDialogWidth,
                 onPressed: () {

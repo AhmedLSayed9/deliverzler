@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/components/main_drawer_bottom_component.dart';
 import 'package:deliverzler/core/components/main_drawer_user_info_component.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/core/utils/routes.dart';
+import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -35,24 +35,22 @@ class MainDrawer extends StatelessWidget {
                   height: Sizes.vMarginHigh,
                 ),
                 DrawerItem(
-                  title: tr('myProfile'),
+                  title: tr(context).myProfile,
                   icon: AppImages.profileScreenIcon,
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
-                    NavigationService.navigateTo(
-                      navigationMethod: NavigationMethod.push,
+                    NavigationService.push(
                       isNamed: true,
                       page: RoutePaths.profile,
                     );
                   },
                 ),
                 DrawerItem(
-                  title: tr('settings'),
+                  title: tr(context).settings,
                   icon: AppImages.settingsScreenIcon,
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
-                    NavigationService.navigateTo(
-                      navigationMethod: NavigationMethod.push,
+                    NavigationService.push(
                       isNamed: true,
                       page: RoutePaths.settings,
                     );

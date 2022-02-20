@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:deliverzler/core/viewmodels/main_core_viewmodel.dart';
+import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 import 'package:deliverzler/core/services/location_service.dart';
 import 'package:deliverzler/modules/map/utils/constants.dart';
 import 'package:deliverzler/modules/map/services/map_service.dart';
@@ -17,13 +17,13 @@ final mapCurrentLocationViewModel =
 
 class MapCurrentLocationViewModel extends ChangeNotifier {
   MapCurrentLocationViewModel(this.ref) {
-    _mainCoreVM = ref.read(mainCoreViewModel);
+    _mainCoreProvider = ref.read(mainCoreProvider);
     _mainMapVM = ref.read(mainMapViewModel);
     initData();
   }
 
   Ref ref;
-  late MainCoreViewModel _mainCoreVM;
+  late MainCoreProvider _mainCoreProvider;
   late MainMapViewModel _mainMapVM;
   bool isLoading = true;
   bool _disposed = false;
@@ -46,9 +46,9 @@ class MapCurrentLocationViewModel extends ChangeNotifier {
 
   getCurrentLocation() async {
     bool isLocationPermissionGranted =
-        await _mainCoreVM.enableLocationAndRequestPermission();
+        await _mainCoreProvider.enableLocationAndRequestPermission();
     if (isLocationPermissionGranted) {
-      currentLocation = await _mainCoreVM.getCurrentUserLocation();
+      currentLocation = await _mainCoreProvider.getCurrentUserLocation();
     }
   }
 

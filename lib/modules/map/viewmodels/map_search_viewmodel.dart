@@ -1,3 +1,4 @@
+import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -23,11 +24,19 @@ class MapSearchViewModel extends ChangeNotifier {
   List<PlaceSearchModel> placeSearchList = [];
 
   getPlaceSearchSuggestions({required String placeName}) async {
-    placeSearchList = await MapRepo.instance.getPlaceSearchSuggestions(
+    final _result = await MapRepo.instance.getPlaceSearchSuggestions(
       placeName: placeName,
       sessionToken: sessionToken,
     );
-    notifyListeners();
+    _result.fold(
+      (l) {
+        AppDialogs.showServerErrorDialog(message: l.message);
+      },
+      (r) {
+        placeSearchList = r;
+        notifyListeners();
+      },
+    );
   }
 
   handleSearchItemOnTap({required PlaceSearchModel placeSearchModel}) {

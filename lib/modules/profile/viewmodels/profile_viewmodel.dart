@@ -7,24 +7,28 @@ import 'package:deliverzler/authentication/repos/user_repo.dart';
 import 'package:deliverzler/core/services/image_selector.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:deliverzler/core/utils/validators.dart';
-import 'package:deliverzler/core/viewmodels/main_core_viewmodel.dart';
+import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 
 final profileViewModel = ChangeNotifierProvider.autoDispose<ProfileViewModel>(
-  (ref) => ProfileViewModel(ref.read(mainCoreViewModel)),
+  (ref) => ProfileViewModel(ref),
 );
 
 class ProfileViewModel extends ChangeNotifier {
-  ProfileViewModel(this._mainCoreVM) {
-    userModel = _mainCoreVM.getCurrentUser()!;
+  ProfileViewModel(this.ref) {
+    _mainCoreProvider = ref.read(mainCoreProvider);
+    _userRepo = ref.read(userRepoProvider);
+    userModel = _mainCoreProvider.getCurrentUser()!;
     profileNameController.text = userModel.name ?? '';
     profileMobileController.text = userModel.phone ?? '';
   }
 
-  final MainCoreViewModel _mainCoreVM;
+  final Ref ref;
+  late MainCoreProvider _mainCoreProvider;
+  late UserRepo _userRepo;
   bool isLoading = false;
   bool _disposed = false;
-  late UserModel userModel;
 
+  late UserModel userModel;
   TextEditingController profileNameController = TextEditingController();
   TextEditingController profileMobileController = TextEditingController();
 
@@ -40,10 +44,9 @@ class ProfileViewModel extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     try {
-      await UserRepo.instance.updateUserName(name: profileNameController.text);
-      await UserRepo.instance
-          .updateUserPhone(phone: profileMobileController.text);
-      userModel = _mainCoreVM.getCurrentUser()!;
+      await _userRepo.updateUserName(name: profileNameController.text);
+      await _userRepo.updateUserPhone(phone: profileMobileController.text);
+      userModel = _mainCoreProvider.getCurrentUser()!;
     } catch (e) {
       debugPrint(e.toString());
       AppDialogs.showDefaultErrorDialog();
@@ -65,8 +68,8 @@ class ProfileViewModel extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     try {
-      await UserRepo.instance.updateUserImage(imageFile: image);
-      userModel = _mainCoreVM.getCurrentUser()!;
+      await _userRepo.updateUserImage(imageFile: image);
+      userModel = _mainCoreProvider.getCurrentUser()!;
     } catch (e) {
       debugPrint(e.toString());
       AppDialogs.showDefaultErrorDialog();

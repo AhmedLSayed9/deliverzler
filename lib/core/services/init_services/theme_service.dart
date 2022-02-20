@@ -1,6 +1,10 @@
 import 'package:deliverzler/core/services/init_services/storage_service.dart';
+import 'package:deliverzler/core/utils/storage_keys.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+final appThemeProvider = StateProvider<ThemeMode?>((ref) => null);
 
 class ThemeService {
   ThemeService._();
@@ -8,22 +12,20 @@ class ThemeService {
   static final instance = ThemeService._();
 
   changeTheme({required ThemeMode themeMode}) {
-    Get.changeThemeMode(themeMode);
     setUserStoredTheme(themeMode);
   }
 
   Future setUserStoredTheme(ThemeMode themeMode) async {
     final theme = themeMode == ThemeMode.light ? 'light' : 'dark';
-    await StorageService.instance.saveData(
-      key: 'user_stored_theme',
-      value: theme,
-      dataType: DataType.string,
+    (await SharedPreferences.getInstance()).setString(
+      StorageKeys.theme,
+      theme,
     );
   }
 
   Future<ThemeMode> getUserStoredTheme() async {
     String? userStoredTheme = await StorageService.instance.restoreData(
-      key: 'user_stored_theme',
+      key: StorageKeys.theme,
       dataType: DataType.string,
     );
     if (userStoredTheme == null) {

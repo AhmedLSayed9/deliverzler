@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 
 class CustomAppBar extends PreferredSize {
@@ -169,7 +168,7 @@ class CustomAppBar extends PreferredSize {
             Expanded(
               child: CustomText.h4(
                 context,
-                name == null ? 'helloThere'.tr : "${'hello'.tr} $name",
+                name == null ? 'helloThere' : "${'hello'} $name",
                 color: const Color(0xff333333),
                 maxLines: 1,
                 weight: FontStyles.fontWeightBold,
@@ -229,7 +228,7 @@ class CustomAppBar extends PreferredSize {
       },
       child: CustomText.h2(
         context,
-        'skip'.tr,
+        'skip',
         weight: FontStyles.fontWeightMedium,
       ),
     );

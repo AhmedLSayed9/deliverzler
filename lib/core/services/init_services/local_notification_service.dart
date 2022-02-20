@@ -1,6 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:deliverzler/core/models/payload_model.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 
 class LocalNotificationService {
@@ -35,15 +35,13 @@ class LocalNotificationService {
       final _payloadModel = PayloadModel.fromJsonString(payload);
       if (_payloadModel.data != null &&
           _payloadModel.data!.containsKey('orderId')) {
-        NavigationService.navigateTo(
-          navigationMethod: NavigationMethod.pushReplacement,
+        NavigationService.pushReplacement(
           isNamed: true,
           page: _payloadModel.route,
           arguments: {'orderId': _payloadModel.data!['orderId']},
         );
       } else {
-        NavigationService.navigateTo(
-          navigationMethod: NavigationMethod.pushReplacement,
+        NavigationService.pushReplacement(
           isNamed: true,
           page: _payloadModel.route,
         );

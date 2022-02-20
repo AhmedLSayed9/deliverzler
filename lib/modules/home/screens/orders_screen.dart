@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/components/main_drawer.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -32,7 +32,7 @@ class OrdersScreen extends ConsumerWidget {
       appbarItems: [
         CustomText.h2(
           context,
-          tr('appName'),
+          tr(context).appName,
           color: AppColors.primaryColor,
         ),
       ],
@@ -47,7 +47,7 @@ class OrdersScreen extends ConsumerWidget {
               return upcomingOrders.isEmpty
                   ? CustomText.h4(
                       context,
-                      tr('thereAreNoOrders'),
+                      tr(context).thereAreNoOrders,
                       color: AppColors.grey,
                       alignment: Alignment.center,
                     )
@@ -69,7 +69,9 @@ class OrdersScreen extends ConsumerWidget {
             },
             error: (err, stack) => CustomText.h4(
               context,
-              tr('somethingWentWrong') + '\n' + tr('pleaseTryAgainLater'),
+              tr(context).somethingWentWrong +
+                  '\n' +
+                  tr(context).pleaseTryAgainLater,
               color: AppColors.grey,
               alignment: Alignment.center,
               textAlign: TextAlign.center,

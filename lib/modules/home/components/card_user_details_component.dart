@@ -1,11 +1,10 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/cached_network_image_circular.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/modules/home/models/order_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class CardUserDetailsComponent extends StatelessWidget {
   final OrderModel orderModel;
@@ -34,9 +33,9 @@ class CardUserDetailsComponent extends StatelessWidget {
               CustomText.h5(
                 context,
                 orderModel.userName.isEmpty
-                    ? tr('user') + orderModel.userId.substring(0, 6)
+                    ? tr(context).user + orderModel.userId.substring(0, 6)
                     : orderModel.userName,
-                color: context.textTheme.headline4!.color,
+                color: Theme.of(context).textTheme.headline4!.color,
                 weight: FontStyles.fontWeightBold,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -1,8 +1,8 @@
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:deliverzler/core/utils/routes.dart';
+import 'package:deliverzler/core/routing/route_paths.dart';
 
 class ConnectivityService {
   ConnectivityService._();
@@ -46,8 +46,7 @@ class ConnectivityService {
   }
 
   _navigateToNoInternetScreen() {
-    NavigationService.navigateTo(
-      navigationMethod: NavigationMethod.push,
+    NavigationService.push(
       isNamed: true,
       page: RoutePaths.coreNoInternet,
       arguments: {'fromSplash': false},

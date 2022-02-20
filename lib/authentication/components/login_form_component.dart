@@ -1,8 +1,8 @@
+import 'package:deliverzler/authentication/viewmodels/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/authentication/viewmodels/auth_loading_provider.dart';
 import 'package:deliverzler/authentication/viewmodels/auth_viewmodel.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
@@ -17,6 +17,12 @@ class LoginFormComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final authVM = ref.watch(authViewModel.notifier);
+    final authLoading = ref.watch(
+      authProvider.select(
+        (state) => state.maybeWhen(loading: () => true, orElse: () => false),
+      ),
+    );
+
     return Form(
       key: _loginFormKey,
       child: Column(
@@ -35,7 +41,7 @@ class LoginFormComponent extends ConsumerWidget {
               color: Color(0xff9b9b9b),
             ),
             fillColor: Colors.transparent,
-            hintText: tr('email'),
+            hintText: tr(context).email,
             key: const ValueKey('email'),
           ),
           CustomTextField(
@@ -43,7 +49,7 @@ class LoginFormComponent extends ConsumerWidget {
             validator: authVM.validateLoginPassword(),
             onFieldSubmitted: (value) {
               if (_loginFormKey.currentState!.validate()) {
-                authVM.signInWithEmailAndPassword(context);
+                authVM.signInWithEmailAndPassword();
               }
             },
             validationColor: AppColors.primaryColor,
@@ -57,23 +63,23 @@ class LoginFormComponent extends ConsumerWidget {
               Icons.password,
               color: Color(0xff9b9b9b),
             ),
-            hintText: tr('password'),
+            hintText: tr(context).password,
             key: const ValueKey('password'),
           ),
           SizedBox(
             height: Sizes.vMarginSmall,
           ),
-          ref.watch(authLoadingProvider)
+          authLoading
               ? LoadingIndicators.instance.smallLoadingAnimation(
                   context,
                   width: Sizes.loadingAnimationButton,
                   height: Sizes.loadingAnimationButton,
                 )
               : CustomButton(
-                  text: tr('signIn'),
+                  text: tr(context).signIn,
                   onPressed: () {
                     if (_loginFormKey.currentState!.validate()) {
-                      authVM.signInWithEmailAndPassword(context);
+                      authVM.signInWithEmailAndPassword();
                     }
                   },
                 ),

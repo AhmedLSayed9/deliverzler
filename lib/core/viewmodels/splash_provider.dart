@@ -1,27 +1,26 @@
 import 'package:deliverzler/authentication/models/user_model.dart';
 import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
 import 'package:deliverzler/core/services/init_services/firebase_messaging_service.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/services/init_services/services_initializer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/core/utils/routes.dart';
-import 'package:deliverzler/core/viewmodels/main_core_viewmodel.dart';
+import 'package:deliverzler/core/routing/route_paths.dart';
+import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 
-final splashViewModel = ChangeNotifierProvider.autoDispose<SplashViewModel>(
-    (ref) => SplashViewModel(ref.read(mainCoreViewModel)));
+final splashProvider = Provider.autoDispose<SplashProvider>(
+    (ref) => SplashProvider(ref.read(mainCoreProvider)));
 
-class SplashViewModel extends ChangeNotifier {
-  final MainCoreViewModel _mainCoreVM;
+class SplashProvider {
+  final MainCoreProvider _mainCoreProvider;
   late String secondPage;
 
-  SplashViewModel(this._mainCoreVM) {
+  SplashProvider(this._mainCoreProvider) {
     ConnectivityService.instance.checkIfConnected().then((value) async {
       await Future.delayed(const Duration(seconds: 2), () {});
       if (value) {
         initializeData().then(
           (_) {
-            NavigationService.offAll(
+            NavigationService.pushReplacementAll(
               isNamed: true,
               page: secondPage,
             );
@@ -31,7 +30,7 @@ class SplashViewModel extends ChangeNotifier {
           },
         );
       } else {
-        NavigationService.offAll(
+        NavigationService.pushReplacementAll(
           isNamed: true,
           page: RoutePaths.coreNoInternet,
           arguments: {'fromSplash': true},
@@ -49,16 +48,16 @@ class SplashViewModel extends ChangeNotifier {
   }
 
   Future checkForCachedUser() async {
-    String? uid = _mainCoreVM.getCurrentUserAuthUid();
+    String? uid = _mainCoreProvider.getCurrentUserAuthUid();
 
     if (uid != null) {
       UserModel? userModel =
-          await _mainCoreVM.getUserDataFromFirebase(uid: uid);
+          await _mainCoreProvider.getUserFromFirebase(uid: uid);
       if (userModel != null) {
-        _mainCoreVM.setCurrentUser(userModel: userModel);
+        _mainCoreProvider.setCurrentUser(userModel: userModel);
         secondPage = RoutePaths.home;
       } else {
-        await _mainCoreVM.logoutUser();
+        await _mainCoreProvider.logoutUser();
         secondPage = RoutePaths.authLogin;
       }
     } else {

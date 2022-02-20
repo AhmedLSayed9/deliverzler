@@ -5,12 +5,17 @@ import 'package:deliverzler/core/services/firebase_services/firebase_caller.dart
 import 'package:deliverzler/core/services/firebase_services/firestore_paths.dart';
 import 'package:deliverzler/modules/home/models/order_model.dart';
 import 'package:deliverzler/modules/home/utils/enums.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final ordersRepoProvider = Provider<OrdersRepo>((ref) => OrdersRepo(ref));
 
 class OrdersRepo {
-  OrdersRepo._();
+  OrdersRepo(this.ref) {
+    _userRepo = ref.read(userRepoProvider);
+  }
 
-  static final instance = OrdersRepo._();
-
+  final Ref ref;
+  late UserRepo _userRepo;
   final FirebaseCaller _firebaseCaller = FirebaseCaller.instance;
 
   Stream<List<OrderModel>> getUpcomingOrdersStream() {
@@ -51,7 +56,7 @@ class OrdersRepo {
       path: FirestorePaths.orderById(orderId: orderId),
       data: {
         'orderDeliveryStatus': describeEnum(OrderDeliveryStatus.canceled),
-        'deliveryId': UserRepo.instance.uid,
+        'deliveryId': _userRepo.uid,
         'employeeCancelNote': employeeCancelNote,
       },
     );
@@ -64,7 +69,7 @@ class OrdersRepo {
       path: FirestorePaths.orderById(orderId: orderId),
       data: {
         'orderDeliveryStatus': describeEnum(OrderDeliveryStatus.onTheWay),
-        'deliveryId': UserRepo.instance.uid,
+        'deliveryId': _userRepo.uid,
       },
     );
   }

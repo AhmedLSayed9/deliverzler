@@ -1,6 +1,5 @@
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:deliverzler/core/localization/app_localization.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 
@@ -33,7 +32,7 @@ class CustomText extends Container {
             margin: margin,
             padding: padding,
             alignment: alignment ??
-                (AppLocalizations.instance.isAr()
+                (LocalizationService.instance.isAr()
                     ? Alignment.topRight
                     : Alignment.topLeft),
             width: width,
@@ -45,7 +44,7 @@ class CustomText extends Container {
                 fontSize: size,
                 fontWeight: weight,
                 decoration: underline ? TextDecoration.underline : null,
-                fontFamily: 'fontFamily'.tr,
+                fontFamily: FontStyles.fontFamily,
               ),
               strutStyle: strutStyle,
               textAlign: textAlign,
@@ -82,7 +81,7 @@ class CustomText extends Container {
           padding: padding,
           margin: margin,
           height: height,
-          color: color ?? context.textTheme.headline1!.color,
+          color: color ?? Theme.of(context).textTheme.headline1!.color,
           weight: weight ?? FontStyles.fontWeightBlack,
           textAlign: textAlign,
           alignment: alignment,
@@ -108,7 +107,7 @@ class CustomText extends Container {
           padding: padding,
           margin: margin,
           size: Sizes.fontSizes['h2'],
-          color: color ?? context.textTheme.headline2!.color,
+          color: color ?? Theme.of(context).textTheme.headline2!.color,
           weight: weight ?? FontStyles.fontWeightBlack,
           textAlign: textAlign,
           height: height,
@@ -140,7 +139,7 @@ class CustomText extends Container {
           padding: padding,
           margin: margin,
           height: height,
-          color: color ?? context.textTheme.headline3!.color,
+          color: color ?? Theme.of(context).textTheme.headline3!.color,
           weight: weight,
           textAlign: textAlign,
           underline: underline,
@@ -168,7 +167,7 @@ class CustomText extends Container {
           padding: padding,
           margin: margin,
           size: Sizes.fontSizes['h4'],
-          color: color ?? context.textTheme.headline4!.color,
+          color: color ?? Theme.of(context).textTheme.headline4!.color,
           weight: weight,
           height: height,
           textAlign: textAlign,
@@ -199,7 +198,7 @@ class CustomText extends Container {
           padding: padding,
           margin: margin,
           height: height,
-          color: color ?? context.textTheme.headline5!.color,
+          color: color ?? Theme.of(context).textTheme.headline5!.color,
           weight: weight,
           overflow: overflow,
           textAlign: textAlign,
@@ -228,7 +227,7 @@ class CustomText extends Container {
           margin: margin,
           height: height,
           overflow: overflow,
-          color: color ?? context.textTheme.headline6!.color,
+          color: color ?? Theme.of(context).textTheme.headline6!.color,
           weight: weight,
           textAlign: textAlign,
           alignment: alignment,

@@ -1,11 +1,11 @@
-import 'package:deliverzler/core/localization/app_localization.dart';
+import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
-import 'package:deliverzler/core/services/navigation_service.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/core/utils/routes.dart';
+import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/core/widgets/loading_indicators.dart';
@@ -23,7 +23,7 @@ class NoInternetConnection extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopUpPage(
       onWillPop: () {
-        NavigationService.offAll(
+        NavigationService.pushReplacementAll(
           isNamed: true,
           page: RoutePaths.coreSplash,
         );
@@ -38,7 +38,7 @@ class NoInternetConnection extends StatelessWidget {
           ),
           CustomText.h2(
             context,
-            tr('noInternetConnection'),
+            tr(context).noInternetConnection,
             alignment: Alignment.center,
             textAlign: TextAlign.center,
           ),
@@ -47,7 +47,7 @@ class NoInternetConnection extends StatelessWidget {
           ),
           CustomText.h5(
             context,
-            tr('pleaseCheckYourDeviceNetwork'),
+            tr(context).pleaseCheckYourDeviceNetwork,
             alignment: Alignment.center,
             textAlign: TextAlign.center,
           ),
@@ -57,7 +57,7 @@ class NoInternetConnection extends StatelessWidget {
           CustomButton(
             child: CustomText.h5(
               context,
-              tr('retry'),
+              tr(context).retry,
               color: Colors.white,
               weight: FontStyles.fontWeightMedium,
               alignment: Alignment.center,
@@ -66,7 +66,7 @@ class NoInternetConnection extends StatelessWidget {
               ConnectivityService.instance.checkIfConnected().then((value) {
                 if (value) {
                   if (fromSplash) {
-                    NavigationService.offAll(
+                    NavigationService.pushReplacementAll(
                       isNamed: true,
                       page: RoutePaths.coreSplash,
                     );
