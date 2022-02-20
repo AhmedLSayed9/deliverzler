@@ -15,31 +15,31 @@ class MapRepo {
 
   final ApisCaller _apiCaller = ApisCaller.instance;
 
-  Future<Either<Failure, List<PlaceSearchModel>>> getPlaceSearchSuggestions({
+  Future<Either<Failure?, List<PlaceSearchModel>>> getPlaceSearchSuggestions({
     required String placeName,
     required String sessionToken,
   }) async {
     return await _apiCaller.getData(
-        path: ApisPaths.googleMapAutoCompletePath(),
-        queryParameters: {
-          'input': placeName,
-          'types': '(cities)',
-          'components': 'country:eg',
-          'key': googleMapAPIKey,
-          'sessiontoken': sessionToken,
-        },
-        builder: (data) {
-          if (data is Failure) {
-            return Left(data);
-          } else if (data != null && data['status'] == 'OK') {
-            return Right(List<PlaceSearchModel>.from(
-              data['predictions'].map(
-                (e) => PlaceSearchModel.fromMap(e),
-              ),
-            ));
-          }
-          return const Right([]);
-        });
+      path: ApisPaths.googleMapAutoCompletePath(),
+      queryParameters: {
+        'input': placeName,
+        'types': '(cities)',
+        'components': 'country:eg',
+        'key': googleMapAPIKey,
+        'sessiontoken': sessionToken,
+      },
+      builder: (data) {
+        if (data != null && data['status'] == 'OK') {
+          return Right(List<PlaceSearchModel>.from(
+            data['predictions'].map(
+              (e) => PlaceSearchModel.fromMap(e),
+            ),
+          ));
+        } else {
+          return Left(data);
+        }
+      },
+    );
   }
 
   Future<PlaceDetailsModel?> getPlaceGeometry({

@@ -4,13 +4,14 @@ import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/widgets/dialog_widget.dart';
 
 class AppDialogs {
-  static Future showServerErrorDialog({required String message}) async {
+  static Future showServerErrorDialog({String? message}) async {
     await DialogWidget.showCustomDialog(
       context: NavigationService.context,
       dialogWidgetState: DialogWidgetState.error,
       title: tr(NavigationService.context).oops,
-      description:
-          tr(NavigationService.context).somethingWentWrong + '\n' + message,
+      description: tr(NavigationService.context).somethingWentWrong +
+          '\n' +
+          (message ?? tr(NavigationService.context).pleaseTryAgainLater),
       textButton: tr(NavigationService.context).oK,
       onPressed: () {
         NavigationService.goBack();

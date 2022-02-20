@@ -30,7 +30,7 @@ class MapSearchViewModel extends ChangeNotifier {
     );
     _result.fold(
       (l) {
-        AppDialogs.showServerErrorDialog(message: l.message);
+        AppDialogs.showServerErrorDialog(message: l?.message);
       },
       (r) {
         placeSearchList = r;
