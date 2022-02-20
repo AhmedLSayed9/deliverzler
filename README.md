@@ -28,7 +28,7 @@ A new open source Delivery App for Restaurants created using Flutter with Fireba
 * Using Google Maps API (Place Autocomplete - Place Details - Directions).
 * Using Local Notifications for location arrive notification & FCM for newly submitted orders notification.
 * Using Generated Routes for Clean Navigation.
-* Using GetX Ecosystem for Localization, Theming, Snackbar, etc.
+* Using Flutter Localization, Theming, Snackbar, etc.
 * Using Responsive UI and custom classes for Sizes, Colors, Themes, etc.
 
 ## Logic
