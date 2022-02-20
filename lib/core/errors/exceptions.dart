@@ -28,10 +28,14 @@ abstract class Exceptions {
           return 'Request page not found';
         default:
           return 'Cannot connect to server' +
-              (server ?? e.toString().substring(0, 100));
+              (server ??
+                  e.toString().substring(
+                      0, e.toString().length < 30 ? e.toString().length : 30));
       }
     } else {
-      return e.toString().substring(0, 100);
+      return e
+          .toString()
+          .substring(0, e.toString().length < 30 ? e.toString().length : 30);
     }
   }
 
