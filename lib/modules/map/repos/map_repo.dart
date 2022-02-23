@@ -29,7 +29,7 @@ class MapRepo {
         'sessiontoken': sessionToken,
       },
       builder: (data) {
-        if (data != null && data['status'] == 'OK') {
+        if (data != null && data is! ServerFailure && data['status'] == 'OK') {
           return Right(List<PlaceSearchModel>.from(
             data['predictions'].map(
               (e) => PlaceSearchModel.fromMap(e),

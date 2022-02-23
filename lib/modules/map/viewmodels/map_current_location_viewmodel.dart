@@ -101,9 +101,7 @@ class MapCurrentLocationViewModel extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
-    if (_currentLocationSubscription != null) {
-      _currentLocationSubscription!.cancel();
-    }
+    _currentLocationSubscription?.cancel();
     super.dispose();
   }
 

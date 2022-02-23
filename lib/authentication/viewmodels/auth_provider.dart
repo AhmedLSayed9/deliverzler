@@ -15,7 +15,7 @@ final authProvider =
 });
 
 class AuthProvider extends StateNotifier<AuthState> {
-  AuthProvider(this.ref) : super(const AuthState.noError()) {
+  AuthProvider(this.ref) : super(const AuthState.available()) {
     _mainCoreProvider = ref.read(mainCoreProvider);
     _authRepo = ref.read(authRepoProvider);
   }
@@ -34,13 +34,13 @@ class AuthProvider extends StateNotifier<AuthState> {
       email: email,
       password: password,
     );
-    _result.fold(
-      (l) {
-        state = AuthState.error(errorText: l.message);
-        AppDialogs.showServerErrorDialog(message: l.message);
+    await _result.fold(
+      (failure) {
+        state = AuthState.error(errorText: failure.message);
+        AppDialogs.showServerErrorDialog(message: failure.message);
       },
-      (r) async {
-        UserModel userModel = r;
+      (user) async {
+        UserModel userModel = user;
         await submitLogin(userModel: userModel);
       },
     );
@@ -49,17 +49,17 @@ class AuthProvider extends StateNotifier<AuthState> {
   Future submitLogin({required UserModel? userModel}) async {
     debugPrint(userModel!.toMap().toString());
     final _result = await _mainCoreProvider.setUserInFirebase(userModel);
-    _result.fold(
-      (l) {
-        state = AuthState.error(errorText: l.message);
-        AppDialogs.showServerErrorDialog(message: l.message);
+    await _result.fold(
+      (failure) {
+        state = AuthState.error(errorText: failure.message);
+        AppDialogs.showServerErrorDialog(message: failure.message);
       },
-      (r) async {
-        UserModel userModel = r;
+      (user) async {
+        UserModel userModel = user;
         _mainCoreProvider.setCurrentUser(userModel: userModel);
         subscribeUserToTopic();
         navigationToHomeScreen();
-        state = const AuthState.noError();
+        state = const AuthState.available();
       },
     );
   }

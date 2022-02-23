@@ -22,14 +22,14 @@ class _$AuthStateTearOff {
     return const _Loading();
   }
 
-  _NoError noError() {
-    return const _NoError();
-  }
-
-  _Error error({required String errorText}) {
+  _Error error({String? errorText}) {
     return _Error(
       errorText: errorText,
     );
+  }
+
+  _Available available() {
+    return const _Available();
   }
 }
 
@@ -41,44 +41,44 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() noError,
-    required TResult Function(String errorText) error,
+    required TResult Function(String? errorText) error,
+    required TResult Function() available,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NoError value) noError,
     required TResult Function(_Error value) error,
+    required TResult Function(_Available value) available,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
     TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
     TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -138,8 +138,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() noError,
-    required TResult Function(String errorText) error,
+    required TResult Function(String? errorText) error,
+    required TResult Function() available,
   }) {
     return loading();
   }
@@ -148,8 +148,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
   }) {
     return loading?.call();
   }
@@ -158,8 +158,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -172,8 +172,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NoError value) noError,
     required TResult Function(_Error value) error,
+    required TResult Function(_Available value) available,
   }) {
     return loading(this);
   }
@@ -182,8 +182,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
     TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
   }) {
     return loading?.call(this);
   }
@@ -192,8 +192,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
     TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -208,118 +208,10 @@ abstract class _Loading implements AuthState {
 }
 
 /// @nodoc
-abstract class _$NoErrorCopyWith<$Res> {
-  factory _$NoErrorCopyWith(_NoError value, $Res Function(_NoError) then) =
-      __$NoErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$NoErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$NoErrorCopyWith<$Res> {
-  __$NoErrorCopyWithImpl(_NoError _value, $Res Function(_NoError) _then)
-      : super(_value, (v) => _then(v as _NoError));
-
-  @override
-  _NoError get _value => super._value as _NoError;
-}
-
-/// @nodoc
-
-class _$_NoError implements _NoError {
-  const _$_NoError();
-
-  @override
-  String toString() {
-    return 'AuthState.noError()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NoError);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() noError,
-    required TResult Function(String errorText) error,
-  }) {
-    return noError();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
-  }) {
-    return noError?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (noError != null) {
-      return noError();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_NoError value) noError,
-    required TResult Function(_Error value) error,
-  }) {
-    return noError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
-    TResult Function(_Error value)? error,
-  }) {
-    return noError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (noError != null) {
-      return noError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NoError implements AuthState {
-  const factory _NoError() = _$_NoError;
-}
-
-/// @nodoc
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
-  $Res call({String errorText});
+  $Res call({String? errorText});
 }
 
 /// @nodoc
@@ -339,7 +231,7 @@ class __$ErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
       errorText: errorText == freezed
           ? _value.errorText
           : errorText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -347,10 +239,10 @@ class __$ErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error({required this.errorText});
+  const _$_Error({this.errorText});
 
   @override
-  final String errorText;
+  final String? errorText;
 
   @override
   String toString() {
@@ -378,8 +270,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() noError,
-    required TResult Function(String errorText) error,
+    required TResult Function(String? errorText) error,
+    required TResult Function() available,
   }) {
     return error(errorText);
   }
@@ -388,8 +280,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
   }) {
     return error?.call(errorText);
   }
@@ -398,8 +290,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? noError,
-    TResult Function(String errorText)? error,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -412,8 +304,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NoError value) noError,
     required TResult Function(_Error value) error,
+    required TResult Function(_Available value) available,
   }) {
     return error(this);
   }
@@ -422,8 +314,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
     TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
   }) {
     return error?.call(this);
   }
@@ -432,8 +324,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_NoError value)? noError,
     TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -444,9 +336,118 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements AuthState {
-  const factory _Error({required String errorText}) = _$_Error;
+  const factory _Error({String? errorText}) = _$_Error;
 
-  String get errorText;
+  String? get errorText;
   @JsonKey(ignore: true)
   _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$AvailableCopyWith<$Res> {
+  factory _$AvailableCopyWith(
+          _Available value, $Res Function(_Available) then) =
+      __$AvailableCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$AvailableCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$AvailableCopyWith<$Res> {
+  __$AvailableCopyWithImpl(_Available _value, $Res Function(_Available) _then)
+      : super(_value, (v) => _then(v as _Available));
+
+  @override
+  _Available get _value => super._value as _Available;
+}
+
+/// @nodoc
+
+class _$_Available implements _Available {
+  const _$_Available();
+
+  @override
+  String toString() {
+    return 'AuthState.available()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Available);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(String? errorText) error,
+    required TResult Function() available,
+  }) {
+    return available();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
+  }) {
+    return available?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? errorText)? error,
+    TResult Function()? available,
+    required TResult orElse(),
+  }) {
+    if (available != null) {
+      return available();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Available value) available,
+  }) {
+    return available(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
+  }) {
+    return available?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Available value)? available,
+    required TResult orElse(),
+  }) {
+    if (available != null) {
+      return available(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Available implements AuthState {
+  const factory _Available() = _$_Available;
 }

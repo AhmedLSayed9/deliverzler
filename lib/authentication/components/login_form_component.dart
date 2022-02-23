@@ -1,7 +1,8 @@
 import 'package:deliverzler/authentication/viewmodels/auth_provider.dart';
+import 'package:deliverzler/core/utils/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/authentication/viewmodels/auth_viewmodel.dart';
 import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -16,7 +17,9 @@ class LoginFormComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final authVM = ref.watch(authViewModel.notifier);
+    final _emailController = useTextEditingController(text: '');
+    final _passwordController = useTextEditingController(text: '');
+
     final authLoading = ref.watch(
       authProvider.select(
         (state) => state.maybeWhen(loading: () => true, orElse: () => false),
@@ -28,8 +31,8 @@ class LoginFormComponent extends ConsumerWidget {
       child: Column(
         children: [
           CustomTextField(
-            controller: authVM.emailController,
-            validator: authVM.validateLoginEmail(),
+            controller: _emailController,
+            validator: Validators.instance.validateEmail,
             validationColor: AppColors.primaryColor,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
@@ -45,11 +48,14 @@ class LoginFormComponent extends ConsumerWidget {
             key: const ValueKey('email'),
           ),
           CustomTextField(
-            controller: authVM.passwordController,
-            validator: authVM.validateLoginPassword(),
+            controller: _passwordController,
+            validator: Validators.instance.validateLoginPassword,
             onFieldSubmitted: (value) {
               if (_loginFormKey.currentState!.validate()) {
-                authVM.signInWithEmailAndPassword();
+                ref.read(authProvider.notifier).signInWithEmailAndPassword(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
               }
             },
             validationColor: AppColors.primaryColor,
@@ -79,7 +85,12 @@ class LoginFormComponent extends ConsumerWidget {
                   text: tr(context).signIn,
                   onPressed: () {
                     if (_loginFormKey.currentState!.validate()) {
-                      authVM.signInWithEmailAndPassword();
+                      ref
+                          .read(authProvider.notifier)
+                          .signInWithEmailAndPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          );
                     }
                   },
                 ),

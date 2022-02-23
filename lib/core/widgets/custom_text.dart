@@ -5,6 +5,7 @@ import 'package:deliverzler/core/styles/sizes.dart';
 
 class CustomText extends Container {
   CustomText(
+    BuildContext context,
     String text, {
     Key? key,
     double? size,
@@ -32,7 +33,7 @@ class CustomText extends Container {
             margin: margin,
             padding: padding,
             alignment: alignment ??
-                (LocalizationService.instance.isAr()
+                (LocalizationService.instance.isAr(context)
                     ? Alignment.topRight
                     : Alignment.topLeft),
             width: width,
@@ -59,6 +60,34 @@ class CustomText extends Container {
               textHeightBehavior: textHeightBehavior,
             ));
 
+  CustomText.h0(
+    BuildContext context,
+    String text, {
+    Key? key,
+    Color? color,
+    FontWeight? weight,
+    bool? underline,
+    TextAlign? textAlign,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    double? height,
+    int? maxLines,
+    Alignment? alignment,
+  }) : this(
+          context,
+          text,
+          key: key,
+          maxLines: maxLines,
+          size: Sizes.fontSizes['h0'],
+          padding: padding,
+          margin: margin,
+          height: height,
+          color: color ?? Theme.of(context).textTheme.headline1!.color,
+          weight: weight ?? FontStyles.fontWeightBlack,
+          textAlign: textAlign,
+          alignment: alignment,
+        );
+
   CustomText.h1(
     //Don't use Get.theme because it is immutable, so theme change won't work.
     BuildContext context,
@@ -74,6 +103,7 @@ class CustomText extends Container {
     int? maxLines,
     Alignment? alignment,
   }) : this(
+          context,
           text,
           key: key,
           maxLines: maxLines,
@@ -97,11 +127,11 @@ class CustomText extends Container {
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? padding,
     double? height,
-    bool underline = false,
     int? maxLines,
     dynamic overflow,
     Alignment? alignment,
   }) : this(
+          context,
           text,
           key: key,
           padding: padding,
@@ -111,7 +141,6 @@ class CustomText extends Container {
           weight: weight ?? FontStyles.fontWeightBlack,
           textAlign: textAlign,
           height: height,
-          underline: underline,
           maxLines: maxLines,
           overflow: overflow,
           alignment: alignment,
@@ -132,6 +161,7 @@ class CustomText extends Container {
     int? maxLines,
     Alignment? alignment,
   }) : this(
+          context,
           text,
           key: key,
           maxLines: maxLines,
@@ -162,6 +192,7 @@ class CustomText extends Container {
     int? maxLines,
     Alignment? alignment,
   }) : this(
+          context,
           text,
           key: key,
           padding: padding,
@@ -191,6 +222,7 @@ class CustomText extends Container {
     int? maxLines,
     Alignment? alignment,
   }) : this(
+          context,
           text,
           key: key,
           maxLines: maxLines,
@@ -219,6 +251,7 @@ class CustomText extends Container {
     int? maxLines,
     Alignment? alignment,
   }) : this(
+          context,
           text,
           key: key,
           maxLines: maxLines,

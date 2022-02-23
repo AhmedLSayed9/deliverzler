@@ -52,6 +52,7 @@ class ImagePickComponent extends StatelessWidget {
                       }
                     },
                     title: CustomText(
+                      context,
                       tr(context).camera,
                     ),
                     leading: const Icon(
@@ -72,6 +73,7 @@ class ImagePickComponent extends StatelessWidget {
                       }
                     },
                     title: CustomText(
+                      context,
                       tr(context).gallery,
                     ),
                     leading: const Icon(

@@ -8,6 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.18.2+1
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
@@ -15,7 +16,8 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   #StateManagement
-  flutter_riverpod: ^1.0.2
+  flutter_riverpod: ^1.0.3
+  hooks_riverpod: ^1.0.3
 
   #Responsive
   flutter_screenutil: ^5.3.1

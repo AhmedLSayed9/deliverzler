@@ -33,7 +33,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
               height: Sizes.vMarginComment,
             ),
             Align(
-              alignment: LocalizationService.instance.isAr()
+              alignment: LocalizationService.instance.isAr(context)
                   ? Alignment.centerRight
                   : Alignment.centerLeft,
               child: FittedBox(

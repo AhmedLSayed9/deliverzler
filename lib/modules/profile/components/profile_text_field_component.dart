@@ -35,7 +35,7 @@ class ProfileTextFieldComponent extends StatelessWidget {
           context,
           title,
           color: Theme.of(context).textTheme.headline5!.color,
-          padding: LocalizationService.instance.isAr()
+          padding: LocalizationService.instance.isAr(context)
               ? EdgeInsets.only(right: Sizes.hPaddingTiny)
               : EdgeInsets.only(left: Sizes.hPaddingTiny),
         ),

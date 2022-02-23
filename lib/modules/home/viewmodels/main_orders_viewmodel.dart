@@ -159,9 +159,7 @@ class MainOrdersViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
-    if (_currentLocationSubscription != null) {
-      _currentLocationSubscription!.cancel();
-    }
+    _currentLocationSubscription?.cancel();
     super.dispose();
   }
 }

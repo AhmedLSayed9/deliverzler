@@ -29,11 +29,11 @@ class MapSearchViewModel extends ChangeNotifier {
       sessionToken: sessionToken,
     );
     _result.fold(
-      (l) {
-        AppDialogs.showServerErrorDialog(message: l?.message);
+      (failure) {
+        AppDialogs.showServerErrorDialog(message: failure?.message);
       },
-      (r) {
-        placeSearchList = r;
+      (list) {
+        placeSearchList = list;
         notifyListeners();
       },
     );

@@ -22,7 +22,7 @@ class CardOrderDetailsComponent extends StatelessWidget {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: LocalizationService.instance.isAr()
+          crossAxisAlignment: LocalizationService.instance.isAr(context)
               ? CrossAxisAlignment.baseline
               : CrossAxisAlignment.center,
           textBaseline: TextBaseline.alphabetic,

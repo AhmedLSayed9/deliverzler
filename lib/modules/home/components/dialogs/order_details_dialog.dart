@@ -113,7 +113,7 @@ class OrderDetailsDialog extends StatelessWidget {
                 orderModel.userName.isEmpty
                     ? tr(context).user + orderModel.userId.substring(0, 6)
                     : orderModel.userName,
-                padding: LocalizationService.instance.isAr()
+                padding: LocalizationService.instance.isAr(context)
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),
@@ -124,14 +124,14 @@ class OrderDetailsDialog extends StatelessWidget {
                     orderModel.addressModel!.city +
                     ', ' +
                     orderModel.addressModel!.street,
-                padding: LocalizationService.instance.isAr()
+                padding: LocalizationService.instance.isAr(context)
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),
               CustomText.h4(
                 context,
                 orderModel.addressModel!.mobile,
-                padding: LocalizationService.instance.isAr()
+                padding: LocalizationService.instance.isAr(context)
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),
@@ -152,7 +152,7 @@ class OrderDetailsDialog extends StatelessWidget {
                 orderModel.userNote.isEmpty
                     ? tr(context).none
                     : orderModel.userNote,
-                padding: LocalizationService.instance.isAr()
+                padding: LocalizationService.instance.isAr(context)
                     ? EdgeInsets.only(right: Sizes.hPaddingSmall)
                     : EdgeInsets.only(left: Sizes.hPaddingSmall),
               ),

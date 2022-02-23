@@ -9,7 +9,8 @@ final settingsViewModel =
 
 class SettingsViewModel extends ChangeNotifier {
   SettingsViewModel(this.ref) {
-    selectedLanguageCode = LocalizationService.instance.getCurrentLocale();
+    selectedLanguageCode = LocalizationService.instance
+        .getCurrentLocale(NavigationService.context);
     isLightThemeMode =
         Theme.of(NavigationService.context).brightness == Brightness.light;
   }

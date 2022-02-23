@@ -46,23 +46,19 @@ class Validators {
     };
   }
 
-  String? Function(String?)? validateEmail() {
+  String? validateEmail(String? value) {
     String patternEmail = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)";
-    return (value) {
-      if (value!.isEmpty) {
-        return tr(NavigationService.context).thisFieldIsEmpty;
-      } else if (checkPattern(pattern: patternEmail, value: value)) {
-        return tr(NavigationService.context).pleaseEnterValidEmail;
-      }
-    };
+    if (value!.isEmpty) {
+      return tr(NavigationService.context).thisFieldIsEmpty;
+    } else if (checkPattern(pattern: patternEmail, value: value)) {
+      return tr(NavigationService.context).pleaseEnterValidEmail;
+    }
   }
 
-  String? Function(String?)? validateLoginPassword() {
-    return (value) {
-      if (value!.isEmpty) {
-        return tr(NavigationService.context).thisFieldIsEmpty;
-      }
-    };
+  String? validateLoginPassword(String? value) {
+    if (value!.isEmpty) {
+      return tr(NavigationService.context).thisFieldIsEmpty;
+    }
   }
 
   bool isNumeric(String str) {

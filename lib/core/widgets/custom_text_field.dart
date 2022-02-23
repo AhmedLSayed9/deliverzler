@@ -1,3 +1,4 @@
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
@@ -90,7 +91,8 @@ class CustomTextField extends Container {
                   fillColor: fillColor,
                   filled: true,
                   contentPadding: contentPadding ??
-                      (LocalizationService.instance.isAr()
+                      (LocalizationService.instance
+                              .isAr(NavigationService.context)
                           ? EdgeInsets.only(
                               right: Sizes.textFieldHPaddingMedium,
                             )

@@ -6,30 +6,17 @@ import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/viewmodels/splash_provider.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
-class SplashScreen extends ConsumerStatefulWidget {
+class SplashScreen extends HookConsumerWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashState createState() => _SplashState();
-}
-
-class _SplashState extends ConsumerState<SplashScreen> {
-  final _logoFadeController = FadeInController();
-  final _titleFadeController = FadeInController();
-
-  @override
-  void initState() {
-    _logoFadeController.fadeIn();
-    _titleFadeController.fadeIn();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final _logoFadeController = FadeInController();
+    final _titleFadeController = FadeInController();
     ref.watch(splashProvider);
 
     return PopUpPage(
@@ -87,12 +74,5 @@ class _SplashState extends ConsumerState<SplashScreen> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _logoFadeController.dispose();
-    _titleFadeController.dispose();
-    super.dispose();
   }
 }

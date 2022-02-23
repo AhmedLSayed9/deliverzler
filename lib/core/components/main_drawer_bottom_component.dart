@@ -14,7 +14,7 @@ class MainDrawerBottomComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return Padding(
-      padding: LocalizationService.instance.isAr()
+      padding: LocalizationService.instance.isAr(context)
           ? EdgeInsets.only(
               right: Sizes.mainDrawerHPadding,
             )

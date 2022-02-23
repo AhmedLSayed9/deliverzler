@@ -5,6 +5,8 @@ part 'auth_state.freezed.dart';
 @freezed
 abstract class AuthState with _$AuthState {
   const factory AuthState.loading() = _Loading;
-  const factory AuthState.noError() = _NoError;
-  const factory AuthState.error({required String errorText}) = _Error;
+
+  const factory AuthState.error({String? errorText}) = _Error;
+
+  const factory AuthState.available() = _Available;
 }
