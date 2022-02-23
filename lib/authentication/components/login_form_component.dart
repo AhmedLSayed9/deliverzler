@@ -20,12 +20,6 @@ class LoginFormComponent extends HookConsumerWidget {
     final _emailController = useTextEditingController(text: '');
     final _passwordController = useTextEditingController(text: '');
 
-    final authLoading = ref.watch(
-      authProvider.select(
-        (state) => state.maybeWhen(loading: () => true, orElse: () => false),
-      ),
-    );
-
     return Form(
       key: _loginFormKey,
       child: Column(
@@ -75,25 +69,33 @@ class LoginFormComponent extends HookConsumerWidget {
           SizedBox(
             height: Sizes.vMarginSmall,
           ),
-          authLoading
-              ? LoadingIndicators.instance.smallLoadingAnimation(
-                  context,
-                  width: Sizes.loadingAnimationButton,
-                  height: Sizes.loadingAnimationButton,
-                )
-              : CustomButton(
-                  text: tr(context).signIn,
-                  onPressed: () {
-                    if (_loginFormKey.currentState!.validate()) {
-                      ref
-                          .read(authProvider.notifier)
-                          .signInWithEmailAndPassword(
-                            email: _emailController.text,
-                            password: _passwordController.text,
-                          );
-                    }
-                  },
-                ),
+          Consumer(
+            builder: (context, ref, child) {
+              final _authLoading = ref.watch(
+                authProvider.select((state) =>
+                    state.maybeWhen(loading: () => true, orElse: () => false)),
+              );
+              return _authLoading
+                  ? LoadingIndicators.instance.smallLoadingAnimation(
+                      context,
+                      width: Sizes.loadingAnimationButton,
+                      height: Sizes.loadingAnimationButton,
+                    )
+                  : CustomButton(
+                      text: tr(context).signIn,
+                      onPressed: () {
+                        if (_loginFormKey.currentState!.validate()) {
+                          ref
+                              .read(authProvider.notifier)
+                              .signInWithEmailAndPassword(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                              );
+                        }
+                      },
+                    );
+            },
+          ),
         ],
       ),
     );
