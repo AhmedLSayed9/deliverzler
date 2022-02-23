@@ -2,15 +2,15 @@ import 'package:deliverzler/authentication/viewmodels/auth_provider.dart';
 import 'package:deliverzler/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:deliverzler/core/widgets/custom_text_field.dart';
 import 'package:deliverzler/core/widgets/loading_indicators.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LoginFormComponent extends ConsumerWidget {
+class LoginFormComponent extends HookConsumerWidget {
   const LoginFormComponent({Key? key}) : super(key: key);
 
   static final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
