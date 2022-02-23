@@ -27,7 +27,7 @@ class NavigationService {
     }
     if (isNamed) {
       if (preventDuplicates) {
-        final _isDuplicate = checkDuplicateRoute(page);
+        final _isDuplicate = checkDuplicateRoute(page, arguments);
         if (_isDuplicate) return;
       }
       return await Navigator.pushNamed(context, page, arguments: arguments);
@@ -50,7 +50,7 @@ class NavigationService {
     }
     if (isNamed) {
       if (preventDuplicates) {
-        final _isDuplicate = checkDuplicateRoute(page);
+        final _isDuplicate = checkDuplicateRoute(page, arguments);
         if (_isDuplicate) return;
       }
       return await Navigator.pushReplacementNamed(
@@ -143,11 +143,12 @@ class NavigationService {
     }
   }
 
-  static bool checkDuplicateRoute(String page) {
+  static bool checkDuplicateRoute(String page, dynamic arguments) {
     bool _isNewRouteSameAsCurrent = false;
     popUntil(
       predicate: (route) {
-        if (route.settings.name == page) {
+        if (route.settings.name == page &&
+            route.settings.arguments == arguments) {
           _isNewRouteSameAsCurrent = true;
         }
         return true;

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:deliverzler/core/models/payload_model.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
@@ -32,19 +34,22 @@ class LocalNotificationService {
 
   onSelectNotification(String? payload) async {
     if (payload != null) {
-      final _payloadModel = PayloadModel.fromJsonString(payload);
-      if (_payloadModel.data != null &&
-          _payloadModel.data!.containsKey('orderId')) {
-        NavigationService.pushReplacement(
-          isNamed: true,
-          page: _payloadModel.route,
-          arguments: {'orderId': _payloadModel.data!['orderId']},
-        );
-      } else {
-        NavigationService.pushReplacement(
-          isNamed: true,
-          page: _payloadModel.route,
-        );
+      final _decodedPayload = jsonDecode(payload) as Map<String, dynamic>;
+      if (_decodedPayload.isNotEmpty) {
+        final _payloadModel = PayloadModel.fromMap(_decodedPayload);
+        if (_payloadModel.data != null &&
+            _payloadModel.data!.containsKey('orderId')) {
+          NavigationService.pushReplacement(
+            isNamed: true,
+            page: _payloadModel.route,
+            arguments: {'orderId': _payloadModel.data!['orderId']},
+          );
+        } else {
+          NavigationService.pushReplacement(
+            isNamed: true,
+            page: _payloadModel.route,
+          );
+        }
       }
     }
   }
