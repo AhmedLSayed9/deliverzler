@@ -24,7 +24,7 @@ class AppImages {
   /// Core
   static const String loadingAnimation = jsonPath + 'loading_animation.json';
   static const String loadingGIF = coreImagesPath + 'loading.gif';
-  static const String appLogoIcon = coreImagesPath + 'icon.png';
+  static const String appLogoIcon = coreImagesPath + 'logo.png';
   static const String cameraIcon = coreImagesPath + 'camera.png';
   static const String noInternet = coreImagesPath + 'no_internet.jpg';
   //Dialog Widget Icons
@@ -46,8 +46,7 @@ class AppImages {
   //Languages Icons
   static const String languageIconEnglish =
       appLanguagesIconsPath + 'english.png';
-  static const String languageIconArabic =
-      appLanguagesIconsPath + 'arabic.png';
+  static const String languageIconArabic = appLanguagesIconsPath + 'arabic.png';
   //Map
   static const String mapLightStyle = jsonPath + 'map_styles/light.json';
   static const String mapDarkStyle = jsonPath + 'map_styles/dark.json';

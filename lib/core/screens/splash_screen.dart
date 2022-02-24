@@ -1,3 +1,4 @@
+import 'package:deliverzler/core/hooks/fade_in_controller_hook.dart';
 import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
@@ -15,8 +16,8 @@ class SplashScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final _logoFadeController = FadeInController();
-    final _titleFadeController = FadeInController();
+    final _logoFadeController = useFadeInController(context);
+    final _titleFadeController = useFadeInController(context);
     ref.watch(splashProvider);
 
     return PopUpPage(

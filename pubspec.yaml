@@ -79,7 +79,8 @@ flutter_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  adaptive_icon_background: "#000000"
+  adaptive_icon_background: "#121B24"
+  adaptive_icon_foreground: "assets/images/core/icon_adaptive_fore.png"
 
 flutter_native_splash:
   background_image: "assets/images/welcome/splash_light.png"
