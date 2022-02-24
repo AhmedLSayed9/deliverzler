@@ -78,6 +78,7 @@ class LocalNotificationService {
         importance: Importance.max,
         priority: Priority.high,
         color: AppColors.primaryColor,
+        playSound: true,
       ),
       iOS: IOSNotificationDetails(),
     );
