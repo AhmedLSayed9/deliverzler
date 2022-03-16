@@ -28,8 +28,8 @@ class SettingsScreen extends ConsumerWidget {
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            vertical: Sizes.screenVPaddingDefault,
-            horizontal: Sizes.screenHPaddingDefault,
+            vertical: Sizes.screenVPaddingDefault(context),
+            horizontal: Sizes.screenHPaddingDefault(context),
           ),
           child: Column(
             children: <Widget>[
@@ -37,11 +37,11 @@ class SettingsScreen extends ConsumerWidget {
                 userModel: _userModel!,
               ),
               SizedBox(
-                height: Sizes.vMarginSmall,
+                height: Sizes.vMarginSmall(context),
               ),
               const AppSettingsSectionComponent(),
               SizedBox(
-                height: Sizes.vMarginMedium,
+                height: Sizes.vMarginMedium(context),
               ),
               const LogoutComponent(),
             ],

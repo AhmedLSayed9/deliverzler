@@ -23,8 +23,8 @@ class LanguageItemComponent extends ConsumerWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: Sizes.vPaddingSmallest,
-          horizontal: Sizes.hPaddingMedium,
+          vertical: Sizes.vPaddingSmallest(context),
+          horizontal: Sizes.hPaddingMedium(context),
         ),
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor.withOpacity(0.9),
@@ -44,7 +44,7 @@ class LanguageItemComponent extends ConsumerWidget {
               children: <Widget>[
                 CircleAvatar(
                   backgroundImage: AssetImage(languageModel.flag),
-                  radius: Sizes.iconsSizes['s6'],
+                  radius: Sizes.iconsSizes(context)['s6'],
                 ),
                 Consumer(
                   builder: (context, ref, child) {
@@ -57,10 +57,10 @@ class LanguageItemComponent extends ConsumerWidget {
                                 .colorScheme
                                 .secondary
                                 .withOpacity(0.8),
-                            radius: Sizes.iconsSizes['s6'],
+                            radius: Sizes.iconsSizes(context)['s6'],
                             child: Icon(
                               Icons.check,
-                              size: Sizes.iconsSizes['s5'],
+                              size: Sizes.iconsSizes(context)['s5'],
                               color: Theme.of(context).primaryColor,
                             ),
                           )
@@ -70,7 +70,7 @@ class LanguageItemComponent extends ConsumerWidget {
               ],
             ),
             SizedBox(
-              width: Sizes.hMarginSmall,
+              width: Sizes.hMarginSmall(context),
             ),
             Expanded(
               child: CustomText.h4(

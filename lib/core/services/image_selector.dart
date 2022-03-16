@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -28,8 +29,8 @@ class ImageSelector {
     try {
       final _pickedFile = await ImagePicker().pickImage(
         source: fromCamera ? ImageSource.camera : ImageSource.gallery,
-        maxHeight: Sizes.pickedImageMaxSize,
-        maxWidth: Sizes.pickedImageMaxSize,
+        maxHeight: Sizes.pickedImageMaxSize(NavigationService.context),
+        maxWidth: Sizes.pickedImageMaxSize(NavigationService.context),
       );
       if (_pickedFile != null) {
         return File(_pickedFile.path);

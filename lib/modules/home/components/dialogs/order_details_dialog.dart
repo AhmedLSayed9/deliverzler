@@ -21,10 +21,11 @@ class OrderDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizes.screenWidth,
+      width: Sizes.screenWidth(context),
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Sizes.dialogHPaddingSmall),
+          padding: EdgeInsets.symmetric(
+              horizontal: Sizes.dialogHPaddingSmall(context)),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -33,12 +34,12 @@ class OrderDetailsDialog extends StatelessWidget {
                 children: [
                   QrImage(
                     data: orderModel.orderId!,
-                    size: Sizes.qrImageRadius,
+                    size: Sizes.qrImageRadius(context),
                     foregroundColor: AppColors.secondaryColor,
                     padding: EdgeInsets.zero,
                   ),
                   SizedBox(
-                    width: Sizes.hMarginSmall,
+                    width: Sizes.hMarginSmall(context),
                   ),
                   Expanded(
                     child: Column(
@@ -50,7 +51,7 @@ class OrderDetailsDialog extends StatelessWidget {
                           weight: FontStyles.fontWeightSemiBold,
                         ),
                         SizedBox(
-                          height: Sizes.vMarginSmallest,
+                          height: Sizes.vMarginSmallest(context),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,7 +98,7 @@ class OrderDetailsDialog extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: Sizes.vMarginSmallest,
+                height: Sizes.vMarginSmallest(context),
               ),
               CustomText.h4(
                 context,
@@ -106,7 +107,7 @@ class OrderDetailsDialog extends StatelessWidget {
                 weight: FontStyles.fontWeightSemiBold,
               ),
               SizedBox(
-                height: Sizes.vMarginTiny,
+                height: Sizes.vMarginTiny(context),
               ),
               CustomText.h4(
                 context,
@@ -114,8 +115,8 @@ class OrderDetailsDialog extends StatelessWidget {
                     ? tr(context).user + orderModel.userId.substring(0, 6)
                     : orderModel.userName,
                 padding: LocalizationService.instance.isAr(context)
-                    ? EdgeInsets.only(right: Sizes.hPaddingSmall)
-                    : EdgeInsets.only(left: Sizes.hPaddingSmall),
+                    ? EdgeInsets.only(right: Sizes.hPaddingSmall(context))
+                    : EdgeInsets.only(left: Sizes.hPaddingSmall(context)),
               ),
               CustomText.h4(
                 context,
@@ -125,18 +126,18 @@ class OrderDetailsDialog extends StatelessWidget {
                     ', ' +
                     orderModel.addressModel!.street,
                 padding: LocalizationService.instance.isAr(context)
-                    ? EdgeInsets.only(right: Sizes.hPaddingSmall)
-                    : EdgeInsets.only(left: Sizes.hPaddingSmall),
+                    ? EdgeInsets.only(right: Sizes.hPaddingSmall(context))
+                    : EdgeInsets.only(left: Sizes.hPaddingSmall(context)),
               ),
               CustomText.h4(
                 context,
                 orderModel.addressModel!.mobile,
                 padding: LocalizationService.instance.isAr(context)
-                    ? EdgeInsets.only(right: Sizes.hPaddingSmall)
-                    : EdgeInsets.only(left: Sizes.hPaddingSmall),
+                    ? EdgeInsets.only(right: Sizes.hPaddingSmall(context))
+                    : EdgeInsets.only(left: Sizes.hPaddingSmall(context)),
               ),
               SizedBox(
-                height: Sizes.vMarginSmallest,
+                height: Sizes.vMarginSmallest(context),
               ),
               CustomText.h4(
                 context,
@@ -145,7 +146,7 @@ class OrderDetailsDialog extends StatelessWidget {
                 weight: FontStyles.fontWeightSemiBold,
               ),
               SizedBox(
-                height: Sizes.vMarginTiny,
+                height: Sizes.vMarginTiny(context),
               ),
               CustomText.h4(
                 context,
@@ -153,16 +154,16 @@ class OrderDetailsDialog extends StatelessWidget {
                     ? tr(context).none
                     : orderModel.userNote,
                 padding: LocalizationService.instance.isAr(context)
-                    ? EdgeInsets.only(right: Sizes.hPaddingSmall)
-                    : EdgeInsets.only(left: Sizes.hPaddingSmall),
+                    ? EdgeInsets.only(right: Sizes.hPaddingSmall(context))
+                    : EdgeInsets.only(left: Sizes.hPaddingSmall(context)),
               ),
               SizedBox(
-                height: Sizes.vMarginSmall,
+                height: Sizes.vMarginSmall(context),
               ),
               CustomButton(
                 text: tr(context).back,
-                height: Sizes.roundedButtonDialogHeight,
-                width: Sizes.roundedButtonDialogWidth,
+                height: Sizes.roundedButtonDialogHeight(context),
+                width: Sizes.roundedButtonDialogWidth(context),
                 onPressed: () {
                   NavigationService.goBack();
                 },

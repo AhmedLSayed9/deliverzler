@@ -39,6 +39,10 @@ abstract class Exceptions {
     }
   }
 
+  static int? statusCode(dynamic e) {
+    return e is DioError ? e.response?.statusCode : null;
+  }
+
   static String firebaseAuthErrorMessage(FirebaseAuthException e) {
     if (e.code == 'network-request-failed') {
       return tr(NavigationService.context).pleaseTryAgainLater;

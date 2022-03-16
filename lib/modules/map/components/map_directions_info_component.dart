@@ -22,20 +22,20 @@ class MapDirectionsInfoComponent extends ConsumerWidget {
 
     return infoText != null
         ? Positioned(
-            top: Sizes.mapDirectionsInfoTop,
+            top: Sizes.mapDirectionsInfoTop(context),
             child: Material(
               elevation: 2,
               borderRadius:
-                  BorderRadius.circular(Sizes.mapDirectionsInfoRadius),
+                  BorderRadius.circular(Sizes.mapDirectionsInfoRadius(context)),
               child: Container(
                 padding: EdgeInsets.symmetric(
-                  vertical: Sizes.vPaddingTiny,
-                  horizontal: Sizes.hPaddingSmall,
+                  vertical: Sizes.vPaddingTiny(context),
+                  horizontal: Sizes.hPaddingSmall(context),
                 ),
                 decoration: BoxDecoration(
                   color: AppColors.lightBlue,
-                  borderRadius:
-                      BorderRadius.circular(Sizes.mapDirectionsInfoRadius),
+                  borderRadius: BorderRadius.circular(
+                      Sizes.mapDirectionsInfoRadius(context)),
                 ),
                 child: CustomText.h5(
                   context,

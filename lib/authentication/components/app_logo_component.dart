@@ -13,14 +13,15 @@ class AppLogoComponent extends StatelessWidget {
     return Column(
       children: [
         CustomImage(
+          context,
           AppImages.appLogoIcon,
-          height: Sizes.loginLogoSize,
-          width: Sizes.loginLogoSize,
+          height: Sizes.loginLogoSize(context),
+          width: Sizes.loginLogoSize(context),
           fit: BoxFit.cover,
           imageAndTitleAlignment: MainAxisAlignment.start,
         ),
         SizedBox(
-          height: Sizes.vMarginSmallest,
+          height: Sizes.vMarginSmallest(context),
         ),
         CustomText.h1(
           context,

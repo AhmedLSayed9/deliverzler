@@ -22,37 +22,44 @@ class CustomAppBar extends PreferredSize {
   })  : assert(!(isSkippable ^ (skipBehaviour != null))),
         super(
           key: key,
-          preferredSize: Size.fromHeight(height ?? Sizes.appBarDefaultHeight),
+          preferredSize:
+              Size.fromHeight(height ?? Sizes.appBarDefaultHeight(context)),
           child: Container(
             color: color,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: Sizes.hPaddingMedium,
-                    left: Sizes.hPaddingMedium,
-                    top: Sizes.vPaddingMedium,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      if (canPop)
-                        _backButton(
-                          backButtonColor,
-                          result: result,
-                          backButtonWidget: backButtonWidget,
+                Container(
+                  width: double.infinity,
+                  height: Sizes.appBarStatusBarHeight(context),
+                  color: Colors.transparent,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      right: Sizes.hPaddingMedium(context),
+                      left: Sizes.hPaddingMedium(context),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (canPop)
+                          _backButton(
+                            context,
+                            backButtonColor,
+                            result: result,
+                            backButtonWidget: backButtonWidget,
+                          ),
+                        if (isSkippable)
+                          _skipButton(
+                            context,
+                            skipBehaviour,
+                          ),
+                        ...children,
+                        SizedBox(
+                          width: Sizes.iconsSizes(context)['s4'],
                         ),
-                      if (isSkippable)
-                        _skipButton(
-                          context,
-                          skipBehaviour,
-                        ),
-                      ...children,
-                      SizedBox(
-                        width: Sizes.iconsSizes['s4'],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -122,7 +129,7 @@ class CustomAppBar extends PreferredSize {
                 Icons.menu_rounded,
                 color: menuButtonColor ?? Colors.black,
               ),
-              iconSize: Sizes.iconsSizes['s4'],
+              iconSize: Sizes.iconsSizes(context)['s4'],
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
               splashColor: Colors.transparent,
@@ -156,14 +163,14 @@ class CustomAppBar extends PreferredSize {
                 Icons.menu_rounded,
                 color: menuButtonColor ?? Colors.black,
               ),
-              iconSize: Sizes.iconsSizes['s4'],
+              iconSize: Sizes.iconsSizes(context)['s4'],
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
             ),
             SizedBox(
-              width: Sizes.hMarginTiny,
+              width: Sizes.hMarginTiny(context),
             ),
             Expanded(
               child: CustomText.h4(
@@ -172,6 +179,7 @@ class CustomAppBar extends PreferredSize {
                 color: const Color(0xff333333),
                 maxLines: 1,
                 weight: FontStyles.fontWeightBold,
+                alignment: Alignment.center,
               ),
             ),
             Row(
@@ -183,7 +191,7 @@ class CustomAppBar extends PreferredSize {
                       Icons.filter_alt_sharp,
                       color: Color(0xff333333),
                     ),
-                    iconSize: Sizes.iconsSizes['s5'],
+                    iconSize: Sizes.iconsSizes(context)['s5'],
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                     splashColor: Colors.transparent,
@@ -200,6 +208,7 @@ class CustomAppBar extends PreferredSize {
         );
 
   static Widget _backButton(
+    BuildContext context,
     Color? backButtonColor, {
     dynamic result,
     Widget? backButtonWidget,
@@ -213,7 +222,7 @@ class CustomAppBar extends PreferredSize {
             Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
             color: backButtonColor,
           ),
-      iconSize: Sizes.iconsSizes['s4'],
+      iconSize: Sizes.iconsSizes(context)['s4'],
       padding: EdgeInsets.zero,
       constraints: const BoxConstraints(),
       splashColor: Colors.transparent,
@@ -230,6 +239,7 @@ class CustomAppBar extends PreferredSize {
         context,
         'skip',
         weight: FontStyles.fontWeightMedium,
+        alignment: Alignment.center,
       ),
     );
   }

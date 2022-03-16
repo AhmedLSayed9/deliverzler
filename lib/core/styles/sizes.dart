@@ -1,145 +1,156 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:deliverzler/core/extensions/num_extensions.dart';
+import 'package:deliverzler/core/services/responsive_service.dart';
+import 'package:flutter/material.dart';
 
 class Sizes {
-  static const designHeight = 895.0;
-  static const designWidth = 414.0;
-  static get screenHeight => ScreenUtil().screenHeight;
-  static get screenWidth => ScreenUtil().screenWidth;
+  static screenHeight(BuildContext context) =>
+      ResponsiveService.screenHeight(context);
+
+  static screenWidth(BuildContext context) =>
+      ResponsiveService.screenWidth(context);
+
+  static statusBarHeight(BuildContext context) =>
+      ResponsiveService.statusBarHeight(context);
+
+  static systemNavBarHeight(BuildContext context) =>
+      ResponsiveService.systemNavBarHeight(context);
 
   //Font sizes
-  static get fontSizes => {
-        "h1": 32.0.sp,
-        "h2": 24.0.sp,
-        "h3": 20.0.sp,
-        "h4": 17.0.sp,
-        "h5": 14.0.sp,
-        "h6": 12.0.sp,
+  static fontSizes(BuildContext context) => {
+        "h0": 40.0.sp(context),
+        "h1": 32.0.sp(context),
+        "h2": 24.0.sp(context),
+        "h3": 20.0.sp(context),
+        "h4": 17.0.sp(context),
+        "h5": 14.0.sp(context),
+        "h6": 12.0.sp(context),
       };
 
   //Icons sizes
-  static get iconsSizes => {
-        "s1": 95.r,
-        "s2": 70.r,
-        "s3": 48.r,
-        "s4": 32.r,
-        "s5": 24.r,
-        "s6": 19.r,
-        "s7": 14.r,
+  static iconsSizes(BuildContext context) => {
+        "s1": 95.r(context),
+        "s2": 70.r(context),
+        "s3": 48.r(context),
+        "s4": 32.r(context),
+        "s5": 24.r(context),
+        "s6": 19.r(context),
+        "s7": 14.r(context),
       };
 
   //Screens Padding
-  static get screenVPaddingDefault => 20.h;
-  static get screenHPaddingDefault => 40.w;
-  static get screenVPaddingHigh => 80.h;
-  static get screenHPaddingMedium => 36.w;
+  static screenVPaddingDefault(BuildContext context) => 20.h(context);
+  static screenHPaddingDefault(BuildContext context) => 40.w(context);
+  static screenVPaddingHigh(BuildContext context) => 80.h(context);
+  static screenHPaddingMedium(BuildContext context) => 36.w(context);
 
   //Widgets Padding
-  static get vPaddingHighest => 40.h;
-  static get vPaddingHigh => 30.h;
-  static get vPaddingMedium => 22.h;
-  static get vPaddingSmall => 16.h;
-  static get vPaddingSmallest => 10.h;
-  static get vPaddingTiny => 5.h;
-  static get hPaddingHighest => 40.w;
-  static get hPaddingHigh => 30.w;
-  static get hPaddingMedium => 22.w;
-  static get hPaddingSmall => 16.w;
-  static get hPaddingSmallest => 10.w;
-  static get hPaddingTiny => 5.w;
+  static vPaddingHighest(BuildContext context) => 40.h(context);
+  static vPaddingHigh(BuildContext context) => 30.h(context);
+  static vPaddingMedium(BuildContext context) => 22.h(context);
+  static vPaddingSmall(BuildContext context) => 16.h(context);
+  static vPaddingSmallest(BuildContext context) => 10.h(context);
+  static vPaddingTiny(BuildContext context) => 5.h(context);
+  static hPaddingHighest(BuildContext context) => 40.w(context);
+  static hPaddingHigh(BuildContext context) => 30.w(context);
+  static hPaddingMedium(BuildContext context) => 22.w(context);
+  static hPaddingSmall(BuildContext context) => 16.w(context);
+  static hPaddingSmallest(BuildContext context) => 10.w(context);
+  static hPaddingTiny(BuildContext context) => 5.w(context);
 
   //Widgets Margin
-  static get vMarginExtreme => 80.h;
-  static get vMarginHighest => 40.h;
-  static get vMarginHigh => 30.h;
-  static get vMarginMedium => 22.h;
-  static get vMarginSmall => 16.h;
-  static get vMarginSmallest => 10.h;
-  static get vMarginComment => 8.h;
-  static get vMarginTiny => 5.h;
-  static get vMarginDot => 3.h;
-  static get hMarginExtreme => 70.w;
-  static get hMarginHighest => 40.w;
-  static get hMarginHigh => 30.w;
-  static get hMarginMedium => 22.w;
-  static get hMarginSmall => 16.w;
-  static get hMarginSmallest => 10.w;
-  static get hMarginComment => 8.w;
-  static get hMarginTiny => 5.w;
-  static get hMarginDot => 3.w;
+  static vMarginExtreme(BuildContext context) => 80.h(context);
+  static vMarginHighest(BuildContext context) => 40.h(context);
+  static vMarginHigh(BuildContext context) => 30.h(context);
+  static vMarginMedium(BuildContext context) => 22.h(context);
+  static vMarginSmall(BuildContext context) => 16.h(context);
+  static vMarginSmallest(BuildContext context) => 10.h(context);
+  static vMarginComment(BuildContext context) => 8.h(context);
+  static vMarginTiny(BuildContext context) => 5.h(context);
+  static vMarginDot(BuildContext context) => 3.h(context);
+  static hMarginExtreme(BuildContext context) => 70.w(context);
+  static hMarginHighest(BuildContext context) => 40.w(context);
+  static hMarginHigh(BuildContext context) => 30.w(context);
+  static hMarginMedium(BuildContext context) => 22.w(context);
+  static hMarginSmall(BuildContext context) => 16.w(context);
+  static hMarginSmallest(BuildContext context) => 10.w(context);
+  static hMarginComment(BuildContext context) => 8.w(context);
+  static hMarginTiny(BuildContext context) => 5.w(context);
+  static hMarginDot(BuildContext context) => 3.w(context);
 
   //Buttons
-  static get roundedButtonMinHeight => 40.h;
-  static get roundedButtonDefaultHeight => 50.h;
-  static get roundedButtonDefaultWidth => 300.w;
-  static get roundedButtonDefaultRadius => 26.r;
-  static get roundedButtonDialogHeight => 44.h;
-  static get roundedButtonDialogWidth => 240.w;
-  static get roundedButtonHighWidth => 260.w;
-  static get roundedButtonMediumHeight => 44.h;
-  static get roundedButtonMediumWidth => 140.w;
-  static get roundedButtonSmallWidth => 116.w;
-  static get textButtonMinWidth => 60.w;
-  static get textButtonMinHeight => 34.h;
+  static roundedButtonMinHeight(BuildContext context) => 40.h(context);
+  static roundedButtonDefaultHeight(BuildContext context) => 50.h(context);
+  static roundedButtonDefaultWidth(BuildContext context) => 300.w(context);
+  static roundedButtonDefaultRadius(BuildContext context) => 26.r(context);
+  static roundedButtonDialogHeight(BuildContext context) => 44.h(context);
+  static roundedButtonDialogWidth(BuildContext context) => 240.w(context);
+  static roundedButtonHighWidth(BuildContext context) => 260.w(context);
+  static roundedButtonMediumHeight(BuildContext context) => 44.h(context);
+  static roundedButtonMediumWidth(BuildContext context) => 140.w(context);
+  static roundedButtonSmallWidth(BuildContext context) => 116.w(context);
+  static textButtonMinWidth(BuildContext context) => 60.w(context);
+  static textButtonMinHeight(BuildContext context) => 34.h(context);
 
   //TextFields
-  static get textFieldDefaultRadius => 12.r;
-  static get textFieldVMarginMedium => 24.h;
-  static get textFieldHPaddingMedium => 16.w;
-  static get textFieldVPaddingMedium => 16.h;
+  static textFieldDefaultRadius(BuildContext context) => 12.r(context);
+  static textFieldVMarginMedium(BuildContext context) => 24.h(context);
+  static textFieldHPaddingMedium(BuildContext context) => 16.w(context);
+  static textFieldVPaddingMedium(BuildContext context) => 16.h(context);
 
   //Cards
-  static get cardVPadding => 16.h;
-  static get cardHRadius => 20.w;
-  static get cardRadius => 14.r;
+  static cardVPadding(BuildContext context) => 16.h(context);
+  static cardHRadius(BuildContext context) => 20.w(context);
+  static cardRadius(BuildContext context) => 14.r(context);
 
   //Dialogs
-  static get dialogVPadding => 30.h;
-  static get dialogHPadding => 20.w;
-  static get dialogRadius => 24.r;
-  static get dialogHPaddingMedium => 10.w;
-  static get dialogHPaddingSmall => 4.w;
-  static get dialogSmallRadius => 6.r;
+  static dialogVPadding(BuildContext context) => 30.h(context);
+  static dialogHPadding(BuildContext context) => 20.w(context);
+  static dialogRadius(BuildContext context) => 24.r(context);
+  static dialogHPaddingMedium(BuildContext context) => 10.w(context);
+  static dialogHPaddingSmall(BuildContext context) => 4.w(context);
+  static dialogSmallRadius(BuildContext context) => 6.r(context);
 
   //LoadingIndicators
-  static get loadingAnimationDefaultHeight => 150.h;
-  static get loadingAnimationDefaultWidth => 150.w;
-  static get loadingIndicatorDefaultHeight => 150.r;
-  static get loadingIndicatorDefaultWidth => 150.r;
-  static get loadingListViewDefaultHeight => 150.h;
-  static get loadingListViewDefaultWidth => 136.w;
-  static get loadingAnimationButton => 90.r;
+  static loadingAnimationDefaultHeight(BuildContext context) => 150.h(context);
+  static loadingAnimationDefaultWidth(BuildContext context) => 150.w(context);
+  static loadingIndicatorDefaultHeight(BuildContext context) => 150.r(context);
+  static loadingIndicatorDefaultWidth(BuildContext context) => 150.r(context);
+  static loadingListViewDefaultHeight(BuildContext context) => 150.h(context);
+  static loadingListViewDefaultWidth(BuildContext context) => 136.w(context);
+  static loadingAnimationButton(BuildContext context) => 90.r(context);
 
   //Images
-  static get userImageSmallRadius => 30.r;
-  static get userImageMediumRadius => 56.r;
-  static get userImageHighRadius => 66.r;
-  static get statusCircleRadius => 8.r;
-  static get qrImageRadius => 100.r;
-  static get pickedImageMaxSize => 400.r;
+  static userImageSmallRadius(BuildContext context) => 30.r(context);
+  static userImageMediumRadius(BuildContext context) => 56.r(context);
+  static userImageHighRadius(BuildContext context) => 66.r(context);
+  static statusCircleRadius(BuildContext context) => 8.r(context);
+  static qrImageRadius(BuildContext context) => 100.r(context);
+  static pickedImageMaxSize(BuildContext context) => 400.r(context);
 
   //Text
-  static get smallTextHeight => 1.4.h;
+  static smallTextHeight(BuildContext context) => 1.4.h(context);
 
   //Map
-  static get mapSearchBarHeight => 54.h;
-  static get mapSearchBarTopMargin => 50.h;
-  static get mapSearchBarRadius => 8.r;
-  static get mapDirectionsInfoTop => 116.h;
-  static get mapDirectionsInfoRadius => 20.r;
-  static get mapConfirmButtonBottom => 42.h;
-  static get mapConfirmButtonLeft => 40.w;
+  static mapSearchBarHeight(BuildContext context) => 54.h(context);
+  static mapSearchBarTopMargin(BuildContext context) => 50.h(context);
+  static mapSearchBarRadius(BuildContext context) => 8.r(context);
+  static mapDirectionsInfoTop(BuildContext context) => 116.h(context);
+  static mapDirectionsInfoRadius(BuildContext context) => 20.r(context);
+  static mapConfirmButtonBottom(BuildContext context) => 42.h(context);
+  static mapConfirmButtonLeft(BuildContext context) => 40.w(context);
 
   //AppBar & Drawer
-  static get appBarDefaultHeight => 60.h;
-  static get mainDrawerWidth => 250.w;
-  static get mainDrawerHPadding => 30.w;
-  static get mainDrawerVPadding => 90.h;
-  static get appBarIconSize => 26.r;
-  static get snackBarRadius => 20.r;
+  static appBarDefaultHeight(BuildContext context) => 60.h(context);
+  static appBarStatusBarHeight(BuildContext context) => 24.h(context);
+  static mainDrawerWidth(BuildContext context) => 250.w(context);
+  static mainDrawerHPadding(BuildContext context) => 30.w(context);
+  static mainDrawerVPadding(BuildContext context) => 90.h(context);
+  static appBarIconSize(BuildContext context) => 26.r(context);
+  static snackBarRadius(BuildContext context) => 20.r(context);
 
   ///App Constants
-  static get screenTopShadowHeight => 400.h;
-  static get splashLogoSize => 220.r;
-  static get loginLogoSize => 126.r;
-  static get switchThemeButtonWidth => 44.w;
+  static screenTopShadowHeight(BuildContext context) => 400.h(context);
+  static splashLogoSize(BuildContext context) => 220.r(context);
+  static loginLogoSize(BuildContext context) => 126.r(context);
+  static switchThemeButtonWidth(BuildContext context) => 44.w(context);
 }

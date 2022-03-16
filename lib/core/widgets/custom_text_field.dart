@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomTextField extends Container {
-  CustomTextField({
+  CustomTextField(
+    BuildContext context, {
     Key? formFieldKey,
     double? height,
     Widget? prefix,
@@ -85,7 +86,8 @@ class CustomTextField extends Container {
                     color: validationColor ?? const Color(0xffff0000),
                     fontWeight:
                         validationFontWeight ?? FontStyles.fontWeightNormal,
-                    fontSize: validationFontSize ?? Sizes.fontSizes["h5"],
+                    fontSize:
+                        validationFontSize ?? Sizes.fontSizes(context)["h5"],
                     fontFamily: FontStyles.fontFamily,
                   ),
                   fillColor: fillColor,
@@ -94,23 +96,23 @@ class CustomTextField extends Container {
                       (LocalizationService.instance
                               .isAr(NavigationService.context)
                           ? EdgeInsets.only(
-                              right: Sizes.textFieldHPaddingMedium,
+                              right: Sizes.textFieldHPaddingMedium(context),
                             )
                           : EdgeInsets.only(
-                              left: Sizes.textFieldHPaddingMedium,
+                              left: Sizes.textFieldHPaddingMedium(context),
                             )),
                   suffixIcon: suffixIcon != null
                       ? Padding(
                           padding: EdgeInsets.symmetric(
-                            horizontal: Sizes.hPaddingSmallest,
-                            vertical: Sizes.vPaddingSmallest,
+                            horizontal: Sizes.hPaddingSmallest(context),
+                            vertical: Sizes.vPaddingSmallest(context),
                           ),
                           child: suffixIcon,
                         )
                       : null,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius),
+                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
                     ),
                     borderSide: const BorderSide(
                       color: AppColors.grey,
@@ -118,7 +120,7 @@ class CustomTextField extends Container {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius),
+                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
                     ),
                     borderSide: const BorderSide(
                       color: AppColors.primaryColor,
@@ -126,7 +128,7 @@ class CustomTextField extends Container {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius),
+                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
                     ),
                     borderSide: BorderSide(
                       color: Colors.grey.shade400,
@@ -134,7 +136,7 @@ class CustomTextField extends Container {
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius),
+                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
                     ),
                     borderSide: BorderSide(
                       color: validationColor ?? const Color(0xffff0000),
@@ -142,7 +144,7 @@ class CustomTextField extends Container {
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius),
+                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
                     ),
                     borderSide: BorderSide(
                       color: validationColor ?? const Color(0xffff0000),
@@ -151,7 +153,7 @@ class CustomTextField extends Container {
                   hintText: hintText,
                   hintStyle: TextStyle(
                     fontFamily: FontStyles.fontFamily,
-                    fontSize: Sizes.fontSizes['h5'],
+                    fontSize: Sizes.fontSizes(context)['h5'],
                     fontWeight: FontStyles.fontWeightBold,
                     color: hintTextColor,
                   ),

@@ -49,7 +49,7 @@ class DialogWidget {
               backgroundColor: const Color(0xffffffff),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
-                Sizes.dialogRadius,
+                Sizes.dialogRadius(context),
               )),
             ),
           ),

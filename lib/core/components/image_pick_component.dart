@@ -20,8 +20,8 @@ class ImagePickComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       padding: EdgeInsets.symmetric(
-        vertical: Sizes.vPaddingSmallest,
-        horizontal: Sizes.hPaddingSmallest,
+        vertical: Sizes.vPaddingSmallest(context),
+        horizontal: Sizes.hPaddingSmallest(context),
       ),
       constraints: const BoxConstraints(),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -92,7 +92,7 @@ class ImagePickComponent extends StatelessWidget {
       elevation: 1,
       child: ImageIcon(
         const AssetImage(AppImages.cameraIcon),
-        size: Sizes.iconsSizes['s7'],
+        size: Sizes.iconsSizes(context)['s7'],
         color: AppColors.grey,
       ),
     );

@@ -21,10 +21,10 @@ class CardUserDetailsComponent extends StatelessWidget {
       children: [
         CachedNetworkImageCircular(
           imageUrl: orderModel.userImage,
-          radius: Sizes.userImageSmallRadius,
+          radius: Sizes.userImageSmallRadius(context),
         ),
         SizedBox(
-          width: Sizes.hMarginSmallest,
+          width: Sizes.hMarginSmallest(context),
         ),
         Expanded(
           child: Column(

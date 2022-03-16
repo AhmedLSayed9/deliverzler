@@ -31,18 +31,18 @@ class ProfileScreen extends ConsumerWidget {
           ? LoadingIndicators.instance.smallLoadingAnimation(context)
           : SingleChildScrollView(
               padding: EdgeInsets.symmetric(
-                vertical: Sizes.screenVPaddingDefault,
-                horizontal: Sizes.screenHPaddingDefault,
+                vertical: Sizes.screenVPaddingDefault(context),
+                horizontal: Sizes.screenHPaddingDefault(context),
               ),
               child: Column(
                 children: [
                   const UserImageComponent(),
                   SizedBox(
-                    height: Sizes.vMarginComment,
+                    height: Sizes.vMarginComment(context),
                   ),
                   const UserDetailsComponent(),
                   SizedBox(
-                    height: Sizes.vMarginHigh,
+                    height: Sizes.vMarginHigh(context),
                   ),
                   const ProfileFormComponent(),
                 ],

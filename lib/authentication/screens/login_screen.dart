@@ -25,19 +25,19 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           padding: EdgeInsets.symmetric(
-            vertical: Sizes.screenVPaddingHigh,
-            horizontal: Sizes.screenHPaddingDefault,
+            vertical: Sizes.screenVPaddingHigh(context),
+            horizontal: Sizes.screenHPaddingDefault(context),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const AppLogoComponent(),
               SizedBox(
-                height: Sizes.vMarginHigh,
+                height: Sizes.vMarginHigh(context),
               ),
               const WelcomeComponent(),
               SizedBox(
-                height: Sizes.vMarginHigh,
+                height: Sizes.vMarginHigh(context),
               ),
               const LoginFormComponent(),
             ],

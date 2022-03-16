@@ -25,8 +25,8 @@ class SplashScreen extends HookConsumerWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            height: Sizes.screenHeight,
-            width: Sizes.screenWidth,
+            height: Sizes.screenHeight(context),
+            width: Sizes.screenWidth(context),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
@@ -45,14 +45,14 @@ class SplashScreen extends HookConsumerWidget {
                   controller: _logoFadeController,
                   child: Lottie.asset(
                     AppImages.splashAnimation,
-                    width: Sizes.splashLogoSize,
+                    width: Sizes.splashLogoSize(context),
                   ),
                 ),
                 SizedBox(
-                  height: Sizes.vMarginSmallest,
+                  height: Sizes.vMarginSmallest(context),
                 ),
                 SizedBox(
-                  width: Sizes.screenWidth,
+                  width: Sizes.screenWidth(context),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

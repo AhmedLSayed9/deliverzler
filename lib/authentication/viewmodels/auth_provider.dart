@@ -59,7 +59,6 @@ class AuthProvider extends StateNotifier<AuthState> {
         _mainCoreProvider.setCurrentUser(userModel: userModel);
         subscribeUserToTopic();
         navigationToHomeScreen();
-        state = const AuthState.available();
       },
     );
   }

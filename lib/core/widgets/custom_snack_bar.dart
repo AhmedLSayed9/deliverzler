@@ -27,19 +27,19 @@ class CustomSnackBar {
       content: Material(
         elevation: elevation ?? 6,
         borderRadius: BorderRadius.circular(
-          borderRadius ?? Sizes.snackBarRadius,
+          borderRadius ?? Sizes.snackBarRadius(context),
         ),
         child: Container(
           padding: padding ??
               EdgeInsets.symmetric(
-                vertical: Sizes.vPaddingSmall,
-                horizontal: Sizes.hPaddingMedium,
+                vertical: Sizes.vPaddingSmall(context),
+                horizontal: Sizes.hPaddingMedium(context),
               ),
           decoration: BoxDecoration(
             color: backgroundColor = const Color(0xFF303030),
             gradient: backgroundGradient ?? AppColors.primaryIngredientColor,
             borderRadius: BorderRadius.circular(
-              borderRadius ?? Sizes.snackBarRadius,
+              borderRadius ?? Sizes.snackBarRadius(context),
             ),
             border: border,
           ),
@@ -54,7 +54,7 @@ class CustomSnackBar {
                 color: AppColors.lightBlack,
               ),
               SizedBox(
-                height: Sizes.vMarginTiny,
+                height: Sizes.vMarginTiny(context),
               ),
               CustomText.h5(
                 context,
@@ -67,7 +67,7 @@ class CustomSnackBar {
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          borderRadius ?? Sizes.snackBarRadius,
+          borderRadius ?? Sizes.snackBarRadius(context),
         ),
       ),
       backgroundColor: Colors.transparent,
@@ -75,8 +75,8 @@ class CustomSnackBar {
       elevation: 0,
       margin: margin ??
           EdgeInsets.symmetric(
-            horizontal: Sizes.hMarginComment,
-            vertical: Sizes.vMarginComment,
+            horizontal: Sizes.hMarginComment(context),
+            vertical: Sizes.vMarginComment(context),
           ),
       width: width,
       action: snackBarAction,

@@ -24,13 +24,14 @@ class WelcomeComponent extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             CustomImage.s3(
+              context,
               AppImages.hiHand,
-              padding: EdgeInsets.only(bottom: Sizes.vPaddingTiny),
+              padding: EdgeInsets.only(bottom: Sizes.vPaddingTiny(context)),
             ),
           ],
         ),
         SizedBox(
-          height: Sizes.vMarginSmall,
+          height: Sizes.vMarginSmall(context),
         ),
         CustomText.h4(
           context,

@@ -26,8 +26,8 @@ class LanguageScreen extends StatelessWidget {
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            vertical: Sizes.screenVPaddingDefault,
-            horizontal: Sizes.screenHPaddingDefault,
+            vertical: Sizes.screenVPaddingDefault(context),
+            horizontal: Sizes.screenHPaddingDefault(context),
           ),
           child: Column(
             children: <Widget>[
@@ -37,7 +37,7 @@ class LanguageScreen extends StatelessWidget {
                 alignment: Alignment.center,
               ),
               SizedBox(
-                height: Sizes.vMarginMedium,
+                height: Sizes.vMarginMedium(context),
               ),
               ListView.separated(
                 shrinkWrap: true,
@@ -45,7 +45,7 @@ class LanguageScreen extends StatelessWidget {
                 itemCount: languagesList.length,
                 separatorBuilder: (context, index) {
                   return SizedBox(
-                    height: Sizes.vMarginSmall,
+                    height: Sizes.vMarginSmall(context),
                   );
                 },
                 itemBuilder: (context, index) {

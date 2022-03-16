@@ -23,7 +23,7 @@ class MapSearchMenuItem extends StatelessWidget {
         children: [
           Icon(
             Icons.place,
-            size: Sizes.iconsSizes['s5'],
+            size: Sizes.iconsSizes(context)['s5'],
           ),
         ],
       ),

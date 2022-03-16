@@ -26,6 +26,7 @@ class Validators {
           return tr(NavigationService.context).pleaseEnterValidNumber;
         }
       }
+      return null;
     };
   }
 
@@ -43,6 +44,9 @@ class Validators {
       } /*else if (checkPattern(pattern: patternName, value: value)) {
         return tr(NavigationService.context).pleaseEnterValidName;
       }*/
+      else {
+        return null;
+      }
     };
   }
 
@@ -52,12 +56,16 @@ class Validators {
       return tr(NavigationService.context).thisFieldIsEmpty;
     } else if (checkPattern(pattern: patternEmail, value: value)) {
       return tr(NavigationService.context).pleaseEnterValidEmail;
+    } else {
+      return null;
     }
   }
 
   String? validateLoginPassword(String? value) {
     if (value!.isEmpty) {
       return tr(NavigationService.context).thisFieldIsEmpty;
+    } else {
+      return null;
     }
   }
 

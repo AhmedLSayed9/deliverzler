@@ -2,7 +2,6 @@ import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_app_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PopUpPage extends StatelessWidget {
   final Widget child;
@@ -63,9 +62,6 @@ class PopUpPage extends StatelessWidget {
       child: SafeArea(
         top: safeAreaTop ?? false,
         bottom: safeAreaBottom ?? false,
-        minimum: EdgeInsets.only(
-          bottom: ScreenUtil().bottomBarHeight,
-        ),
         child: Scaffold(
           key: scaffoldKey,
           extendBodyBehindAppBar: extendBodyBehindAppBar,
@@ -106,7 +102,7 @@ class PopUpPage extends StatelessWidget {
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  height: Sizes.screenTopShadowHeight,
+                  height: Sizes.screenTopShadowHeight(context),
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Color(0xde000000), Color(0x00000000)],

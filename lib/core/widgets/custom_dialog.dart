@@ -42,8 +42,8 @@ class CustomDialog extends AlertDialog {
           shape: shape,
           contentPadding: contentPadding ??
               EdgeInsets.symmetric(
-                vertical: Sizes.dialogVPadding,
-                horizontal: Sizes.dialogHPadding,
+                vertical: Sizes.dialogVPadding(context),
+                horizontal: Sizes.dialogHPadding(context),
               ),
           // insetPadding: child != null ? EdgeInsets.zero : EdgeInsets.symmetric(horizontal: Sizes.widthDialogMessage),
           content: child ??
@@ -54,11 +54,12 @@ class CustomDialog extends AlertDialog {
                 children: [
                   if (image != null)
                     CustomImage.s2(
+                      context,
                       image,
                       color: const Color(0xffcca76a),
                     ),
                   SizedBox(
-                    height: Sizes.vMarginSmall,
+                    height: Sizes.vMarginSmall(context),
                   ),
                   CustomText.h3(
                     context,
@@ -74,19 +75,19 @@ class CustomDialog extends AlertDialog {
                       textAlign: TextAlign.center,
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(
-                        top: Sizes.vMarginComment,
+                        top: Sizes.vMarginComment(context),
                       ),
                     ),
                   SizedBox(
-                    height: Sizes.vMarginMedium,
+                    height: Sizes.vMarginMedium(context),
                   ),
                   CustomButton(
                     text: buttonText ?? "",
                     onPressed: () {
                       if (onPressed != null) onPressed();
                     },
-                    height: Sizes.roundedButtonDialogHeight,
-                    width: Sizes.roundedButtonDialogWidth,
+                    height: Sizes.roundedButtonDialogHeight(context),
+                    width: Sizes.roundedButtonDialogWidth(context),
                   ),
                   if (buttonText2 != null)
                     CustomButton(
@@ -94,8 +95,8 @@ class CustomDialog extends AlertDialog {
                       onPressed: () {
                         if (onPressed2 != null) onPressed2();
                       },
-                      height: Sizes.roundedButtonDialogHeight,
-                      width: Sizes.roundedButtonDialogWidth,
+                      height: Sizes.roundedButtonDialogHeight(context),
+                      width: Sizes.roundedButtonDialogWidth(context),
                     ),
                   if (footer != null) footer,
                 ],

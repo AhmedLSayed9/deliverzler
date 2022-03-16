@@ -28,8 +28,8 @@ class CardOrderDetailsComponent extends StatelessWidget {
           textBaseline: TextBaseline.alphabetic,
           children: [
             Container(
-              height: Sizes.statusCircleRadius,
-              width: Sizes.statusCircleRadius,
+              height: Sizes.statusCircleRadius(context),
+              width: Sizes.statusCircleRadius(context),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: orderModel.orderDeliveryStatus ==
@@ -39,7 +39,7 @@ class CardOrderDetailsComponent extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: Sizes.hMarginTiny,
+              width: Sizes.hMarginTiny(context),
             ),
             Expanded(
               child: CustomText.h6(

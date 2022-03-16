@@ -20,8 +20,8 @@ class CardButtonComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomOutlinedButton(
-      height: Sizes.roundedButtonMediumHeight,
-      width: Sizes.roundedButtonMediumWidth,
+      height: Sizes.roundedButtonMediumHeight(context),
+      width: Sizes.roundedButtonMediumWidth(context),
       child: CustomText.h5(
         context,
         title,

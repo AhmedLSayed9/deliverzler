@@ -15,19 +15,21 @@ class MapSearchMenuComponent extends ConsumerWidget {
         ? Card(
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
+              borderRadius:
+                  BorderRadius.circular(Sizes.mapSearchBarRadius(context)),
             ),
             child: ListView.separated(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               padding: EdgeInsets.symmetric(
-                vertical: Sizes.vPaddingSmall,
-                horizontal: Sizes.hMarginSmall,
+                vertical: Sizes.vPaddingSmall(context),
+                horizontal: Sizes.hMarginSmall(context),
               ),
               itemCount: mapSearchVM.placeSearchList.length,
               itemBuilder: (ctx, index) {
                 return InkWell(
-                  borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
+                  borderRadius:
+                      BorderRadius.circular(Sizes.mapSearchBarRadius(context)),
                   onTap: () {
                     mapSearchVM.handleSearchItemOnTap(
                       placeSearchModel: mapSearchVM.placeSearchList[index],
@@ -40,7 +42,7 @@ class MapSearchMenuComponent extends ConsumerWidget {
               },
               separatorBuilder: (ctx, index) {
                 return Divider(
-                  height: Sizes.vPaddingSmall,
+                  height: Sizes.vPaddingSmall(context),
                 );
               },
             ),

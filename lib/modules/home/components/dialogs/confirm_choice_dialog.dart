@@ -18,9 +18,10 @@ class ConfirmChoiceDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizes.screenWidth,
+      width: Sizes.screenWidth(context),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Sizes.dialogHPaddingMedium),
+        padding: EdgeInsets.symmetric(
+            horizontal: Sizes.dialogHPaddingMedium(context)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -30,7 +31,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
               weight: FontStyles.fontWeightMedium,
             ),
             SizedBox(
-              height: Sizes.vMarginComment,
+              height: Sizes.vMarginComment(context),
             ),
             Align(
               alignment: LocalizationService.instance.isAr(context)
@@ -44,11 +45,11 @@ class ConfirmChoiceDialog extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: Sizes.vMarginSmall,
+              height: Sizes.vMarginSmall(context),
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: Sizes.hPaddingSmallest,
+                horizontal: Sizes.hPaddingSmallest(context),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,16 +63,16 @@ class ConfirmChoiceDialog extends StatelessWidget {
                       alignment: Alignment.center,
                     ),
                     buttonColor: AppColors.grey,
-                    height: Sizes.roundedButtonDialogHeight,
-                    width: Sizes.roundedButtonSmallWidth,
+                    height: Sizes.roundedButtonDialogHeight(context),
+                    width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
                       NavigationService.goBack();
                     },
                   ),
                   CustomButton(
                     text: tr(context).confirm,
-                    height: Sizes.roundedButtonDialogHeight,
-                    width: Sizes.roundedButtonSmallWidth,
+                    height: Sizes.roundedButtonDialogHeight(context),
+                    width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
                       NavigationService.goBack(result: [true]);
                     },

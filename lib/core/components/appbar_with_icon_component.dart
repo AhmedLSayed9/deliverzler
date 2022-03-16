@@ -22,15 +22,16 @@ class AppBarWithIconComponent extends StatelessWidget {
           AssetImage(
             icon,
           ),
-          size: Sizes.appBarIconSize,
+          size: Sizes.appBarIconSize(context),
         ),
         SizedBox(
-          width: Sizes.hMarginComment,
+          width: Sizes.hMarginComment(context),
         ),
         CustomText.h2(
           context,
           title,
           weight: FontStyles.fontWeightSemiBold,
+          alignment: Alignment.center,
         ),
       ],
     );

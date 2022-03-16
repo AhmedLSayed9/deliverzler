@@ -27,8 +27,10 @@ class ApisCaller {
       return builder(response.data);
     } catch (e) {
       debugPrint(e.toString());
-      final _errorMessage = Exceptions.errorMessage(e);
-      final _failure = ServerFailure(message: _errorMessage);
+      final _failure = ServerFailure(
+        message: Exceptions.errorMessage(e),
+        statusCode: Exceptions.statusCode(e),
+      );
       return builder(_failure);
     }
   }

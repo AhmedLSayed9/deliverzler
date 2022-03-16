@@ -5,6 +5,7 @@ import 'package:deliverzler/core/styles/sizes.dart';
 
 class CustomImage extends Container {
   CustomImage(
+    BuildContext context,
     String path, {
     Key? key,
     text,
@@ -38,83 +39,71 @@ class CustomImage extends Container {
     MainAxisAlignment? imageAndTitleAlignment,
     bool upperShadow = false,
   }) : super(
-            key: key,
-            margin: margin,
-            padding: padding,
-            child: Stack(
-              children: [
-                Column(
-                  mainAxisAlignment:
-                      imageAndTitleAlignment ?? MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      path,
-                      bundle: bundle,
-                      cacheHeight: cacheHeight,
-                      cacheWidth: cacheWidth,
-                      package: package,
-                      scale: scale,
-                      frameBuilder: frameBuilder,
-                      errorBuilder: errorBuilder,
-                      semanticLabel: semanticLabel,
-                      excludeFromSemantics: excludeFromSemantics,
-                      width: width,
-                      height: height,
-                      color: color,
-                      colorBlendMode: colorBlendMode,
-                      fit: fit,
-                      alignment: alignment,
-                      repeat: repeat,
-                      centerSlice: centerSlice,
-                      matchTextDirection: matchTextDirection,
-                      gaplessPlayback: gaplessPlayback,
-                      isAntiAlias: isAntiAlias,
-                      filterQuality: filterQuality,
-                    ),
-                    if (title != null)
-                      SizedBox(height: verticalGap ?? Sizes.vMarginComment),
-                    if (title != null)
-                      CustomText(
-                        NavigationService.context,
-                        title,
-                        size: fontSize ?? Sizes.fontSizes['h5'],
-                        color: titleColor ?? const Color(0xff666666),
-                      )
-                  ],
-                ),
-                if (upperShadow)
-                  Container(
-                    height: Sizes.screenTopShadowHeight,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Color(0xde000000), Color(0x00000000)],
-                        stops: [0, 1],
-                        begin: Alignment.topCenter,
-                        end: Alignment.center,
-                      ),
-                    ),
-                  )
-              ],
-            ));
+          key: key,
+          margin: margin,
+          padding: padding,
+          child: Column(
+            mainAxisAlignment:
+                imageAndTitleAlignment ?? MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                path,
+                bundle: bundle,
+                cacheHeight: cacheHeight,
+                cacheWidth: cacheWidth,
+                package: package,
+                scale: scale,
+                frameBuilder: frameBuilder,
+                errorBuilder: errorBuilder,
+                semanticLabel: semanticLabel,
+                excludeFromSemantics: excludeFromSemantics,
+                width: width,
+                height: height,
+                color: color,
+                colorBlendMode: colorBlendMode,
+                fit: fit,
+                alignment: alignment,
+                repeat: repeat,
+                centerSlice: centerSlice,
+                matchTextDirection: matchTextDirection,
+                gaplessPlayback: gaplessPlayback,
+                isAntiAlias: isAntiAlias,
+                filterQuality: filterQuality,
+              ),
+              if (title != null)
+                SizedBox(height: verticalGap ?? Sizes.vMarginComment(context)),
+              if (title != null)
+                CustomText(
+                  NavigationService.context,
+                  title,
+                  size: fontSize ?? Sizes.fontSizes(context)['h5'],
+                  color: titleColor ?? const Color(0xff666666),
+                )
+            ],
+          ),
+        );
 
-  CustomImage.s1(String path,
-      {Key? key,
-      Color? color,
-      BoxFit? fit,
-      MainAxisAlignment? imageAndTitleAlignment,
-      bool upperShadow = false,
-      EdgeInsetsGeometry? margin,
-      EdgeInsetsGeometry? padding,
-      String? title,
-      double? verticalGap,
-      double? fontSize,
-      Color? titleColor})
-      : this(
+  CustomImage.s1(
+    BuildContext context,
+    String path, {
+    Key? key,
+    Color? color,
+    BoxFit? fit,
+    MainAxisAlignment? imageAndTitleAlignment,
+    bool upperShadow = false,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    String? title,
+    double? verticalGap,
+    double? fontSize,
+    Color? titleColor,
+  }) : this(
+          context,
           path,
           key: key,
           imageAndTitleAlignment: imageAndTitleAlignment,
-          height: Sizes.iconsSizes['s1'],
-          width: Sizes.iconsSizes['s1'],
+          height: Sizes.iconsSizes(context)['s1'],
+          width: Sizes.iconsSizes(context)['s1'],
           color: color,
           upperShadow: upperShadow,
           padding: padding,
@@ -125,24 +114,27 @@ class CustomImage extends Container {
           titleColor: titleColor,
         );
 
-  CustomImage.s2(String path,
-      {Key? key,
-      Color? color,
-      BoxFit? fit,
-      MainAxisAlignment? imageAndTitleAlignment,
-      bool upperShadow = false,
-      EdgeInsetsGeometry? margin,
-      EdgeInsetsGeometry? padding,
-      String? title,
-      double? verticalGap,
-      double? fontSize,
-      Color? titleColor})
-      : this(
+  CustomImage.s2(
+    BuildContext context,
+    String path, {
+    Key? key,
+    Color? color,
+    BoxFit? fit,
+    MainAxisAlignment? imageAndTitleAlignment,
+    bool upperShadow = false,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    String? title,
+    double? verticalGap,
+    double? fontSize,
+    Color? titleColor,
+  }) : this(
+          context,
           path,
           key: key,
           imageAndTitleAlignment: imageAndTitleAlignment,
-          height: Sizes.iconsSizes['s2'],
-          width: Sizes.iconsSizes['s2'],
+          height: Sizes.iconsSizes(context)['s2'],
+          width: Sizes.iconsSizes(context)['s2'],
           color: color,
           upperShadow: upperShadow,
           padding: padding,
@@ -153,24 +145,27 @@ class CustomImage extends Container {
           titleColor: titleColor,
         );
 
-  CustomImage.s3(String path,
-      {Key? key,
-      Color? color,
-      BoxFit? fit,
-      MainAxisAlignment? imageAndTitleAlignment,
-      bool upperShadow = false,
-      EdgeInsetsGeometry? margin,
-      EdgeInsetsGeometry? padding,
-      String? title,
-      double? verticalGap,
-      double? fontSize,
-      Color? titleColor})
-      : this(
+  CustomImage.s3(
+    BuildContext context,
+    String path, {
+    Key? key,
+    Color? color,
+    BoxFit? fit,
+    MainAxisAlignment? imageAndTitleAlignment,
+    bool upperShadow = false,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    String? title,
+    double? verticalGap,
+    double? fontSize,
+    Color? titleColor,
+  }) : this(
+          context,
           path,
           key: key,
           imageAndTitleAlignment: imageAndTitleAlignment,
-          height: Sizes.iconsSizes['s3'],
-          width: Sizes.iconsSizes['s3'],
+          height: Sizes.iconsSizes(context)['s3'],
+          width: Sizes.iconsSizes(context)['s3'],
           color: color,
           upperShadow: upperShadow,
           padding: padding,
@@ -181,24 +176,27 @@ class CustomImage extends Container {
           titleColor: titleColor,
         );
 
-  CustomImage.s4(String path,
-      {Key? key,
-      Color? color,
-      BoxFit? fit,
-      MainAxisAlignment? imageAndTitleAlignment,
-      bool upperShadow = false,
-      EdgeInsetsGeometry? margin,
-      EdgeInsetsGeometry? padding,
-      String? title,
-      double? verticalGap,
-      double? fontSize,
-      Color? titleColor})
-      : this(
+  CustomImage.s4(
+    BuildContext context,
+    String path, {
+    Key? key,
+    Color? color,
+    BoxFit? fit,
+    MainAxisAlignment? imageAndTitleAlignment,
+    bool upperShadow = false,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    String? title,
+    double? verticalGap,
+    double? fontSize,
+    Color? titleColor,
+  }) : this(
+          context,
           path,
           key: key,
           imageAndTitleAlignment: imageAndTitleAlignment,
-          height: Sizes.iconsSizes['s4'],
-          width: Sizes.iconsSizes['s4'],
+          height: Sizes.iconsSizes(context)['s4'],
+          width: Sizes.iconsSizes(context)['s4'],
           color: color,
           upperShadow: upperShadow,
           padding: padding,
@@ -209,24 +207,27 @@ class CustomImage extends Container {
           titleColor: titleColor,
         );
 
-  CustomImage.s5(String path,
-      {Key? key,
-      Color? color,
-      BoxFit? fit,
-      MainAxisAlignment? imageAndTitleAlignment,
-      bool upperShadow = false,
-      EdgeInsetsGeometry? margin,
-      EdgeInsetsGeometry? padding,
-      String? title,
-      double? verticalGap,
-      double? fontSize,
-      Color? titleColor})
-      : this(
+  CustomImage.s5(
+    BuildContext context,
+    String path, {
+    Key? key,
+    Color? color,
+    BoxFit? fit,
+    MainAxisAlignment? imageAndTitleAlignment,
+    bool upperShadow = false,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    String? title,
+    double? verticalGap,
+    double? fontSize,
+    Color? titleColor,
+  }) : this(
+          context,
           path,
           key: key,
           imageAndTitleAlignment: imageAndTitleAlignment,
-          height: Sizes.iconsSizes['s5'],
-          width: Sizes.iconsSizes['s5'],
+          height: Sizes.iconsSizes(context)['s5'],
+          width: Sizes.iconsSizes(context)['s5'],
           color: color,
           upperShadow: upperShadow,
           padding: padding,
@@ -237,24 +238,27 @@ class CustomImage extends Container {
           titleColor: titleColor,
         );
 
-  CustomImage.s6(String path,
-      {Key? key,
-      Color? color,
-      BoxFit? fit,
-      MainAxisAlignment? imageAndTitleAlignment,
-      bool upperShadow = false,
-      EdgeInsetsGeometry? margin,
-      EdgeInsetsGeometry? padding,
-      String? title,
-      double? verticalGap,
-      double? fontSize,
-      Color? titleColor})
-      : this(
+  CustomImage.s6(
+    BuildContext context,
+    String path, {
+    Key? key,
+    Color? color,
+    BoxFit? fit,
+    MainAxisAlignment? imageAndTitleAlignment,
+    bool upperShadow = false,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    String? title,
+    double? verticalGap,
+    double? fontSize,
+    Color? titleColor,
+  }) : this(
+          context,
           path,
           key: key,
           imageAndTitleAlignment: imageAndTitleAlignment,
-          height: Sizes.iconsSizes['s6'],
-          width: Sizes.iconsSizes['s6'],
+          height: Sizes.iconsSizes(context)['s6'],
+          width: Sizes.iconsSizes(context)['s6'],
           color: color,
           upperShadow: upperShadow,
           padding: padding,

@@ -17,10 +17,10 @@ class MainDrawerUserInfoComponent extends ConsumerWidget {
       children: [
         CachedNetworkImageCircular(
           imageUrl: _userModel!.image,
-          radius: Sizes.userImageMediumRadius,
+          radius: Sizes.userImageMediumRadius(context),
         ),
         SizedBox(
-          height: Sizes.vMarginComment,
+          height: Sizes.vMarginComment(context),
         ),
         CustomText.h3(
           context,
@@ -34,7 +34,7 @@ class MainDrawerUserInfoComponent extends ConsumerWidget {
           alignment: Alignment.center,
         ),
         SizedBox(
-          height: Sizes.vMarginDot,
+          height: Sizes.vMarginDot(context),
         ),
         CustomText.h5(
           context,

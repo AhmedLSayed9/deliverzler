@@ -24,12 +24,12 @@ class LogoutComponent extends ConsumerWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: Sizes.vPaddingSmall,
+          vertical: Sizes.vPaddingSmall(context),
         ),
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(
-            Sizes.dialogSmallRadius,
+            Sizes.dialogSmallRadius(context),
           ),
           border: Border.all(
             width: 1,
@@ -51,7 +51,7 @@ class LogoutComponent extends ConsumerWidget {
               color: AppColors.primaryColor,
             ),
             SizedBox(
-              width: Sizes.hMarginSmall,
+              width: Sizes.hMarginSmall(context),
             ),
             CustomText.h4(
               context,

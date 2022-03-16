@@ -36,13 +36,14 @@ class ProfileTextFieldComponent extends StatelessWidget {
           title,
           color: Theme.of(context).textTheme.headline5!.color,
           padding: LocalizationService.instance.isAr(context)
-              ? EdgeInsets.only(right: Sizes.hPaddingTiny)
-              : EdgeInsets.only(left: Sizes.hPaddingTiny),
+              ? EdgeInsets.only(right: Sizes.hPaddingTiny(context))
+              : EdgeInsets.only(left: Sizes.hPaddingTiny(context)),
         ),
         SizedBox(
-          height: Sizes.vPaddingSmallest,
+          height: Sizes.vPaddingSmallest(context),
         ),
         CustomTextField(
+          context,
           controller: controller,
           validationColor: AppColors.primaryColor,
           textInputAction:
@@ -52,11 +53,11 @@ class ProfileTextFieldComponent extends StatelessWidget {
           validator: validator,
           onSaved: onSaved,
           margin: EdgeInsets.only(
-            bottom: Sizes.textFieldVMarginMedium,
+            bottom: Sizes.textFieldVMarginMedium(context),
           ),
           contentPadding: EdgeInsets.symmetric(
-            vertical: Sizes.textFieldVPaddingMedium,
-            horizontal: Sizes.textFieldHPaddingMedium,
+            vertical: Sizes.textFieldVPaddingMedium(context),
+            horizontal: Sizes.textFieldHPaddingMedium(context),
           ),
           fillColor: Colors.transparent,
           hintText: hint,

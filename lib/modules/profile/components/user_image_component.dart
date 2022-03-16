@@ -17,10 +17,10 @@ class UserImageComponent extends ConsumerWidget {
       children: [
         CachedNetworkImageCircular(
           imageUrl: profileVM.userModel.image,
-          radius: Sizes.userImageHighRadius,
+          radius: Sizes.userImageHighRadius(context),
         ),
         Padding(
-          padding: EdgeInsets.only(right: Sizes.hPaddingTiny),
+          padding: EdgeInsets.only(right: Sizes.hPaddingTiny(context)),
           child: ImagePickComponent(
             pickFromCameraFunction: () {
               profileVM.updateProfileImage(fromCamera: true);

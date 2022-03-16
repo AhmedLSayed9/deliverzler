@@ -21,12 +21,12 @@ class SettingsSectionComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        vertical: Sizes.vMarginMedium,
+        vertical: Sizes.vMarginMedium(context),
       ),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(
-          Sizes.dialogSmallRadius,
+          Sizes.dialogSmallRadius(context),
         ),
         boxShadow: [
           BoxShadow(
@@ -38,7 +38,7 @@ class SettingsSectionComponent extends StatelessWidget {
       ),
       child: ListView(
         padding: EdgeInsets.symmetric(
-          vertical: Sizes.vPaddingTiny,
+          vertical: Sizes.vPaddingTiny(context),
         ),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),

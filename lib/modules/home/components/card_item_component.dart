@@ -29,12 +29,12 @@ class CardItemComponent extends ConsumerWidget {
       elevation: 6,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Sizes.cardRadius),
+        borderRadius: BorderRadius.circular(Sizes.cardRadius(context)),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: Sizes.cardVPadding,
-          horizontal: Sizes.cardHRadius,
+          vertical: Sizes.cardVPadding(context),
+          horizontal: Sizes.cardHRadius(context),
         ),
         child: Column(
           children: [
@@ -57,13 +57,13 @@ class CardItemComponent extends ConsumerWidget {
               ],
             ),
             SizedBox(
-              height: Sizes.vMarginSmallest,
+              height: Sizes.vMarginSmallest(context),
             ),
             CardUserDetailsComponent(
               orderModel: orderModel,
             ),
             SizedBox(
-              height: Sizes.vMarginSmallest,
+              height: Sizes.vMarginSmallest(context),
             ),
             if (!_isUpcomingOrder)
               CardButtonComponent(
@@ -76,7 +76,7 @@ class CardItemComponent extends ConsumerWidget {
                 },
               ),
             SizedBox(
-              height: Sizes.vMarginComment,
+              height: Sizes.vMarginComment(context),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

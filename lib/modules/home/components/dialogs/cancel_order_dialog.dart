@@ -35,9 +35,10 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
     final orderDialogsVM = ref.watch(orderDialogsViewModel.notifier);
 
     return SizedBox(
-      width: Sizes.screenWidth,
+      width: Sizes.screenWidth(context),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Sizes.dialogHPaddingMedium),
+        padding: EdgeInsets.symmetric(
+            horizontal: Sizes.dialogHPaddingMedium(context)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -46,27 +47,28 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
               tr(context).reasonForCancelingTheOrder + ':',
             ),
             SizedBox(
-              height: Sizes.vMarginSmallest,
+              height: Sizes.vMarginSmallest(context),
             ),
             CustomTextField(
+              context,
               maxLines: 6,
               maxLength: 200,
               textInputAction: TextInputAction.newline,
               hintText: tr(context).typeYourNote + '...',
               contentPadding: EdgeInsets.symmetric(
-                vertical: Sizes.vPaddingSmall,
-                horizontal: Sizes.hPaddingSmall,
+                vertical: Sizes.vPaddingSmall(context),
+                horizontal: Sizes.hPaddingSmall(context),
               ),
               onChanged: (value) {
                 orderDialogsVM.cancelNote = value;
               },
             ),
             SizedBox(
-              height: Sizes.vMarginSmallest,
+              height: Sizes.vMarginSmallest(context),
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: Sizes.hPaddingSmallest,
+                horizontal: Sizes.hPaddingSmallest(context),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,16 +82,16 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
                       alignment: Alignment.center,
                     ),
                     buttonColor: AppColors.grey,
-                    height: Sizes.roundedButtonDialogHeight,
-                    width: Sizes.roundedButtonSmallWidth,
+                    height: Sizes.roundedButtonDialogHeight(context),
+                    width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
                       NavigationService.goBack();
                     },
                   ),
                   CustomButton(
                     text: tr(context).confirm,
-                    height: Sizes.roundedButtonDialogHeight,
-                    width: Sizes.roundedButtonSmallWidth,
+                    height: Sizes.roundedButtonDialogHeight(context),
+                    width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
                       NavigationService.goBack(result: [true]);
                     },

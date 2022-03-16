@@ -16,10 +16,10 @@ class MainDrawerBottomComponent extends ConsumerWidget {
     return Padding(
       padding: LocalizationService.instance.isAr(context)
           ? EdgeInsets.only(
-              right: Sizes.mainDrawerHPadding,
+              right: Sizes.mainDrawerHPadding(context),
             )
           : EdgeInsets.only(
-              left: Sizes.mainDrawerHPadding,
+              left: Sizes.mainDrawerHPadding(context),
             ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -31,9 +31,10 @@ class MainDrawerBottomComponent extends ConsumerWidget {
             color: AppColors.primaryColor,
           ),
           SizedBox(
-            width: Sizes.hMarginComment,
+            width: Sizes.hMarginComment(context),
           ),
           CustomImage.s4(
+            context,
             AppImages.appLogoIcon,
             fit: BoxFit.fill,
           ),

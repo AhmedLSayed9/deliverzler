@@ -13,8 +13,12 @@ class MapFloatingActionButton extends ConsumerWidget {
     final mainMapVM = ref.watch(mainMapViewModel.notifier);
 
     return Container(
-      margin:
-          EdgeInsets.fromLTRB(0, 0, Sizes.hMarginComment, Sizes.vMarginMedium),
+      margin: EdgeInsets.fromLTRB(
+        0,
+        0,
+        Sizes.hMarginComment(context),
+        Sizes.vMarginMedium(context),
+      ),
       child: FloatingActionButton(
         heroTag: const Text('fab1'),
         child: const Icon(

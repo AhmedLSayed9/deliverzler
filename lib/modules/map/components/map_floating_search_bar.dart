@@ -16,11 +16,15 @@ class MapFloatingSearchBar extends ConsumerWidget {
 
     return FloatingSearchBar(
       controller: mapSearchVM.floatingSearchBarController,
-      height: Sizes.mapSearchBarHeight,
-      margins: EdgeInsets.fromLTRB(Sizes.hMarginMedium,
-          Sizes.mapSearchBarTopMargin, Sizes.hMarginMedium, 0),
-      padding: EdgeInsets.symmetric(horizontal: Sizes.hPaddingTiny),
-      borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
+      height: Sizes.mapSearchBarHeight(context),
+      margins: EdgeInsets.fromLTRB(
+        Sizes.hMarginMedium(context),
+        Sizes.mapSearchBarTopMargin(context),
+        Sizes.hMarginMedium(context),
+        0,
+      ),
+      padding: EdgeInsets.symmetric(horizontal: Sizes.hPaddingTiny(context)),
+      borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius(context)),
       elevation: 4,
       hint: tr(context).searchForAPlace,
       hintStyle: FontStyles.mapSearchBarFontStyle,

@@ -26,7 +26,7 @@ class UserDetailsComponent extends ConsumerWidget {
           alignment: Alignment.center,
         ),
         SizedBox(
-          height: Sizes.vMarginDot,
+          height: Sizes.vMarginDot(context),
         ),
         CustomText.h5(
           context,

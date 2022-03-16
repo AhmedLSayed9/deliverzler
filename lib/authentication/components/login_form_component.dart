@@ -25,13 +25,14 @@ class LoginFormComponent extends HookConsumerWidget {
       child: Column(
         children: [
           CustomTextField(
+            context,
             controller: _emailController,
             validator: Validators.instance.validateEmail,
             validationColor: AppColors.primaryColor,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
             margin: EdgeInsets.only(
-              bottom: Sizes.textFieldVMarginMedium,
+              bottom: Sizes.textFieldVMarginMedium(context),
             ),
             suffixIcon: const Icon(
               Icons.email,
@@ -42,6 +43,7 @@ class LoginFormComponent extends HookConsumerWidget {
             key: const ValueKey('email'),
           ),
           CustomTextField(
+            context,
             controller: _passwordController,
             validator: Validators.instance.validateLoginPassword,
             onFieldSubmitted: (value) {
@@ -56,7 +58,7 @@ class LoginFormComponent extends HookConsumerWidget {
             textInputAction: TextInputAction.go,
             obscureText: true,
             margin: EdgeInsets.only(
-              bottom: Sizes.textFieldVMarginMedium,
+              bottom: Sizes.textFieldVMarginMedium(context),
             ),
             fillColor: Colors.transparent,
             suffixIcon: const Icon(
@@ -67,7 +69,7 @@ class LoginFormComponent extends HookConsumerWidget {
             key: const ValueKey('password'),
           ),
           SizedBox(
-            height: Sizes.vMarginSmall,
+            height: Sizes.vMarginSmall(context),
           ),
           Consumer(
             builder: (context, ref, child) {
@@ -78,8 +80,8 @@ class LoginFormComponent extends HookConsumerWidget {
               return _authLoading
                   ? LoadingIndicators.instance.smallLoadingAnimation(
                       context,
-                      width: Sizes.loadingAnimationButton,
-                      height: Sizes.loadingAnimationButton,
+                      width: Sizes.loadingAnimationButton(context),
+                      height: Sizes.loadingAnimationButton(context),
                     )
                   : CustomButton(
                       text: tr(context).signIn,

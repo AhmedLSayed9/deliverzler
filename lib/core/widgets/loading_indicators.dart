@@ -18,8 +18,8 @@ class LoadingIndicators {
         color: Colors.transparent,
         child: Lottie.asset(
           AppImages.loadingAnimation,
-          height: height ?? Sizes.loadingAnimationDefaultHeight,
-          width: width ?? Sizes.loadingAnimationDefaultWidth,
+          height: height ?? Sizes.loadingAnimationDefaultHeight(context),
+          width: width ?? Sizes.loadingAnimationDefaultWidth(context),
         ),
       ),
     );

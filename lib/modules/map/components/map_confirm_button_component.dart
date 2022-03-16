@@ -22,8 +22,8 @@ class MapConfirmButtonComponent extends ConsumerWidget {
 
     return isArrivedSelectedPlace
         ? Positioned(
-            bottom: Sizes.mapConfirmButtonBottom,
-            left: Sizes.mapConfirmButtonLeft,
+            bottom: Sizes.mapConfirmButtonBottom(context),
+            left: Sizes.mapConfirmButtonLeft(context),
             child: CustomButton(
               child: CustomText.h4(
                 context,
@@ -32,8 +32,8 @@ class MapConfirmButtonComponent extends ConsumerWidget {
                 weight: FontStyles.fontWeightMedium,
                 alignment: Alignment.center,
               ),
-              height: Sizes.roundedButtonDefaultHeight,
-              width: Sizes.roundedButtonHighWidth,
+              height: Sizes.roundedButtonDefaultHeight(context),
+              width: Sizes.roundedButtonHighWidth(context),
               buttonColor: AppColors.primaryColor,
               elevation: 2,
               onPressed: () async {

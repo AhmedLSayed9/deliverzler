@@ -35,7 +35,7 @@ class ProfileFormComponent extends ConsumerWidget {
             isLastTextField: true,
           ),
           SizedBox(
-            height: Sizes.vMarginHigh,
+            height: Sizes.vMarginHigh(context),
           ),
           CustomButton(
             text: tr(context).confirm,

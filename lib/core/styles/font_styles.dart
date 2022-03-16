@@ -18,7 +18,7 @@ class FontStyles {
   static const fontStyleNormal = FontStyle.normal;
 
   static get mapSearchBarFontStyle => TextStyle(
-        fontSize: Sizes.fontSizes['h4'],
+        fontSize: Sizes.fontSizes(NavigationService.context)['h4'],
         color: NavigationService.context.textTheme.subtitle1!.color,
         fontFamily: fontFamily,
         fontWeight: fontWeightNormal,

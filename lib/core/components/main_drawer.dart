@@ -20,19 +20,19 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizes.mainDrawerWidth,
+      width: Sizes.mainDrawerWidth(context),
       child: Drawer(
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              vertical: Sizes.mainDrawerVPadding,
+              vertical: Sizes.mainDrawerVPadding(context),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const MainDrawerUserInfoComponent(),
                 SizedBox(
-                  height: Sizes.vMarginHigh,
+                  height: Sizes.vMarginHigh(context),
                 ),
                 DrawerItem(
                   title: tr(context).myProfile,
@@ -57,7 +57,7 @@ class MainDrawer extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: Sizes.vMarginMedium,
+                  height: Sizes.vMarginMedium(context),
                 ),
                 const MainDrawerBottomComponent(),
               ],
@@ -95,7 +95,7 @@ class DrawerItem extends StatelessWidget {
       onTap: onTap,
       horizontalTitleGap: 0,
       contentPadding: EdgeInsets.symmetric(
-        horizontal: Sizes.mainDrawerHPadding,
+        horizontal: Sizes.mainDrawerHPadding(context),
       ),
     );
   }

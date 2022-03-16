@@ -55,8 +55,8 @@ class CustomTextButton extends StatelessWidget {
           shadowColor: shadowColor,
           padding: padding ??
               EdgeInsets.symmetric(
-                vertical: Sizes.vPaddingTiny,
-                horizontal: Sizes.hPaddingSmallest,
+                vertical: Sizes.vPaddingTiny(context),
+                horizontal: Sizes.hPaddingSmallest(context),
               ),
           minimumSize: Size(minWidth, minHeight),
           tapTargetSize: tapTargetSize,

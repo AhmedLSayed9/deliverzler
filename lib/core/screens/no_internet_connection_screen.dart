@@ -34,7 +34,7 @@ class NoInternetConnection extends StatelessWidget {
         children: [
           LoadingIndicators.instance.smallLoadingAnimation(context),
           SizedBox(
-            height: Sizes.vMarginHigh,
+            height: Sizes.vMarginHigh(context),
           ),
           CustomText.h2(
             context,
@@ -43,7 +43,7 @@ class NoInternetConnection extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: Sizes.vMarginSmallest,
+            height: Sizes.vMarginSmallest(context),
           ),
           CustomText.h5(
             context,
@@ -52,7 +52,7 @@ class NoInternetConnection extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: Sizes.vMarginHigh,
+            height: Sizes.vMarginHigh(context),
           ),
           CustomButton(
             child: CustomText.h5(

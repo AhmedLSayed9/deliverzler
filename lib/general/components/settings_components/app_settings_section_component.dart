@@ -29,11 +29,11 @@ class AppSettingsSectionComponent extends ConsumerWidget {
                 settingsVM.isLightThemeMode
                     ? Icons.wb_sunny
                     : Icons.nights_stay,
-                size: Sizes.iconsSizes['s6'],
+                size: Sizes.iconsSizes(context)['s6'],
                 color: Theme.of(context).textTheme.headline4!.color,
               ),
               SizedBox(
-                width: Sizes.hMarginSmallest,
+                width: Sizes.hMarginSmallest(context),
               ),
               CustomText.h5(
                 context,
@@ -45,7 +45,7 @@ class AppSettingsSectionComponent extends ConsumerWidget {
             ],
           ),
           customTrailing: SizedBox(
-            width: Sizes.switchThemeButtonWidth,
+            width: Sizes.switchThemeButtonWidth(context),
             child: Switch.adaptive(
               value: settingsVM.isLightThemeMode,
               onChanged: (value) {
@@ -63,11 +63,11 @@ class AppSettingsSectionComponent extends ConsumerWidget {
             children: <Widget>[
               Icon(
                 Icons.translate,
-                size: Sizes.iconsSizes['s6'],
+                size: Sizes.iconsSizes(context)['s6'],
                 color: Theme.of(context).textTheme.headline4!.color,
               ),
               SizedBox(
-                width: Sizes.hMarginSmallest,
+                width: Sizes.hMarginSmallest(context),
               ),
               CustomText.h5(
                 context,

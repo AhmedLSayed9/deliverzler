@@ -41,11 +41,11 @@ class SettingsDetailsComponent extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: Sizes.hMarginDot,
+          width: Sizes.hMarginDot(context),
         ),
         CachedNetworkImageCircular(
           imageUrl: userModel.image,
-          radius: Sizes.userImageSmallRadius,
+          radius: Sizes.userImageSmallRadius(context),
         ),
       ],
     );

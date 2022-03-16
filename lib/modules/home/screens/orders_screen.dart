@@ -34,6 +34,7 @@ class OrdersScreen extends ConsumerWidget {
           context,
           tr(context).appName,
           color: AppColors.primaryColor,
+          alignment: Alignment.center,
         ),
       ],
       drawer: MainDrawer(
@@ -53,8 +54,8 @@ class OrdersScreen extends ConsumerWidget {
                     )
                   : ListView.separated(
                       padding: EdgeInsets.symmetric(
-                        vertical: Sizes.screenVPaddingDefault,
-                        horizontal: Sizes.screenHPaddingMedium,
+                        vertical: Sizes.screenVPaddingDefault(context),
+                        horizontal: Sizes.screenHPaddingMedium(context),
                       ),
                       itemBuilder: (context, index) {
                         return CardItemComponent(
@@ -62,7 +63,7 @@ class OrdersScreen extends ConsumerWidget {
                         );
                       },
                       separatorBuilder: (context, index) => SizedBox(
-                        height: Sizes.vMarginHigh,
+                        height: Sizes.vMarginHigh(context),
                       ),
                       itemCount: upcomingOrders.length,
                     );
