@@ -1,21 +1,17 @@
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/components/data_error_component.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
-import 'package:deliverzler/core/styles/app_colors.dart';
-import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
-import 'package:deliverzler/core/widgets/custom_button.dart';
-import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:deliverzler/core/widgets/loading_indicators.dart';
 import 'package:flutter/material.dart';
 
 class NoInternetConnection extends StatelessWidget {
-  final bool fromSplash;
+  final bool offAll;
 
   const NoInternetConnection({
-    this.fromSplash = false,
+    this.offAll = false,
     Key? key,
   }) : super(key: key);
 
@@ -29,56 +25,27 @@ class NoInternetConnection extends StatelessWidget {
         );
         return Future.value(true);
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          LoadingIndicators.instance.smallLoadingAnimation(context),
-          SizedBox(
-            height: Sizes.vMarginHigh(context),
-          ),
-          CustomText.h2(
-            context,
-            tr(context).noInternetConnection,
-            alignment: Alignment.center,
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: Sizes.vMarginSmallest(context),
-          ),
-          CustomText.h5(
-            context,
-            tr(context).pleaseCheckYourDeviceNetwork,
-            alignment: Alignment.center,
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: Sizes.vMarginHigh(context),
-          ),
-          CustomButton(
-            child: CustomText.h5(
-              context,
-              tr(context).retry,
-              color: Colors.white,
-              weight: FontStyles.fontWeightMedium,
-              alignment: Alignment.center,
-            ),
-            onPressed: () {
-              ConnectivityService.instance.checkIfConnected().then((value) {
-                if (value) {
-                  if (fromSplash) {
-                    NavigationService.pushReplacementAll(
-                      isNamed: true,
-                      page: RoutePaths.coreSplash,
-                    );
-                  } else {
-                    NavigationService.goBack();
-                  }
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: Sizes.screenHPaddingDefault(context)),
+        child: DataErrorComponent(
+          title: tr(context).noInternetConnection,
+          description: tr(context).pleaseCheckYourDeviceNetwork,
+          onPressed: () {
+            ConnectivityService.instance.checkIfConnected().then((value) {
+              if (value) {
+                if (offAll) {
+                  NavigationService.pushReplacementAll(
+                    isNamed: true,
+                    page: RoutePaths.coreSplash,
+                  );
+                } else {
+                  NavigationService.goBack();
                 }
-              });
-            },
-            buttonColor: AppColors.primaryColor,
-          ),
-        ],
+              }
+            });
+          },
+        ),
       ),
     );
   }

@@ -6,7 +6,6 @@ import 'package:deliverzler/authentication/models/user_model.dart';
 import 'package:deliverzler/authentication/repos/user_repo.dart';
 import 'package:deliverzler/core/services/image_selector.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
-import 'package:deliverzler/core/utils/validators.dart';
 import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 
 final profileViewModel = ChangeNotifierProvider.autoDispose<ProfileViewModel>(
@@ -32,25 +31,25 @@ class ProfileViewModel extends ChangeNotifier {
   TextEditingController profileNameController = TextEditingController();
   TextEditingController profileMobileController = TextEditingController();
 
-  String? Function(String?)? validateName() {
-    return Validators.instance.validateName();
-  }
-
-  String? Function(String?)? validateMobile() {
-    return Validators.instance.validateMobileNumber();
-  }
-
   Future updateProfile() async {
     isLoading = true;
     notifyListeners();
-    try {
-      await _userRepo.updateUserName(name: profileNameController.text);
-      await _userRepo.updateUserPhone(phone: profileMobileController.text);
-      userModel = _mainCoreProvider.getCurrentUser()!;
-    } catch (e) {
-      debugPrint(e.toString());
-      AppDialogs.showDefaultErrorDialog();
-    }
+    final _result = await _userRepo.updateUserData(
+      _userRepo.userModel!.copyWith(
+        name: profileNameController.text,
+        phone: profileMobileController.text,
+      ),
+    );
+    await _result.fold(
+      (failure) {
+        AppDialogs.showErrorDialog(message: failure?.message);
+      },
+      (isSet) async {
+        if (isSet) {
+          userModel = _mainCoreProvider.getCurrentUser()!;
+        }
+      },
+    );
     isLoading = false;
     notifyListeners();
   }
@@ -60,20 +59,24 @@ class ProfileViewModel extends ChangeNotifier {
       fromCamera: fromCamera,
     );
     if (_pickedFile != null) {
-      uploadImageToFirebase(_pickedFile);
+      updateFirebaseImage(_pickedFile);
     }
   }
 
-  uploadImageToFirebase(File? image) async {
+  updateFirebaseImage(File? image) async {
     isLoading = true;
     notifyListeners();
-    try {
-      await _userRepo.updateUserImage(imageFile: image);
-      userModel = _mainCoreProvider.getCurrentUser()!;
-    } catch (e) {
-      debugPrint(e.toString());
-      AppDialogs.showDefaultErrorDialog();
-    }
+    final _result = await _userRepo.updateUserImage(image);
+    await _result.fold(
+      (failure) {
+        AppDialogs.showErrorDialog(message: failure?.message);
+      },
+      (isSet) async {
+        if (isSet) {
+          userModel = _mainCoreProvider.getCurrentUser()!;
+        }
+      },
+    );
     isLoading = false;
     notifyListeners();
   }

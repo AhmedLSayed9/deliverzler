@@ -12,7 +12,7 @@ class ConnectivityService {
   /// `_isInitialized` is used to ensure that the listeners are only called once
   bool _isInitialized = false;
 
-  initializeConnectivityListeners() {
+  init() {
     if (_isInitialized) return;
     _initConnectivityStream();
     _initInternetCheckerStream();
@@ -49,7 +49,7 @@ class ConnectivityService {
     NavigationService.push(
       isNamed: true,
       page: RoutePaths.coreNoInternet,
-      arguments: {'fromSplash': false},
+      arguments: {'offAll': false},
     );
   }
 

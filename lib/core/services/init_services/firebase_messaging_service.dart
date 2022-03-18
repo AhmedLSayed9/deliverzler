@@ -11,22 +11,18 @@ class FirebaseMessagingService {
 
   static final instance = FirebaseMessagingService._();
 
-  bool _isInitialized = false;
-
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'firebase_push_notification',
-    'Deliverzler Notifications',
+    'Restapojut Delivery Notifications',
     description: 'This channel is used for important notifications.',
     importance: Importance.max,
   );
 
-  Future initFirebaseMessaging() async {
-    if (_isInitialized) return;
-
+  Future init() async {
     //On iOS, macOS & web, before FCM payloads can be received on your device
     //you must first ask the user's permission.
     //Android applications are not required to request permission.
@@ -64,11 +60,13 @@ class FirebaseMessagingService {
       //It is however possible to override this behavior by using FlutterLocalNotificationsPlugin.
       //Also you can handle pressing a notification on foreground with onSelectNotification & payload.
       _showNotification(message);
+      _callsWhenReceiveNotification(message);
     });
 
     // Called when a user presses a notification message displayed via FCM.
     // Only if the app has opened from background state (not foreground or terminated).
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      _callsWhenReceiveNotification(message);
       final _messageData = message.data;
       LocalNotificationService.instance.onSelectNotification(
         jsonEncode(_messageData),
@@ -77,8 +75,6 @@ class FirebaseMessagingService {
 
     //Set a message handler function which is called when the app is in the background or terminated.
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-    _isInitialized = true;
   }
 
   _showNotification(RemoteMessage message) {
@@ -103,11 +99,15 @@ class FirebaseMessagingService {
         channelDescription: channel.description,
         importance: channel.importance,
         priority: Priority.high,
-        color: AppColors.primaryColor,
+        color: AppColors.lightThemePrimary,
         playSound: true,
       ),
       iOS: const IOSNotificationDetails(),
     );
+  }
+
+  _callsWhenReceiveNotification(RemoteMessage message) async {
+    //Do something
   }
 
   getInitialMessage() {

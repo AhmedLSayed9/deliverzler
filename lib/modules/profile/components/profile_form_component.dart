@@ -1,6 +1,7 @@
+import 'package:deliverzler/core/utils/validators.dart';
 import 'package:deliverzler/modules/profile/components/profile_text_field_component.dart';
 import 'package:deliverzler/modules/profile/viewmodels/profile_viewmodel.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -23,14 +24,14 @@ class ProfileFormComponent extends ConsumerWidget {
             title: tr(context).fullName,
             hint: tr(context).enterYourName,
             controller: profileVM.profileNameController,
-            validator: profileVM.validateName(),
+            validator: Validators.instance.validateName,
             keyboardType: TextInputType.name,
           ),
           ProfileTextFieldComponent(
             title: tr(context).mobileNumber,
             hint: tr(context).enterYourNumber,
             controller: profileVM.profileMobileController,
-            validator: profileVM.validateMobile(),
+            validator: Validators.instance.validateMobileNumber,
             keyboardType: TextInputType.phone,
             isLastTextField: true,
           ),

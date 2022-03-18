@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart' as gl;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 

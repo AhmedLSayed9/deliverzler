@@ -37,26 +37,24 @@ class AuthProvider extends StateNotifier<AuthState> {
     await _result.fold(
       (failure) {
         state = AuthState.error(errorText: failure.message);
-        AppDialogs.showServerErrorDialog(message: failure.message);
+        AppDialogs.showErrorDialog(message: failure.message);
       },
       (user) async {
         UserModel userModel = user;
-        await submitLogin(userModel: userModel);
+        await submitLogin(userModel);
       },
     );
   }
 
-  Future submitLogin({required UserModel? userModel}) async {
-    debugPrint(userModel!.toMap().toString());
-    final _result = await _mainCoreProvider.setUserInFirebase(userModel);
+  Future submitLogin(UserModel userModel) async {
+    debugPrint(userModel.toMap().toString());
+    final _result = await _mainCoreProvider.setUserToFirebase(userModel);
     await _result.fold(
       (failure) {
-        state = AuthState.error(errorText: failure.message);
-        AppDialogs.showServerErrorDialog(message: failure.message);
+        state = AuthState.error(errorText: failure?.message);
+        AppDialogs.showErrorDialog(message: failure?.message);
       },
-      (user) async {
-        UserModel userModel = user;
-        _mainCoreProvider.setCurrentUser(userModel: userModel);
+      (isSet) async {
         subscribeUserToTopic();
         navigationToHomeScreen();
       },

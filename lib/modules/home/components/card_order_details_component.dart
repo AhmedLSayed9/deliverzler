@@ -1,4 +1,4 @@
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/modules/home/utils/enums.dart';
 import 'package:flutter/foundation.dart';

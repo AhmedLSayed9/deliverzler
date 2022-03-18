@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
-import 'package:deliverzler/core/models/payload_model.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
+import 'package:deliverzler/modules/notifications/models/notification_model.dart';
 import 'package:deliverzler/core/services/init_services/local_notification_service.dart';
 import 'package:deliverzler/core/services/location_service.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
@@ -94,7 +94,7 @@ class MainOrdersViewModel extends ChangeNotifier {
       }
     } catch (e) {
       debugPrint(e.toString());
-      AppDialogs.showDefaultErrorDialog();
+      AppDialogs.showErrorDialog();
     }
   }
 
@@ -123,14 +123,14 @@ class MainOrdersViewModel extends ChangeNotifier {
   }
 
   showOrderArrivedNotification(String orderId) {
-    final _payloadModel = PayloadModel(
+    final _notificationModel = NotificationModel(
       route: RoutePaths.home,
       data: {'orderId': orderId},
     );
     LocalNotificationService.instance.showInstantNotification(
       title: tr(NavigationService.context).arrivedLocation,
       body: tr(NavigationService.context).youAreCloseToLocationArea,
-      payload: _payloadModel.toJsonString(),
+      payload: _notificationModel.toJsonString(),
     );
   }
 

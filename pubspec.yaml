@@ -55,6 +55,7 @@ dependencies:
   uuid: ^3.0.5
   url_launcher: ^6.0.20
   flutter_local_notifications: ^9.3.1
+  timeago: ^3.2.2
 
   #Widgets
   qr_flutter: ^4.0.0

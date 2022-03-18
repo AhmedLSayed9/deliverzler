@@ -2,7 +2,7 @@ import 'package:deliverzler/general/components/settings_components/logout_compon
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/components/appbar_with_icon_component.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/sizes.dart';

@@ -44,14 +44,14 @@ class CustomTextButton extends StatelessWidget {
             CustomText.h5(
               context,
               text!,
-              color: AppColors.primaryColor,
+              color: AppColors.lightThemePrimary,
               alignment: Alignment.center,
             ),
         style: TextButton.styleFrom(
           shape: shape,
           elevation: elevation ?? 0,
           backgroundColor: buttonColor,
-          primary: splashColor ?? AppColors.primaryColor,
+          primary: splashColor ?? AppColors.lightThemePrimary,
           shadowColor: shadowColor,
           padding: padding ??
               EdgeInsets.symmetric(

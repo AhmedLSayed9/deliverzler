@@ -1,5 +1,5 @@
 import 'package:deliverzler/core/routing/navigation_service.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -122,8 +122,13 @@ class CustomTextField extends Container {
                     borderRadius: BorderRadius.all(
                       Radius.circular(Sizes.textFieldDefaultRadius(context)),
                     ),
-                    borderSide: const BorderSide(
-                      color: AppColors.primaryColor,
+                    borderSide: BorderSide(
+                      color: Theme.of(NavigationService.context)
+                          .inputDecorationTheme
+                          .focusedBorder!
+                          .borderSide
+                          .color,
+                      width: 1.5,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(

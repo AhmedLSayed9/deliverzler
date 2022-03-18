@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-class PayloadModel {
+class NotificationModel {
   final String route;
   final Map<String, dynamic>? data;
 
-  const PayloadModel({
+  const NotificationModel({
     required this.route,
     this.data,
   });
@@ -16,8 +16,8 @@ class PayloadModel {
     };
   }
 
-  factory PayloadModel.fromMap(Map<String, dynamic> map) {
-    return PayloadModel(
+  factory NotificationModel.fromMap(Map<String, dynamic> map) {
+    return NotificationModel(
       route: map['route'] as String,
       data: map['data'],
     );
@@ -27,7 +27,7 @@ class PayloadModel {
     return jsonEncode(toMap());
   }
 
-  factory PayloadModel.fromJsonString(String payload) {
-    return PayloadModel.fromMap(jsonDecode(payload));
+  factory NotificationModel.fromJsonString(String payload) {
+    return NotificationModel.fromMap(jsonDecode(payload));
   }
 }

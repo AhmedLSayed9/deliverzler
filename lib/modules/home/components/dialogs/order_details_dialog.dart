@@ -2,7 +2,7 @@ import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -35,7 +35,7 @@ class OrderDetailsDialog extends StatelessWidget {
                   QrImage(
                     data: orderModel.orderId!,
                     size: Sizes.qrImageRadius(context),
-                    foregroundColor: AppColors.secondaryColor,
+                    foregroundColor: AppColors.accentColor,
                     padding: EdgeInsets.zero,
                   ),
                   SizedBox(

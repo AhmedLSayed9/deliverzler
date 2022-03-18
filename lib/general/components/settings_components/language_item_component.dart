@@ -1,9 +1,9 @@
+import 'package:deliverzler/core/viewmodels/app_locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/general/model/language_model.dart';
-import 'package:deliverzler/general/viewmodel/settings_viewmodel.dart';
 
 class LanguageItemComponent extends ConsumerWidget {
   const LanguageItemComponent({
@@ -17,8 +17,8 @@ class LanguageItemComponent extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return InkWell(
       onTap: () async {
-        ref.read(settingsViewModel).changeLocale(
-              langCode: languageModel.code,
+        ref.watch(appLocaleProvider.notifier).changeLocale(
+              languageCode: languageModel.code,
             );
       },
       child: Container(
@@ -48,9 +48,8 @@ class LanguageItemComponent extends ConsumerWidget {
                 ),
                 Consumer(
                   builder: (context, ref, child) {
-                    final _selectedLanguage = ref.watch(
-                        settingsViewModel.select(
-                            (settingsVM) => settingsVM.selectedLanguageCode));
+                    final _selectedLanguage =
+                        ref.watch(appLocaleProvider)?.languageCode;
                     return (_selectedLanguage == languageModel.code)
                         ? CircleAvatar(
                             backgroundColor: Theme.of(context)

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
@@ -34,7 +34,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
               ),
               height: Sizes.roundedButtonDefaultHeight(context),
               width: Sizes.roundedButtonHighWidth(context),
-              buttonColor: AppColors.primaryColor,
+              buttonColor: AppColors.lightThemePrimary,
               elevation: 2,
               onPressed: () async {
                 final _orderConfirmed =

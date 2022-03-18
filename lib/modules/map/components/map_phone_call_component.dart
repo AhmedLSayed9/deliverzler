@@ -29,14 +29,14 @@ class MapPhoneCallComponent extends ConsumerWidget {
                 Icons.phone,
                 color: AppColors.white,
               ),
-              backgroundColor: AppColors.primaryColor,
+              backgroundColor: AppColors.lightThemePrimary,
               elevation: 2,
               onPressed: () async {
                 final _phone = 'tel:$selectedOrderPhone';
                 if (await canLaunch(_phone)) {
                   await launch(_phone);
                 } else {
-                  AppDialogs.showDefaultErrorDialog();
+                  AppDialogs.showErrorDialog();
                 }
               },
             ),

@@ -1,7 +1,8 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:deliverzler/core/models/payload_model.dart';
+import 'package:deliverzler/modules/notifications/models/notification_model.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 
@@ -12,7 +13,7 @@ class LocalNotificationService {
 
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  Future initNotificationSettings() async {
+  Future init() async {
     const AndroidInitializationSettings _androidInitializationSettings =
         AndroidInitializationSettings('notification_icon');
     const IOSInitializationSettings _iosInitializationSettings =
@@ -33,21 +34,23 @@ class LocalNotificationService {
   }
 
   onSelectNotification(String? payload) async {
+    if (FirebaseAuth.instance.currentUser == null) return;
+
     if (payload != null) {
       final _decodedPayload = jsonDecode(payload) as Map<String, dynamic>;
       if (_decodedPayload.isNotEmpty) {
-        final _payloadModel = PayloadModel.fromMap(_decodedPayload);
-        if (_payloadModel.data != null &&
-            _payloadModel.data!.containsKey('orderId')) {
+        final _notificationModel = NotificationModel.fromMap(_decodedPayload);
+        if (_notificationModel.data != null &&
+            _notificationModel.data!.containsKey('orderId')) {
           NavigationService.pushReplacement(
             isNamed: true,
-            page: _payloadModel.route,
-            arguments: {'orderId': _payloadModel.data!['orderId']},
+            page: _notificationModel.route,
+            arguments: {'orderId': _notificationModel.data!['orderId']},
           );
         } else {
           NavigationService.pushReplacement(
             isNamed: true,
-            page: _payloadModel.route,
+            page: _notificationModel.route,
           );
         }
       }
@@ -77,7 +80,7 @@ class LocalNotificationService {
         channelDescription: 'This channel is used for important notifications.',
         importance: Importance.max,
         priority: Priority.high,
-        color: AppColors.primaryColor,
+        color: AppColors.lightThemePrimary,
         playSound: true,
       ),
       iOS: IOSNotificationDetails(),

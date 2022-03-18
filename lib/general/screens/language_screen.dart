@@ -6,7 +6,7 @@ import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/general/components/settings_components/language_item_component.dart';
 import 'package:deliverzler/general/model/language_model.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({

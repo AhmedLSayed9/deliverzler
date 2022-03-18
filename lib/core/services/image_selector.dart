@@ -39,7 +39,7 @@ class ImageSelector {
       }
     } catch (e) {
       debugPrint(e.toString());
-      AppDialogs.showDefaultErrorDialog();
+      AppDialogs.showErrorDialog();
       return null;
     }
   }

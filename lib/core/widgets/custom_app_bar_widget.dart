@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:deliverzler/core/routing/navigation_service.dart';
+import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -205,6 +206,30 @@ class CustomAppBar extends PreferredSize {
           result: result,
           height: height,
           backButtonColor: backButtonColor ?? const Color(0xfff9f9f9),
+        );
+
+  CustomAppBar.title(
+    BuildContext context, {
+    bool canPop = false,
+    required String title,
+    Color? color,
+    dynamic result,
+    Key? key,
+  }) : this(
+          context,
+          key: key,
+          canPop: canPop,
+          color: color ?? AppColors.lightThemePrimaryColor,
+          result: result,
+          children: [
+            CustomText.h2(
+              context,
+              title,
+              weight: FontStyles.fontWeightBold,
+              color: AppColors.white,
+              alignment: Alignment.center,
+            ),
+          ],
         );
 
   static Widget _backButton(

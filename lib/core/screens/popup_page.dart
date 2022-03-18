@@ -1,5 +1,4 @@
 import 'package:deliverzler/core/styles/app_colors.dart';
-import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +7,12 @@ class PopUpPage extends StatelessWidget {
   final bool appBarSkippable;
   final bool appBarWithMenu;
   final bool appBarWithBack;
+  final bool appBarTitle;
+  final bool canPop;
+  final String? title;
   final Function? skipBehaviour;
   final GlobalKey<ScaffoldState>? scaffoldKey;
+  final Color? backgroundColor;
   final bool showBackgroundImage;
   final bool fixedNavigationBarColor;
   final bool extendBodyBehindAppBar;
@@ -25,7 +28,7 @@ class PopUpPage extends StatelessWidget {
   final Color? backButtonColor;
   final bool? safeAreaTop;
   final bool? safeAreaBottom;
-  final bool showUpperShadow;
+  final Widget? bottomNavigationBar;
 
   const PopUpPage({
     Key? key,
@@ -33,9 +36,13 @@ class PopUpPage extends StatelessWidget {
     this.appBarSkippable = false,
     this.appBarWithMenu = false,
     this.appBarWithBack = false,
-    this.showBackgroundImage = false,
+    this.appBarTitle = false,
+    this.canPop = false,
+    this.title,
     this.skipBehaviour,
     this.scaffoldKey,
+    this.backgroundColor,
+    this.showBackgroundImage = false,
     this.fixedNavigationBarColor = false,
     this.extendBodyBehindAppBar = false,
     this.resizeToAvoidBottomInset = false,
@@ -49,10 +56,11 @@ class PopUpPage extends StatelessWidget {
     this.backButtonColor,
     this.backButtonWidget,
     this.safeAreaTop,
-    this.showUpperShadow = false,
     this.safeAreaBottom,
+    this.bottomNavigationBar,
   })  : assert((appBarSkippable ^ (skipBehaviour == null)) &&
-            (appBarWithMenu ^ (scaffoldKey == null))),
+            (appBarWithMenu ^ (scaffoldKey == null)) &&
+            (appBarTitle ^ (title == null))),
         super(key: key);
 
   @override
@@ -65,7 +73,8 @@ class PopUpPage extends StatelessWidget {
         child: Scaffold(
           key: scaffoldKey,
           extendBodyBehindAppBar: extendBodyBehindAppBar,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          backgroundColor:
+              backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
           resizeToAvoidBottomInset: resizeToAvoidBottomInset,
           appBar: appBarSkippable
               ? CustomAppBar.skippable(
@@ -80,7 +89,7 @@ class PopUpPage extends StatelessWidget {
                       context,
                       scaffoldKey: scaffoldKey!,
                       children: appbarItems,
-                      menuButtonColor: AppColors.primaryColor,
+                      menuButtonColor: AppColors.lightThemePrimary,
                     )
                   : appBarWithBack
                       ? CustomAppBar(
@@ -93,27 +102,19 @@ class PopUpPage extends StatelessWidget {
                           color: appBarColor,
                           backButtonWidget: backButtonWidget,
                         )
-                      : null,
+                      : appBarTitle
+                          ? CustomAppBar.title(
+                              context,
+                              canPop: canPop,
+                              title: title!,
+                              result: result,
+                              color: appBarColor,
+                            )
+                          : null,
           drawer: drawer,
           floatingActionButton: floatingActionButton,
-          body: Stack(alignment: Alignment.center, children: [
-            child,
-            if (showUpperShadow)
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  height: Sizes.screenTopShadowHeight(context),
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xde000000), Color(0x00000000)],
-                      stops: [0, 0.4],
-                      begin: Alignment.topCenter,
-                      end: Alignment(0, .1),
-                    ),
-                  ),
-                ),
-              )
-          ]),
+          body: child,
+          bottomNavigationBar: bottomNavigationBar,
         ),
       ),
     );

@@ -1,4 +1,4 @@
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
@@ -33,7 +33,7 @@ class LogoutComponent extends ConsumerWidget {
           ),
           border: Border.all(
             width: 1,
-            color: AppColors.primaryColor,
+            color: AppColors.lightThemePrimary,
           ),
           boxShadow: [
             BoxShadow(
@@ -48,7 +48,7 @@ class LogoutComponent extends ConsumerWidget {
           children: [
             const Icon(
               Icons.logout,
-              color: AppColors.primaryColor,
+              color: AppColors.lightThemePrimary,
             ),
             SizedBox(
               width: Sizes.hMarginSmall(context),
@@ -58,7 +58,7 @@ class LogoutComponent extends ConsumerWidget {
               tr(context).logOut,
               alignment: Alignment.center,
               weight: FontStyles.fontWeightExtraBold,
-              color: AppColors.primaryColor,
+              color: AppColors.lightThemePrimary,
             ),
           ],
         ),

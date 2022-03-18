@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:deliverzler/core/errors/exceptions.dart';
+import 'package:deliverzler/core/errors/failures.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
@@ -12,20 +14,28 @@ class FirebaseCaller {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
-  Future<void> setData({
+  // set without merge will overwrite a document or create it if it doesn't exist yet
+  // set with merge will update fields in the document or create it if it doesn't exists//
+  // update will update fields but will fail if the document doesn't exist
+  // create will create the document but fail if the document already exists
+  Future<T> setData<T>({
     required String path,
     required Map<String, dynamic> data,
+    required T Function(dynamic data) builder,
     bool merge = false,
   }) async {
-    final reference = _firebaseFirestore.doc(path);
-    debugPrint('$path: $data');
-
-    // set without merge will overwrite a document or create it if it doesn't exist yet
-    // set with merge will update fields in the document or create it if it doesn't exists//
-    // update will update fields but will fail if the document doesn't exist
-    // create will create the document but fail if the document already exists
-
-    await reference.set(data, SetOptions(merge: merge));
+    try {
+      final reference = _firebaseFirestore.doc(path);
+      await reference.set(data, SetOptions(merge: merge));
+      return builder(true);
+    } catch (e) {
+      debugPrint(e.toString());
+      final _failure = ServerFailure(
+        message: Exceptions.errorMessage(e),
+        statusCode: Exceptions.statusCode(e),
+      );
+      return builder(_failure);
+    }
   }
 
   Future<void> updateData({
@@ -54,14 +64,20 @@ class FirebaseCaller {
 
   Future<T> getData<T>({
     required String path,
-    required T Function(Map<String, dynamic>? data, String? documentId) builder,
+    required T Function(dynamic data, String? documentId) builder,
   }) async {
-    final reference = _firebaseFirestore.doc(path);
-    final value = await reference.get();
-    if (value.exists) {
+    try {
+      final reference = _firebaseFirestore.doc(path);
+      final value = await reference.get();
       return builder(value.data(), value.id);
+    } catch (e) {
+      debugPrint(e.toString());
+      final _failure = ServerFailure(
+        message: Exceptions.errorMessage(e),
+        statusCode: Exceptions.statusCode(e),
+      );
+      return builder(_failure, null);
     }
-    return builder(null, null);
   }
 
   Future<T> getCollectionData<T>({
@@ -147,10 +163,23 @@ class FirebaseCaller {
   }
 
   /// FireBaseStorage
-  Future<String?> uploadImage(
-      {required String path, required File file}) async {
-    UploadTask _uploadTask = _firebaseStorage.ref().child(path).putFile(file);
-    return await (await _uploadTask).ref.getDownloadURL();
+  Future<T> uploadImage<T>({
+    required String path,
+    required File file,
+    required T Function(dynamic data) builder,
+  }) async {
+    try {
+      UploadTask _uploadTask = _firebaseStorage.ref().child(path).putFile(file);
+      final _downloadURL = await (await _uploadTask).ref.getDownloadURL();
+      return builder(_downloadURL);
+    } catch (e) {
+      debugPrint(e.toString());
+      final _failure = ServerFailure(
+        message: Exceptions.errorMessage(e),
+        statusCode: Exceptions.statusCode(e),
+      );
+      return builder(_failure);
+    }
   }
 
   Future deleteImage({required String path}) async {

@@ -1,71 +1,80 @@
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
 import 'package:deliverzler/core/services/init_services/firebase_messaging_service.dart';
 import 'package:deliverzler/core/services/init_services/local_notification_service.dart';
 import 'package:deliverzler/core/services/init_services/storage_service.dart';
-import 'package:deliverzler/core/services/init_services/theme_service.dart';
+import 'package:deliverzler/core/services/theme_service.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
+import 'package:deliverzler/core/viewmodels/app_locale_provider.dart';
+import 'package:deliverzler/core/viewmodels/app_theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:deliverzler/firebase_options.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ServiceInitializer {
-  ServiceInitializer._();
+class ServicesInitializer {
+  ServicesInitializer._();
 
-  static final ServiceInitializer instance = ServiceInitializer._();
+  static final ServicesInitializer instance = ServicesInitializer._();
 
-  initializeSettings() async {
-    //This method is used to initialize any service before the app runs (in main method)
-    await initializeStorageService();
-    List futures = [
-      initializeLocalization(),
-      initializeTheme(),
-      initializeConnectivity(),
-      initializeNotificationSettings(),
-      initializeFirebase(),
-      //initializeScreensOrientation(),
-    ];
-    List<dynamic> result = await Future.wait([...futures]);
-    return result;
+  late ProviderContainer _container;
+  late WidgetRef _ref;
+
+  initializeServices(ProviderContainer container) async {
+    _container = container;
+    await initStorageService();
+    await initLocalization();
+    await initTheme();
+    await initConnectivity();
+    await initNotificationSettings();
+    await initFirebase();
   }
 
-  initializeStorageService() async {
-    await StorageService.instance.initialize();
+  initStorageService() async {
+    await StorageService.instance.init();
   }
 
-  initializeLocalization() async {
-    return await LocalizationService.instance.getUserStoredLocale();
+  initLocalization() async {
+    await _container.read(appLocaleProvider.notifier).init();
   }
 
-  initializeTheme() async {
-    return await ThemeService.instance.getUserStoredTheme();
+  initTheme() async {
+    await _container.read(appThemeProvider.notifier).init();
   }
 
-  initializeConnectivity() async {
-    ConnectivityService.instance.initializeConnectivityListeners();
+  initConnectivity() async {
+    ConnectivityService.instance.init();
   }
 
-  initializeNotificationSettings() async {
-    await LocalNotificationService.instance.initNotificationSettings();
+  initNotificationSettings() async {
+    await LocalNotificationService.instance.init();
   }
 
-  initializeFirebase() async {
+  initFirebase() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    await initializeFirebaseMessaging();
+    await initFirebaseMessaging();
   }
 
-  initializeFirebaseMessaging() async {
-    await FirebaseMessagingService.instance.initFirebaseMessaging();
+  initFirebaseMessaging() async {
+    await FirebaseMessagingService.instance.init();
   }
 
   initializeScreensOrientation() async {
     await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp],
     );
+  }
+
+  initializeServicesRef(WidgetRef ref) {
+    _ref = ref;
+    initThemeServiceRef();
+  }
+
+  initThemeServiceRef() {
+    ThemeService(_ref);
   }
 
   Future initializeData() async {

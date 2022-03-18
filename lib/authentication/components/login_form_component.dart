@@ -2,7 +2,7 @@ import 'package:deliverzler/authentication/viewmodels/auth_provider.dart';
 import 'package:deliverzler/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
@@ -28,16 +28,13 @@ class LoginFormComponent extends HookConsumerWidget {
             context,
             controller: _emailController,
             validator: Validators.instance.validateEmail,
-            validationColor: AppColors.primaryColor,
+            validationColor: AppColors.lightThemePrimary,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
             margin: EdgeInsets.only(
               bottom: Sizes.textFieldVMarginMedium(context),
             ),
-            suffixIcon: const Icon(
-              Icons.email,
-              color: Color(0xff9b9b9b),
-            ),
+            suffixIcon: const Icon(Icons.email),
             fillColor: Colors.transparent,
             hintText: tr(context).email,
             key: const ValueKey('email'),
@@ -54,17 +51,14 @@ class LoginFormComponent extends HookConsumerWidget {
                     );
               }
             },
-            validationColor: AppColors.primaryColor,
+            validationColor: AppColors.lightThemePrimary,
             textInputAction: TextInputAction.go,
             obscureText: true,
             margin: EdgeInsets.only(
               bottom: Sizes.textFieldVMarginMedium(context),
             ),
             fillColor: Colors.transparent,
-            suffixIcon: const Icon(
-              Icons.password,
-              color: Color(0xff9b9b9b),
-            ),
+            suffixIcon: const Icon(Icons.password),
             hintText: tr(context).password,
             key: const ValueKey('password'),
           ),

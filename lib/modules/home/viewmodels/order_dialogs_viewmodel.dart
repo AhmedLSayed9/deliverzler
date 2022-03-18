@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
@@ -59,7 +59,7 @@ class OrderDialogsViewModel extends ChangeNotifier {
             );
           } catch (e) {
             debugPrint(e.toString());
-            AppDialogs.showDefaultErrorDialog();
+            AppDialogs.showErrorDialog();
           }
         }
       });
@@ -76,7 +76,7 @@ class OrderDialogsViewModel extends ChangeNotifier {
         _ordersVM.addOrderToDeliveringOrders(orderId: orderModel.orderId!);
       } catch (e) {
         debugPrint(e.toString());
-        AppDialogs.showDefaultErrorDialog();
+        AppDialogs.showErrorDialog();
       }
     }
   }
@@ -94,7 +94,7 @@ class OrderDialogsViewModel extends ChangeNotifier {
           return true;
         } catch (e) {
           debugPrint(e.toString());
-          AppDialogs.showDefaultErrorDialog();
+          AppDialogs.showErrorDialog();
         }
       }
     }

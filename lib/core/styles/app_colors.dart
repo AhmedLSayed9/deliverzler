@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Color(0xFFC11718);
-  static const Color secondaryColor = Color(0xFF4b98db);
+  static const Color lightThemePrimary = Color(0xFFC11718);
+  static const Color darkThemePrimary = Color(0xFFC11718);
+  static const Color accentColor = Color(0xFF4b98db);
+
   static const Color lightThemePrimaryColor = Color(0xffffffff);
   static const Color darkThemePrimaryColor = Color(0xff212327);
   static const Color lightThemeScaffoldBGColor = Color(0xFFFAFAFA);
   static const Color darkThemeScaffoldBGColor = Color(0xFF303030);
+
   static const Color lightThemeBigTextColor = Color(0xff000000);
   static const Color darkThemeBigTextColor = Color(0xfff0f0f0);
   static const Color lightThemeNormalTextColor = Color(0xff000000);
   static const Color darkThemeNormalTextColor = Color(0xfff0f0f0);
   static const Color lightThemeSmallTextColor = Color(0xFF858992);
   static const Color darkThemeSmallTextColor = Color(0xffcccccc);
+
   static const Color lightThemeTextFieldTextColor = Color(0xff333333);
   static const Color darkThemeTextFieldTextColor = Color(0xfff0f0f0);
   static const Color lightThemeTextFieldHintColor = Color(0xff9b9b9b);
   static const Color darkThemeTextFieldHintColor = Color(0xff9b9b9b);
   static const Color lightThemeTextFieldCursorColor = Color(0xff000000);
   static const Color darkThemeTextFieldCursorColor = Color(0xfff44336);
+  static const Color lightThemeTextFieldFocusedBorderColor = Color(0xFFC11718);
+  static const Color darkThemeTextFieldFocusedBorderColor = Color(0xFFC11718);
+
   //
   static const Color lightBlue = Color(0xFF58b9f0);
   static const Color blue = Colors.blue;

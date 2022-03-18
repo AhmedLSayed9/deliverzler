@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/components/main_drawer.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -33,7 +33,7 @@ class OrdersScreen extends ConsumerWidget {
         CustomText.h2(
           context,
           tr(context).appName,
-          color: AppColors.primaryColor,
+          color: AppColors.lightThemePrimary,
           alignment: Alignment.center,
         ),
       ],

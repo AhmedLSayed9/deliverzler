@@ -1,5 +1,5 @@
 import 'package:deliverzler/core/hooks/fade_in_controller_hook.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';

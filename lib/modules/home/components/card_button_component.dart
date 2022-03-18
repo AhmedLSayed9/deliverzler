@@ -25,13 +25,15 @@ class CardButtonComponent extends StatelessWidget {
       child: CustomText.h5(
         context,
         title,
-        color: isColored ? AppColors.white : Theme.of(context).textTheme.headline4!.color,
+        color: isColored
+            ? AppColors.white
+            : Theme.of(context).textTheme.headline4!.color,
         weight: FontStyles.fontWeightBold,
         alignment: Alignment.center,
       ),
       side: isColored ? null : const BorderSide(color: AppColors.grey),
       buttonColor: isColored ? null : Colors.transparent,
-      splashColor: isColored ? null : AppColors.primaryColor,
+      splashColor: isColored ? null : AppColors.lightThemePrimary,
       onPressed: onPressed,
     );
   }

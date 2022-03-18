@@ -3,10 +3,16 @@ import 'package:deliverzler/core/styles/app_colors.dart';
 
 class AppThemes {
   static final lightTheme = ThemeData.light().copyWith(
-    primaryColor: AppColors.lightThemePrimaryColor,
     scaffoldBackgroundColor: AppColors.lightThemeScaffoldBGColor,
+    primaryColor: AppColors.lightThemePrimaryColor,
     colorScheme: const ColorScheme.light().copyWith(
-      primary: AppColors.primaryColor,
+      primary: AppColors.lightThemePrimary,
+      secondary: AppColors.accentColor,
+    ),
+    iconTheme: const IconThemeData(color: AppColors.red),
+    buttonTheme: const ButtonThemeData(
+      buttonColor: AppColors.lightThemePrimary,
+      disabledColor: AppColors.grey,
     ),
     textTheme: const TextTheme(
       headline1: TextStyle(
@@ -35,13 +41,26 @@ class AppThemes {
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColors.lightThemeTextFieldCursorColor,
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.lightThemeTextFieldFocusedBorderColor,
+        ),
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData.dark().copyWith(
     primaryColor: AppColors.darkThemePrimaryColor,
     scaffoldBackgroundColor: AppColors.darkThemeScaffoldBGColor,
     colorScheme: const ColorScheme.dark().copyWith(
-      primary: AppColors.primaryColor,
+      primary: AppColors.darkThemePrimary,
+      secondary: AppColors.accentColor,
+    ),
+    iconTheme: const IconThemeData(color: AppColors.red),
+    buttonTheme: const ButtonThemeData(
+      buttonColor: AppColors.darkThemePrimary,
+      disabledColor: AppColors.grey,
     ),
     textTheme: const TextTheme(
       headline1: TextStyle(
@@ -69,6 +88,13 @@ class AppThemes {
     hintColor: AppColors.darkThemeTextFieldHintColor,
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColors.darkThemeTextFieldCursorColor,
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.darkThemeTextFieldFocusedBorderColor,
+        ),
+      ),
     ),
   );
 }

@@ -5,6 +5,7 @@ import 'package:deliverzler/authentication/models/user_model.dart';
 import 'package:deliverzler/authentication/repos/auth_repo.dart';
 import 'package:deliverzler/authentication/repos/user_repo.dart';
 import 'package:deliverzler/core/errors/failures.dart';
+import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
 import 'package:deliverzler/core/services/init_services/firebase_messaging_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,8 +18,8 @@ final mainCoreProvider =
 
 class MainCoreProvider {
   MainCoreProvider(this.ref) {
-    _userRepo = ref.read(userRepoProvider);
-    _authRepo = ref.read(authRepoProvider);
+    _userRepo = ref.watch(userRepoProvider);
+    _authRepo = ref.watch(authRepoProvider);
   }
 
   final Ref ref;
@@ -26,50 +27,70 @@ class MainCoreProvider {
   late AuthRepo _authRepo;
 
   ///User module methods
-  String? getCurrentUserAuthUid() {
-    if (FirebaseAuth.instance.currentUser != null) {
-      return FirebaseAuth.instance.currentUser!.uid;
+  Future<bool> checkValidAuth() async {
+    final _uid = getCurrentUserAuthUid();
+    if (_uid != null) {
+      return await validateAuth(_uid);
+    } else {
+      return false;
     }
-    return null;
   }
 
-  Future<UserModel?>? getUserFromFirebase({required String uid}) async {
-    try {
-      return await _userRepo.getUserDataFromFirebase(uid);
-    } catch (e) {
-      debugPrint(e.toString());
-      return null;
-    }
+  Future<bool> validateAuth(String uid) async {
+    final _result = await _userRepo.getUserData(uid);
+    return _result.fold(
+      (failure) {
+        debugPrint(failure?.message);
+        logoutUser();
+        return false;
+      },
+      (userModel) {
+        if (userModel != null) {
+          return true;
+        } else {
+          logoutUser();
+          return false;
+        }
+      },
+    );
+  }
+
+  String? getCurrentUserAuthUid() {
+    return FirebaseAuth.instance.currentUser?.uid;
   }
 
   UserModel? getCurrentUser() {
     return _userRepo.userModel;
   }
 
-  Future<Either<Failure, UserModel>> setUserInFirebase(
-    UserModel userModel,
-  ) async {
-    return await _userRepo.setUserDataToFirebase(userModel);
-  }
-
-  setCurrentUser({required UserModel userModel}) {
-    _userRepo.uid = userModel.uId;
-    _userRepo.userModel = userModel;
+  Future<Either<Failure?, bool>> setUserToFirebase(UserModel userModel) async {
+    final _result = await _userRepo.getUserData(userModel.uId);
+    return await _result.fold(
+      (failure) {
+        return Left(failure);
+      },
+      (userData) async {
+        if (userData == null) {
+          return _userRepo.setUserData(userModel);
+        } else {
+          return const Right(true);
+        }
+      },
+    );
   }
 
   Future logoutUser() async {
+    await _userRepo.clearUserLocalData();
     await _authRepo.signOut();
     await FirebaseMessagingService.instance
         .unsubscribeFromTopic(topic: 'general');
-    await _userRepo.clearUserLocalData();
   }
 
-  ///Location module related...
-
+  ///Location module methods
   Future<bool> enableLocationAndRequestPermission() async {
     bool locationServiceEnabled = await enableLocationService();
     if (locationServiceEnabled) {
-      return await requestLocationPermission() == PermissionStatus.granted;
+      return await requestLocationPermission();
     } else {
       return false;
     }
@@ -79,8 +100,9 @@ class MainCoreProvider {
     return await LocationService.instance.enableLocationService();
   }
 
-  Future<PermissionStatus> requestLocationPermission() async {
-    return await LocationService.instance.requestLocationPermission();
+  Future<bool> requestLocationPermission() async {
+    return await LocationService.instance.requestLocationPermission() ==
+        PermissionStatus.granted;
   }
 
   Future<bool> enableBackgroundMode() async {
@@ -101,5 +123,14 @@ class MainCoreProvider {
 
   Future<LocationData?> getCurrentUserLocation() async {
     return await LocationService.instance.getLocation();
+  }
+
+  Future<bool> isAllLocationPermissionsRequired() async {
+    return await LocationService.instance.isAllLocationPermissionsRequired();
+  }
+
+  ///Connection module methods
+  Future<bool> isConnectedToInternet() async {
+    return await ConnectivityService.instance.checkIfConnected();
   }
 }

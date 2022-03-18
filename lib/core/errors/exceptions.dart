@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:deliverzler/core/routing/navigation_service.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

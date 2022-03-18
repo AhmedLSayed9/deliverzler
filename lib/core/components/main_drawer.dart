@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/components/main_drawer_bottom_component.dart';
 import 'package:deliverzler/core/components/main_drawer_user_info_component.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';

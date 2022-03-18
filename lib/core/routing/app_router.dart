@@ -24,7 +24,7 @@ class AppRouter {
         final args = settings.arguments as Map?;
         return MaterialPageRoute(
           builder: (_) => NoInternetConnection(
-            fromSplash: args?['fromSplash'],
+            offAll: args?['offAll'],
           ),
           settings: settings,
         );

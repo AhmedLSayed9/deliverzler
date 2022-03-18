@@ -1,6 +1,6 @@
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/services/init_services/localization_service.dart';
+import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 
 class FontStyles {

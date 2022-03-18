@@ -32,7 +32,7 @@ class NotificationOrderViewModel extends ChangeNotifier {
       }
     } catch (e) {
       debugPrint(e.toString());
-      AppDialogs.showDefaultErrorDialog();
+      AppDialogs.showErrorDialog();
     }
   }
 }
