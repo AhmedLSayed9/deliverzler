@@ -19,7 +19,7 @@ class FontStyles {
 
   static get mapSearchBarFontStyle => TextStyle(
         fontSize: Sizes.fontSizes(NavigationService.context)['h4'],
-        color: NavigationService.context.textTheme.subtitle1!.color,
+        color: Theme.of(NavigationService.context).textTheme.subtitle1!.color,
         fontFamily: fontFamily,
         fontWeight: fontWeightNormal,
         fontStyle: fontStyleNormal,
