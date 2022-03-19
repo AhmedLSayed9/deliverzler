@@ -36,6 +36,10 @@ class MainCoreProvider {
     }
   }
 
+  String? getCurrentUserAuthUid() {
+    return FirebaseAuth.instance.currentUser?.uid;
+  }
+
   Future<bool> validateAuth(String uid) async {
     final _result = await _userRepo.getUserData(uid);
     return _result.fold(
@@ -53,14 +57,6 @@ class MainCoreProvider {
         }
       },
     );
-  }
-
-  String? getCurrentUserAuthUid() {
-    return FirebaseAuth.instance.currentUser?.uid;
-  }
-
-  UserModel? getCurrentUser() {
-    return _userRepo.userModel;
   }
 
   Future<Either<Failure?, bool>> setUserToFirebase(UserModel userModel) async {

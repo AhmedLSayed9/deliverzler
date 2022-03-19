@@ -82,7 +82,7 @@ class LoginFormComponent extends HookConsumerWidget {
                       onPressed: () {
                         if (_loginFormKey.currentState!.validate()) {
                           ref
-                              .read(authProvider.notifier)
+                              .watch(authProvider.notifier)
                               .signInWithEmailAndPassword(
                                 email: _emailController.text,
                                 password: _passwordController.text,

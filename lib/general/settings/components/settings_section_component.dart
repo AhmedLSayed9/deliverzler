@@ -1,7 +1,7 @@
+import 'package:deliverzler/core/widgets/custom_tile_component.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:deliverzler/general/components/settings_components/settings_tile_component.dart';
 
 class SettingsSectionComponent extends StatelessWidget {
   const SettingsSectionComponent({
@@ -15,7 +15,7 @@ class SettingsSectionComponent extends StatelessWidget {
   final IconData headerIcon;
   final String headerTitle;
   final Widget? headerTrailing;
-  final List<SettingsTileComponent> tileList;
+  final List<CustomTileComponent> tileList;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,7 @@ class SettingsSectionComponent extends StatelessWidget {
         ],
       ),
       child: ListView(
-        padding: EdgeInsets.symmetric(
-          vertical: Sizes.vPaddingTiny(context),
-        ),
+        padding: EdgeInsets.symmetric(vertical: Sizes.vPaddingTiny(context)),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[

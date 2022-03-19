@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:deliverzler/general/model/language_model.dart';
+import 'package:deliverzler/general/settings/models/language_model.dart';
 
 class LanguageItemComponent extends ConsumerWidget {
   const LanguageItemComponent({

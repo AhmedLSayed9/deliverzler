@@ -1,11 +1,9 @@
 import 'package:deliverzler/core/services/localization_service.dart';
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/core/routing/route_paths.dart';
-import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
+import 'package:deliverzler/general/settings/viewmodels/settings_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,14 +12,10 @@ class LogoutComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    final _settingsVM = ref.watch(settingsViewModel);
+
     return InkWell(
-      onTap: () async {
-        await ref.read(mainCoreProvider).logoutUser();
-        NavigationService.pushReplacementAll(
-          isNamed: true,
-          page: RoutePaths.authLogin,
-        );
-      },
+      onTap: _settingsVM.signOut,
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: Sizes.vPaddingSmall(context),

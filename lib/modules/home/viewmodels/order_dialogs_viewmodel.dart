@@ -1,3 +1,4 @@
+import 'package:deliverzler/authentication/repos/user_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,7 +6,6 @@ import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
-import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
 import 'package:deliverzler/core/widgets/dialog_widget.dart';
 import 'package:deliverzler/core/widgets/custom_snack_bar.dart';
 import 'package:deliverzler/modules/home/components/dialogs/cancel_order_dialog.dart';
@@ -109,7 +109,7 @@ class OrderDialogsViewModel extends ChangeNotifier {
   }
 
   bool _confirmDeliveryId(String? deliveryId) {
-    if (deliveryId == ref.read(mainCoreProvider).getCurrentUser()!.uId) {
+    if (deliveryId == ref.watch(userRepoProvider).uid) {
       return true;
     } else {
       CustomSnackBar.showDefaultSnackBar(

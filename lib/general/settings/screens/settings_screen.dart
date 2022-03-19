@@ -1,22 +1,18 @@
-import 'package:deliverzler/general/components/settings_components/logout_component.dart';
+import 'package:deliverzler/general/settings/components/logout_component.dart';
+import 'package:deliverzler/general/settings/components/user_info_component.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/components/appbar_with_icon_component.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
-import 'package:deliverzler/general/components/settings_components/app_settings_section_component.dart';
-import 'package:deliverzler/general/components/settings_components/settings_details_component.dart';
+import 'package:deliverzler/general/settings/components/settings_sections_components/app_settings_section_component.dart';
 
-class SettingsScreen extends ConsumerWidget {
+class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ref) {
-    final _userModel = ref.watch(mainCoreProvider).getCurrentUser();
-
+  Widget build(BuildContext context) {
     return PopUpPage(
       appBarWithBack: true,
       appbarItems: [
@@ -33,9 +29,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           child: Column(
             children: <Widget>[
-              SettingsDetailsComponent(
-                userModel: _userModel!,
-              ),
+              const UserInfoComponent(),
               SizedBox(
                 height: Sizes.vMarginSmall(context),
               ),

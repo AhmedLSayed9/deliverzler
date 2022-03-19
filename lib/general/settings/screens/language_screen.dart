@@ -4,8 +4,8 @@ import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:deliverzler/general/components/settings_components/language_item_component.dart';
-import 'package:deliverzler/general/model/language_model.dart';
+import 'package:deliverzler/general/settings/components/language_item_component.dart';
+import 'package:deliverzler/general/settings/models/language_model.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 
 class LanguageScreen extends StatelessWidget {
@@ -43,14 +43,14 @@ class LanguageScreen extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: languagesList.length,
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: Sizes.vMarginSmall(context),
-                  );
-                },
                 itemBuilder: (context, index) {
                   return LanguageItemComponent(
                     languageModel: languagesList[index],
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    height: Sizes.vMarginSmall(context),
                   );
                 },
               ),

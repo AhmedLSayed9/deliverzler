@@ -30,14 +30,13 @@ class CustomTileComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       dense: true,
-      contentPadding: contentPadding ??
-          EdgeInsets.symmetric(
-            horizontal: Sizes.hPaddingHigh(context),
-          ),
-      horizontalTitleGap: Sizes.hMarginSmall(context),
-      title: CustomText.h4(
+      contentPadding: contentPadding,
+      minLeadingWidth: 0.0,
+      horizontalTitleGap: Sizes.hMarginSmallest(context),
+      title: CustomText.h5(
         context,
         title,
+        color: Theme.of(context).textTheme.headline4!.color,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
@@ -45,9 +44,9 @@ class CustomTileComponent extends StatelessWidget {
           (leadingIcon != null
               ? Icon(
                   leadingIcon,
-                  size: Sizes.iconsSizes(context)['s4'],
-                  color:
-                      leadingIconColor ?? Theme.of(context).colorScheme.primary,
+                  size: Sizes.iconsSizes(context)['s6'],
+                  color: leadingIconColor ??
+                      Theme.of(context).textTheme.headline4!.color,
                 )
               : null),
       trailing: customTrailing ??
