@@ -48,7 +48,7 @@ class ServicesInitializer {
   }
 
   initNotificationSettings() async {
-    await LocalNotificationService.instance.init();
+    await LocalNotificationService(_container).init();
   }
 
   initFirebase() async {

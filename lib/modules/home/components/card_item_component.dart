@@ -21,7 +21,7 @@ class CardItemComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final orderDialogsVM = ref.watch(orderDialogsViewModel.notifier);
+    final orderDialogsVM = ref.watch(orderDialogsViewModel);
     final bool _isUpcomingOrder = orderModel.orderDeliveryStatus ==
         describeEnum(OrderDeliveryStatus.upcoming);
 

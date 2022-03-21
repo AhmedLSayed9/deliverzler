@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
@@ -28,7 +28,7 @@ class MapCurrentLocationViewModel extends ChangeNotifier {
   bool isLoading = true;
   bool _disposed = false;
 
-  LocationData? currentLocation;
+  Position? currentLocation;
   late CameraPosition currentLocationCameraPosition;
   late Marker currentLocationMarker;
   late Circle currentLocationCircle;
@@ -78,14 +78,19 @@ class MapCurrentLocationViewModel extends ChangeNotifier {
   }
 
   subscribeToLocationChangeStream() {
-    _currentLocationSubscription = LocationService
-        .instance.location.onLocationChanged
-        .listen((newLocationData) async {
-      currentLocation = newLocationData;
-      getCurrentLocationCameraPosition();
-      await addCurrentLocationMarkerAndCircle();
-      await updateSelectedPlaceDirections();
-    });
+    _currentLocationSubscription = Geolocator.getPositionStream(
+      locationSettings: LocationService.instance.getLocationSettings(),
+    ).listen(
+      (newLocationData) async {
+        currentLocation = newLocationData;
+        getCurrentLocationCameraPosition();
+        await addCurrentLocationMarkerAndCircle();
+        await updateSelectedPlaceDirections();
+      },
+      onError: ((error) {
+        debugPrint(error.toString());
+      }),
+    );
   }
 
   updateSelectedPlaceDirections() async {

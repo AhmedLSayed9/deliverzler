@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
+import 'package:deliverzler/core/errors/failures.dart';
 import 'package:flutter/foundation.dart';
 import 'package:deliverzler/authentication/repos/user_repo.dart';
 import 'package:deliverzler/core/services/firebase_services/firebase_caller.dart';
@@ -11,7 +13,7 @@ final ordersRepoProvider = Provider<OrdersRepo>((ref) => OrdersRepo(ref));
 
 class OrdersRepo {
   OrdersRepo(this.ref) {
-    _userRepo = ref.read(userRepoProvider);
+    _userRepo = ref.watch(userRepoProvider);
   }
 
   final Ref ref;
@@ -48,51 +50,79 @@ class OrdersRepo {
     );
   }
 
-  Future cancelUserOrder({
+  Future<Either<Failure?, bool>> cancelUserOrder({
     required String orderId,
     required String? employeeCancelNote,
   }) async {
-    await _firebaseCaller.updateData(
+    return await _firebaseCaller.updateData(
       path: FirestorePaths.orderById(orderId: orderId),
       data: {
         'orderDeliveryStatus': describeEnum(OrderDeliveryStatus.canceled),
         'deliveryId': _userRepo.uid,
         'employeeCancelNote': employeeCancelNote,
       },
+      builder: (data) {
+        if (data is! ServerFailure && data == true) {
+          return Right(data);
+        } else {
+          return Left(data);
+        }
+      },
     );
   }
 
-  Future deliverUserOrder({
+  Future<Either<Failure?, bool>> deliverUserOrder({
     required String orderId,
   }) async {
-    await _firebaseCaller.updateData(
+    return await _firebaseCaller.updateData(
       path: FirestorePaths.orderById(orderId: orderId),
       data: {
         'orderDeliveryStatus': describeEnum(OrderDeliveryStatus.onTheWay),
         'deliveryId': _userRepo.uid,
       },
-    );
-  }
-
-  Future confirmUserOrder({
-    required String orderId,
-  }) async {
-    await _firebaseCaller.updateData(
-      path: FirestorePaths.orderById(orderId: orderId),
-      data: {
-        'orderDeliveryStatus': describeEnum(OrderDeliveryStatus.delivered),
+      builder: (data) {
+        if (data is! ServerFailure && data == true) {
+          return Right(data);
+        } else {
+          return Left(data);
+        }
       },
     );
   }
 
-  Future updateDeliveryGeoPoint({
+  Future<Either<Failure?, bool>> confirmUserOrder({
+    required String orderId,
+  }) async {
+    return await _firebaseCaller.updateData(
+      path: FirestorePaths.orderById(orderId: orderId),
+      data: {
+        'orderDeliveryStatus': describeEnum(OrderDeliveryStatus.delivered),
+      },
+      builder: (data) {
+        if (data is! ServerFailure && data == true) {
+          return Right(data);
+        } else {
+          return Left(data);
+        }
+      },
+    );
+  }
+
+  Future<Either<Failure?, bool>> updateDeliveryGeoPoint({
     required String orderId,
     required GeoPoint deliveryGeoPoint,
   }) async {
-    await _firebaseCaller.updateData(
+    return await _firebaseCaller.updateData(
       path: FirestorePaths.orderById(orderId: orderId),
       data: {
         'deliveryGeoPoint': deliveryGeoPoint,
+      },
+      builder: (data) {
+        if (data is! ServerFailure && data == true) {
+          return Right(data);
+        } else {
+          return Left(data);
+        }
       },
     );
   }

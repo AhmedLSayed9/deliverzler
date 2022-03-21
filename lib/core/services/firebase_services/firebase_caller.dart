@@ -38,13 +38,23 @@ class FirebaseCaller {
     }
   }
 
-  Future<void> updateData({
+  Future<T> updateData<T>({
     required String path,
     required Map<String, dynamic> data,
+    required T Function(dynamic data) builder,
   }) async {
-    final reference = _firebaseFirestore.doc(path);
-    debugPrint('$path: $data');
-    await reference.update(data);
+    try {
+      final reference = _firebaseFirestore.doc(path);
+      await reference.update(data);
+      return builder(true);
+    } catch (e) {
+      debugPrint(e.toString());
+      final _failure = ServerFailure(
+        message: Exceptions.errorMessage(e),
+        statusCode: Exceptions.statusCode(e),
+      );
+      return builder(_failure);
+    }
   }
 
   Future<void> deleteData({required String path}) async {

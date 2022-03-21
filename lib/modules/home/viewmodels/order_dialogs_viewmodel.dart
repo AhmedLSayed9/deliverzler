@@ -1,6 +1,6 @@
 import 'package:deliverzler/authentication/repos/user_repo.dart';
+import 'package:deliverzler/modules/home/viewmodels/delivering_orders_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
@@ -13,23 +13,21 @@ import 'package:deliverzler/modules/home/components/dialogs/confirm_choice_dialo
 import 'package:deliverzler/modules/home/components/dialogs/order_details_dialog.dart';
 import 'package:deliverzler/modules/home/models/order_model.dart';
 import 'package:deliverzler/modules/home/repos/orders_repo.dart';
-import 'package:deliverzler/modules/home/viewmodels/main_orders_viewmodel.dart';
-import 'package:deliverzler/modules/home/viewmodels/selected_order_providers.dart';
+import 'package:deliverzler/modules/home/viewmodels/home_state_providers.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-final orderDialogsViewModel = ChangeNotifierProvider<OrderDialogsViewModel>(
-    (ref) => OrderDialogsViewModel(ref));
+final orderDialogsViewModel =
+    Provider<OrderDialogsViewModel>((ref) => OrderDialogsViewModel(ref));
 
-class OrderDialogsViewModel extends ChangeNotifier {
+class OrderDialogsViewModel {
   OrderDialogsViewModel(this.ref) {
-    _ordersRepo = ref.read(ordersRepoProvider);
-    _ordersVM = ref.read(mainOrdersViewModel);
+    _ordersRepo = ref.watch(ordersRepoProvider);
+    _deliveringOrdersProvider = ref.watch(deliveringOrdersProvider.notifier);
   }
 
   Ref ref;
   late OrdersRepo _ordersRepo;
-  late MainOrdersViewModel _ordersVM;
-
-  String cancelNote = '';
+  late DeliveringOrdersNotifier _deliveringOrdersProvider;
 
   showOrderDetailsDialog({required OrderModel orderModel}) {
     DialogWidget.showCustomDialog(
@@ -49,18 +47,17 @@ class OrderDialogsViewModel extends ChangeNotifier {
         ),
       ).then((value) async {
         if (value != null && value[0] == true) {
-          try {
-            await _ordersRepo.cancelUserOrder(
-              orderId: orderModel.orderId!,
-              employeeCancelNote: cancelNote,
-            );
-            _ordersVM.deleteOrderFromDeliveringOrders(
-              orderId: orderModel.orderId!,
-            );
-          } catch (e) {
-            debugPrint(e.toString());
-            AppDialogs.showErrorDialog();
-          }
+          final _result = await _ordersRepo.cancelUserOrder(
+            orderId: orderModel.orderId!,
+            employeeCancelNote: value[1],
+          );
+          _result.fold(
+            (failure) {
+              debugPrint(failure?.message);
+              AppDialogs.showErrorDialog(message: failure?.message);
+            },
+            (isSet) {},
+          );
         }
       });
     }
@@ -70,41 +67,57 @@ class OrderDialogsViewModel extends ChangeNotifier {
     bool _confirm = await _confirmChoiceDialog(
         tr(NavigationService.context).doYouWantToDeliverTheOrder);
     if (_confirm) {
-      try {
-        setSelectedOrderProvidersAndGoToMap(orderModel);
-        await _ordersRepo.deliverUserOrder(orderId: orderModel.orderId!);
-        _ordersVM.addOrderToDeliveringOrders(orderId: orderModel.orderId!);
-      } catch (e) {
-        debugPrint(e.toString());
-        AppDialogs.showErrorDialog();
-      }
+      final _result =
+          await _ordersRepo.deliverUserOrder(orderId: orderModel.orderId!);
+      _result.fold(
+        (failure) {
+          debugPrint(failure?.message);
+          AppDialogs.showErrorDialog(message: failure?.message);
+        },
+        (isSet) {
+          if (isSet) {
+            setSelectedOrderProvidersAndGoToMap(orderModel);
+            _deliveringOrdersProvider.addOrderToDeliveringOrders(
+                orderId: orderModel.orderId!);
+          }
+        },
+      );
     }
   }
 
   Future<bool> showConfirmOrderDialog({required OrderModel orderModel}) async {
+    bool _orderConfirmed = false;
+
     if (_confirmDeliveryId(orderModel.deliveryId)) {
       bool _confirm = await _confirmChoiceDialog(
           tr(NavigationService.context).doYouWantToConfirmTheOrder);
       if (_confirm) {
-        try {
-          await _ordersRepo.confirmUserOrder(orderId: orderModel.orderId!);
-          _ordersVM.deleteOrderFromDeliveringOrders(
-            orderId: orderModel.orderId!,
-          );
-          return true;
-        } catch (e) {
-          debugPrint(e.toString());
-          AppDialogs.showErrorDialog();
-        }
+        final _result =
+            await _ordersRepo.confirmUserOrder(orderId: orderModel.orderId!);
+        _result.fold(
+          (failure) {
+            debugPrint(failure?.message);
+            AppDialogs.showErrorDialog(message: failure?.message);
+          },
+          (isSet) {
+            if (isSet) {
+              _deliveringOrdersProvider.deleteOrderFromDeliveringOrders(
+                orderId: orderModel.orderId!,
+              );
+              _orderConfirmed = true;
+            }
+          },
+        );
       }
     }
-    return false;
+    return _orderConfirmed;
   }
 
   showMapForOrder({required OrderModel orderModel}) {
     if (_confirmDeliveryId(orderModel.deliveryId)) {
       setSelectedOrderProvidersAndGoToMap(orderModel);
-      _ordersVM.addOrderToDeliveringOrders(orderId: orderModel.orderId!);
+      _deliveringOrdersProvider.addOrderToDeliveringOrders(
+          orderId: orderModel.orderId!);
     }
   }
 
@@ -137,11 +150,14 @@ class OrderDialogsViewModel extends ChangeNotifier {
   }
 
   setSelectedOrderProvidersAndGoToMap(OrderModel orderModel) {
-    ref.read(selectedOrderProvider.notifier).state = orderModel;
-    final _deliveringOrder = _ordersVM.deliveringOrdersList
+    ref.watch(selectedOrderProvider.notifier).state = orderModel;
+
+    final _deliveringOrder = ref
+        .read(deliveringOrdersProvider)
         .firstWhereOrNull((order) => order.orderId == orderModel.orderId);
-    ref.read(selectedOrderGeoPointProvider.notifier).state =
+    ref.watch(selectedOrderGeoPointProvider.notifier).state =
         _deliveringOrder?.orderGeoPoint ?? orderModel.addressModel?.geoPoint;
+
     NavigationService.push(
       isNamed: true,
       page: RoutePaths.map,

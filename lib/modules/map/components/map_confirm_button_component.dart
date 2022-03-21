@@ -8,7 +8,7 @@ import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/modules/home/viewmodels/order_dialogs_viewmodel.dart';
-import 'package:deliverzler/modules/home/viewmodels/selected_order_providers.dart';
+import 'package:deliverzler/modules/home/viewmodels/home_state_providers.dart';
 import 'package:deliverzler/modules/map/viewmodels/map_selected_place_viewmodel.dart';
 
 class MapConfirmButtonComponent extends ConsumerWidget {
@@ -18,7 +18,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final isArrivedSelectedPlace = ref.watch(mapSelectedPlaceViewModel
         .select((selectedPlaceVM) => selectedPlaceVM.isArrivedSelectedPlace));
-    final orderDialogsVM = ref.watch(orderDialogsViewModel.notifier);
+    final orderDialogsVM = ref.watch(orderDialogsViewModel);
 
     return isArrivedSelectedPlace
         ? Positioned(

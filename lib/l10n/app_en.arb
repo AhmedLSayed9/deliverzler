@@ -59,6 +59,11 @@
   "enterYourNumber": "Enter Your Number",
   "@_HOME": {
   },
+  "please_enable_location_service": "Please enable location services, and try again",
+  "location_permission_required": "Without location permission you can't deliver orders",
+  "location_timeout_error": "Its take long time, please check your internet connection and try again",
+  "please_wait": "Please wait",
+  "determine_location": "Please wait until your location determine.",
   "thereAreNoOrders": "There\"re no orders to be delivered.",
   "orderUpcoming": "Order Upcoming",
   "orderOnTheWay": "Order OnTheWay",

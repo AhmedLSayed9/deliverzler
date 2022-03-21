@@ -34,6 +34,7 @@ class AppRouter {
         return NavigationFadeTransition(
           const LoginScreen(),
           settings: settings,
+          transitionDuration: const Duration(seconds: 1),
         );
 
       //Settings
@@ -51,11 +52,8 @@ class AppRouter {
 
       //Home
       case RoutePaths.home:
-        final args = settings.arguments as Map?;
         return NavigationFadeTransition(
-          OrdersScreen(
-            notificationOrderId: args?['orderId'],
-          ),
+          OrdersScreen(),
           settings: settings,
         );
 

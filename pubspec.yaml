@@ -58,6 +58,7 @@ dependencies:
   timeago: ^3.2.2
 
   #Widgets
+  flutter_platform_widgets: ^1.20.0
   qr_flutter: ^4.0.0
   material_floating_search_bar: ^0.3.6
 

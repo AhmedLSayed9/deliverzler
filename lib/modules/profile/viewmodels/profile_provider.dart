@@ -7,12 +7,12 @@ import 'package:deliverzler/modules/profile/viewmodels/profile_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final profileProvider =
-    StateNotifierProvider.autoDispose<ProfileProvider, ProfileState>((ref) {
-  return ProfileProvider(ref);
+    StateNotifierProvider.autoDispose<ProfileNotifier, ProfileState>((ref) {
+  return ProfileNotifier(ref);
 });
 
-class ProfileProvider extends StateNotifier<ProfileState> {
-  ProfileProvider(this.ref) : super(const ProfileState.available()) {
+class ProfileNotifier extends StateNotifier<ProfileState> {
+  ProfileNotifier(this.ref) : super(const ProfileState.available()) {
     _userRepo = ref.read(userRepoProvider);
   }
 

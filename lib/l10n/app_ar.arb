@@ -58,6 +58,11 @@
   "enterYourNumber": "أدخل رقم الهاتف",
   "@_HOME": {
   },
+  "please_enable_location_service": "الرجاء تمكين خدمة الموقع ، وحاول مرة أخرى...",
+  "location_permission_required": "بدون إذن الموقع لا يمكنك توصيل الطلبات",
+  "location_timeout_error": "يستغرق الأمر وقتًا طويلاً ، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى",
+  "please_wait": "الرجاء الإنتظار",
+  "determine_location": "الرجاء الإنتظار حتى يتم تحديد موقعك",
   "thereAreNoOrders": "لا يوجد طلبات في الوقت الحالي.",
   "orderUpcoming": "الطلب جاهز",
   "orderOnTheWay": "الطلب في الطريق",

@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
+import 'package:deliverzler/modules/home/viewmodels/delivering_orders_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/widgets/custom_snack_bar.dart';
-import 'package:deliverzler/modules/home/viewmodels/main_orders_viewmodel.dart';
-import 'package:deliverzler/modules/home/viewmodels/selected_order_providers.dart';
+import 'package:deliverzler/modules/home/viewmodels/home_state_providers.dart';
 import 'package:deliverzler/modules/map/models/place_directions_model.dart';
 import 'package:deliverzler/modules/map/utils/constants.dart';
 import 'package:deliverzler/modules/map/models/place_details_model.dart';
@@ -105,8 +105,8 @@ class MapSelectedPlaceViewModel extends ChangeNotifier {
   addSelectedPlaceDirections() async {
     selectedPlaceDirections = await MapRepo.instance.getPlaceDirections(
       origin: LatLng(
-        ref.read(mapCurrentLocationViewModel).currentLocation!.latitude!,
-        ref.read(mapCurrentLocationViewModel).currentLocation!.longitude!,
+        ref.read(mapCurrentLocationViewModel).currentLocation!.latitude,
+        ref.read(mapCurrentLocationViewModel).currentLocation!.longitude,
       ),
       destination: LatLng(
         selectedPlaceDetails!.geoPoint.latitude,
@@ -149,7 +149,7 @@ class MapSelectedPlaceViewModel extends ChangeNotifier {
   }
 
   addLocationToDeliveringOrder() {
-    ref.read(mainOrdersViewModel).addLocationToDeliveringOrder(
+    ref.watch(deliveringOrdersProvider.notifier).addLocationToDeliveringOrder(
           orderId: ref.read(selectedOrderProvider)!.orderId!,
           orderGeoPoint: selectedPlaceDetails!.geoPoint,
         );

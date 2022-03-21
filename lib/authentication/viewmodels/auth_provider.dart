@@ -10,12 +10,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authProvider =
-    StateNotifierProvider.autoDispose<AuthProvider, AuthState>((ref) {
-  return AuthProvider(ref);
+    StateNotifierProvider.autoDispose<AuthNotifier, AuthState>((ref) {
+  return AuthNotifier(ref);
 });
 
-class AuthProvider extends StateNotifier<AuthState> {
-  AuthProvider(this.ref) : super(const AuthState.available()) {
+class AuthNotifier extends StateNotifier<AuthState> {
+  AuthNotifier(this.ref) : super(const AuthState.available()) {
     _mainCoreProvider = ref.read(mainCoreProvider);
     _authRepo = ref.read(authRepoProvider);
   }

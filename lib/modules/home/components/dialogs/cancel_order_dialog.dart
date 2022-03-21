@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
@@ -9,9 +9,8 @@ import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/core/widgets/custom_text_field.dart';
 import 'package:deliverzler/modules/home/models/order_model.dart';
-import 'package:deliverzler/modules/home/viewmodels/order_dialogs_viewmodel.dart';
 
-class CancelOrderDialog extends ConsumerStatefulWidget {
+class CancelOrderDialog extends HookWidget {
   final OrderModel orderModel;
 
   const CancelOrderDialog({
@@ -20,19 +19,8 @@ class CancelOrderDialog extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  _CancelOrderDialogState createState() => _CancelOrderDialogState();
-}
-
-class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
-  @override
-  void didChangeDependencies() {
-    ref.read(orderDialogsViewModel).cancelNote = '';
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final orderDialogsVM = ref.watch(orderDialogsViewModel.notifier);
+    final _cancelNoteController = useTextEditingController(text: '');
 
     return SizedBox(
       width: Sizes.screenWidth(context),
@@ -51,6 +39,7 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
             ),
             CustomTextField(
               context,
+              controller: _cancelNoteController,
               maxLines: 6,
               maxLength: 200,
               textInputAction: TextInputAction.newline,
@@ -59,9 +48,6 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
                 vertical: Sizes.vPaddingSmall(context),
                 horizontal: Sizes.hPaddingSmall(context),
               ),
-              onChanged: (value) {
-                orderDialogsVM.cancelNote = value;
-              },
             ),
             SizedBox(
               height: Sizes.vMarginSmallest(context),
@@ -93,7 +79,8 @@ class _CancelOrderDialogState extends ConsumerState<CancelOrderDialog> {
                     height: Sizes.roundedButtonDialogHeight(context),
                     width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
-                      NavigationService.goBack(result: [true]);
+                      NavigationService.goBack(
+                          result: [true, _cancelNoteController.text]);
                     },
                   ),
                 ],

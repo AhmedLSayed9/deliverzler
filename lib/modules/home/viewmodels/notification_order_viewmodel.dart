@@ -4,30 +4,24 @@ import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:deliverzler/modules/home/repos/orders_repo.dart';
 import 'package:deliverzler/modules/home/viewmodels/order_dialogs_viewmodel.dart';
 
-final notificationOrderViewModel =
-    ChangeNotifierProvider.family<NotificationOrderViewModel, String?>(
-        (ref, orderId) => NotificationOrderViewModel(ref, orderId));
+final notificationOrderViewModel = Provider<NotificationOrderViewModel>(
+    (ref) => NotificationOrderViewModel(ref));
 
-class NotificationOrderViewModel extends ChangeNotifier {
-  NotificationOrderViewModel(this.ref, this.notificationOrderId) {
-    if (notificationOrderId != null) {
-      navigateToNotificationOrder();
-    }
-  }
+class NotificationOrderViewModel {
+  NotificationOrderViewModel(this.ref);
 
   Ref ref;
-  String? notificationOrderId;
 
-  navigateToNotificationOrder() async {
+  navigateToNotificationOrder(String notificationOrderId) async {
     try {
       final _order = await ref
-          .read(ordersRepoProvider)
-          .getOrderById(orderId: notificationOrderId!);
+          .watch(ordersRepoProvider)
+          .getOrderById(orderId: notificationOrderId);
       if (_order != null) {
         //Few delay to ensure dispose of old map viewmodels.
         await Future.delayed(const Duration(seconds: 1));
         ref
-            .read(orderDialogsViewModel)
+            .watch(orderDialogsViewModel)
             .setSelectedOrderProvidersAndGoToMap(_order);
       }
     } catch (e) {

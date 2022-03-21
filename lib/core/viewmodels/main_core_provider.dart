@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:deliverzler/authentication/models/user_model.dart';
@@ -10,7 +11,7 @@ import 'package:deliverzler/core/services/init_services/firebase_messaging_servi
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:deliverzler/core/services/location_service.dart';
 
 final mainCoreProvider =
@@ -97,32 +98,27 @@ class MainCoreProvider {
   }
 
   Future<bool> requestLocationPermission() async {
-    return await LocationService.instance.requestLocationPermission() ==
-        PermissionStatus.granted;
-  }
-
-  Future<bool> enableBackgroundMode() async {
-    return await LocationService.instance.enableBackgroundMode();
-  }
-
-  Future initLocationSettings({
-    LocationAccuracy? accuracy,
-    int? interval,
-    double? distanceFilter,
-  }) async {
-    return await LocationService.instance.initSettings(
-      accuracy: accuracy,
-      interval: interval,
-      distanceFilter: distanceFilter,
-    );
-  }
-
-  Future<LocationData?> getCurrentUserLocation() async {
-    return await LocationService.instance.getLocation();
+    final _inUse = await LocationService.instance.requestWhileInUsePermission();
+    if (Platform.isAndroid) {
+      final _always = await LocationService.instance.requestAlwaysPermission();
+      return _inUse && _always;
+    } else {
+      return _inUse;
+    }
   }
 
   Future<bool> isAllLocationPermissionsRequired() async {
-    return await LocationService.instance.isAllLocationPermissionsRequired();
+    if (Platform.isAndroid) {
+      return await LocationService.instance.isLocationServiceEnabled() &&
+          await LocationService.instance.isAlwaysPermissionGranted();
+    } else {
+      return await LocationService.instance.isLocationServiceEnabled() &&
+          await LocationService.instance.isWhileInUsePermissionGranted();
+    }
+  }
+
+  Future<Position?> getCurrentUserLocation() async {
+    return await LocationService.instance.getLocation();
   }
 
   ///Connection module methods

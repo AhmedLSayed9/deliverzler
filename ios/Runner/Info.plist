@@ -43,6 +43,16 @@
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<true/>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app needs access to location for Attendance Submission.</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>location</string>
+			<string>remote-notification</string>
+		</array>
+		<key>LSApplicationQueriesSchemes</key>
+        <string>tel</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>
