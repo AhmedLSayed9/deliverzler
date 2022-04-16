@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 class DarkTheme {
   static final darkTheme = ThemeData.dark().copyWith(
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.darkThemeScaffoldBGColor,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: AppColors.darkThemeStatusBarColor,
         statusBarIconBrightness: Brightness.light,

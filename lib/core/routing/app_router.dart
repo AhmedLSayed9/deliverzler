@@ -1,13 +1,13 @@
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/routing/navigation_transitions.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
+import 'package:deliverzler/modules/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/auth/screens/login_screen.dart';
 import 'package:deliverzler/core/screens/no_internet_connection_screen.dart';
 import 'package:deliverzler/core/screens/splash_screen.dart';
 import 'package:deliverzler/general/settings/screens/language_screen.dart';
 import 'package:deliverzler/general/settings/screens/settings_screen.dart';
-import 'package:deliverzler/modules/home/screens/orders_screen.dart';
 import 'package:deliverzler/modules/map/screens/map_screen.dart';
 import 'package:deliverzler/modules/profile/screens/profile_screen.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -59,7 +59,7 @@ class AppRouter {
       //Home
       case RoutePaths.home:
         return NavigationFadeTransition(
-          const OrdersScreen(),
+          const HomeScreen(),
           settings: settings,
         );
 

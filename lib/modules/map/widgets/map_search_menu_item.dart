@@ -16,33 +16,35 @@ class MapSearchMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = placeSearchModel.mainText;
     final subTitle = placeSearchModel.secondaryText;
-    return ListTile(
-      horizontalTitleGap: 0,
-      leading: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.place,
-            size: Sizes.iconsSizes(context)['s5'],
-          ),
-        ],
-      ),
-      title: Column(
-        children: [
-          CustomText.h4(
-            context,
-            title,
-            weight: FontStyles.fontWeightBold,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ),
-          CustomText.h5(
-            context,
-            subTitle,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ),
-        ],
+    return Material(
+      child: ListTile(
+        horizontalTitleGap: 0,
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.place,
+              size: Sizes.iconsSizes(context)['s5'],
+            ),
+          ],
+        ),
+        title: Column(
+          children: [
+            CustomText.h4(
+              context,
+              title,
+              weight: FontStyles.fontWeightBold,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
+            CustomText.h5(
+              context,
+              subTitle,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
+          ],
+        ),
       ),
     );
   }

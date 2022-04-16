@@ -61,6 +61,7 @@ class CustomAppBar extends PlatformAppBar {
           cupertino: (_, __) {
             return CupertinoNavigationBarData(
               transitionBetweenRoutes: false,
+              border: Border.all(style: BorderStyle.none),
               title: title != null
                   ? CustomText.h2(
                       context,
@@ -69,7 +70,7 @@ class CustomAppBar extends PlatformAppBar {
                       color: AppColors.white,
                       alignment: Alignment.center,
                     )
-                  : null,
+                  : customTitle,
             );
           },
         );

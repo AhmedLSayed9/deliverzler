@@ -1,3 +1,4 @@
+import 'package:deliverzler/modules/home/components/dialogs/cancel_order_note_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
@@ -7,7 +8,6 @@ import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:deliverzler/core/widgets/custom_text_field.dart';
 import 'package:deliverzler/modules/home/models/order_model.dart';
 
 class CancelOrderDialog extends HookWidget {
@@ -37,19 +37,7 @@ class CancelOrderDialog extends HookWidget {
             SizedBox(
               height: Sizes.vMarginSmallest(context),
             ),
-            CustomTextField(
-              context,
-              controller: _cancelNoteController,
-              maxLines: 6,
-              maxLength: 200,
-              textInputAction: TextInputAction.newline,
-              hintText: tr(context).typeYourNote + '...',
-              margin: EdgeInsets.only(bottom: Sizes.vMarginSmallest(context)),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: Sizes.vPaddingSmall(context),
-                horizontal: Sizes.hPaddingSmall(context),
-              ),
-            ),
+            CancelOrderNoteComponent(cancelNoteController: _cancelNoteController,),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: Sizes.hPaddingSmallest(context),

@@ -1,4 +1,5 @@
 import 'package:deliverzler/core/styles/app_colors.dart';
+import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/core/widgets/custom_text_button.dart';
@@ -20,6 +21,7 @@ class CardDetailsButtonComponent extends StatelessWidget {
       child: CustomText.h5(
         context,
         title,
+        weight: FontStyles.fontWeightMedium,
         color: AppColors.white,
         alignment: Alignment.center,
       ),

@@ -71,18 +71,17 @@ class CustomTextButton extends StatelessWidget {
       },
       cupertino: (_, __) {
         return CupertinoTextButtonData(
+          borderRadius: shape != null
+              ? (shape as RoundedRectangleBorder)
+              .borderRadius
+              .resolve(Directionality.maybeOf(context))
+              : null,
           padding: padding ??
               EdgeInsets.symmetric(
                 vertical: Sizes.vPaddingTiny(context),
                 horizontal: Sizes.hPaddingSmallest(context),
               ),
-          borderRadius: shape != null
-              ? (shape as RoundedRectangleBorder)
-                  .borderRadius
-                  .resolve(Directionality.maybeOf(context))
-              : BorderRadius.circular(
-                  Sizes.roundedButtonDefaultRadius(context),
-                ),
+          minSize: minHeight,
         );
       },
     );

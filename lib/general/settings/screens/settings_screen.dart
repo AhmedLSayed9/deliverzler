@@ -1,3 +1,4 @@
+import 'package:deliverzler/core/services/platform_service.dart';
 import 'package:deliverzler/general/settings/components/logout_component.dart';
 import 'package:deliverzler/general/settings/components/user_info_component.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopUpPage(
       hasAppBar: true,
-      appBarWithBack: true,
+      appBarWithBack: PlatformService.instance.isMaterialApp()? true:false,
       customTitle: AppBarWithIconComponent(
         icon: AppImages.settingsScreenIcon,
         title: tr(context).settings,

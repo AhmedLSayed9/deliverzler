@@ -96,7 +96,8 @@ class Sizes {
   static textFieldVMarginDefault(BuildContext context) => 24.h(context);
   static textFieldHPaddingDefault(BuildContext context) => 16.w(context);
   static textFieldVPaddingDefault(BuildContext context) => 16.h(context);
-  static cTextFieldVPaddingDefault(BuildContext context) => 16.h(context);
+  static cTextFieldVPaddingDefault(BuildContext context) => 12.h(context);
+  static cTextFieldTitleWidthDefault(BuildContext context) => 148.w(context);
 
   //Cards
   static cardVPadding(BuildContext context) => 16.h(context);
@@ -158,4 +159,6 @@ class Sizes {
   static splashLogoSize(BuildContext context) => 220.r(context);
   static loginLogoSize(BuildContext context) => 126.r(context);
   static switchThemeButtonWidth(BuildContext context) => 44.w(context);
+  static navBarIconRadius(BuildContext context) => 26.r(context);
+  static cupertinoNavBarHeight(BuildContext context) => 58.h(context);
 }

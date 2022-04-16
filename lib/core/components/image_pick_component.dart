@@ -42,43 +42,49 @@ class ImagePickComponent extends StatelessWidget {
                   const Divider(
                     height: 1,
                   ),
-                  ListTile(
-                    onTap: () async {
-                      try {
-                        pickFromCameraFunction();
-                        NavigationService.goBack();
-                      } catch (error) {
-                        NavigationService.goBack();
-                      }
-                    },
-                    title: CustomText(
-                      context,
-                      tr(context).camera,
-                    ),
-                    leading: const Icon(
-                      Icons.camera,
-                      color: Colors.blue,
+                  Material(
+                    color: Theme.of(context).primaryColor,
+                    child: ListTile(
+                      onTap: () async {
+                        try {
+                          pickFromCameraFunction();
+                          NavigationService.goBack();
+                        } catch (error) {
+                          NavigationService.goBack();
+                        }
+                      },
+                      title: CustomText(
+                        context,
+                        tr(context).camera,
+                      ),
+                      leading: const Icon(
+                        Icons.camera,
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                   const Divider(
                     height: 1,
                   ),
-                  ListTile(
-                    onTap: () async {
-                      try {
-                        pickFromGalleryFunction();
-                        NavigationService.goBack();
-                      } catch (error) {
-                        NavigationService.goBack();
-                      }
-                    },
-                    title: CustomText(
-                      context,
-                      tr(context).gallery,
-                    ),
-                    leading: const Icon(
-                      Icons.account_box,
-                      color: Colors.blue,
+                  Material(
+                    color: Theme.of(context).primaryColor,
+                    child: ListTile(
+                      onTap: () async {
+                        try {
+                          pickFromGalleryFunction();
+                          NavigationService.goBack();
+                        } catch (error) {
+                          NavigationService.goBack();
+                        }
+                      },
+                      title: CustomText(
+                        context,
+                        tr(context).gallery,
+                      ),
+                      leading: const Icon(
+                        Icons.account_box,
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ],

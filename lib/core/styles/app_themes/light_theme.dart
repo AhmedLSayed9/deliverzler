@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 class LightTheme {
   static final lightTheme = ThemeData.light().copyWith(
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.lightThemeScaffoldBGColor,
       systemOverlayStyle: SystemUiOverlayStyle(
         //For Android
         statusBarColor: AppColors.lightThemeStatusBarColor,

@@ -1,3 +1,4 @@
+import 'package:deliverzler/core/screens/popup_page_material.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/modules/home/components/retry_again_component.dart';
 import 'package:deliverzler/modules/home/utils/location_error.dart';
@@ -6,7 +7,6 @@ import 'package:deliverzler/modules/map/viewmodels/current_location_providers/cu
 import 'package:deliverzler/modules/map/viewmodels/main_map_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:deliverzler/core/screens/popup_page.dart';
 import 'package:deliverzler/core/widgets/loading_indicators.dart';
 import 'package:deliverzler/modules/map/components/google_map_component.dart';
 import 'package:deliverzler/modules/map/components/map_confirm_button_component.dart';
@@ -24,7 +24,7 @@ class MapScreen extends ConsumerWidget {
     final _locationServiceProvider = ref.watch(locationServiceProvider);
     final _currentLocationMarker = ref.watch(currentLocMarkerProvider);
 
-    return PopUpPage(
+    return PopUpPageMaterial(
       floatingActionButton: _locationServiceProvider.maybeWhen(
         available: (_) => _currentLocationMarker.whenOrNull(
           available: (_, __) => const MapFloatingActionButton(),

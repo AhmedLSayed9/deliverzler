@@ -11,10 +11,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class LoginFormComponent extends HookConsumerWidget {
   const LoginFormComponent({Key? key}) : super(key: key);
 
-  static final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context, ref) {
+    final _loginFormKey = useMemoized(() => GlobalKey<FormState>());
     final _emailController = useTextEditingController(text: '');
     final _passwordController = useTextEditingController(text: '');
 

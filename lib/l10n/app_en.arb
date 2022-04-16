@@ -58,6 +58,7 @@
   "enterYourNumber": "Enter Your Number",
   "@_HOME": {
   },
+  "home": "Home",
   "please_enable_location_service": "Please enable location services, and try again",
   "location_permission_required": "Without location permission you can't deliver orders",
   "tracking_permission_required": "Without tracking permission you can't deliver orders",

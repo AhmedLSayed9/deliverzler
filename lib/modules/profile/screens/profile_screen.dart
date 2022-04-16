@@ -1,3 +1,4 @@
+import 'package:deliverzler/core/services/platform_service.dart';
 import 'package:deliverzler/modules/profile/viewmodels/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopUpPage(
       hasAppBar: true,
-      appBarWithBack: true,
+      appBarWithBack: PlatformService.instance.isMaterialApp()?true:false,
       customTitle: AppBarWithIconComponent(
         icon: AppImages.profileScreenIcon,
         title: tr(context).myProfile,

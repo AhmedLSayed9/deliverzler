@@ -1,4 +1,5 @@
 import 'package:deliverzler/core/services/platform_service.dart';
+import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/core/widgets/custom_text_field.dart';
@@ -49,19 +50,18 @@ class TitledTextFieldItem extends StatelessWidget {
           prefix: prefixIcon,
           cupertinoPrefix: Row(
             children: [
-              CustomText.h4(
-                context,
-                title,
-                color: Theme.of(context).textTheme.headline5!.color,
-                padding: EdgeInsetsDirectional.only(
-                    start: Sizes.hPaddingTiny(context)),
+              SizedBox(
+                width: Sizes.cTextFieldTitleWidthDefault(context),
+                child: CustomText.h4(
+                  context,
+                  title,
+                  weight: FontStyles.fontWeightMedium,
+                  padding: EdgeInsetsDirectional.only(
+                      end: Sizes.hPaddingTiny(context)),
+                ),
               ),
               if (prefixIcon != null) prefixIcon!,
             ],
-          ),
-          contentPadding: EdgeInsets.symmetric(
-            vertical: Sizes.textFieldVPaddingDefault(context),
-            horizontal: Sizes.textFieldHPaddingDefault(context),
           ),
           suffixIcon: suffixIcon,
           hintText: hint,

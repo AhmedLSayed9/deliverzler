@@ -57,6 +57,7 @@
   "enterYourNumber": "أدخل رقم الهاتف",
   "@_HOME": {
   },
+  "home": "الرئيسية",
   "please_enable_location_service": "الرجاء تمكين خدمة الموقع ، وحاول مرة أخرى...",
   "location_permission_required": "بدون إذن الموقع لا يمكنك توصيل الطلبات",
   "tracking_permission_required": "بدون إذن التتبع لا يمكنك توصيل الطلبات",

@@ -11,11 +11,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ProfileFormComponent extends HookConsumerWidget {
   const ProfileFormComponent({Key? key}) : super(key: key);
 
-  static final GlobalKey<FormState> _profileFormKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context, ref) {
     final _userModel = ref.watch(userRepoProvider).userModel;
+    final _profileFormKey = useMemoized(() => GlobalKey<FormState>());
     final _nameController =
         useTextEditingController(text: _userModel?.name ?? '');
     final _mobileController =

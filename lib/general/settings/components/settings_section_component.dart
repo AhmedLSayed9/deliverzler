@@ -24,7 +24,7 @@ class SettingsSectionComponent extends StatelessWidget {
         vertical: Sizes.vMarginMedium(context),
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(
           Sizes.dialogSmallRadius(context),
         ),
@@ -41,18 +41,20 @@ class SettingsSectionComponent extends StatelessWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
-          ListTile(
-            horizontalTitleGap: 0,
-            leading: Icon(
-              headerIcon,
+          Material(
+            child: ListTile(
+              horizontalTitleGap: 0,
+              leading: Icon(
+                headerIcon,
+              ),
+              title: CustomText.h4(
+                context,
+                headerTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: headerTrailing,
             ),
-            title: CustomText.h4(
-              context,
-              headerTitle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            trailing: headerTrailing,
           ),
           ...tileList,
         ],
