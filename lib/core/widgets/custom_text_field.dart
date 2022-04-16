@@ -114,6 +114,8 @@ class CustomTextField extends Container {
                           filled: true,
                           contentPadding: contentPadding ??
                               EdgeInsetsDirectional.only(
+                                top: Sizes.textFieldVPaddingDefault(context),
+                                bottom: Sizes.textFieldVPaddingDefault(context),
                                 start: Sizes.textFieldHPaddingDefault(context),
                               ),
                           suffixIcon: suffixIcon != null

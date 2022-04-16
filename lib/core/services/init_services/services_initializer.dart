@@ -9,7 +9,7 @@ import 'package:deliverzler/core/viewmodels/app_locale_provider.dart';
 import 'package:deliverzler/core/viewmodels/app_theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-//import 'package:deliverzler/firebase_options.dart';
+import 'package:deliverzler/firebase_options.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ServicesInitializer {

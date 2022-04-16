@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopUpPage(
       hasAppBar: true,
-      appBarWithBack: PlatformService.instance.isMaterialApp()?true:false,
+      appBarWithBack: PlatformService.instance.isMaterialApp() ? true : false,
       customTitle: AppBarWithIconComponent(
         icon: AppImages.profileScreenIcon,
         title: tr(context).myProfile,

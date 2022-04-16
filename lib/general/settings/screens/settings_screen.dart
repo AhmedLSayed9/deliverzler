@@ -16,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopUpPage(
       hasAppBar: true,
-      appBarWithBack: PlatformService.instance.isMaterialApp()? true:false,
+      appBarWithBack: PlatformService.instance.isMaterialApp() ? true : false,
       customTitle: AppBarWithIconComponent(
         icon: AppImages.settingsScreenIcon,
         title: tr(context).settings,
