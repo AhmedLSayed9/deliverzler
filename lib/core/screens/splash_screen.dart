@@ -16,63 +16,41 @@ class SplashScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final _logoFadeController = useFadeInController(context);
-    final _titleFadeController = useFadeInController(context);
+    final _fadeController = useFadeInController();
     ref.watch(splashProvider);
 
     return PopUpPage(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            height: Sizes.screenHeight(context),
-            width: Sizes.screenWidth(context),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  AppImages.splash,
-                ),
-                fit: BoxFit.cover,
-              ),
+      body: FadeIn(
+        curve: Curves.easeIn,
+        controller: _fadeController,
+        child: Stack(
+          children: [
+            Image.asset(
+              AppImages.splash,
+              height: Sizes.screenHeight(context),
+              width: Sizes.screenWidth(context),
+              fit: BoxFit.cover,
             ),
-          ),
-          Center(
-            child: Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FadeIn(
-                  curve: Curves.easeIn,
-                  controller: _logoFadeController,
-                  child: Lottie.asset(
-                    AppImages.splashAnimation,
-                    width: Sizes.splashLogoSize(context),
-                  ),
+                Lottie.asset(
+                  AppImages.splashAnimation,
+                  width: Sizes.splashLogoSize(context),
                 ),
                 SizedBox(
                   height: Sizes.vMarginSmallest(context),
                 ),
-                SizedBox(
-                  width: Sizes.screenWidth(context),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FadeIn(
-                        curve: Curves.easeIn,
-                        controller: _titleFadeController,
-                        duration: const Duration(seconds: 1),
-                        child: CustomText.h1(
-                          context,
-                          tr(context).appName,
-                          weight: FontStyles.fontWeightExtraBold,
-                        ),
-                      ),
-                    ],
-                  ),
+                CustomText.h1(
+                  context,
+                  tr(context).appName,
+                  weight: FontStyles.fontWeightExtraBold,
+                  alignment: Alignment.center,
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

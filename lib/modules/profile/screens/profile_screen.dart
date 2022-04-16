@@ -17,14 +17,13 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopUpPage(
+      hasAppBar: true,
       appBarWithBack: true,
-      appbarItems: [
-        AppBarWithIconComponent(
-          icon: AppImages.profileScreenIcon,
-          title: tr(context).myProfile,
-        ),
-      ],
-      child: Consumer(builder: (context, ref, child) {
+      customTitle: AppBarWithIconComponent(
+        icon: AppImages.profileScreenIcon,
+        title: tr(context).myProfile,
+      ),
+      body: Consumer(builder: (context, ref, child) {
         final profileIsLoading = ref.watch(
           profileProvider.select((state) =>
               state.maybeWhen(loading: () => true, orElse: () => false)),

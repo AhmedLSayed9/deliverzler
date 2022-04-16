@@ -1,3 +1,4 @@
+import 'package:deliverzler/modules/map/viewmodels/map_search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -5,14 +6,13 @@ import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/modules/map/components/map_search_menu_component.dart';
-import 'package:deliverzler/modules/map/viewmodels/map_search_viewmodel.dart';
 
 class MapFloatingSearchBar extends ConsumerWidget {
   const MapFloatingSearchBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
-    final mapSearchVM = ref.watch(mapSearchViewModel.notifier);
+    final mapSearchVM = ref.watch(mapSearchProvider.notifier);
 
     return FloatingSearchBar(
       controller: mapSearchVM.floatingSearchBarController,
@@ -27,17 +27,15 @@ class MapFloatingSearchBar extends ConsumerWidget {
       borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius(context)),
       elevation: 4,
       hint: tr(context).searchForAPlace,
-      hintStyle: FontStyles.mapSearchBarFontStyle,
-      queryStyle: FontStyles.mapSearchBarFontStyle,
+      hintStyle: FontStyles.mapSearchBarFontStyle(context),
+      queryStyle: FontStyles.mapSearchBarFontStyle(context),
       physics: const BouncingScrollPhysics(),
       transition: CircularFloatingSearchBarTransition(),
       transitionDuration: const Duration(milliseconds: 800),
       transitionCurve: Curves.easeInOut,
       debounceDelay: const Duration(milliseconds: 500),
       onQueryChanged: (query) {
-        mapSearchVM.getPlaceSearchSuggestions(
-          placeName: query,
-        );
+        mapSearchVM.getPlaceSearchSuggestions(context, query);
       },
       actions: [
         FloatingSearchBarAction.icon(

@@ -25,25 +25,27 @@ class NoInternetConnection extends StatelessWidget {
         );
         return Future.value(true);
       },
-      child: Padding(
+      body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: Sizes.screenHPaddingDefault(context)),
         child: DataErrorComponent(
           title: tr(context).noInternetConnection,
           description: tr(context).pleaseCheckYourDeviceNetwork,
           onPressed: () {
-            ConnectivityService.instance.checkIfConnected().then((value) {
-              if (value) {
-                if (offAll) {
-                  NavigationService.pushReplacementAll(
-                    isNamed: true,
-                    page: RoutePaths.coreSplash,
-                  );
-                } else {
-                  NavigationService.goBack();
+            ConnectivityService.instance.checkIfConnected().then(
+              (value) {
+                if (value) {
+                  if (offAll) {
+                    NavigationService.pushReplacementAll(
+                      isNamed: true,
+                      page: RoutePaths.coreSplash,
+                    );
+                  } else {
+                    NavigationService.goBack();
+                  }
                 }
-              }
-            });
+              },
+            );
           },
         ),
       ),

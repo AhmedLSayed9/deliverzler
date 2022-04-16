@@ -4,7 +4,7 @@ import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_button.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:deliverzler/modules/home/viewmodels/location_change_viewmodel.dart';
+import 'package:deliverzler/modules/home/viewmodels/location_service_provider/location_service_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,8 +18,6 @@ class RetryAgainComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final currentLocationVM = ref.watch(locationChangeViewModel.notifier);
-
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: Sizes.screenHPaddingMedium(context),
@@ -39,7 +37,8 @@ class RetryAgainComponent extends ConsumerWidget {
           ),
           CustomButton(
             text: tr(context).retry,
-            onPressed: currentLocationVM.initData,
+            onPressed:
+                ref.watch(locationServiceProvider.notifier).getCurrentLocation,
             buttonColor: AppColors.lightThemePrimary,
           ),
         ],

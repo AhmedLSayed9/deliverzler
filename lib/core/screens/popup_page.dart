@@ -1,66 +1,60 @@
-import 'package:deliverzler/core/styles/app_colors.dart';
+import 'package:deliverzler/core/services/platform_service.dart';
 import 'package:deliverzler/core/widgets/custom_app_bar_widget.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter/material.dart';
 
 class PopUpPage extends StatelessWidget {
-  final Widget child;
-  final bool appBarSkippable;
-  final bool appBarWithMenu;
-  final bool appBarWithBack;
-  final bool appBarTitle;
-  final bool canPop;
-  final String? title;
-  final Function? skipBehaviour;
   final GlobalKey<ScaffoldState>? scaffoldKey;
+  final bool safeAreaTop;
+  final bool safeAreaBottom;
+  final bool safeAreaNavBar;
   final Color? backgroundColor;
-  final bool showBackgroundImage;
-  final bool fixedNavigationBarColor;
-  final bool extendBodyBehindAppBar;
-  final bool resizeToAvoidBottomInset;
-  final Widget? backButtonWidget;
+  final Widget body;
+  final bool hasAppBar;
   final double? appbarHeight;
-  final List<Widget> appbarItems;
-  final Widget? drawer;
-  final Widget? floatingActionButton;
-  final dynamic result;
-  final Future<bool> Function()? onWillPop;
   final Color? appBarColor;
-  final Color? backButtonColor;
-  final bool? safeAreaTop;
-  final bool? safeAreaBottom;
-  final Widget? bottomNavigationBar;
+  final String? title;
+  final Widget? customTitle;
+  final bool centerTitle;
+  final bool appBarWithBack;
+  final dynamic result;
+  final bool appBarWithMenu;
+  final Widget? customLeading;
+  final List<Widget>? trailingActions;
+  final bool resizeToAvoidBottomInset;
+  final bool extendBodyBehindAppBar;
+  final Widget? drawer;
+  final PlatformNavBar? bottomNavigationBar;
+  final Widget? floatingActionButton;
+  final Future<bool> Function()? onWillPop;
 
   const PopUpPage({
     Key? key,
-    this.child = const SizedBox(),
-    this.appBarSkippable = false,
-    this.appBarWithMenu = false,
-    this.appBarWithBack = false,
-    this.appBarTitle = false,
-    this.canPop = false,
-    this.title,
-    this.skipBehaviour,
     this.scaffoldKey,
+    this.safeAreaTop = false,
+    this.safeAreaBottom = false,
+    this.safeAreaNavBar = false,
     this.backgroundColor,
-    this.showBackgroundImage = false,
-    this.fixedNavigationBarColor = false,
+    this.body = const SizedBox(),
+    this.hasAppBar = false,
+    this.appbarHeight,
+    this.appBarColor,
+    this.title,
+    this.customTitle,
+    this.centerTitle = false,
+    this.appBarWithBack = false,
+    this.result,
+    this.appBarWithMenu = false,
+    this.customLeading,
+    this.trailingActions,
     this.extendBodyBehindAppBar = false,
     this.resizeToAvoidBottomInset = false,
-    this.appbarHeight,
-    this.appbarItems = const [],
     this.drawer,
+    this.bottomNavigationBar,
     this.floatingActionButton,
     this.onWillPop,
-    this.result,
-    this.appBarColor,
-    this.backButtonColor,
-    this.backButtonWidget,
-    this.safeAreaTop,
-    this.safeAreaBottom,
-    this.bottomNavigationBar,
-  })  : assert((appBarSkippable ^ (skipBehaviour == null)) &&
-            (appBarWithMenu ^ (scaffoldKey == null)) &&
-            (appBarTitle ^ (title == null))),
+  })  : assert(appBarWithMenu ^ (scaffoldKey == null)),
         super(key: key);
 
   @override
@@ -68,53 +62,60 @@ class PopUpPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: onWillPop ?? () => Future.value(true),
       child: SafeArea(
-        top: safeAreaTop ?? false,
-        bottom: safeAreaBottom ?? false,
-        child: Scaffold(
-          key: scaffoldKey,
-          extendBodyBehindAppBar: extendBodyBehindAppBar,
+        top: safeAreaTop,
+        bottom: safeAreaBottom,
+        child: PlatformScaffold(
+          widgetKey: scaffoldKey,
           backgroundColor:
               backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
-          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-          appBar: appBarSkippable
-              ? CustomAppBar.skippable(
+          appBar: hasAppBar
+              ? CustomAppBar(
                   context,
-                  children: appbarItems,
-                  backButtonColor: backButtonColor,
+                  scaffoldKey: scaffoldKey,
                   height: appbarHeight,
-                  skipBehaviour: skipBehaviour!,
+                  appBarColor: appBarColor ??
+                      Theme.of(context).appBarTheme.backgroundColor,
+                  title: title,
+                  customTitle: customTitle,
+                  centerTitle: centerTitle,
+                  hasBackButton: appBarWithBack,
+                  result: result,
+                  customLeading: customLeading,
+                  hasMenuButton: PlatformService.instance.isMaterialApp()
+                      ? appBarWithMenu
+                      : false,
+                  trailingActions: trailingActions,
                 )
-              : appBarWithMenu
-                  ? CustomAppBar.withMenu(
-                      context,
-                      scaffoldKey: scaffoldKey!,
-                      children: appbarItems,
-                      menuButtonColor: AppColors.lightThemePrimary,
-                    )
-                  : appBarWithBack
-                      ? CustomAppBar(
-                          context,
-                          canPop: true,
-                          children: appbarItems,
-                          height: appbarHeight,
-                          backButtonColor: backButtonColor,
-                          result: result,
-                          color: appBarColor,
-                          backButtonWidget: backButtonWidget,
-                        )
-                      : appBarTitle
-                          ? CustomAppBar.title(
-                              context,
-                              canPop: canPop,
-                              title: title!,
-                              result: result,
-                              color: appBarColor,
-                            )
-                          : null,
-          drawer: drawer,
-          floatingActionButton: floatingActionButton,
-          body: child,
-          bottomNavigationBar: bottomNavigationBar,
+              : null,
+          bottomNavBar: bottomNavigationBar,
+          body: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: safeAreaTop
+                ? Theme.of(context).appBarTheme.systemOverlayStyle!
+                : Theme.of(context)
+                    .appBarTheme
+                    .systemOverlayStyle!
+                    .copyWith(statusBarColor: Colors.transparent),
+            child: PlatformService.instance.isMaterialApp()
+                ? body
+                : SafeArea(
+                    top: false,
+                    bottom: safeAreaNavBar,
+                    child: body,
+                  ),
+          ),
+          material: (_, __) {
+            return MaterialScaffoldData(
+              drawer: drawer,
+              floatingActionButton: floatingActionButton,
+              resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+              extendBodyBehindAppBar: extendBodyBehindAppBar,
+            );
+          },
+          cupertino: (_, __) {
+            return CupertinoPageScaffoldData(
+              resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+            );
+          },
         ),
       ),
     );

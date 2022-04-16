@@ -93,9 +93,10 @@ class Sizes {
 
   //TextFields
   static textFieldDefaultRadius(BuildContext context) => 12.r(context);
-  static textFieldVMarginMedium(BuildContext context) => 24.h(context);
-  static textFieldHPaddingMedium(BuildContext context) => 16.w(context);
-  static textFieldVPaddingMedium(BuildContext context) => 16.h(context);
+  static textFieldVMarginDefault(BuildContext context) => 24.h(context);
+  static textFieldHPaddingDefault(BuildContext context) => 16.w(context);
+  static textFieldVPaddingDefault(BuildContext context) => 16.h(context);
+  static cTextFieldVPaddingDefault(BuildContext context) => 16.h(context);
 
   //Cards
   static cardVPadding(BuildContext context) => 16.h(context);
@@ -142,11 +143,15 @@ class Sizes {
   //AppBar & Drawer
   static appBarDefaultHeight(BuildContext context) => 60.h(context);
   static appBarStatusBarHeight(BuildContext context) => 24.h(context);
+  static appBarBackButtonRadius(BuildContext context) => 32.r(context);
+  static appBarMenuButtonRadius(BuildContext context) => 32.r(context);
   static mainDrawerWidth(BuildContext context) => 250.w(context);
   static mainDrawerHPadding(BuildContext context) => 30.w(context);
   static mainDrawerVPadding(BuildContext context) => 90.h(context);
   static appBarIconSize(BuildContext context) => 26.r(context);
-  static snackBarRadius(BuildContext context) => 20.r(context);
+
+  ///Core
+  static toastRadius(BuildContext context) => 20.r(context);
 
   ///App Constants
   static screenTopShadowHeight(BuildContext context) => 400.h(context);

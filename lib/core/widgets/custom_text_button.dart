@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class CustomTextButton extends StatelessWidget {
   final double minHeight;
@@ -38,32 +39,52 @@ class CustomTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-      child: TextButton(
-        child: child ??
-            CustomText.h5(
-              context,
-              text!,
-              color: AppColors.lightThemePrimary,
-              alignment: Alignment.center,
-            ),
-        style: TextButton.styleFrom(
-          shape: shape,
-          elevation: elevation ?? 0,
-          backgroundColor: buttonColor,
-          primary: splashColor ?? AppColors.lightThemePrimary,
-          shadowColor: shadowColor,
+    return PlatformTextButton(
+      child: child ??
+          CustomText.h5(
+            context,
+            text!,
+            color: AppColors.lightThemePrimary,
+            alignment: Alignment.center,
+          ),
+      onPressed: onPressed,
+      color: buttonColor,
+      //Not necessary if you added height and width.
+      material: (_, __) {
+        return MaterialTextButtonData(
+          style: TextButton.styleFrom(
+            shape: shape,
+            elevation: elevation ?? 0,
+            backgroundColor: buttonColor,
+            primary: splashColor ?? AppColors.lightThemePrimary,
+            shadowColor: shadowColor,
+            padding: padding ??
+                EdgeInsets.symmetric(
+                  vertical: Sizes.vPaddingTiny(context),
+                  horizontal: Sizes.hPaddingSmallest(context),
+                ),
+            minimumSize: Size(minWidth, minHeight),
+            tapTargetSize: tapTargetSize,
+          ),
+          onLongPress: onLongPress,
+        );
+      },
+      cupertino: (_, __) {
+        return CupertinoTextButtonData(
           padding: padding ??
               EdgeInsets.symmetric(
                 vertical: Sizes.vPaddingTiny(context),
                 horizontal: Sizes.hPaddingSmallest(context),
               ),
-          minimumSize: Size(minWidth, minHeight),
-          tapTargetSize: tapTargetSize,
-        ),
-        onPressed: onPressed,
-        onLongPress: onLongPress,
-      ),
+          borderRadius: shape != null
+              ? (shape as RoundedRectangleBorder)
+                  .borderRadius
+                  .resolve(Directionality.maybeOf(context))
+              : BorderRadius.circular(
+                  Sizes.roundedButtonDefaultRadius(context),
+                ),
+        );
+      },
     );
   }
 }

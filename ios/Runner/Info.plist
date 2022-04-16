@@ -42,9 +42,13 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
-		<true/>
+		<false/>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This app needs access to location for Attendance Submission.</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>This app needs access to location for Attendance Submission.</string>
+		<key>NSUserTrackingUsageDescription</key>
+        <string>This app needs access to location for Attendance Submission.</string>
 		<key>UIBackgroundModes</key>
 		<array>
 			<string>fetch</string>
@@ -52,8 +56,10 @@
 			<string>remote-notification</string>
 		</array>
 		<key>LSApplicationQueriesSchemes</key>
-        <string>tel</string>
+		<string>tel</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>UIStatusBarStyle</key>
+        <string>UIStatusBarStyleLightContent</string>
 	</dict>
 </plist>

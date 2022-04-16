@@ -1,11 +1,14 @@
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
+import 'package:deliverzler/core/errors/exceptions.dart';
+import 'package:deliverzler/core/errors/failures.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/core/utils/dialogs.dart';
 
 class ImageSelector {
   ImageSelector._();
@@ -25,22 +28,23 @@ class ImageSelector {
     return _appDocDir.path;
   }
 
-  Future<File?>? pickImage({required bool fromCamera}) async {
+  Future<Either<Failure, File?>> pickImage(
+    BuildContext context, {
+    required bool fromCamera,
+  }) async {
     try {
       final _pickedFile = await ImagePicker().pickImage(
         source: fromCamera ? ImageSource.camera : ImageSource.gallery,
         maxHeight: Sizes.pickedImageMaxSize(NavigationService.context),
         maxWidth: Sizes.pickedImageMaxSize(NavigationService.context),
       );
-      if (_pickedFile != null) {
-        return File(_pickedFile.path);
-      } else {
-        return null;
-      }
+      return _pickedFile != null
+          ? Right(File(_pickedFile.path))
+          : const Right(null);
     } catch (e) {
-      debugPrint(e.toString());
-      AppDialogs.showErrorDialog();
-      return null;
+      log(e.toString());
+      final _failure = DefaultFailure(message: Exceptions.errorMessage(e));
+      return Left(_failure);
     }
   }
 }

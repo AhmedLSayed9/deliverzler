@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:deliverzler/core/errors/failures.dart';
 import 'package:flutter/foundation.dart';
-import 'package:deliverzler/authentication/repos/user_repo.dart';
+import 'package:deliverzler/auth/repos/user_repo.dart';
 import 'package:deliverzler/core/services/firebase_services/firebase_caller.dart';
 import 'package:deliverzler/core/services/firebase_services/firestore_paths.dart';
 import 'package:deliverzler/modules/home/models/order_model.dart';
@@ -35,22 +35,22 @@ class OrdersRepo {
     );
   }
 
-  Future<OrderModel?> getOrderById({
+  Future<Either<Failure?, OrderModel>> getOrderById({
     required String orderId,
   }) async {
     return await FirebaseCaller.instance.getData(
       path: FirestorePaths.orderById(orderId: orderId),
       builder: (data, id) {
-        if (data != null) {
-          return OrderModel.fromMap(data, id!);
+        if (data is! ServerFailure && data != null) {
+          return Right(OrderModel.fromMap(data, id!));
         } else {
-          return null;
+          return Left(data);
         }
       },
     );
   }
 
-  Future<Either<Failure?, bool>> cancelUserOrder({
+  Future<Either<Failure, bool>> cancelUserOrder({
     required String orderId,
     required String? employeeCancelNote,
   }) async {
@@ -71,7 +71,7 @@ class OrdersRepo {
     );
   }
 
-  Future<Either<Failure?, bool>> deliverUserOrder({
+  Future<Either<Failure, bool>> deliverUserOrder({
     required String orderId,
   }) async {
     return await _firebaseCaller.updateData(
@@ -90,7 +90,7 @@ class OrdersRepo {
     );
   }
 
-  Future<Either<Failure?, bool>> confirmUserOrder({
+  Future<Either<Failure, bool>> confirmUserOrder({
     required String orderId,
   }) async {
     return await _firebaseCaller.updateData(
@@ -108,7 +108,7 @@ class OrdersRepo {
     );
   }
 
-  Future<Either<Failure?, bool>> updateDeliveryGeoPoint({
+  Future<Either<Failure, bool>> updateDeliveryGeoPoint({
     required String orderId,
     required GeoPoint deliveryGeoPoint,
   }) async {

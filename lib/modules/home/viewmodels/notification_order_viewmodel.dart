@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:deliverzler/modules/home/repos/orders_repo.dart';
@@ -13,20 +13,23 @@ class NotificationOrderViewModel {
   Ref ref;
 
   navigateToNotificationOrder(String notificationOrderId) async {
-    try {
-      final _order = await ref
-          .watch(ordersRepoProvider)
-          .getOrderById(orderId: notificationOrderId);
-      if (_order != null) {
+    final _result = await ref
+        .watch(ordersRepoProvider)
+        .getOrderById(orderId: notificationOrderId);
+    await _result.fold(
+      (failure) {
+        AppDialogs.showErrorDialog(
+          NavigationService.context,
+          message: failure?.message,
+        );
+      },
+      (order) async {
         //Few delay to ensure dispose of old map viewmodels.
         await Future.delayed(const Duration(seconds: 1));
         ref
             .watch(orderDialogsViewModel)
-            .setSelectedOrderProvidersAndGoToMap(_order);
-      }
-    } catch (e) {
-      debugPrint(e.toString());
-      AppDialogs.showErrorDialog();
-    }
+            .setSelectedOrderProvidersAndGoToMap(order);
+      },
+    );
   }
 }

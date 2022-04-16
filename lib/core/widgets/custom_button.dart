@@ -3,6 +3,7 @@ import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 //Composition works better than inheritance: https://groups.google.com/g/flutter-dev/c/muVUV4z71fs/m/DS0twymQCAAJ
 class CustomButton extends StatelessWidget {
@@ -44,7 +45,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return PlatformElevatedButton(
       child: Container(
         height: height ?? Sizes.roundedButtonDefaultHeight(context),
         width: width ?? Sizes.roundedButtonDefaultWidth(context),
@@ -68,22 +69,39 @@ class CustomButton extends StatelessWidget {
               alignment: Alignment.center,
             ),
       ),
-      style: ElevatedButton.styleFrom(
-        shape: shape ??
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                Sizes.roundedButtonDefaultRadius(context),
-              ),
-            ),
-        elevation: elevation ?? 0,
-        primary: buttonColor,
-        onPrimary: splashColor,
-        shadowColor: shadowColor,
-        padding: padding ??
-            EdgeInsets.zero, //Not necessary if you added height and width.
-      ),
       onPressed: onPressed,
-      onLongPress: onLongPress,
+      color: buttonColor,
+      //Not necessary if you added height and width.
+      material: (_, __) {
+        return MaterialElevatedButtonData(
+          style: ElevatedButton.styleFrom(
+            padding: padding ?? EdgeInsets.zero,
+            shape: shape ??
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    Sizes.roundedButtonDefaultRadius(context),
+                  ),
+                ),
+            primary: buttonColor,
+            elevation: elevation ?? 0,
+            onPrimary: splashColor,
+            shadowColor: shadowColor,
+          ),
+          onLongPress: onLongPress,
+        );
+      },
+      cupertino: (_, __) {
+        return CupertinoElevatedButtonData(
+          padding: padding ?? EdgeInsets.zero,
+          borderRadius: shape != null
+              ? (shape as RoundedRectangleBorder)
+                  .borderRadius
+                  .resolve(Directionality.maybeOf(context))
+              : BorderRadius.circular(
+                  Sizes.roundedButtonDefaultRadius(context),
+                ),
+        );
+      },
     );
   }
 }

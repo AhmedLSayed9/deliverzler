@@ -1,6 +1,5 @@
-import 'package:deliverzler/authentication/repos/user_repo.dart';
-import 'package:deliverzler/core/utils/validators.dart';
-import 'package:deliverzler/modules/profile/components/profile_text_field_component.dart';
+import 'package:deliverzler/auth/repos/user_repo.dart';
+import 'package:deliverzler/modules/profile/components/profile_text_fields_section.dart';
 import 'package:deliverzler/modules/profile/viewmodels/profile_provider.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -26,20 +25,9 @@ class ProfileFormComponent extends HookConsumerWidget {
       key: _profileFormKey,
       child: Column(
         children: [
-          ProfileTextFieldComponent(
-            title: tr(context).fullName,
-            hint: tr(context).enterYourName,
-            controller: _nameController,
-            validator: Validators.instance.validateName,
-            keyboardType: TextInputType.name,
-          ),
-          ProfileTextFieldComponent(
-            title: tr(context).mobileNumber,
-            hint: tr(context).enterYourNumber,
-            controller: _mobileController,
-            validator: Validators.instance.validateMobileNumber,
-            keyboardType: TextInputType.phone,
-            isLastTextField: true,
+          ProfileTextFieldsSection(
+            nameController: _nameController,
+            mobileController: _mobileController,
           ),
           SizedBox(
             height: Sizes.vMarginHigh(context),
@@ -49,6 +37,7 @@ class ProfileFormComponent extends HookConsumerWidget {
             onPressed: () {
               if (_profileFormKey.currentState!.validate()) {
                 ref.watch(profileProvider.notifier).updateProfile(
+                      context,
                       name: _nameController.text,
                       mobile: _mobileController.text,
                     );

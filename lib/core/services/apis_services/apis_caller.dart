@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:deliverzler/core/errors/exceptions.dart';
 import 'package:deliverzler/core/errors/failures.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class ApisCaller {
   ApisCaller._() {
@@ -28,7 +29,7 @@ class ApisCaller {
       Response response = await dio.get(path, queryParameters: queryParameters);
       return builder(response.data);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),
@@ -48,7 +49,7 @@ class ApisCaller {
       Response response = await dio.post(path, data: data);
       return builder(response.data);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),
@@ -68,7 +69,7 @@ class ApisCaller {
       Response response = await dio.patch(path, data: data);
       return builder(response.data);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),
@@ -88,7 +89,7 @@ class ApisCaller {
       Response response = await dio.put(path, data: data);
       return builder(response.data);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),
@@ -108,7 +109,7 @@ class ApisCaller {
       Response response = await dio.delete(path, data: data);
       return builder(response.data);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),

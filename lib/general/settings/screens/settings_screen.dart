@@ -14,14 +14,13 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopUpPage(
+      hasAppBar: true,
       appBarWithBack: true,
-      appbarItems: [
-        AppBarWithIconComponent(
-          icon: AppImages.settingsScreenIcon,
-          title: tr(context).settings,
-        ),
-      ],
-      child: SingleChildScrollView(
+      customTitle: AppBarWithIconComponent(
+        icon: AppImages.settingsScreenIcon,
+        title: tr(context).settings,
+      ),
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: Sizes.screenVPaddingDefault(context),

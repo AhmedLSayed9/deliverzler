@@ -18,9 +18,8 @@ class SplashProvider {
   late MainCoreProvider _mainCoreProvider;
   late String secondPage;
 
-  init() {
+  init() async {
     _mainCoreProvider.isConnectedToInternet().then((value) async {
-      await Future.delayed(const Duration(seconds: 2), () {});
       if (value) {
         initializeData().then(
           (_) {
@@ -45,10 +44,12 @@ class SplashProvider {
 
   Future initializeData() async {
     List futures = [
+      Future.delayed(const Duration(milliseconds: 1000)), //Min Time of splash
+      ServicesInitializer.instance.initializeServices(),
       ServicesInitializer.instance.initializeData(),
-      checkForCachedUser(),
     ];
     await Future.wait<dynamic>([...futures]);
+    await checkForCachedUser();
   }
 
   Future checkForCachedUser() async {

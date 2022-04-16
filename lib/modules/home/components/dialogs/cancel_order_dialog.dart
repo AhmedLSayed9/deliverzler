@@ -44,13 +44,11 @@ class CancelOrderDialog extends HookWidget {
               maxLength: 200,
               textInputAction: TextInputAction.newline,
               hintText: tr(context).typeYourNote + '...',
+              margin: EdgeInsets.only(bottom: Sizes.vMarginSmallest(context)),
               contentPadding: EdgeInsets.symmetric(
                 vertical: Sizes.vPaddingSmall(context),
                 horizontal: Sizes.hPaddingSmall(context),
               ),
-            ),
-            SizedBox(
-              height: Sizes.vMarginSmallest(context),
             ),
             Padding(
               padding: EdgeInsets.symmetric(

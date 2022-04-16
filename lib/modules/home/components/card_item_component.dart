@@ -71,6 +71,7 @@ class CardItemComponent extends ConsumerWidget {
                 isColored: true,
                 onPressed: () {
                   orderDialogsVM.showMapForOrder(
+                    context,
                     orderModel: orderModel,
                   );
                 },
@@ -86,6 +87,7 @@ class CardItemComponent extends ConsumerWidget {
                   isColored: false,
                   onPressed: () {
                     orderDialogsVM.showCancelOrderDialog(
+                      context,
                       orderModel: orderModel,
                     );
                   },
@@ -105,6 +107,7 @@ class CardItemComponent extends ConsumerWidget {
                         isColored: true,
                         onPressed: () {
                           orderDialogsVM.showConfirmOrderDialog(
+                            context,
                             orderModel: orderModel,
                           );
                         },

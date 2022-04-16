@@ -1,60 +1,34 @@
+import 'package:deliverzler/core/hooks/platform_brightness_hook.dart';
+import 'package:deliverzler/modules/map/viewmodels/current_location_providers/current_loc_camera_position_provider.dart';
+import 'package:deliverzler/modules/map/viewmodels/map_overlays_providers/map_circles_provider.dart';
+import 'package:deliverzler/modules/map/viewmodels/map_overlays_providers/map_markers_provider.dart';
+import 'package:deliverzler/modules/map/viewmodels/map_overlays_providers/map_polylines_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:deliverzler/modules/map/viewmodels/main_map_viewmodel.dart';
-import 'package:deliverzler/modules/map/viewmodels/map_current_location_viewmodel.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class GoogleMapComponent extends ConsumerStatefulWidget {
+class GoogleMapComponent extends HookConsumerWidget {
   const GoogleMapComponent({Key? key}) : super(key: key);
 
   @override
-  _GoogleMapComponentState createState() => _GoogleMapComponentState();
-}
-
-class _GoogleMapComponentState extends ConsumerState<GoogleMapComponent>
-    with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addObserver(this);
-  }
-
-  @override
-  void didChangePlatformBrightness() {
-    super.didChangePlatformBrightness();
-    final brightness = WidgetsBinding.instance!.window.platformBrightness;
-    ref
-        .read(mainMapViewModel)
-        .changeMapStyle(isDarkMode: brightness == Brightness.dark);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final mainMapVM = ref.watch(mainMapViewModel);
-    final currentLocationCameraPosition = ref.watch(mapCurrentLocationViewModel
-        .select((vm) => vm.currentLocationCameraPosition));
+  Widget build(BuildContext context, ref) {
+    useOnPlatformBrightnessChange((previous, current) {
+      ref
+          .read(mainMapViewModel)
+          .changeMapStyle(isDarkMode: current == Brightness.dark);
+    });
 
     return GoogleMap(
-      initialCameraPosition: currentLocationCameraPosition,
+      initialCameraPosition: ref.watch(currentLocCameraPositionProvider),
       mapType: MapType.normal,
-      markers: mainMapVM.mapMarkers,
-      circles: mainMapVM.mapCircles,
-      polylines: mainMapVM.mapPolylines,
+      markers: ref.watch(mapMarkersProvider),
+      circles: ref.watch(mapCirclesProvider),
+      polylines: ref.watch(mapPolylinesProvider),
       myLocationEnabled: false,
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
-      onMapCreated: (GoogleMapController controller) async {
-        mainMapVM.onMapCreated(
-          controller: controller,
-          isDarkMode: Theme.of(context).brightness == Brightness.dark,
-        );
-      },
+      onMapCreated: ref.watch(mainMapViewModel.notifier).onMapCreated,
     );
   }
 }

@@ -1,9 +1,14 @@
-import 'package:deliverzler/core/routing/navigation_service.dart';
-import 'package:deliverzler/core/services/localization_service.dart';
-import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
-import 'package:deliverzler/modules/home/viewmodels/home_state_providers.dart';
-import 'package:deliverzler/modules/home/viewmodels/location_service_provider/location_service_state.dart';
+import 'dart:developer';
+import 'dart:async';
+
+import 'package:deliverzler/core/services/location_service.dart';
+import 'package:deliverzler/core/utils/constants.dart';
+import 'package:deliverzler/modules/home/utils/location_error.dart';
+import 'package:deliverzler/modules/home/viewmodels/location_change_callbacks_viewmodel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:deliverzler/core/viewmodels/main_core_provider.dart';
+import 'package:deliverzler/modules/home/viewmodels/location_service_provider/location_service_state.dart';
+import 'package:geolocator/geolocator.dart';
 
 final locationServiceProvider =
     StateNotifierProvider<LocationServiceNotifier, LocationServiceState>((ref) {
@@ -14,43 +19,87 @@ class LocationServiceNotifier extends StateNotifier<LocationServiceState> {
   LocationServiceNotifier(this.ref)
       : super(const LocationServiceState.loading()) {
     _mainCoreProvider = ref.watch(mainCoreProvider);
+    getCurrentLocation();
   }
 
   final Ref ref;
   late MainCoreProvider _mainCoreProvider;
 
+  StreamSubscription? _currentLocationSubscription;
+  Timer? _locationChangeTimer;
+  bool _isEnableOnLocationChanged = true;
+
   Future getCurrentLocation() async {
-    state = const LocationServiceState.loadingLocation();
+    state = const LocationServiceState.loading();
 
     bool _enabled = await _mainCoreProvider.enableLocationService();
     if (!_enabled) {
-      toggleError(tr(NavigationService.context).please_enable_location_service);
-      return null;
+      toggleError(LocationError.notEnabledLocation);
+      return;
     }
-    bool _granted = await _mainCoreProvider.requestLocationPermission();
-    if (!_granted) {
-      toggleError(tr(NavigationService.context).location_permission_required);
-      return null;
+    bool _locationGranted = await _mainCoreProvider.requestLocationPermission();
+    if (!_locationGranted) {
+      toggleError(LocationError.notGrantedTrackingPermission);
+      return;
+    }
+    bool _trackingGranted = await _mainCoreProvider.requestTrackingPermission();
+    if (!_trackingGranted) {
+      toggleError(LocationError.notGrantedTrackingPermission);
+      return;
     }
 
     final _currentLocation = await _mainCoreProvider.getCurrentUserLocation();
-    //await Future.delayed(const Duration(seconds: 1));
     if (_currentLocation == null) {
-      toggleError(tr(NavigationService.context).location_timeout_error);
+      toggleError(LocationError.getLocationTimeout);
+      return;
+    } else {
+      state = LocationServiceState.available(_currentLocation);
+      handleSuccessfulGetLocation();
     }
-    ref.watch(currentLocationProvider.notifier).state = _currentLocation;
-    toggleAvailable();
   }
 
-  toggleLoading() {
-    state = const LocationServiceState.loading();
+  handleSuccessfulGetLocation() async {
+    initLocationStream();
   }
 
-  toggleError(String errorText) {
-    state = LocationServiceState.error(errorText);
+  initLocationStream() {
+    if (_currentLocationSubscription != null) return;
+
+    initLocationChangeTimer();
+    _currentLocationSubscription = Geolocator.getPositionStream(
+      locationSettings: LocationService.instance.getLocationSettings(),
+    ).listen(
+      (newLoc) async {
+        if (_isEnableOnLocationChanged) {
+          _isEnableOnLocationChanged = false;
+          state = LocationServiceState.available(newLoc);
+          ref.watch(locationChangeCallbacksViewModel).executeCallBacks(newLoc);
+        }
+      },
+      onError: ((error) {
+        toggleError(LocationError.notEnabledLocation);
+        log(error.toString());
+      }),
+    );
   }
 
-  toggleAvailable() {
-    state = const LocationServiceState.available();
+  initLocationChangeTimer() {
+    _locationChangeTimer = Timer.periodic(
+      const Duration(seconds: locationChangeInterval),
+      (_) {
+        _isEnableOnLocationChanged = true;
+      },
+    );
+  }
+
+  toggleError(LocationError error) {
+    state = LocationServiceState.error(error);
+  }
+
+  @override
+  void dispose() {
+    _currentLocationSubscription?.cancel();
+    _locationChangeTimer?.cancel();
+    super.dispose();
   }
 }

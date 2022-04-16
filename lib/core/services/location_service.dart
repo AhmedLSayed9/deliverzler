@@ -1,8 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 
-import 'package:deliverzler/modules/map/utils/constants.dart';
-import 'package:flutter/foundation.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:deliverzler/core/utils/constants.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:geolocator_android/src/types/foreground_settings.dart';
 import 'package:location/location.dart' as loc;
 
 class LocationService {
@@ -10,16 +12,22 @@ class LocationService {
 
   static final instance = LocationService._();
 
-  isLocationServiceEnabled() async {
+  Future<bool> isLocationServiceEnabled() async {
     return await Geolocator.isLocationServiceEnabled();
   }
 
-  isWhileInUsePermissionGranted() async {
+  Future<bool> isWhileInUsePermissionGranted() async {
     return await Geolocator.checkPermission() == LocationPermission.whileInUse;
   }
 
-  isAlwaysPermissionGranted() async {
+  Future<bool> isAlwaysPermissionGranted() async {
     return await Geolocator.checkPermission() == LocationPermission.always;
+  }
+
+  Future<bool> isTrackingPermissionGranted() async {
+    final _status = await AppTrackingTransparency.trackingAuthorizationStatus;
+    return (_status == TrackingStatus.notSupported ||
+        _status == TrackingStatus.authorized);
   }
 
   Future<bool> enableLocationService() async {
@@ -50,6 +58,23 @@ class LocationService {
     }
   }
 
+  //Request AppTrackingTransparency for IOS
+  Future<bool> requestTrackingPermission() async {
+    try {
+      if (await isTrackingPermissionGranted()) {
+        return true;
+      } else {
+        final _status =
+            await AppTrackingTransparency.requestTrackingAuthorization();
+        return (_status == TrackingStatus.notSupported ||
+            _status == TrackingStatus.authorized);
+      }
+    } catch (e) {
+      log(e.toString());
+      return false;
+    }
+  }
+
   LocationSettings getLocationSettings({
     LocationAccuracy? accuracy,
     int? interval,
@@ -65,6 +90,8 @@ class LocationService {
           notificationTitle: 'Deliverzler Attendance Service',
           notificationText:
               'Deliverzler will receive your location in background.',
+          notificationIcon:
+              AndroidResource(name: 'notification_icon', defType: 'drawable'),
           enableWakeLock: true,
         ),
       );
@@ -92,7 +119,7 @@ class LocationService {
         timeLimit: const Duration(seconds: getLocationTimeLimit),
       );
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       return null;
     }
   }

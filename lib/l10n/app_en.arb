@@ -3,7 +3,6 @@
   },
   "appName": "Deliverzler",
   "fontFamily": "poppins",
-  "dateFormat": "en",
   "noInternetConnection": "No internet connection",
   "pleaseCheckYourDeviceNetwork":
       "Please check your device\"s network connection.",
@@ -61,6 +60,7 @@
   },
   "please_enable_location_service": "Please enable location services, and try again",
   "location_permission_required": "Without location permission you can't deliver orders",
+  "tracking_permission_required": "Without tracking permission you can't deliver orders",
   "location_timeout_error": "Its take long time, please check your internet connection and try again",
   "please_wait": "Please wait",
   "determine_location": "Please wait until your location determine.",
@@ -93,5 +93,5 @@
   "searchForAPlace": "Search for a place...",
   "myCurrentLocation": "My current location",
   "pleaseSearchForLocation": "Please search for the location!",
-  "userHasNotProvidedLocation": "User hasn\"t provided his location point."
+  "userHasNotProvidedLocation": "User hasn't provided his location point."
 }

@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:deliverzler/authentication/models/user_model.dart';
-import 'package:deliverzler/authentication/repos/auth_repo.dart';
-import 'package:deliverzler/authentication/repos/user_repo.dart';
+import 'package:deliverzler/auth/models/user_model.dart';
+import 'package:deliverzler/auth/repos/auth_repo.dart';
+import 'package:deliverzler/auth/repos/user_repo.dart';
 import 'package:deliverzler/core/errors/failures.dart';
 import 'package:deliverzler/core/services/init_services/connectivity_service.dart';
 import 'package:deliverzler/core/services/init_services/firebase_messaging_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:deliverzler/core/services/location_service.dart';
@@ -45,7 +44,6 @@ class MainCoreProvider {
     final _result = await _userRepo.getUserData(uid);
     return _result.fold(
       (failure) {
-        debugPrint(failure?.message);
         logoutUser();
         return false;
       },
@@ -60,7 +58,7 @@ class MainCoreProvider {
     );
   }
 
-  Future<Either<Failure?, bool>> setUserToFirebase(UserModel userModel) async {
+  Future<Either<Failure, bool>> setUserToFirebase(UserModel userModel) async {
     final _result = await _userRepo.getUserData(userModel.uId);
     return await _result.fold(
       (failure) {
@@ -85,8 +83,8 @@ class MainCoreProvider {
 
   ///Location module methods
   Future<bool> enableLocationAndRequestPermission() async {
-    bool locationServiceEnabled = await enableLocationService();
-    if (locationServiceEnabled) {
+    bool _locationServiceEnabled = await enableLocationService();
+    if (_locationServiceEnabled) {
       return await requestLocationPermission();
     } else {
       return false;
@@ -107,13 +105,18 @@ class MainCoreProvider {
     }
   }
 
+  Future<bool> requestTrackingPermission() async {
+    return await LocationService.instance.requestTrackingPermission();
+  }
+
   Future<bool> isAllLocationPermissionsRequired() async {
     if (Platform.isAndroid) {
       return await LocationService.instance.isLocationServiceEnabled() &&
           await LocationService.instance.isAlwaysPermissionGranted();
     } else {
       return await LocationService.instance.isLocationServiceEnabled() &&
-          await LocationService.instance.isWhileInUsePermissionGranted();
+          await LocationService.instance.isWhileInUsePermissionGranted() &&
+          await LocationService.instance.isTrackingPermissionGranted();
     }
   }
 

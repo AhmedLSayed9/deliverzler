@@ -1,5 +1,5 @@
 import 'package:deliverzler/core/routing/navigation_service.dart';
-import 'package:deliverzler/core/services/localization_service.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
@@ -11,15 +11,15 @@ class DateParser {
   static final instance = DateParser._();
 
   String convertUTCToLocal(DateTime date) {
-    return DateFormat.yMMMd(tr(NavigationService.context).dateFormat)
-        .add_jm()
-        .format(date);
+    final String _locale =
+        Localizations.localeOf(NavigationService.context).languageCode;
+    return DateFormat.yMMMd(_locale).add_jm().format(date);
   }
 
   String convertEpochToLocal(int date) {
-    return DateFormat.yMMMd(tr(NavigationService.context).dateFormat)
-        .add_jm()
-        .format(
+    final String _locale =
+        Localizations.localeOf(NavigationService.context).languageCode;
+    return DateFormat.yMMMd(_locale).add_jm().format(
           DateTime.fromMillisecondsSinceEpoch(date).toLocal(),
         );
   }

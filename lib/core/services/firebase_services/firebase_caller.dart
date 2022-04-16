@@ -1,10 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliverzler/core/errors/exceptions.dart';
 import 'package:deliverzler/core/errors/failures.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 
 class FirebaseCaller {
   FirebaseCaller._();
@@ -29,7 +29,7 @@ class FirebaseCaller {
       await reference.set(data, SetOptions(merge: merge));
       return builder(true);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),
@@ -48,7 +48,7 @@ class FirebaseCaller {
       await reference.update(data);
       return builder(true);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),
@@ -59,7 +59,7 @@ class FirebaseCaller {
 
   Future<void> deleteData({required String path}) async {
     final reference = _firebaseFirestore.doc(path);
-    debugPrint('delete: $path');
+    log('delete: $path');
     await reference.delete();
   }
 
@@ -68,7 +68,7 @@ class FirebaseCaller {
     required Map<String, dynamic> data,
   }) async {
     final reference = _firebaseFirestore.collection(path);
-    debugPrint('$path: $data');
+    log('$path: $data');
     return await reference.add(data).then((value) => value.id);
   }
 
@@ -81,7 +81,7 @@ class FirebaseCaller {
       final value = await reference.get();
       return builder(value.data(), value.id);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),
@@ -183,7 +183,7 @@ class FirebaseCaller {
       final _downloadURL = await (await _uploadTask).ref.getDownloadURL();
       return builder(_downloadURL);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       final _failure = ServerFailure(
         message: Exceptions.errorMessage(e),
         statusCode: Exceptions.statusCode(e),

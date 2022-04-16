@@ -1,5 +1,6 @@
 import 'package:deliverzler/core/viewmodels/app_theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ThemeService {
@@ -7,17 +8,19 @@ class ThemeService {
 
   static final instance = ThemeService._();
 
-  factory ThemeService(WidgetRef ref) {
-    instance._ref = ref;
+  factory ThemeService(Reader reader) {
+    instance._reader = reader;
     return instance;
   }
 
-  late WidgetRef _ref;
+  late Reader _reader;
 
-  bool isDarkMode(BuildContext context) {
-    final _currentTheme = _ref.watch(appThemeProvider);
+  bool isDarkMode([ThemeMode? currentTheme, Brightness? platformBrightness]) {
+    final _currentTheme = currentTheme ?? _reader(appThemeProvider);
     if (_currentTheme == ThemeMode.system) {
-      return MediaQuery.of(context).platformBrightness == Brightness.dark;
+      return (platformBrightness ??
+              SchedulerBinding.instance?.window.platformBrightness) ==
+          Brightness.dark;
     } else if (_currentTheme == ThemeMode.dark) {
       return true;
     } else {

@@ -1,8 +1,8 @@
 import 'package:deliverzler/core/routing/navigation_service.dart';
-import 'package:deliverzler/core/services/localization_service.dart';
-import 'package:deliverzler/core/styles/app_colors.dart';
+import 'package:deliverzler/core/services/platform_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
+import 'package:deliverzler/core/widgets/platform_widgets/platform_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +12,7 @@ class CustomTextField extends Container {
     Key? formFieldKey,
     double? height,
     Widget? prefix,
+    Widget? cupertinoPrefix,
     TextEditingController? controller,
     Color? fillColor,
     Color? hintTextColor,
@@ -49,120 +50,181 @@ class CustomTextField extends Container {
   }) : super(
           key: key,
           height: height,
-          margin: margin,
+          margin: PlatformService.instance.isMaterialApp()
+              ? margin ??
+                  EdgeInsets.only(
+                    bottom: Sizes.textFieldVMarginDefault(context),
+                  )
+              : null,
           padding: padding,
           child: Column(
             children: [
-              TextFormField(
-                maxLength: maxLength,
-                readOnly: readonly,
-                autofocus: autoFocus,
-                controller: controller,
-                initialValue: initialValue,
-                maxLines: maxLines,
-                minLines: minLines,
-                expands: expands,
-                keyboardType: keyboardType,
-                textInputAction: textInputAction,
-                style: TextStyle(
-                  color: textColor,
-                  fontFamily: FontStyles.fontFamily,
-                ),
-                textDirection: textDirection,
-                validator: validator,
-                inputFormatters: inputFormatters,
-                onChanged: onChanged,
-                onSaved: onSaved,
-                enabled: enabled,
-                focusNode: focusNode,
-                cursorColor: cursorColor,
-                onFieldSubmitted: onFieldSubmitted,
-                obscureText: obscureText,
-                key: formFieldKey,
-                decoration: //inputDecoration ??
-                    InputDecoration(
-                  prefixIcon: prefix,
-                  errorStyle: TextStyle(
-                    color: validationColor ?? const Color(0xffff0000),
-                    fontWeight:
-                        validationFontWeight ?? FontStyles.fontWeightNormal,
-                    fontSize:
-                        validationFontSize ?? Sizes.fontSizes(context)["h5"],
-                    fontFamily: FontStyles.fontFamily,
-                  ),
-                  fillColor: fillColor,
-                  filled: true,
-                  contentPadding: contentPadding ??
-                      (LocalizationService.instance
-                              .isAr(NavigationService.context)
-                          ? EdgeInsets.only(
-                              right: Sizes.textFieldHPaddingMedium(context),
-                            )
-                          : EdgeInsets.only(
-                              left: Sizes.textFieldHPaddingMedium(context),
-                            )),
-                  suffixIcon: suffixIcon != null
-                      ? Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: Sizes.hPaddingSmallest(context),
-                            vertical: Sizes.vPaddingSmallest(context),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  PlatformTextFormField(
+                    maxLength: maxLength,
+                    readOnly: readonly,
+                    autofocus: autoFocus,
+                    controller: controller,
+                    initialValue: initialValue,
+                    maxLines: maxLines,
+                    minLines: minLines,
+                    expands: expands,
+                    keyboardType: keyboardType,
+                    textInputAction: textInputAction,
+                    style: TextStyle(
+                      color: textColor ??
+                          Theme.of(context).textTheme.subtitle1?.color,
+                      fontFamily: FontStyles.fontFamily,
+                    ),
+                    hintText: hintText,
+                    validator: validator,
+                    inputFormatters: inputFormatters,
+                    onChanged: onChanged,
+                    onSaved: onSaved,
+                    enabled: enabled,
+                    focusNode: focusNode,
+                    cursorColor: cursorColor,
+                    onFieldSubmitted: onFieldSubmitted,
+                    obscureText: obscureText,
+                    key: formFieldKey,
+                    material: (_, __) {
+                      return MaterialTextFormFieldData(
+                        textDirection: textDirection,
+                        decoration: InputDecoration(
+                          prefixIcon: prefix,
+                          prefixIconColor: Theme.of(context)
+                              .inputDecorationTheme
+                              .prefixIconColor,
+                          errorStyle: TextStyle(
+                            color: validationColor ??
+                                Theme.of(context)
+                                    .inputDecorationTheme
+                                    .errorStyle
+                                    ?.color,
+                            fontWeight: validationFontWeight ??
+                                FontStyles.fontWeightNormal,
+                            fontSize: validationFontSize ??
+                                Sizes.fontSizes(context)["h5"],
+                            fontFamily: FontStyles.fontFamily,
                           ),
-                          child: suffixIcon,
-                        )
-                      : null,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
-                    ),
-                    borderSide: const BorderSide(
-                      color: AppColors.grey,
-                    ),
+                          fillColor: fillColor ??
+                              Theme.of(context).inputDecorationTheme.fillColor,
+                          filled: true,
+                          contentPadding: contentPadding ??
+                              EdgeInsetsDirectional.only(
+                                start: Sizes.textFieldHPaddingDefault(context),
+                              ),
+                          suffixIcon: suffixIcon != null
+                              ? Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: Sizes.hPaddingSmallest(context),
+                                    vertical: Sizes.vPaddingSmallest(context),
+                                  ),
+                                  child: suffixIcon,
+                                )
+                              : null,
+                          suffixIconColor: Theme.of(context)
+                              .inputDecorationTheme
+                              .suffixIconColor,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                  Sizes.textFieldDefaultRadius(context)),
+                            ),
+                            borderSide: Theme.of(NavigationService.context)
+                                .inputDecorationTheme
+                                .border!
+                                .borderSide,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                  Sizes.textFieldDefaultRadius(context)),
+                            ),
+                            borderSide: Theme.of(NavigationService.context)
+                                .inputDecorationTheme
+                                .enabledBorder!
+                                .borderSide,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                  Sizes.textFieldDefaultRadius(context)),
+                            ),
+                            borderSide: Theme.of(NavigationService.context)
+                                .inputDecorationTheme
+                                .focusedBorder!
+                                .borderSide,
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                  Sizes.textFieldDefaultRadius(context)),
+                            ),
+                            borderSide: Theme.of(NavigationService.context)
+                                .inputDecorationTheme
+                                .errorBorder!
+                                .borderSide,
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                  Sizes.textFieldDefaultRadius(context)),
+                            ),
+                            borderSide: Theme.of(NavigationService.context)
+                                .inputDecorationTheme
+                                .errorBorder!
+                                .borderSide,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: Sizes.fontSizes(context)['h5'],
+                            fontWeight: FontStyles.fontWeightBold,
+                            fontFamily: FontStyles.fontFamily,
+                            color: hintTextColor ?? Theme.of(context).hintColor,
+                          ),
+                        ),
+                      );
+                    },
+                    cupertino: (_, __) {
+                      return CupertinoTextFormFieldData(
+                        textDirection: textDirection,
+                        prefix: cupertinoPrefix,
+                        placeholderStyle: TextStyle(
+                          fontSize: Sizes.fontSizes(context)['h5'],
+                          fontWeight: FontStyles.fontWeightBold,
+                          fontFamily: FontStyles.fontFamily,
+                          color: hintTextColor ?? Theme.of(context).hintColor,
+                        ),
+                        padding: contentPadding ??
+                            EdgeInsetsDirectional.only(
+                              top: Sizes.cTextFieldVPaddingDefault(context),
+                              bottom: Sizes.cTextFieldVPaddingDefault(context),
+                              end: suffixIcon != null
+                                  ? Sizes.hPaddingHighest(context)
+                                  : 0.0,
+                            ),
+                        cursorColor:
+                            Theme.of(context).textSelectionTheme.cursorColor,
+                      );
+                    },
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
+                  if (suffixIcon != null &&
+                      !PlatformService.instance.isMaterialApp())
+                    PositionedDirectional(
+                      end: Sizes.hPaddingSmall(context),
+                      child: suffixIcon is Icon
+                          ? Icon(
+                              suffixIcon.icon,
+                              color: Theme.of(context)
+                                  .inputDecorationTheme
+                                  .suffixIconColor,
+                              semanticLabel: suffixIcon.semanticLabel,
+                            )
+                          : suffixIcon,
                     ),
-                    borderSide: BorderSide(
-                      color: Theme.of(NavigationService.context)
-                          .inputDecorationTheme
-                          .focusedBorder!
-                          .borderSide
-                          .color,
-                      width: 1.5,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
-                    ),
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                    ),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
-                    ),
-                    borderSide: BorderSide(
-                      color: validationColor ?? const Color(0xffff0000),
-                    ),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(Sizes.textFieldDefaultRadius(context)),
-                    ),
-                    borderSide: BorderSide(
-                      color: validationColor ?? const Color(0xffff0000),
-                    ),
-                  ),
-                  hintText: hintText,
-                  hintStyle: TextStyle(
-                    fontFamily: FontStyles.fontFamily,
-                    fontSize: Sizes.fontSizes(context)['h5'],
-                    fontWeight: FontStyles.fontWeightBold,
-                    color: hintTextColor,
-                  ),
-                ),
+                ],
               ),
             ],
           ),

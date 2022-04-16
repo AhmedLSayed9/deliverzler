@@ -1,7 +1,7 @@
+import 'package:deliverzler/modules/map/viewmodels/map_search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/modules/map/viewmodels/map_search_viewmodel.dart';
 import 'package:deliverzler/modules/map/widgets/map_search_menu_item.dart';
 
 class MapSearchMenuComponent extends ConsumerWidget {
@@ -9,9 +9,9 @@ class MapSearchMenuComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final mapSearchVM = ref.watch(mapSearchViewModel);
+    final _placeSearchList = ref.watch(mapSearchProvider);
 
-    return mapSearchVM.placeSearchList.isNotEmpty
+    return _placeSearchList.isNotEmpty
         ? Card(
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
@@ -25,18 +25,19 @@ class MapSearchMenuComponent extends ConsumerWidget {
                 vertical: Sizes.vPaddingSmall(context),
                 horizontal: Sizes.hMarginSmall(context),
               ),
-              itemCount: mapSearchVM.placeSearchList.length,
+              itemCount: _placeSearchList.length,
               itemBuilder: (ctx, index) {
                 return InkWell(
-                  borderRadius:
-                      BorderRadius.circular(Sizes.mapSearchBarRadius(context)),
+                  borderRadius: BorderRadius.circular(
+                    Sizes.mapSearchBarRadius(context),
+                  ),
                   onTap: () {
-                    mapSearchVM.handleSearchItemOnTap(
-                      placeSearchModel: mapSearchVM.placeSearchList[index],
-                    );
+                    ref.watch(mapSearchProvider.notifier).handleSearchItemOnTap(
+                          placeSearchModel: _placeSearchList[index],
+                        );
                   },
                   child: MapSearchMenuItem(
-                    placeSearchModel: mapSearchVM.placeSearchList[index],
+                    placeSearchModel: _placeSearchList[index],
                   ),
                 );
               },

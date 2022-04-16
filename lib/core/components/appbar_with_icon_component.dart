@@ -16,12 +16,14 @@ class AppBarWithIconComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ImageIcon(
           AssetImage(
             icon,
           ),
+          color: Theme.of(context).iconTheme.color,
           size: Sizes.appBarIconSize(context),
         ),
         SizedBox(

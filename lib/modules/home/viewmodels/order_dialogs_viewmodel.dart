@@ -1,4 +1,5 @@
-import 'package:deliverzler/authentication/repos/user_repo.dart';
+import 'package:deliverzler/auth/repos/user_repo.dart';
+import 'package:deliverzler/core/utils/toasts.dart';
 import 'package:deliverzler/modules/home/viewmodels/delivering_orders_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,7 +8,6 @@ import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:deliverzler/core/widgets/dialog_widget.dart';
-import 'package:deliverzler/core/widgets/custom_snack_bar.dart';
 import 'package:deliverzler/modules/home/components/dialogs/cancel_order_dialog.dart';
 import 'package:deliverzler/modules/home/components/dialogs/confirm_choice_dialog.dart';
 import 'package:deliverzler/modules/home/components/dialogs/order_details_dialog.dart';
@@ -38,8 +38,11 @@ class OrderDialogsViewModel {
     );
   }
 
-  showCancelOrderDialog({required OrderModel orderModel}) async {
-    if (_confirmDeliveryId(orderModel.deliveryId)) {
+  showCancelOrderDialog(
+    BuildContext context, {
+    required OrderModel orderModel,
+  }) async {
+    if (_confirmDeliveryId(context, orderModel.deliveryId)) {
       await DialogWidget.showCustomDialog(
         context: NavigationService.context,
         child: CancelOrderDialog(
@@ -53,8 +56,10 @@ class OrderDialogsViewModel {
           );
           _result.fold(
             (failure) {
-              debugPrint(failure?.message);
-              AppDialogs.showErrorDialog(message: failure?.message);
+              AppDialogs.showErrorDialog(
+                NavigationService.context,
+                message: failure.message,
+              );
             },
             (isSet) {},
           );
@@ -71,8 +76,10 @@ class OrderDialogsViewModel {
           await _ordersRepo.deliverUserOrder(orderId: orderModel.orderId!);
       _result.fold(
         (failure) {
-          debugPrint(failure?.message);
-          AppDialogs.showErrorDialog(message: failure?.message);
+          AppDialogs.showErrorDialog(
+            NavigationService.context,
+            message: failure.message,
+          );
         },
         (isSet) {
           if (isSet) {
@@ -85,10 +92,12 @@ class OrderDialogsViewModel {
     }
   }
 
-  Future<bool> showConfirmOrderDialog({required OrderModel orderModel}) async {
+  Future<bool> showConfirmOrderDialog(
+    BuildContext context, {
+    required OrderModel orderModel,
+  }) async {
     bool _orderConfirmed = false;
-
-    if (_confirmDeliveryId(orderModel.deliveryId)) {
+    if (_confirmDeliveryId(context, orderModel.deliveryId)) {
       bool _confirm = await _confirmChoiceDialog(
           tr(NavigationService.context).doYouWantToConfirmTheOrder);
       if (_confirm) {
@@ -96,8 +105,10 @@ class OrderDialogsViewModel {
             await _ordersRepo.confirmUserOrder(orderId: orderModel.orderId!);
         _result.fold(
           (failure) {
-            debugPrint(failure?.message);
-            AppDialogs.showErrorDialog(message: failure?.message);
+            AppDialogs.showErrorDialog(
+              NavigationService.context,
+              message: failure.message,
+            );
           },
           (isSet) {
             if (isSet) {
@@ -113,20 +124,20 @@ class OrderDialogsViewModel {
     return _orderConfirmed;
   }
 
-  showMapForOrder({required OrderModel orderModel}) {
-    if (_confirmDeliveryId(orderModel.deliveryId)) {
+  showMapForOrder(BuildContext context, {required OrderModel orderModel}) {
+    if (_confirmDeliveryId(context, orderModel.deliveryId)) {
       setSelectedOrderProvidersAndGoToMap(orderModel);
       _deliveringOrdersProvider.addOrderToDeliveringOrders(
           orderId: orderModel.orderId!);
     }
   }
 
-  bool _confirmDeliveryId(String? deliveryId) {
+  bool _confirmDeliveryId(BuildContext context, String? deliveryId) {
     if (deliveryId == ref.watch(userRepoProvider).uid) {
       return true;
     } else {
-      CustomSnackBar.showDefaultSnackBar(
-        NavigationService.context,
+      Toasts.showForegroundToast(
+        context,
         title: tr(NavigationService.context).youCanNotProceedThisOrder,
         description:
             tr(NavigationService.context).youCanOnlyProceedOrdersYouDelivering,
@@ -155,7 +166,7 @@ class OrderDialogsViewModel {
     final _deliveringOrder = ref
         .read(deliveringOrdersProvider)
         .firstWhereOrNull((order) => order.orderId == orderModel.orderId);
-    ref.watch(selectedOrderGeoPointProvider.notifier).state =
+    ref.watch(selectedPlaceGeoPointProvider.notifier).state =
         _deliveringOrder?.orderGeoPoint ?? orderModel.addressModel?.geoPoint;
 
     NavigationService.push(

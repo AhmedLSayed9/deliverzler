@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:deliverzler/core/errors/failures.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:deliverzler/core/services/apis_services/apis_caller.dart';
 import 'package:deliverzler/core/services/apis_services/apis_paths.dart';
 import 'package:deliverzler/modules/map/models/place_directions_model.dart';
@@ -29,12 +30,16 @@ class MapRepo {
         'sessiontoken': sessionToken,
       },
       builder: (data) {
-        if (data != null && data is! ServerFailure && data['status'] == 'OK') {
-          return Right(List<PlaceSearchModel>.from(
-            data['predictions'].map(
-              (e) => PlaceSearchModel.fromMap(e),
-            ),
-          ));
+        if (data != null && data is! ServerFailure) {
+          if (data['status'] == 'OK') {
+            return Right(List<PlaceSearchModel>.from(
+              data['predictions'].map(
+                (e) => PlaceSearchModel.fromMap(e),
+              ),
+            ));
+          } else {
+            return const Right([]);
+          }
         } else {
           return Left(data);
         }
@@ -42,42 +47,46 @@ class MapRepo {
     );
   }
 
-  Future<PlaceDetailsModel?> getPlaceGeometry({
+  Future<Either<Failure?, PlaceDetailsModel>> getPlaceDetails({
     required String placeId,
     required String sessionToken,
   }) async {
     return await _apiCaller.getData(
-        path: ApisPaths.googleMapPlaceDetailsPath(),
-        queryParameters: {
-          'place_id': placeId,
-          'fields': 'geometry',
-          'key': googleMapAPIKey,
-          'sessiontoken': sessionToken,
-        },
-        builder: (data) {
-          if (data != null && data['status'] == 'OK') {
-            return PlaceDetailsModel.fromMap(data['result']);
-          }
-          return null;
-        });
+      path: ApisPaths.googleMapPlaceDetailsPath(),
+      queryParameters: {
+        'place_id': placeId,
+        'fields': 'geometry', //Specify wanted fields to lower billing rate
+        'key': googleMapAPIKey,
+        'sessiontoken': sessionToken,
+      },
+      builder: (data) {
+        if (data != null && data is! ServerFailure && data['status'] == 'OK') {
+          return Right(PlaceDetailsModel.fromMap(data['result']));
+        } else {
+          return Left(data);
+        }
+      },
+    );
   }
 
-  Future<PlaceDirectionsModel?> getPlaceDirections({
-    required LatLng origin,
-    required LatLng destination,
+  Future<Either<Failure?, PlaceDirectionsModel>> getPlaceDirections({
+    required Position origin,
+    required GeoPoint destination,
   }) async {
     return await _apiCaller.getData(
-        path: ApisPaths.googleMapDirectionsPath(),
-        queryParameters: {
-          'origin': '${origin.latitude},${origin.longitude}',
-          'destination': '${destination.latitude},${destination.longitude}',
-          'key': googleMapAPIKey,
-        },
-        builder: (data) {
-          if (data != null && data['status'] == 'OK') {
-            return PlaceDirectionsModel.fromMap(data);
-          }
-          return null;
-        });
+      path: ApisPaths.googleMapDirectionsPath(),
+      queryParameters: {
+        'origin': '${origin.latitude},${origin.longitude}',
+        'destination': '${destination.latitude},${destination.longitude}',
+        'key': googleMapAPIKey,
+      },
+      builder: (data) {
+        if (data != null && data is! ServerFailure && data['status'] == 'OK') {
+          return Right(PlaceDirectionsModel.fromMap(data));
+        } else {
+          return Left(data);
+        }
+      },
+    );
   }
 }

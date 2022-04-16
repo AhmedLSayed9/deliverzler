@@ -24,7 +24,7 @@ class StorageService {
   /*initHasHistory() async {
     hasHistory =
         await restoreData(key: 'has_history', dataType: DataType.bool) ?? false;
-    debugPrint('hasHistory: ' + hasHistory.toString());
+    log('hasHistory: ' + hasHistory.toString());
     if (!hasHistory){
       saveData(key: 'has_history', value: true, dataType: DataType.bool);
     }

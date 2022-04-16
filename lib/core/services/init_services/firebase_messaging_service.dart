@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:convert';
 
 import 'package:deliverzler/core/services/init_services/local_notification_service.dart';
@@ -35,7 +36,7 @@ class FirebaseMessagingService {
       provisional: true,
       sound: true,
     );
-    debugPrint('User granted permission: ${settings.authorizationStatus}');
+    log('User granted permission: ${settings.authorizationStatus}');
     if (settings.authorizationStatus != AuthorizationStatus.authorized) return;
 
     // Create an Android Notification Channel.
@@ -144,5 +145,5 @@ class FirebaseMessagingService {
 //This provided handler must be a top-level function.
 //It works outside the scope of the app in its own isolate.
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  debugPrint('Handling a background message ${message.messageId}');
+  log('Handling a background message ${message.messageId}');
 }

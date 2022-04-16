@@ -8,8 +8,8 @@ final appThemeProvider =
   return AppThemeNotifier();
 });
 
-class AppThemeNotifier extends StateNotifier<ThemeMode?> {
-  AppThemeNotifier() : super(null);
+class AppThemeNotifier extends StateNotifier<ThemeMode> {
+  AppThemeNotifier() : super(ThemeMode.system);
 
   init() async {
     await getUserStoredTheme();
@@ -17,18 +17,14 @@ class AppThemeNotifier extends StateNotifier<ThemeMode?> {
 
   Future getUserStoredTheme() async {
     late ThemeMode _themeMode;
-
     final _storedTheme = await StorageService.instance.restoreData(
       key: StorageKeys.theme,
       dataType: DataType.string,
     );
-    if (_storedTheme == null) {
-      _themeMode = ThemeMode.system;
-    } else {
+    if (_storedTheme != null) {
       _themeMode = _storedTheme == 'light' ? ThemeMode.light : ThemeMode.dark;
+      state = _themeMode;
     }
-
-    state = _themeMode;
   }
 
   changeTheme({required bool isLight}) {

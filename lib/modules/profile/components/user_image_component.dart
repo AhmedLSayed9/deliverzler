@@ -1,4 +1,4 @@
-import 'package:deliverzler/authentication/repos/user_repo.dart';
+import 'package:deliverzler/auth/repos/user_repo.dart';
 import 'package:deliverzler/modules/profile/viewmodels/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/components/image_pick_component.dart';
@@ -12,7 +12,7 @@ class UserImageComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final _userModel = ref.watch(userRepoProvider).userModel!;
-    final _profileVM =  ref.watch(profileProvider.notifier);
+    final _profileVM = ref.watch(profileProvider.notifier);
 
     return Stack(
       alignment: Alignment.bottomRight,
@@ -25,10 +25,10 @@ class UserImageComponent extends ConsumerWidget {
           padding: EdgeInsets.only(right: Sizes.hPaddingTiny(context)),
           child: ImagePickComponent(
             pickFromCameraFunction: () {
-              _profileVM.updateProfileImage(fromCamera: true);
+              _profileVM.updateProfileImage(context, fromCamera: true);
             },
             pickFromGalleryFunction: () {
-              _profileVM.updateProfileImage(fromCamera: false);
+              _profileVM.updateProfileImage(context, fromCamera: false);
             },
           ),
         ),

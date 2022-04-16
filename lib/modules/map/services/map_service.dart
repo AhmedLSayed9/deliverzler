@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:deliverzler/core/routing/navigation_service.dart';
+import 'package:deliverzler/modules/map/models/place_directions_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -113,6 +114,14 @@ class MapService {
               LatLng(polylinePoint.latitude, polylinePoint.longitude))
           .toList(),
     );
+  }
+
+  String getDirectionInfoText(PlaceDirectionsModel placeDirectionsModel) {
+    final _distance = MapService.instance.convertMeterToDistanceString(
+      placeDirectionsModel.distance,
+    );
+    final _duration = placeDirectionsModel.duration;
+    return _distance + ', ' + _duration;
   }
 
   String convertMeterToDistanceString(int distance) {

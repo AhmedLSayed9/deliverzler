@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:deliverzler/core/styles/app_colors.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:deliverzler/core/widgets/platform_widgets/platform_circluar_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
@@ -22,17 +20,15 @@ class LoadingIndicators {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Platform.isIOS
-              ? const CupertinoActivityIndicator(
-                  radius: 20,
-                )
-              : const CircularProgressIndicator(
-                  strokeWidth: 3,
-                  backgroundColor: Colors.transparent,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    AppColors.lightThemePrimary,
-                  ),
-                ),
+          const PlatformCircularProgressIndicator(
+            strokeWidth: 3,
+            backgroundColor: Colors.transparent,
+            color: AppColors.lightThemePrimary,
+            valueColor: AlwaysStoppedAnimation<Color>(
+              AppColors.lightThemePrimary,
+            ),
+            radius: 20,
+          ),
           if (message != null)
             CustomText.h5(
               context,

@@ -5,6 +5,7 @@ import 'package:deliverzler/core/viewmodels/app_theme_provider.dart';
 import 'package:deliverzler/core/widgets/custom_tile_component.dart';
 import 'package:deliverzler/general/settings/models/language_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/app_colors.dart';
@@ -26,17 +27,28 @@ class AppSettingsSectionComponent extends ConsumerWidget {
         CustomTileComponent(
           title: tr(context).theme,
           leadingIcon: !_isDarkThemeMode ? Icons.wb_sunny : Icons.nights_stay,
-          customTrailing: SizedBox(
-            width: Sizes.switchThemeButtonWidth(context),
-            child: Switch.adaptive(
+          customTrailing: Container(
+            constraints: BoxConstraints(
+              maxWidth: Sizes.switchThemeButtonWidth(context),
+            ),
+            child: PlatformSwitch(
               value: !_isDarkThemeMode,
               onChanged: (value) {
                 ref
                     .watch(appThemeProvider.notifier)
                     .changeTheme(isLight: value);
               },
-              activeColor: AppColors.white,
-              activeTrackColor: AppColors.lightOrange,
+              material: (_, __) {
+                return MaterialSwitchData(
+                  activeColor: AppColors.white,
+                  activeTrackColor: AppColors.lightOrange,
+                );
+              },
+              cupertino: (_, __) {
+                return CupertinoSwitchData(
+                  activeColor: AppColors.lightOrange,
+                );
+              },
             ),
           ),
         ),

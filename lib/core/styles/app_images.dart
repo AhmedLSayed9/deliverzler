@@ -22,9 +22,9 @@ class AppImages {
   static const String hiHand = loginImagesPath + 'hi_hand.png';
 
   /// Core
+  static const String appLogoIcon = coreImagesPath + 'logo.png';
   static const String loadingAnimation = jsonPath + 'loading_animation.json';
   static const String loadingGIF = coreImagesPath + 'loading.gif';
-  static const String appLogoIcon = coreImagesPath + 'logo.png';
   static const String cameraIcon = coreImagesPath + 'camera.png';
   static const String noInternet = coreImagesPath + 'no_internet.jpg';
   //Dialog Widget Icons

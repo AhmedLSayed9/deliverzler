@@ -1,4 +1,6 @@
+import 'package:deliverzler/core/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class NavigationService {
   static final GlobalKey<NavigatorState> navigationKey =
@@ -11,7 +13,7 @@ class NavigationService {
   }
 
   static removeOverlays() {
-    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    CustomToast.instance.fToast.removeQueuedCustomToasts();
   }
 
   static Future<dynamic> push({
@@ -33,7 +35,12 @@ class NavigationService {
       return await Navigator.pushNamed(context, page, arguments: arguments);
     } else {
       return await Navigator.push(
-          context, MaterialPageRoute(builder: (context) => page));
+        context,
+        platformPageRoute(
+          context: NavigationService.context,
+          builder: (context) => page,
+        ),
+      );
     }
   }
 

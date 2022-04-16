@@ -29,29 +29,31 @@ class Validators {
   }
 
   String? validateName(String? value) {
-    String patternName =
-        r"^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$";
+    //english name: r'^[a-zA-Z,.\-]+$'
+    //arabic name: r'^[\u0621-\u064A\040]+$'
+    //english and arabic names
+    String patternName = r"^[\u0621-\u064A\040\a-zA-Z,.\-]+$";
     if (value!.isEmpty) {
       return tr(NavigationService.context).thisFieldIsEmpty;
-    } else if (value.toString().length < 2 &&
-        !checkPattern(pattern: patternName, value: value)) {
+    } else if (value.toString().length < 2) {
       return tr(NavigationService.context).nameMustBeAtLeast2Letters;
     } else if (value.toString().length > 30) {
       return tr(NavigationService.context).nameMustBeAtMost30Letters;
-    }
-    /*else if (checkPattern(pattern: patternName, value: value)) {
-        return tr(NavigationService.context).pleaseEnterValidName;
-      }*/
-    else {
+    } else if (checkPattern(pattern: patternName, value: value)) {
+      return tr(NavigationService.context).pleaseEnterValidName;
+    } else {
       return null;
     }
   }
 
   String? validateEmail(String? value) {
-    String patternEmail = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)";
+    String _patternEmail =
+        r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)";
+    bool _checkPattern = checkPattern(pattern: _patternEmail, value: value);
+
     if (value!.isEmpty) {
       return tr(NavigationService.context).thisFieldIsEmpty;
-    } else if (checkPattern(pattern: patternEmail, value: value)) {
+    } else if (_checkPattern) {
       return tr(NavigationService.context).pleaseEnterValidEmail;
     } else {
       return null;
@@ -73,9 +75,6 @@ class Validators {
 
   bool checkPattern({pattern, value}) {
     RegExp regularCheck = RegExp(pattern);
-    if (regularCheck.hasMatch(value)) {
-      return false;
-    }
-    return true;
+    return !regularCheck.hasMatch(value);
   }
 }

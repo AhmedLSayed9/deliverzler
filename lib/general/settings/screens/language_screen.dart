@@ -16,14 +16,13 @@ class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopUpPage(
+      hasAppBar: true,
       appBarWithBack: true,
-      appbarItems: [
-        AppBarWithIconComponent(
-          icon: AppImages.languageScreenIcon,
-          title: tr(context).language,
-        ),
-      ],
-      child: SingleChildScrollView(
+      customTitle: AppBarWithIconComponent(
+        icon: AppImages.languageScreenIcon,
+        title: tr(context).language,
+      ),
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: Sizes.screenVPaddingDefault(context),

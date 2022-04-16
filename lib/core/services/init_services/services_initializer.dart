@@ -9,7 +9,6 @@ import 'package:deliverzler/core/viewmodels/app_locale_provider.dart';
 import 'package:deliverzler/core/viewmodels/app_theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:deliverzler/firebase_options.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,76 +18,84 @@ class ServicesInitializer {
   static final ServicesInitializer instance = ServicesInitializer._();
 
   late ProviderContainer _container;
-  late WidgetRef _ref;
 
-  initializeServices(ProviderContainer container) async {
+  init(WidgetsBinding widgetsBinding, ProviderContainer container) async {
     _container = container;
-    await initStorageService();
-    await initLocalization();
-    await initTheme();
-    await initConnectivity();
-    await initNotificationSettings();
-    await initFirebase();
+    //Init FirebaseApp instance before runApp
+    await _initFirebase();
+    //This Prevent closing splash screen until we finish initializing our services.
+    //App layout will be built but not displayed.
+    widgetsBinding.deferFirstFrame();
+    widgetsBinding.addPostFrameCallback((_) async {
+      //Run any function you want to wait for before showing app layout
+      //await _initializeServices(); init services at custom splash
+      _initializeServicesRef();
+      BuildContext? context = widgetsBinding.renderViewElement;
+      if (context != null) {
+        await _initializeCustomSplashImages(context);
+      }
+      // Closes splash screen, and show the app layout.
+      widgetsBinding.allowFirstFrame();
+    });
   }
 
-  initStorageService() async {
+  _initializeServicesRef() {
+    ThemeService(_container.read);
+  }
+
+  _initializeCustomSplashImages(BuildContext context) async {
+    await precacheImage(const AssetImage(AppImages.appLogoIcon), context);
+  }
+
+  initializeServices() async {
+    await _initStorageService();
+    await _initLocalization();
+    await _initTheme();
+    await _initConnectivity();
+    await _initNotificationSettings();
+    await _initFirebaseMessaging();
+  }
+
+  _initStorageService() async {
     await StorageService.instance.init();
   }
 
-  initLocalization() async {
+  _initLocalization() async {
     await _container.read(appLocaleProvider.notifier).init();
   }
 
-  initTheme() async {
+  _initTheme() async {
     await _container.read(appThemeProvider.notifier).init();
   }
 
-  initConnectivity() async {
+  _initConnectivity() async {
     ConnectivityService.instance.init();
   }
 
-  initNotificationSettings() async {
+  _initNotificationSettings() async {
     await LocalNotificationService(_container).init();
   }
 
-  initFirebase() async {
+  _initFirebase() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    await initFirebaseMessaging();
   }
 
-  initFirebaseMessaging() async {
+  _initFirebaseMessaging() async {
     await FirebaseMessagingService.instance.init();
-  }
-
-  initializeScreensOrientation() async {
-    await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp],
-    );
-  }
-
-  initializeServicesRef(WidgetRef ref) {
-    _ref = ref;
-    initThemeServiceRef();
-  }
-
-  initThemeServiceRef() {
-    ThemeService(_ref);
   }
 
   Future initializeData() async {
     List futures = [
-      cacheDefaultImages(),
+      _cacheDefaultImages(),
     ];
     List<dynamic> result = await Future.wait<dynamic>([...futures]);
     return result;
   }
 
-  cacheDefaultImages() async {
-    precacheImage(
+  _cacheDefaultImages() async {
+    await precacheImage(
         const AssetImage(AppImages.appLogoIcon), NavigationService.context);
-    precacheImage(
-        const AssetImage(AppImages.splash), NavigationService.context);
   }
 }

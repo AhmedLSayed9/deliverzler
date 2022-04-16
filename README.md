@@ -1,6 +1,6 @@
 # Deliverzler
 
-A new open source Delivery App for Restaurants built with Flutter Framework, Firebase as backend, Multi-Module MVVM Architecture, Riverpod as State-Management, Google Maps, Local Notifications and FCM Notifications.
+A new open source Delivery App for Restaurants built on Flutter Framework with Firebase as backend, Multi-Module MVVM Architecture, Riverpod with Freezed as State-Management, Google Maps, Local Notifications and FCM Notifications.
 
 ## ScreenShots
 
