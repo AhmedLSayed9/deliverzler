@@ -45,7 +45,7 @@ class CustomText extends Container {
                 fontSize: size,
                 fontWeight: weight,
                 decoration: underline ? TextDecoration.underline : null,
-                fontFamily: FontStyles.fontFamily,
+                fontFamily: FontStyles.fontFamily(context),
               ),
               strutStyle: strutStyle,
               textAlign: textAlign,

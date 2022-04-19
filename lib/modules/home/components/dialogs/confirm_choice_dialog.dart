@@ -66,7 +66,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
                     height: Sizes.roundedButtonDialogHeight(context),
                     width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
-                      NavigationService.goBack();
+                      NavigationService.goBack(context);
                     },
                   ),
                   CustomButton(
@@ -74,7 +74,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
                     height: Sizes.roundedButtonDialogHeight(context),
                     width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
-                      NavigationService.goBack(result: [true]);
+                      NavigationService.goBack(context, result: [true]);
                     },
                   ),
                 ],

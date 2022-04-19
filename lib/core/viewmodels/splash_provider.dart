@@ -24,6 +24,7 @@ class SplashProvider {
         initializeData().then(
           (_) {
             NavigationService.pushReplacementAll(
+              NavigationService.context,
               isNamed: true,
               page: secondPage,
             );
@@ -34,6 +35,7 @@ class SplashProvider {
         );
       } else {
         NavigationService.pushReplacementAll(
+          NavigationService.context,
           isNamed: true,
           page: RoutePaths.coreNoInternet,
           arguments: {'offAll': true},

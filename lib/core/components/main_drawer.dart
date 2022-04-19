@@ -40,6 +40,7 @@ class MainDrawer extends StatelessWidget {
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
                     NavigationService.push(
+                      context,
                       isNamed: true,
                       page: RoutePaths.profile,
                     );
@@ -51,6 +52,7 @@ class MainDrawer extends StatelessWidget {
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
                     NavigationService.push(
+                      context,
                       isNamed: true,
                       page: RoutePaths.settings,
                     );

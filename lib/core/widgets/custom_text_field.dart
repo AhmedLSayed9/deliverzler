@@ -1,4 +1,3 @@
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/services/platform_service.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -76,7 +75,7 @@ class CustomTextField extends Container {
                     style: TextStyle(
                       color: textColor ??
                           Theme.of(context).textTheme.subtitle1?.color,
-                      fontFamily: FontStyles.fontFamily,
+                      fontFamily: FontStyles.fontFamily(context),
                     ),
                     hintText: hintText,
                     validator: validator,
@@ -107,7 +106,7 @@ class CustomTextField extends Container {
                                 FontStyles.fontWeightNormal,
                             fontSize: validationFontSize ??
                                 Sizes.fontSizes(context)["h5"],
-                            fontFamily: FontStyles.fontFamily,
+                            fontFamily: FontStyles.fontFamily(context),
                           ),
                           fillColor: fillColor ??
                               Theme.of(context).inputDecorationTheme.fillColor,
@@ -135,7 +134,7 @@ class CustomTextField extends Container {
                               Radius.circular(
                                   Sizes.textFieldDefaultRadius(context)),
                             ),
-                            borderSide: Theme.of(NavigationService.context)
+                            borderSide: Theme.of(context)
                                 .inputDecorationTheme
                                 .border!
                                 .borderSide,
@@ -145,7 +144,7 @@ class CustomTextField extends Container {
                               Radius.circular(
                                   Sizes.textFieldDefaultRadius(context)),
                             ),
-                            borderSide: Theme.of(NavigationService.context)
+                            borderSide: Theme.of(context)
                                 .inputDecorationTheme
                                 .enabledBorder!
                                 .borderSide,
@@ -155,7 +154,7 @@ class CustomTextField extends Container {
                               Radius.circular(
                                   Sizes.textFieldDefaultRadius(context)),
                             ),
-                            borderSide: Theme.of(NavigationService.context)
+                            borderSide: Theme.of(context)
                                 .inputDecorationTheme
                                 .focusedBorder!
                                 .borderSide,
@@ -165,7 +164,7 @@ class CustomTextField extends Container {
                               Radius.circular(
                                   Sizes.textFieldDefaultRadius(context)),
                             ),
-                            borderSide: Theme.of(NavigationService.context)
+                            borderSide: Theme.of(context)
                                 .inputDecorationTheme
                                 .errorBorder!
                                 .borderSide,
@@ -175,7 +174,7 @@ class CustomTextField extends Container {
                               Radius.circular(
                                   Sizes.textFieldDefaultRadius(context)),
                             ),
-                            borderSide: Theme.of(NavigationService.context)
+                            borderSide: Theme.of(context)
                                 .inputDecorationTheme
                                 .errorBorder!
                                 .borderSide,
@@ -183,7 +182,7 @@ class CustomTextField extends Container {
                           hintStyle: TextStyle(
                             fontSize: Sizes.fontSizes(context)['h5'],
                             fontWeight: FontStyles.fontWeightBold,
-                            fontFamily: FontStyles.fontFamily,
+                            fontFamily: FontStyles.fontFamily(context),
                             color: hintTextColor ?? Theme.of(context).hintColor,
                           ),
                         ),
@@ -196,7 +195,7 @@ class CustomTextField extends Container {
                         placeholderStyle: TextStyle(
                           fontSize: Sizes.fontSizes(context)['h5'],
                           fontWeight: FontStyles.fontWeightBold,
-                          fontFamily: FontStyles.fontFamily,
+                          fontFamily: FontStyles.fontFamily(context),
                           color: hintTextColor ?? Theme.of(context).hintColor,
                         ),
                         padding: contentPadding ??

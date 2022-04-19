@@ -39,12 +39,18 @@ class DialogWidget {
               contentPadding: contentPadding,
               child: child,
               buttonText2: textButton2,
-              onPressed2: onPressed2 ?? NavigationService.goBack,
+              onPressed2: onPressed2 ??
+                  () {
+                    NavigationService.goBack(context);
+                  },
               title: title,
               image: image ?? dialogMessageData[dialogWidgetState]['icon'],
               buttonText: textButton,
               footer: footer,
-              onPressed: onPressed ?? NavigationService.goBack,
+              onPressed: onPressed??
+                      () {
+                    NavigationService.goBack(context);
+                  },
               description: description,
               backgroundColor: const Color(0xffffffff),
               shape: RoundedRectangleBorder(

@@ -48,9 +48,9 @@ class ImagePickComponent extends StatelessWidget {
                       onTap: () async {
                         try {
                           pickFromCameraFunction();
-                          NavigationService.goBack();
+                          NavigationService.goBack(context);
                         } catch (error) {
-                          NavigationService.goBack();
+                          NavigationService.goBack(context);
                         }
                       },
                       title: CustomText(
@@ -72,9 +72,9 @@ class ImagePickComponent extends StatelessWidget {
                       onTap: () async {
                         try {
                           pickFromGalleryFunction();
-                          NavigationService.goBack();
+                          NavigationService.goBack(context);
                         } catch (error) {
-                          NavigationService.goBack();
+                          NavigationService.goBack(context);
                         }
                       },
                       title: CustomText(

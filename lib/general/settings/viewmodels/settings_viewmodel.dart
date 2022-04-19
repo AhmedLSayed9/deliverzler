@@ -16,6 +16,7 @@ class SettingsViewModel {
 
   signOut() async {
     NavigationService.pushReplacementAll(
+      NavigationService.context,
       isNamed: true,
       page: RoutePaths.authLogin,
     );

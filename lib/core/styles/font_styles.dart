@@ -1,10 +1,9 @@
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 
 class FontStyles {
-  static get fontFamily => tr(NavigationService.context).fontFamily;
+  static fontFamily(BuildContext context) => tr(context).fontFamily;
 
   static const fontWeightBlack = FontWeight.w900;
   static const fontWeightExtraBold = FontWeight.w800;
@@ -20,7 +19,7 @@ class FontStyles {
   static mapSearchBarFontStyle(BuildContext context) => TextStyle(
         fontSize: Sizes.fontSizes(context)['h4'],
         color: Theme.of(context).textTheme.subtitle1!.color,
-        fontFamily: fontFamily,
+        fontFamily: fontFamily(context),
         fontWeight: fontWeightNormal,
         fontStyle: fontStyleNormal,
       );

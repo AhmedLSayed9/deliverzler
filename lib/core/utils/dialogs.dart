@@ -15,7 +15,7 @@ class AppDialogs {
           (message ?? tr(context).pleaseTryAgainLater),
       textButton: tr(context).oK,
       onPressed: () {
-        NavigationService.goBack();
+        NavigationService.goBack(context);
       },
     );
   }

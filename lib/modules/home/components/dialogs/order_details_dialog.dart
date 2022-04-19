@@ -165,7 +165,7 @@ class OrderDetailsDialog extends StatelessWidget {
                 height: Sizes.roundedButtonDialogHeight(context),
                 width: Sizes.roundedButtonDialogWidth(context),
                 onPressed: () {
-                  NavigationService.goBack();
+                  NavigationService.goBack(context);
                 },
               ),
             ],

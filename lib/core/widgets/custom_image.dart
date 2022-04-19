@@ -1,4 +1,3 @@
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
@@ -74,7 +73,7 @@ class CustomImage extends Container {
                 SizedBox(height: verticalGap ?? Sizes.vMarginComment(context)),
               if (title != null)
                 CustomText(
-                  NavigationService.context,
+                  context,
                   title,
                   size: fontSize ?? Sizes.fontSizes(context)['h5'],
                   color: titleColor ?? const Color(0xff666666),

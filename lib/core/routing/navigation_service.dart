@@ -8,7 +8,7 @@ class NavigationService {
 
   static get context => navigationKey.currentState?.context;
 
-  static removeAllFocus() {
+  static removeAllFocus(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
@@ -16,20 +16,21 @@ class NavigationService {
     CustomToast.instance.fToast.removeQueuedCustomToasts();
   }
 
-  static Future<dynamic> push({
+  static Future<dynamic> push(
+    BuildContext context, {
     bool isNamed = false,
     required dynamic page,
     dynamic arguments,
     bool preventDuplicates = true,
     bool closeOverlays = false,
   }) async {
-    removeAllFocus();
+    removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
     if (isNamed) {
       if (preventDuplicates) {
-        final _isDuplicate = checkDuplicateRoute(page, arguments);
+        final _isDuplicate = checkDuplicateRoute(context, page, arguments);
         if (_isDuplicate) return;
       }
       return await Navigator.pushNamed(context, page, arguments: arguments);
@@ -37,27 +38,28 @@ class NavigationService {
       return await Navigator.push(
         context,
         platformPageRoute(
-          context: NavigationService.context,
+          context: context,
           builder: (context) => page,
         ),
       );
     }
   }
 
-  static Future<dynamic> pushReplacement({
+  static Future<dynamic> pushReplacement(
+    BuildContext context, {
     bool isNamed = false,
     required dynamic page,
     dynamic arguments,
     bool preventDuplicates = true,
     bool closeOverlays = false,
   }) async {
-    removeAllFocus();
+    removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
     if (isNamed) {
       if (preventDuplicates) {
-        final _isDuplicate = checkDuplicateRoute(page, arguments);
+        final _isDuplicate = checkDuplicateRoute(context, page, arguments);
         if (_isDuplicate) return;
       }
       return await Navigator.pushReplacementNamed(
@@ -70,12 +72,13 @@ class NavigationService {
     }
   }
 
-  static Future<dynamic> goBack<T>({
+  static Future<dynamic> goBack<T>(
+    BuildContext context, {
     T? result,
     bool maybePop = true,
     bool closeOverlays = false,
   }) async {
-    removeAllFocus();
+    removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
@@ -86,24 +89,26 @@ class NavigationService {
     }
   }
 
-  static popUntil({
+  static popUntil(
+    BuildContext context, {
     required RoutePredicate predicate,
     bool closeOverlays = false,
   }) {
-    removeAllFocus();
+    removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
     Navigator.popUntil(context, predicate);
   }
 
-  static Future<T?>? pushReplacementAll<T>({
+  static Future<T?>? pushReplacementAll<T>(
+    BuildContext context, {
     bool isNamed = false,
     required dynamic page,
     dynamic arguments,
     bool closeOverlays = false,
   }) async {
-    removeAllFocus();
+    removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
@@ -123,14 +128,15 @@ class NavigationService {
     }
   }
 
-  static Future<T?>? pushAndRemoveUntil<T>({
+  static Future<T?>? pushAndRemoveUntil<T>(
+    BuildContext context, {
     bool isNamed = false,
     required dynamic page,
     required bool Function(Route<dynamic>) predicate,
     dynamic arguments,
     bool closeOverlays = false,
   }) async {
-    removeAllFocus();
+    removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
@@ -150,9 +156,14 @@ class NavigationService {
     }
   }
 
-  static bool checkDuplicateRoute(String page, dynamic arguments) {
+  static bool checkDuplicateRoute(
+    BuildContext context,
+    String page,
+    dynamic arguments,
+  ) {
     bool _isNewRouteSameAsCurrent = false;
     popUntil(
+      context,
       predicate: (route) {
         if (route.settings.name == page &&
             route.settings.arguments == arguments) {

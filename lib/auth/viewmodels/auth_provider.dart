@@ -32,7 +32,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     required String password,
   }) async {
     state = const AuthState.loading();
-    NavigationService.removeAllFocus();
+    NavigationService.removeAllFocus(context);
     final _result = await _authRepo.signInWithEmailAndPassword(
       email: email,
       password: password,
@@ -59,7 +59,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       },
       (isSet) async {
         subscribeUserToTopic();
-        navigationToHomeScreen();
+        navigationToHomeScreen(context);
       },
     );
   }
@@ -70,8 +70,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
     );
   }
 
-  navigationToHomeScreen() {
+  navigationToHomeScreen(BuildContext context) {
     NavigationService.pushReplacementAll(
+      context,
       isNamed: true,
       page: RoutePaths.home,
     );

@@ -50,6 +50,7 @@ class CardItemComponent extends ConsumerWidget {
                   title: tr(context).details,
                   onPressed: () {
                     orderDialogsVM.showOrderDetailsDialog(
+                      context,
                       orderModel: orderModel,
                     );
                   },
@@ -98,6 +99,7 @@ class CardItemComponent extends ConsumerWidget {
                         isColored: true,
                         onPressed: () {
                           orderDialogsVM.showDeliverOrderDialog(
+                            context,
                             orderModel: orderModel,
                           );
                         },

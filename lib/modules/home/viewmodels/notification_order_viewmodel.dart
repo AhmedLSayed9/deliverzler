@@ -26,9 +26,10 @@ class NotificationOrderViewModel {
       (order) async {
         //Few delay to ensure dispose of old map viewmodels.
         await Future.delayed(const Duration(seconds: 1));
-        ref
-            .watch(orderDialogsViewModel)
-            .setSelectedOrderProvidersAndGoToMap(order);
+        ref.watch(orderDialogsViewModel).setSelectedOrderProvidersAndGoToMap(
+              NavigationService.context,
+              order,
+            );
       },
     );
   }

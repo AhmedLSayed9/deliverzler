@@ -37,7 +37,9 @@ class CancelOrderDialog extends HookWidget {
             SizedBox(
               height: Sizes.vMarginSmallest(context),
             ),
-            CancelOrderNoteComponent(cancelNoteController: _cancelNoteController,),
+            CancelOrderNoteComponent(
+              cancelNoteController: _cancelNoteController,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: Sizes.hPaddingSmallest(context),
@@ -57,7 +59,7 @@ class CancelOrderDialog extends HookWidget {
                     height: Sizes.roundedButtonDialogHeight(context),
                     width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
-                      NavigationService.goBack();
+                      NavigationService.goBack(context);
                     },
                   ),
                   CustomButton(
@@ -66,7 +68,9 @@ class CancelOrderDialog extends HookWidget {
                     width: Sizes.roundedButtonSmallWidth(context),
                     onPressed: () {
                       NavigationService.goBack(
-                          result: [true, _cancelNoteController.text]);
+                        context,
+                        result: [true, _cancelNoteController.text],
+                      );
                     },
                   ),
                 ],

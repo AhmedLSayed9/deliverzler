@@ -52,6 +52,7 @@ class ConnectivityService {
 
   _navigateToNoInternetScreen() {
     NavigationService.push(
+      NavigationService.context,
       isNamed: true,
       page: RoutePaths.coreNoInternet,
       arguments: {'offAll': false},

@@ -20,6 +20,7 @@ class NoInternetConnection extends StatelessWidget {
     return PopUpPage(
       onWillPop: () {
         NavigationService.pushReplacementAll(
+          context,
           isNamed: true,
           page: RoutePaths.coreSplash,
         );
@@ -37,11 +38,12 @@ class NoInternetConnection extends StatelessWidget {
                 if (value) {
                   if (offAll) {
                     NavigationService.pushReplacementAll(
+                      context,
                       isNamed: true,
                       page: RoutePaths.coreSplash,
                     );
                   } else {
-                    NavigationService.goBack();
+                    NavigationService.goBack(context);
                   }
                 }
               },

@@ -50,6 +50,7 @@ class LocalNotificationService {
       if (_decodedPayload.isNotEmpty) {
         final _notificationModel = NotificationModel.fromMap(_decodedPayload);
         NavigationService.pushReplacement(
+          NavigationService.context,
           isNamed: true,
           page: _notificationModel.route,
         );

@@ -29,9 +29,12 @@ class OrderDialogsViewModel {
   late OrdersRepo _ordersRepo;
   late DeliveringOrdersNotifier _deliveringOrdersProvider;
 
-  showOrderDetailsDialog({required OrderModel orderModel}) {
+  showOrderDetailsDialog(
+    BuildContext context, {
+    required OrderModel orderModel,
+  }) {
     DialogWidget.showCustomDialog(
-      context: NavigationService.context,
+      context: context,
       child: OrderDetailsDialog(
         orderModel: orderModel,
       ),
@@ -44,7 +47,7 @@ class OrderDialogsViewModel {
   }) async {
     if (_confirmDeliveryId(context, orderModel.deliveryId)) {
       await DialogWidget.showCustomDialog(
-        context: NavigationService.context,
+        context: context,
         child: CancelOrderDialog(
           orderModel: orderModel,
         ),
@@ -57,7 +60,7 @@ class OrderDialogsViewModel {
           _result.fold(
             (failure) {
               AppDialogs.showErrorDialog(
-                NavigationService.context,
+                context,
                 message: failure.message,
               );
             },
@@ -68,22 +71,27 @@ class OrderDialogsViewModel {
     }
   }
 
-  showDeliverOrderDialog({required OrderModel orderModel}) async {
+  showDeliverOrderDialog(
+    BuildContext context, {
+    required OrderModel orderModel,
+  }) async {
     bool _confirm = await _confirmChoiceDialog(
-        tr(NavigationService.context).doYouWantToDeliverTheOrder);
+      context,
+      tr(context).doYouWantToDeliverTheOrder,
+    );
     if (_confirm) {
       final _result =
           await _ordersRepo.deliverUserOrder(orderId: orderModel.orderId!);
       _result.fold(
         (failure) {
           AppDialogs.showErrorDialog(
-            NavigationService.context,
+            context,
             message: failure.message,
           );
         },
         (isSet) {
           if (isSet) {
-            setSelectedOrderProvidersAndGoToMap(orderModel);
+            setSelectedOrderProvidersAndGoToMap(context, orderModel);
             _deliveringOrdersProvider.addOrderToDeliveringOrders(
                 orderId: orderModel.orderId!);
           }
@@ -99,14 +107,16 @@ class OrderDialogsViewModel {
     bool _orderConfirmed = false;
     if (_confirmDeliveryId(context, orderModel.deliveryId)) {
       bool _confirm = await _confirmChoiceDialog(
-          tr(NavigationService.context).doYouWantToConfirmTheOrder);
+        context,
+        tr(context).doYouWantToConfirmTheOrder,
+      );
       if (_confirm) {
         final _result =
             await _ordersRepo.confirmUserOrder(orderId: orderModel.orderId!);
         _result.fold(
           (failure) {
             AppDialogs.showErrorDialog(
-              NavigationService.context,
+              context,
               message: failure.message,
             );
           },
@@ -126,7 +136,7 @@ class OrderDialogsViewModel {
 
   showMapForOrder(BuildContext context, {required OrderModel orderModel}) {
     if (_confirmDeliveryId(context, orderModel.deliveryId)) {
-      setSelectedOrderProvidersAndGoToMap(orderModel);
+      setSelectedOrderProvidersAndGoToMap(context, orderModel);
       _deliveringOrdersProvider.addOrderToDeliveringOrders(
           orderId: orderModel.orderId!);
     }
@@ -138,18 +148,20 @@ class OrderDialogsViewModel {
     } else {
       Toasts.showForegroundToast(
         context,
-        title: tr(NavigationService.context).youCanNotProceedThisOrder,
-        description:
-            tr(NavigationService.context).youCanOnlyProceedOrdersYouDelivering,
+        title: tr(context).youCanNotProceedThisOrder,
+        description: tr(context).youCanOnlyProceedOrdersYouDelivering,
       );
       return false;
     }
   }
 
-  Future<bool> _confirmChoiceDialog(String message) async {
+  Future<bool> _confirmChoiceDialog(
+    BuildContext context,
+    String message,
+  ) async {
     bool _isConfirm = false;
     _isConfirm = await DialogWidget.showCustomDialog(
-      context: NavigationService.context,
+      context: context,
       child: ConfirmChoiceDialog(
         message: message,
       ),
@@ -160,7 +172,8 @@ class OrderDialogsViewModel {
     return _isConfirm;
   }
 
-  setSelectedOrderProvidersAndGoToMap(OrderModel orderModel) {
+  setSelectedOrderProvidersAndGoToMap(
+      BuildContext context, OrderModel orderModel) {
     ref.watch(selectedOrderProvider.notifier).state = orderModel;
 
     final _deliveringOrder = ref
@@ -170,6 +183,7 @@ class OrderDialogsViewModel {
         _deliveringOrder?.orderGeoPoint ?? orderModel.addressModel?.geoPoint;
 
     NavigationService.push(
+      context,
       isNamed: true,
       page: RoutePaths.map,
     );

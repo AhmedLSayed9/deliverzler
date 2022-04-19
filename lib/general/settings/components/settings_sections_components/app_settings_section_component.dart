@@ -61,6 +61,7 @@ class AppSettingsSectionComponent extends ConsumerWidget {
           ),
           onTap: () {
             NavigationService.push(
+              context,
               isNamed: true,
               page: RoutePaths.settingsLanguage,
             );

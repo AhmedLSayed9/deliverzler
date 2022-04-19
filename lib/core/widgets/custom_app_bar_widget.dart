@@ -126,7 +126,7 @@ class _BackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformIconButton(
       onPressed: () {
-        NavigationService.goBack(result: result);
+        NavigationService.goBack(context, result: result);
       },
       icon: Icon(
         PlatformIcons(context).back,

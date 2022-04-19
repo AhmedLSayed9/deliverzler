@@ -42,7 +42,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
                   orderModel: ref.read(selectedOrderProvider)!,
                 );
                 if (_orderConfirmed) {
-                  NavigationService.goBack();
+                  NavigationService.goBack(context);
                 }
               },
             ),
