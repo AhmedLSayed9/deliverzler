@@ -23,9 +23,10 @@ class CustomAppBar extends PlatformAppBar {
     List<Widget>? trailingActions,
   }) : super(
           key: key,
-          backgroundColor: appBarColor,
+          backgroundColor:
+              appBarColor ?? Theme.of(context).appBarTheme.backgroundColor,
           leading: hasBackButton
-              ? _BackButton(result: result)
+              ? CustomBackButton(result: result)
               : hasMenuButton
                   ? _MenuButton(scaffoldKey: scaffoldKey!)
                   : customLeading,
@@ -114,10 +115,10 @@ class _MenuButton extends StatelessWidget {
   }
 }
 
-class _BackButton extends StatelessWidget {
+class CustomBackButton extends StatelessWidget {
   final dynamic result;
 
-  const _BackButton({
+  const CustomBackButton({
     required this.result,
     Key? key,
   }) : super(key: key);
