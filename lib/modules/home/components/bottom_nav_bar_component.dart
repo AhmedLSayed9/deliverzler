@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 PlatformNavBar? bottomNavBarComponent(
-    BuildContext context, {
-      required int currentIndex,
-      required Function(int) itemChanged,
-    }) {
-  if(PlatformService.instance.isMaterialApp()) return null;
+  BuildContext context, {
+  required int currentIndex,
+  required Function(int) itemChanged,
+}) {
+  if (PlatformService.instance.isMaterialApp()) return null;
   return PlatformNavBar(
     currentIndex: currentIndex,
     itemChanged: itemChanged,
@@ -28,8 +28,8 @@ PlatformNavBar? bottomNavBarComponent(
       ),
     ],
     backgroundColor:
-    Theme.of(context).bottomNavigationBarTheme.backgroundColor ??
-        Theme.of(context).bottomAppBarColor,
+        Theme.of(context).bottomNavigationBarTheme.backgroundColor ??
+            Theme.of(context).bottomAppBarColor,
     material: (_, __) {
       return MaterialNavBarData(
         elevation: 26,

@@ -19,7 +19,7 @@ PlatformAppBar? getHomeNavScreenAppBar(
       return CustomAppBar(
         context,
         scaffoldKey: scaffoldKey,
-        hasMenuButton: true,
+        hasMenuButton: PlatformService.instance.isMaterialApp() ? true : false,
         customTitle: CustomText.h2(
           context,
           tr(context).appName,
