@@ -185,6 +185,7 @@ class OrderDialogsViewModel {
     NavigationService.push(
       context,
       isNamed: true,
+      rootNavigator: true,
       page: RoutePaths.map,
     );
   }

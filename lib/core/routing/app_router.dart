@@ -2,6 +2,7 @@ import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/routing/navigation_transitions.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:deliverzler/modules/home/screens/home_screen.dart';
+import 'package:deliverzler/modules/home/screens/orders_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/auth/screens/login_screen.dart';
 import 'package:deliverzler/core/screens/no_internet_connection_screen.dart';
@@ -13,6 +14,7 @@ import 'package:deliverzler/modules/profile/screens/profile_screen.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class AppRouter {
+  ///Root Navigator
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       //Core
@@ -41,33 +43,10 @@ class AppRouter {
           transitionDuration: const Duration(seconds: 1),
         );
 
-      //Settings
-      case RoutePaths.settings:
-        return platformPageRoute(
-          context: NavigationService.context,
-          builder: (_) => const SettingsScreen(),
-          settings: settings,
-        );
-
-      case RoutePaths.settingsLanguage:
-        return platformPageRoute(
-          context: NavigationService.context,
-          builder: (_) => const LanguageScreen(),
-          settings: settings,
-        );
-
       //Home
       case RoutePaths.home:
         return NavigationFadeTransition(
           const HomeScreen(),
-          settings: settings,
-        );
-
-      //Profile
-      case RoutePaths.profile:
-        return platformPageRoute(
-          context: NavigationService.context,
-          builder: (_) => const ProfileScreen(),
           settings: settings,
         );
 
@@ -83,6 +62,69 @@ class AppRouter {
         return platformPageRoute(
           context: NavigationService.context,
           builder: (_) => const SplashScreen(),
+          settings: settings,
+        );
+    }
+  }
+
+  ///Nested Navigators
+  static Route<dynamic> generateHomeMainNestedRoute(RouteSettings settings) {
+    switch (settings.name) {
+      //Home Page
+      case RoutePaths.homeMain:
+        return NavigationFadeTransition(
+          const OrdersScreen(),
+          settings: settings,
+        );
+
+      default:
+        return NavigationFadeTransition(
+          const OrdersScreen(),
+          settings: settings,
+        );
+    }
+  }
+
+  static Route<dynamic> generateProfileNestedRoute(RouteSettings settings) {
+    switch (settings.name) {
+      //Profile
+      case RoutePaths.profile:
+        return platformPageRoute(
+          context: NavigationService.context,
+          builder: (_) => const ProfileScreen(),
+          settings: settings,
+        );
+
+      default:
+        return platformPageRoute(
+          context: NavigationService.context,
+          builder: (_) => const ProfileScreen(),
+          settings: settings,
+        );
+    }
+  }
+
+  static Route<dynamic> generateSettingsNestedRoute(RouteSettings settings) {
+    switch (settings.name) {
+      //Settings
+      case RoutePaths.settings:
+        return platformPageRoute(
+          context: NavigationService.context,
+          builder: (_) => const SettingsScreen(),
+          settings: settings,
+        );
+
+      case RoutePaths.settingsLanguage:
+        return platformPageRoute(
+          context: NavigationService.context,
+          builder: (_) => const LanguageScreen(),
+          settings: settings,
+        );
+
+      default:
+        return platformPageRoute(
+          context: NavigationService.context,
+          builder: (_) => const SettingsScreen(),
           settings: settings,
         );
     }

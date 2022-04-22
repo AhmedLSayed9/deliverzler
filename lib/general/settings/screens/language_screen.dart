@@ -1,7 +1,5 @@
+import 'package:deliverzler/core/screens/popup_page_nested.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/components/appbar_with_icon_component.dart';
-import 'package:deliverzler/core/screens/popup_page.dart';
-import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/general/settings/components/language_item_component.dart';
@@ -15,13 +13,7 @@ class LanguageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopUpPage(
-      hasAppBar: true,
-      appBarWithBack: true,
-      customTitle: AppBarWithIconComponent(
-        icon: AppImages.languageScreenIcon,
-        title: tr(context).language,
-      ),
+    return PopUpPageNested(
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(

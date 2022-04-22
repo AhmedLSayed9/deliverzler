@@ -75,6 +75,7 @@ class CustomTextField extends Container {
                     style: TextStyle(
                       color: textColor ??
                           Theme.of(context).textTheme.subtitle1?.color,
+                      fontSize: Sizes.fontSizes(context)['h4'],
                       fontFamily: FontStyles.fontFamily(context),
                     ),
                     hintText: hintText,
@@ -96,6 +97,10 @@ class CustomTextField extends Container {
                           prefixIconColor: Theme.of(context)
                               .inputDecorationTheme
                               .prefixIconColor,
+                          prefixIconConstraints: const BoxConstraints(
+                            minHeight: 0,
+                            minWidth: 0,
+                          ),
                           errorStyle: TextStyle(
                             color: validationColor ??
                                 Theme.of(context)

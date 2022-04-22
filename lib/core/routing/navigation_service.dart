@@ -23,6 +23,7 @@ class NavigationService {
     dynamic arguments,
     bool preventDuplicates = true,
     bool closeOverlays = false,
+    bool rootNavigator = false,
   }) async {
     removeAllFocus(context);
     if (closeOverlays) {
@@ -33,10 +34,10 @@ class NavigationService {
         final _isDuplicate = checkDuplicateRoute(context, page, arguments);
         if (_isDuplicate) return;
       }
-      return await Navigator.pushNamed(context, page, arguments: arguments);
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .pushNamed(page, arguments: arguments);
     } else {
-      return await Navigator.push(
-        context,
+      return await Navigator.of(context, rootNavigator: rootNavigator).push(
         platformPageRoute(
           context: context,
           builder: (context) => page,
@@ -62,13 +63,12 @@ class NavigationService {
         final _isDuplicate = checkDuplicateRoute(context, page, arguments);
         if (_isDuplicate) return;
       }
-      return await Navigator.pushReplacementNamed(
-        context,
+      return await Navigator.of(context).pushReplacementNamed(
         page,
         arguments: arguments,
       );
     } else {
-      return await Navigator.pushReplacement(context, page);
+      return await Navigator.of(context).pushReplacement(page);
     }
   }
 
@@ -83,9 +83,9 @@ class NavigationService {
       removeOverlays();
     }
     if (maybePop) {
-      return await Navigator.maybePop(context, result);
+      return await Navigator.of(context).maybePop(result);
     } else {
-      Navigator.pop(context, result);
+      Navigator.of(context).pop(result);
     }
   }
 
@@ -98,7 +98,7 @@ class NavigationService {
     if (closeOverlays) {
       removeOverlays();
     }
-    Navigator.popUntil(context, predicate);
+    Navigator.of(context).popUntil(predicate);
   }
 
   static Future<T?>? pushReplacementAll<T>(
@@ -113,15 +113,13 @@ class NavigationService {
       removeOverlays();
     }
     if (isNamed) {
-      return await Navigator.pushNamedAndRemoveUntil(
-        context,
+      return await Navigator.of(context).pushNamedAndRemoveUntil(
         page,
         (route) => false,
         arguments: arguments,
       );
     } else {
-      return await Navigator.pushAndRemoveUntil(
-        context,
+      return await Navigator.of(context).pushAndRemoveUntil(
         page,
         (route) => false,
       );
@@ -141,15 +139,13 @@ class NavigationService {
       removeOverlays();
     }
     if (isNamed) {
-      return await Navigator.pushNamedAndRemoveUntil(
-        context,
+      return await Navigator.of(context).pushNamedAndRemoveUntil(
         page,
         predicate,
         arguments: arguments,
       );
     } else {
-      return await Navigator.pushAndRemoveUntil(
-        context,
+      return await Navigator.of(context).pushAndRemoveUntil(
         page,
         predicate,
       );

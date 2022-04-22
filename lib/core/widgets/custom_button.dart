@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final double? width;
   final double? minHeight;
+  final double? minWidth;
   final Widget? child;
   final String? text;
   final VoidCallback? onPressed;
@@ -27,6 +28,7 @@ class CustomButton extends StatelessWidget {
     this.height,
     this.width,
     this.minHeight,
+    this.minWidth,
     this.child,
     this.text,
     required this.onPressed,
@@ -49,9 +51,6 @@ class CustomButton extends StatelessWidget {
       child: Container(
         height: height ?? Sizes.roundedButtonDefaultHeight(context),
         width: width ?? Sizes.roundedButtonDefaultWidth(context),
-        constraints: BoxConstraints(
-          minHeight: minHeight ?? Sizes.roundedButtonMinHeight(context),
-        ),
         decoration: buttonColor == null
             ? BoxDecoration(
                 borderRadius: gradientBorderRadius ??
@@ -75,6 +74,11 @@ class CustomButton extends StatelessWidget {
       material: (_, __) {
         return MaterialElevatedButtonData(
           style: ElevatedButton.styleFrom(
+            minimumSize: Size(
+              minWidth ?? Sizes.roundedButtonMinWidth(context),
+              minHeight ?? Sizes.roundedButtonMinHeight(context),
+            ),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             padding: padding ?? EdgeInsets.zero,
             shape: shape ??
                 RoundedRectangleBorder(
@@ -92,6 +96,7 @@ class CustomButton extends StatelessWidget {
       },
       cupertino: (_, __) {
         return CupertinoElevatedButtonData(
+          minSize: minHeight,
           padding: padding ?? EdgeInsets.zero,
           borderRadius: shape != null
               ? (shape as RoundedRectangleBorder)

@@ -3,17 +3,20 @@ import 'package:deliverzler/core/services/responsive_service.dart';
 import 'package:flutter/material.dart';
 
 class Sizes {
-  static screenHeight(BuildContext context) =>
-      ResponsiveService.screenHeight(context);
+  static fullScreenHeight(BuildContext context) =>
+      ResponsiveService.fullScreenHeight(context);
 
-  static screenWidth(BuildContext context) =>
-      ResponsiveService.screenWidth(context);
+  static fullScreenWidth(BuildContext context) =>
+      ResponsiveService.fullScreenWidth(context);
+
+  static availableScreenHeight(BuildContext context) =>
+      ResponsiveService.availableScreenHeight(context);
+
+  static availableScreenWidth(BuildContext context) =>
+      ResponsiveService.availableScreenWidth(context);
 
   static statusBarHeight(BuildContext context) =>
-      ResponsiveService.statusBarHeight(context);
-
-  static systemNavBarHeight(BuildContext context) =>
-      ResponsiveService.systemNavBarHeight(context);
+      ResponsiveService.deviceTopPadding(context);
 
   //Font sizes
   static fontSizes(BuildContext context) => {
@@ -79,6 +82,7 @@ class Sizes {
 
   //Buttons
   static roundedButtonMinHeight(BuildContext context) => 40.h(context);
+  static roundedButtonMinWidth(BuildContext context) => 60.w(context);
   static roundedButtonDefaultHeight(BuildContext context) => 50.h(context);
   static roundedButtonDefaultWidth(BuildContext context) => 300.w(context);
   static roundedButtonDefaultRadius(BuildContext context) => 26.r(context);

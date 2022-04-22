@@ -1,15 +1,15 @@
+import 'package:deliverzler/modules/home/viewmodels/home_state_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/components/main_drawer_bottom_component.dart';
 import 'package:deliverzler/core/components/main_drawer_user_info_component.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/font_styles.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
-import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends ConsumerWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   const MainDrawer({
@@ -18,7 +18,7 @@ class MainDrawer extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return SizedBox(
       width: Sizes.mainDrawerWidth(context),
       child: Drawer(
@@ -39,11 +39,7 @@ class MainDrawer extends StatelessWidget {
                   icon: AppImages.profileScreenIcon,
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
-                    NavigationService.push(
-                      context,
-                      isNamed: true,
-                      page: RoutePaths.profile,
-                    );
+                    ref.watch(homeNavIndexProvider.notifier).state = 0;
                   },
                 ),
                 DrawerItem(
@@ -51,11 +47,7 @@ class MainDrawer extends StatelessWidget {
                   icon: AppImages.settingsScreenIcon,
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
-                    NavigationService.push(
-                      context,
-                      isNamed: true,
-                      page: RoutePaths.settings,
-                    );
+                    ref.watch(homeNavIndexProvider.notifier).state = 2;
                   },
                 ),
                 SizedBox(

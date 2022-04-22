@@ -18,7 +18,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizes.screenWidth(context),
+      width: Sizes.availableScreenWidth(context),
       child: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: Sizes.dialogHPaddingMedium(context)),

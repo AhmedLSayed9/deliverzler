@@ -27,8 +27,8 @@ class SplashScreen extends HookConsumerWidget {
           children: [
             Image.asset(
               AppImages.splash,
-              height: Sizes.screenHeight(context),
-              width: Sizes.screenWidth(context),
+              height: Sizes.fullScreenHeight(context),
+              width: Sizes.fullScreenWidth(context),
               fit: BoxFit.cover,
             ),
             Column(

@@ -21,7 +21,7 @@ class OrderDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizes.screenWidth(context),
+      width: Sizes.availableScreenWidth(context),
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(

@@ -1,11 +1,7 @@
-import 'package:deliverzler/core/services/platform_service.dart';
+import 'package:deliverzler/core/screens/popup_page_nested.dart';
 import 'package:deliverzler/general/settings/components/logout_component.dart';
 import 'package:deliverzler/general/settings/components/user_info_component.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/components/appbar_with_icon_component.dart';
-import 'package:deliverzler/core/services/localization_service.dart';
-import 'package:deliverzler/core/screens/popup_page.dart';
-import 'package:deliverzler/core/styles/app_images.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/general/settings/components/settings_sections_components/app_settings_section_component.dart';
 
@@ -14,13 +10,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopUpPage(
-      hasAppBar: true,
-      appBarWithBack: PlatformService.instance.isMaterialApp() ? true : false,
-      customTitle: AppBarWithIconComponent(
-        icon: AppImages.settingsScreenIcon,
-        title: tr(context).settings,
-      ),
+    return PopUpPageNested(
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(

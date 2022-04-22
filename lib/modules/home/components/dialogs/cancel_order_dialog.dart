@@ -23,7 +23,7 @@ class CancelOrderDialog extends HookWidget {
     final _cancelNoteController = useTextEditingController(text: '');
 
     return SizedBox(
-      width: Sizes.screenWidth(context),
+      width: Sizes.availableScreenWidth(context),
       child: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: Sizes.dialogHPaddingMedium(context)),

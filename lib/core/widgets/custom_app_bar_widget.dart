@@ -15,10 +15,10 @@ class CustomAppBar extends PlatformAppBar {
     Color? appBarColor,
     String? title,
     Widget? customTitle,
-    required bool centerTitle,
-    required bool hasBackButton,
+    bool centerTitle = false,
+    bool hasBackButton = false,
     dynamic result,
-    required bool hasMenuButton,
+    bool hasMenuButton = false,
     Widget? customLeading,
     List<Widget>? trailingActions,
   }) : super(
