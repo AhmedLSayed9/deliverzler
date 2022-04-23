@@ -1,6 +1,5 @@
 import 'package:deliverzler/core/components/main_drawer.dart';
 import 'package:deliverzler/core/screens/popup_page.dart';
-import 'package:deliverzler/core/services/platform_service.dart';
 import 'package:deliverzler/modules/home/components/bottom_nav_bar_component.dart';
 import 'package:deliverzler/modules/home/utils/home_nav_screen_appbar.dart';
 import 'package:deliverzler/modules/home/utils/home_nav_screens_utils.dart';
@@ -45,12 +44,10 @@ class HomeScreen extends HookConsumerWidget {
       drawer: MainDrawer(
         scaffoldKey: _scaffoldKey,
       ),
-      body: PlatformService.instance.isMaterialApp()
-          ? HomeNavScreensUtils.homeNavScreens(ref)[_currentIndex]
-          : IndexedStack(
-              index: _currentIndex,
-              children: HomeNavScreensUtils.homeNavScreens(ref),
-            ),
+      body: HomeNavScreensUtils.homeNavScreens(ref)[_currentIndex],
+      cupertinoTabChildBuilder: (context, index) {
+        return HomeNavScreensUtils.homeNavScreens(ref)[index];
+      },
       bottomNavigationBar: bottomNavBarComponent(
         context,
         currentIndex: _currentIndex,

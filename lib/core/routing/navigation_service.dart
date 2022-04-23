@@ -38,10 +38,7 @@ class NavigationService {
           .pushNamed(page, arguments: arguments);
     } else {
       return await Navigator.of(context, rootNavigator: rootNavigator).push(
-        platformPageRoute(
-          context: context,
-          builder: (context) => page,
-        ),
+        platformPageRoute(context: context, builder: (context) => page),
       );
     }
   }
@@ -53,6 +50,7 @@ class NavigationService {
     dynamic arguments,
     bool preventDuplicates = true,
     bool closeOverlays = false,
+    bool rootNavigator = false,
   }) async {
     removeAllFocus(context);
     if (closeOverlays) {
@@ -63,12 +61,11 @@ class NavigationService {
         final _isDuplicate = checkDuplicateRoute(context, page, arguments);
         if (_isDuplicate) return;
       }
-      return await Navigator.of(context).pushReplacementNamed(
-        page,
-        arguments: arguments,
-      );
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .pushReplacementNamed(page, arguments: arguments);
     } else {
-      return await Navigator.of(context).pushReplacement(page);
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .pushReplacement(page);
     }
   }
 
@@ -77,15 +74,17 @@ class NavigationService {
     T? result,
     bool maybePop = true,
     bool closeOverlays = false,
+    bool rootNavigator = false,
   }) async {
     removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
     if (maybePop) {
-      return await Navigator.of(context).maybePop(result);
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .maybePop(result);
     } else {
-      Navigator.of(context).pop(result);
+      Navigator.of(context, rootNavigator: rootNavigator).pop(result);
     }
   }
 
@@ -93,12 +92,13 @@ class NavigationService {
     BuildContext context, {
     required RoutePredicate predicate,
     bool closeOverlays = false,
+    bool rootNavigator = false,
   }) {
     removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
-    Navigator.of(context).popUntil(predicate);
+    Navigator.of(context, rootNavigator: rootNavigator).popUntil(predicate);
   }
 
   static Future<T?>? pushReplacementAll<T>(
@@ -107,22 +107,22 @@ class NavigationService {
     required dynamic page,
     dynamic arguments,
     bool closeOverlays = false,
+    bool rootNavigator = false,
   }) async {
     removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
     if (isNamed) {
-      return await Navigator.of(context).pushNamedAndRemoveUntil(
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .pushNamedAndRemoveUntil(
         page,
         (route) => false,
         arguments: arguments,
       );
     } else {
-      return await Navigator.of(context).pushAndRemoveUntil(
-        page,
-        (route) => false,
-      );
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .pushAndRemoveUntil(page, (route) => false);
     }
   }
 
@@ -133,22 +133,18 @@ class NavigationService {
     required bool Function(Route<dynamic>) predicate,
     dynamic arguments,
     bool closeOverlays = false,
+    bool rootNavigator = false,
   }) async {
     removeAllFocus(context);
     if (closeOverlays) {
       removeOverlays();
     }
     if (isNamed) {
-      return await Navigator.of(context).pushNamedAndRemoveUntil(
-        page,
-        predicate,
-        arguments: arguments,
-      );
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .pushNamedAndRemoveUntil(page, predicate, arguments: arguments);
     } else {
-      return await Navigator.of(context).pushAndRemoveUntil(
-        page,
-        predicate,
-      );
+      return await Navigator.of(context, rootNavigator: rootNavigator)
+          .pushAndRemoveUntil(page, predicate);
     }
   }
 

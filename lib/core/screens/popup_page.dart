@@ -1,4 +1,3 @@
-import 'package:deliverzler/core/services/platform_service.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,7 @@ class PopUpPage extends StatelessWidget {
   final bool extendBodyBehindAppBar;
   final Widget? drawer;
   final PlatformNavBar? bottomNavigationBar;
+  final Function(BuildContext, int)? cupertinoTabChildBuilder;
   final Widget? floatingActionButton;
   final Future<bool> Function()? onWillPop;
 
@@ -33,6 +33,7 @@ class PopUpPage extends StatelessWidget {
     this.resizeToAvoidBottomInset = false,
     this.drawer,
     this.bottomNavigationBar,
+    this.cupertinoTabChildBuilder,
     this.floatingActionButton,
     this.onWillPop,
   }) : super(key: key);
@@ -50,6 +51,23 @@ class PopUpPage extends StatelessWidget {
               backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
           appBar: appBar,
           bottomNavBar: bottomNavigationBar,
+
+          //Use cupertinoTabChildBuilder for showing IOS Tab pages to avoid duplicating page widgets
+          cupertinoTabChildBuilder: (_, index) {
+            return AnnotatedRegion<SystemUiOverlayStyle>(
+              value: statusBarColor != null
+                  ? Theme.of(context)
+                      .appBarTheme
+                      .systemOverlayStyle!
+                      .copyWith(statusBarColor: statusBarColor)
+                  : Theme.of(context).appBarTheme.systemOverlayStyle!,
+              child: SafeArea(
+                top: false,
+                bottom: safeAreaNavBar,
+                child: cupertinoTabChildBuilder!(context, index),
+              ),
+            );
+          },
           body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: statusBarColor != null
                 ? Theme.of(context)
@@ -57,13 +75,7 @@ class PopUpPage extends StatelessWidget {
                     .systemOverlayStyle!
                     .copyWith(statusBarColor: statusBarColor)
                 : Theme.of(context).appBarTheme.systemOverlayStyle!,
-            child: PlatformService.instance.isMaterialApp()
-                ? body
-                : SafeArea(
-                    top: false,
-                    bottom: safeAreaNavBar,
-                    child: body,
-                  ),
+            child: body,
           ),
           material: (_, __) {
             return MaterialScaffoldData(

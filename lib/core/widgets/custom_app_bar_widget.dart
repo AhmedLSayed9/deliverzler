@@ -146,6 +146,7 @@ class CustomBackButton extends StatelessWidget {
       },
       cupertino: (_, __) {
         return CupertinoIconButtonData(
+          minSize: 0.0,
           alignment: Alignment.center,
         );
       },

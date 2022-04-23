@@ -96,7 +96,7 @@ class CustomButton extends StatelessWidget {
       },
       cupertino: (_, __) {
         return CupertinoElevatedButtonData(
-          minSize: minHeight,
+          minSize: minHeight ?? Sizes.roundedButtonMinWidth(context),
           padding: padding ?? EdgeInsets.zero,
           borderRadius: shape != null
               ? (shape as RoundedRectangleBorder)
