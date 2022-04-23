@@ -75,8 +75,8 @@ class CustomButton extends StatelessWidget {
         return MaterialElevatedButtonData(
           style: ElevatedButton.styleFrom(
             minimumSize: Size(
-              minWidth ?? Sizes.roundedButtonMinWidth(context),
               minHeight ?? Sizes.roundedButtonMinHeight(context),
+              minWidth ?? Sizes.roundedButtonMinWidth(context),
             ),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             padding: padding ?? EdgeInsets.zero,
@@ -96,7 +96,7 @@ class CustomButton extends StatelessWidget {
       },
       cupertino: (_, __) {
         return CupertinoElevatedButtonData(
-          minSize: minHeight ?? Sizes.roundedButtonMinWidth(context),
+          minSize: minHeight ?? Sizes.roundedButtonMinHeight(context),
           padding: padding ?? EdgeInsets.zero,
           borderRadius: shape != null
               ? (shape as RoundedRectangleBorder)
