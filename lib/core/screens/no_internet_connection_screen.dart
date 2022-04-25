@@ -43,7 +43,8 @@ class NoInternetConnection extends StatelessWidget {
                       page: RoutePaths.coreSplash,
                     );
                   } else {
-                    NavigationService.goBack(context);
+                    //Use pop instead of maybePop to be able to back to nested navigator from this screen
+                    NavigationService.goBack(context, maybePop: false);
                   }
                 }
               },
