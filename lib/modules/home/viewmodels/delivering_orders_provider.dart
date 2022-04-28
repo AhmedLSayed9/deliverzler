@@ -49,7 +49,7 @@ class DeliveringOrdersNotifier
   }
 
   updateDeliveryGeoPointForDeliveringOrders(Position location) async {
-    for (var order in state) {
+    for (final order in state) {
       final _result =
           await ref.watch(ordersRepoProvider).updateDeliveryGeoPoint(
                 orderId: order.orderId,
@@ -72,7 +72,7 @@ class DeliveringOrdersNotifier
 
   //Send local notification when any order arrive.
   checkArrivedDeliveringOrders(Position location) {
-    for (var order in state) {
+    for (final order in state) {
       if (order.orderGeoPoint != null && order.didShowNotification == false) {
         final _distance = MapService.instance.getDistanceBetweenTwoCoordinates(
           firstLocation: LatLng(

@@ -21,7 +21,7 @@ class Validators {
         value.contains(RegExp(r'[0-9]|٩|٠|١|٢|٣|٤|٥|٦|٧|٨')) &&
         !value.contains("+") &&
         !value.contains(RegExp(r'[ء-ي]'))) {
-      if (checkPattern(pattern: patternMobileNumber, value: value)) {
+      if (!checkPattern(pattern: patternMobileNumber, value: value)) {
         return tr(NavigationService.context).pleaseEnterValidNumber;
       }
     }
@@ -39,7 +39,7 @@ class Validators {
       return tr(NavigationService.context).nameMustBeAtLeast2Letters;
     } else if (value.toString().length > 30) {
       return tr(NavigationService.context).nameMustBeAtMost30Letters;
-    } else if (checkPattern(pattern: patternName, value: value)) {
+    } else if (!checkPattern(pattern: patternName, value: value)) {
       return tr(NavigationService.context).pleaseEnterValidName;
     } else {
       return null;
@@ -53,7 +53,7 @@ class Validators {
 
     if (value!.isEmpty) {
       return tr(NavigationService.context).thisFieldIsEmpty;
-    } else if (_checkPattern) {
+    } else if (!_checkPattern) {
       return tr(NavigationService.context).pleaseEnterValidEmail;
     } else {
       return null;
@@ -75,6 +75,6 @@ class Validators {
 
   bool checkPattern({pattern, value}) {
     RegExp regularCheck = RegExp(pattern);
-    return !regularCheck.hasMatch(value);
+    return regularCheck.hasMatch(value);
   }
 }

@@ -15,7 +15,7 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, ref) {
     //This prevent disposing homeNavRoutesProviders when switching between tabs
     //Also using autoDispose provider is necessary to reset providers when home is popped
-    for (var provider in homeNavRoutesProviders) {
+    for (final provider in homeNavRoutesProviders) {
       ref.watch(provider.notifier);
     }
     final _currentIndex = ref.watch(homeNavIndexProvider);

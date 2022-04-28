@@ -22,7 +22,7 @@ class LocationChangeCallBacksViewModel {
   }
 
   executeCallBacks(Position newLocation) {
-    for (var fn in _locationChangeCallbacks.values) {
+    for (final fn in _locationChangeCallbacks.values) {
       fn.call(newLocation);
     }
   }

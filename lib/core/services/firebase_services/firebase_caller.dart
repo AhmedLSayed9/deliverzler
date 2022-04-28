@@ -198,7 +198,7 @@ class FirebaseCaller {
 
   Future deleteAllFolderImages({required String path}) async {
     return await _firebaseStorage.ref().child(path).listAll().then((result) {
-      for (var file in result.items) {
+      for (final file in result.items) {
         file.delete();
       }
     });
