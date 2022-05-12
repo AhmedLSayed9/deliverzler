@@ -49,9 +49,9 @@ class HomeScreen extends HookConsumerWidget {
       drawer: MainDrawer(
         scaffoldKey: _scaffoldKey,
       ),
-      body: HomeNavScreensUtils.homeNavScreens(ref)[_currentIndex],
+      body: HomeNavScreensUtils.homeNavScreens[_currentIndex],
       cupertinoTabChildBuilder: (context, index) {
-        return HomeNavScreensUtils.homeNavScreens(ref)[index];
+        return HomeNavScreensUtils.homeNavScreens[index];
       },
       bottomNavigationBar: bottomNavBarComponent(
         context,
