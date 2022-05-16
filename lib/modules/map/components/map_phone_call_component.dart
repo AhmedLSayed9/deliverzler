@@ -1,4 +1,3 @@
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/utils/validators.dart';
 import 'package:deliverzler/modules/map/viewmodels/map_state_providers.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +31,11 @@ class MapPhoneCallComponent extends ConsumerWidget {
               backgroundColor: AppColors.lightThemePrimary,
               elevation: 2,
               onPressed: () async {
-                final _phone = 'tel:$selectedOrderPhone';
-                if (await canLaunch(_phone)) {
-                  await launch(_phone);
+                final _phone = Uri.parse('tel:$selectedOrderPhone');
+                if (await canLaunchUrl(_phone)) {
+                  await launchUrl(_phone);
                 } else {
-                  AppDialogs.showErrorDialog(NavigationService.context);
+                  AppDialogs.showErrorDialog(context);
                 }
               },
             ),

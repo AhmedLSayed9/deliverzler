@@ -1,7 +1,8 @@
 import 'dart:developer';
 import 'dart:async';
 
-import 'package:deliverzler/core/services/location_service.dart';
+import 'package:deliverzler/core/services/location_service/i_location_service.dart';
+import 'package:deliverzler/core/services/location_service/location_service.dart';
 import 'package:deliverzler/core/utils/constants.dart';
 import 'package:deliverzler/modules/home/utils/location_error.dart';
 import 'package:deliverzler/modules/home/viewmodels/location_change_callbacks_viewmodel.dart';
@@ -19,11 +20,13 @@ class LocationServiceNotifier extends StateNotifier<LocationServiceState> {
   LocationServiceNotifier(this.ref)
       : super(const LocationServiceState.loading()) {
     _mainCoreProvider = ref.watch(mainCoreProvider);
+    _locationService = ref.watch(locationService);
     getCurrentLocation();
   }
 
   final Ref ref;
   late MainCoreProvider _mainCoreProvider;
+  late ILocationService _locationService;
 
   StreamSubscription? _currentLocationSubscription;
   Timer? _locationChangeTimer;
@@ -67,7 +70,7 @@ class LocationServiceNotifier extends StateNotifier<LocationServiceState> {
 
     initLocationChangeTimer();
     _currentLocationSubscription = Geolocator.getPositionStream(
-      locationSettings: LocationService.instance.getLocationSettings(),
+      locationSettings: _locationService.getLocationSettings(),
     ).listen(
       (newLoc) async {
         if (_isEnableOnLocationChanged) {

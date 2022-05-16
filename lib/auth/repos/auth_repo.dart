@@ -5,12 +5,14 @@ import 'package:deliverzler/auth/models/user_model.dart';
 import 'package:deliverzler/core/errors/exceptions.dart';
 import 'package:deliverzler/core/errors/failures.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authRepoProvider = Provider<AuthRepo>((ref) => AuthRepo());
 
 class AuthRepo {
-  Future<Either<Failure, UserModel>> signInWithEmailAndPassword({
+  Future<Either<Failure, UserModel>> signInWithEmailAndPassword(
+    BuildContext context, {
     required String email,
     required String password,
   }) async {
@@ -20,7 +22,7 @@ class AuthRepo {
       log(userCredential.toString());
       return Right(UserModel.fromUserCredential(userCredential.user!));
     } on FirebaseAuthException catch (e) {
-      final _errorMessage = Exceptions.firebaseAuthErrorMessage(e);
+      final _errorMessage = Exceptions.firebaseAuthErrorMessage(context, e);
       return Left(ServerFailure(message: _errorMessage));
     } catch (e) {
       log(e.toString());

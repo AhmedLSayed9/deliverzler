@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:deliverzler/core/errors/exceptions.dart';
 import 'package:deliverzler/core/errors/failures.dart';
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -35,8 +34,8 @@ class ImageSelector {
     try {
       final _pickedFile = await ImagePicker().pickImage(
         source: fromCamera ? ImageSource.camera : ImageSource.gallery,
-        maxHeight: Sizes.pickedImageMaxSize(NavigationService.context),
-        maxWidth: Sizes.pickedImageMaxSize(NavigationService.context),
+        maxHeight: Sizes.pickedImageMaxSize(context),
+        maxWidth: Sizes.pickedImageMaxSize(context),
       );
       return _pickedFile != null
           ? Right(File(_pickedFile.path))

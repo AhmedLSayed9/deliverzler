@@ -1,4 +1,9 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+final storageService = Provider<IStorageService>(
+  (ref) => StorageService(),
+);
 
 enum DataType {
   string,
@@ -8,14 +13,35 @@ enum DataType {
   stringList,
 }
 
-class StorageService {
-  StorageService._();
+abstract class IStorageService {
+  init();
 
-  static final instance = StorageService._();
+  saveData({
+    required String key,
+    required dynamic value,
+    required DataType dataType,
+  });
 
+  Future<dynamic> restoreData({
+    required String key,
+    required DataType dataType,
+  });
+
+  Future<bool> clearAll();
+
+  Future<bool> clearKey({required key});
+
+  getSharedPrefsMethod({
+    required bool restoring,
+    required DataType sharedPrefsMethod,
+  });
+}
+
+class StorageService implements IStorageService {
   late final bool hasHistory;
   late SharedPreferences _prefs;
 
+  @override
   init() async {
     _prefs = await SharedPreferences.getInstance();
     //initHasHistory();
@@ -30,36 +56,41 @@ class StorageService {
     }
   }*/
 
+  @override
   saveData({
     required String key,
     required dynamic value,
     required DataType dataType,
   }) async {
-    await _getSharedPrefsMethod(
+    await getSharedPrefsMethod(
       restoring: false,
       sharedPrefsMethod: dataType,
     )(key, value);
   }
 
+  @override
   Future<dynamic> restoreData({
     required String key,
     required DataType dataType,
   }) async {
-    return await _getSharedPrefsMethod(
+    return await getSharedPrefsMethod(
       restoring: true,
       sharedPrefsMethod: dataType,
     )(key);
   }
 
+  @override
   Future<bool> clearAll() async {
     return await _prefs.clear();
   }
 
+  @override
   Future<bool> clearKey({required key}) async {
     return await _prefs.remove(key);
   }
 
-  _getSharedPrefsMethod(
+  @override
+  getSharedPrefsMethod(
       {required bool restoring, required DataType sharedPrefsMethod}) {
     switch (sharedPrefsMethod) {
       case DataType.bool:

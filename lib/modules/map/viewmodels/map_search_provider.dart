@@ -1,5 +1,6 @@
 import 'package:deliverzler/core/utils/dialogs.dart';
 import 'package:deliverzler/modules/map/models/place_search_model.dart';
+import 'package:deliverzler/modules/map/repos/i_map_repo.dart';
 import 'package:deliverzler/modules/map/repos/map_repo.dart';
 import 'package:deliverzler/modules/map/viewmodels/selected_place_providers/selected_place_directions_provider.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +12,19 @@ final mapSearchProvider = StateNotifierProvider.autoDispose<MapSearchNotifier,
     List<PlaceSearchModel>>((ref) => MapSearchNotifier(ref));
 
 class MapSearchNotifier extends StateNotifier<List<PlaceSearchModel>> {
-  MapSearchNotifier(this.ref) : super([]);
+  MapSearchNotifier(this.ref) : super([]) {
+    _mapRepo = ref.watch(mapRepo);
+  }
 
   final Ref ref;
+  late IMapRepo _mapRepo;
 
   String sessionToken = const Uuid().v4();
   final FloatingSearchBarController floatingSearchBarController =
       FloatingSearchBarController();
 
   getPlaceSearchSuggestions(BuildContext context, String placeName) async {
-    final _result = await MapRepo.instance.getPlaceSearchSuggestions(
+    final _result = await _mapRepo.getPlaceSearchSuggestions(
       placeName: placeName,
       sessionToken: sessionToken,
     );

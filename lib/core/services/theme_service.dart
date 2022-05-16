@@ -19,7 +19,7 @@ class ThemeService {
     final _currentTheme = currentTheme ?? _reader(appThemeProvider);
     if (_currentTheme == ThemeMode.system) {
       return (platformBrightness ??
-              SchedulerBinding.instance?.window.platformBrightness) ==
+              SchedulerBinding.instance.window.platformBrightness) ==
           Brightness.dark;
     } else if (_currentTheme == ThemeMode.dark) {
       return true;

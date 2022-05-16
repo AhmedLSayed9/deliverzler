@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/modules/map/models/place_directions_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,15 +17,15 @@ class MapService {
 
   static Uint8List? _deliveryIcon;
 
-  Future<Uint8List> get deliveryIcon async {
+  Future<Uint8List> deliveryIcon(context) async {
     if (_deliveryIcon != null) return _deliveryIcon!;
-    _deliveryIcon = await getDeliveryIcon();
+    _deliveryIcon = await getDeliveryIcon(context);
     return _deliveryIcon!;
   }
 
-  getDeliveryIcon() async {
-    ByteData _byteData = await DefaultAssetBundle.of(NavigationService.context)
-        .load(AppImages.mapDeliveryIcon);
+  getDeliveryIcon(BuildContext context) async {
+    ByteData _byteData =
+        await DefaultAssetBundle.of(context).load(AppImages.mapDeliveryIcon);
     return _byteData.buffer.asUint8List();
   }
 
@@ -36,11 +35,12 @@ class MapService {
     );
   }
 
-  Future<Marker> getMyLocationMarker({
+  Future<Marker> getMyLocationMarker(
+    BuildContext context, {
     required LatLng position,
     required double rotation,
   }) async {
-    final _markerIcon = await deliveryIcon;
+    final _markerIcon = await deliveryIcon(context);
     return Marker(
       markerId: const MarkerId('currentLocation'),
       position: position,
@@ -48,7 +48,7 @@ class MapService {
       zIndex: 2,
       flat: true,
       infoWindow: InfoWindow(
-        title: tr(NavigationService.context).myCurrentLocation,
+        title: tr(context).myCurrentLocation,
       ),
       anchor: const Offset(0.5, 0.5),
       icon: BitmapDescriptor.fromBytes(_markerIcon),

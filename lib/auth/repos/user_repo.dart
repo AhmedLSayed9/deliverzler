@@ -5,12 +5,18 @@ import 'package:deliverzler/auth/models/user_model.dart';
 import 'package:deliverzler/core/errors/failures.dart';
 import 'package:deliverzler/core/services/firebase_services/firebase_caller.dart';
 import 'package:deliverzler/core/services/firebase_services/firestore_paths.dart';
+import 'package:deliverzler/core/services/firebase_services/i_firebase_caller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final userRepoProvider = Provider<UserRepo>((ref) => UserRepo());
+final userRepoProvider = Provider<UserRepo>((ref) => UserRepo(ref));
 
 class UserRepo {
-  final FirebaseCaller _firebaseCaller = FirebaseCaller.instance;
+  UserRepo(this.ref) {
+    _firebaseCaller = ref.watch(firebaseCaller);
+  }
+
+  final Ref ref;
+  late IFirebaseCaller _firebaseCaller;
 
   String? uid;
   UserModel? userModel;

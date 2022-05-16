@@ -117,16 +117,16 @@ class CustomTextField extends Container {
                               Theme.of(context).inputDecorationTheme.fillColor,
                           filled: true,
                           contentPadding: contentPadding ??
-                              EdgeInsetsDirectional.only(
-                                top: Sizes.textFieldVPaddingDefault(context),
-                                bottom: Sizes.textFieldVPaddingDefault(context),
-                                start: Sizes.textFieldHPaddingDefault(context),
+                              EdgeInsets.symmetric(
+                                vertical:
+                                    Sizes.textFieldVPaddingDefault(context),
+                                horizontal:
+                                    Sizes.textFieldHPaddingDefault(context),
                               ),
                           suffixIcon: suffixIcon != null
                               ? Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: Sizes.hPaddingSmallest(context),
-                                    vertical: Sizes.vPaddingSmallest(context),
+                                  padding: EdgeInsetsDirectional.only(
+                                    end: Sizes.hPaddingSmall(context),
                                   ),
                                   child: suffixIcon,
                                 )
@@ -134,6 +134,10 @@ class CustomTextField extends Container {
                           suffixIconColor: Theme.of(context)
                               .inputDecorationTheme
                               .suffixIconColor,
+                          suffixIconConstraints: const BoxConstraints(
+                            minHeight: 0,
+                            minWidth: 0,
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(

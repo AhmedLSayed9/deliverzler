@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:deliverzler/core/errors/failures.dart';
+import 'package:deliverzler/core/services/firebase_services/i_firebase_caller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:deliverzler/auth/repos/user_repo.dart';
 import 'package:deliverzler/core/services/firebase_services/firebase_caller.dart';
@@ -14,11 +15,12 @@ final ordersRepoProvider = Provider<OrdersRepo>((ref) => OrdersRepo(ref));
 class OrdersRepo {
   OrdersRepo(this.ref) {
     _userRepo = ref.watch(userRepoProvider);
+    _firebaseCaller = ref.watch(firebaseCaller);
   }
 
   final Ref ref;
   late UserRepo _userRepo;
-  final FirebaseCaller _firebaseCaller = FirebaseCaller.instance;
+  late IFirebaseCaller _firebaseCaller;
 
   Stream<List<OrderModel>> getUpcomingOrdersStream() {
     return _firebaseCaller.collectionStream<OrderModel>(
@@ -38,7 +40,7 @@ class OrdersRepo {
   Future<Either<Failure?, OrderModel>> getOrderById({
     required String orderId,
   }) async {
-    return await FirebaseCaller.instance.getData(
+    return await _firebaseCaller.getData(
       path: FirestorePaths.orderById(orderId: orderId),
       builder: (data, id) {
         if (data is! ServerFailure && data != null) {

@@ -40,10 +40,13 @@ class _PlatformBrightnessState
   late Brightness _brightness;
 
   @override
+  String? get debugLabel => 'usePlatformBrightness';
+
+  @override
   void initHook() {
     super.initHook();
-    _brightness = WidgetsBinding.instance!.window.platformBrightness;
-    WidgetsBinding.instance!.addObserver(this);
+    _brightness = WidgetsBinding.instance.window.platformBrightness;
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -51,7 +54,7 @@ class _PlatformBrightnessState
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -59,7 +62,7 @@ class _PlatformBrightnessState
   void didChangePlatformBrightness() {
     super.didChangePlatformBrightness();
     final _previous = _brightness;
-    _brightness = WidgetsBinding.instance!.window.platformBrightness;
+    _brightness = WidgetsBinding.instance.window.platformBrightness;
     hook.onBrightnessChange?.call(_previous, _brightness);
 
     if (hook.rebuildOnChange) {

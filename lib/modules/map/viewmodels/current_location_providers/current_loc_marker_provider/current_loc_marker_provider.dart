@@ -1,3 +1,4 @@
+import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/modules/home/viewmodels/location_service_provider/location_service_provider.dart';
 import 'package:deliverzler/modules/map/services/map_service.dart';
 import 'package:deliverzler/modules/map/viewmodels/current_location_providers/current_loc_camera_position_provider.dart';
@@ -22,6 +23,7 @@ class CurrentLocMarkerNotifier extends StateNotifier<CurrentLocMarkerState> {
     final _position = ref.read(currentLocCameraPositionProvider.notifier).state;
 
     final _marker = await MapService.instance.getMyLocationMarker(
+      NavigationService.context,
       position: _position.target,
       rotation: _currentLocation?.heading ?? 0,
     );

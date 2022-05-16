@@ -1,21 +1,31 @@
 import 'dart:developer';
 
-import 'package:deliverzler/core/services/data_connection_service.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
+import 'package:deliverzler/core/services/data_connection_service.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ConnectivityService {
-  ConnectivityService._();
+final connectivityService = Provider<IConnectivityService>(
+  (ref) => ConnectivityService(),
+);
 
-  static final instance = ConnectivityService._();
+abstract class IConnectivityService {
+  init();
 
+  Future<bool> checkIfConnectedByConnectivity();
+
+  Future<bool> checkIfConnected();
+}
+
+class ConnectivityService implements IConnectivityService {
   //`_isInitialized` is used to ensure that the listeners are only called once
   bool _isInitialized = false;
 
   //`_isInitialized` is used to prevent duplicate navigation from the two stream
   bool _isConnected = true;
 
+  @override
   init() {
     if (_isInitialized) return;
     _initConnectivityStream();
@@ -59,12 +69,14 @@ class ConnectivityService {
     );
   }
 
+  @override
   Future<bool> checkIfConnectedByConnectivity() async {
     _isConnected =
         await Connectivity().checkConnectivity() != ConnectivityResult.none;
     return _isConnected;
   }
 
+  @override
   Future<bool> checkIfConnected() async {
     _isConnected = await DataConnectionChecker().hasConnection;
     return _isConnected;

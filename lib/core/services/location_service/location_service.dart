@@ -2,34 +2,41 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:deliverzler/core/services/location_service/i_location_service.dart';
 import 'package:deliverzler/core/utils/constants.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geolocator_android/src/types/foreground_settings.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:location/location.dart' as loc;
 
-class LocationService {
-  LocationService._();
+final locationService = Provider<ILocationService>(
+  (ref) => GeoLocatorLocationService(),
+);
 
-  static final instance = LocationService._();
-
+class GeoLocatorLocationService implements ILocationService {
+  @override
   Future<bool> isLocationServiceEnabled() async {
     return await Geolocator.isLocationServiceEnabled();
   }
 
+  @override
   Future<bool> isWhileInUsePermissionGranted() async {
     return await Geolocator.checkPermission() == LocationPermission.whileInUse;
   }
 
+  @override
   Future<bool> isAlwaysPermissionGranted() async {
     return await Geolocator.checkPermission() == LocationPermission.always;
   }
 
+  @override
   Future<bool> isTrackingPermissionGranted() async {
     final _status = await AppTrackingTransparency.trackingAuthorizationStatus;
     return (_status == TrackingStatus.notSupported ||
         _status == TrackingStatus.authorized);
   }
 
+  @override
   Future<bool> enableLocationService() async {
     bool _serviceEnabled = await isLocationServiceEnabled();
     if (_serviceEnabled) {
@@ -40,6 +47,7 @@ class LocationService {
     }
   }
 
+  @override
   Future<bool> requestWhileInUsePermission() async {
     if (await isWhileInUsePermissionGranted()) {
       return true;
@@ -49,6 +57,7 @@ class LocationService {
     }
   }
 
+  @override
   Future<bool> requestAlwaysPermission() async {
     if (await isAlwaysPermissionGranted()) {
       return true;
@@ -59,6 +68,7 @@ class LocationService {
   }
 
   //Request AppTrackingTransparency for IOS
+  @override
   Future<bool> requestTrackingPermission() async {
     try {
       if (await isTrackingPermissionGranted()) {
@@ -75,6 +85,7 @@ class LocationService {
     }
   }
 
+  @override
   LocationSettings getLocationSettings({
     LocationAccuracy? accuracy,
     int? interval,
@@ -112,6 +123,7 @@ class LocationService {
     }
   }
 
+  @override
   Future<Position?> getLocation() async {
     try {
       return await Geolocator.getCurrentPosition(

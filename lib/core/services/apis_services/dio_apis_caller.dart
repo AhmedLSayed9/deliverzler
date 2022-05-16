@@ -2,10 +2,16 @@ import 'dart:developer';
 
 import 'package:deliverzler/core/errors/exceptions.dart';
 import 'package:deliverzler/core/errors/failures.dart';
+import 'package:deliverzler/core/services/apis_services/i_apis_caller.dart';
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ApisCaller {
-  ApisCaller._() {
+final apisCaller = Provider<IApisCaller>(
+  (ref) => DioApisCaller(),
+);
+
+class DioApisCaller implements IApisCaller {
+  DioApisCaller() {
     dio = Dio(
       BaseOptions(
         connectTimeout: 20000,
@@ -14,14 +20,13 @@ class ApisCaller {
     );
   }
 
-  static final instance = ApisCaller._();
-
   late Dio dio;
 
+  @override
   Future<T> getData<T>({
     required String path,
     Map<String, dynamic>? headers,
-    required Map<String, String>? queryParameters,
+    Map<String, String>? queryParameters,
     required T Function(dynamic data) builder,
   }) async {
     try {
@@ -38,6 +43,7 @@ class ApisCaller {
     }
   }
 
+  @override
   Future<T> postData<T>({
     required String path,
     required Map<String, dynamic>? headers,
@@ -58,6 +64,7 @@ class ApisCaller {
     }
   }
 
+  @override
   Future<T> patchData<T>({
     required String path,
     required Map<String, dynamic>? headers,
@@ -78,6 +85,7 @@ class ApisCaller {
     }
   }
 
+  @override
   Future<T> putData<T>({
     required String path,
     required Map<String, dynamic>? headers,
@@ -98,6 +106,7 @@ class ApisCaller {
     }
   }
 
+  @override
   Future<T> deleteData<T>({
     required String path,
     required Map<String, dynamic>? headers,

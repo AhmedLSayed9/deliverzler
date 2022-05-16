@@ -7,6 +7,7 @@ import 'package:deliverzler/modules/home/viewmodels/home_state_providers.dart';
 import 'package:deliverzler/modules/home/viewmodels/location_service_provider/location_service_provider.dart';
 import 'package:deliverzler/modules/map/models/place_directions_model.dart';
 import 'package:deliverzler/modules/map/models/place_search_model.dart';
+import 'package:deliverzler/modules/map/repos/i_map_repo.dart';
 import 'package:deliverzler/modules/map/repos/map_repo.dart';
 import 'package:deliverzler/modules/map/services/map_service.dart';
 import 'package:deliverzler/modules/map/utils/constants.dart';
@@ -23,11 +24,13 @@ final selectedPlaceDirectionsProvider = StateNotifierProvider.autoDispose<
 class SelectedPlaceDirectionsNotifier
     extends StateNotifier<PlaceDirectionsModel?> {
   SelectedPlaceDirectionsNotifier(this.ref) : super(null) {
+    _mapRepo = ref.watch(mapRepo);
     _selectedOrderGeoPointProvider =
         ref.watch(selectedPlaceGeoPointProvider.notifier);
   }
 
   final Ref ref;
+  late IMapRepo _mapRepo;
   late StateController<GeoPoint?> _selectedOrderGeoPointProvider;
 
   setSelectedPlaceByGeoPoint() async {
@@ -47,7 +50,7 @@ class SelectedPlaceDirectionsNotifier
     required PlaceSearchModel placeSearchModel,
     required String sessionToken,
   }) async {
-    final _result = await MapRepo.instance.getPlaceDetails(
+    final _result = await _mapRepo.getPlaceDetails(
       placeId: placeSearchModel.placeId,
       sessionToken: sessionToken,
     );
@@ -76,7 +79,7 @@ class SelectedPlaceDirectionsNotifier
   updateSelectedPlaceDirections() async {
     ref.read(locationServiceProvider).whenOrNull(
       available: (loc) async {
-        final _result = await MapRepo.instance.getPlaceDirections(
+        final _result = await _mapRepo.getPlaceDirections(
           origin: loc,
           destination: _selectedOrderGeoPointProvider.state!,
         );

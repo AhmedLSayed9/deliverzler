@@ -1,23 +1,26 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 abstract class Exceptions {
-  static String errorMessage(dynamic e, {String? server}) {
-    if (e is TimeoutException) {
+  static String errorMessage(
+    dynamic error, {
+    String? server,
+  }) {
+    if (error is TimeoutException) {
       return 'Looks like the server is taking to long to respond.';
     }
 
-    if (e is DioError) {
-      if (e.error is SocketException) {
-        return e.error.toString().replaceAll("SocketException: ", "");
+    if (error is DioError) {
+      if (error.error is SocketException) {
+        return error.error.toString().replaceAll("SocketException: ", "");
       }
 
-      final statusCode = e.response?.statusCode;
+      final statusCode = error.response?.statusCode;
 
       switch (statusCode) {
         case 400:
@@ -29,13 +32,15 @@ abstract class Exceptions {
         default:
           return 'Cannot connect to server' +
               (server ??
-                  e.toString().substring(
-                      0, e.toString().length < 30 ? e.toString().length : 30));
+                  error.toString().substring(
+                      0,
+                      error.toString().length < 30
+                          ? error.toString().length
+                          : 30));
       }
     } else {
-      return e
-          .toString()
-          .substring(0, e.toString().length < 30 ? e.toString().length : 30);
+      return error.toString().substring(
+          0, error.toString().length < 30 ? error.toString().length : 30);
     }
   }
 
@@ -43,13 +48,14 @@ abstract class Exceptions {
     return e is DioError ? e.response?.statusCode : null;
   }
 
-  static String firebaseAuthErrorMessage(FirebaseAuthException e) {
+  static String firebaseAuthErrorMessage(
+      BuildContext context, FirebaseAuthException e) {
     if (e.code == 'network-request-failed') {
-      return tr(NavigationService.context).pleaseTryAgainLater;
+      return tr(context).pleaseTryAgainLater;
     } else if (e.code == 'auth/invalid-email' || e.code == 'invalid-password') {
-      return tr(NavigationService.context).emailOrPasswordIsInCorrect;
+      return tr(context).emailOrPasswordIsInCorrect;
     } else {
-      return tr(NavigationService.context).pleaseTryAgainLater;
+      return tr(context).pleaseTryAgainLater;
     }
   }
 }

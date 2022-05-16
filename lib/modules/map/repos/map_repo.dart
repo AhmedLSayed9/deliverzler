@@ -1,21 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:deliverzler/core/errors/failures.dart';
+import 'package:deliverzler/core/services/apis_services/dio_apis_caller.dart';
+import 'package:deliverzler/core/services/apis_services/i_apis_caller.dart';
+import 'package:deliverzler/modules/map/repos/i_map_repo.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:deliverzler/core/services/apis_services/apis_caller.dart';
 import 'package:deliverzler/core/services/apis_services/apis_paths.dart';
 import 'package:deliverzler/modules/map/models/place_directions_model.dart';
 import 'package:deliverzler/modules/map/utils/constants.dart';
 import 'package:deliverzler/modules/map/models/place_search_model.dart';
 import 'package:deliverzler/modules/map/models/place_details_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MapRepo {
-  MapRepo._();
+final mapRepo = Provider<IMapRepo>(
+  (ref) => MapRepo(ref),
+);
 
-  static final MapRepo instance = MapRepo._();
+class MapRepo implements IMapRepo {
+  MapRepo(this.ref) {
+    _apiCaller = ref.watch(apisCaller);
+  }
 
-  final ApisCaller _apiCaller = ApisCaller.instance;
+  final Ref ref;
+  late IApisCaller _apiCaller;
 
+  @override
   Future<Either<Failure?, List<PlaceSearchModel>>> getPlaceSearchSuggestions({
     required String placeName,
     required String sessionToken,
@@ -47,6 +56,7 @@ class MapRepo {
     );
   }
 
+  @override
   Future<Either<Failure?, PlaceDetailsModel>> getPlaceDetails({
     required String placeId,
     required String sessionToken,
@@ -69,6 +79,7 @@ class MapRepo {
     );
   }
 
+  @override
   Future<Either<Failure?, PlaceDirectionsModel>> getPlaceDirections({
     required Position origin,
     required GeoPoint destination,

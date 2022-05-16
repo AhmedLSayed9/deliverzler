@@ -17,10 +17,10 @@ class ServicesInitializer {
 
   static final ServicesInitializer instance = ServicesInitializer._();
 
-  late ProviderContainer _container;
+  late ProviderContainer container;
 
   init(WidgetsBinding widgetsBinding, ProviderContainer container) async {
-    _container = container;
+    this.container = container;
     //Init FirebaseApp instance before runApp
     await _initFirebase();
     //This Prevent closing splash screen until we finish initializing our services.
@@ -40,7 +40,7 @@ class ServicesInitializer {
   }
 
   _initializeServicesRef() {
-    ThemeService(_container.read);
+    ThemeService(container.read);
   }
 
   _initializeCustomSplashImages(BuildContext context) async {
@@ -57,23 +57,23 @@ class ServicesInitializer {
   }
 
   _initStorageService() async {
-    await StorageService.instance.init();
+    await container.read(storageService).init();
   }
 
   _initLocalization() async {
-    await _container.read(appLocaleProvider.notifier).init();
+    await container.read(appLocaleProvider.notifier).init();
   }
 
   _initTheme() async {
-    await _container.read(appThemeProvider.notifier).init();
+    await container.read(appThemeProvider.notifier).init();
   }
 
   _initConnectivity() async {
-    ConnectivityService.instance.init();
+    container.read(connectivityService).init();
   }
 
   _initNotificationSettings() async {
-    await LocalNotificationService(_container).init();
+    await LocalNotificationService(container).init();
   }
 
   _initFirebase() async {
@@ -95,7 +95,7 @@ class ServicesInitializer {
   }
 
   _cacheDefaultImages() async {
-    await precacheImage(
-        const AssetImage(AppImages.appLogoIcon), NavigationService.context);
+    final _context = NavigationService.context;
+    await precacheImage(const AssetImage(AppImages.appLogoIcon), _context);
   }
 }

@@ -6,11 +6,16 @@ import 'package:timeago/timeago.dart' as timeago;
 
 final appLocaleProvider =
     StateNotifierProvider<AppLocaleNotifier, Locale?>((ref) {
-  return AppLocaleNotifier();
+  return AppLocaleNotifier(ref);
 });
 
 class AppLocaleNotifier extends StateNotifier<Locale?> {
-  AppLocaleNotifier() : super(null);
+  AppLocaleNotifier(this.ref) : super(null) {
+    _storageService = ref.watch(storageService);
+  }
+
+  final Ref ref;
+  late IStorageService _storageService;
 
   init() async {
     await getUserStoredLocale();
@@ -18,7 +23,7 @@ class AppLocaleNotifier extends StateNotifier<Locale?> {
   }
 
   getUserStoredLocale() async {
-    final _appLocale = await StorageService.instance.restoreData(
+    final _appLocale = await _storageService.restoreData(
       key: StorageKeys.locale,
       dataType: DataType.string,
     );
@@ -35,7 +40,7 @@ class AppLocaleNotifier extends StateNotifier<Locale?> {
   }
 
   Future setUserStoredLocale({required String languageCode}) async {
-    await StorageService.instance.saveData(
+    await _storageService.saveData(
       value: languageCode,
       key: StorageKeys.locale,
       dataType: DataType.string,

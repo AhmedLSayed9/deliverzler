@@ -23,8 +23,8 @@ class CacheService {
   clearAllCache() async {
     await customCacheManager.emptyCache();
     //These clear app's live cache not global or stored cache
-    imageCache!.clear();
-    imageCache!.clearLiveImages();
+    imageCache.clear();
+    imageCache.clearLiveImages();
   }
 
   removeFileFromCache(String cacheKey) async {

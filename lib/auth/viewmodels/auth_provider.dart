@@ -34,6 +34,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = const AuthState.loading();
     NavigationService.removeAllFocus(context);
     final _result = await _authRepo.signInWithEmailAndPassword(
+      context,
       email: email,
       password: password,
     );

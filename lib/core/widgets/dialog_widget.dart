@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/utils/dialog_message_state.dart';
-import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/utils/dialog_widget_state.dart';
 import 'package:deliverzler/core/widgets/custom_dialog.dart';
@@ -39,18 +38,12 @@ class DialogWidget {
               contentPadding: contentPadding,
               child: child,
               buttonText2: textButton2,
-              onPressed2: onPressed2 ??
-                  () {
-                    NavigationService.goBack(context);
-                  },
+              onPressed2: onPressed2,
               title: title,
               image: image ?? dialogMessageData[dialogWidgetState]['icon'],
               buttonText: textButton,
               footer: footer,
-              onPressed: onPressed??
-                      () {
-                    NavigationService.goBack(context);
-                  },
+              onPressed: onPressed,
               description: description,
               backgroundColor: const Color(0xffffffff),
               shape: RoundedRectangleBorder(

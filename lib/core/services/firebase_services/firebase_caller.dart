@@ -4,13 +4,15 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliverzler/core/errors/exceptions.dart';
 import 'package:deliverzler/core/errors/failures.dart';
+import 'package:deliverzler/core/services/firebase_services/i_firebase_caller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FirebaseCaller {
-  FirebaseCaller._();
+final firebaseCaller = Provider<IFirebaseCaller>(
+  (ref) => FirebaseCaller(),
+);
 
-  static final instance = FirebaseCaller._();
-
+class FirebaseCaller implements IFirebaseCaller {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
@@ -18,6 +20,7 @@ class FirebaseCaller {
   // set with merge will update fields in the document or create it if it doesn't exists//
   // update will update fields but will fail if the document doesn't exist
   // create will create the document but fail if the document already exists
+  @override
   Future<T> setData<T>({
     required String path,
     required Map<String, dynamic> data,
@@ -38,6 +41,7 @@ class FirebaseCaller {
     }
   }
 
+  @override
   Future<T> updateData<T>({
     required String path,
     required Map<String, dynamic> data,
@@ -57,12 +61,14 @@ class FirebaseCaller {
     }
   }
 
+  @override
   Future<void> deleteData({required String path}) async {
     final reference = _firebaseFirestore.doc(path);
     log('delete: $path');
     await reference.delete();
   }
 
+  @override
   Future<String> addDataToCollection({
     required String path,
     required Map<String, dynamic> data,
@@ -72,6 +78,7 @@ class FirebaseCaller {
     return await reference.add(data).then((value) => value.id);
   }
 
+  @override
   Future<T> getData<T>({
     required String path,
     required T Function(dynamic data, String? documentId) builder,
@@ -90,6 +97,7 @@ class FirebaseCaller {
     }
   }
 
+  @override
   Future<T> getCollectionData<T>({
     required String path,
     required Future<T> Function(
@@ -109,6 +117,7 @@ class FirebaseCaller {
     return builder(null);
   }
 
+  @override
   Future deleteAllCollectionData<T>({
     required String path,
   }) async {
@@ -134,6 +143,7 @@ class FirebaseCaller {
     return batch.commit();
   }
 
+  @override
   Stream<List<T>> collectionStream<T>({
     required String path,
     required T Function(Map<String, dynamic>? data, String documentId) builder,
@@ -161,6 +171,7 @@ class FirebaseCaller {
     });
   }
 
+  @override
   Stream<T> documentStream<T>({
     required String path,
     required T Function(Map<String, dynamic>? data, String documentId) builder,
@@ -173,6 +184,7 @@ class FirebaseCaller {
   }
 
   /// FireBaseStorage
+  @override
   Future<T> uploadImage<T>({
     required String path,
     required File file,
@@ -192,10 +204,12 @@ class FirebaseCaller {
     }
   }
 
+  @override
   Future deleteImage({required String path}) async {
     return await _firebaseStorage.ref().child(path).delete();
   }
 
+  @override
   Future deleteAllFolderImages({required String path}) async {
     return await _firebaseStorage.ref().child(path).listAll().then((result) {
       for (final file in result.items) {

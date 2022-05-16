@@ -6,8 +6,9 @@ import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class NoInternetConnection extends StatelessWidget {
+class NoInternetConnection extends ConsumerWidget {
   final bool offAll;
 
   const NoInternetConnection({
@@ -16,7 +17,9 @@ class NoInternetConnection extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final _connectivityService = ref.watch(connectivityService);
+
     return PopUpPage(
       onWillPop: () {
         NavigationService.pushReplacementAll(
@@ -33,7 +36,7 @@ class NoInternetConnection extends StatelessWidget {
           title: tr(context).noInternetConnection,
           description: tr(context).pleaseCheckYourDeviceNetwork,
           onPressed: () {
-            ConnectivityService.instance.checkIfConnected().then(
+            _connectivityService.checkIfConnected().then(
               (value) {
                 if (value) {
                   if (offAll) {

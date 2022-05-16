@@ -61,7 +61,7 @@ class CardOrderDetailsComponent extends StatelessWidget {
         ),
         CustomText.h6(
           context,
-          DateParser.instance.convertEpochToLocal(orderModel.date),
+          DateParser.instance.convertEpochToLocal(context, orderModel.date),
           overflow: TextOverflow.ellipsis,
         ),
       ],
