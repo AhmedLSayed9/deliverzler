@@ -19,8 +19,8 @@ abstract class HomeNavScreensUtils {
     ),
     NestedNavigatorScreen(
       index: 1,
-      screenPath: RoutePaths.homeMain,
-      onGenerateRoute: AppRouter.generateHomeMainNestedRoute,
+      screenPath: RoutePaths.home,
+      onGenerateRoute: AppRouter.generateHomeNestedRoute,
     ),
     NestedNavigatorScreen(
       index: 2,

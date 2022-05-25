@@ -7,7 +7,7 @@ final homeNavIndexProvider = StateProvider.autoDispose<int>((ref) => 1);
 
 final homeNavRoutesProviders = [
   StateProvider.autoDispose<String>((ref) => RoutePaths.profile),
-  StateProvider.autoDispose<String>((ref) => RoutePaths.homeMain),
+  StateProvider.autoDispose<String>((ref) => RoutePaths.home),
   StateProvider.autoDispose<String>((ref) => RoutePaths.settings),
 ];
 

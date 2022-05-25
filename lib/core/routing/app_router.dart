@@ -1,8 +1,8 @@
 import 'package:deliverzler/core/routing/navigation_service.dart';
 import 'package:deliverzler/core/routing/navigation_transitions.dart';
 import 'package:deliverzler/core/routing/route_paths.dart';
+import 'package:deliverzler/modules/home/screens/home_base_screen.dart';
 import 'package:deliverzler/modules/home/screens/home_screen.dart';
-import 'package:deliverzler/modules/home/screens/orders_screen.dart';
 import 'package:deliverzler/modules/home/utils/home_nav_screens_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/auth/screens/login_screen.dart';
@@ -44,10 +44,10 @@ class AppRouter {
           transitionDuration: const Duration(seconds: 1),
         );
 
-      //Home
-      case RoutePaths.home:
+      //HomeBase
+      case RoutePaths.homeBase:
         return NavigationFadeTransition(
-          const HomeScreen(),
+          const HomeBaseScreen(),
           settings: settings,
         );
 
@@ -69,18 +69,18 @@ class AppRouter {
   }
 
   ///Nested Navigators
-  static Route<dynamic> generateHomeMainNestedRoute(RouteSettings settings) {
+  static Route<dynamic> generateHomeNestedRoute(RouteSettings settings) {
     switch (settings.name) {
-      //Home Page
-      case RoutePaths.homeMain:
+      //Home
+      case RoutePaths.home:
         return NavigationFadeTransition(
-          const OrdersScreen(),
+          const HomeScreen(),
           settings: settings,
         );
 
       default:
         return NavigationFadeTransition(
-          const OrdersScreen(),
+          const HomeScreen(),
           settings: settings,
         );
     }

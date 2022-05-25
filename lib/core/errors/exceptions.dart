@@ -8,19 +8,19 @@ import 'package:flutter/material.dart';
 
 abstract class Exceptions {
   static String errorMessage(
-    dynamic error, {
+    dynamic e, {
     String? server,
   }) {
-    if (error is TimeoutException) {
+    if (e is TimeoutException) {
       return 'Looks like the server is taking to long to respond.';
     }
 
-    if (error is DioError) {
-      if (error.error is SocketException) {
-        return error.error.toString().replaceAll("SocketException: ", "");
+    if (e is DioError) {
+      if (e.error is SocketException) {
+        return e.error.toString().replaceAll("SocketException: ", "");
       }
 
-      final statusCode = error.response?.statusCode;
+      final statusCode = e.response?.statusCode;
 
       switch (statusCode) {
         case 400:
@@ -32,15 +32,13 @@ abstract class Exceptions {
         default:
           return 'Cannot connect to server' +
               (server ??
-                  error.toString().substring(
-                      0,
-                      error.toString().length < 30
-                          ? error.toString().length
-                          : 30));
+                  e.toString().substring(
+                      0, e.toString().length < 30 ? e.toString().length : 30));
       }
     } else {
-      return error.toString().substring(
-          0, error.toString().length < 30 ? error.toString().length : 30);
+      return e
+          .toString()
+          .substring(0, e.toString().length < 30 ? e.toString().length : 30);
     }
   }
 

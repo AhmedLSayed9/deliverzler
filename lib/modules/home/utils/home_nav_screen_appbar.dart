@@ -15,7 +15,7 @@ PlatformAppBar? getHomeNavScreenAppBar(
   GlobalKey<ScaffoldState>? scaffoldKey,
 }) {
   switch (routeName) {
-    case RoutePaths.homeMain:
+    case RoutePaths.home:
       return CustomAppBar(
         context,
         scaffoldKey: scaffoldKey,

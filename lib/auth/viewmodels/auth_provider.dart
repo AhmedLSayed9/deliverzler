@@ -75,7 +75,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     NavigationService.pushReplacementAll(
       context,
       isNamed: true,
-      page: RoutePaths.home,
+      page: RoutePaths.homeBase,
     );
   }
 }

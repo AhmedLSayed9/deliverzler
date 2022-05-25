@@ -94,7 +94,7 @@ class DeliveringOrdersNotifier
 
   showOrderArrivedNotification(String orderId) {
     final _notificationModel = NotificationModel(
-      route: RoutePaths.home,
+      route: RoutePaths.homeBase,
       data: {'orderId': orderId},
     );
     LocalNotificationService.instance.showInstantNotification(
