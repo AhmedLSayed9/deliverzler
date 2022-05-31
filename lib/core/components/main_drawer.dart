@@ -1,4 +1,4 @@
-import 'package:deliverzler/modules/home/viewmodels/home_nav_providers.dart';
+import 'package:deliverzler/modules/home/viewmodels/home_base_nav_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/components/main_drawer_bottom_component.dart';
 import 'package:deliverzler/core/components/main_drawer_user_info_component.dart';
@@ -19,7 +19,8 @@ class MainDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final _indexNotifier = ref.watch(HomeNavProviders.currentIndex.notifier);
+    final _indexNotifier =
+        ref.watch(HomeBaseNavProviders.currentIndex.notifier);
 
     return SizedBox(
       width: Sizes.mainDrawerWidth(context),

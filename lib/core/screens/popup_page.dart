@@ -11,6 +11,7 @@ class PopUpPage extends StatelessWidget {
   final Color? backgroundColor;
   final Widget body;
   final PlatformAppBar? appBar;
+  final dynamic consumerAppBar;
   final bool resizeToAvoidBottomInset;
   final bool extendBodyBehindAppBar;
   final Widget? drawer;
@@ -29,6 +30,7 @@ class PopUpPage extends StatelessWidget {
     this.backgroundColor,
     this.body = const SizedBox(),
     this.appBar,
+    this.consumerAppBar,
     this.extendBodyBehindAppBar = false,
     this.resizeToAvoidBottomInset = false,
     this.drawer,
@@ -79,6 +81,7 @@ class PopUpPage extends StatelessWidget {
           ),
           material: (_, __) {
             return MaterialScaffoldData(
+              appBar: consumerAppBar,
               drawer: drawer,
               floatingActionButton: floatingActionButton,
               resizeToAvoidBottomInset: resizeToAvoidBottomInset,
@@ -87,6 +90,7 @@ class PopUpPage extends StatelessWidget {
           },
           cupertino: (_, __) {
             return CupertinoPageScaffoldData(
+              navigationBar: consumerAppBar,
               resizeToAvoidBottomInset: resizeToAvoidBottomInset,
             );
           },

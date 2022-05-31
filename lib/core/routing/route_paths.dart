@@ -4,11 +4,14 @@ class RoutePaths {
   static const authLogin = '/auth';
   static const homeBase = '/home_base';
   static const map = homeBase + '/map';
-  //HomeNestedRoutes
+
+  ///HomeNestedRoutes
   static const home = 'home';
-  //ProfileNestedRoutes
+
+  ///ProfileNestedRoutes
   static const profile = 'profile';
-  //SettingsNestedRoutes
+
+  ///SettingsNestedRoutes
   static const settings = 'settings';
   static const settingsLanguage = settings + '/language';
 }

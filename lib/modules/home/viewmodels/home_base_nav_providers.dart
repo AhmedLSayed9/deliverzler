@@ -3,7 +3,7 @@ import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeNavProviders {
+class HomeBaseNavProviders {
   static final currentIndex = StateProvider.autoDispose<int>((ref) => 1);
 
   static final routes = [

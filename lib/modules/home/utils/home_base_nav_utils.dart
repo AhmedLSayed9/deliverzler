@@ -3,14 +3,14 @@ import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:deliverzler/modules/home/screens/nested_navigator_screen.dart';
 import 'package:flutter/material.dart';
 
-abstract class HomeNavScreensUtils {
-  static final homeNavScreensKeys = [
+abstract class HomeBaseNavUtils {
+  static final navScreensKeys = [
     GlobalKey<NavigatorState>(debugLabel: 'page1'),
     GlobalKey<NavigatorState>(debugLabel: 'page2'),
     GlobalKey<NavigatorState>(debugLabel: 'page3'),
   ];
 
-  static const homeNavScreens = [
+  static const navScreens = [
     //Nested Navigator for persistent bottom navigation bar
     NestedNavigatorScreen(
       index: 0,
