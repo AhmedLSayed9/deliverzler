@@ -3,7 +3,7 @@ import 'package:deliverzler/core/routing/route_paths.dart';
 import 'package:deliverzler/core/viewmodels/app_locale_provider.dart';
 import 'package:deliverzler/core/viewmodels/app_theme_provider.dart';
 import 'package:deliverzler/core/widgets/custom_tile_component.dart';
-import 'package:deliverzler/general/settings/models/language_model.dart';
+import 'package:deliverzler/general/settings/utils/language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,10 +55,9 @@ class AppSettingsSectionComponent extends ConsumerWidget {
         CustomTileComponent(
           title: tr(context).language,
           leadingIcon: Icons.translate,
-          trailingText: getCurrentLanguageName(
-            context,
-            _selectedLanguage?.languageCode,
-          ),
+          trailingText: Language.values
+              .firstWhere((l) => l.code == _selectedLanguage?.languageCode)
+              .getCurrentLanguageName(context),
           onTap: () {
             NavigationService.push(
               context,

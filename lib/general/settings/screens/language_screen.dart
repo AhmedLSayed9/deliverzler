@@ -1,9 +1,9 @@
 import 'package:deliverzler/core/screens/popup_page_nested.dart';
+import 'package:deliverzler/general/settings/utils/language.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
 import 'package:deliverzler/general/settings/components/language_item_component.dart';
-import 'package:deliverzler/general/settings/models/language_model.dart';
 import 'package:deliverzler/core/services/localization_service.dart';
 
 class LanguageScreen extends StatelessWidget {
@@ -33,10 +33,10 @@ class LanguageScreen extends StatelessWidget {
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: languagesList.length,
+                itemCount: Language.values.length,
                 itemBuilder: (context, index) {
                   return LanguageItemComponent(
-                    languageModel: languagesList[index],
+                    language: Language.values[index],
                   );
                 },
                 separatorBuilder: (context, index) {

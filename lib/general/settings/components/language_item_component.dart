@@ -1,18 +1,18 @@
 import 'package:deliverzler/core/viewmodels/app_locale_provider.dart';
+import 'package:deliverzler/general/settings/utils/language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deliverzler/core/styles/sizes.dart';
 import 'package:deliverzler/core/widgets/custom_text.dart';
-import 'package:deliverzler/general/settings/models/language_model.dart';
 
 class LanguageItemComponent extends ConsumerWidget {
   const LanguageItemComponent({
-    required this.languageModel,
+    required this.language,
     Key? key,
   }) : super(key: key);
 
-  final LanguageModel languageModel;
+  final Language language;
 
   @override
   Widget build(BuildContext context, ref) {
@@ -21,20 +21,20 @@ class LanguageItemComponent extends ConsumerWidget {
         return InkWell(
           onTap: () {
             ref.watch(appLocaleProvider.notifier).changeLocale(
-                  languageCode: languageModel.code,
+                  languageCode: language.code,
                 );
           },
-          child: _SharedItemComponent(languageModel),
+          child: _SharedItemComponent(language),
         );
       },
       cupertino: (_, __) {
         return GestureDetector(
           onTap: () {
             ref.watch(appLocaleProvider.notifier).changeLocale(
-                  languageCode: languageModel.code,
+                  languageCode: language.code,
                 );
           },
-          child: _SharedItemComponent(languageModel),
+          child: _SharedItemComponent(language),
         );
       },
     );
@@ -43,11 +43,11 @@ class LanguageItemComponent extends ConsumerWidget {
 
 class _SharedItemComponent extends StatelessWidget {
   const _SharedItemComponent(
-    this.languageModel, {
+    this.language, {
     Key? key,
   }) : super(key: key);
 
-  final LanguageModel languageModel;
+  final Language language;
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +73,14 @@ class _SharedItemComponent extends StatelessWidget {
             alignment: AlignmentDirectional.center,
             children: <Widget>[
               CircleAvatar(
-                backgroundImage: AssetImage(languageModel.flag),
+                backgroundImage: AssetImage(language.flag),
                 radius: Sizes.iconsSizes(context)['s6'],
               ),
               Consumer(
                 builder: (context, ref, child) {
                   final _selectedLanguage =
                       ref.watch(appLocaleProvider)?.languageCode;
-                  return (_selectedLanguage == languageModel.code)
+                  return (_selectedLanguage == language.code)
                       ? CircleAvatar(
                           backgroundColor: Theme.of(context)
                               .colorScheme
@@ -104,7 +104,7 @@ class _SharedItemComponent extends StatelessWidget {
           Expanded(
             child: CustomText.h4(
               context,
-              getCurrentLanguageName(context, languageModel.code),
+              language.getCurrentLanguageName(context),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
