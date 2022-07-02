@@ -42,7 +42,7 @@ class LocationServiceNotifier extends StateNotifier<LocationServiceState> {
     }
     bool _locationGranted = await _mainCoreProvider.requestLocationPermission();
     if (!_locationGranted) {
-      toggleError(LocationError.notGrantedTrackingPermission);
+      toggleError(LocationError.notGrantedLocationPermission);
       return;
     }
     bool _trackingGranted = await _mainCoreProvider.requestTrackingPermission();

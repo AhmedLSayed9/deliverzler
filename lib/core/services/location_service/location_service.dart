@@ -69,11 +69,14 @@ class GeoLocatorLocationService implements ILocationService {
 
   //Request AppTrackingTransparency for IOS
   @override
+  //Request AppTrackingTransparency for IOS
   Future<bool> requestTrackingPermission() async {
     try {
       if (await isTrackingPermissionGranted()) {
         return true;
       } else {
+        //This fix: https://github.com/deniza/app_tracking_transparency/issues/29
+        await Future.delayed(const Duration(milliseconds: 500));
         final _status =
             await AppTrackingTransparency.requestTrackingAuthorization();
         return (_status == TrackingStatus.notSupported ||

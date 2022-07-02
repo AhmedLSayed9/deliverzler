@@ -12,7 +12,7 @@ enum Language {
   const Language(this.code, this.flag);
 }
 
-extension LanguageUtils on Language {
+extension LanguageExtension on Language {
   String getCurrentLanguageName(BuildContext context) {
     switch (this) {
       case Language.arabic:
