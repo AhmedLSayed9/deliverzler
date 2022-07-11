@@ -7,16 +7,11 @@ abstract class ILocationService {
 
   Future<bool> isAlwaysPermissionGranted();
 
-  Future<bool> isTrackingPermissionGranted();
-
   Future<bool> enableLocationService();
 
   Future<bool> requestWhileInUsePermission();
 
   Future<bool> requestAlwaysPermission();
-
-  //Request AppTrackingTransparency for IOS
-  Future<bool> requestTrackingPermission();
 
   LocationSettings getLocationSettings({
     LocationAccuracy? accuracy,
