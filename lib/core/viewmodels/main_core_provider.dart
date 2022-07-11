@@ -110,18 +110,13 @@ class MainCoreProvider {
     }
   }
 
-  Future<bool> requestTrackingPermission() async {
-    return await _locationService.requestTrackingPermission();
-  }
-
   Future<bool> isAllLocationPermissionsRequired() async {
     if (Platform.isAndroid) {
       return await _locationService.isLocationServiceEnabled() &&
           await _locationService.isAlwaysPermissionGranted();
     } else {
       return await _locationService.isLocationServiceEnabled() &&
-          await _locationService.isWhileInUsePermissionGranted() &&
-          await _locationService.isTrackingPermissionGranted();
+          await _locationService.isWhileInUsePermissionGranted();
     }
   }
 

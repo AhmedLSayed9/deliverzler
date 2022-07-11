@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:deliverzler/core/services/location_service/i_location_service.dart';
 import 'package:deliverzler/core/utils/constants.dart';
 import 'package:geolocator/geolocator.dart';
@@ -27,13 +26,6 @@ class GeoLocatorLocationService implements ILocationService {
   @override
   Future<bool> isAlwaysPermissionGranted() async {
     return await Geolocator.checkPermission() == LocationPermission.always;
-  }
-
-  @override
-  Future<bool> isTrackingPermissionGranted() async {
-    final _status = await AppTrackingTransparency.trackingAuthorizationStatus;
-    return (_status == TrackingStatus.notSupported ||
-        _status == TrackingStatus.authorized);
   }
 
   @override
@@ -64,27 +56,6 @@ class GeoLocatorLocationService implements ILocationService {
     } else {
       await Geolocator.requestPermission();
       return await isAlwaysPermissionGranted();
-    }
-  }
-
-  //Request AppTrackingTransparency for IOS
-  @override
-  //Request AppTrackingTransparency for IOS
-  Future<bool> requestTrackingPermission() async {
-    try {
-      if (await isTrackingPermissionGranted()) {
-        return true;
-      } else {
-        //This fix: https://github.com/deniza/app_tracking_transparency/issues/29
-        await Future.delayed(const Duration(milliseconds: 500));
-        final _status =
-            await AppTrackingTransparency.requestTrackingAuthorization();
-        return (_status == TrackingStatus.notSupported ||
-            _status == TrackingStatus.authorized);
-      }
-    } catch (e) {
-      log(e.toString());
-      return false;
     }
   }
 

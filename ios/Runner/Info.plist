@@ -51,8 +51,6 @@
 		<string>This app needs access to location for Attendance Submission.</string>
 		<key>NSLocationAlwaysUsageDescription</key>
 		<string>This app needs access to location for Attendance Submission.</string>
-		<key>NSUserTrackingUsageDescription</key>
-        <string>This app needs access to location for Attendance Submission.</string>
 		<key>UIBackgroundModes</key>
 		<array>
 			<string>fetch</string>
