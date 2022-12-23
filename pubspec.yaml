@@ -1,0 +1,140 @@
+name: deliverzler
+description: Delivery App for Restaurants built on Flutter using Domain-Driven Design (DDD) and Riverpod Framework.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: '>=2.18.5 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.5
+  flutter_native_splash: ^2.3.0
+  flutter_localizations:
+    sdk: flutter
+  intl: 0.18.0
+  logging: ^1.2.0
+
+  #StateManagement & DI
+  hooks_riverpod: ^2.3.6
+  riverpod_annotation: ^2.1.1
+  flutter_hooks: ^0.18.6
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.8.1
+
+  #FP
+  fpdart: ^0.6.0
+  rxdart: ^0.27.7
+
+  #Connectivity
+  connectivity_plus: ^4.0.1
+
+  #Routing
+  go_router: ^7.1.1
+
+  #Location
+  location: ^4.4.0
+  geolocator: ^9.0.2
+  google_maps_flutter: ^2.2.8
+  flutter_polyline_points: ^1.0.0
+
+  #Apis
+  dio: ^5.1.2
+
+  #Firebase
+  firebase_core: ^2.3.0
+  cloud_firestore: ^4.1.0
+  firebase_auth: ^4.1.5
+  firebase_storage: ^11.0.6
+  firebase_messaging: ^14.1.4
+
+  #LocalStorage
+  shared_preferences: ^2.1.1
+  sqflite: ^2.2.8+4
+  flutter_cache_manager: ^3.3.0
+  image_picker: ^0.8.7+5
+
+  #Images
+  cached_network_image: ^3.2.3
+  lottie: ^2.3.2
+
+  #Utils
+  mocktail: ^0.3.0
+  fast_immutable_collections: ^9.1.5
+  flutter_fadein: ^2.0.0
+  uuid: ^3.0.7
+  url_launcher: ^6.1.11
+  flutter_local_notifications: ^9.3.1
+  timeago: ^3.4.0
+
+  #Widgets
+  fluttertoast: ^8.2.2
+  qr_flutter: ^4.1.0
+  material_floating_search_bar:
+    git:
+      url: https://github.com/Railway-Engineering-Solutions/material_floating_search_bar.git
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  flutter_launcher_icons: ^0.13.1
+  import_sorter: ^4.6.0
+
+  #Code gen
+  build_runner:
+  custom_lint:
+  riverpod_lint:
+  riverpod_generator: ^2.2.3
+  freezed: ^2.3.4
+  json_serializable: ^6.7.0
+  go_router_builder: ^2.0.2
+
+flutter_icons:
+  image_path_android: "assets/images/core/icon.png"
+  image_path_ios: "assets/images/core/icon.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  adaptive_icon_background: "#121B24"
+  adaptive_icon_foreground: "assets/images/core/icon_adaptive_fore.png"
+
+flutter_native_splash:
+  color: "#FAFAFA"
+  color_dark: "#303030"
+  android_gravity: fill
+  ios_content_mode: scaleAspectFill
+  android_12:
+    image: "assets/images/welcome/transparent_splash_icon.png"
+    image_dark: "assets/images/welcome/transparent_splash_icon.png"
+
+import_sorter:
+  comments: false
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/images/welcome/
+    - assets/images/login/
+    - assets/images/core/
+    - assets/images/core/dialog_widget_icons/
+    - assets/images/app_icons/
+    - assets/images/app_icons/screens_icons/
+    - assets/images/app_icons/languages_icons/
+    - assets/json/
+    - assets/json/map_styles/
+
+  fonts:
+    - family: poppins
+      fonts:
+        - asset: assets/fonts/poppins.ttf
+        - asset: assets/fonts/poppins_bold.ttf
+          weight: 900
+    - family: tajawal
+      fonts:
+        - asset: assets/fonts/tajawal.ttf
+        - asset: assets/fonts/tajawal_bold.ttf
+          weight: 900

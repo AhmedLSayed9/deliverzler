@@ -1,0 +1,23 @@
+#Speed up code generation: https://codewithandrea.com/tips/speed-up-code-generation-build-runner-dart-flutter
+
+targets:
+  $default:
+    # This is true by default, so you can just omit this line. This means enable all builders by default.
+    auto_apply_builders: true
+    builders:
+      # Write your other builders' settings normally here.
+      freezed:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**.dart
+      json_serializable:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**.dart
+      riverpod_generator:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**.dart
