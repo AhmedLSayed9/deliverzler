@@ -1,0 +1,124 @@
+name: deliverzler
+description: Deliverzler
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_native_splash: ^2.1.5
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+
+  #StateManagement & DI
+  flutter_hooks: ^0.18.5+1
+  hooks_riverpod: ^2.1.1
+  riverpod_annotation: ^1.0.6
+  get_it: ^7.2.0
+
+  #FP
+  fpdart: ^0.3.0
+  rxdart: ^0.27.7
+
+  #Connectivity
+  connectivity_plus: ^3.0.2
+
+  #Location
+  location: ^4.3.0
+  geolocator: ^8.2.0
+  google_maps_flutter: ^2.1.1
+  flutter_polyline_points: ^1.0.0
+
+  #Apis
+  dio: ^4.0.4
+
+  #Firebase
+  firebase_core: ^2.3.0
+  cloud_firestore: ^4.1.0
+  firebase_auth: ^4.1.5
+  firebase_storage: ^11.0.6
+  firebase_messaging: ^14.1.4
+
+  #LocalStorage
+  shared_preferences: ^2.0.9
+  sqflite: ^2.0.1
+  flutter_cache_manager: ^3.3.0
+  image_picker: ^0.8.4+4
+
+  #Images
+  cached_network_image: ^3.2.0
+  lottie: ^1.2.1
+
+  #Utils
+  freezed_annotation: ^2.2.0
+  equatable: ^2.0.3
+  fast_immutable_collections: ^8.1.0
+  flutter_fadein: ^2.0.0
+  uuid: ^3.0.5
+  url_launcher: ^6.0.20
+  flutter_local_notifications: ^9.3.1
+  timeago: ^3.2.2
+
+  #Widgets
+  fluttertoast: ^8.0.9
+  qr_flutter: ^4.0.0
+  material_floating_search_bar: ^0.3.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  flutter_launcher_icons: ^0.9.2
+  build_runner: ^2.3.2
+  riverpod_generator: ^1.0.4
+  freezed: ^2.2.0
+  mockito: ^5.3.2
+
+flutter_icons:
+  image_path_android: "assets/images/core/icon.png"
+  image_path_ios: "assets/images/core/icon.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  adaptive_icon_background: "#121B24"
+  adaptive_icon_foreground: "assets/images/core/icon_adaptive_fore.png"
+
+flutter_native_splash:
+  color: "#FAFAFA"
+  color_dark: "#303030"
+  android_gravity: fill
+  ios_content_mode: scaleAspectFill
+  android_12:
+    image: "assets/images/welcome/transparent_splash_icon.png"
+    image_dark: "assets/images/welcome/transparent_splash_icon.png"
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/images/welcome/
+    - assets/images/login/
+    - assets/images/core/
+    - assets/images/core/dialog_widget_icons/
+    - assets/images/app_icons/
+    - assets/images/app_icons/screens_icons/
+    - assets/images/app_icons/languages_icons/
+    - assets/json/
+    - assets/json/map_styles/
+
+  fonts:
+    - family: poppins
+      fonts:
+        - asset: assets/fonts/poppins.ttf
+        - asset: assets/fonts/poppins_bold.ttf
+          weight: 900
+    - family: tajawal
+      fonts:
+        - asset: assets/fonts/tajawal.ttf
+        - asset: assets/fonts/tajawal_bold.ttf
+          weight: 900
