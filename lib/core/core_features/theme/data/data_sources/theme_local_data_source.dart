@@ -2,7 +2,9 @@ import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/data/error/cache_exception_type.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'theme_local_data_source.g.dart';
 
 abstract class IThemeLocalDataSource {
   Future<String> getAppTheme();
@@ -10,11 +12,12 @@ abstract class IThemeLocalDataSource {
   Future<void> cacheAppTheme(String themeString);
 }
 
-final themeLocalDataSourceProvider = Provider<IThemeLocalDataSource>(
-  (ref) => ThemeLocalDataSource(
+@Riverpod(keepAlive: true)
+IThemeLocalDataSource themeLocalDataSource(ThemeLocalDataSourceRef ref) {
+  return ThemeLocalDataSource(
     localStorageService: ref.watch(localStorageCallerProvider),
-  ),
-);
+  );
+}
 
 class ThemeLocalDataSource implements IThemeLocalDataSource {
   ThemeLocalDataSource({required this.localStorageService});

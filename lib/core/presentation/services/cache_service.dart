@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final cacheServiceProvider = Provider<CacheService>((ref) {
+part 'cache_service.g.dart';
+
+@Riverpod(keepAlive: true)
+CacheService cacheService(CacheServiceRef ref) {
   return CacheService(
     customCacheManager: CacheManager(
       Config(
@@ -12,7 +15,7 @@ final cacheServiceProvider = Provider<CacheService>((ref) {
       ),
     ),
   );
-});
+}
 
 class CacheService {
   const CacheService({

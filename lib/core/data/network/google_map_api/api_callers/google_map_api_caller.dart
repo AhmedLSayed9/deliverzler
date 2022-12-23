@@ -2,13 +2,16 @@ import 'package:deliverzler/core/data/network/google_map_api/api_callers/google_
 import 'package:deliverzler/core/data/network/google_map_api/extensions/google_map_error_extension.dart';
 import 'package:deliverzler/core/data/network/i_api_caller.dart';
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final googleMapApiCallerProvider = Provider<IApiCaller>(
-  (ref) => GoogleMapApiCaller(
+part 'google_map_api_caller.g.dart';
+
+@Riverpod(keepAlive: true)
+GoogleMapApiCaller googleMapApiCaller(GoogleMapApiCallerRef ref) {
+  return GoogleMapApiCaller(
     dio: ref.watch(googleMapDioProvider),
-  ),
-);
+  );
+}
 
 class GoogleMapApiCaller implements IApiCaller {
   GoogleMapApiCaller({required this.dio});

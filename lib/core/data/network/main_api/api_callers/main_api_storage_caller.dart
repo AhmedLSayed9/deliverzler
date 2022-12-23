@@ -4,14 +4,17 @@ import 'dart:io';
 import 'package:deliverzler/core/data/network/i_firebase_storage_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/extensions/firebase_error_extension.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'main_api_storage_caller.g.dart';
 
 //Our main API is Firebase
-final mainApiStorageCaller = Provider<IFirebaseStorageCaller>(
-  (ref) => MainApiStorageCaller(
+@Riverpod(keepAlive: true)
+IFirebaseStorageCaller mainApiStorageCaller(MainApiStorageCallerRef ref) {
+  return MainApiStorageCaller(
     firebaseStorage: FirebaseStorage.instance,
-  ),
-);
+  );
+}
 
 class MainApiStorageCaller implements IFirebaseStorageCaller {
   MainApiStorageCaller({

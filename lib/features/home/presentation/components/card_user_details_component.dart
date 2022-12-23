@@ -7,7 +7,7 @@ import 'package:deliverzler/features/home/domain/entities/order.dart';
 import 'package:flutter/material.dart';
 
 class CardUserDetailsComponent extends StatelessWidget {
-  final Order order;
+  final AppOrder order;
 
   const CardUserDetailsComponent({
     required this.order,

@@ -5,15 +5,18 @@ import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
 import 'package:deliverzler/core/data/network/network_info.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final authRepoProvider = Provider<IAuthRepo>(
-  (ref) => AuthRepo(
+part 'auth_repo.g.dart';
+
+@Riverpod(keepAlive: true)
+IAuthRepo authRepo(AuthRepoRef ref) {
+  return AuthRepo(
     networkInfo: ref.watch(networkInfoProvider),
     remoteDataSource: ref.watch(authRemoteDataSourceProvider),
     localDataSource: ref.watch(authLocalDataSourceProvider),
-  ),
-);
+  );
+}
 
 class AuthRepo implements IAuthRepo {
   AuthRepo({

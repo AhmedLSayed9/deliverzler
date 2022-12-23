@@ -3,8 +3,13 @@ import 'package:deliverzler/core/presentation/services/local_notfication_service
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final showLocalNotificationProvider = FutureProvider.autoDispose
-    .family<void, ShowLocalNotificationParams>((ref, params) async {
+part 'show_local_notification_provider.g.dart';
+
+@riverpod
+Future<void> showLocalNotification(
+  ShowLocalNotificationRef ref,
+  ShowLocalNotificationParams params,
+) async {
   final notificationService = ref.watch(flutterLocalNotificationsProvider);
 
   return await notificationService.show(
@@ -14,7 +19,7 @@ final showLocalNotificationProvider = FutureProvider.autoDispose
     localNotificationDetails,
     payload: params.payload,
   );
-});
+}
 
 class ShowLocalNotificationParams {
   final String? title, body, payload;

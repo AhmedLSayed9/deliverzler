@@ -6,14 +6,17 @@ import 'package:deliverzler/core/data/local/image_picker_caller/i_image_picker_c
 import 'package:deliverzler/features/profile/data/data_sources/profile_local_data_source.dart';
 import 'package:deliverzler/features/profile/data/data_sources/profile_remote_data_source.dart';
 import 'package:deliverzler/features/profile/domain/repos/i_profile_repo.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final profileRepoProvider = Provider<IProfileRepo>(
-  (ref) => ProfileRepo(
+part 'profile_repo.g.dart';
+
+@Riverpod(keepAlive: true)
+IProfileRepo profileRepo(ProfileRepoRef ref) {
+  return ProfileRepo(
     remoteDataSource: ref.watch(profileRemoteDataSourceProvider),
     localDataSource: ref.watch(profileLocalDataSourceProvider),
-  ),
-);
+  );
+}
 
 class ProfileRepo implements IProfileRepo {
   ProfileRepo({required this.remoteDataSource, required this.localDataSource});

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 abstract class OrderDialogHelper {
   static void showOrderDetailsDialog(
     BuildContext context, {
-    required Order order,
+    required AppOrder order,
   }) {
     Dialogs.showCustomDialog(
       context,

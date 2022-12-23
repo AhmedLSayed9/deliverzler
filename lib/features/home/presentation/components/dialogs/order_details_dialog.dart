@@ -9,7 +9,7 @@ import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
 import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
 
 class OrderDetailsDialog extends StatelessWidget {
-  final Order order;
+  final AppOrder order;
 
   const OrderDetailsDialog({
     required this.order,

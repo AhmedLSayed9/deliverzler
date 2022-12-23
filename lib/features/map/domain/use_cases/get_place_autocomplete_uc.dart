@@ -4,21 +4,22 @@ import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart
 import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final getPlaceAutocompleteUCProvider = Provider(
-  (ref) => GetPlaceAutocompleteUC(
-    ref,
+part 'get_place_autocomplete_uc.g.dart';
+
+@Riverpod(keepAlive: true)
+GetPlaceAutocompleteUC getPlaceAutocompleteUC(GetPlaceAutocompleteUCRef ref) {
+  return GetPlaceAutocompleteUC(
     mapRepo: ref.watch(mapRepoProvider),
-  ),
-);
+  );
+}
 
 class GetPlaceAutocompleteUC
     implements
         UseCaseBase<List<PlaceAutocomplete>, GetPlaceAutocompleteParams> {
-  GetPlaceAutocompleteUC(this.ref, {required this.mapRepo});
+  GetPlaceAutocompleteUC({required this.mapRepo});
 
-  final Ref ref;
   final IMapRepo mapRepo;
 
   @override

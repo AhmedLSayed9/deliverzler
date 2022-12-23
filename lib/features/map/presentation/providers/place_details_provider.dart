@@ -5,9 +5,12 @@ import 'package:deliverzler/features/map/domain/use_cases/get_place_details_uc.d
 import 'package:deliverzler/features/map/presentation/providers/session_token_provider.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final currentPlaceDetailsProvider =
-    Provider.autoDispose<Option<PlaceDetails>>((ref) {
+part 'place_details_provider.g.dart';
+
+@riverpod
+Option<PlaceDetails> currentPlaceDetails(CurrentPlaceDetailsRef ref) {
   final Option<String> selectedPlaceId =
       ref.watch(selectedPlaceAutocompleteProvider.select(
     (value) => value.match(
@@ -18,12 +21,12 @@ final currentPlaceDetailsProvider =
 
   return selectedPlaceId.flatMap(
     (placeId) => ref.watch(
-      placeDetailsProvider(placeId).select(
+      getPlaceDetailsProvider(placeId).select(
         (value) => Option.fromNullable(value.valueOrNull),
       ),
     ),
   );
-});
+}
 
 final selectedPlaceAutocompleteProvider =
     StateProvider.autoDispose<Option<PlaceAutocomplete>>((ref) {
@@ -32,8 +35,11 @@ final selectedPlaceAutocompleteProvider =
 
 class AbortedException implements Exception {}
 
-final placeDetailsProvider = FutureProvider.autoDispose
-    .family<PlaceDetails, String>((ref, placeId) async {
+@riverpod
+Future<PlaceDetails> getPlaceDetails(
+  GetPlaceDetailsRef ref,
+  String placeId,
+) async {
   final cancelToken = ref.cancelToken();
 
   final params = GetPlaceDetailsParams(
@@ -43,4 +49,4 @@ final placeDetailsProvider = FutureProvider.autoDispose
   final placeDetails = await ref.watch(getPlaceDetailsUCProvider).call(params);
   ref.invalidate(sessionTokenProvider);
   return placeDetails;
-});
+}

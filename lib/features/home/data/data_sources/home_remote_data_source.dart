@@ -6,7 +6,9 @@ import 'package:deliverzler/features/home/data/models/order_model.dart';
 import 'package:deliverzler/features/home/domain/use_cases/update_delivery_geo_point_uc.dart';
 import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
 import 'package:deliverzler/features/home/presentation/utils/enums.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'home_remote_data_source.g.dart';
 
 abstract class IHomeRemoteDataSource {
   /// Calls the api endpoint.
@@ -21,12 +23,13 @@ abstract class IHomeRemoteDataSource {
   Future<void> updateDeliveryGeoPoint(UpdateDeliveryGeoPointParams params);
 }
 
-final homeRemoteDataSourceProvider = Provider<IHomeRemoteDataSource>(
-  (ref) => HomeRemoteDataSource(
+@Riverpod(keepAlive: true)
+IHomeRemoteDataSource homeRemoteDataSource(HomeRemoteDataSourceRef ref) {
+  return HomeRemoteDataSource(
     ref,
-    firebaseFirestoreCaller: ref.watch(mainApiFirestoreCaller),
-  ),
-);
+    firebaseFirestoreCaller: ref.watch(mainApiFirestoreCallerProvider),
+  );
+}
 
 class HomeRemoteDataSource implements IHomeRemoteDataSource {
   HomeRemoteDataSource(
@@ -34,7 +37,7 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
     required this.firebaseFirestoreCaller,
   });
 
-  final Ref ref;
+  final HomeRemoteDataSourceRef ref;
   final IFirebaseFirestoreCaller firebaseFirestoreCaller;
 
   static const String ordersCollectionPath = 'orders';

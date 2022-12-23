@@ -3,19 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i6;
 
 import 'package:deliverzler/auth/domain/entities/user.dart' as _i2;
-import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i6;
-import 'package:deliverzler/auth/domain/use_cases/get_user_data_uc.dart'
-    as _i10;
+import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i5;
+import 'package:deliverzler/auth/domain/use_cases/get_user_data_uc.dart' as _i9;
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart'
-    as _i8;
+    as _i7;
 import 'package:firebase_core/firebase_core.dart' as _i3;
-import 'package:firebase_messaging/firebase_messaging.dart' as _i9;
+import 'package:firebase_messaging/firebase_messaging.dart' as _i8;
 import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart'
     as _i4;
-import 'package:hooks_riverpod/hooks_riverpod.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -60,19 +58,8 @@ class _FakeNotificationSettings_2 extends _i1.SmartFake
         );
 }
 
-class _FakeRef_3<State extends Object?> extends _i1.SmartFake
-    implements _i5.Ref<State> {
-  _FakeRef_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeIAuthRepo_4 extends _i1.SmartFake implements _i6.IAuthRepo {
-  _FakeIAuthRepo_4(
+class _FakeIAuthRepo_3 extends _i1.SmartFake implements _i5.IAuthRepo {
+  _FakeIAuthRepo_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -84,72 +71,72 @@ class _FakeIAuthRepo_4 extends _i1.SmartFake implements _i6.IAuthRepo {
 /// A class which mocks [IAuthRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIAuthRepo extends _i1.Mock implements _i6.IAuthRepo {
+class MockIAuthRepo extends _i1.Mock implements _i5.IAuthRepo {
   MockIAuthRepo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<_i2.User> signInWithEmail(_i8.SignInWithEmailParams? params) =>
+  _i6.Future<_i2.User> signInWithEmail(_i7.SignInWithEmailParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #signInWithEmail,
           [params],
         ),
-        returnValue: _i7.Future<_i2.User>.value(_FakeUser_0(
+        returnValue: _i6.Future<_i2.User>.value(_FakeUser_0(
           this,
           Invocation.method(
             #signInWithEmail,
             [params],
           ),
         )),
-      ) as _i7.Future<_i2.User>);
+      ) as _i6.Future<_i2.User>);
   @override
-  _i7.Future<String> getUserAuthUid() => (super.noSuchMethod(
+  _i6.Future<String> getUserAuthUid() => (super.noSuchMethod(
         Invocation.method(
           #getUserAuthUid,
           [],
         ),
-        returnValue: _i7.Future<String>.value(''),
-      ) as _i7.Future<String>);
+        returnValue: _i6.Future<String>.value(''),
+      ) as _i6.Future<String>);
   @override
-  _i7.Future<_i2.User> getUserData(String? uid) => (super.noSuchMethod(
+  _i6.Future<_i2.User> getUserData(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserData,
           [uid],
         ),
-        returnValue: _i7.Future<_i2.User>.value(_FakeUser_0(
+        returnValue: _i6.Future<_i2.User>.value(_FakeUser_0(
           this,
           Invocation.method(
             #getUserData,
             [uid],
           ),
         )),
-      ) as _i7.Future<_i2.User>);
+      ) as _i6.Future<_i2.User>);
   @override
-  _i7.Future<void> setUserData(_i2.User? user) => (super.noSuchMethod(
+  _i6.Future<void> setUserData(_i2.User? user) => (super.noSuchMethod(
         Invocation.method(
           #setUserData,
           [user],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> signOut() => (super.noSuchMethod(
+  _i6.Future<void> signOut() => (super.noSuchMethod(
         Invocation.method(
           #signOut,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }
 
 /// A class which mocks [FirebaseMessaging].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFirebaseMessaging extends _i1.Mock implements _i9.FirebaseMessaging {
+class MockFirebaseMessaging extends _i1.Mock implements _i8.FirebaseMessaging {
   MockFirebaseMessaging() {
     _i1.throwOnMissingStub(this);
   }
@@ -176,65 +163,65 @@ class MockFirebaseMessaging extends _i1.Mock implements _i9.FirebaseMessaging {
         returnValue: false,
       ) as bool);
   @override
-  _i7.Stream<String> get onTokenRefresh => (super.noSuchMethod(
+  _i6.Stream<String> get onTokenRefresh => (super.noSuchMethod(
         Invocation.getter(#onTokenRefresh),
-        returnValue: _i7.Stream<String>.empty(),
-      ) as _i7.Stream<String>);
+        returnValue: _i6.Stream<String>.empty(),
+      ) as _i6.Stream<String>);
   @override
   Map<dynamic, dynamic> get pluginConstants => (super.noSuchMethod(
         Invocation.getter(#pluginConstants),
         returnValue: <dynamic, dynamic>{},
       ) as Map<dynamic, dynamic>);
   @override
-  _i7.Future<_i4.RemoteMessage?> getInitialMessage() => (super.noSuchMethod(
+  _i6.Future<_i4.RemoteMessage?> getInitialMessage() => (super.noSuchMethod(
         Invocation.method(
           #getInitialMessage,
           [],
         ),
-        returnValue: _i7.Future<_i4.RemoteMessage?>.value(),
-      ) as _i7.Future<_i4.RemoteMessage?>);
+        returnValue: _i6.Future<_i4.RemoteMessage?>.value(),
+      ) as _i6.Future<_i4.RemoteMessage?>);
   @override
-  _i7.Future<void> deleteToken() => (super.noSuchMethod(
+  _i6.Future<void> deleteToken() => (super.noSuchMethod(
         Invocation.method(
           #deleteToken,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<String?> getAPNSToken() => (super.noSuchMethod(
+  _i6.Future<String?> getAPNSToken() => (super.noSuchMethod(
         Invocation.method(
           #getAPNSToken,
           [],
         ),
-        returnValue: _i7.Future<String?>.value(),
-      ) as _i7.Future<String?>);
+        returnValue: _i6.Future<String?>.value(),
+      ) as _i6.Future<String?>);
   @override
-  _i7.Future<String?> getToken({String? vapidKey}) => (super.noSuchMethod(
+  _i6.Future<String?> getToken({String? vapidKey}) => (super.noSuchMethod(
         Invocation.method(
           #getToken,
           [],
           {#vapidKey: vapidKey},
         ),
-        returnValue: _i7.Future<String?>.value(),
-      ) as _i7.Future<String?>);
+        returnValue: _i6.Future<String?>.value(),
+      ) as _i6.Future<String?>);
   @override
-  _i7.Future<bool> isSupported() => (super.noSuchMethod(
+  _i6.Future<bool> isSupported() => (super.noSuchMethod(
         Invocation.method(
           #isSupported,
           [],
         ),
-        returnValue: _i7.Future<bool>.value(false),
-      ) as _i7.Future<bool>);
+        returnValue: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
   @override
-  _i7.Future<_i4.NotificationSettings> getNotificationSettings() =>
+  _i6.Future<_i4.NotificationSettings> getNotificationSettings() =>
       (super.noSuchMethod(
         Invocation.method(
           #getNotificationSettings,
           [],
         ),
-        returnValue: _i7.Future<_i4.NotificationSettings>.value(
+        returnValue: _i6.Future<_i4.NotificationSettings>.value(
             _FakeNotificationSettings_2(
           this,
           Invocation.method(
@@ -242,9 +229,9 @@ class MockFirebaseMessaging extends _i1.Mock implements _i9.FirebaseMessaging {
             [],
           ),
         )),
-      ) as _i7.Future<_i4.NotificationSettings>);
+      ) as _i6.Future<_i4.NotificationSettings>);
   @override
-  _i7.Future<_i4.NotificationSettings> requestPermission({
+  _i6.Future<_i4.NotificationSettings> requestPermission({
     bool? alert = true,
     bool? announcement = false,
     bool? badge = true,
@@ -267,7 +254,7 @@ class MockFirebaseMessaging extends _i1.Mock implements _i9.FirebaseMessaging {
             #sound: sound,
           },
         ),
-        returnValue: _i7.Future<_i4.NotificationSettings>.value(
+        returnValue: _i6.Future<_i4.NotificationSettings>.value(
             _FakeNotificationSettings_2(
           this,
           Invocation.method(
@@ -284,9 +271,9 @@ class MockFirebaseMessaging extends _i1.Mock implements _i9.FirebaseMessaging {
             },
           ),
         )),
-      ) as _i7.Future<_i4.NotificationSettings>);
+      ) as _i6.Future<_i4.NotificationSettings>);
   @override
-  _i7.Future<void> sendMessage({
+  _i6.Future<void> sendMessage({
     String? to,
     Map<String, String>? data,
     String? collapseKey,
@@ -307,30 +294,30 @@ class MockFirebaseMessaging extends _i1.Mock implements _i9.FirebaseMessaging {
             #ttl: ttl,
           },
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> setAutoInitEnabled(bool? enabled) => (super.noSuchMethod(
+  _i6.Future<void> setAutoInitEnabled(bool? enabled) => (super.noSuchMethod(
         Invocation.method(
           #setAutoInitEnabled,
           [enabled],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> setDeliveryMetricsExportToBigQuery(bool? enabled) =>
+  _i6.Future<void> setDeliveryMetricsExportToBigQuery(bool? enabled) =>
       (super.noSuchMethod(
         Invocation.method(
           #setDeliveryMetricsExportToBigQuery,
           [enabled],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> setForegroundNotificationPresentationOptions({
+  _i6.Future<void> setForegroundNotificationPresentationOptions({
     bool? alert = false,
     bool? badge = false,
     bool? sound = false,
@@ -345,65 +332,57 @@ class MockFirebaseMessaging extends _i1.Mock implements _i9.FirebaseMessaging {
             #sound: sound,
           },
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> subscribeToTopic(String? topic) => (super.noSuchMethod(
+  _i6.Future<void> subscribeToTopic(String? topic) => (super.noSuchMethod(
         Invocation.method(
           #subscribeToTopic,
           [topic],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  _i7.Future<void> unsubscribeFromTopic(String? topic) => (super.noSuchMethod(
+  _i6.Future<void> unsubscribeFromTopic(String? topic) => (super.noSuchMethod(
         Invocation.method(
           #unsubscribeFromTopic,
           [topic],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }
 
 /// A class which mocks [GetUserDataUC].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetUserDataUC extends _i1.Mock implements _i10.GetUserDataUC {
+class MockGetUserDataUC extends _i1.Mock implements _i9.GetUserDataUC {
   MockGetUserDataUC() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Ref<Object?> get ref => (super.noSuchMethod(
-        Invocation.getter(#ref),
-        returnValue: _FakeRef_3<Object?>(
-          this,
-          Invocation.getter(#ref),
-        ),
-      ) as _i5.Ref<Object?>);
-  @override
-  _i6.IAuthRepo get authRepo => (super.noSuchMethod(
+  _i5.IAuthRepo get authRepo => (super.noSuchMethod(
         Invocation.getter(#authRepo),
-        returnValue: _FakeIAuthRepo_4(
+        returnValue: _FakeIAuthRepo_3(
           this,
           Invocation.getter(#authRepo),
         ),
-      ) as _i6.IAuthRepo);
+      ) as _i5.IAuthRepo);
   @override
-  _i7.Future<_i2.User> call(String? uid) => (super.noSuchMethod(
+  _i6.Future<_i2.User> call(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [uid],
         ),
-        returnValue: _i7.Future<_i2.User>.value(_FakeUser_0(
+        returnValue: _i6.Future<_i2.User>.value(_FakeUser_0(
           this,
           Invocation.method(
             #call,
             [uid],
           ),
         )),
-      ) as _i7.Future<_i2.User>);
+      ) as _i6.Future<_i2.User>);
 }

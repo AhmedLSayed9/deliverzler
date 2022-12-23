@@ -1,8 +1,11 @@
 import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_directions_provider.dart';
 import 'package:deliverzler/features/map/presentation/utils/constants.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final isArrivedTargetLocationProvider = Provider.autoDispose<bool>((ref) {
+part 'is_arrived_target_location_provider.g.dart';
+
+@riverpod
+bool isArrivedTargetLocation(IsArrivedTargetLocationRef ref) {
   return ref.watch(targetLocationDirectionsProvider.select(
     (value) {
       return value.fold(
@@ -11,4 +14,4 @@ final isArrivedTargetLocationProvider = Provider.autoDispose<bool>((ref) {
       );
     },
   ));
-});
+}

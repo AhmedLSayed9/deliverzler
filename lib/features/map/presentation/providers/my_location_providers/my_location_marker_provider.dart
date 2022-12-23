@@ -4,6 +4,9 @@ import 'package:deliverzler/features/map/presentation/providers/my_location_prov
 import 'package:fpdart/fpdart.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'my_location_marker_provider.g.dart';
 
 final myLocationMarkerProvider =
     StateProvider.autoDispose<Option<Marker>>((ref) {
@@ -24,7 +27,8 @@ final myLocationMarkerProvider =
   return Some<Marker>(myMarker);
 });
 
-final myLocationMarkerIconProvider =
-    FutureProvider.autoDispose<BitmapDescriptor>((ref) {
+@riverpod
+Future<BitmapDescriptor> myLocationMarkerIcon(
+    MyLocationMarkerIconRef ref) async {
   return MapStyleHelper.getMyLocationMarkerIcon();
-});
+}

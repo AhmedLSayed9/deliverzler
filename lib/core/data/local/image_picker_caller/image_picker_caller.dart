@@ -4,14 +4,17 @@ import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/data/error/cache_exception_type.dart';
 import 'package:deliverzler/core/data/local/extensions/local_error_extension.dart';
 import 'package:deliverzler/core/data/local/image_picker_caller/i_image_picker_caller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final imagePickerCallerProvider = Provider<IImagePickerCaller>(
-  (ref) => ImagePickerCaller(
+part 'image_picker_caller.g.dart';
+
+@Riverpod(keepAlive: true)
+IImagePickerCaller imagePickerCaller(ImagePickerCallerRef ref) {
+  return ImagePickerCaller(
     imagePicker: ImagePicker(),
-  ),
-);
+  );
+}
 
 class ImagePickerCaller implements IImagePickerCaller {
   ImagePickerCaller({required this.imagePicker});

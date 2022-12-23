@@ -3,13 +3,16 @@ import 'dart:io';
 import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
 import 'package:deliverzler/features/profile/data/repos/profile_repo.dart';
 import 'package:deliverzler/features/profile/domain/repos/i_profile_repo.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final updateProfileImageUCProvider = Provider(
-  (ref) => UpdateProfileImageUC(
+part 'update_profile_image_uc.g.dart';
+
+@Riverpod(keepAlive: true)
+UpdateProfileImageUC updateProfileImageUC(UpdateProfileImageUCRef ref) {
+  return UpdateProfileImageUC(
     profileRepo: ref.watch(profileRepoProvider),
-  ),
-);
+  );
+}
 
 class UpdateProfileImageUC implements UseCaseBase<String, File> {
   UpdateProfileImageUC({required this.profileRepo});

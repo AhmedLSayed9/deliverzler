@@ -1,31 +1,31 @@
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'auth_state_provider.g.dart';
 
 enum AuthState {
   authenticated,
   unauthenticated,
 }
 
-final authStateProvider =
-    NotifierProvider<AuthStateNotifier, AuthState>(AuthStateNotifier.new);
-
-class AuthStateNotifier extends Notifier<AuthState> {
+@Riverpod(keepAlive: true)
+class AuthStateController extends _$AuthStateController {
   @override
   AuthState build() {
     return AuthState.unauthenticated;
   }
 
   void authenticateUser(User user) {
-    ref.read(userProvider.notifier).setUser(user);
+    ref.read(userControllerProvider.notifier).setUser(user);
     state = AuthState.authenticated;
   }
 
   void unAuthenticateUser() {
     state = AuthState.unauthenticated;
-    //Delay invalidating userProvider to ensure page animation is completed.
+    //Delay invalidating userControllerProvider to ensure page animation is completed.
     Future.delayed(const Duration(seconds: 1), () {
-      ref.invalidate(userProvider);
+      ref.invalidate(userControllerProvider);
     });
   }
 }

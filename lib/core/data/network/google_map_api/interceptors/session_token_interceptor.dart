@@ -1,15 +1,20 @@
 import 'package:deliverzler/core/data/network/google_map_api/google_map_api_config.dart';
 import 'package:deliverzler/features/map/presentation/providers/session_token_provider.dart';
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final sessionTokenInterceptorProvider =
-    Provider<SessionTokenInterceptor>((ref) => SessionTokenInterceptor(ref));
+part 'session_token_interceptor.g.dart';
+
+@Riverpod(keepAlive: true)
+SessionTokenInterceptor sessionTokenInterceptor(
+    SessionTokenInterceptorRef ref) {
+  return SessionTokenInterceptor(ref);
+}
 
 class SessionTokenInterceptor extends QueuedInterceptor {
   SessionTokenInterceptor(this.ref);
 
-  final Ref ref;
+  final SessionTokenInterceptorRef ref;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

@@ -9,6 +9,9 @@ import 'package:deliverzler/features/map/domain/use_cases/get_place_details_uc.d
 import 'package:deliverzler/features/map/domain/use_cases/get_place_directions_uc.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'map_remote_data_source.g.dart';
 
 abstract class IMapRemoteDataSource {
   /// Calls the api endpoint.
@@ -23,12 +26,13 @@ abstract class IMapRemoteDataSource {
       GetPlaceDirectionsParams params);
 }
 
-final mapRemoteDataSourceProvider = Provider<IMapRemoteDataSource>(
-  (ref) => MapRemoteDataSource(
+@Riverpod(keepAlive: true)
+IMapRemoteDataSource mapRemoteDataSource(MapRemoteDataSourceRef ref) {
+  return MapRemoteDataSource(
     ref,
     apiCaller: ref.watch(googleMapApiCallerProvider),
-  ),
-);
+  );
+}
 
 class MapRemoteDataSource implements IMapRemoteDataSource {
   MapRemoteDataSource(

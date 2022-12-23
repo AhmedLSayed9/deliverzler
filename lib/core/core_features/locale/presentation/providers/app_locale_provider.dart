@@ -4,10 +4,10 @@ import 'package:deliverzler/core/core_features/locale/presentation/utils/app_loc
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-final appLocaleProvider =
-    AsyncNotifierProvider<AppLocaleNotifier, AppLocale>(AppLocaleNotifier.new);
+part 'app_locale_provider.g.dart';
 
-class AppLocaleNotifier extends AsyncNotifier<AppLocale> {
+@Riverpod(keepAlive: true)
+class AppLocaleController extends _$AppLocaleController {
   @override
   Future<AppLocale> build() {
     _getAppLocaleUC = ref.watch(getAppLocaleUCProvider);

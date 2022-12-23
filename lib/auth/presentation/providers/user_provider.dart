@@ -1,18 +1,19 @@
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final currentUserProvider = Provider.autoDispose<User>((ref) {
-  return ref.watch(userProvider).match(
-        () => throw Exception('userProvider has not initialized'),
+part 'user_provider.g.dart';
+
+@riverpod
+User currentUser(CurrentUserRef ref) {
+  return ref.watch(userControllerProvider).match(
+        () => throw Exception('userControllerProvider has not initialized'),
         (user) => user,
       );
-});
+}
 
-final userProvider =
-    NotifierProvider<UserNotifier, Option<User>>(UserNotifier.new);
-
-class UserNotifier extends Notifier<Option<User>> {
+@Riverpod(keepAlive: true)
+class UserController extends _$UserController {
   @override
   Option<User> build() {
     return const None();

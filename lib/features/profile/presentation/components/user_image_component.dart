@@ -20,7 +20,7 @@ class UserImageComponent extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final userImage =
-        ref.watch(currentUserProvider.select((user) => user.image));
+        ref.watch(currentuserControllerProvider.select((user) => user.image));
 
     ref.listen<AsyncValue<Option<String>>>(
       updateProfileImageStateProvider,

@@ -5,9 +5,9 @@ import 'package:deliverzler/features/home/domain/use_cases/update_delivery_geo_p
 import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
 
 abstract class IHomeRepo {
-  Stream<List<Order>> getUpcomingOrders();
+  Stream<List<AppOrder>> getUpcomingOrders();
 
-  Future<Order> getOrder(String orderId);
+  Future<AppOrder> getOrder(String orderId);
 
   Future<void> updateDeliveryStatus(UpdateDeliveryStatusParams params);
 

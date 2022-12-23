@@ -39,7 +39,7 @@ void main() {
   Listener setUpListener(ProviderContainer container) {
     final listener = Listener<AsyncValue<AppLocale>>();
     container.listen(
-      appLocaleProvider,
+      appLocaleControllerProvider,
       listener,
       fireImmediately: true,
     );
@@ -70,7 +70,7 @@ void main() {
           verify(listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(appLocaleProvider.future);
+          final call = container.read(appLocaleControllerProvider.future);
 
           // THEN
           await expectLater(call, completion(tLocale));
@@ -98,7 +98,7 @@ void main() {
           verify(listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(appLocaleProvider.future);
+          final call = container.read(appLocaleControllerProvider.future);
 
           // THEN
           await expectLater(call, throwsA(tException));
@@ -129,7 +129,7 @@ void main() {
               .thenAnswer((_) async => returnsNormally);
 
           final container = setUpContainer();
-          await container.read(appLocaleProvider.future);
+          await container.read(appLocaleControllerProvider.future);
           final listener = setUpListener(container);
 
           // WHEN
@@ -137,7 +137,7 @@ void main() {
           verifyNoMoreInteractions(listener);
 
           final call = container
-              .read(appLocaleProvider.notifier)
+              .read(appLocaleControllerProvider.notifier)
               .changeLocale(tChangeLocale);
 
           // THEN

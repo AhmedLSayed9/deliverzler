@@ -2,13 +2,12 @@ import 'package:deliverzler/features/map/presentation/providers/my_location_prov
 import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_marker_provider.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final mapMarkersProvider =
-    NotifierProvider.autoDispose<MapMarkersNotifier, Set<Marker>>(
-        MapMarkersNotifier.new);
+part 'map_markers_providers.g.dart';
 
-class MapMarkersNotifier extends AutoDisposeNotifier<Set<Marker>> {
+@riverpod
+class MapMarkers extends _$MapMarkers {
   @override
   Set<Marker> build() {
     state = {};

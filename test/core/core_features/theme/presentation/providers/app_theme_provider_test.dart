@@ -39,7 +39,7 @@ void main() {
   Listener setUpListener(ProviderContainer container) {
     final listener = Listener<AsyncValue<AppTheme>>();
     container.listen(
-      appThemeProvider,
+      appThemeControllerProvider,
       listener,
       fireImmediately: true,
     );
@@ -70,7 +70,7 @@ void main() {
           verify(listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(appThemeProvider.future);
+          final call = container.read(appThemeControllerProvider.future);
 
           // THEN
           await expectLater(call, completion(tTheme));
@@ -98,7 +98,7 @@ void main() {
           verify(listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(appThemeProvider.future);
+          final call = container.read(appThemeControllerProvider.future);
 
           // THEN
           await expectLater(call, throwsA(tException));
@@ -128,7 +128,7 @@ void main() {
           when(mockSetAppThemeUC(any)).thenAnswer((_) async => returnsNormally);
 
           final container = setUpContainer();
-          await container.read(appThemeProvider.future);
+          await container.read(appThemeControllerProvider.future);
           final listener = setUpListener(container);
 
           // WHEN
@@ -136,7 +136,7 @@ void main() {
           verifyNoMoreInteractions(listener);
 
           final call = container
-              .read(appThemeProvider.notifier)
+              .read(appThemeControllerProvider.notifier)
               .changeTheme(tChangeTheme);
 
           // THEN

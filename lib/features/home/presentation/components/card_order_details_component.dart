@@ -8,7 +8,7 @@ import 'package:deliverzler/core/presentation/styles/font_styles.dart';
 import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
 
 class CardOrderDetailsComponent extends StatelessWidget {
-  final Order order;
+  final AppOrder order;
 
   const CardOrderDetailsComponent({
     required this.order,

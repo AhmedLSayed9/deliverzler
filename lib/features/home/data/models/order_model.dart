@@ -3,7 +3,7 @@ import 'package:deliverzler/features/home/data/models/address_model.dart';
 import 'package:deliverzler/features/home/domain/entities/order.dart';
 import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 
-class OrderModel extends Order {
+class OrderModel extends AppOrder {
   const OrderModel({
     required super.orderId,
     required super.date,

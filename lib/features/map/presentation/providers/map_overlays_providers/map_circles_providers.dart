@@ -1,12 +1,11 @@
 import 'package:deliverzler/features/map/presentation/providers/my_location_providers/my_location_circle_provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final mapCirclesProvider =
-    NotifierProvider.autoDispose<MapCirclesNotifier, Set<Circle>>(
-        MapCirclesNotifier.new);
+part 'map_circles_providers.g.dart';
 
-class MapCirclesNotifier extends AutoDisposeNotifier<Set<Circle>> {
+@riverpod
+class MapCircles extends _$MapCircles {
   @override
   Set<Circle> build() {
     state = {};

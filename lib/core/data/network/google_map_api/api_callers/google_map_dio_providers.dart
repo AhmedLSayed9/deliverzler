@@ -6,11 +6,14 @@ import 'package:deliverzler/core/data/network/google_map_api/interceptors/loggin
 import 'package:deliverzler/core/data/network/google_map_api/interceptors/session_token_interceptor.dart';
 import 'package:deliverzler/core/data/network/i_api_config.dart';
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'google_map_dio_providers.g.dart';
 
 //Note: If you've different subdomains of an API (need same interceptors and other options but different baseUrl),
 //then you can use one instance of dio and override the base URL dynamically
-final googleMapDioProvider = Provider<Dio>((ref) {
+@Riverpod(keepAlive: true)
+Dio googleMapDio(GoogleMapDioRef ref) {
   return Dio()
     ..options = BaseOptions(
       baseUrl: GoogleMapApiConfig.googleMapBaseUrl,
@@ -25,4 +28,4 @@ final googleMapDioProvider = Provider<Dio>((ref) {
       ref.watch(sessionTokenInterceptorProvider),
       ErrorInterceptor(),
     ]);
-});
+}

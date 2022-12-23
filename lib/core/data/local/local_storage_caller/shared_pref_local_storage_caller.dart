@@ -1,17 +1,21 @@
 import 'package:deliverzler/core/data/local/extensions/local_error_extension.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final sharedPrefsProvider = Provider<SharedPreferences>((ref) {
+part 'shared_pref_local_storage_caller.g.dart';
+
+@Riverpod(keepAlive: true)
+SharedPreferences sharedPrefs(SharedPrefsRef ref) {
   throw UnimplementedError('sharedPrefsProvider has not initialized!');
-});
+}
 
-final localStorageCallerProvider = Provider<ILocalStorageCaller>(
-  (ref) => SharedPrefsLocalStorageCaller(
+@Riverpod(keepAlive: true)
+ILocalStorageCaller localStorageCaller(LocalStorageCallerRef ref) {
+  return SharedPrefsLocalStorageCaller(
     sharedPreferences: ref.watch(sharedPrefsProvider),
-  ),
-);
+  );
+}
 
 class SharedPrefsLocalStorageCaller implements ILocalStorageCaller {
   SharedPrefsLocalStorageCaller({required this.sharedPreferences});

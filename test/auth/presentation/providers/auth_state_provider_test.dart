@@ -21,7 +21,7 @@ void main() {
   Listener setUpListener(ProviderContainer container) {
     final listener = Listener<AuthState>();
     container.listen(
-      authStateProvider,
+      authStateControllerProvider,
       listener,
       fireImmediately: true,
     );
@@ -31,7 +31,7 @@ void main() {
   Listener setUpUserListener(ProviderContainer container) {
     final listener = Listener<Option<User>>();
     container.listen<Option<User>>(
-      userProvider,
+      userControllerProvider,
       listener,
       fireImmediately: true,
     );
@@ -73,7 +73,7 @@ void main() {
     'authenticateUser',
     () {
       test(
-        'should call userProvider.setUser'
+        'should call userControllerProvider.setUser'
         'then emit AuthState.authenticated',
         () async {
           // GIVEN
@@ -88,7 +88,9 @@ void main() {
           verify(userListener(null, noneUser));
           verifyNoMoreInteractions(userListener);
 
-          container.read(authStateProvider.notifier).authenticateUser(tUser);
+          container
+              .read(authStateControllerProvider.notifier)
+              .authenticateUser(tUser);
 
           // THEN
           verifyInOrder([
@@ -107,11 +109,13 @@ void main() {
     () {
       test(
         'should emit AuthState.unauthenticated'
-        'then invalidate userProvider with a delay of 1 second',
+        'then invalidate userControllerProvider with a delay of 1 second',
         () async {
           // GIVEN
           final container = setUpContainer();
-          container.read(authStateProvider.notifier).authenticateUser(tUser);
+          container
+              .read(authStateControllerProvider.notifier)
+              .authenticateUser(tUser);
           final listener = setUpListener(container);
           final userListener = setUpUserListener(container);
 
@@ -122,7 +126,9 @@ void main() {
           verify(userListener(null, someUser));
           verifyNoMoreInteractions(userListener);
 
-          container.read(authStateProvider.notifier).unAuthenticateUser();
+          container
+              .read(authStateControllerProvider.notifier)
+              .unAuthenticateUser();
 
           // THEN
           verify(listener(authenticatedState, unauthenticatedState));
@@ -130,7 +136,7 @@ void main() {
 
           await expectLater(
             await Future.delayed(const Duration(seconds: 1), () {
-              return container.read(userProvider);
+              return container.read(userControllerProvider);
             }),
             noneUser,
           );

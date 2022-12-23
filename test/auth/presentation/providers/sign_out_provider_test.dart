@@ -63,7 +63,7 @@ void main() {
       Listener setUpAuthStateListener(ProviderContainer container) {
         final listener = Listener<AuthState>();
         container.listen(
-          authStateProvider,
+          authStateControllerProvider,
           listener,
           fireImmediately: true,
         );
@@ -127,7 +127,9 @@ void main() {
             ],
           );
           final listener = setUpListener(container);
-          container.read(authStateProvider.notifier).authenticateUser(tUser);
+          container
+              .read(authStateControllerProvider.notifier)
+              .authenticateUser(tUser);
           final authListener = setUpAuthStateListener(container);
 
           // WHEN
@@ -189,7 +191,7 @@ void main() {
       Listener setUpAuthStateListener(ProviderContainer container) {
         final listener = Listener<AuthState>();
         container.listen(
-          authStateProvider,
+          authStateControllerProvider,
           listener,
           fireImmediately: true,
         );
@@ -241,7 +243,9 @@ void main() {
             ],
           );
           final listener = setUpListener(container);
-          container.read(authStateProvider.notifier).authenticateUser(tUser);
+          container
+              .read(authStateControllerProvider.notifier)
+              .authenticateUser(tUser);
           final authListener = setUpAuthStateListener(container);
 
           // WHEN

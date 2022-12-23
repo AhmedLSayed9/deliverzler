@@ -64,7 +64,7 @@ void main() {
       Listener setUpAuthStateListener(ProviderContainer container) {
         final listener = Listener<AuthState>();
         container.listen(
-          authStateProvider,
+          authStateControllerProvider,
           listener,
           fireImmediately: true,
         );

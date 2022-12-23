@@ -19,7 +19,7 @@ class HomeScreen extends HookConsumerWidget {
       locationStreamProvider.select((value) => value.whenData((value) => true)),
     );
 
-    ref.listen(updateDeliveryGeoPointStatusProvider, (previous, next) {});
+    ref.listen(updateDeliveryGeoPointStateProvider, (previous, next) {});
 
     return NestedScreenWrapper(
       body: locationAsync.when(

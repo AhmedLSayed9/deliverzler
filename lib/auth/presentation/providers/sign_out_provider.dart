@@ -1,20 +1,23 @@
 import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'sign_out_provider.g.dart';
 
 enum SignOutState {
   initial,
   success,
 }
 
-final signOutStateProvider =
-    Provider.autoDispose<AsyncValue<SignOutState>>((ref) {
+@riverpod
+AsyncValue<SignOutState> signOutState(SignOutStateRef ref) {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
       error: (_, __) => ref.invalidate(signOutTriggerProvider),
       data: (state) {
         if (state == SignOutState.success) {
-          ref.read(authStateProvider.notifier).unAuthenticateUser();
+          ref.read(authStateControllerProvider.notifier).unAuthenticateUser();
         }
       },
     );
@@ -24,10 +27,11 @@ final signOutStateProvider =
     return ref.watch(signOutProvider).whenData((_) => SignOutState.success);
   }
   return const AsyncData(SignOutState.initial);
-});
+}
 
 final signOutTriggerProvider = StateProvider.autoDispose<bool>((ref) => false);
 
-final signOutProvider = FutureProvider.autoDispose<void>((ref) async {
+@riverpod
+Future<void> signOut(SignOutRef ref) async {
   return ref.watch(signOutUCProvider).call();
-});
+}

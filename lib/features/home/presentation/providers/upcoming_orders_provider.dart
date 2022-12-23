@@ -3,7 +3,8 @@ import 'package:deliverzler/features/home/domain/use_cases/get_upcoming_orders_u
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final upcomingOrdersProvider = StreamProvider.autoDispose<List<Order>>((ref) {
+final upcomingOrdersProvider =
+    StreamProvider.autoDispose<List<AppOrder>>((ref) {
   final ordersStream = ref.watch(getUpcomingOrdersUCProvider).call();
   return ordersStream.distinct((previous, next) {
     //Compare prev,next streams by deep equals and skip if they're not equal,

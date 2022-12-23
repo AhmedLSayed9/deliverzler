@@ -5,7 +5,9 @@ import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/data/error/cache_exception_type.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'auth_local_data_source.g.dart';
 
 abstract class IAuthLocalDataSource {
   /// Gets the cached data which was gotten the last time
@@ -19,11 +21,12 @@ abstract class IAuthLocalDataSource {
   Future<void> clearUserData();
 }
 
-final authLocalDataSourceProvider = Provider<IAuthLocalDataSource>(
-  (ref) => AuthLocalDataSource(
+@Riverpod(keepAlive: true)
+IAuthLocalDataSource authLocalDataSource(AuthLocalDataSourceRef ref) {
+  return AuthLocalDataSource(
     localStorageService: ref.watch(localStorageCallerProvider),
-  ),
-);
+  );
+}
 
 class AuthLocalDataSource implements IAuthLocalDataSource {
   AuthLocalDataSource({required this.localStorageService});

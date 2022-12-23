@@ -6,20 +6,21 @@ import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final getPlaceDirectionsUCProvider = Provider(
-  (ref) => GetPlaceDirectionsUC(
-    ref,
+part 'get_place_directions_uc.g.dart';
+
+@Riverpod(keepAlive: true)
+GetPlaceDirectionsUC getPlaceDirectionsUC(GetPlaceDirectionsUCRef ref) {
+  return GetPlaceDirectionsUC(
     mapRepo: ref.watch(mapRepoProvider),
-  ),
-);
+  );
+}
 
 class GetPlaceDirectionsUC
     implements UseCaseBase<PlaceDirections, GetPlaceDirectionsParams> {
-  GetPlaceDirectionsUC(this.ref, {required this.mapRepo});
+  GetPlaceDirectionsUC({required this.mapRepo});
 
-  final Ref ref;
   final IMapRepo mapRepo;
 
   @override

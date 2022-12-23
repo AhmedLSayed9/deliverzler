@@ -3,14 +3,17 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/extensions/firebase_error_extension.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'main_api_firestore_caller.g.dart';
 
 //Our main API is Firebase
-final mainApiFirestoreCaller = Provider<IFirebaseFirestoreCaller>(
-  (ref) => MainApiFirestoreCaller(
+@Riverpod(keepAlive: true)
+IFirebaseFirestoreCaller mainApiFirestoreCaller(MainApiFirestoreCallerRef ref) {
+  return MainApiFirestoreCaller(
     firebaseFirestore: FirebaseFirestore.instance,
-  ),
-);
+  );
+}
 
 class MainApiFirestoreCaller implements IFirebaseFirestoreCaller {
   MainApiFirestoreCaller({

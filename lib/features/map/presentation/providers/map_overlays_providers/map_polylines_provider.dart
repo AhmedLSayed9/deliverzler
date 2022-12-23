@@ -3,13 +3,12 @@ import 'package:deliverzler/features/map/presentation/helpers/map_coordinates_he
 import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_directions_provider.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final mapPolylinesProvider =
-    NotifierProvider.autoDispose<MapPolylinesNotifier, Set<Polyline>>(
-        MapPolylinesNotifier.new);
+part 'map_polylines_provider.g.dart';
 
-class MapPolylinesNotifier extends AutoDisposeNotifier<Set<Polyline>> {
+@riverpod
+class MapPolylines extends _$MapPolylines {
   @override
   Set<Polyline> build() {
     state = {};

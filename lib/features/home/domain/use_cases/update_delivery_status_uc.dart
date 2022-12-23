@@ -3,20 +3,23 @@ import 'package:deliverzler/features/home/data/repos/home_repo.dart';
 import 'package:deliverzler/features/home/domain/repos/i_home_repo.dart';
 import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final updateDeliveryStatusUCProvider = Provider(
-  (ref) => UpdateDeliveryStatusUC(
+part 'update_delivery_status_uc.g.dart';
+
+@Riverpod(keepAlive: true)
+UpdateDeliveryStatusUC updateDeliveryStatusUC(UpdateDeliveryStatusUCRef ref) {
+  return UpdateDeliveryStatusUC(
     ref,
     homeRepo: ref.watch(homeRepoProvider),
-  ),
-);
+  );
+}
 
 class UpdateDeliveryStatusUC
     implements UseCaseBase<void, UpdateDeliveryStatusParams> {
   UpdateDeliveryStatusUC(this.ref, {required this.homeRepo});
 
-  final Ref ref;
+  final UpdateDeliveryStatusUCRef ref;
   final IHomeRepo homeRepo;
 
   @override

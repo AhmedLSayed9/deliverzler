@@ -6,12 +6,15 @@ import 'package:deliverzler/core/presentation/utils/location_settings.dart';
 import 'package:geolocator/geolocator.dart';
 // ignore: implementation_imports, depend_on_referenced_packages
 import 'package:geolocator_android/src/types/foreground_settings.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:location/location.dart' as loc;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final locationServiceProvider = Provider<ILocationService>(
-  (ref) => GeoLocatorLocationService(),
-);
+part 'location_service.g.dart';
+
+@Riverpod(keepAlive: true)
+ILocationService locationService(LocationServiceRef ref) {
+  return GeoLocatorLocationService();
+}
 
 class GeoLocatorLocationService implements ILocationService {
   @override

@@ -9,7 +9,7 @@ class AuthGuardScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final authState = ref.watch(authStateProvider);
+    final authState = ref.watch(authStateControllerProvider);
 
     return authState == AuthState.authenticated
         ? const HomeBaseScreen()

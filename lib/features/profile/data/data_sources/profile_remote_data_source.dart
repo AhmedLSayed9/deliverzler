@@ -6,7 +6,9 @@ import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
 import 'package:deliverzler/core/data/network/i_firebase_storage_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_firestore_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_storage_caller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'profile_remote_data_source.g.dart';
 
 abstract class IProfileRemoteDataSource {
   /// Calls the api endpoint.
@@ -19,13 +21,15 @@ abstract class IProfileRemoteDataSource {
   Future<void> updateProfileData(UserModel userModel);
 }
 
-final profileRemoteDataSourceProvider = Provider<IProfileRemoteDataSource>(
-  (ref) => ProfileRemoteDataSource(
+@Riverpod(keepAlive: true)
+IProfileRemoteDataSource profileRemoteDataSource(
+    ProfileRemoteDataSourceRef ref) {
+  return ProfileRemoteDataSource(
     ref,
-    firebaseFirestoreCaller: ref.watch(mainApiFirestoreCaller),
-    firebaseStorageCaller: ref.watch(mainApiStorageCaller),
-  ),
-);
+    firebaseFirestoreCaller: ref.watch(mainApiFirestoreCallerProvider),
+    firebaseStorageCaller: ref.watch(mainApiStorageCallerProvider),
+  );
+}
 
 class ProfileRemoteDataSource implements IProfileRemoteDataSource {
   ProfileRemoteDataSource(
@@ -34,7 +38,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
     required this.firebaseStorageCaller,
   });
 
-  final Ref ref;
+  final ProfileRemoteDataSourceRef ref;
   final IFirebaseFirestoreCaller firebaseFirestoreCaller;
   final IFirebaseStorageCaller firebaseStorageCaller;
 
@@ -49,7 +53,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
 
   @override
   Future<String> uploadProfileImage(File imageFile) async {
-    final uid = ref.read(currentUserProvider).id;
+    final uid = ref.read(currentuserControllerProvider).id;
     final imageUrl = await firebaseStorageCaller.uploadImage(
       //File name is always user's uid, to replace the file when updating it.
       path: '${userStorageFolderPath(uid)}/$uid',
@@ -60,7 +64,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
 
   @override
   Future<void> updateProfileImage(String imageUrl) async {
-    final uid = ref.read(currentUserProvider).id;
+    final uid = ref.read(currentuserControllerProvider).id;
     return await firebaseFirestoreCaller.setData(
       path: userDocPath(uid),
       data: {'image': imageUrl},
@@ -70,7 +74,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
 
   @override
   Future<void> updateProfileData(UserModel userModel) async {
-    final uid = ref.read(currentUserProvider).id;
+    final uid = ref.read(currentuserControllerProvider).id;
     return await firebaseFirestoreCaller.setData(
       path: userDocPath(uid),
       data: userModel.toMap(),

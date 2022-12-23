@@ -8,13 +8,16 @@ import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_autocomplete_uc.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_details_uc.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_directions_uc.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final mapRepoProvider = Provider<IMapRepo>(
-  (ref) => MapRepo(
+part 'map_repo.g.dart';
+
+@Riverpod(keepAlive: true)
+IMapRepo mapRepo(MapRepoRef ref) {
+  return MapRepo(
     remoteDataSource: ref.watch(mapRemoteDataSourceProvider),
-  ),
-);
+  );
+}
 
 class MapRepo implements IMapRepo {
   MapRepo({

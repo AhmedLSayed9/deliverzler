@@ -3,20 +3,24 @@ import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
 import 'package:deliverzler/features/home/data/repos/home_repo.dart';
 import 'package:deliverzler/features/home/domain/repos/i_home_repo.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final updateDeliveryGeoPointUCProvider = Provider(
-  (ref) => UpdateDeliveryGeoPointUC(
+part 'update_delivery_geo_point_uc.g.dart';
+
+@Riverpod(keepAlive: true)
+UpdateDeliveryGeoPointUC updateDeliveryGeoPointUC(
+    UpdateDeliveryGeoPointUCRef ref) {
+  return UpdateDeliveryGeoPointUC(
     ref,
     homeRepo: ref.watch(homeRepoProvider),
-  ),
-);
+  );
+}
 
 class UpdateDeliveryGeoPointUC
     implements UseCaseBase<void, UpdateDeliveryGeoPointParams> {
   UpdateDeliveryGeoPointUC(this.ref, {required this.homeRepo});
 
-  final Ref ref;
+  final UpdateDeliveryGeoPointUCRef ref;
   final IHomeRepo homeRepo;
 
   @override

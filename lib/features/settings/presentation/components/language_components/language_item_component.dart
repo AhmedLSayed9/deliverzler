@@ -22,7 +22,9 @@ class LanguageItemComponent extends ConsumerWidget {
       material: (_) {
         return InkWell(
           onTap: () {
-            ref.read(appLocaleProvider.notifier).changeLocale(appLocale);
+            ref
+                .read(appLocaleControllerProvider.notifier)
+                .changeLocale(appLocale);
           },
           child: _SharedItemComponent(appLocale),
         );
@@ -30,7 +32,9 @@ class LanguageItemComponent extends ConsumerWidget {
       cupertino: (_) {
         return GestureDetector(
           onTap: () {
-            ref.read(appLocaleProvider.notifier).changeLocale(appLocale);
+            ref
+                .read(appLocaleControllerProvider.notifier)
+                .changeLocale(appLocale);
           },
           child: _SharedItemComponent(appLocale),
         );

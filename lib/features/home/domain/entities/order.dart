@@ -3,7 +3,7 @@ import 'package:deliverzler/features/home/domain/entities/address.dart';
 import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 import 'package:equatable/equatable.dart';
 
-class Order extends Equatable {
+class AppOrder extends Equatable {
   final String orderId;
   final int date;
   final PickupOption pickupOption;
@@ -19,7 +19,7 @@ class Order extends Equatable {
   final String? deliveryId;
   final GeoPoint? deliveryGeoPoint;
 
-  const Order({
+  const AppOrder({
     required this.orderId,
     required this.date,
     required this.pickupOption,

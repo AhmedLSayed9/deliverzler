@@ -84,8 +84,9 @@ void main() {
   ProviderContainer setUpContainer() {
     final container = ProviderContainer(
       overrides: [
-        mainApiAuthCaller.overrideWithValue(mockIFirebaseAuthCaller),
-        mainApiFirestoreCaller.overrideWithValue(mockIFirebaseFirestoreCaller),
+        mainApiAuthCallerProvider.overrideWithValue(mockIFirebaseAuthCaller),
+        mainApiFirestoreCallerProvider
+            .overrideWithValue(mockIFirebaseFirestoreCaller),
       ],
     );
     addTearDown(container.dispose);

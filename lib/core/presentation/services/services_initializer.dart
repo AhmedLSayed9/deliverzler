@@ -12,10 +12,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/presentation/styles/app_images.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final servicesInitializerProvider = Provider<ServicesInitializer>((ref) {
+part 'services_initializer.g.dart';
+
+@Riverpod(keepAlive: true)
+ServicesInitializer servicesInitializer(ServicesInitializerRef ref) {
   return ServicesInitializer(ref);
-});
+}
 
 class ServicesInitializer {
   ServicesInitializer(this.ref);
@@ -60,13 +64,13 @@ class ServicesInitializer {
 
   Future<void> _initLocalization() async {
     try {
-      await ref.read(appLocaleProvider.future);
+      await ref.read(appLocaleControllerProvider.future);
     } catch (_) {}
   }
 
   Future<void> _initTheme() async {
     try {
-      await ref.read(appThemeProvider.future);
+      await ref.read(appThemeControllerProvider.future);
     } catch (_) {}
   }
 

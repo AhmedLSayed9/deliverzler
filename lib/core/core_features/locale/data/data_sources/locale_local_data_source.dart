@@ -2,7 +2,9 @@ import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/data/error/cache_exception_type.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'locale_local_data_source.g.dart';
 
 abstract class ILocaleLocalDataSource {
   Future<String> getAppLocale();
@@ -10,11 +12,12 @@ abstract class ILocaleLocalDataSource {
   Future<void> cacheAppLocale(String languageCode);
 }
 
-final localeLocalDataSourceProvider = Provider<ILocaleLocalDataSource>(
-  (ref) => LocaleLocalDataSource(
+@Riverpod(keepAlive: true)
+ILocaleLocalDataSource localeLocalDataSource(LocaleLocalDataSourceRef ref) {
+  return LocaleLocalDataSource(
     localStorageService: ref.watch(localStorageCallerProvider),
-  ),
-);
+  );
+}
 
 class LocaleLocalDataSource implements ILocaleLocalDataSource {
   LocaleLocalDataSource({required this.localStorageService});

@@ -154,7 +154,7 @@ void main() {
       Listener setUpAuthStateListener(ProviderContainer container) {
         final listener = Listener<AuthState>();
         container.listen(
-          authStateProvider,
+          authStateControllerProvider,
           listener,
           fireImmediately: true,
         );
@@ -196,7 +196,7 @@ void main() {
           verifyNoMoreInteractions(listener);
           verifyNoMoreInteractions(authListener);
 
-          expect(container.read(userProvider), some<User>(tUser));
+          expect(container.read(userControllerProvider), some<User>(tUser));
         },
       );
 

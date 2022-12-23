@@ -1,12 +1,15 @@
 import 'package:deliverzler/core/core_features/locale/data/data_sources/locale_local_data_source.dart';
 import 'package:deliverzler/core/core_features/locale/domain/repos/i_locale_repo.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final localeRepoProvider = Provider<ILocaleRepo>(
-  (ref) => LocaleRepo(
+part 'locale_repo.g.dart';
+
+@Riverpod(keepAlive: true)
+ILocaleRepo localeRepo(LocaleRepoRef ref) {
+  return LocaleRepo(
     localDataSource: ref.watch(localeLocalDataSourceProvider),
-  ),
-);
+  );
+}
 
 class LocaleRepo implements ILocaleRepo {
   LocaleRepo({required this.localDataSource});

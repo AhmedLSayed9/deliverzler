@@ -7,6 +7,9 @@ import 'package:deliverzler/features/home/presentation/utils/location_error.dart
 import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'location_stream_provider.g.dart';
 
 final locationStreamProvider =
     StreamProvider.autoDispose<Position>((ref) async* {
@@ -25,17 +28,23 @@ final locationStreamProvider =
   );
 });
 
-final enableLocationProvider = FutureProvider.autoDispose
-    .family<void, ILocationService>((ref, locationService) async {
+@riverpod
+Future<void> enableLocation(
+  EnableLocationRef ref,
+  ILocationService locationService,
+) async {
   final enabled = await locationService.enableLocationService();
   if (!enabled) {
     Error.throwWithStackTrace(
         LocationError.notEnabledLocation, StackTrace.current);
   }
-});
+}
 
-final requestLocationPermissionProvider = FutureProvider.autoDispose
-    .family<void, ILocationService>((ref, locationService) async {
+@riverpod
+Future<void> requestLocationPermission(
+  RequestLocationPermissionRef ref,
+  ILocationService locationService,
+) async {
   final whileInUseGranted = await locationService.requestWhileInUsePermission();
   if (!whileInUseGranted) {
     Error.throwWithStackTrace(
@@ -49,4 +58,4 @@ final requestLocationPermissionProvider = FutureProvider.autoDispose
           LocationError.notGrantedLocationPermission, StackTrace.current);
     }
   }
-});
+}

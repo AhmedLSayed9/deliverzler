@@ -3,13 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i5;
 
-import 'package:deliverzler/auth/domain/entities/user.dart' as _i4;
-import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i3;
+import 'package:deliverzler/auth/domain/entities/user.dart' as _i3;
+import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i2;
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart'
-    as _i5;
-import 'package:hooks_riverpod/hooks_riverpod.dart' as _i2;
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -23,9 +22,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRef_0<State extends Object?> extends _i1.SmartFake
-    implements _i2.Ref<State> {
-  _FakeRef_0(
+class _FakeIAuthRepo_0 extends _i1.SmartFake implements _i2.IAuthRepo {
+  _FakeIAuthRepo_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -34,18 +32,8 @@ class _FakeRef_0<State extends Object?> extends _i1.SmartFake
         );
 }
 
-class _FakeIAuthRepo_1 extends _i1.SmartFake implements _i3.IAuthRepo {
-  _FakeIAuthRepo_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeUser_2 extends _i1.SmartFake implements _i4.User {
-  _FakeUser_2(
+class _FakeUser_1 extends _i1.SmartFake implements _i3.User {
+  _FakeUser_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -57,54 +45,46 @@ class _FakeUser_2 extends _i1.SmartFake implements _i4.User {
 /// A class which mocks [SignInWithEmailUC].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignInWithEmailUC extends _i1.Mock implements _i5.SignInWithEmailUC {
+class MockSignInWithEmailUC extends _i1.Mock implements _i4.SignInWithEmailUC {
   MockSignInWithEmailUC() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.Ref<Object?> get ref => (super.noSuchMethod(
-        Invocation.getter(#ref),
-        returnValue: _FakeRef_0<Object?>(
-          this,
-          Invocation.getter(#ref),
-        ),
-      ) as _i2.Ref<Object?>);
-  @override
-  _i3.IAuthRepo get authRepo => (super.noSuchMethod(
+  _i2.IAuthRepo get authRepo => (super.noSuchMethod(
         Invocation.getter(#authRepo),
-        returnValue: _FakeIAuthRepo_1(
+        returnValue: _FakeIAuthRepo_0(
           this,
           Invocation.getter(#authRepo),
         ),
-      ) as _i3.IAuthRepo);
+      ) as _i2.IAuthRepo);
   @override
-  _i6.Future<_i4.User> call(_i5.SignInWithEmailParams? params) =>
+  _i5.Future<_i3.User> call(_i4.SignInWithEmailParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _i6.Future<_i4.User>.value(_FakeUser_2(
+        returnValue: _i5.Future<_i3.User>.value(_FakeUser_1(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         )),
-      ) as _i6.Future<_i4.User>);
+      ) as _i5.Future<_i3.User>);
   @override
-  _i6.Future<_i4.User> getUserData(String? uid) => (super.noSuchMethod(
+  _i5.Future<_i3.User> getUserData(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserData,
           [uid],
         ),
-        returnValue: _i6.Future<_i4.User>.value(_FakeUser_2(
+        returnValue: _i5.Future<_i3.User>.value(_FakeUser_1(
           this,
           Invocation.method(
             #getUserData,
             [uid],
           ),
         )),
-      ) as _i6.Future<_i4.User>);
+      ) as _i5.Future<_i3.User>);
 }

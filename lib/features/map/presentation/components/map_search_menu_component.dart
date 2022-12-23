@@ -18,7 +18,7 @@ class MapSearchMenuComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final placeSearchList =
-        ref.watch(placeAutocompleteStatusProvider).valueOrNull ?? [];
+        ref.watch(placeAutocompleteStateProvider).valueOrNull ?? [];
 
     return placeSearchList.isNotEmpty
         ? Card(

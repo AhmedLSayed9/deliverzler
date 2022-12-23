@@ -8,17 +8,17 @@ import 'package:deliverzler/features/map/presentation/utils/constants.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'map_controller_provider.g.dart';
 
 final currentMapControllerProvider =
     StateProvider.autoDispose<GoogleMapController?>((ref) {
   return null;
 });
 
-final mapControllerProvider =
-    NotifierProvider.autoDispose<MapControllerNotifier, GoogleMapController?>(
-        MapControllerNotifier.new);
-
-class MapControllerNotifier extends AutoDisposeNotifier<GoogleMapController?> {
+@riverpod
+class MapController extends _$MapController {
   @override
   GoogleMapController? build() {
     state = ref.watch(currentMapControllerProvider);

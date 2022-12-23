@@ -6,7 +6,9 @@ import 'package:deliverzler/core/data/network/i_firebase_auth_caller.dart';
 import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_auth_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_firestore_caller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'auth_remote_data_source.g.dart';
 
 abstract class IAuthRemoteDataSource {
   /// Calls the api endpoint.
@@ -23,13 +25,14 @@ abstract class IAuthRemoteDataSource {
   Future<void> signOut();
 }
 
-final authRemoteDataSourceProvider = Provider<IAuthRemoteDataSource>(
-  (ref) => AuthRemoteDataSource(
+@Riverpod(keepAlive: true)
+IAuthRemoteDataSource authRemoteDataSource(AuthRemoteDataSourceRef ref) {
+  return AuthRemoteDataSource(
     ref,
-    firebaseAuthCaller: ref.watch(mainApiAuthCaller),
-    firebaseFirestoreCaller: ref.watch(mainApiFirestoreCaller),
-  ),
-);
+    firebaseAuthCaller: ref.watch(mainApiAuthCallerProvider),
+    firebaseFirestoreCaller: ref.watch(mainApiFirestoreCallerProvider),
+  );
+}
 
 class AuthRemoteDataSource implements IAuthRemoteDataSource {
   AuthRemoteDataSource(
@@ -38,7 +41,7 @@ class AuthRemoteDataSource implements IAuthRemoteDataSource {
     required this.firebaseFirestoreCaller,
   });
 
-  final Ref ref;
+  final AuthRemoteDataSourceRef ref;
   final IFirebaseAuthCaller firebaseAuthCaller;
   final IFirebaseFirestoreCaller firebaseFirestoreCaller;
 

@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'show_fcm_notification_provider.g.dart';
+
 // When using `Notification message`, The default behavior on all platforms is to automatically display a notification
 // by FCM when the app is in background/terminated. This behavior can't be disabled [https://stackoverflow.com/questions/71028036]
 // Only on android, you can update FCM to use our own channel rather than the default FCM one by
@@ -28,8 +30,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 // & [getInitialMessage] is used to handle terminated notification interaction.
 // More details: https://firebase.flutter.dev/docs/messaging/notifications/#handling-interaction
 
-final showFCMNotificationProvider = FutureProvider.autoDispose
-    .family<void, RemoteMessage>((ref, message) async {
+@riverpod
+Future<void> showFCMNotification(
+  ShowFCMNotificationRef ref,
+  RemoteMessage message,
+) async {
   final notification = message.notification;
   final messageData = message.data;
 
@@ -43,7 +48,7 @@ final showFCMNotificationProvider = FutureProvider.autoDispose
       payload: jsonEncode(messageData),
     );
   }
-});
+}
 
 final fcmNotificationDetails = NotificationDetails(
   android: AndroidNotificationDetails(

@@ -4,20 +4,21 @@ import 'package:deliverzler/features/map/domain/entities/place_details.dart';
 import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final getPlaceDetailsUCProvider = Provider(
-  (ref) => GetPlaceDetailsUC(
-    ref,
+part 'get_place_details_uc.g.dart';
+
+@Riverpod(keepAlive: true)
+GetPlaceDetailsUC getPlaceDetailsUC(GetPlaceDetailsUCRef ref) {
+  return GetPlaceDetailsUC(
     mapRepo: ref.watch(mapRepoProvider),
-  ),
-);
+  );
+}
 
 class GetPlaceDetailsUC
     implements UseCaseBase<PlaceDetails, GetPlaceDetailsParams> {
-  GetPlaceDetailsUC(this.ref, {required this.mapRepo});
+  GetPlaceDetailsUC({required this.mapRepo});
 
-  final Ref ref;
   final IMapRepo mapRepo;
 
   @override

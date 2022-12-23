@@ -1,11 +1,14 @@
 import 'package:deliverzler/core/presentation/services/local_notfication_service/flutter_local_notifications_provider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final fcmProvider = Provider<FirebaseMessaging>((ref) {
+part 'fcm_provider.g.dart';
+
+@Riverpod(keepAlive: true)
+FirebaseMessaging fcm(FcmRef ref) {
   return FirebaseMessaging.instance;
-});
+}
 
 const AndroidNotificationChannel fcmChannel = AndroidNotificationChannel(
   'firebase_push_notification',
@@ -14,20 +17,20 @@ const AndroidNotificationChannel fcmChannel = AndroidNotificationChannel(
   importance: Importance.max,
 );
 
-final setupFCMProvider = FutureProvider.autoDispose<void>(
-  (ref) async {
-    final permission = await ref.watch(_grantFCMPermissionProvider.future);
-    if (permission != AuthorizationStatus.authorized) {
-      return;
-    }
+@riverpod
+Future<void> setupFCM(SetupFCMRef ref) async {
+  final permission = await ref.watch(_grantFCMPermissionProvider.future);
+  if (permission != AuthorizationStatus.authorized) {
+    return;
+  }
 
-    await ref.watch(_setupAndroidHeadsUpProvider.future);
-    await ref.watch(_setupIOSHeadsUpProvider.future);
-  },
-);
+  await ref.watch(_setupAndroidHeadsUpProvider.future);
+  await ref.watch(_setupIOSHeadsUpProvider.future);
+}
 
-final _grantFCMPermissionProvider =
-    FutureProvider.autoDispose<AuthorizationStatus>((ref) async {
+@riverpod
+Future<AuthorizationStatus> _grantFCMPermission(
+    _GrantFCMPermissionRef ref) async {
   // On iOS, macOS & web, before FCM payloads can be received on your device
   // you must first ask the user's permission.
   // Android applications are not required to request permission.
@@ -41,10 +44,10 @@ final _grantFCMPermissionProvider =
     sound: true,
   );
   return settings.authorizationStatus;
-});
+}
 
-final _setupAndroidHeadsUpProvider =
-    FutureProvider.autoDispose<void>((ref) async {
+@riverpod
+Future<void> _setupAndroidHeadsUp(_SetupAndroidHeadsUpRef ref) async {
   // Create an Android Notification Channel.
   // We use this channel in the `AndroidManifest.xml` file to override the
   // default FCM channel to enable heads up notifications.
@@ -53,9 +56,10 @@ final _setupAndroidHeadsUpProvider =
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(fcmChannel);
-});
+}
 
-final _setupIOSHeadsUpProvider = FutureProvider.autoDispose<void>((ref) async {
+@riverpod
+Future<void> _setupIOSHeadsUp(_SetupIOSHeadsUpRef ref) async {
   // Update the iOS foreground notification presentation options to allow
   // heads up notifications.
   // Disable alert if you're using flutterLocalNotification to handle foreground
@@ -65,4 +69,4 @@ final _setupIOSHeadsUpProvider = FutureProvider.autoDispose<void>((ref) async {
     sound: true,
     badge: true,
   );
-});
+}

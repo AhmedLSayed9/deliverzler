@@ -5,8 +5,12 @@ import 'package:deliverzler/features/notifications/presentation/providers/tapped
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final getInitialMessageProvider = FutureProvider.autoDispose<void>((ref) async {
+part 'fcm_remote_message_providers.g.dart';
+
+@riverpod
+Future<void> getInitialMessage(GetInitialMessageRef ref) async {
   // Called when the application open from a terminated state.
   // If it opened via notification, RemoteMessage will be returned, otherwise it will be null.
   // Should be called in app initState or at home screen because we need context for navigation.
@@ -17,7 +21,7 @@ final getInitialMessageProvider = FutureProvider.autoDispose<void>((ref) async {
           Some(AppNotificationModel.fromMap(message.data));
     }
   });
-});
+}
 
 final onMessageProvider = StreamProvider.autoDispose<RemoteMessage>((ref) {
   // Called when FCM payload is received while the app is in the foreground.
