@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:deliverzler/core/presentation/extensions/auto_dispose_ref_extension.dart';
 import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_autocomplete_uc.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

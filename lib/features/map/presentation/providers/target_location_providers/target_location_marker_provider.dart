@@ -3,7 +3,7 @@ import 'package:deliverzler/features/map/presentation/helpers/map_style_helper.d
 import 'package:deliverzler/features/map/presentation/providers/place_details_provider.dart';
 import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_camera_position_provider.dart';
 import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_geo_point_provider.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

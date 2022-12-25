@@ -6,7 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:deliverzler/core/presentation/styles/sizes.dart';
 import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginFormComponent extends HookConsumerWidget {

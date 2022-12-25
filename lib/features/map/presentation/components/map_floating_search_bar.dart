@@ -2,7 +2,7 @@ import 'package:deliverzler/core/presentation/hooks/floating_search_bar_controll
 import 'package:deliverzler/features/map/presentation/components/map_search_menu_component.dart';
 import 'package:deliverzler/features/map/presentation/providers/place_autocomplete_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';

@@ -3,7 +3,7 @@ import 'package:deliverzler/features/home/presentation/providers/location_stream
 import 'package:deliverzler/features/map/domain/entities/place_directions.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_directions_uc.dart';
 import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_geo_point_provider.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'target_location_directions_provider.g.dart';

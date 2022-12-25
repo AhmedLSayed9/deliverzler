@@ -1,7 +1,7 @@
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

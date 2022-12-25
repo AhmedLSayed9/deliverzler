@@ -1,6 +1,6 @@
 import 'package:deliverzler/features/home/domain/entities/order.dart';
 import 'package:deliverzler/features/home/presentation/providers/my_delivering_orders_provider.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 // ignore: depend_on_referenced_packages

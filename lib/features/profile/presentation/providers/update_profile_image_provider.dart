@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
 import 'package:deliverzler/features/profile/domain/use_cases/update_profile_image_uc.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

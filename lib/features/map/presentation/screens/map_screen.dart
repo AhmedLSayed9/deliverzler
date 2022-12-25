@@ -25,7 +25,7 @@ import 'package:deliverzler/features/map/presentation/providers/target_location_
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/presentation/widgets/loading_indicators.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MapScreen extends HookConsumerWidget {

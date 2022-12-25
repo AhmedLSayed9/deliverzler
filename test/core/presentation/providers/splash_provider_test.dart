@@ -6,7 +6,7 @@ import 'package:deliverzler/core/data/network/network_info.dart';
 import 'package:deliverzler/core/presentation/routing/route_paths.dart';
 import 'package:deliverzler/core/presentation/providers/splash_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

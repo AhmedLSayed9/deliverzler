@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:deliverzler/features/notifications/data/models/app_notification_model.dart';
 import 'package:deliverzler/features/notifications/presentation/providers/tapped_notification_provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'flutter_local_notifications_provider.g.dart';

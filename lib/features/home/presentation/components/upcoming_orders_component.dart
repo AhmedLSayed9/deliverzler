@@ -17,7 +17,7 @@ import 'package:deliverzler/features/home/presentation/providers/upcoming_orders
 import 'package:deliverzler/features/home/presentation/providers/update_delivery_status_provider/update_delivery_status_provider.dart';
 import 'package:deliverzler/features/home/presentation/providers/update_delivery_status_provider/update_delivery_status_state.dart';
 import 'package:flutter/material.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class UpcomingOrdersComponent extends ConsumerWidget {
