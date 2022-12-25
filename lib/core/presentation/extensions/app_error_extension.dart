@@ -2,13 +2,17 @@ import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:flutter/material.dart';
 
-extension AppErrorExtension on AppException {
+extension AppErrorExtension on Object {
   String errorMessage(BuildContext context) {
-    return map(
-      serverException: (ex) => ex.serverErrorMessage(context),
-      //TODO: handle other cache exception error messages
-      cacheException: (ex) => tr(context).unknownError,
-    );
+    final error = this;
+    if (error is AppException) {
+      return error.map(
+        serverException: (ex) => ex.serverErrorMessage(context),
+        //TODO: handle other cache exception error messages
+        cacheException: (ex) => tr(context).unknownError,
+      );
+    }
+    return tr(context).unknownError;
   }
 }
 

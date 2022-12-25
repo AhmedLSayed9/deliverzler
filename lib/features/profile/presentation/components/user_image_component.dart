@@ -1,5 +1,4 @@
 import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
-import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/data/local/image_picker_caller/i_image_picker_caller.dart';
 import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
 import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
@@ -33,7 +32,7 @@ class UserImageComponent extends HookConsumerWidget {
               error: (err, st) {
                 Dialogs.showErrorDialog(
                   context,
-                  message: (err as AppException).errorMessage(context),
+                  message: err.errorMessage(context),
                 );
               },
             );

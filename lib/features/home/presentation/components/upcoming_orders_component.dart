@@ -1,4 +1,3 @@
-import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
@@ -38,7 +37,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
               error: (err, st) {
                 Dialogs.showErrorDialog(
                   context,
-                  message: (err as AppException).errorMessage(context),
+                  message: err.errorMessage(context),
                 );
               },
               data: (state) {

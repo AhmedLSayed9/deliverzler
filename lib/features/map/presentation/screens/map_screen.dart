@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
 import 'package:deliverzler/core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
-import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:deliverzler/core/presentation/helpers/theme_helper.dart';
@@ -72,7 +71,7 @@ class MapScreen extends HookConsumerWidget {
               error: (err, st) {
                 Dialogs.showErrorDialog(
                   context,
-                  message: (err as AppException).errorMessage(context),
+                  message: err.errorMessage(context),
                 );
               },
               data: (state) {

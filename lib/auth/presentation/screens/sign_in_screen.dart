@@ -2,7 +2,6 @@ import 'package:deliverzler/auth/presentation/components/app_logo_component.dart
 import 'package:deliverzler/auth/presentation/components/login_form_component.dart';
 import 'package:deliverzler/auth/presentation/components/welcome_component.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
-import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
 import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
 import 'package:deliverzler/core/presentation/screens/full_screen_platfom_scaffold.dart';
@@ -29,7 +28,7 @@ class SignInScreen extends ConsumerWidget {
               error: (err, st) {
                 Dialogs.showErrorDialog(
                   context,
-                  message: (err as AppException).errorMessage(context),
+                  message: err.errorMessage(context),
                 );
               },
             );
