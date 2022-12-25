@@ -1,4 +1,5 @@
 import 'package:deliverzler/core/presentation/extensions/auto_dispose_ref_extension.dart';
+import 'package:deliverzler/core/presentation/helpers/option_helper.dart';
 import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
 import 'package:deliverzler/features/map/domain/entities/place_details.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_details_uc.dart';
@@ -20,11 +21,8 @@ Option<PlaceDetails> currentPlaceDetails(CurrentPlaceDetailsRef ref) {
   ));
 
   return selectedPlaceId.flatMap(
-    (placeId) => ref.watch(
-      getPlaceDetailsProvider(placeId).select(
-        (value) => Option.fromNullable(value.valueOrNull),
-      ),
-    ),
+    (placeId) =>
+        ref.watch(getPlaceDetailsProvider(placeId).select(valueToOption)),
   );
 }
 
