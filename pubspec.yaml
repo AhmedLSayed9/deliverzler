@@ -16,8 +16,8 @@ dependencies:
 
   #StateManagement & DI
   flutter_hooks: ^0.18.5+1
-  hooks_riverpod: ^2.1.1
-  riverpod_annotation: ^1.0.6
+  hooks_riverpod: ^2.1.2
+  riverpod_annotation: ^1.1.0
   get_it: ^7.2.0
 
   #FP
@@ -74,7 +74,7 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_launcher_icons: ^0.9.2
   build_runner: ^2.3.2
-  riverpod_generator: ^1.0.4
+  riverpod_generator: ^1.1.0
   freezed: ^2.2.0
   mockito: ^5.3.2
 
