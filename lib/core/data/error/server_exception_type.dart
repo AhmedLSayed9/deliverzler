@@ -1,3 +1,5 @@
+part of 'app_exception.dart';
+
 enum ServerExceptionType {
   unknown,
   general, //Used for Business Logic errors

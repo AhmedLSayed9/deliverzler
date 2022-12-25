@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/error/server_exception_type.dart';
 import 'package:deliverzler/core/data/network/i_firebase_auth_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/extensions/firebase_error_extension.dart';
 import 'package:firebase_auth/firebase_auth.dart';

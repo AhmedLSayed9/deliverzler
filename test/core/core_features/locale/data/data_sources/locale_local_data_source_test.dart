@@ -1,6 +1,5 @@
 import 'package:deliverzler/core/core_features/locale/data/data_sources/locale_local_data_source.dart';
 import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/error/cache_exception_type.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 import 'package:flutter_test/flutter_test.dart';

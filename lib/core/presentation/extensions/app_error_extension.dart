@@ -1,5 +1,4 @@
 import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/error/server_exception_type.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:flutter/material.dart';
 

@@ -1,3 +1,5 @@
+part of 'app_exception.dart';
+
 enum CacheExceptionType {
   unknown,
   general,

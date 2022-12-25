@@ -5,7 +5,6 @@ import 'package:deliverzler/auth/data/data_sources/auth_remote_data_source.dart'
 import 'package:deliverzler/auth/data/models/user_model.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
 import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/error/server_exception_type.dart';
 import 'package:deliverzler/core/data/network/i_firebase_auth_caller.dart';
 import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_auth_caller.dart';

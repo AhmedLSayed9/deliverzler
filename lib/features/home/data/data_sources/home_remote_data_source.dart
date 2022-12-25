@@ -1,5 +1,4 @@
 import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/error/server_exception_type.dart';
 import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_firestore_caller.dart';
 import 'package:deliverzler/features/home/data/models/order_model.dart';

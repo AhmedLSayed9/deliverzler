@@ -8,7 +8,6 @@ import 'package:deliverzler/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/presentation/styles/app_images.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -24,7 +23,7 @@ ServicesInitializer servicesInitializer(ServicesInitializerRef ref) {
 class ServicesInitializer {
   ServicesInitializer(this.ref);
 
-  final Ref ref;
+  final ServicesInitializerRef ref;
 
   Future<void> init(WidgetsBinding widgetsBinding) async {
     await _initFirebase();

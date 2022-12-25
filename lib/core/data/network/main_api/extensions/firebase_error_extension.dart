@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/error/server_exception_type.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 extension FirebaseErrorExtension on Exception {

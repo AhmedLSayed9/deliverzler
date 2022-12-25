@@ -1,5 +1,4 @@
 import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/error/cache_exception_type.dart';
 import 'package:deliverzler/core/data/local/extensions/local_error_extension.dart';
 import 'package:flutter_test/flutter_test.dart';
 
