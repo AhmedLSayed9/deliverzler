@@ -199,10 +199,10 @@ void main() {
       }
 
       test(
-        'then emit AsyncData(void) when use case returns normally',
+        'should emit AsyncData(void) when use case returns normally',
         () async {
           // GIVEN
-          when(mockSignOutUC()).thenAnswer((_) async {});
+          when(mockSignOutUC()).thenAnswer((_) async => returnsNormally);
 
           final container = setUpContainer(
             overrides: [
@@ -239,7 +239,7 @@ void main() {
 
           final container = setUpContainer(
             overrides: [
-              signOutUCProvider.overrideWith((ref) => mockSignOutUC),
+              signOutUCProvider.overrideWithValue(mockSignOutUC),
             ],
           );
           final listener = setUpListener(container);

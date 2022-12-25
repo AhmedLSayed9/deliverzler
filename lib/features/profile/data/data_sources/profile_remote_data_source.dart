@@ -53,7 +53,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
 
   @override
   Future<String> uploadProfileImage(File imageFile) async {
-    final uid = ref.read(currentuserControllerProvider).id;
+    final uid = ref.read(currentUserProvider).id;
     final imageUrl = await firebaseStorageCaller.uploadImage(
       //File name is always user's uid, to replace the file when updating it.
       path: '${userStorageFolderPath(uid)}/$uid',
@@ -64,7 +64,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
 
   @override
   Future<void> updateProfileImage(String imageUrl) async {
-    final uid = ref.read(currentuserControllerProvider).id;
+    final uid = ref.read(currentUserProvider).id;
     return await firebaseFirestoreCaller.setData(
       path: userDocPath(uid),
       data: {'image': imageUrl},
@@ -74,7 +74,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
 
   @override
   Future<void> updateProfileData(UserModel userModel) async {
-    final uid = ref.read(currentuserControllerProvider).id;
+    final uid = ref.read(currentUserProvider).id;
     return await firebaseFirestoreCaller.setData(
       path: userDocPath(uid),
       data: userModel.toMap(),

@@ -12,7 +12,7 @@ class UserDetailsComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final user = ref.watch(currentuserControllerProvider);
+    final user = ref.watch(currentUserProvider);
 
     return Column(
       children: [

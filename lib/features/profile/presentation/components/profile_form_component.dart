@@ -19,7 +19,7 @@ class ProfileFormComponent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final user = ref.watch(currentuserControllerProvider);
+    final user = ref.watch(currentUserProvider);
 
     ref.listen<AsyncValue<Option<User>>>(
       updateProfileDataStateProvider,

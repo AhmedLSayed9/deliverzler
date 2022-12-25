@@ -28,8 +28,7 @@ class CardItemComponent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final userId =
-        ref.watch(currentuserControllerProvider.select((user) => user.id));
+    final userId = ref.watch(currentUserProvider.select((user) => user.id));
     final bool isUpcomingOrder =
         order.deliveryStatus == DeliveryStatus.upcoming;
 
