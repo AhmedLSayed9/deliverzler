@@ -1,7 +1,4 @@
-import 'dart:async';
-
-import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+part of 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 
 extension AutoDisposeRefExtension on AutoDisposeRef {
   // When invoked keeps your provider alive for [duration]

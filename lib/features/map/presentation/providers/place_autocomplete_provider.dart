@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:deliverzler/core/presentation/extensions/auto_dispose_ref_extension.dart';
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_autocomplete_uc.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
@@ -24,8 +24,6 @@ final placeAutocompleteQueryProvider =
     StateProvider.autoDispose<Option<String>>((ref) {
   return const None();
 });
-
-class AbortedException implements Exception {}
 
 @riverpod
 Future<List<PlaceAutocomplete>> getPlaceAutocomplete(

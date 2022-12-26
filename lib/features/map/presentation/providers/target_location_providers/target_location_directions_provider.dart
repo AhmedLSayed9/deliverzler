@@ -1,4 +1,4 @@
-import 'package:deliverzler/core/presentation/extensions/auto_dispose_ref_extension.dart';
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/features/home/presentation/providers/location_stream_provider.dart';
 import 'package:deliverzler/features/map/domain/entities/place_directions.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_directions_uc.dart';
@@ -20,8 +20,6 @@ Option<PlaceDirections> targetLocationDirections(
         orElse: () => const None<PlaceDirections>(),
       );
 }
-
-class AbortedException implements Exception {}
 
 @riverpod
 Future<PlaceDirections> getTargetLocationDirections(
