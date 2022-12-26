@@ -125,7 +125,7 @@ void main() {
         () async {
           // GIVEN
           when(mockGetAppThemeUC()).thenAnswer((_) async => tTheme.name);
-          when(mockSetAppThemeUC(any)).thenAnswer((_) async => returnsNormally);
+          when(mockSetAppThemeUC(any)).thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
           await container.read(appThemeControllerProvider.future);

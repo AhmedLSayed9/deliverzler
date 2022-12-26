@@ -39,10 +39,9 @@ void main() {
         'should call subscribeToTopic and return proper data when Repo.signOut returns normally',
         () async {
           // GIVEN
-          when(mockIAuthRepo.signOut())
-              .thenAnswer((_) async => returnsNormally);
+          when(mockIAuthRepo.signOut()).thenAnswer((_) async => Future.value());
           when(mockFirebaseMessaging.unsubscribeFromTopic(any))
-              .thenAnswer((_) async => returnsNormally);
+              .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
 

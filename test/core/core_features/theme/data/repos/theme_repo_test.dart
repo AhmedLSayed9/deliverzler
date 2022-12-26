@@ -84,7 +84,7 @@ void main() {
         () async {
           // GIVEN
           when(mockIThemeLocalDataSource.cacheAppTheme(tTheme))
-              .thenAnswer((_) async => returnsNormally);
+              .thenAnswer((_) async => Future.value());
           final container = setUpContainer();
 
           // WHEN

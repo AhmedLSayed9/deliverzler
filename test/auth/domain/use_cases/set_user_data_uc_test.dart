@@ -45,7 +45,7 @@ void main() {
         () async {
           // GIVEN
           when(mockIAuthRepo.setUserData(any))
-              .thenAnswer((_) async => returnsNormally);
+              .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
 

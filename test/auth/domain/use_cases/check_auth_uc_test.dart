@@ -82,9 +82,8 @@ void main() {
           // GIVEN
           when(mockIAuthRepo.getUserAuthUid()).thenAnswer((_) async => tUid);
           when(mockGetUserDataUC(tUid)).thenThrow(tException);
-          when(mockIAuthRepo.signOut())
-              .thenAnswer((_) async => returnsNormally);
-          when(mockSignOutUC()).thenAnswer((_) async => returnsNormally);
+          when(mockIAuthRepo.signOut()).thenAnswer((_) async => Future.value());
+          when(mockSignOutUC()).thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
 

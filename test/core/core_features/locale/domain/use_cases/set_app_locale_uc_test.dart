@@ -35,7 +35,7 @@ void main() {
         () async {
           // GIVEN
           when(mockILocaleRepo.cacheAppLocale(tLocale))
-              .thenAnswer((_) async => returnsNormally);
+              .thenAnswer((_) async => Future.value());
           final container = setUpContainer();
 
           // WHEN

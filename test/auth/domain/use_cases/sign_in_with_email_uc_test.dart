@@ -70,7 +70,7 @@ void main() {
           when(mockGetUserDataUC.call(tUserFromCredential.id))
               .thenAnswer((_) async => tUser);
           when(mockFirebaseMessaging.subscribeToTopic(any))
-              .thenAnswer((_) async => returnsNormally);
+              .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
 

@@ -125,8 +125,7 @@ void main() {
         () async {
           // GIVEN
           when(mockGetAppLocaleUC()).thenAnswer((_) async => tLocale.code);
-          when(mockSetAppLocaleUC(any))
-              .thenAnswer((_) async => returnsNormally);
+          when(mockSetAppLocaleUC(any)).thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
           await container.read(appLocaleControllerProvider.future);

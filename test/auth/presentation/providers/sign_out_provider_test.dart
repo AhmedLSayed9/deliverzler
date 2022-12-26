@@ -202,7 +202,7 @@ void main() {
         'should emit AsyncData(void) when use case returns normally',
         () async {
           // GIVEN
-          when(mockSignOutUC()).thenAnswer((_) async => returnsNormally);
+          when(mockSignOutUC()).thenAnswer((_) => Future.value());
 
           final container = setUpContainer(
             overrides: [
