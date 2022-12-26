@@ -1,6 +1,7 @@
 import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
 import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
 import 'package:deliverzler/core/presentation/routing/route_paths.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:deliverzler/features/home/domain/entities/order.dart';
 import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
 import 'package:deliverzler/features/home/presentation/components/card_button_component.dart';
@@ -15,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:deliverzler/core/presentation/styles/sizes.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fpdart/fpdart.dart' as fp;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CardItemComponent extends HookConsumerWidget {
@@ -45,9 +45,9 @@ class CardItemComponent extends HookConsumerWidget {
       if (confirmDeliveryId() == false) return;
 
       final container = ProviderScope.containerOf(context);
-      final sub = container.listen<fp.Option<String>>(
+      final sub = container.listen<Option<String>>(
           selectedOrderIdProvider, (prev, value) {});
-      ref.read(selectedOrderIdProvider.notifier).state = fp.Some(order.orderId);
+      ref.read(selectedOrderIdProvider.notifier).state = Some(order.orderId);
       await NavigationService.push(
         context,
         isNamed: true,
@@ -70,7 +70,7 @@ class CardItemComponent extends HookConsumerWidget {
           deliveryStatus: DeliveryStatus.delivered,
         );
         ref.read(updateDeliveryStatusParamsProvider.notifier).state =
-            fp.Some(params);
+            Some(params);
       }
     }, []);
 
@@ -88,7 +88,7 @@ class CardItemComponent extends HookConsumerWidget {
           deliveryId: userId,
         );
         ref.read(updateDeliveryStatusParamsProvider.notifier).state =
-            fp.Some(params);
+            Some(params);
       }
     }, []);
 
@@ -104,7 +104,7 @@ class CardItemComponent extends HookConsumerWidget {
           employeeCancelNote: cancelNote,
         );
         ref.read(updateDeliveryStatusParamsProvider.notifier).state =
-            fp.Some(params);
+            Some(params);
       }
     }, []);
 
