@@ -3,13 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
-import 'package:connectivity_plus/connectivity_plus.dart' as _i6;
-import 'package:deliverzler/auth/domain/entities/user.dart' as _i3;
-import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i2;
-import 'package:deliverzler/auth/domain/use_cases/check_auth_uc.dart' as _i7;
-import 'package:deliverzler/core/data/network/network_info.dart' as _i4;
+import 'package:connectivity_plus/connectivity_plus.dart' as _i7;
+import 'package:deliverzler/auth/domain/entities/user.dart' as _i4;
+import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i3;
+import 'package:deliverzler/auth/domain/use_cases/check_auth_uc.dart' as _i8;
+import 'package:deliverzler/core/data/network/network_info.dart' as _i5;
+import 'package:hooks_riverpod/hooks_riverpod.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -23,8 +24,9 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeIAuthRepo_0 extends _i1.SmartFake implements _i2.IAuthRepo {
-  _FakeIAuthRepo_0(
+class _FakeProviderRef_0<State> extends _i1.SmartFake
+    implements _i2.ProviderRef<State> {
+  _FakeProviderRef_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -33,8 +35,18 @@ class _FakeIAuthRepo_0 extends _i1.SmartFake implements _i2.IAuthRepo {
         );
 }
 
-class _FakeUser_1 extends _i1.SmartFake implements _i3.User {
-  _FakeUser_1(
+class _FakeIAuthRepo_1 extends _i1.SmartFake implements _i3.IAuthRepo {
+  _FakeIAuthRepo_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUser_2 extends _i1.SmartFake implements _i4.User {
+  _FakeUser_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -46,67 +58,75 @@ class _FakeUser_1 extends _i1.SmartFake implements _i3.User {
 /// A class which mocks [INetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockINetworkInfo extends _i1.Mock implements _i4.INetworkInfo {
+class MockINetworkInfo extends _i1.Mock implements _i5.INetworkInfo {
   MockINetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<bool> get hasInternetConnection => (super.noSuchMethod(
+  _i6.Future<bool> get hasInternetConnection => (super.noSuchMethod(
         Invocation.getter(#hasInternetConnection),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
   @override
-  _i5.Future<_i6.ConnectivityResult> get hasNetworkConnectivity =>
+  _i6.Future<_i7.ConnectivityResult> get hasNetworkConnectivity =>
       (super.noSuchMethod(
         Invocation.getter(#hasNetworkConnectivity),
-        returnValue: _i5.Future<_i6.ConnectivityResult>.value(
-            _i6.ConnectivityResult.bluetooth),
-      ) as _i5.Future<_i6.ConnectivityResult>);
+        returnValue: _i6.Future<_i7.ConnectivityResult>.value(
+            _i7.ConnectivityResult.bluetooth),
+      ) as _i6.Future<_i7.ConnectivityResult>);
 }
 
 /// A class which mocks [CheckAuthUC].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCheckAuthUC extends _i1.Mock implements _i7.CheckAuthUC {
+class MockCheckAuthUC extends _i1.Mock implements _i8.CheckAuthUC {
   MockCheckAuthUC() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.IAuthRepo get authRepo => (super.noSuchMethod(
+  _i2.ProviderRef<_i8.CheckAuthUC> get ref => (super.noSuchMethod(
+        Invocation.getter(#ref),
+        returnValue: _FakeProviderRef_0<_i8.CheckAuthUC>(
+          this,
+          Invocation.getter(#ref),
+        ),
+      ) as _i2.ProviderRef<_i8.CheckAuthUC>);
+  @override
+  _i3.IAuthRepo get authRepo => (super.noSuchMethod(
         Invocation.getter(#authRepo),
-        returnValue: _FakeIAuthRepo_0(
+        returnValue: _FakeIAuthRepo_1(
           this,
           Invocation.getter(#authRepo),
         ),
-      ) as _i2.IAuthRepo);
+      ) as _i3.IAuthRepo);
   @override
-  _i5.Future<_i3.User> call() => (super.noSuchMethod(
+  _i6.Future<_i4.User> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i5.Future<_i3.User>.value(_FakeUser_1(
+        returnValue: _i6.Future<_i4.User>.value(_FakeUser_2(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i5.Future<_i3.User>);
+      ) as _i6.Future<_i4.User>);
   @override
-  _i5.Future<_i3.User> getUserData(String? uid) => (super.noSuchMethod(
+  _i6.Future<_i4.User> getUserData(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserData,
           [uid],
         ),
-        returnValue: _i5.Future<_i3.User>.value(_FakeUser_1(
+        returnValue: _i6.Future<_i4.User>.value(_FakeUser_2(
           this,
           Invocation.method(
             #getUserData,
             [uid],
           ),
         )),
-      ) as _i5.Future<_i3.User>);
+      ) as _i6.Future<_i4.User>);
 }

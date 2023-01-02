@@ -1,34 +1,25 @@
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as f_auth;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class UserModel extends User {
-  const UserModel({
-    required super.id,
-    required super.email,
-    required super.name,
-    required super.phone,
-    required super.image,
-  });
+part 'user_model.freezed.dart';
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'email': email,
-      'name': name,
-      'phone': phone,
-      'image': image,
-    };
-  }
+part 'user_model.g.dart';
 
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      id: map['id'],
-      email: map['email'],
-      name: map['name'],
-      phone: map['phone'],
-      image: map['image'],
-    );
-  }
+@freezed
+class UserModel with _$UserModel {
+  const UserModel._();
+
+  const factory UserModel({
+    required String id,
+    required String email,
+    required String? name,
+    required String? phone,
+    required String? image,
+  }) = _UserModel;
+
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 
   factory UserModel.fromUserCredential(f_auth.User user) {
     return UserModel(
@@ -40,13 +31,23 @@ class UserModel extends User {
     );
   }
 
-  factory UserModel.fromUser(User user) {
+  factory UserModel.fromEntity(User user) {
     return UserModel(
       id: user.id,
       email: user.email,
       name: user.name,
       phone: user.phone,
       image: user.image,
+    );
+  }
+
+  User toEntity() {
+    return User(
+      id: id,
+      email: email,
+      name: name,
+      phone: phone,
+      image: image,
     );
   }
 }

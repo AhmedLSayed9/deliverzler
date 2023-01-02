@@ -19,7 +19,7 @@ Option<AppOrder> selectedOrder(SelectedOrderRef ref) {
     (id) => ref.watch(
       myDeliveringOrdersProvider.select(
         (orders) => Option<AppOrder>.fromNullable(
-          orders.firstWhereOrNull((order) => order.orderId == id),
+          orders.firstWhereOrNull((order) => order.id == id),
         ),
       ),
     ),

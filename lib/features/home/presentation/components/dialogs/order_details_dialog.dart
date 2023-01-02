@@ -27,7 +27,7 @@ class OrderDetailsDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               QrImage(
-                data: order.orderId,
+                data: order.id,
                 size: Sizes.imageRadius100(context),
                 foregroundColor: Theme.of(context).colorScheme.secondary,
                 padding: EdgeInsets.zero,
@@ -56,7 +56,7 @@ class OrderDetailsDialog extends StatelessWidget {
                         ),
                         CustomText.f18(
                           context,
-                          '#${order.orderId.substring(0, 6)}',
+                          '#${order.id.substring(0, 6)}',
                         ),
                       ],
                     ),

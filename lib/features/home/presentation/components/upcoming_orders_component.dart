@@ -45,7 +45,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
                   success: (orderId, deliveryStatus) async {
                     if (deliveryStatus != DeliveryStatus.onTheWay) return;
                     final container = ProviderScope.containerOf(context);
-                    final sub = container.listen<Option<String>>(
+                    final sub = container.listen(
                         selectedOrderIdProvider, (prev, value) {});
                     ref.read(selectedOrderIdProvider.notifier).state =
                         Some(orderId);
@@ -85,7 +85,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
                         delegate: SeparatedSliverChildBuilderDelegate(
                           itemBuilder: (BuildContext context, int index) {
                             return CardItemComponent(
-                              key: ValueKey(upcomingOrders[index].orderId),
+                              key: ValueKey(upcomingOrders[index].id),
                               order: upcomingOrders[index],
                             );
                           },

@@ -1,0 +1,39 @@
+#This fix False generation of mocks as code generators need to be run in a certain order (Mockito should go last)
+#https://github.com/dart-lang/mockito/issues/345
+#Also, this speed up code generation: https://codewithandrea.com/tips/speed-up-code-generation-build-runner-dart-flutter
+
+targets:
+  $default:
+    # This is true by default, so you can just omit this line. This means enable all builders by default.
+    auto_apply_builders: true
+    builders:
+      # Write your other builders' settings normally here.
+      freezed:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**.dart
+      json_serializable:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**.dart
+      riverpod_generator:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**.dart
+
+      # Disable mockito's builder to run it after other code is generated.
+      mockito|mockBuilder:
+        enabled: false
+
+  # Adjust this name by yourself.
+  run_mockito:
+    # Make sure this target runs after the target above.
+    dependencies: ["$default"]
+    # Only run mockito's builder.
+    auto_apply_builders: false
+    builders:
+      mockito|mockBuilder:
+        enabled: true

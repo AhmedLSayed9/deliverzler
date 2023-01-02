@@ -3,11 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i2;
-import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart' as _i3;
+import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart' as _i3;
+import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:riverpod_annotation/riverpod_annotation.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -20,8 +21,19 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeIAuthRepo_0 extends _i1.SmartFake implements _i2.IAuthRepo {
-  _FakeIAuthRepo_0(
+class _FakeProviderRef_0<State> extends _i1.SmartFake
+    implements _i2.ProviderRef<State> {
+  _FakeProviderRef_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeIAuthRepo_1 extends _i1.SmartFake implements _i3.IAuthRepo {
+  _FakeIAuthRepo_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -33,26 +45,34 @@ class _FakeIAuthRepo_0 extends _i1.SmartFake implements _i2.IAuthRepo {
 /// A class which mocks [SignOutUC].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignOutUC extends _i1.Mock implements _i3.SignOutUC {
+class MockSignOutUC extends _i1.Mock implements _i4.SignOutUC {
   MockSignOutUC() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.IAuthRepo get authRepo => (super.noSuchMethod(
+  _i2.ProviderRef<_i4.SignOutUC> get ref => (super.noSuchMethod(
+        Invocation.getter(#ref),
+        returnValue: _FakeProviderRef_0<_i4.SignOutUC>(
+          this,
+          Invocation.getter(#ref),
+        ),
+      ) as _i2.ProviderRef<_i4.SignOutUC>);
+  @override
+  _i3.IAuthRepo get authRepo => (super.noSuchMethod(
         Invocation.getter(#authRepo),
-        returnValue: _FakeIAuthRepo_0(
+        returnValue: _FakeIAuthRepo_1(
           this,
           Invocation.getter(#authRepo),
         ),
-      ) as _i2.IAuthRepo);
+      ) as _i3.IAuthRepo);
   @override
-  _i4.Future<void> call() => (super.noSuchMethod(
+  _i5.Future<void> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

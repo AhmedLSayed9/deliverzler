@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class PlaceDetails extends Equatable {
-  final GeoPoint geoPoint;
+part 'place_details.freezed.dart';
 
-  const PlaceDetails({
-    required this.geoPoint,
-  });
-
-  @override
-  List<Object?> get props => [
-        geoPoint,
-      ];
+@freezed
+class PlaceDetails with _$PlaceDetails {
+  const factory PlaceDetails({
+    required GeoPoint geoPoint,
+  }) = _PlaceDetails;
 }

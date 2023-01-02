@@ -77,7 +77,7 @@ class ProfileRemoteDataSource implements IProfileRemoteDataSource {
     final uid = ref.read(currentUserProvider).id;
     return await firebaseFirestoreCaller.setData(
       path: userDocPath(uid),
-      data: userModel.toMap(),
+      data: userModel.toJson(),
       merge: true,
     );
   }

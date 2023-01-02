@@ -45,9 +45,8 @@ class CardItemComponent extends HookConsumerWidget {
       if (confirmDeliveryId() == false) return;
 
       final container = ProviderScope.containerOf(context);
-      final sub = container.listen<Option<String>>(
-          selectedOrderIdProvider, (prev, value) {});
-      ref.read(selectedOrderIdProvider.notifier).state = Some(order.orderId);
+      final sub = container.listen(selectedOrderIdProvider, (prev, value) {});
+      ref.read(selectedOrderIdProvider.notifier).state = Some(order.id);
       await NavigationService.push(
         context,
         isNamed: true,
@@ -66,7 +65,7 @@ class CardItemComponent extends HookConsumerWidget {
       );
       if (confirmChoice) {
         final params = UpdateDeliveryStatusParams(
-          orderId: order.orderId,
+          orderId: order.id,
           deliveryStatus: DeliveryStatus.delivered,
         );
         ref.read(updateDeliveryStatusParamsProvider.notifier).state =
@@ -83,7 +82,7 @@ class CardItemComponent extends HookConsumerWidget {
       );
       if (confirmChoice) {
         final params = UpdateDeliveryStatusParams(
-          orderId: order.orderId,
+          orderId: order.id,
           deliveryStatus: DeliveryStatus.onTheWay,
           deliveryId: userId,
         );
@@ -99,7 +98,7 @@ class CardItemComponent extends HookConsumerWidget {
       final cancelNote = await OrderDialogHelper.showCancelOrderDialog(context);
       if (cancelNote != null) {
         final params = UpdateDeliveryStatusParams(
-          orderId: order.orderId,
+          orderId: order.id,
           deliveryStatus: DeliveryStatus.canceled,
           employeeCancelNote: cancelNote,
         );

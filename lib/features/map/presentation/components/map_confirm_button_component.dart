@@ -25,7 +25,7 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
 
     final confirmDeliveryId = useCallback(() {
       final userId = ref.read(currentUserProvider).id;
-      final orderId = ref.read(selectedOrderProvider).toNullable()?.orderId;
+      final orderId = ref.read(selectedOrderProvider).toNullable()?.id;
       return OrderDialogHelper.confirmDeliveryId(
         context,
         deliveryId: userId,
@@ -48,7 +48,7 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
         () {},
         (order) {
           final params = UpdateDeliveryStatusParams(
-            orderId: order.orderId,
+            orderId: order.id,
             deliveryStatus: DeliveryStatus.delivered,
           );
           ref.read(mapConfirmOrderParamsProvider.notifier).state = Some(params);

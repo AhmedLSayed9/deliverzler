@@ -3,8 +3,10 @@ import 'package:deliverzler/features/map/data/repos/map_repo.dart';
 import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
 import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'get_place_autocomplete_uc.freezed.dart';
 
 part 'get_place_autocomplete_uc.g.dart';
 
@@ -29,21 +31,10 @@ class GetPlaceAutocompleteUC
   }
 }
 
-class GetPlaceAutocompleteParams extends Equatable {
-  final CancelToken cancelToken;
-  final String placeName;
-
-  const GetPlaceAutocompleteParams({
-    required this.cancelToken,
-    required this.placeName,
-  });
-
-  Map<String, String> toMap() {
-    return {
-      'input': placeName,
-    };
-  }
-
-  @override
-  List<Object> get props => [placeName];
+@Freezed(toJson: true)
+class GetPlaceAutocompleteParams with _$GetPlaceAutocompleteParams {
+  const factory GetPlaceAutocompleteParams({
+    @JsonKey(ignore: true) required CancelToken cancelToken,
+    @JsonKey(name: 'input') required String placeName,
+  }) = _GetPlaceAutocompleteParams;
 }

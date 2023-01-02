@@ -18,7 +18,7 @@ Future<void> getInitialMessage(GetInitialMessageRef ref) async {
   return fcm.getInitialMessage().then((message) {
     if (message != null && message.data.isNotEmpty) {
       ref.read(tappedNotificationProvider.notifier).state =
-          Some(AppNotificationModel.fromMap(message.data));
+          Some(AppNotificationModel.fromJson(message.data).toEntity());
     }
   });
 }
@@ -44,7 +44,7 @@ final onMessageOpenedAppProvider =
       (message) {
         if (message.data.isNotEmpty) {
           ref.read(tappedNotificationProvider.notifier).state =
-              Some(AppNotificationModel.fromMap(message.data));
+              Some(AppNotificationModel.fromJson(message.data).toEntity());
         }
       },
     );

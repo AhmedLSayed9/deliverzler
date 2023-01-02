@@ -36,7 +36,7 @@ class AuthLocalDataSource implements IAuthLocalDataSource {
 
   @override
   Future<void> cacheUserData(UserModel userModel) async {
-    final jsonString = json.encode(userModel.toMap());
+    final jsonString = json.encode(userModel.toJson());
     await localStorageService.saveData(
       key: userDataKey,
       dataType: DataType.string,
@@ -51,7 +51,7 @@ class AuthLocalDataSource implements IAuthLocalDataSource {
       dataType: DataType.string,
     );
     if (jsonString != null) {
-      final userModel = UserModel.fromMap(json.decode(jsonString));
+      final userModel = UserModel.fromJson(json.decode(jsonString));
       return userModel;
     } else {
       throw const CacheException(

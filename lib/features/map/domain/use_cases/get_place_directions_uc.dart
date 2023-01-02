@@ -4,9 +4,11 @@ import 'package:deliverzler/features/map/data/repos/map_repo.dart';
 import 'package:deliverzler/features/map/domain/entities/place_directions.dart';
 import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'get_place_directions_uc.freezed.dart';
 
 part 'get_place_directions_uc.g.dart';
 
@@ -29,24 +31,15 @@ class GetPlaceDirectionsUC
   }
 }
 
-class GetPlaceDirectionsParams extends Equatable {
-  final CancelToken cancelToken;
-  final Position origin;
-  final GeoPoint destination;
-
-  const GetPlaceDirectionsParams({
-    required this.cancelToken,
-    required this.origin,
-    required this.destination,
-  });
-
-  Map<String, String> toMap() {
-    return {
-      'origin': '${origin.latitude},${origin.longitude}',
-      'destination': '${destination.latitude},${destination.longitude}',
-    };
-  }
-
-  @override
-  List<Object> get props => [origin, destination];
+@Freezed(toJson: true)
+class GetPlaceDirectionsParams with _$GetPlaceDirectionsParams {
+  const factory GetPlaceDirectionsParams({
+    @JsonKey(ignore: true) required CancelToken cancelToken,
+    @JsonKey(toJson: _toJsonOrigin) required Position origin,
+    @JsonKey(toJson: _toJsonDestination) required GeoPoint destination,
+  }) = _GetPlaceDirectionsParams;
 }
+
+String _toJsonOrigin(Position p) => '${p.latitude},${p.longitude}';
+
+String _toJsonDestination(GeoPoint d) => '${d.latitude},${d.longitude}';

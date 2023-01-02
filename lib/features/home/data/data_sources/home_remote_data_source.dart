@@ -64,10 +64,7 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
     final response =
         await firebaseFirestoreCaller.getData(path: orderDocPath(orderId));
     if (response.data() != null) {
-      return OrderModel.fromMap(
-        response.data() as Map<String, dynamic>,
-        response.id,
-      );
+      return OrderModel.fromFirestore(response);
     } else {
       throw const ServerException(
         type: ServerExceptionType.notFound,
@@ -80,7 +77,7 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
   Future<void> updateDeliveryStatus(UpdateDeliveryStatusParams params) async {
     await firebaseFirestoreCaller.updateData(
       path: orderDocPath(params.orderId),
-      data: params.toMap(),
+      data: params.toJson(),
     );
   }
 
@@ -89,7 +86,7 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
       UpdateDeliveryGeoPointParams params) async {
     await firebaseFirestoreCaller.updateData(
       path: orderDocPath(params.orderId),
-      data: params.toMap(),
+      data: params.toJson(),
     );
   }
 }

@@ -1,55 +1,76 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliverzler/features/home/domain/entities/address.dart';
 import 'package:deliverzler/features/home/presentation/utils/enums.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class AppOrder extends Equatable {
-  final String orderId;
-  final int date;
-  final PickupOption pickupOption;
-  final String paymentMethod;
-  final Address? address;
-  final String userId;
-  final String userName;
-  final String userImage;
-  final String userPhone;
-  final String userNote;
-  final String? employeeCancelNote;
-  final DeliveryStatus deliveryStatus;
-  final String? deliveryId;
-  final GeoPoint? deliveryGeoPoint;
+part 'order.freezed.dart';
 
-  const AppOrder({
-    required this.orderId,
-    required this.date,
-    required this.pickupOption,
-    required this.paymentMethod,
-    this.address,
-    required this.userId,
-    required this.userName,
-    required this.userImage,
-    required this.userPhone,
-    required this.userNote,
-    required this.employeeCancelNote,
-    required this.deliveryStatus,
-    required this.deliveryId,
-    required this.deliveryGeoPoint,
-  });
+@freezed
+class AppOrder with _$AppOrder {
+  const AppOrder._();
+
+  const factory AppOrder({
+    required String id,
+    required int date,
+    required PickupOption pickupOption,
+    required String paymentMethod,
+    required Address? address,
+    required String userId,
+    required String userName,
+    required String userImage,
+    required String userPhone,
+    required String userNote,
+    required String? employeeCancelNote,
+    required DeliveryStatus deliveryStatus,
+    required String? deliveryId,
+    required GeoPoint? deliveryGeoPoint,
+  }) = _AppOrder;
+
+  //Use custom equality implementation to ignore deliveryGeoPoint value
+  //this helps [upcomingOrdersProvider] to ignore deliveryGeoPoint in deep equality of distinct method
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AppOrder &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.pickupOption, pickupOption) ||
+                other.pickupOption == pickupOption) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.userImage, userImage) ||
+                other.userImage == userImage) &&
+            (identical(other.userPhone, userPhone) ||
+                other.userPhone == userPhone) &&
+            (identical(other.userNote, userNote) ||
+                other.userNote == userNote) &&
+            (identical(other.employeeCancelNote, employeeCancelNote) ||
+                other.employeeCancelNote == employeeCancelNote) &&
+            (identical(other.deliveryStatus, deliveryStatus) ||
+                other.deliveryStatus == deliveryStatus) &&
+            (identical(other.deliveryId, deliveryId) ||
+                other.deliveryId == deliveryId));
+  }
 
   @override
-  List<Object?> get props => [
-        orderId,
-        date,
-        pickupOption,
-        paymentMethod,
-        address,
-        userId,
-        userName,
-        userImage,
-        userPhone,
-        userNote,
-        employeeCancelNote,
-        deliveryStatus,
-        deliveryId,
-      ];
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      date,
+      pickupOption,
+      paymentMethod,
+      address,
+      userId,
+      userName,
+      userImage,
+      userPhone,
+      userNote,
+      employeeCancelNote,
+      deliveryStatus,
+      deliveryId);
 }

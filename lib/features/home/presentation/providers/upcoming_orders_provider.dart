@@ -8,7 +8,7 @@ final upcomingOrdersProvider =
   final ordersStream = ref.watch(getUpcomingOrdersUCProvider).call();
   return ordersStream.distinct((previous, next) {
     //Compare prev,next streams by deep equals and skip if they're not equal,
-    //while ignoring deliveryGeoPoint in Order entity's equatable props list.
+    //while ignoring deliveryGeoPoint in Order entity's equality implementation.
     //This avoid updating the stream when the delivery updates his own deliveryGeoPoint
     //which will lead to unnecessary api calls.
     return previous.lock == next.lock;

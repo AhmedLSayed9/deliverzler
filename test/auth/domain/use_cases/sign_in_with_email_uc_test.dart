@@ -149,7 +149,7 @@ void main() {
         'should return a map containing the proper data',
         () async {
           // WHEN
-          final result = tParams.toMap();
+          final result = tParams.toJson();
 
           // THEN
           final expectedMap = {

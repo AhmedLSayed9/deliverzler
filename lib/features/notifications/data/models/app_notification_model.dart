@@ -1,7 +1,40 @@
-import 'dart:convert';
-
 import 'package:deliverzler/features/notifications/domain/entities/app_notification.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'app_notification_model.freezed.dart';
+
+part 'app_notification_model.g.dart';
+
+@freezed
+class AppNotificationModel with _$AppNotificationModel {
+  const AppNotificationModel._();
+
+  const factory AppNotificationModel({
+    required String initialRoute,
+    required String? route,
+    required Map<String, dynamic>? data,
+  }) = _AppNotificationModel;
+
+  factory AppNotificationModel.fromJson(Map<String, dynamic> json) =>
+      _$AppNotificationModelFromJson(json);
+
+  factory AppNotificationModel.fromEntity(AppNotification appNotification) {
+    return AppNotificationModel(
+      initialRoute: appNotification.initialRoute,
+      route: appNotification.route,
+      data: appNotification.data,
+    );
+  }
+
+  AppNotification toEntity() {
+    return AppNotification(
+      initialRoute: initialRoute,
+      route: route,
+      data: data,
+    );
+  }
+}
+/*
 class AppNotificationModel extends AppNotification {
   const AppNotificationModel({
     required super.initialRoute,
@@ -33,3 +66,4 @@ class AppNotificationModel extends AppNotification {
     return AppNotificationModel.fromMap(jsonDecode(payload));
   }
 }
+*/

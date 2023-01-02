@@ -56,7 +56,7 @@ class MapRemoteDataSource implements IMapRemoteDataSource {
         'types': '(cities)',
         //Add countries you desire for search suggestions.
         'components': 'country:eg',
-        ...params.toMap(),
+        ...params.toJson(),
       },
       options: Options(
         extra: {GoogleMapApiConfig.withSessionTokenExtraKey: true},
@@ -73,14 +73,14 @@ class MapRemoteDataSource implements IMapRemoteDataSource {
       path: googleMapPlaceDetailsPath,
       queryParameters: {
         'fields': 'geometry', //Specify wanted fields to lower billing rate
-        ...params.toMap(),
+        ...params.toJson(),
       },
       options: Options(
         extra: {GoogleMapApiConfig.withSessionTokenExtraKey: true},
       ),
       cancelToken: params.cancelToken,
     );
-    return PlaceDetailsModel.fromMap(response.data['result']);
+    return PlaceDetailsModel.fromJson(response.data['result']);
   }
 
   @override
@@ -88,9 +88,9 @@ class MapRemoteDataSource implements IMapRemoteDataSource {
       GetPlaceDirectionsParams params) async {
     final Response response = await apiCaller.getData(
       path: googleMapDirectionsPath,
-      queryParameters: params.toMap(),
+      queryParameters: params.toJson(),
       cancelToken: params.cancelToken,
     );
-    return PlaceDirectionsModel.fromMap(response.data);
+    return PlaceDirectionsModel.fromJson(response.data['routes'][0]);
   }
 }

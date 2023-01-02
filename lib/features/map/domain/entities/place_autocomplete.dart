@@ -1,23 +1,13 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class PlaceAutocomplete extends Equatable {
-  final String placeId;
-  final String description;
-  final String mainText;
-  final String secondaryText;
+part 'place_autocomplete.freezed.dart';
 
-  const PlaceAutocomplete({
-    required this.placeId,
-    required this.description,
-    required this.mainText,
-    required this.secondaryText,
-  });
-
-  @override
-  List<Object?> get props => [
-        placeId,
-        description,
-        mainText,
-        secondaryText,
-      ];
+@freezed
+class PlaceAutocomplete with _$PlaceAutocomplete {
+  const factory PlaceAutocomplete({
+    required String placeId,
+    required String description,
+    required String mainText,
+    required String secondaryText,
+  }) = _PlaceAutocomplete;
 }

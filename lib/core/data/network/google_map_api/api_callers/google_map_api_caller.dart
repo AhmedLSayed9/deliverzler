@@ -21,7 +21,7 @@ class GoogleMapApiCaller implements IApiCaller {
   @override
   Future<Response> getData({
     required String path,
-    Map<String, String>? queryParameters,
+    Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
   }) async {
@@ -41,7 +41,7 @@ class GoogleMapApiCaller implements IApiCaller {
   @override
   Future<Response> postData({
     required String path,
-    Map<String, String>? queryParameters,
+    Map<String, dynamic>? queryParameters,
     dynamic data,
     Options? options,
     CancelToken? cancelToken,

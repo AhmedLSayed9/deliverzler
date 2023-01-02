@@ -68,7 +68,7 @@ class AuthRemoteDataSource implements IAuthRemoteDataSource {
     final response =
         await firebaseFirestoreCaller.getData(path: userDocPath(uid));
     if (response.data() != null) {
-      return UserModel.fromMap(response.data() as Map<String, dynamic>);
+      return UserModel.fromJson(response.data() as Map<String, dynamic>);
     } else {
       throw const ServerException(
         type: ServerExceptionType.notFound,
@@ -81,7 +81,7 @@ class AuthRemoteDataSource implements IAuthRemoteDataSource {
   Future<void> setUserData(UserModel userModel) async {
     return await firebaseFirestoreCaller.setData(
       path: userDocPath(userModel.id),
-      data: userModel.toMap(),
+      data: userModel.toJson(),
     );
   }
 

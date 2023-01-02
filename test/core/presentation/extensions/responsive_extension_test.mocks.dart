@@ -3,14 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:ui' as _i4;
-
 import 'package:deliverzler/core/presentation/services/responsive_service.dart'
-    as _i7;
+    as _i6;
 import 'package:flutter/foundation.dart' as _i3;
 import 'package:flutter/material.dart' as _i2;
-import 'package:flutter/rendering.dart' as _i5;
-import 'package:flutter/src/widgets/notification_listener.dart' as _i6;
+import 'package:flutter/rendering.dart' as _i4;
+import 'package:flutter/src/widgets/notification_listener.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -71,18 +69,8 @@ class _FakeDiagnosticsNode_2 extends _i1.SmartFake
       super.toString();
 }
 
-class _FakeSize_3 extends _i1.SmartFake implements _i4.Size {
-  _FakeSize_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeEdgeInsets_4 extends _i1.SmartFake implements _i5.EdgeInsets {
-  _FakeEdgeInsets_4(
+class _FakeEdgeInsets_3 extends _i1.SmartFake implements _i4.EdgeInsets {
+  _FakeEdgeInsets_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -150,7 +138,7 @@ class MockBuildContext extends _i1.Mock implements _i2.BuildContext {
         returnValueForMissingStub: null,
       );
   @override
-  void dispatchNotification(_i6.Notification? notification) =>
+  void dispatchNotification(_i5.Notification? notification) =>
       super.noSuchMethod(
         Invocation.method(
           #dispatchNotification,
@@ -229,19 +217,11 @@ class MockBuildContext extends _i1.Mock implements _i2.BuildContext {
 /// A class which mocks [ResponsiveService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockResponsiveService extends _i1.Mock implements _i7.ResponsiveService {
+class MockResponsiveService extends _i1.Mock implements _i6.ResponsiveService {
   MockResponsiveService() {
     _i1.throwOnMissingStub(this);
   }
 
-  @override
-  _i4.Size get designSize => (super.noSuchMethod(
-        Invocation.getter(#designSize),
-        returnValue: _FakeSize_3(
-          this,
-          Invocation.getter(#designSize),
-        ),
-      ) as _i4.Size);
   @override
   bool get minHeightMode => (super.noSuchMethod(
         Invocation.getter(#minHeightMode),
@@ -268,21 +248,21 @@ class MockResponsiveService extends _i1.Mock implements _i7.ResponsiveService {
         returnValue: 0.0,
       ) as double);
   @override
-  _i5.EdgeInsets get paddingFromFlutterWindow => (super.noSuchMethod(
+  _i4.EdgeInsets get paddingFromFlutterWindow => (super.noSuchMethod(
         Invocation.getter(#paddingFromFlutterWindow),
-        returnValue: _FakeEdgeInsets_4(
+        returnValue: _FakeEdgeInsets_3(
           this,
           Invocation.getter(#paddingFromFlutterWindow),
         ),
-      ) as _i5.EdgeInsets);
+      ) as _i4.EdgeInsets);
   @override
-  _i5.EdgeInsets get viewPaddingFromFlutterWindow => (super.noSuchMethod(
+  _i4.EdgeInsets get viewPaddingFromFlutterWindow => (super.noSuchMethod(
         Invocation.getter(#viewPaddingFromFlutterWindow),
-        returnValue: _FakeEdgeInsets_4(
+        returnValue: _FakeEdgeInsets_3(
           this,
           Invocation.getter(#viewPaddingFromFlutterWindow),
         ),
-      ) as _i5.EdgeInsets);
+      ) as _i4.EdgeInsets);
   @override
   double fullScreenHeight(_i2.BuildContext? context) => (super.noSuchMethod(
         Invocation.method(

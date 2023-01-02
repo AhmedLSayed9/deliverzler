@@ -1,16 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class AppNotification extends Equatable {
-  final String initialRoute;
-  final String? route;
-  final Map<String, dynamic>? data;
+part 'app_notification.freezed.dart';
 
-  const AppNotification({
-    required this.initialRoute,
-    this.route,
-    this.data,
-  });
-
-  @override
-  List<Object?> get props => [initialRoute, route, data];
+@freezed
+class AppNotification with _$AppNotification {
+  const factory AppNotification({
+    required String initialRoute,
+    required String? route,
+    required Map<String, dynamic>? data,
+  }) = _AppNotification;
 }

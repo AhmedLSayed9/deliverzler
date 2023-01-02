@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'app_exception.dart';
 
@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppException {
+  Enum get type => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   int? get code => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -265,6 +266,7 @@ abstract class ServerException implements AppException {
       required final String message,
       final int? code}) = _$ServerException;
 
+  @override
   ServerExceptionType get type;
   @override
   String get message;
@@ -433,6 +435,7 @@ abstract class CacheException implements AppException {
       required final String message,
       final int? code}) = _$CacheException;
 
+  @override
   CacheExceptionType get type;
   @override
   String get message;

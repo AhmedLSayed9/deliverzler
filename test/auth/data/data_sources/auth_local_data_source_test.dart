@@ -32,7 +32,7 @@ void main() {
   }
 
   final tResponseMap = json.decode(fixtureReader('auth/user.json'));
-  final tUserModel = UserModel.fromMap(tResponseMap);
+  final tUserModel = UserModel.fromJson(tResponseMap);
 
   group(
     'cacheUserData',
@@ -56,7 +56,7 @@ void main() {
           await authLocalDataSource.cacheUserData(tUserModel);
 
           // THEN
-          final expectedJsonString = json.encode(tUserModel.toMap());
+          final expectedJsonString = json.encode(tUserModel.toJson());
           verify(
             mockILocalStorageCaller.saveData(
               key: AuthLocalDataSource.userDataKey,

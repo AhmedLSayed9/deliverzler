@@ -30,19 +30,19 @@ class MapRepo implements IMapRepo {
   Future<List<PlaceAutocomplete>> getPlaceAutocomplete(
       GetPlaceAutocompleteParams params) async {
     final autocomplete = await remoteDataSource.getPlaceAutocomplete(params);
-    return autocomplete;
+    return autocomplete.map((item) => item.toEntity()).toList();
   }
 
   @override
   Future<PlaceDetails> getPlaceDetails(GetPlaceDetailsParams params) async {
     final placeDetails = await remoteDataSource.getPlaceDetails(params);
-    return placeDetails;
+    return placeDetails.toEntity();
   }
 
   @override
   Future<PlaceDirections> getPlaceDirections(
       GetPlaceDirectionsParams params) async {
     final directions = await remoteDataSource.getPlaceDirections(params);
-    return directions;
+    return directions.toEntity();
   }
 }

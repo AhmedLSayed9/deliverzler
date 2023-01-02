@@ -41,9 +41,9 @@ Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
       if (payload != null) {
         final Map<String, dynamic> decodedPayload = jsonDecode(payload);
         if (decodedPayload.isNotEmpty) {
-          final notification = AppNotificationModel.fromMap(decodedPayload);
+          final notification = AppNotificationModel.fromJson(decodedPayload);
           ref.read(tappedNotificationProvider.notifier).state =
-              Some(notification);
+              Some(notification.toEntity());
         }
       }
     },

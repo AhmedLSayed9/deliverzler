@@ -12,7 +12,7 @@ class MainDrawerUserInfoComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     //final _userModel = ref.watch(userRepoProvider).userModel;
-    final UserModel userModel = UserModel.fromMap(const {});
+    final UserModel userModel = UserModel.fromJson(const {});
 
     return Column(
       children: [

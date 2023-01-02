@@ -94,7 +94,7 @@ void main() {
 
   const tParams = SignInWithEmailParams(email: 'tEmail', password: 'tPassword');
   final tResponseMap = json.decode(fixtureReader('auth/user.json'));
-  final tUserModel = UserModel.fromMap(tResponseMap);
+  final tUserModel = UserModel.fromJson(tResponseMap);
 
   void setUpMockUser() {
     when(mockUser.uid).thenReturn(tUserModel.id);
@@ -254,7 +254,7 @@ void main() {
           // THEN
           verify(mockIFirebaseFirestoreCaller.setData(
             path: tPath,
-            data: tUserModel.toMap(),
+            data: tUserModel.toJson(),
           )).called(1);
           verifyNoMoreInteractions(mockIFirebaseFirestoreCaller);
         },

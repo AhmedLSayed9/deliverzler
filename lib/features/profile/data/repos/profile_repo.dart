@@ -45,7 +45,7 @@ class ProfileRepo implements IProfileRepo {
   //TODO: updated cached user data
   @override
   Future<void> updateProfileData(User user) async {
-    final userModel = UserModel.fromUser(user);
+    final userModel = UserModel.fromEntity(user);
     await remoteDataSource.updateProfileData(userModel);
   }
 }

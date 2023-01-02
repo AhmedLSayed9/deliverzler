@@ -1,41 +1,44 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:deliverzler/core/domain/entities/json_converters/geo_point_converter.dart';
 import 'package:deliverzler/features/home/domain/entities/address.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class AddressModel extends Address {
-  const AddressModel({
-    required super.state,
-    required super.city,
-    required super.street,
-    required super.mobile,
-    required super.geoPoint,
-  });
+part 'address_model.freezed.dart';
 
-  Map<String, dynamic> toMap() {
-    return {
-      'state': state,
-      'city': city,
-      'street': street,
-      'mobile': mobile,
-      'geoPoint': geoPoint,
-    };
-  }
+part 'address_model.g.dart';
 
-  factory AddressModel.fromMap(Map<String, dynamic> map) {
-    return AddressModel(
-      state: map['state'] as String,
-      city: map['city'] as String,
-      street: map['street'] as String,
-      mobile: map['mobile'] as String,
-      geoPoint: map['geoPoint'],
-    );
-  }
+@Freezed(toJson: false)
+class AddressModel with _$AddressModel {
+  const AddressModel._();
 
-  factory AddressModel.fromAddress(Address address) {
+  const factory AddressModel({
+    required String state,
+    required String city,
+    required String street,
+    required String mobile,
+    @GeoPointConverter() required GeoPoint? geoPoint,
+  }) = _AddressModel;
+
+  factory AddressModel.fromJson(Map<String, dynamic> json) =>
+      _$AddressModelFromJson(json);
+
+  factory AddressModel.fromEntity(Address address) {
     return AddressModel(
       state: address.state,
       city: address.city,
       street: address.street,
       mobile: address.mobile,
       geoPoint: address.geoPoint,
+    );
+  }
+
+  Address toEntity() {
+    return Address(
+      state: state,
+      city: city,
+      street: street,
+      mobile: mobile,
+      geoPoint: geoPoint,
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:deliverzler/auth/data/models/user_model.dart';
-import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../fixtures/fixture_reader.dart';
@@ -18,14 +17,6 @@ void main() {
     image: jsonMap['image'],
   );
 
-  test(
-    'should be a subclass of User entity',
-    () async {
-      // THEN
-      expect(tUserModel, isA<User>());
-    },
-  );
-
   group(
     'toMap',
     () {
@@ -33,7 +24,7 @@ void main() {
         'should return a JSON map containing the proper data',
         () async {
           // WHEN
-          final result = tUserModel.toMap();
+          final result = tUserModel.toJson();
 
           // THEN
           final expectedMap = jsonMap;
@@ -50,7 +41,7 @@ void main() {
         'should return a valid model',
         () async {
           // WHEN
-          final result = UserModel.fromMap(jsonMap);
+          final result = UserModel.fromJson(jsonMap);
 
           // THEN
           expect(result, tUserModel);

@@ -3,8 +3,10 @@ import 'package:deliverzler/features/map/data/repos/map_repo.dart';
 import 'package:deliverzler/features/map/domain/entities/place_details.dart';
 import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'get_place_details_uc.freezed.dart';
 
 part 'get_place_details_uc.g.dart';
 
@@ -27,21 +29,10 @@ class GetPlaceDetailsUC
   }
 }
 
-class GetPlaceDetailsParams extends Equatable {
-  final CancelToken cancelToken;
-  final String placeId;
-
-  const GetPlaceDetailsParams({
-    required this.cancelToken,
-    required this.placeId,
-  });
-
-  Map<String, String> toMap() {
-    return {
-      'place_id': placeId,
-    };
-  }
-
-  @override
-  List<Object> get props => [placeId];
+@Freezed(toJson: true)
+class GetPlaceDetailsParams with _$GetPlaceDetailsParams {
+  const factory GetPlaceDetailsParams({
+    @JsonKey(ignore: true) required CancelToken cancelToken,
+    @JsonKey(name: 'place_id') required String placeId,
+  }) = _GetPlaceDetailsParams;
 }

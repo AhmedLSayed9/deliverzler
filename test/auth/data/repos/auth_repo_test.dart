@@ -64,6 +64,7 @@ void main() {
     phone: '0123456789',
     image: 'https://www.image.com',
   );
+  final tUser = tUserModel.toEntity();
 
   final tException = Exception('test_exception');
 
@@ -86,7 +87,7 @@ void main() {
 
           // THEN
           verify(mockIAuthRemoteDataSource.signInWithEmail(tParams)).called(1);
-          expect(result, equals(tUserModel));
+          expect(result, equals(tUser));
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
         },
       );
@@ -203,7 +204,7 @@ void main() {
               // THEN
               verify(mockIAuthRemoteDataSource.getUserData(tAuthUid)).called(1);
               verify(mockIAuthLocalDataSource.cacheUserData(tUserModel));
-              expect(result, equals(tUserModel));
+              expect(result, equals(tUser));
               verifyNoMoreInteractions(mockIAuthRemoteDataSource);
               verifyNoMoreInteractions(mockIAuthLocalDataSource);
             },
@@ -249,7 +250,7 @@ void main() {
 
               // THEN
               verify(mockIAuthLocalDataSource.getUserData());
-              expect(result, tUserModel);
+              expect(result, tUser);
               verifyZeroInteractions(mockIAuthRemoteDataSource);
               verifyNoMoreInteractions(mockIAuthLocalDataSource);
             },
@@ -295,7 +296,7 @@ void main() {
 
           // WHEN
           final authRepo = container.read(authRepoProvider);
-          final call = authRepo.setUserData(tUserModel);
+          final call = authRepo.setUserData(tUser);
 
           // THEN
           await expectLater(() => call, returnsNormally);
@@ -317,7 +318,7 @@ void main() {
 
           // WHEN
           final authRepo = container.read(authRepoProvider);
-          final call = authRepo.setUserData(tUserModel);
+          final call = authRepo.setUserData(tUser);
 
           // THEN
           await expectLater(() => call, throwsA(tException));

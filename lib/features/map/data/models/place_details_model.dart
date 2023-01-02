@@ -1,17 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deliverzler/features/map/domain/entities/place_details.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class PlaceDetailsModel extends PlaceDetails {
-  const PlaceDetailsModel({
-    required super.geoPoint,
-  });
+part 'place_details_model.freezed.dart';
 
-  factory PlaceDetailsModel.fromMap(Map<String, dynamic> map) {
+part 'place_details_model.g.dart';
+
+@Freezed(toJson: false)
+class PlaceDetailsModel with _$PlaceDetailsModel {
+  const PlaceDetailsModel._();
+
+  const factory PlaceDetailsModel({
+    @JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint)
+        required GeoPoint geoPoint,
+  }) = _PlaceDetailsModel;
+
+  factory PlaceDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$PlaceDetailsModelFromJson(json);
+
+  factory PlaceDetailsModel.fromEntity(PlaceDetails placeDetails) {
     return PlaceDetailsModel(
-      geoPoint: GeoPoint(
-        map['geometry']['location']['lat'],
-        map['geometry']['location']['lng'],
-      ),
+      geoPoint: placeDetails.geoPoint,
     );
   }
+
+  PlaceDetails toEntity() {
+    return PlaceDetails(
+      geoPoint: geoPoint,
+    );
+  }
+}
+
+GeoPoint _fromJsonGeoPoint(Map<String, dynamic> json) {
+  return GeoPoint(
+    json['location']['lat'],
+    json['location']['lng'],
+  );
 }

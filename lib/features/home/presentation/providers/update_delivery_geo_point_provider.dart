@@ -17,7 +17,7 @@ Future<void> updateDeliveryGeoPointState(
   final List<Future<void>> futures = [];
   for (final order in myDeliveryOrders) {
     final params = UpdateDeliveryGeoPointParams(
-      orderId: order.orderId,
+      orderId: order.id,
       deliveryGeoPoint: GeoPoint(position.latitude, position.longitude),
     );
     futures.add(ref.watch(updateDeliveryGeoPointProvider(params).future));

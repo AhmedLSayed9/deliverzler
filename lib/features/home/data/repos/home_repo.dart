@@ -25,13 +25,15 @@ class HomeRepo implements IHomeRepo {
 
   @override
   Stream<List<AppOrder>> getUpcomingOrders() {
-    return remoteDataSource.getUpcomingOrders();
+    return remoteDataSource.getUpcomingOrders().map(
+          (orders) => orders.map((o) => o.toEntity()).toList(),
+        );
   }
 
   @override
   Future<AppOrder> getOrder(String orderId) async {
     final order = await remoteDataSource.getOrder(orderId);
-    return order;
+    return order.toEntity();
   }
 
   @override

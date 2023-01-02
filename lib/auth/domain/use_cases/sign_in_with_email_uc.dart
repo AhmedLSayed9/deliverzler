@@ -4,8 +4,10 @@ import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart';
 import 'package:deliverzler/auth/domain/use_cases/get_user_data_uc.dart';
 import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
 import 'package:deliverzler/core/presentation/services/fcm_service/fcm_provider.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'sign_in_with_email_uc.freezed.dart';
 
 part 'sign_in_with_email_uc.g.dart';
 
@@ -36,22 +38,10 @@ class SignInWithEmailUC implements UseCaseBase<User, SignInWithEmailParams> {
   }
 }
 
-class SignInWithEmailParams extends Equatable {
-  final String email;
-  final String password;
-
-  const SignInWithEmailParams({
-    required this.email,
-    required this.password,
-  });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'email': email,
-      'password': password,
-    };
-  }
-
-  @override
-  List<Object> get props => [email, password];
+@Freezed(toJson: true)
+class SignInWithEmailParams with _$SignInWithEmailParams {
+  const factory SignInWithEmailParams({
+    required String email,
+    required String password,
+  }) = _SignInWithEmailParams;
 }

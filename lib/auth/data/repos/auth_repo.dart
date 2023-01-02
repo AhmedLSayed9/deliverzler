@@ -32,7 +32,7 @@ class AuthRepo implements IAuthRepo {
   @override
   Future<User> signInWithEmail(SignInWithEmailParams params) async {
     final userFromCredential = await remoteDataSource.signInWithEmail(params);
-    return userFromCredential;
+    return userFromCredential.toEntity();
   }
 
   @override
@@ -48,16 +48,16 @@ class AuthRepo implements IAuthRepo {
       try {
         await localDataSource.cacheUserData(user);
       } catch (_) {}
-      return user;
+      return user.toEntity();
     } else {
       final user = await localDataSource.getUserData();
-      return user;
+      return user.toEntity();
     }
   }
 
   @override
   Future<void> setUserData(User user) async {
-    final userModel = UserModel.fromUser(user);
+    final userModel = UserModel.fromEntity(user);
     await remoteDataSource.setUserData(userModel);
     try {
       await localDataSource.cacheUserData(userModel);

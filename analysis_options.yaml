@@ -27,3 +27,11 @@ linter:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+# Disabling invalid_annotation_target warning and warning in generates files.
+# If you plan on using Freezed in combination with json_serializable, recent versions of json_serializable and meta may require you to disable the invalid_annotation_target warning.
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+  errors:
+    invalid_annotation_target: ignore

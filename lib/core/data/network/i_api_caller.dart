@@ -3,14 +3,14 @@ import 'package:dio/dio.dart';
 abstract class IApiCaller {
   Future<Response> getData({
     required String path,
-    Map<String, String>? queryParameters,
+    Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
   });
 
   Future<Response> postData({
     required String path,
-    Map<String, String>? queryParameters,
+    Map<String, dynamic>? queryParameters,
     dynamic data,
     Options? options,
     CancelToken? cancelToken,

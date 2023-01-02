@@ -1,27 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Address extends Equatable {
-  final String state;
-  final String city;
-  final String street;
-  final String mobile;
-  final GeoPoint? geoPoint;
+part 'address.freezed.dart';
 
-  const Address({
-    required this.state,
-    required this.city,
-    required this.street,
-    required this.mobile,
-    required this.geoPoint,
-  });
-
-  @override
-  List<Object?> get props => [
-        state,
-        city,
-        street,
-        mobile,
-        geoPoint,
-      ];
+@freezed
+class Address with _$Address {
+  const factory Address({
+    required String state,
+    required String city,
+    required String street,
+    required String mobile,
+    required GeoPoint? geoPoint,
+  }) = _Address;
 }
