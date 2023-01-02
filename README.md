@@ -19,7 +19,7 @@ An open-source Delivery App for Restaurants built on Flutter using TDD Clean Arc
 
 1. Create Firebase project and add it to your Flutter app (Follow https://firebase.google.com/docs/flutter/setup instructions).
 2. Add user manually at Firebase Auth to login with (This for testing as registration should be done with another Admin app).
-3. Add user data and some orders to show at your Firebase Firestore similar to the following model architecture:
+3. Add user data (id field from previous step - User UID) and some orders to show at your Firebase Firestore similar to the following model architecture:
 <p align="center">
     <img src="https://user-images.githubusercontent.com/70890146/209394309-1620f4c1-be86-4bcf-952c-cc5a681e4584.png" alt="Image" width="450"/>
     <img src="https://user-images.githubusercontent.com/70890146/209394275-cfde0a43-87a0-4f7f-9e71-5043253f11ce.png" alt="Image" width="350"/>
