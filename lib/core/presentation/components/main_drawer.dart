@@ -22,19 +22,19 @@ class MainDrawer extends ConsumerWidget {
     /*ref.watch(HomeBaseNavProviders.currentIndex.notifier);*/
 
     return SizedBox(
-      width: Sizes.drawerWidth(context),
+      width: Sizes.drawerWidth240,
       child: Drawer(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: Sizes.drawerPaddingV(context),
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.drawerPaddingV88,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const MainDrawerUserInfoComponent(),
-                SizedBox(
-                  height: Sizes.marginV30(context),
+                const SizedBox(
+                  height: Sizes.marginV28,
                 ),
                 DrawerItem(
                   title: tr(context).myProfile,
@@ -52,8 +52,8 @@ class MainDrawer extends ConsumerWidget {
                     //_indexNotifier.state = 2;
                   },
                 ),
-                SizedBox(
-                  height: Sizes.marginV22(context),
+                const SizedBox(
+                  height: Sizes.marginV20,
                 ),
                 const MainDrawerBottomComponent(),
               ],
@@ -90,8 +90,8 @@ class DrawerItem extends StatelessWidget {
       ),
       onTap: onTap,
       horizontalTitleGap: 0,
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: Sizes.drawerPaddingH(context),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: Sizes.drawerPaddingH28,
       ),
     );
   }

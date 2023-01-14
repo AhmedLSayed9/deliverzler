@@ -22,27 +22,25 @@ class DataErrorComponent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        LoadingIndicators.smallLoadingAnimation(context),
-        SizedBox(
-          height: Sizes.marginV30(context),
+        const SmallLoadingAnimation(),
+        const SizedBox(
+          height: Sizes.marginV32,
         ),
-        CustomText.f24(
+        CustomText.f20(
           context,
           title,
-          alignment: Alignment.center,
           textAlign: TextAlign.center,
         ),
-        SizedBox(
-          height: Sizes.marginV10(context),
+        const SizedBox(
+          height: Sizes.marginV12,
         ),
         CustomText.f14(
           context,
           description,
-          alignment: Alignment.center,
           textAlign: TextAlign.center,
         ),
-        SizedBox(
-          height: Sizes.marginV30(context),
+        const SizedBox(
+          height: Sizes.marginV32,
         ),
         CustomButton(
           text: tr(context).retry,

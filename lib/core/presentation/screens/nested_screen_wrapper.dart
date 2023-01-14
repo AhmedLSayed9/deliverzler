@@ -31,7 +31,7 @@ class NestedScreenWrapper extends StatelessWidget {
           return CupertinoPageScaffold(
             navigationBar: hasAppBar
                 ? TabAppBarComponent(
-                    toolbarHeight: Sizes.appBarHeight(context),
+                    toolbarHeight: Sizes.appBarHeight56,
                     backgroundColor:
                         Theme.of(context).appBarTheme.backgroundColor,
                   )

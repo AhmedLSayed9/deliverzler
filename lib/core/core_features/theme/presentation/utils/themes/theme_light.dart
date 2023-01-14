@@ -112,11 +112,10 @@ class ThemeLight implements ITheme {
   );
   @override
   late final CustomColors customColors = CustomColors(
-    font40Color: appColors.customFont40Color,
-    font32Color: appColors.customFont32Color,
-    font24Color: appColors.customFont24Color,
+    font28Color: appColors.customFont28Color,
     font20Color: appColors.customFont20Color,
-    font17Color: appColors.customFont17Color,
+    font18Color: appColors.customFont18Color,
+    font16Color: appColors.customFont16Color,
     font14Color: appColors.customFont14Color,
     font12Color: appColors.customFont12Color,
     whiteColor: appColors.customWhiteColor,

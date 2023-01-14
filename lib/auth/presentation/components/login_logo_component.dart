@@ -4,26 +4,26 @@ import 'package:deliverzler/core/presentation/styles/app_images.dart';
 import 'package:deliverzler/core/presentation/styles/sizes.dart';
 import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
 
-class AppLogoComponent extends StatelessWidget {
-  const AppLogoComponent({Key? key}) : super(key: key);
+class LoginLogoComponent extends StatelessWidget {
+  const LoginLogoComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
           AppImages.appLogoIcon,
-          height: Sizes.imageRadius126(context),
-          width: Sizes.imageRadius126(context),
+          height: Sizes.imageR140,
+          width: Sizes.imageR140,
           fit: BoxFit.cover,
         ),
-        SizedBox(
-          height: Sizes.marginV10(context),
+        const SizedBox(
+          height: Sizes.marginV12,
         ),
-        CustomText.f32(
+        CustomText.f28(
           context,
           tr(context).appName,
-          alignment: Alignment.center,
         ),
       ],
     );

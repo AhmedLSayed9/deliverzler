@@ -19,15 +19,15 @@ class MapFloatingSearchBar extends HookConsumerWidget {
     return FloatingSearchBar(
       controller: searchBarController,
       automaticallyImplyDrawerHamburger: false,
-      height: Sizes.mapSearchBarHeight(context),
-      margins: EdgeInsets.fromLTRB(
-        Sizes.marginH22(context),
-        Sizes.marginV50(context),
-        Sizes.marginH22(context),
+      height: Sizes.mapSearchBarHeight,
+      margins: const EdgeInsets.fromLTRB(
+        Sizes.marginH16,
+        Sizes.marginV44,
+        Sizes.marginH16,
         0,
       ),
-      padding: EdgeInsets.symmetric(horizontal: Sizes.paddingH6(context)),
-      borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius(context)),
+      padding: const EdgeInsets.symmetric(horizontal: Sizes.paddingH4),
+      borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
       elevation: 4,
       hint: tr(context).searchForAPlace,
       hintStyle: FontStyles.mapSearchBarFontStyle(context),

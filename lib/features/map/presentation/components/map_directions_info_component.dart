@@ -19,20 +19,19 @@ class MapDirectionsInfoComponent extends ConsumerWidget {
     return targetLocationDirections.fold(
       () => const SizedBox(),
       (directions) => Positioned(
-        top: Sizes.mapDirectionsInfoTop(context),
+        top: Sizes.mapDirectionsInfoTop,
         child: Material(
           elevation: 2,
-          borderRadius:
-              BorderRadius.circular(Sizes.mapDirectionsInfoRadius(context)),
+          borderRadius: BorderRadius.circular(Sizes.mapDirectionsInfoRadius),
           child: Container(
-            padding: EdgeInsets.symmetric(
-              vertical: Sizes.paddingV6(context),
-              horizontal: Sizes.paddingH16(context),
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.paddingV8,
+              horizontal: Sizes.paddingH20,
             ),
             decoration: BoxDecoration(
               color: AppStaticColors.lightBlue,
               borderRadius:
-                  BorderRadius.circular(Sizes.mapDirectionsInfoRadius(context)),
+                  BorderRadius.circular(Sizes.mapDirectionsInfoRadius),
             ),
             child: CustomText.f14(
               context,

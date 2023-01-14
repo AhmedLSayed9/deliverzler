@@ -5,9 +5,9 @@ abstract class CupertinoCustomTheme {
   static BoxDecoration cupertinoFormSectionDecoration(BuildContext context) =>
       BoxDecoration(
         color: Theme.of(context).inputDecorationTheme.fillColor,
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(
-            Sizes.textFieldRadius12(context),
+            Sizes.textFieldR12,
           ),
         ),
         border: Border.all(

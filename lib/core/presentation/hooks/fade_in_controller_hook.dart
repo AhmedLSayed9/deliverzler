@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-useFadeInController() {
+FadeInController useFadeInController() {
   return use(const _FadeInController());
 }
 
-class _FadeInController extends Hook<void> {
+class _FadeInController extends Hook<FadeInController> {
   const _FadeInController();
 
   @override
   _TimeAliveState createState() => _TimeAliveState();
 }
 
-class _TimeAliveState extends HookState<void, _FadeInController> {
+class _TimeAliveState extends HookState<FadeInController, _FadeInController> {
   final _fadeController = FadeInController();
 
   @override
@@ -23,7 +23,7 @@ class _TimeAliveState extends HookState<void, _FadeInController> {
   }
 
   @override
-  void build(BuildContext context) {}
+  FadeInController build(BuildContext context) => _fadeController;
 
   @override
   void dispose() {

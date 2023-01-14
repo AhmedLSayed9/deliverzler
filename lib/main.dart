@@ -2,7 +2,6 @@ import 'package:deliverzler/core/core_features/locale/presentation/providers/cur
 import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
 import 'package:deliverzler/core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
-import 'package:deliverzler/core/presentation/services/locator_service.dart';
 import 'package:deliverzler/core/presentation/services/services_initializer.dart';
 import 'package:deliverzler/core/presentation/providers/provider_observers.dart';
 import 'package:deliverzler/core/presentation/routing/app_router.dart';
@@ -16,8 +15,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
-  await setupLocator();
 
   final prefs = await SharedPreferences.getInstance();
   //This let us access providers before runApp

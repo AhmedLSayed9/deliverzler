@@ -54,9 +54,9 @@ class _SharedItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: Sizes.paddingV10(context),
-        horizontal: Sizes.paddingH22(context),
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.paddingV12,
+        horizontal: Sizes.paddingH20,
       ),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withOpacity(0.9),
@@ -76,7 +76,7 @@ class _SharedItemComponent extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(
                 backgroundImage: AssetImage(appLocale.flag),
-                radius: Sizes.icon18(context),
+                radius: Sizes.icon16,
               ),
               Consumer(
                 builder: (context, ref, child) {
@@ -87,10 +87,10 @@ class _SharedItemComponent extends StatelessWidget {
                               .colorScheme
                               .secondary
                               .withOpacity(0.8),
-                          radius: Sizes.icon18(context),
+                          radius: Sizes.icon16,
                           child: Icon(
                             PlatformIcons.checkMark,
-                            size: Sizes.icon24(context),
+                            size: Sizes.icon24,
                             color: Theme.of(context).primaryColor,
                           ),
                         )
@@ -99,11 +99,11 @@ class _SharedItemComponent extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            width: Sizes.marginH16(context),
+          const SizedBox(
+            width: Sizes.marginH16,
           ),
           Expanded(
-            child: CustomText.f18(
+            child: CustomText.f16(
               context,
               appLocale.getLanguageName(context),
               overflow: TextOverflow.ellipsis,

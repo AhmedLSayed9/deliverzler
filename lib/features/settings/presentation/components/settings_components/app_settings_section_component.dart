@@ -31,8 +31,8 @@ class AppSettingsSectionComponent extends ConsumerWidget {
           title: tr(context).theme,
           leadingIcon: currentTheme.getThemeIcon(),
           customTrailing: Container(
-            constraints: BoxConstraints(
-              maxWidth: Sizes.buttonWidth44(context),
+            constraints: const BoxConstraints(
+              maxWidth: Sizes.buttonWidth40,
             ),
             child: PlatformSwitch(
               value: currentTheme == AppTheme.light,

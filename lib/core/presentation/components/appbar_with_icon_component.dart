@@ -24,16 +24,15 @@ class AppBarWithIconComponent extends StatelessWidget {
             icon,
           ),
           color: Theme.of(context).iconTheme.color,
-          size: Sizes.icon24(context),
+          size: Sizes.icon24,
         ),
-        SizedBox(
-          width: Sizes.marginH10(context),
+        const SizedBox(
+          width: Sizes.marginH8,
         ),
-        CustomText.f24(
+        CustomText.f20(
           context,
           title,
           weight: FontStyles.fontWeightSemiBold,
-          alignment: Alignment.center,
         ),
       ],
     );

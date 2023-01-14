@@ -20,14 +20,14 @@ class UserDetailsComponent extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CustomText.f24(
+              CustomText.f18(
                 context,
                 user.name ?? 'User${user.id.substring(0, 6)}',
                 weight: FontStyles.fontWeightBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              CustomText.f18(
+              CustomText.f16(
                 context,
                 user.email,
                 color: customColors(context).font14Color,
@@ -37,12 +37,12 @@ class UserDetailsComponent extends ConsumerWidget {
             ],
           ),
         ),
-        SizedBox(
-          width: Sizes.marginH4(context),
+        const SizedBox(
+          height: Sizes.marginV2,
         ),
         CachedNetworkImageCircular(
           imageUrl: user.image,
-          radius: Sizes.imageRadius30(context),
+          radius: Sizes.imageR28,
         ),
       ],
     );

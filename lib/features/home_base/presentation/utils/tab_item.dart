@@ -38,17 +38,17 @@ extension TabItemExtension on TabItem {
       case TabItem.profile:
         return Icon(
           PlatformIcons.accountCircleSolid,
-          size: Sizes.bottomNavBarIconRadius(context),
+          size: Sizes.bottomNavBarIconR22,
         );
       case TabItem.home:
         return Icon(
           PlatformIcons.home,
-          size: Sizes.bottomNavBarIconRadius(context),
+          size: Sizes.bottomNavBarIconR22,
         );
       case TabItem.settings:
         return Icon(
           PlatformIcons.settingsSolid,
-          size: Sizes.bottomNavBarIconRadius(context),
+          size: Sizes.bottomNavBarIconR22,
         );
     }
   }
@@ -58,19 +58,19 @@ extension TabItemExtension on TabItem {
       case TabItem.profile:
         return Icon(
           PlatformIcons.accountCircleSolid,
-          size: Sizes.bottomNavBarIconRadius(context),
+          size: Sizes.bottomNavBarIconR22,
           color: Theme.of(context).colorScheme.primary,
         );
       case TabItem.home:
         return Icon(
           PlatformIcons.home,
-          size: Sizes.bottomNavBarIconRadius(context),
+          size: Sizes.bottomNavBarIconR22,
           color: Theme.of(context).colorScheme.primary,
         );
       case TabItem.settings:
         return Icon(
           PlatformIcons.settingsSolid,
-          size: Sizes.bottomNavBarIconRadius(context),
+          size: Sizes.bottomNavBarIconR22,
           color: Theme.of(context).colorScheme.primary,
         );
     }

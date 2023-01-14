@@ -19,9 +19,9 @@ class ImagePickComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      padding: EdgeInsets.symmetric(
-        vertical: Sizes.paddingV10(context),
-        horizontal: Sizes.paddingH10(context),
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.paddingV8,
+        horizontal: Sizes.paddingH8,
       ),
       constraints: const BoxConstraints(),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -31,7 +31,7 @@ class ImagePickComponent extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: CustomText.f20(
+              title: CustomText.f18(
                 context,
                 tr(context).chooseOption,
                 color: Colors.blue,
@@ -90,7 +90,7 @@ class ImagePickComponent extends StatelessWidget {
       elevation: 1,
       child: ImageIcon(
         const AssetImage(AppImages.cameraIcon),
-        size: Sizes.icon14(context),
+        size: Sizes.icon12,
         color: customColors(context).greyColor,
       ),
     );

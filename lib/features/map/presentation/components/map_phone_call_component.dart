@@ -24,8 +24,8 @@ class MapPhoneCallComponent extends ConsumerWidget {
             orderPhone.isNotEmpty &&
             Validators.isNumeric(orderPhone)
         ? Positioned(
-            top: Sizes.mapDirectionsInfoTop(context),
-            right: Sizes.paddingH22(context),
+            top: Sizes.mapDirectionsInfoTop,
+            right: Sizes.paddingH20,
             child: FloatingActionButton(
               heroTag: const Text('fab2'),
               backgroundColor: Theme.of(context).colorScheme.primary,

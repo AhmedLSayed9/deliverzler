@@ -19,70 +19,81 @@ class OrderDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizes.availableScreenWidth(context),
+      width: Sizes.dialogWidth280,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              QrImage(
-                data: order.id,
-                size: Sizes.imageRadius100(context),
-                foregroundColor: Theme.of(context).colorScheme.secondary,
-                padding: EdgeInsets.zero,
-              ),
               SizedBox(
-                width: Sizes.marginH16(context),
+                height: Sizes.imageR100,
+                width: Sizes.imageR100,
+                child: QrImage(
+                  data: order.id,
+                  foregroundColor: Theme.of(context).colorScheme.secondary,
+                  padding: EdgeInsets.zero,
+                ),
+              ),
+              const SizedBox(
+                width: Sizes.marginH12,
               ),
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText.f18(
+                    CustomText.f16(
                       context,
                       '${tr(context).orderDetails}:',
                       underline: true,
                       weight: FontStyles.fontWeightSemiBold,
                     ),
-                    SizedBox(
-                      height: Sizes.marginV10(context),
+                    const SizedBox(
+                      height: Sizes.marginV8,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomText.f18(
+                        CustomText.f16(
                           context,
                           '${tr(context).id}:',
                         ),
-                        CustomText.f18(
-                          context,
-                          '#${order.id.substring(0, 6)}',
+                        Flexible(
+                          child: CustomText.f16(
+                            context,
+                            '#${order.id.substring(0, 6)}',
+                          ),
                         ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomText.f18(
+                        CustomText.f16(
                           context,
                           '${tr(context).status}:',
                         ),
-                        CustomText.f18(
-                          context,
-                          order.pickupOption.name,
+                        Flexible(
+                          child: CustomText.f16(
+                            context,
+                            order.pickupOption.name,
+                          ),
                         ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomText.f18(
+                        CustomText.f16(
                           context,
                           '${tr(context).payment}:',
                         ),
-                        CustomText.f18(
-                          context,
-                          order.paymentMethod,
+                        Flexible(
+                          child: CustomText.f16(
+                            context,
+                            order.paymentMethod,
+                          ),
                         ),
                       ],
                     ),
@@ -91,8 +102,8 @@ class OrderDetailsDialog extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: Sizes.marginV10(context),
+          const SizedBox(
+            height: Sizes.marginV8,
           ),
           CustomText.f18(
             context,
@@ -100,31 +111,33 @@ class OrderDetailsDialog extends StatelessWidget {
             underline: true,
             weight: FontStyles.fontWeightSemiBold,
           ),
-          SizedBox(
-            height: Sizes.marginV4(context),
+          const SizedBox(
+            height: Sizes.marginV2,
           ),
-          CustomText.f18(
-            context,
-            order.userName.isEmpty
-                ? tr(context).user + order.userId.substring(0, 6)
-                : order.userName,
-            padding:
-                EdgeInsetsDirectional.only(start: Sizes.paddingH16(context)),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: Sizes.paddingH14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText.f16(
+                  context,
+                  order.userName.isEmpty
+                      ? tr(context).user + order.userId.substring(0, 6)
+                      : order.userName,
+                ),
+                CustomText.f16(
+                  context,
+                  '${order.address!.state}, ${order.address!.city}, ${order.address!.street}',
+                ),
+                CustomText.f16(
+                  context,
+                  order.address!.mobile,
+                ),
+              ],
+            ),
           ),
-          CustomText.f18(
-            context,
-            '${order.address!.state}, ${order.address!.city}, ${order.address!.street}',
-            padding:
-                EdgeInsetsDirectional.only(start: Sizes.paddingH16(context)),
-          ),
-          CustomText.f18(
-            context,
-            order.address!.mobile,
-            padding:
-                EdgeInsetsDirectional.only(start: Sizes.paddingH16(context)),
-          ),
-          SizedBox(
-            height: Sizes.marginV10(context),
+          const SizedBox(
+            height: Sizes.marginV8,
           ),
           CustomText.f18(
             context,
@@ -132,25 +145,28 @@ class OrderDetailsDialog extends StatelessWidget {
             underline: true,
             weight: FontStyles.fontWeightSemiBold,
           ),
-          SizedBox(
-            height: Sizes.marginV4(context),
+          const SizedBox(
+            height: Sizes.marginV2,
           ),
-          CustomText.f18(
-            context,
-            order.userNote.isEmpty ? tr(context).none : order.userNote,
-            padding:
-                EdgeInsetsDirectional.only(start: Sizes.paddingH16(context)),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: Sizes.paddingH14),
+            child: CustomText.f16(
+              context,
+              order.userNote.isEmpty ? tr(context).none : order.userNote,
+            ),
           ),
-          SizedBox(
-            height: Sizes.marginV16(context),
+          const SizedBox(
+            height: Sizes.marginV12,
           ),
-          CustomButton(
-            text: tr(context).back,
-            height: Sizes.buttonHeight46(context),
-            width: Sizes.buttonWidth240(context),
-            onPressed: () {
-              NavigationService.goBack(context);
-            },
+          Center(
+            child: CustomButton(
+              text: tr(context).back,
+              height: Sizes.buttonHeight44,
+              width: Sizes.buttonWidth220,
+              onPressed: () {
+                NavigationService.goBack(context);
+              },
+            ),
           ),
         ],
       ),

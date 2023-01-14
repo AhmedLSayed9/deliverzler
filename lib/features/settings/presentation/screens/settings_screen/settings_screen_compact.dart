@@ -6,8 +6,8 @@ import 'package:deliverzler/features/settings/presentation/components/settings_c
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/presentation/styles/sizes.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+class SettingsScreenCompact extends StatelessWidget {
+  const SettingsScreenCompact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +16,21 @@ class SettingsScreen extends StatelessWidget {
         behavior: MainScrollBehavior(),
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: Sizes.screenPaddingV20(context),
-              horizontal: Sizes.screenPaddingH40(context),
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.screenMarginV20,
+              horizontal: Sizes.screenMarginH36,
             ),
             child: Column(
-              children: <Widget>[
-                const UserDetailsComponent(),
+              children: const [
+                UserDetailsComponent(),
                 SizedBox(
-                  height: Sizes.marginV16(context),
+                  height: Sizes.marginV12,
                 ),
-                const AppSettingsSectionComponent(),
+                AppSettingsSectionComponent(),
                 SizedBox(
-                  height: Sizes.marginV22(context),
+                  height: Sizes.marginV20,
                 ),
-                const LogoutComponent(),
+                LogoutComponent(),
               ],
             ),
           ),

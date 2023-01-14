@@ -27,8 +27,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MapScreen extends HookConsumerWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class MapScreenCompact extends HookConsumerWidget {
+  const MapScreenCompact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {

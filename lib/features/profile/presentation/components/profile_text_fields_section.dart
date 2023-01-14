@@ -52,8 +52,8 @@ class ProfileTextFieldsSection extends ConsumerWidget {
         keyboardType: TextInputType.name,
       ),
       if (isMaterial)
-        SizedBox(
-          height: Sizes.textFieldMarginV24(context),
+        const SizedBox(
+          height: Sizes.textFieldMarginV24,
         ),
       TitledTextFieldItem(
         title: tr(context).mobileNumber,

@@ -1,19 +1,15 @@
-import 'package:deliverzler/core/presentation/helpers/platform_helper.dart';
 import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_app_bar.dart';
 import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_icon_button.dart';
 import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
 import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
 
 class CustomAppBar extends PlatformAppBar {
   CustomAppBar(
     BuildContext context, {
     super.key,
-    double? height,
+    double? height = Sizes.appBarHeight56,
     Color? backgroundColor,
     GlobalKey<ScaffoldState>? scaffoldKey,
     Widget? title,
@@ -25,7 +21,7 @@ class CustomAppBar extends PlatformAppBar {
     List<Widget>? trailingActions,
     double elevation = 0,
   }) : super(
-          toolbarHeight: height ?? Sizes.appBarHeight(context),
+          toolbarHeight: height,
           backgroundColor:
               backgroundColor ?? Theme.of(context).appBarTheme.backgroundColor,
           leading: hasBackButton
@@ -37,19 +33,20 @@ class CustomAppBar extends PlatformAppBar {
           actions: [
             if (trailingActions != null) ...trailingActions,
             if (hasBackButton)
-              SizedBox(
-                width: Sizes.appBarButtonRadius(context) * 2,
+              const SizedBox(
+                width: Sizes.appBarButtonR32 * 2,
               ),
             if (hasMenuButton)
-              SizedBox(
-                width: Sizes.appBarButtonRadius(context) * 2,
+              const SizedBox(
+                width: Sizes.appBarButtonR32 * 2,
               ),
           ],
           title: title,
           materialData: MaterialAppBarData(
+            centerTitle: centerTitle,
             elevation: elevation,
-            leadingWidth: Sizes.appBarButtonRadius(context) * 2,
-            titleSpacing: Sizes.paddingH22(context),
+            leadingWidth: Sizes.appBarButtonR32 * 2,
+            titleSpacing: Sizes.paddingH20,
           ),
           cupertinoData: const CupertinoNavigationBarData(
             transitionBetweenRoutes: false,
@@ -81,12 +78,12 @@ class CustomBackButton extends StatelessWidget {
       icon: Icon(
         PlatformIcons.back,
         color: color ?? Theme.of(context).iconTheme.color,
-        size: Sizes.appBarButtonRadius(context),
+        size: Sizes.appBarButtonR32,
         textDirection: isLTROnly ? TextDirection.ltr : null,
       ),
       padding: padding ??
-          EdgeInsets.symmetric(
-            horizontal: Sizes.appBarButtonRadius(context) / 2,
+          const EdgeInsets.symmetric(
+            horizontal: Sizes.appBarButtonR32 / 2,
           ),
       materialData: const MaterialIconButtonData(
         constraints: BoxConstraints(),
@@ -117,11 +114,11 @@ class CustomMenuButton extends StatelessWidget {
       },
       icon: Icon(
         Icons.menu_rounded,
-        size: Sizes.appBarButtonRadius(context),
+        size: Sizes.appBarButtonR32,
         color: Theme.of(context).colorScheme.primary,
       ),
-      padding: EdgeInsets.symmetric(
-        horizontal: Sizes.appBarButtonRadius(context) / 2,
+      padding: const EdgeInsets.symmetric(
+        horizontal: Sizes.appBarButtonR32 / 2,
       ),
       materialData: const MaterialIconButtonData(
         constraints: BoxConstraints(),
@@ -132,32 +129,6 @@ class CustomMenuButton extends StatelessWidget {
         minSize: 0.0,
         alignment: Alignment.center,
       ),
-    );
-  }
-}
-
-class CustomTitle extends StatelessWidget {
-  const CustomTitle({
-    required this.title,
-    required this.centerTitle,
-    Key? key,
-  }) : super(key: key);
-
-  final String title;
-  final bool centerTitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomText.f24(
-      context,
-      title,
-      weight: FontStyles.fontWeightBold,
-      color: AppStaticColors.white,
-      alignment: PlatformHelper.isMaterialApp()
-          ? centerTitle
-              ? Alignment.center
-              : null
-          : Alignment.center,
     );
   }
 }

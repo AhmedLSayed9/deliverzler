@@ -18,44 +18,43 @@ class ConfirmChoiceDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizes.availableScreenWidth(context),
-      child: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: Sizes.dialogPaddingH10(context)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomText.f20(
-              context,
-              tr(context).areYouSure,
-              weight: FontStyles.fontWeightSemiBold,
-            ),
-            SizedBox(
-              height: Sizes.marginV8(context),
-            ),
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: FittedBox(
-                child: CustomText.f18(
-                  context,
-                  message,
-                ),
+      width: Sizes.dialogWidth280,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomText.f18(
+            context,
+            tr(context).areYouSure,
+            weight: FontStyles.fontWeightSemiBold,
+          ),
+          const SizedBox(
+            height: Sizes.marginV6,
+          ),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: FittedBox(
+              child: CustomText.f18(
+                context,
+                message,
               ),
             ),
-            SizedBox(
-              height: Sizes.marginV16(context),
+          ),
+          const SizedBox(
+            height: Sizes.marginV20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: Sizes.paddingH8,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: Sizes.paddingH10(context),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomButton(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: CustomButton(
                     buttonColor: customColors(context).greyColor,
-                    height: Sizes.buttonHeight46(context),
-                    width: Sizes.buttonWidth116(context),
+                    height: Sizes.buttonHeight44,
+                    width: Sizes.buttonWidth120,
                     onPressed: () {
                       NavigationService.goBack(context);
                     },
@@ -64,22 +63,24 @@ class ConfirmChoiceDialog extends StatelessWidget {
                       tr(context).cancel,
                       color: const Color(0xffffffff),
                       weight: FontStyles.fontWeightSemiBold,
-                      alignment: Alignment.center,
+                      //alignment: Alignment.center,
                     ),
                   ),
-                  CustomButton(
+                ),
+                Flexible(
+                  child: CustomButton(
                     text: tr(context).confirm,
-                    height: Sizes.buttonHeight46(context),
-                    width: Sizes.buttonWidth116(context),
+                    height: Sizes.buttonHeight44,
+                    width: Sizes.buttonWidth120,
                     onPressed: () {
                       NavigationService.goBack(context, result: [true]);
                     },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

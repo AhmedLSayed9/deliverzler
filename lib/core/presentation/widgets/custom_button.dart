@@ -55,17 +55,15 @@ class CustomButton extends StatelessWidget {
           padding: padding ?? EdgeInsets.zero,
           shape: shape ??
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  Sizes.buttonRadius26(context),
-                ),
+                borderRadius: BorderRadius.circular(Sizes.buttonR24),
               ),
           elevation: elevation ?? 0,
           backgroundColor: buttonColor,
           foregroundColor: splashColor,
           shadowColor: shadowColor,
           minimumSize: Size(
-            minWidth ?? Sizes.buttonWidth60(context),
-            minHeight ?? Sizes.buttonHeight40(context),
+            minWidth ?? Sizes.buttonWidth60,
+            minHeight ?? Sizes.buttonHeight40,
           ),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
@@ -77,18 +75,17 @@ class CustomButton extends StatelessWidget {
             ? (shape as RoundedRectangleBorder)
                 .borderRadius
                 .resolve(Directionality.maybeOf(context))
-            : BorderRadius.circular(
-                Sizes.buttonRadius26(context),
-              ),
-        minSize: minHeight ?? Sizes.buttonHeight40(context),
+            : BorderRadius.circular(Sizes.buttonR24),
+        minSize: minHeight ?? Sizes.buttonHeight40,
       ),
       child: Container(
-        height: height ?? Sizes.buttonHeight50(context),
-        width: width ?? Sizes.buttonWidth300(context),
+        alignment: Alignment.center,
+        height: height ?? Sizes.buttonHeight48,
+        width: width ?? Sizes.buttonWidth220,
         decoration: buttonColor == null
             ? BoxDecoration(
                 borderRadius: gradientBorderRadius ??
-                    BorderRadius.circular(Sizes.buttonRadius26(context)),
+                    BorderRadius.circular(Sizes.buttonR24),
                 gradient:
                     gradientColor ?? AppStaticColors.primaryIngredientColor,
               )
@@ -99,7 +96,6 @@ class CustomButton extends StatelessWidget {
               text!,
               color: buttonColor == null ? const Color(0xffffffff) : null,
               weight: FontStyles.fontWeightSemiBold,
-              alignment: Alignment.center,
             ),
       ),
     );

@@ -1,8 +1,6 @@
 import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_base_widget.dart';
 import 'package:flutter/material.dart';
 
-typedef PlatformWidgetBuilder<T> = Widget Function(BuildContext context);
-
 class PlatformWidget extends PlatformBaseWidget<Widget, Widget> {
   const PlatformWidget({
     super.key,
@@ -10,8 +8,8 @@ class PlatformWidget extends PlatformBaseWidget<Widget, Widget> {
     this.cupertino,
   });
 
-  final PlatformWidgetBuilder? material;
-  final PlatformWidgetBuilder? cupertino;
+  final WidgetBuilder? material;
+  final WidgetBuilder? cupertino;
 
   @override
   Widget createMaterialWidget(BuildContext context) {

@@ -52,9 +52,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
                     await NavigationService.push(
                       context,
                       isNamed: true,
-                      rootNavigator: true,
-                      page: RoutePaths.coreNoInternet,
-                      arguments: {'offAll': false},
+                      page: RoutePaths.map,
                     );
                     sub.close();
                   },
@@ -77,9 +75,9 @@ class UpcomingOrdersComponent extends ConsumerWidget {
             slivers: [
               upcomingOrders.isNotEmpty
                   ? SliverPadding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: Sizes.screenPaddingV20(context),
-                        horizontal: Sizes.screenPaddingH36(context),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: Sizes.screenMarginV16,
+                        horizontal: Sizes.screenMarginH28,
                       ),
                       sliver: SliverList(
                         delegate: SeparatedSliverChildBuilderDelegate(
@@ -91,18 +89,18 @@ class UpcomingOrdersComponent extends ConsumerWidget {
                           },
                           itemCount: upcomingOrders.length,
                           separatorBuilder: (context, index) {
-                            return SizedBox(
-                              height: Sizes.marginV30(context),
+                            return const SizedBox(
+                              height: Sizes.marginV28,
                             );
                           },
                         ),
                       ),
                     )
                   : SliverFillRemaining(
-                      child: CustomText.f20(
+                      child: CustomText.f18(
                         context,
                         tr(context).thereAreNoOrders,
-                        alignment: Alignment.center,
+                        //alignment: Alignment.center,
                       ),
                     ),
             ],
@@ -112,16 +110,16 @@ class UpcomingOrdersComponent extends ConsumerWidget {
           onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
           slivers: [
             SliverFillRemaining(
-              child: CustomText.f20(
+              child: CustomText.f18(
                 context,
                 '${tr(context).somethingWentWrong}\n${tr(context).pleaseTryAgain}',
-                alignment: Alignment.center,
+                //alignment: Alignment.center,
                 textAlign: TextAlign.center,
               ),
             ),
           ],
         ),
-        loading: () => LoadingIndicators.smallLoadingAnimation(context),
+        loading: () => const SmallLoadingAnimation(),
       ),
     );
   }

@@ -67,13 +67,13 @@ class AppColorsDark implements IAppColors {
   @override
   final Color customFont40Color = const Color(0xfff0f0f0);
   @override
-  final Color customFont32Color = const Color(0xfff0f0f0);
-  @override
-  final Color customFont24Color = const Color(0xfff0f0f0);
+  final Color customFont28Color = const Color(0xfff0f0f0);
   @override
   final Color customFont20Color = const Color(0xfff0f0f0);
   @override
-  final Color customFont17Color = const Color(0xfff0f0f0);
+  final Color customFont18Color = const Color(0xfff0f0f0);
+  @override
+  final Color customFont16Color = const Color(0xfff0f0f0);
   @override
   final Color customFont14Color = const Color(0xffcccccc);
   @override

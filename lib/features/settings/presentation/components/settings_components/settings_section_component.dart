@@ -20,14 +20,12 @@ class SettingsSectionComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: Sizes.marginV22(context),
+      margin: const EdgeInsets.symmetric(
+        vertical: Sizes.marginV20,
       ),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(
-          Sizes.dialogRadius6(context),
-        ),
+        borderRadius: BorderRadius.circular(Sizes.dialogR6),
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).hintColor.withOpacity(0.15),
@@ -37,7 +35,7 @@ class SettingsSectionComponent extends StatelessWidget {
         ],
       ),
       child: ListView(
-        padding: EdgeInsets.symmetric(vertical: Sizes.paddingV6(context)),
+        padding: const EdgeInsets.symmetric(vertical: Sizes.paddingV4),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
@@ -47,7 +45,7 @@ class SettingsSectionComponent extends StatelessWidget {
               leading: Icon(
                 headerIcon,
               ),
-              title: CustomText.f18(
+              title: CustomText.f16(
                 context,
                 headerTitle,
                 maxLines: 1,

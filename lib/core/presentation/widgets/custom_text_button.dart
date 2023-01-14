@@ -44,9 +44,9 @@ class CustomTextButton extends StatelessWidget {
         onLongPress: onLongPress,
         style: TextButton.styleFrom(
           padding: padding ??
-              EdgeInsets.symmetric(
-                vertical: Sizes.paddingV6(context),
-                horizontal: Sizes.paddingH10(context),
+              const EdgeInsets.symmetric(
+                vertical: Sizes.paddingV4,
+                horizontal: Sizes.paddingH8,
               ),
           shape: shape,
           elevation: elevation ?? 0,
@@ -60,9 +60,9 @@ class CustomTextButton extends StatelessWidget {
       cupertinoData: CupertinoTextButtonData(
         color: buttonColor,
         padding: padding ??
-            EdgeInsets.symmetric(
-              vertical: Sizes.paddingV6(context),
-              horizontal: Sizes.paddingH10(context),
+            const EdgeInsets.symmetric(
+              vertical: Sizes.paddingV4,
+              horizontal: Sizes.paddingH8,
             ),
         borderRadius: shape != null
             ? (shape as RoundedRectangleBorder)
@@ -76,7 +76,7 @@ class CustomTextButton extends StatelessWidget {
             context,
             text!,
             color: Theme.of(context).colorScheme.primary,
-            alignment: Alignment.center,
+            //alignment: Alignment.center,
           ),
     );
   }

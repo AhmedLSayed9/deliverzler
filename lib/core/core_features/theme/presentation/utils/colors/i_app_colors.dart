@@ -50,11 +50,10 @@ abstract class IAppColors {
 
   ///Custom Colors
   //Fonts Colors
-  abstract final Color customFont40Color;
-  abstract final Color customFont32Color;
-  abstract final Color customFont24Color;
+  abstract final Color customFont28Color;
   abstract final Color customFont20Color;
-  abstract final Color customFont17Color;
+  abstract final Color customFont18Color;
+  abstract final Color customFont16Color;
   abstract final Color customFont14Color;
   abstract final Color customFont12Color;
   //Main Colors

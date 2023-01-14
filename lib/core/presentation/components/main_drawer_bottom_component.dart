@@ -13,20 +13,20 @@ class MainDrawerBottomComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(
-        start: Sizes.drawerPaddingH(context),
+      padding: const EdgeInsetsDirectional.only(
+        start: Sizes.drawerPaddingH28,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CustomText.f20(
+          CustomText.f18(
             context,
             tr(context).appName,
             weight: FontStyles.fontWeightExtraBold,
             color: Theme.of(context).colorScheme.primary,
           ),
-          SizedBox(
-            width: Sizes.marginH8(context),
+          const SizedBox(
+            width: Sizes.marginH6,
           ),
           CustomIcon.i32(
             context,

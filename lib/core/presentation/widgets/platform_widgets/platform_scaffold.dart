@@ -11,7 +11,6 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
     this.hasEmptyAppbar = true,
     required this.body,
     this.backgroundColor,
-    this.resizeToAvoidBottomInset = true,
     this.materialData,
   });
 
@@ -20,7 +19,6 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
   final bool hasEmptyAppbar;
   final Widget body;
   final Color? backgroundColor;
-  final bool resizeToAvoidBottomInset;
   final MaterialScaffoldData? materialData;
 
   @override
@@ -37,7 +35,6 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
       drawer: materialData?.drawer,
       backgroundColor:
           backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBodyBehindAppBar: materialData?.extendBodyBehindAppBar ?? false,
     );
   }
@@ -54,7 +51,6 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
           : null,
       backgroundColor:
           backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       child: body,
     );
   }

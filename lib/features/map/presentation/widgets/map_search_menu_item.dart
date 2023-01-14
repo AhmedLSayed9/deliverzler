@@ -22,16 +22,17 @@ class MapSearchMenuItem extends StatelessWidget {
         horizontalTitleGap: 0,
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Icon(
               Icons.place,
-              size: Sizes.icon24(context),
+              size: Sizes.icon24,
             ),
           ],
         ),
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomText.f18(
+            CustomText.f16(
               context,
               title,
               weight: FontStyles.fontWeightBold,

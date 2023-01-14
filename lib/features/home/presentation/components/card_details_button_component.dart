@@ -19,8 +19,8 @@ class CardDetailsButtonComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextButton(
       elevation: 1,
-      minWidth: Sizes.buttonWidth60(context),
-      minHeight: Sizes.buttonHeight34(context),
+      minWidth: Sizes.buttonWidth60,
+      minHeight: Sizes.buttonHeight32,
       buttonColor: Theme.of(context).colorScheme.secondary,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       onPressed: onPressed,
@@ -29,7 +29,7 @@ class CardDetailsButtonComponent extends StatelessWidget {
         title,
         weight: FontStyles.fontWeightSemiBold,
         color: customColors(context).whiteColor,
-        alignment: Alignment.center,
+        //alignment: Alignment.center,
       ),
     );
   }

@@ -20,8 +20,8 @@ class CardButtonComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomOutlinedButton(
-      height: Sizes.buttonHeight46(context),
-      width: Sizes.buttonWidth140(context),
+      height: Sizes.buttonHeight40,
+      width: Sizes.buttonWidth136,
       side: isColored
           ? null
           : BorderSide(color: customColors(context).greyColor!),
@@ -33,7 +33,6 @@ class CardButtonComponent extends StatelessWidget {
         title,
         color: isColored ? customColors(context).whiteColor : null,
         weight: FontStyles.fontWeightSemiBold,
-        alignment: Alignment.center,
       ),
     );
   }

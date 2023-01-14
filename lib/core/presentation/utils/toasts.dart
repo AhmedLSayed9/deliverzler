@@ -25,16 +25,17 @@ abstract class Toasts {
         );
       },
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          CustomText.f18(
+          CustomText.f16(
             context,
             title,
             weight: FontStyles.fontWeightSemiBold,
             color: AppStaticColors.lightBlack,
           ),
-          SizedBox(
-            height: Sizes.marginV4(context),
+          const SizedBox(
+            height: Sizes.marginV2,
           ),
           CustomText.f14(
             context,
@@ -43,8 +44,8 @@ abstract class Toasts {
           ),
         ],
       ),
-      margin: EdgeInsets.symmetric(
-        horizontal: Sizes.marginH22(context),
+      margin: const EdgeInsets.symmetric(
+        horizontal: Sizes.marginH20,
       ),
     );
   }
@@ -58,25 +59,25 @@ abstract class Toasts {
       child: Row(
         children: <Widget>[
           connectionStatus == ConnectionStatus.disconnected
-              ? Icon(
+              ? const Icon(
                   Icons.wifi_off,
-                  size: Sizes.icon24(context),
+                  size: Sizes.icon24,
                 )
               : Icon(
                   Icons.wifi,
-                  size: Sizes.icon24(context),
+                  size: Sizes.icon24,
                   color: customColors(context).greenColor,
                 ),
-          CustomText.f18(
+          const SizedBox(
+            width: Sizes.marginH12,
+          ),
+          CustomText.f16(
             context,
             connectionStatus == ConnectionStatus.disconnected
                 ? tr(context).youAreCurrentlyOffline
                 : tr(context).youAreBackOnline,
             weight: FontStyles.fontWeightSemiBold,
             color: AppStaticColors.lightBlack,
-            padding: EdgeInsetsDirectional.only(
-              start: Sizes.paddingH16(context),
-            ),
           ),
         ],
       ),

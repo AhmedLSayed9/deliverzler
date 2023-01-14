@@ -25,15 +25,15 @@ abstract class CustomToast {
         color: backgroundColor ?? Theme.of(context).colorScheme.secondary,
         gradient: backgroundGradient,
         borderRadius: BorderRadius.circular(
-          borderRadius ?? Sizes.toastRadius20(context),
+          borderRadius ?? Sizes.dialogR20,
         ),
         border: border,
       ),
       margin: margin,
       padding: padding ??
-          EdgeInsets.symmetric(
-            vertical: Sizes.paddingV16(context),
-            horizontal: Sizes.paddingH22(context),
+          const EdgeInsets.symmetric(
+            vertical: Sizes.paddingV14,
+            horizontal: Sizes.paddingH20,
           ),
       child: child,
     );
@@ -58,7 +58,7 @@ abstract class CustomToast {
   }) async {
     return await Fluttertoast.showToast(
       msg: msg,
-      fontSize: Sizes.font18(context),
+      fontSize: Sizes.font16,
       textColor: AppStaticColors.lightBlack,
       backgroundColor: backgroundColor ?? AppStaticColors.toastColor,
       toastLength: toastLength,

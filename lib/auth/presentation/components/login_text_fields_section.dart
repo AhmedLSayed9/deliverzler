@@ -57,8 +57,8 @@ class LoginTextFieldsSection extends ConsumerWidget {
         suffix: Icon(PlatformIcons.mail),
       ),
       if (isMaterial)
-        SizedBox(
-          height: Sizes.textFieldMarginV24(context),
+        const SizedBox(
+          height: Sizes.textFieldMarginV24,
         ),
       CustomTextFormField(
         key: const ValueKey('login_password'),

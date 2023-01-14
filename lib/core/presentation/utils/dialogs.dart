@@ -15,32 +15,28 @@ abstract class Dialogs {
     return await CustomDialog.showDialog(
       context,
       barrierDismissible: false,
-      contentPadding: EdgeInsets.symmetric(
-        vertical: Sizes.dialogPaddingV30(context),
-        horizontal: Sizes.dialogPaddingH20(context),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Sizes.dialogPaddingV28,
+        horizontal: Sizes.dialogPaddingH20,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          Sizes.dialogRadius20(context),
-        ),
+        borderRadius: BorderRadius.circular(Sizes.dialogR20),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          LoadingIndicators.smallLoadingAnimation(
-            context,
-            width: Sizes.loadingIndicatorRadius90(context),
-            height: Sizes.loadingIndicatorRadius90(context),
+          const SmallLoadingAnimation(
+            width: Sizes.loadingIndicatorR90,
+            height: Sizes.loadingIndicatorR90,
           ),
-          SizedBox(
-            height: Sizes.marginV16(context),
+          const SizedBox(
+            height: Sizes.marginV12,
           ),
           CustomText.f18(
             context,
             tr(context).loading,
-            alignment: Alignment.center,
             weight: FontStyles.fontWeightMedium,
           ),
         ],
@@ -54,49 +50,45 @@ abstract class Dialogs {
   }) async {
     return await CustomDialog.showDialog(
       context,
-      contentPadding: EdgeInsets.symmetric(
-        vertical: Sizes.dialogPaddingV30(context),
-        horizontal: Sizes.dialogPaddingH20(context),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Sizes.dialogPaddingV28,
+        horizontal: Sizes.dialogPaddingH20,
       ),
-      margin: EdgeInsets.symmetric(
-        horizontal: Sizes.marginH30(context),
+      margin: const EdgeInsets.symmetric(
+        horizontal: Sizes.marginH28,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          Sizes.dialogRadius20(context),
-        ),
+        borderRadius: BorderRadius.circular(Sizes.dialogR20),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          CustomIcon.i70(
-            context,
+          CustomIcon.i72(
             AppImages.error,
             color: const Color(0xffcca76a),
           ),
-          SizedBox(
-            height: Sizes.marginV16(context),
+          const SizedBox(
+            height: Sizes.marginV12,
           ),
-          CustomText.f20(
+          CustomText.f18(
             context,
             tr(context).ops_err,
             textAlign: TextAlign.center,
             weight: FontStyles.fontWeightBold,
-            alignment: Alignment.center,
+            //alignment: Alignment.center,
           ),
-          SizedBox(
-            height: Sizes.marginV8(context),
+          const SizedBox(
+            height: Sizes.marginV6,
           ),
-          CustomText.f18(
+          CustomText.f16(
             context,
             message,
             textAlign: TextAlign.center,
-            alignment: Alignment.center,
           ),
-          SizedBox(
-            height: Sizes.marginV22(context),
+          const SizedBox(
+            height: Sizes.marginV20,
           ),
           CustomButton(
             text: tr(context).oK,
@@ -115,17 +107,15 @@ abstract class Dialogs {
   }) async {
     return await CustomDialog.showDialog(
       context,
-      contentPadding: EdgeInsets.symmetric(
-        vertical: Sizes.dialogPaddingV30(context),
-        horizontal: Sizes.dialogPaddingH20(context),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Sizes.dialogPaddingV28,
+        horizontal: Sizes.dialogPaddingH20,
       ),
-      margin: EdgeInsets.symmetric(
-        horizontal: Sizes.marginH30(context),
+      margin: const EdgeInsets.symmetric(
+        horizontal: Sizes.marginH28,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          Sizes.dialogRadius20(context),
-        ),
+        borderRadius: BorderRadius.circular(Sizes.dialogR20),
       ),
       child: child,
     );

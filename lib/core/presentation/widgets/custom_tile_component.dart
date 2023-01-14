@@ -34,8 +34,8 @@ class CustomTileComponent extends StatelessWidget {
         dense: true,
         contentPadding: contentPadding,
         minLeadingWidth: 0.0,
-        horizontalTitleGap: Sizes.marginH10(context),
-        title: CustomText.f18(
+        horizontalTitleGap: Sizes.marginH8,
+        title: CustomText.f16(
           context,
           title,
           maxLines: 1,
@@ -45,9 +45,9 @@ class CustomTileComponent extends StatelessWidget {
             (leadingIcon != null
                 ? Icon(
                     leadingIcon,
-                    size: Sizes.icon18(context),
+                    size: Sizes.icon16,
                     color:
-                        leadingIconColor ?? customColors(context).font17Color,
+                        leadingIconColor ?? customColors(context).font16Color,
                   )
                 : null),
         trailing: customTrailing ??

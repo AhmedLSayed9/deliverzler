@@ -1,8 +1,7 @@
-import 'dart:math';
-import 'dart:ui';
+// This is no longer needed.
+// MediaQuery-based fractional scaling is not recommended.
 
-import 'package:flutter/material.dart';
-
+/*
 class ResponsiveService {
   ResponsiveService({
     MediaQueryData? flutterWindowMediaQuery,
@@ -95,3 +94,4 @@ class ResponsiveService {
   double scaleText(BuildContext context) =>
       min(scaleWidth(context), scaleHeight(context));
 }
+*/

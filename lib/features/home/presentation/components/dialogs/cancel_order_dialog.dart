@@ -17,55 +17,60 @@ class CancelOrderDialog extends HookWidget {
     final cancelNoteController = useTextEditingController(text: '');
 
     return SizedBox(
-      width: Sizes.availableScreenWidth(context),
+      width: Sizes.dialogWidth280,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CustomText.f18(
+          CustomText.f16(
             context,
             '${tr(context).reasonForCancelingTheOrder}:',
           ),
-          SizedBox(
-            height: Sizes.marginV10(context),
+          const SizedBox(
+            height: Sizes.marginV12,
           ),
           CancelOrderNoteComponent(
             cancelNoteController: cancelNoteController,
           ),
-          SizedBox(
-            height: Sizes.marginV22(context),
+          const SizedBox(
+            height: Sizes.marginV20,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Sizes.paddingH10(context),
+            padding: const EdgeInsets.symmetric(
+              horizontal: Sizes.paddingH8,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomButton(
-                  buttonColor: customColors(context).greyColor,
-                  height: Sizes.buttonHeight46(context),
-                  width: Sizes.buttonWidth116(context),
-                  onPressed: () {
-                    NavigationService.goBack(context);
-                  },
-                  child: CustomText.f16(
-                    context,
-                    tr(context).cancel,
-                    color: const Color(0xffffffff),
-                    weight: FontStyles.fontWeightSemiBold,
-                    alignment: Alignment.center,
+                Flexible(
+                  child: CustomButton(
+                    buttonColor: customColors(context).greyColor,
+                    height: Sizes.buttonHeight44,
+                    width: Sizes.buttonWidth120,
+                    onPressed: () {
+                      NavigationService.goBack(context);
+                    },
+                    child: CustomText.f16(
+                      context,
+                      tr(context).cancel,
+                      color: const Color(0xffffffff),
+                      weight: FontStyles.fontWeightSemiBold,
+                      //alignment: Alignment.center,
+                    ),
                   ),
                 ),
-                CustomButton(
-                  text: tr(context).confirm,
-                  height: Sizes.buttonHeight46(context),
-                  width: Sizes.buttonWidth116(context),
-                  onPressed: () {
-                    NavigationService.goBack(
-                      context,
-                      result: [cancelNoteController.text],
-                    );
-                  },
+                Flexible(
+                  child: CustomButton(
+                    text: tr(context).confirm,
+                    height: Sizes.buttonHeight44,
+                    width: Sizes.buttonWidth120,
+                    onPressed: () {
+                      NavigationService.goBack(
+                        context,
+                        result: [cancelNoteController.text],
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

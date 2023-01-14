@@ -49,11 +49,11 @@ class TabAppBarComponent extends HookConsumerWidget
       case RoutePaths.home:
         return CustomAppBar(
           context,
-          title: CustomText.f24(
+          centerTitle: true,
+          title: CustomText.f20(
             context,
             tr(context).appName,
             color: Theme.of(context).colorScheme.primary,
-            alignment: Alignment.center,
           ),
         );
 

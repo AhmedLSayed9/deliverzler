@@ -46,14 +46,12 @@ class _SharedItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: Sizes.paddingV16(context),
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.paddingV14,
       ),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(
-          Sizes.dialogRadius6(context),
-        ),
+        borderRadius: BorderRadius.circular(Sizes.dialogR6),
         border: Border.all(
           width: 1,
           color: Theme.of(context).colorScheme.primary,
@@ -73,13 +71,12 @@ class _SharedItemComponent extends StatelessWidget {
             Icons.logout,
             color: Theme.of(context).colorScheme.primary,
           ),
-          SizedBox(
-            width: Sizes.marginH16(context),
+          const SizedBox(
+            width: Sizes.marginH16,
           ),
           CustomText.f18(
             context,
             tr(context).logOut,
-            alignment: Alignment.center,
             weight: FontStyles.fontWeightExtraBold,
             color: Theme.of(context).colorScheme.primary,
           ),

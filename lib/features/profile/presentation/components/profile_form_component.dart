@@ -58,13 +58,19 @@ class ProfileFormComponent extends HookConsumerWidget {
     return Form(
       key: profileFormKey,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ProfileTextFieldsSection(
-            nameController: nameController,
-            mobileController: mobileController,
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: Sizes.maxWidth360,
+            ),
+            child: ProfileTextFieldsSection(
+              nameController: nameController,
+              mobileController: mobileController,
+            ),
           ),
-          SizedBox(
-            height: Sizes.marginV40(context),
+          const SizedBox(
+            height: Sizes.marginV36,
           ),
           CustomButton(
             text: tr(context).confirm,

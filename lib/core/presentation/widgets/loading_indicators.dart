@@ -13,9 +13,9 @@ abstract class LoadingIndicators {
     String? message,
   }) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: Sizes.dialogPaddingV30(context),
-        horizontal: Sizes.dialogPaddingH20(context),
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.dialogPaddingV28,
+        horizontal: Sizes.dialogPaddingH20,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -34,31 +34,42 @@ abstract class LoadingIndicators {
               radius: 20,
             ),
           ),
-          if (message != null)
+          if (message != null) ...[
+            const SizedBox(
+              height: Sizes.marginV20,
+            ),
             CustomText.f16(
               context,
               message,
-              alignment: Alignment.center,
               weight: FontStyles.fontWeightSemiBold,
-              margin: EdgeInsets.only(top: Sizes.marginV22(context)),
+              textAlign: TextAlign.center,
             ),
+          ]
         ],
       ),
     );
   }
+}
 
-  static Widget smallLoadingAnimation(
-    BuildContext context, {
-    double? height,
-    double? width,
-  }) {
+class SmallLoadingAnimation extends StatelessWidget {
+  const SmallLoadingAnimation(
+      {this.height = Sizes.loadingIndicatorR150,
+      this.width = Sizes.loadingIndicatorR150,
+      Key? key})
+      : super(key: key);
+
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Container(
         color: Colors.transparent,
         child: Lottie.asset(
           AppImages.loadingAnimation,
-          height: height ?? Sizes.loadingIndicatorRadius150(context),
-          width: width ?? Sizes.loadingIndicatorRadius150(context),
+          height: height,
+          width: width,
         ),
       ),
     );

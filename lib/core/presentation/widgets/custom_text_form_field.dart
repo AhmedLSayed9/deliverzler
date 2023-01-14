@@ -67,7 +67,7 @@ class CustomTextFormField extends StatelessWidget {
           minLines: minLines,
           style: TextStyle(
             color: Theme.of(context).textTheme.subtitle1?.color,
-            fontSize: Sizes.font16(context),
+            fontSize: Sizes.font14,
             fontFamily: FontStyles.fontFamily(context),
           ),
           cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
@@ -75,15 +75,15 @@ class CustomTextFormField extends StatelessWidget {
             decoration: InputDecoration(
               isDense: true,
               contentPadding: contentPadding ??
-                  EdgeInsets.symmetric(
-                    vertical: Sizes.textFieldPaddingV16(context),
-                    horizontal: Sizes.textFieldPaddingH16(context),
+                  const EdgeInsets.symmetric(
+                    vertical: Sizes.textFieldPaddingV14,
+                    horizontal: Sizes.textFieldPaddingH14,
                   ),
               filled: true,
               fillColor: Theme.of(context).inputDecorationTheme.fillColor,
               hintText: hintText,
               hintStyle: TextStyle(
-                fontSize: Sizes.font14(context),
+                fontSize: Sizes.font12,
                 fontFamily: FontStyles.fontFamily(context),
                 color: Theme.of(context).hintColor,
               ),
@@ -96,8 +96,8 @@ class CustomTextFormField extends StatelessWidget {
               ),
               suffixIcon: suffix != null
                   ? Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        end: Sizes.paddingH16(context),
+                      padding: const EdgeInsetsDirectional.only(
+                        end: Sizes.paddingH14,
                       ),
                       child: suffix,
                     )
@@ -111,20 +111,20 @@ class CustomTextFormField extends StatelessWidget {
               errorStyle: TextStyle(
                 color: Theme.of(context).inputDecorationTheme.errorStyle?.color,
                 fontWeight: FontStyles.fontWeightNormal,
-                fontSize: Sizes.font12(context),
+                fontSize: Sizes.font12,
                 fontFamily: FontStyles.fontFamily(context),
               ),
               errorMaxLines: errorMaxLines,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(Sizes.textFieldRadius12(context)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(Sizes.textFieldR12),
                 ),
                 borderSide:
                     Theme.of(context).inputDecorationTheme.border!.borderSide,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(Sizes.textFieldRadius12(context)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(Sizes.textFieldR12),
                 ),
                 borderSide: Theme.of(context)
                     .inputDecorationTheme
@@ -132,8 +132,8 @@ class CustomTextFormField extends StatelessWidget {
                     .borderSide,
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(Sizes.textFieldRadius12(context)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(Sizes.textFieldR12),
                 ),
                 borderSide: Theme.of(context)
                     .inputDecorationTheme
@@ -141,8 +141,8 @@ class CustomTextFormField extends StatelessWidget {
                     .borderSide,
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(Sizes.textFieldRadius12(context)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(Sizes.textFieldR12),
                 ),
                 borderSide: Theme.of(context)
                     .inputDecorationTheme
@@ -150,8 +150,8 @@ class CustomTextFormField extends StatelessWidget {
                     .borderSide,
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(Sizes.textFieldRadius12(context)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(Sizes.textFieldR12),
                 ),
                 borderSide: Theme.of(context)
                     .inputDecorationTheme
@@ -163,13 +163,13 @@ class CustomTextFormField extends StatelessWidget {
           cupertinoData: CupertinoFormRowData(
             padding: contentPadding ??
                 EdgeInsetsDirectional.only(
-                  top: Sizes.textFieldPaddingV12(context),
-                  bottom: Sizes.textFieldPaddingV12(context),
-                  end: suffix != null ? Sizes.paddingH40(context) : 0.0,
+                  top: Sizes.textFieldPaddingV10,
+                  bottom: Sizes.textFieldPaddingV10,
+                  end: suffix != null ? Sizes.textFieldPaddingH38 : 0.0,
                 ),
             placeHolder: hintText,
             placeholderStyle: TextStyle(
-              fontSize: Sizes.font14(context),
+              fontSize: Sizes.font12,
               fontFamily: FontStyles.fontFamily(context),
               color: Theme.of(context).hintColor,
             ),
@@ -179,9 +179,8 @@ class CustomTextFormField extends StatelessWidget {
         //Add suffix manually for iOS https://github.com/flutter/flutter/issues/103385
         if (suffix != null && !PlatformHelper.isMaterialApp())
           PositionedDirectional(
-            top: (contentPadding?.top ?? Sizes.textFieldPaddingV12(context)) *
-                1.5,
-            end: Sizes.paddingH16(context),
+            top: (contentPadding?.top ?? Sizes.textFieldPaddingV10) * 1.5,
+            end: Sizes.paddingH14,
             child: suffix!,
           ),
       ],

@@ -41,8 +41,8 @@ class LoginFormComponent extends HookConsumerWidget {
               signIn();
             },
           ),
-          SizedBox(
-            height: Sizes.marginV40(context),
+          const SizedBox(
+            height: Sizes.marginV40,
           ),
           CustomButton(
             text: tr(context).signIn,

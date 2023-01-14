@@ -18,21 +18,20 @@ class RetryAgainComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: Sizes.screenPaddingH36(context),
+      padding: const EdgeInsets.symmetric(
+        horizontal: Sizes.screenMarginH28,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          CustomText.f20(
+          CustomText.f18(
             context,
             description,
             weight: FontStyles.fontWeightSemiBold,
-            alignment: Alignment.center,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
-            height: Sizes.marginV22(context),
+          const SizedBox(
+            height: Sizes.marginV20,
           ),
           CustomButton(
             text: tr(context).retry,

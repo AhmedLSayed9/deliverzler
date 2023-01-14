@@ -30,14 +30,18 @@ class TitledTextFieldItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (PlatformHelper.isMaterialApp())
-          CustomText.f18(
-            context,
-            title,
-            padding:
-                EdgeInsetsDirectional.only(start: Sizes.paddingH6(context)),
-            margin: EdgeInsets.only(bottom: Sizes.paddingV10(context)),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(
+              start: Sizes.paddingH4,
+              bottom: Sizes.paddingV8,
+            ),
+            child: CustomText.f16(
+              context,
+              title,
+            ),
           ),
         CustomTextFormField(
           controller: controller,
@@ -49,14 +53,15 @@ class TitledTextFieldItem extends StatelessWidget {
           cupertinoPrefix: Row(
             children: [
               SizedBox(
-                width: Sizes.textFieldPrefixWidth148(context),
+                width: Sizes.textFieldPrefixWidth144,
                 child: CustomText.f18(
                   context,
                   title,
                   weight: FontStyles.fontWeightSemiBold,
-                  padding:
-                      EdgeInsetsDirectional.only(end: Sizes.paddingH6(context)),
                 ),
+              ),
+              const SizedBox(
+                width: Sizes.marginH6,
               ),
               if (prefix != null) prefix!,
             ],

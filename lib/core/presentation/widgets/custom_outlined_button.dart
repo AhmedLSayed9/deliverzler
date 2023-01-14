@@ -48,9 +48,7 @@ class CustomOutlinedButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         shape: shape ??
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                Sizes.buttonRadius26(context),
-              ),
+              borderRadius: BorderRadius.circular(Sizes.buttonR24),
             ),
         side: side,
         elevation: elevation ?? 0,
@@ -63,15 +61,16 @@ class CustomOutlinedButton extends StatelessWidget {
       onPressed: onPressed,
       onLongPress: onLongPress,
       child: Container(
-        height: height ?? Sizes.buttonHeight50(context),
-        width: width ?? Sizes.buttonWidth300(context),
+        alignment: Alignment.center,
+        height: height ?? Sizes.buttonHeight48,
+        width: width ?? Sizes.buttonWidth280,
         constraints: BoxConstraints(
-          minHeight: minHeight ?? Sizes.buttonHeight40(context),
+          minHeight: minHeight ?? Sizes.buttonHeight40,
         ),
         decoration: buttonColor == null
             ? BoxDecoration(
                 borderRadius: gradientBorderRadius ??
-                    BorderRadius.circular(Sizes.buttonRadius26(context)),
+                    BorderRadius.circular(Sizes.buttonR24),
                 gradient:
                     gradientColor ?? AppStaticColors.primaryIngredientColor,
               )
@@ -82,7 +81,7 @@ class CustomOutlinedButton extends StatelessWidget {
               text!,
               color: buttonColor == null ? const Color(0xffffffff) : null,
               weight: FontStyles.fontWeightSemiBold,
-              alignment: Alignment.center,
+              //alignment: Alignment.center,
             ),
       ),
     );

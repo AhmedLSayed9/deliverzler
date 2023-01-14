@@ -1,4 +1,5 @@
-import 'package:deliverzler/auth/presentation/components/app_logo_component.dart';
+/*
+import 'package:deliverzler/auth/presentation/components/login_logo_component.dart';
 import 'package:deliverzler/auth/presentation/components/login_form_component.dart';
 import 'package:deliverzler/auth/presentation/components/welcome_component.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
@@ -74,3 +75,4 @@ class SignInScreen extends ConsumerWidget {
     );
   }
 }
+*/

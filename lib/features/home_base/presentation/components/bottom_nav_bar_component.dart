@@ -20,7 +20,7 @@ class BottomNavBarComponent extends PlatformNavBar {
           backgroundColor:
               Theme.of(context).bottomNavigationBarTheme.backgroundColor ??
                   Theme.of(context).bottomAppBarColor,
-          height: Sizes.bottomNavBarHeight(context),
+          height: Sizes.bottomNavBarHeight60,
           materialData: MaterialBottomNavBarData(
             destinations: TabItem.values
                 .map((tabItem) => Theme(
@@ -29,8 +29,8 @@ class BottomNavBarComponent extends PlatformNavBar {
                           labelTextStyle:
                               MaterialStateProperty.resolveWith((states) {
                             return TextStyle(
-                              color: customColors(context).font32Color,
-                              fontSize: Sizes.font12(context),
+                              color: customColors(context).font28Color,
+                              fontSize: Sizes.font12,
                               fontFamily: FontStyles.fontFamily(context),
                             );
                           }),

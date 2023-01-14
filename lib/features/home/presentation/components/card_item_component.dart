@@ -111,12 +111,12 @@ class CardItemComponent extends HookConsumerWidget {
       elevation: 6,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Sizes.cardRadius14(context)),
+        borderRadius: BorderRadius.circular(Sizes.cardR12),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: Sizes.cardPaddingV16(context),
-          horizontal: Sizes.cardPaddingH20(context),
+        padding: const EdgeInsets.symmetric(
+          vertical: Sizes.cardPaddingV16,
+          horizontal: Sizes.cardPaddingH20,
         ),
         child: Column(
           children: [
@@ -139,14 +139,14 @@ class CardItemComponent extends HookConsumerWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: Sizes.marginV10(context),
+            const SizedBox(
+              height: Sizes.marginV8,
             ),
             CardUserDetailsComponent(
               order: order,
             ),
-            SizedBox(
-              height: Sizes.marginV10(context),
+            const SizedBox(
+              height: Sizes.marginV8,
             ),
             if (!isUpcomingOrder)
               CardButtonComponent(
@@ -154,8 +154,8 @@ class CardItemComponent extends HookConsumerWidget {
                 isColored: true,
                 onPressed: showMap,
               ),
-            SizedBox(
-              height: Sizes.marginV8(context),
+            const SizedBox(
+              height: Sizes.marginV6,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

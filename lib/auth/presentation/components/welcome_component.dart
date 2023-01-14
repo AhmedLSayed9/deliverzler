@@ -13,27 +13,31 @@ class WelcomeComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            CustomText.f24(
-              context,
-              tr(context).welcome,
-              color: Theme.of(context).colorScheme.primary,
-              textAlign: TextAlign.start,
+            Flexible(
+              child: CustomText.f20(
+                context,
+                tr(context).welcome,
+                color: Theme.of(context).colorScheme.primary,
+                textAlign: TextAlign.start,
+              ),
             ),
             CustomIcon.i48(
-              context,
               AppImages.hiHand,
-              padding: EdgeInsets.only(bottom: Sizes.paddingV6(context)),
+              padding: const EdgeInsetsDirectional.only(
+                bottom: Sizes.marginV6,
+              ),
             ),
           ],
         ),
-        SizedBox(
-          height: Sizes.marginV16(context),
+        const SizedBox(
+          height: Sizes.marginV12,
         ),
-        CustomText.f18(
+        CustomText.f16(
           context,
           tr(context).signInToYourAccount,
           color: customColors(context).greyColor,

@@ -24,22 +24,19 @@ class MapSearchMenuComponent extends ConsumerWidget {
         ? Card(
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(Sizes.mapSearchBarRadius(context)),
+              borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
             ),
             child: ListView.separated(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
-              padding: EdgeInsets.symmetric(
-                vertical: Sizes.paddingV16(context),
-                horizontal: Sizes.marginH16(context),
+              padding: const EdgeInsets.symmetric(
+                vertical: Sizes.paddingV14,
+                horizontal: Sizes.paddingH14,
               ),
               itemCount: placeSearchList.length,
               itemBuilder: (ctx, index) {
                 return InkWell(
-                  borderRadius: BorderRadius.circular(
-                    Sizes.mapSearchBarRadius(context),
-                  ),
+                  borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
                   onTap: () {
                     searchBarController.close();
                     ref.read(selectedPlaceAutocompleteProvider.notifier).state =
@@ -51,8 +48,8 @@ class MapSearchMenuComponent extends ConsumerWidget {
                 );
               },
               separatorBuilder: (ctx, index) {
-                return Divider(
-                  height: Sizes.paddingV16(context),
+                return const Divider(
+                  height: Sizes.paddingV14,
                 );
               },
             ),

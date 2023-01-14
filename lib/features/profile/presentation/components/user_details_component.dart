@@ -16,19 +16,17 @@ class UserDetailsComponent extends ConsumerWidget {
 
     return Column(
       children: [
-        CustomText.f20(
+        CustomText.f18(
           context,
           user.name ?? 'User${user.id.substring(0, 6)}',
           weight: FontStyles.fontWeightBold,
-          alignment: Alignment.center,
         ),
-        SizedBox(
-          height: Sizes.marginV4(context),
+        const SizedBox(
+          height: Sizes.marginV2,
         ),
         CustomText.f16(
           context,
           user.email,
-          alignment: Alignment.center,
         ),
       ],
     );

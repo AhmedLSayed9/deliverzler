@@ -111,7 +111,7 @@ class HomeBaseScreen extends HookConsumerWidget {
             //nested scaffolds as it's not recommended by Flutter. While for iOS we can use CupertinoTabScaffold which has
             //tabBuilder/tabBar(BNB) and each nested screen can use CupertinoPageScaffold that can have individual Appbar.
             appBar: TabAppBarComponent(
-              toolbarHeight: Sizes.appBarHeight(context),
+              toolbarHeight: Sizes.appBarHeight56,
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             ),
             body: HomeBaseMaterialBody(navigatorKeys: navigatorKeys),

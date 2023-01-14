@@ -16,7 +16,7 @@ class FontStyles {
   static const fontWeightThin = FontWeight.w100;
 
   static mapSearchBarFontStyle(BuildContext context) => TextStyle(
-        fontSize: Sizes.font18(context),
+        fontSize: Sizes.font16,
         color: Theme.of(context).textTheme.subtitle1!.color,
         fontFamily: fontFamily(context),
         fontWeight: fontWeightNormal,

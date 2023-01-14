@@ -6,11 +6,10 @@ CustomColors customColors(BuildContext context) =>
 @immutable
 class CustomColors extends ThemeExtension<CustomColors> {
   const CustomColors({
-    required this.font40Color,
-    required this.font32Color,
-    required this.font24Color,
+    required this.font28Color,
     required this.font20Color,
-    required this.font17Color,
+    required this.font18Color,
+    required this.font16Color,
     required this.font14Color,
     required this.font12Color,
     required this.whiteColor,
@@ -22,11 +21,10 @@ class CustomColors extends ThemeExtension<CustomColors> {
     required this.loadingIndicatorColor,
   });
 
-  final Color? font40Color;
-  final Color? font32Color;
-  final Color? font24Color;
+  final Color? font28Color;
   final Color? font20Color;
-  final Color? font17Color;
+  final Color? font18Color;
+  final Color? font16Color;
   final Color? font14Color;
   final Color? font12Color;
   final Color? whiteColor;
@@ -40,10 +38,10 @@ class CustomColors extends ThemeExtension<CustomColors> {
   @override
   CustomColors copyWith({
     Color? font40Color,
-    Color? font32Color,
-    Color? font24Color,
+    Color? font28Color,
     Color? font20Color,
-    Color? font17Color,
+    Color? font18Color,
+    Color? font16Color,
     Color? font14Color,
     Color? font12Color,
     Color? whiteColor,
@@ -56,11 +54,10 @@ class CustomColors extends ThemeExtension<CustomColors> {
     Color? loadingIndicatorColor,
   }) {
     return CustomColors(
-      font40Color: font40Color ?? this.font40Color,
-      font32Color: font32Color ?? this.font32Color,
-      font24Color: font24Color ?? this.font24Color,
+      font28Color: font28Color ?? this.font28Color,
       font20Color: font20Color ?? this.font20Color,
-      font17Color: font17Color ?? this.font17Color,
+      font18Color: font18Color ?? this.font18Color,
+      font16Color: font16Color ?? this.font16Color,
       font14Color: font14Color ?? this.font14Color,
       font12Color: font12Color ?? this.font12Color,
       whiteColor: whiteColor ?? this.whiteColor,
@@ -81,11 +78,10 @@ class CustomColors extends ThemeExtension<CustomColors> {
       return this;
     }
     return CustomColors(
-      font40Color: Color.lerp(font40Color, other.font40Color, t),
-      font32Color: Color.lerp(font32Color, other.font32Color, t),
-      font24Color: Color.lerp(font24Color, other.font24Color, t),
+      font28Color: Color.lerp(font28Color, other.font28Color, t),
       font20Color: Color.lerp(font20Color, other.font20Color, t),
-      font17Color: Color.lerp(font17Color, other.font17Color, t),
+      font18Color: Color.lerp(font18Color, other.font18Color, t),
+      font16Color: Color.lerp(font16Color, other.font16Color, t),
       font14Color: Color.lerp(font14Color, other.font14Color, t),
       font12Color: Color.lerp(font12Color, other.font12Color, t),
       whiteColor: Color.lerp(whiteColor, other.whiteColor, t),
@@ -103,8 +99,8 @@ class CustomColors extends ThemeExtension<CustomColors> {
   // to the `print()` method.
   @override
   String toString() => 'CustomColors('
-      'font40Color: $font40Color, font32Color: $font32Color, font24Color: $font24Color'
-      'font20Color: $font20Color, font17Color: $font17Color, font14Color: $font14Color'
+      'font28Color: $font28Color, font20Color: $font20Color'
+      'font18Color: $font18Color, font16Color: $font16Color, font14Color: $font14Color'
       'font12Color: $font12Color'
       'whiteColor: $whiteColor, blackColor: $blackColor, redColor: $redColor'
       'greenColor: $greenColor, greyColor: $greyColor, marinerColor: $marinerColor'

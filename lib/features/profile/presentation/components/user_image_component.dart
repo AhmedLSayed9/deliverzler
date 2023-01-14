@@ -57,10 +57,10 @@ class UserImageComponent extends HookConsumerWidget {
       children: [
         CachedNetworkImageCircular(
           imageUrl: userImage,
-          radius: Sizes.imageRadius66(context),
+          radius: Sizes.imageR64,
         ),
         Padding(
-          padding: EdgeInsets.only(right: Sizes.paddingH6(context)),
+          padding: const EdgeInsets.only(right: Sizes.paddingH8),
           child: ImagePickComponent(
             pickFromCameraFunction: () {
               pickImage(PickSource.camera);

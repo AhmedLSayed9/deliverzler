@@ -9,8 +9,8 @@ import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:deliverzler/core/presentation/widgets/loading_indicators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends HookConsumerWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreenCompact extends HookConsumerWidget {
+  const HomeScreenCompact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {

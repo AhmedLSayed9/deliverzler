@@ -18,6 +18,7 @@ class CardOrderDetailsComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -27,8 +28,8 @@ class CardOrderDetailsComponent extends StatelessWidget {
           textBaseline: TextBaseline.alphabetic,
           children: [
             Container(
-              height: Sizes.icon8(context),
-              width: Sizes.icon8(context),
+              height: Sizes.icon8,
+              width: Sizes.icon8,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: order.deliveryStatus == DeliveryStatus.upcoming
@@ -36,8 +37,8 @@ class CardOrderDetailsComponent extends StatelessWidget {
                     : Colors.blue,
               ),
             ),
-            SizedBox(
-              width: Sizes.marginH4(context),
+            const SizedBox(
+              width: Sizes.marginH4,
             ),
             Expanded(
               child: CustomText.f12(

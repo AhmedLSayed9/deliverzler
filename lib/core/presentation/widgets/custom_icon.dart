@@ -58,8 +58,7 @@ class CustomIcon extends Container {
           ),
         );
 
-  CustomIcon.i96(
-    BuildContext context,
+  CustomIcon.i72(
     String path, {
     Key? key,
     Color? color,
@@ -69,27 +68,8 @@ class CustomIcon extends Container {
   }) : this._(
           path,
           key: key,
-          height: Sizes.icon96(context),
-          width: Sizes.icon96(context),
-          color: color,
-          fit: fit,
-          padding: padding,
-          margin: margin,
-        );
-
-  CustomIcon.i70(
-    BuildContext context,
-    String path, {
-    Key? key,
-    Color? color,
-    BoxFit? fit,
-    EdgeInsetsGeometry? margin,
-    EdgeInsetsGeometry? padding,
-  }) : this._(
-          path,
-          key: key,
-          height: Sizes.icon70(context),
-          width: Sizes.icon70(context),
+          height: Sizes.icon72,
+          width: Sizes.icon72,
           color: color,
           fit: fit,
           padding: padding,
@@ -97,7 +77,6 @@ class CustomIcon extends Container {
         );
 
   CustomIcon.i48(
-    BuildContext context,
     String path, {
     Key? key,
     Color? color,
@@ -107,8 +86,8 @@ class CustomIcon extends Container {
   }) : this._(
           path,
           key: key,
-          height: Sizes.icon48(context),
-          width: Sizes.icon48(context),
+          height: Sizes.icon44,
+          width: Sizes.icon44,
           color: color,
           fit: fit,
           padding: padding,
@@ -126,46 +105,8 @@ class CustomIcon extends Container {
   }) : this._(
           path,
           key: key,
-          height: Sizes.icon32(context),
-          width: Sizes.icon32(context),
-          color: color,
-          fit: fit,
-          padding: padding,
-          margin: margin,
-        );
-
-  CustomIcon.i24(
-    BuildContext context,
-    String path, {
-    Key? key,
-    Color? color,
-    BoxFit? fit,
-    EdgeInsetsGeometry? margin,
-    EdgeInsetsGeometry? padding,
-  }) : this._(
-          path,
-          key: key,
-          height: Sizes.icon24(context),
-          width: Sizes.icon24(context),
-          color: color,
-          fit: fit,
-          padding: padding,
-          margin: margin,
-        );
-
-  CustomIcon.i18(
-    BuildContext context,
-    String path, {
-    Key? key,
-    Color? color,
-    BoxFit? fit,
-    EdgeInsetsGeometry? margin,
-    EdgeInsetsGeometry? padding,
-  }) : this._(
-          path,
-          key: key,
-          height: Sizes.icon18(context),
-          width: Sizes.icon18(context),
+          height: Sizes.icon32,
+          width: Sizes.icon32,
           color: color,
           fit: fit,
           padding: padding,

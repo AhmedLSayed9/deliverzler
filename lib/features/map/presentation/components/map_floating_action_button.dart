@@ -11,11 +11,11 @@ class MapFloatingActionButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return Positioned(
-      bottom: Sizes.mapFABBottom(context),
-      right: Sizes.mapFABRight(context),
+      bottom: Sizes.mapFABBottom,
+      right: Sizes.mapFABRight,
       child: SizedBox(
-        height: Sizes.mapFABRadius(context),
-        width: Sizes.mapFABRadius(context),
+        height: Sizes.mapFABRadius,
+        width: Sizes.mapFABRadius,
         child: FloatingActionButton(
           heroTag: const Text('fab1'),
           backgroundColor: AppStaticColors.blue,

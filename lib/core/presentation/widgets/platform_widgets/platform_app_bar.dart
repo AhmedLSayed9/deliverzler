@@ -37,6 +37,7 @@ class PlatformAppBar extends PlatformBaseWidget<AppBar, SizedBox> {
       automaticallyImplyLeading: automaticallyImplyLeading,
       title: title,
       actions: actions,
+      centerTitle: materialData?.centerTitle,
       elevation: materialData?.elevation,
       titleSpacing: materialData?.titleSpacing,
       leadingWidth: materialData?.leadingWidth,
@@ -72,11 +73,13 @@ class PlatformAppBar extends PlatformBaseWidget<AppBar, SizedBox> {
 
 class MaterialAppBarData {
   const MaterialAppBarData({
+    this.centerTitle,
     this.elevation,
     this.titleSpacing,
     this.leadingWidth,
   });
 
+  final bool? centerTitle;
   final double? elevation;
   final double? titleSpacing;
   final double? leadingWidth;

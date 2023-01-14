@@ -58,11 +58,11 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
 
     return arrivedTargetLocation
         ? Positioned(
-            bottom: Sizes.mapConfirmButtonBottom(context),
-            left: Sizes.mapConfirmButtonLeft(context),
+            bottom: Sizes.mapConfirmButtonBottom,
+            left: Sizes.mapConfirmButtonLeft,
             child: CustomButton(
-              height: Sizes.buttonHeight50(context),
-              width: Sizes.buttonWidth264(context),
+              height: Sizes.buttonHeight48,
+              width: Sizes.buttonWidth240,
               buttonColor: Theme.of(context).colorScheme.primary,
               elevation: 2,
               onPressed: confirmOrder,
@@ -71,7 +71,7 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
                 tr(context).confirm,
                 color: customColors(context).whiteColor,
                 weight: FontStyles.fontWeightMedium,
-                alignment: Alignment.center,
+                //alignment: Alignment.center,
               ),
             ),
           )

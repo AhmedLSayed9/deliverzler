@@ -18,12 +18,12 @@ class MainDrawerUserInfoComponent extends ConsumerWidget {
       children: [
         CachedNetworkImageCircular(
           imageUrl: userModel.image,
-          radius: Sizes.imageRadius56(context),
+          radius: Sizes.imageR56,
         ),
-        SizedBox(
-          height: Sizes.marginV8(context),
+        const SizedBox(
+          height: Sizes.marginV6,
         ),
-        CustomText.f20(
+        CustomText.f18(
           context,
           userModel.name!.isEmpty
               ? 'User${userModel.id.substring(0, 6)}'
@@ -32,10 +32,10 @@ class MainDrawerUserInfoComponent extends ConsumerWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          alignment: Alignment.center,
+          //alignment: Alignment.center,
         ),
-        SizedBox(
-          height: Sizes.marginV4(context),
+        const SizedBox(
+          height: Sizes.marginV2,
         ),
         CustomText.f14(
           context,
@@ -43,7 +43,7 @@ class MainDrawerUserInfoComponent extends ConsumerWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          alignment: Alignment.center,
+          //alignment: Alignment.center,
         ),
       ],
     );
