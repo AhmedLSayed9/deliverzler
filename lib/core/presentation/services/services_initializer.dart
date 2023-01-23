@@ -36,6 +36,7 @@ class ServicesInitializer {
       final BuildContext context = widgetsBinding.renderViewElement!;
       //TODO: check for mounted after flutter v3.4.0 released: https://github.com/flutter/flutter/pull/111619
       //if (!context.mounted) return;
+      // ignore: use_build_context_synchronously
       await _initializeContextServices(context);
       // Closes splash screen, and show the app layout.
       widgetsBinding.allowFirstFrame();

@@ -65,8 +65,6 @@ class AppColorsDark implements IAppColors {
   final Color cardShadowColor = const Color(0x26000000);
 
   @override
-  final Color customFont40Color = const Color(0xfff0f0f0);
-  @override
   final Color customFont28Color = const Color(0xfff0f0f0);
   @override
   final Color customFont20Color = const Color(0xfff0f0f0);
