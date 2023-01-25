@@ -1,13 +1,20 @@
 import 'package:deliverzler/core/data/network/google_map_api/interceptors/error_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'logging_interceptor_test.mocks.dart';
+class MockResponseInterceptorHandler extends Mock
+    implements ResponseInterceptorHandler {}
+
+class MockDioError extends Mock implements DioError {}
 
 void main() {
   late MockResponseInterceptorHandler mockResponseInterceptorHandler;
   late ErrorInterceptor errorInterceptor;
+
+  setUpAll(() {
+    registerFallbackValue(MockDioError());
+  });
 
   setUp(() {
     mockResponseInterceptorHandler = MockResponseInterceptorHandler();
@@ -29,7 +36,7 @@ void main() {
         errorInterceptor.onResponse(tResponse, mockResponseInterceptorHandler);
         // THEN
         final DioError captured =
-            verify(mockResponseInterceptorHandler.reject(captureAny))
+            verify(() => mockResponseInterceptorHandler.reject(captureAny()))
                 .captured
                 .single;
         expect(captured.message, 'invalid');
@@ -51,7 +58,7 @@ void main() {
         // WHEN
         errorInterceptor.onResponse(tResponse, mockResponseInterceptorHandler);
         // THEN
-        verify(mockResponseInterceptorHandler.next(tResponse)).called(1);
+        verify(() => mockResponseInterceptorHandler.next(tResponse)).called(1);
         verifyNoMoreInteractions(mockResponseInterceptorHandler);
       },
     );
@@ -79,7 +86,7 @@ void main() {
         // WHEN
         errorInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN
-        verify(mockErrorInterceptorHandler.next(tError)).called(1);
+        verify(()=>mockErrorInterceptorHandler.next(tError)).called(1);
         verifyNoMoreInteractions(mockErrorInterceptorHandler);
       },
     );
@@ -124,7 +131,7 @@ void main() {
         // WHEN
         errorInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN
-        verify(mockErrorInterceptorHandler.reject(tError)).called(1);
+        verify(()=>mockErrorInterceptorHandler.reject(tError)).called(1);
         verifyNoMoreInteractions(mockErrorInterceptorHandler);
       },
     );
@@ -169,7 +176,7 @@ void main() {
         // WHEN
         errorInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN
-        verify(mockErrorInterceptorHandler.reject(tError)).called(1);
+        verify(()=>mockErrorInterceptorHandler.reject(tError)).called(1);
         verifyNoMoreInteractions(mockErrorInterceptorHandler);
       },
     );

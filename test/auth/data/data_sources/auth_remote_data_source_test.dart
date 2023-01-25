@@ -12,59 +12,22 @@ import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_fire
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../fixtures/fixture_reader.dart';
-import 'auth_remote_data_source_test.mocks.dart';
 
-class MockUserCredential extends Mock implements UserCredential {
-  @override
-  User get user => super.noSuchMethod(
-        Invocation.method(#user, []),
-        returnValue: MockUser(),
-      ) as User;
-}
+class MockUserCredential extends Mock implements UserCredential {}
 
-class MockUser extends Mock implements User {
-  MockUser();
+class MockUser extends Mock implements User {}
 
-  @override
-  String get uid => super.noSuchMethod(
-        Invocation.method(#uid, []),
-        returnValue: '',
-      ) as String;
+class MockIFirebaseAuthCaller extends Mock implements IFirebaseAuthCaller {}
 
-  @override
-  String get email => super.noSuchMethod(
-        Invocation.method(#email, []),
-        returnValue: '',
-      ) as String;
+class MockIFirebaseFirestoreCaller extends Mock
+    implements IFirebaseFirestoreCaller {}
 
-  @override
-  String? get displayName => super.noSuchMethod(
-        Invocation.method(#displayName, []),
-        returnValue: '',
-      ) as String?;
+// ignore: subtype_of_sealed_class
+class MockDocumentSnapshot extends Mock implements DocumentSnapshot {}
 
-  @override
-  String? get phoneNumber => super.noSuchMethod(
-        Invocation.method(#phoneNumber, []),
-        returnValue: '',
-      ) as String?;
-
-  @override
-  String? get photoURL => super.noSuchMethod(
-        Invocation.method(#photoURL, []),
-        returnValue: '',
-      ) as String?;
-}
-
-@GenerateMocks([
-  IFirebaseAuthCaller,
-  IFirebaseFirestoreCaller,
-  DocumentSnapshot,
-])
 void main() {
   late MockIFirebaseAuthCaller mockIFirebaseAuthCaller;
   late MockIFirebaseFirestoreCaller mockIFirebaseFirestoreCaller;
@@ -97,11 +60,11 @@ void main() {
   final tUserModel = UserModel.fromJson(tResponseMap);
 
   void setUpMockUser() {
-    when(mockUser.uid).thenReturn(tUserModel.id);
-    when(mockUser.email).thenReturn(tUserModel.email);
-    when(mockUser.displayName).thenReturn(tUserModel.name);
-    when(mockUser.phoneNumber).thenReturn(tUserModel.phone);
-    when(mockUser.photoURL).thenReturn(tUserModel.image);
+    when(() => mockUser.uid).thenReturn(tUserModel.id);
+    when(() => mockUser.email).thenReturn(tUserModel.email);
+    when(() => mockUser.displayName).thenReturn(tUserModel.name);
+    when(() => mockUser.phoneNumber).thenReturn(tUserModel.phone);
+    when(() => mockUser.photoURL).thenReturn(tUserModel.image);
   }
 
   group(
@@ -114,11 +77,11 @@ void main() {
           // GIVEN
           //This is just necessary to assure we return a working value not null value
           //so the signInWithEmail method continue without throwing exceptions
-          when(mockIFirebaseAuthCaller.signInWithEmailAndPassword(
-            email: anyNamed('email'),
-            password: anyNamed('password'),
-          )).thenAnswer((_) async => mockUserCredential);
-          when(mockUserCredential.user).thenReturn(mockUser);
+          when(() => mockIFirebaseAuthCaller.signInWithEmailAndPassword(
+                email: any(named: 'email'),
+                password: any(named: 'password'),
+              )).thenAnswer((_) async => mockUserCredential);
+          when(() => mockUserCredential.user).thenReturn(mockUser);
           setUpMockUser();
 
           final container = setUpContainer();
@@ -130,7 +93,7 @@ void main() {
 
           // THEN
           verify(
-            mockIFirebaseAuthCaller.signInWithEmailAndPassword(
+            () => mockIFirebaseAuthCaller.signInWithEmailAndPassword(
               email: tParams.email,
               password: tParams.password,
             ),
@@ -152,7 +115,7 @@ void main() {
         'when the response is successful',
         () async {
           // GIVEN
-          when(mockIFirebaseAuthCaller.getCurrentUser())
+          when(() => mockIFirebaseAuthCaller.getCurrentUser())
               .thenAnswer((_) async => mockUser);
           setUpMockUser();
 
@@ -164,7 +127,7 @@ void main() {
           final result = await authRemoteDataSource.getUserAuthUid();
 
           // THEN
-          verify(mockIFirebaseAuthCaller.getCurrentUser()).called(1);
+          verify(() => mockIFirebaseAuthCaller.getCurrentUser()).called(1);
           expect(result, equals(tUserModel.id));
           verifyNoMoreInteractions(mockIFirebaseAuthCaller);
         },
@@ -183,9 +146,10 @@ void main() {
         'when the response is successful and data is not null',
         () async {
           // GIVEN
-          when(mockIFirebaseFirestoreCaller.getData(path: anyNamed('path')))
+          when(() => mockIFirebaseFirestoreCaller.getData(
+                  path: any(named: 'path')))
               .thenAnswer((_) async => mockDocumentSnapshot);
-          when(mockDocumentSnapshot.data()).thenReturn(tResponseMap);
+          when(() => mockDocumentSnapshot.data()).thenReturn(tResponseMap);
 
           final container = setUpContainer();
           // WHEN
@@ -194,7 +158,8 @@ void main() {
           final result = await authRemoteDataSource.getUserData(tAuthUid);
 
           // THEN
-          verify(mockIFirebaseFirestoreCaller.getData(path: tParam)).called(1);
+          verify(() => mockIFirebaseFirestoreCaller.getData(path: tParam))
+              .called(1);
           expect(result, equals(tUserModel));
           verifyNoMoreInteractions(mockIFirebaseFirestoreCaller);
         },
@@ -204,9 +169,10 @@ void main() {
         'when the response is successful and data is null',
         () async {
           // GIVEN
-          when(mockIFirebaseFirestoreCaller.getData(path: anyNamed('path')))
+          when(() => mockIFirebaseFirestoreCaller.getData(
+                  path: any(named: 'path')))
               .thenAnswer((_) async => mockDocumentSnapshot);
-          when(mockDocumentSnapshot.data()).thenReturn(null);
+          when(() => mockDocumentSnapshot.data()).thenReturn(null);
 
           final container = setUpContainer();
 
@@ -216,7 +182,8 @@ void main() {
           final result = authRemoteDataSource.getUserData(tAuthUid);
 
           // THEN
-          verify(mockIFirebaseFirestoreCaller.getData(path: tParam)).called(1);
+          verify(() => mockIFirebaseFirestoreCaller.getData(path: tParam))
+              .called(1);
           await expectLater(
             () => result,
             throwsA(
@@ -239,10 +206,10 @@ void main() {
         'should call FirebaseAuthCaller.setData with the proper params',
         () async {
           // GIVEN
-          when(mockIFirebaseFirestoreCaller.setData(
-            path: anyNamed('path'),
-            data: anyNamed('data'),
-          )).thenAnswer((_) async => Future.value());
+          when(() => mockIFirebaseFirestoreCaller.setData(
+                path: any(named: 'path'),
+                data: any(named: 'data'),
+              )).thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
 
@@ -252,10 +219,10 @@ void main() {
           await authRemoteDataSource.setUserData(tUserModel);
 
           // THEN
-          verify(mockIFirebaseFirestoreCaller.setData(
-            path: tPath,
-            data: tUserModel.toJson(),
-          )).called(1);
+          verify(() => mockIFirebaseFirestoreCaller.setData(
+                path: tPath,
+                data: tUserModel.toJson(),
+              )).called(1);
           verifyNoMoreInteractions(mockIFirebaseFirestoreCaller);
         },
       );
@@ -270,7 +237,7 @@ void main() {
         () async {
           // GIVEN
           final container = setUpContainer();
-          when(mockIFirebaseAuthCaller.signOut())
+          when(() => mockIFirebaseAuthCaller.signOut())
               .thenAnswer((_) async => Future.value());
 
           // WHEN
@@ -279,7 +246,7 @@ void main() {
           await authRemoteDataSource.signOut();
 
           // THEN
-          verify(mockIFirebaseAuthCaller.signOut()).called(1);
+          verify(() => mockIFirebaseAuthCaller.signOut()).called(1);
           verifyNoMoreInteractions(mockIFirebaseAuthCaller);
         },
       );

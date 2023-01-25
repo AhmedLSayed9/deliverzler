@@ -4,14 +4,18 @@ import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart';
 import 'package:deliverzler/auth/domain/use_cases/set_user_data_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'sign_in_with_email_uc_test.mocks.dart';
+class MockIAuthRepo extends Mock implements IAuthRepo {}
 
-@GenerateMocks([IAuthRepo])
+class MockUser extends Mock implements User {}
+
 void main() {
   late MockIAuthRepo mockIAuthRepo;
+
+  setUpAll(() {
+    registerFallbackValue(MockUser());
+  });
 
   setUp(() {
     mockIAuthRepo = MockIAuthRepo();
@@ -44,7 +48,7 @@ void main() {
         'should return same tUser value when Repo.setUserData returns normally',
         () async {
           // GIVEN
-          when(mockIAuthRepo.setUserData(any))
+          when(() => mockIAuthRepo.setUserData(any()))
               .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
@@ -54,7 +58,7 @@ void main() {
           final result = await useCase(tUser);
 
           // THEN
-          verify(mockIAuthRepo.setUserData(tUser)).called(1);
+          verify(() => mockIAuthRepo.setUserData(tUser)).called(1);
           expect(result, tUser);
           verifyNoMoreInteractions(mockIAuthRepo);
         },
@@ -64,7 +68,7 @@ void main() {
         'should throw same Exception when Repo.setUserData throws',
         () async {
           // GIVEN
-          when(mockIAuthRepo.setUserData(any)).thenThrow(tException);
+          when(() => mockIAuthRepo.setUserData(any())).thenThrow(tException);
 
           final container = setUpContainer();
 
@@ -74,7 +78,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIAuthRepo.setUserData(tUser)).called(1);
+          verify(() => mockIAuthRepo.setUserData(tUser)).called(1);
           verifyNoMoreInteractions(mockIAuthRepo);
         },
       );

@@ -1,16 +1,17 @@
 import 'package:deliverzler/core/data/network/google_map_api/interceptors/logging_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'logging_interceptor_test.mocks.dart';
+class MockResponseInterceptorHandler extends Mock
+    implements ResponseInterceptorHandler {}
 
-@GenerateMocks([
-  ResponseInterceptorHandler,
-  RequestInterceptorHandler,
-  ErrorInterceptorHandler,
-])
+class MockRequestInterceptorHandler extends Mock
+    implements RequestInterceptorHandler {}
+
+class MockErrorInterceptorHandler extends Mock
+    implements ErrorInterceptorHandler {}
+
 void main() {
   late MockResponseInterceptorHandler mockResponseInterceptorHandler;
   late MockRequestInterceptorHandler mockRequestInterceptorHandler;
@@ -34,7 +35,7 @@ void main() {
         loggingInterceptor.onResponse(
             tResponse, mockResponseInterceptorHandler);
         // THEN
-        verify(mockResponseInterceptorHandler.next(tResponse)).called(1);
+        verify(() => mockResponseInterceptorHandler.next(tResponse)).called(1);
         verifyNoMoreInteractions(mockResponseInterceptorHandler);
       },
     );
@@ -49,7 +50,7 @@ void main() {
         // WHEN
         loggingInterceptor.onRequest(tOptions, mockRequestInterceptorHandler);
         // THEN
-        verify(mockRequestInterceptorHandler.next(tOptions)).called(1);
+        verify(() => mockRequestInterceptorHandler.next(tOptions)).called(1);
         verifyNoMoreInteractions(mockRequestInterceptorHandler);
       },
     );
@@ -64,7 +65,7 @@ void main() {
         // WHEN
         loggingInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN
-        verify(mockErrorInterceptorHandler.next(tError)).called(1);
+        verify(() => mockErrorInterceptorHandler.next(tError)).called(1);
         verifyNoMoreInteractions(mockErrorInterceptorHandler);
       },
     );

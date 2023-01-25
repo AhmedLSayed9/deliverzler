@@ -7,16 +7,24 @@ import 'package:deliverzler/core/presentation/services/fcm_service/fcm_provider.
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'sign_in_with_email_uc_test.mocks.dart';
+class MockIAuthRepo extends Mock implements IAuthRepo {}
 
-@GenerateMocks([IAuthRepo, FirebaseMessaging, GetUserDataUC])
+class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
+
+class MockGetUserDataUC extends Mock implements GetUserDataUC {}
+
+class MockSignInWithEmailParams extends Mock implements SignInWithEmailParams {}
+
 void main() {
   late MockIAuthRepo mockIAuthRepo;
   late MockFirebaseMessaging mockFirebaseMessaging;
   late MockGetUserDataUC mockGetUserDataUC;
+
+  setUpAll(() {
+    registerFallbackValue(MockSignInWithEmailParams());
+  });
 
   setUp(() {
     mockIAuthRepo = MockIAuthRepo();
@@ -65,11 +73,11 @@ void main() {
         'then call subscribeToTopic and return proper data when GetUserDataUC returns normally',
         () async {
           // GIVEN
-          when(mockIAuthRepo.signInWithEmail(any))
+          when(() => mockIAuthRepo.signInWithEmail(any()))
               .thenAnswer((_) async => tUserFromCredential);
-          when(mockGetUserDataUC.call(tUserFromCredential.id))
+          when(() => mockGetUserDataUC.call(tUserFromCredential.id))
               .thenAnswer((_) async => tUser);
-          when(mockFirebaseMessaging.subscribeToTopic(any))
+          when(() => mockFirebaseMessaging.subscribeToTopic(any()))
               .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
@@ -79,10 +87,12 @@ void main() {
           final result = await useCase(tParams);
 
           // THEN
-          verify(mockIAuthRepo.signInWithEmail(tParams)).called(1);
+          verify(() => mockIAuthRepo.signInWithEmail(tParams)).called(1);
 
-          verify(mockGetUserDataUC.call(tUserFromCredential.id)).called(1);
-          verify(mockFirebaseMessaging.subscribeToTopic(tTopic)).called(1);
+          verify(() => mockGetUserDataUC.call(tUserFromCredential.id))
+              .called(1);
+          verify(() => mockFirebaseMessaging.subscribeToTopic(tTopic))
+              .called(1);
           expect(result, tUser);
 
           verifyNoMoreInteractions(mockIAuthRepo);
@@ -96,9 +106,9 @@ void main() {
         'should throw same Exception when GetUserDataUC throws',
         () async {
           // GIVEN
-          when(mockIAuthRepo.signInWithEmail(any))
+          when(() => mockIAuthRepo.signInWithEmail(any()))
               .thenAnswer((_) async => tUserFromCredential);
-          when(mockGetUserDataUC.call(tUserFromCredential.id))
+          when(() => mockGetUserDataUC.call(tUserFromCredential.id))
               .thenThrow(tException);
 
           final container = setUpContainer();
@@ -110,9 +120,10 @@ void main() {
           // THEN
           await expectLater(() => call, throwsA(tException));
 
-          verify(mockIAuthRepo.signInWithEmail(tParams)).called(1);
-          verify(mockGetUserDataUC.call(tUserFromCredential.id)).called(1);
-          verifyNever(mockFirebaseMessaging.subscribeToTopic(tTopic));
+          verify(() => mockIAuthRepo.signInWithEmail(tParams)).called(1);
+          verify(() => mockGetUserDataUC.call(tUserFromCredential.id))
+              .called(1);
+          verifyNever(() => mockFirebaseMessaging.subscribeToTopic(tTopic));
 
           verifyNoMoreInteractions(mockIAuthRepo);
           verifyNoMoreInteractions(mockFirebaseMessaging);
@@ -124,7 +135,8 @@ void main() {
         'should throw same Exception when Repo.signInWithEmail throws',
         () async {
           // GIVEN
-          when(mockIAuthRepo.signInWithEmail(any)).thenThrow(tException);
+          when(() => mockIAuthRepo.signInWithEmail(any()))
+              .thenThrow(tException);
 
           final container = setUpContainer();
 
@@ -135,7 +147,7 @@ void main() {
           // THEN
           await expectLater(() => call, throwsA(tException));
 
-          verify(mockIAuthRepo.signInWithEmail(tParams)).called(1);
+          verify(() => mockIAuthRepo.signInWithEmail(tParams)).called(1);
           verifyNoMoreInteractions(mockIAuthRepo);
         },
       );

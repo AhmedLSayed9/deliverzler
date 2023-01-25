@@ -4,14 +4,16 @@ import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'theme_local_data_source_test.mocks.dart';
+class MockILocalStorageCaller extends Mock implements ILocalStorageCaller {}
 
-@GenerateMocks([ILocalStorageCaller])
 void main() {
   late MockILocalStorageCaller mockILocalStorageCaller;
+
+  setUpAll(() {
+    registerFallbackValue(DataType.int);
+  });
 
   setUp(() {
     mockILocalStorageCaller = MockILocalStorageCaller();
@@ -37,9 +39,9 @@ void main() {
         () async {
           // GIVEN
           when(
-            mockILocalStorageCaller.restoreData(
-              key: anyNamed('key'),
-              dataType: anyNamed('dataType'),
+            () => mockILocalStorageCaller.restoreData(
+              key: any(named: 'key'),
+              dataType: any(named: 'dataType'),
             ),
           ).thenAnswer((_) async => tTheme);
           final container = setUpContainer();
@@ -51,7 +53,7 @@ void main() {
 
           // THEN
           verify(
-            mockILocalStorageCaller.restoreData(
+            () => mockILocalStorageCaller.restoreData(
               key: ThemeLocalDataSource.appThemeKey,
               dataType: DataType.string,
             ),
@@ -64,9 +66,9 @@ void main() {
         () async {
           // GIVEN
           when(
-            mockILocalStorageCaller.restoreData(
-              key: anyNamed('key'),
-              dataType: anyNamed('dataType'),
+            () => mockILocalStorageCaller.restoreData(
+              key: any(named: 'key'),
+              dataType: any(named: 'dataType'),
             ),
           ).thenAnswer((_) async => null);
           final container = setUpContainer();
@@ -100,10 +102,10 @@ void main() {
           // GIVEN
           final container = setUpContainer();
           when(
-            mockILocalStorageCaller.saveData(
-              key: anyNamed('key'),
-              dataType: anyNamed('dataType'),
-              value: anyNamed('value'),
+            () => mockILocalStorageCaller.saveData(
+              key: any(named: 'key'),
+              dataType: any(named: 'dataType'),
+              value: any(named: 'value'),
             ),
           ).thenAnswer((_) async => true);
 
@@ -114,7 +116,7 @@ void main() {
 
           // THEN
           verify(
-            mockILocalStorageCaller.saveData(
+            () => mockILocalStorageCaller.saveData(
               key: ThemeLocalDataSource.appThemeKey,
               dataType: DataType.string,
               value: tTheme,

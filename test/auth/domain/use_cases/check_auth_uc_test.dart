@@ -6,12 +6,14 @@ import 'package:deliverzler/auth/domain/use_cases/get_user_data_uc.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'check_auth_uc_test.mocks.dart';
+class MockIAuthRepo extends Mock implements IAuthRepo {}
 
-@GenerateMocks([IAuthRepo, GetUserDataUC, SignOutUC])
+class MockGetUserDataUC extends Mock implements GetUserDataUC {}
+
+class MockSignOutUC extends Mock implements SignOutUC {}
+
 void main() {
   late MockIAuthRepo mockIAuthRepo;
   late MockGetUserDataUC mockGetUserDataUC;
@@ -55,8 +57,8 @@ void main() {
         'then return proper data when GetUserDataUC returns normally',
         () async {
           // GIVEN
-          when(mockIAuthRepo.getUserAuthUid()).thenAnswer((_) async => tUid);
-          when(mockGetUserDataUC(tUid)).thenAnswer((_) async => tUser);
+          when(()=>mockIAuthRepo.getUserAuthUid()).thenAnswer((_) async => tUid);
+          when(()=>mockGetUserDataUC(tUid)).thenAnswer((_) async => tUser);
 
           final container = setUpContainer();
 
@@ -65,9 +67,9 @@ void main() {
           final result = await useCase();
 
           // THEN
-          verify(mockIAuthRepo.getUserAuthUid()).called(1);
+          verify(()=>mockIAuthRepo.getUserAuthUid()).called(1);
 
-          verify(mockGetUserDataUC(tUid)).called(1);
+          verify(()=>mockGetUserDataUC(tUid)).called(1);
           expect(result, tUser);
 
           verifyNoMoreInteractions(mockIAuthRepo);
@@ -80,10 +82,10 @@ void main() {
         'then call SignOutUCProvider and rethrow same Exception when GetUserDataUC throws',
         () async {
           // GIVEN
-          when(mockIAuthRepo.getUserAuthUid()).thenAnswer((_) async => tUid);
-          when(mockGetUserDataUC(tUid)).thenThrow(tException);
-          when(mockIAuthRepo.signOut()).thenAnswer((_) async => Future.value());
-          when(mockSignOutUC()).thenAnswer((_) async => Future.value());
+          when(()=>mockIAuthRepo.getUserAuthUid()).thenAnswer((_) async => tUid);
+          when(()=>mockGetUserDataUC(tUid)).thenThrow(tException);
+          when(()=>mockIAuthRepo.signOut()).thenAnswer((_) async => Future.value());
+          when(()=>mockSignOutUC()).thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
 
@@ -94,10 +96,10 @@ void main() {
           // THEN
           await expectLater(() => call, throwsA(tException));
 
-          verify(mockIAuthRepo.getUserAuthUid()).called(1);
+          verify(()=>mockIAuthRepo.getUserAuthUid()).called(1);
 
-          verify(mockGetUserDataUC(tUid)).called(1);
-          verify(mockSignOutUC()).called(1);
+          verify(()=>mockGetUserDataUC(tUid)).called(1);
+          verify(()=>mockSignOutUC()).called(1);
 
           verifyNoMoreInteractions(mockIAuthRepo);
           verifyNoMoreInteractions(mockGetUserDataUC);
@@ -109,7 +111,7 @@ void main() {
         'should throw same Exception when Repo.getUserAuthUid throws',
         () async {
           // GIVEN
-          when(mockIAuthRepo.getUserAuthUid()).thenThrow(tException);
+          when(()=>mockIAuthRepo.getUserAuthUid()).thenThrow(tException);
 
           final container = setUpContainer();
 
@@ -120,7 +122,7 @@ void main() {
           // THEN
           await expectLater(() => call, throwsA(tException));
 
-          verify(mockIAuthRepo.getUserAuthUid()).called(1);
+          verify(()=>mockIAuthRepo.getUserAuthUid()).called(1);
           verifyNoMoreInteractions(mockIAuthRepo);
         },
       );

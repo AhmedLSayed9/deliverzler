@@ -1,14 +1,13 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:deliverzler/core/data/network/data_connection_checker.dart';
 import 'package:deliverzler/core/data/network/network_info.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'network_info_test.mocks.dart';
+class MockDataConnectionChecker extends Mock implements DataConnectionChecker {}
 
-@GenerateMocks([DataConnectionChecker])
-@GenerateMocks([Connectivity])
+class MockConnectivity extends Mock implements Connectivity {}
+
 void main() {
   late MockDataConnectionChecker mockDataConnectionChecker;
   late MockConnectivity mockConnectivity;
@@ -30,12 +29,12 @@ void main() {
         //When both are equal then we assured that hasConnection method from the package has been returned.
         //So, we assure we don't return true/false from networkInfo and ignore hasConnection returned value.
         final tHasConnectionFuture = Future.value(true);
-        when(mockDataConnectionChecker.hasConnection)
+        when(() => mockDataConnectionChecker.hasConnection)
             .thenAnswer((_) => tHasConnectionFuture);
         // WHEN
         final result = networkInfo.hasInternetConnection;
         // THEN
-        verify(mockDataConnectionChecker.hasConnection).called(1);
+        verify(() => mockDataConnectionChecker.hasConnection).called(1);
         expect(result, tHasConnectionFuture);
       },
     );
@@ -47,12 +46,12 @@ void main() {
       () async {
         // GIVEN
         final kCheckConnectivityResult = Future.value(ConnectivityResult.wifi);
-        when(mockConnectivity.checkConnectivity())
+        when(() => mockConnectivity.checkConnectivity())
             .thenAnswer((_) => kCheckConnectivityResult);
         // WHEN
         final result = networkInfo.hasNetworkConnectivity;
         // THEN
-        verify(mockConnectivity.checkConnectivity()).called(1);
+        verify(() => mockConnectivity.checkConnectivity()).called(1);
         expect(result, kCheckConnectivityResult);
       },
     );

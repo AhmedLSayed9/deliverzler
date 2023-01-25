@@ -5,17 +5,15 @@ import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'sign_in_provider_test.mocks.dart';
+class MockSignInWithEmailUC extends Mock implements SignInWithEmailUC {}
 
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
   void call(T? previous, T value);
 }
 
-@GenerateMocks([SignInWithEmailUC])
 void main() {
   late MockSignInWithEmailUC mockSignInWithEmailUC;
 
@@ -90,7 +88,7 @@ void main() {
           // THEN
           expect(signInState, successState);
 
-          verify(listener(null, successState));
+          verify(() => listener(null, successState));
           verifyNoMoreInteractions(listener);
         },
       );
@@ -112,7 +110,7 @@ void main() {
           // THEN
           expect(signInState, initialState);
 
-          verify(listener(null, initialState));
+          verify(() => listener(null, initialState));
           verifyNoMoreInteractions(listener);
         },
       );
@@ -130,10 +128,10 @@ void main() {
           final listener = setUpListener(container);
 
           // WHEN
-          verify(authListener(null, AuthState.unauthenticated));
+          verify(() => authListener(null, AuthState.unauthenticated));
           verifyNoMoreInteractions(authListener);
 
-          verify(listener(null, initialState));
+          verify(() => listener(null, initialState));
           verifyNoMoreInteractions(listener);
 
           container.read(signInWithEmailParamsProvider.notifier).state =
@@ -142,8 +140,9 @@ void main() {
 
           // THEN
           verifyInOrder([
-            authListener(AuthState.unauthenticated, AuthState.authenticated),
-            listener(initialState, successState),
+            () => authListener(
+                AuthState.unauthenticated, AuthState.authenticated),
+            () => listener(initialState, successState),
           ]);
           verifyNoMoreInteractions(authListener);
           verifyNoMoreInteractions(listener);
@@ -191,7 +190,8 @@ void main() {
         'should emit AsyncData(user) when use case returns normally',
         () async {
           // GIVEN
-          when(mockSignInWithEmailUC(tParams)).thenAnswer((_) async => tUser);
+          when(() => mockSignInWithEmailUC(tParams))
+              .thenAnswer((_) async => tUser);
 
           final container = setUpContainer(
             overrides: [
@@ -202,7 +202,7 @@ void main() {
           final listener = setUpListener(container, tParams);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(signInWithEmailProvider(tParams).future);
@@ -211,8 +211,8 @@ void main() {
           await expectLater(call, completion(tUser));
 
           verifyInOrder([
-            mockSignInWithEmailUC(tParams),
-            listener(loadingState, dataState),
+            () => mockSignInWithEmailUC(tParams),
+            () => listener(loadingState, dataState),
           ]);
           verifyNoMoreInteractions(mockSignInWithEmailUC);
           verifyNoMoreInteractions(listener);
@@ -223,7 +223,7 @@ void main() {
         'should emit AsyncError when use case throws',
         () async {
           // GIVEN
-          when(mockSignInWithEmailUC(tParams)).thenAnswer(
+          when(() => mockSignInWithEmailUC(tParams)).thenAnswer(
             (_) => Error.throwWithStackTrace(tException, tStackTrace),
           );
 
@@ -236,7 +236,7 @@ void main() {
           final listener = setUpListener(container, tParams);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(signInWithEmailProvider(tParams).future);
@@ -245,8 +245,8 @@ void main() {
           await expectLater(call, throwsA(tException));
 
           verifyInOrder([
-            mockSignInWithEmailUC(tParams),
-            listener(loadingState, errorState),
+            () => mockSignInWithEmailUC(tParams),
+            () => listener(loadingState, errorState),
           ]);
           verifyNoMoreInteractions(mockSignInWithEmailUC);
           verifyNoMoreInteractions(listener);

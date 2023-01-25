@@ -1,10 +1,11 @@
 import 'package:deliverzler/core/core_features/theme/data/repos/theme_repo.dart';
+import 'package:deliverzler/core/core_features/theme/domain/repos/i_theme_repo.dart';
 import 'package:deliverzler/core/core_features/theme/domain/use_cases/set_app_theme_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'get_app_theme_uc_test.mocks.dart';
+class MockIThemeRepo extends Mock implements IThemeRepo {}
 
 void main() {
   late MockIThemeRepo mockIThemeRepo;
@@ -34,7 +35,7 @@ void main() {
         'should return proper data when Repo.cacheAppTheme returns normally',
         () async {
           // GIVEN
-          when(mockIThemeRepo.cacheAppTheme(tTheme))
+          when(() => mockIThemeRepo.cacheAppTheme(tTheme))
               .thenAnswer((_) async => Future.value());
           final container = setUpContainer();
 
@@ -43,7 +44,7 @@ void main() {
           await setAppThemeUC(tTheme);
 
           // THEN
-          verify(mockIThemeRepo.cacheAppTheme(tTheme));
+          verify(() => mockIThemeRepo.cacheAppTheme(tTheme));
           verifyNoMoreInteractions(mockIThemeRepo);
         },
       );
@@ -52,7 +53,8 @@ void main() {
         'should throw same Exception when Repo.cacheAppTheme throws',
         () async {
           // GIVEN
-          when(mockIThemeRepo.cacheAppTheme(tTheme)).thenThrow(tException);
+          when(() => mockIThemeRepo.cacheAppTheme(tTheme))
+              .thenThrow(tException);
           final container = setUpContainer();
 
           // WHEN
@@ -61,7 +63,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIThemeRepo.cacheAppTheme(tTheme)).called(1);
+          verify(() => mockIThemeRepo.cacheAppTheme(tTheme)).called(1);
           verifyNoMoreInteractions(mockIThemeRepo);
         },
       );

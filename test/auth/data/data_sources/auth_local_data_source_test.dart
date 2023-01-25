@@ -7,15 +7,18 @@ import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../fixtures/fixture_reader.dart';
-import 'auth_local_data_source_test.mocks.dart';
 
-@GenerateMocks([ILocalStorageCaller])
+class MockILocalStorageCaller extends Mock implements ILocalStorageCaller {}
+
 void main() {
   late MockILocalStorageCaller mockILocalStorageCaller;
+
+  setUpAll(() {
+    registerFallbackValue(DataType.int);
+  });
 
   setUp(() {
     mockILocalStorageCaller = MockILocalStorageCaller();
@@ -43,10 +46,10 @@ void main() {
           // GIVEN
           final container = setUpContainer();
           when(
-            mockILocalStorageCaller.saveData(
-              key: anyNamed('key'),
-              dataType: anyNamed('dataType'),
-              value: anyNamed('value'),
+            () => mockILocalStorageCaller.saveData(
+              key: any(named: 'key'),
+              dataType: any(named: 'dataType'),
+              value: any(named: 'value'),
             ),
           ).thenAnswer((_) async => true);
 
@@ -58,7 +61,7 @@ void main() {
           // THEN
           final expectedJsonString = json.encode(tUserModel.toJson());
           verify(
-            mockILocalStorageCaller.saveData(
+            () => mockILocalStorageCaller.saveData(
               key: AuthLocalDataSource.userDataKey,
               dataType: DataType.string,
               value: expectedJsonString,
@@ -79,9 +82,9 @@ void main() {
           // GIVEN
           final container = setUpContainer();
           when(
-            mockILocalStorageCaller.restoreData(
-              key: anyNamed('key'),
-              dataType: anyNamed('dataType'),
+            () => mockILocalStorageCaller.restoreData(
+              key: any(named: 'key'),
+              dataType: any(named: 'dataType'),
             ),
           ).thenAnswer((_) async => fixtureReader('auth/user.json'));
 
@@ -92,7 +95,7 @@ void main() {
 
           // THEN
           verify(
-            mockILocalStorageCaller.restoreData(
+            () => mockILocalStorageCaller.restoreData(
               key: AuthLocalDataSource.userDataKey,
               dataType: DataType.string,
             ),
@@ -107,9 +110,9 @@ void main() {
           // GIVEN
           final container = setUpContainer();
           when(
-            mockILocalStorageCaller.restoreData(
-              key: anyNamed('key'),
-              dataType: anyNamed('dataType'),
+            () => mockILocalStorageCaller.restoreData(
+              key: any(named: 'key'),
+              dataType: any(named: 'dataType'),
             ),
           ).thenAnswer((_) async => null);
 
@@ -120,7 +123,7 @@ void main() {
 
           // THEN
           verify(
-            mockILocalStorageCaller.restoreData(
+            () => mockILocalStorageCaller.restoreData(
               key: AuthLocalDataSource.userDataKey,
               dataType: DataType.string,
             ),
@@ -147,8 +150,8 @@ void main() {
           // GIVEN
           final container = setUpContainer();
           when(
-            mockILocalStorageCaller.clearKey(
-              key: anyNamed('key'),
+            () => mockILocalStorageCaller.clearKey(
+              key: any(named: 'key'),
             ),
           ).thenAnswer((_) async => true);
 
@@ -159,7 +162,7 @@ void main() {
 
           // THEN
           verify(
-            mockILocalStorageCaller.clearKey(
+            () => mockILocalStorageCaller.clearKey(
               key: AuthLocalDataSource.userDataKey,
             ),
           );

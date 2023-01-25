@@ -2,12 +2,11 @@ import 'package:deliverzler/core/core_features/locale/data/repos/locale_repo.dar
 import 'package:deliverzler/core/core_features/locale/data/data_sources/locale_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'locale_repo_test.mocks.dart';
+class MockILocaleLocalDataSource extends Mock
+    implements ILocaleLocalDataSource {}
 
-@GenerateMocks([ILocaleLocalDataSource])
 void main() {
   late MockILocaleLocalDataSource mockILocaleLocalDataSource;
 
@@ -38,7 +37,7 @@ void main() {
         'when the cached data is present',
         () async {
           // GIVEN
-          when(mockILocaleLocalDataSource.getAppLocale())
+          when(() => mockILocaleLocalDataSource.getAppLocale())
               .thenAnswer((_) async => tLocale);
           final container = setUpContainer();
 
@@ -47,7 +46,7 @@ void main() {
           final result = await localeRepo.getAppLocale();
 
           // THEN
-          verify(mockILocaleLocalDataSource.getAppLocale());
+          verify(() => mockILocaleLocalDataSource.getAppLocale());
           expect(result, equals(tLocale));
           verifyNoMoreInteractions(mockILocaleLocalDataSource);
         },
@@ -58,7 +57,8 @@ void main() {
         'when there is no cached data present',
         () async {
           // GIVEN
-          when(mockILocaleLocalDataSource.getAppLocale()).thenThrow(tException);
+          when(() => mockILocaleLocalDataSource.getAppLocale())
+              .thenThrow(tException);
           final container = setUpContainer();
 
           // WHEN
@@ -67,7 +67,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockILocaleLocalDataSource.getAppLocale());
+          verify(() => mockILocaleLocalDataSource.getAppLocale());
           verifyNoMoreInteractions(mockILocaleLocalDataSource);
         },
       );
@@ -83,7 +83,7 @@ void main() {
         'should call LocalDataSource.cacheAppLocale with the proper param',
         () async {
           // GIVEN
-          when(mockILocaleLocalDataSource.cacheAppLocale(tLocale))
+          when(() => mockILocaleLocalDataSource.cacheAppLocale(tLocale))
               .thenAnswer((_) async => Future.value());
           final container = setUpContainer();
 
@@ -92,7 +92,7 @@ void main() {
           await localeRepo.cacheAppLocale(tLocale);
 
           // THEN
-          verify(mockILocaleLocalDataSource.cacheAppLocale(tLocale));
+          verify(() => mockILocaleLocalDataSource.cacheAppLocale(tLocale));
           verifyNoMoreInteractions(mockILocaleLocalDataSource);
         },
       );
@@ -102,7 +102,7 @@ void main() {
         'when the call to local data source is unsuccessful',
         () async {
           // GIVEN
-          when(mockILocaleLocalDataSource.cacheAppLocale(tLocale))
+          when(() => mockILocaleLocalDataSource.cacheAppLocale(tLocale))
               .thenThrow(tException);
           final container = setUpContainer();
 
@@ -112,7 +112,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockILocaleLocalDataSource.cacheAppLocale(tLocale));
+          verify(() => mockILocaleLocalDataSource.cacheAppLocale(tLocale));
           verifyNoMoreInteractions(mockILocaleLocalDataSource);
         },
       );

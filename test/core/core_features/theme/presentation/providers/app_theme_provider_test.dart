@@ -4,18 +4,17 @@ import 'package:deliverzler/core/core_features/theme/domain/use_cases/set_app_th
 import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'app_theme_provider_test.mocks.dart';
+class MockGetAppThemeUC extends Mock implements GetAppThemeUC {}
+
+class MockSetAppThemeUC extends Mock implements SetAppThemeUC {}
 
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
   void call(T? previous, T value);
 }
 
-@GenerateMocks([GetAppThemeUC])
-@GenerateMocks([SetAppThemeUC])
 void main() {
   late MockGetAppThemeUC mockGetAppThemeUC;
   late MockSetAppThemeUC mockSetAppThemeUC;
@@ -61,13 +60,13 @@ void main() {
         'should emit AsyncData(tTheme) when use case returns normally',
         () async {
           // GIVEN
-          when(mockGetAppThemeUC()).thenAnswer((_) async => tTheme.name);
+          when(() => mockGetAppThemeUC()).thenAnswer((_) async => tTheme.name);
 
           final container = setUpContainer();
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(appThemeControllerProvider.future);
@@ -76,8 +75,8 @@ void main() {
           await expectLater(call, completion(tTheme));
 
           verifyInOrder([
-            mockGetAppThemeUC(),
-            listener(loadingState, tThemeState),
+            () => mockGetAppThemeUC(),
+            () => listener(loadingState, tThemeState),
           ]);
           verifyNoMoreInteractions(mockGetAppThemeUC);
           verifyNoMoreInteractions(listener);
@@ -87,7 +86,7 @@ void main() {
         'should emit AsyncError when use case throws',
         () async {
           // GIVEN
-          when(mockGetAppThemeUC()).thenAnswer(
+          when(() => mockGetAppThemeUC()).thenAnswer(
             (_) => Error.throwWithStackTrace(tException, tStackTrace),
           );
 
@@ -95,7 +94,7 @@ void main() {
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(appThemeControllerProvider.future);
@@ -104,8 +103,8 @@ void main() {
           await expectLater(call, throwsA(tException));
 
           verifyInOrder([
-            mockGetAppThemeUC(),
-            listener(loadingState, errorState),
+            () => mockGetAppThemeUC(),
+            () => listener(loadingState, errorState),
           ]);
           verifyNoMoreInteractions(mockGetAppThemeUC);
           verifyNoMoreInteractions(listener);
@@ -124,15 +123,16 @@ void main() {
         'should emit AsyncData(tChangeTheme) then call the concrete use case',
         () async {
           // GIVEN
-          when(mockGetAppThemeUC()).thenAnswer((_) async => tTheme.name);
-          when(mockSetAppThemeUC(any)).thenAnswer((_) async => Future.value());
+          when(() => mockGetAppThemeUC()).thenAnswer((_) async => tTheme.name);
+          when(() => mockSetAppThemeUC(any()))
+              .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
           await container.read(appThemeControllerProvider.future);
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, tThemeState));
+          verify(() => listener(null, tThemeState));
           verifyNoMoreInteractions(listener);
 
           final call = container
@@ -143,8 +143,8 @@ void main() {
           await expectLater(call, completion(null));
 
           verifyInOrder([
-            listener(tThemeState, tChangeThemeState),
-            mockSetAppThemeUC(tChangeTheme.name),
+            () => listener(tThemeState, tChangeThemeState),
+            () => mockSetAppThemeUC(tChangeTheme.name),
           ]);
           verifyNoMoreInteractions(mockSetAppThemeUC);
           verifyNoMoreInteractions(listener);

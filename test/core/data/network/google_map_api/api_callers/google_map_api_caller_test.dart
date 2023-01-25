@@ -2,12 +2,10 @@ import 'package:deliverzler/core/data/network/google_map_api/api_callers/google_
 import 'package:deliverzler/core/data/network/google_map_api/extensions/google_map_error_extension.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'google_map_api_caller_test.mocks.dart';
+class MockDio extends Mock implements Dio {}
 
-@GenerateMocks([Dio])
 void main() {
   late MockDio mockDio;
   late GoogleMapApiCaller googleMapApiCaller;
@@ -41,7 +39,7 @@ void main() {
       () async {
         // GIVEN
         when(
-          mockDio.get(
+          () => mockDio.get(
             tPath,
             queryParameters: tQueryParameters,
             options: tOptions,
@@ -55,7 +53,7 @@ void main() {
         );
         // THEN
         verify(
-          mockDio.get(
+          () => mockDio.get(
             tPath,
             queryParameters: tQueryParameters,
             options: tOptions,
@@ -69,7 +67,7 @@ void main() {
       'should return same result from Dio.get when the response is successful',
       () async {
         // GIVEN
-        when(mockDio.get(any)).thenAnswer((_) async => tResponse);
+        when(() => mockDio.get(any())).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await googleMapApiCaller.getData(path: tPath);
         // THEN
@@ -82,7 +80,7 @@ void main() {
       'when the response is unsuccessful',
       () async {
         // GIVEN
-        when(mockDio.get(any)).thenThrow(tError);
+        when(() => mockDio.get(any())).thenThrow(tError);
         // WHEN
         final call = googleMapApiCaller.getData(path: tPath);
         // THEN
@@ -100,7 +98,7 @@ void main() {
       () async {
         // GIVEN
         when(
-          mockDio.post(tPath, data: tData, options: tOptions),
+          () => mockDio.post(tPath, data: tData, options: tOptions),
         ).thenAnswer((_) async => tResponse);
         // WHEN
         await googleMapApiCaller.postData(
@@ -109,7 +107,8 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(mockDio.post(tPath, data: tData, options: tOptions)).called(1);
+        verify(() => mockDio.post(tPath, data: tData, options: tOptions))
+            .called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -118,7 +117,7 @@ void main() {
       'should return same result from Dio.post when the response is successful',
       () async {
         // GIVEN
-        when(mockDio.post(any)).thenAnswer((_) async => tResponse);
+        when(() => mockDio.post(any())).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await googleMapApiCaller.postData(path: tPath);
         // THEN
@@ -131,7 +130,7 @@ void main() {
       'when the response is unsuccessful',
       () async {
         // GIVEN
-        when(mockDio.post(any)).thenThrow(tError);
+        when(() => mockDio.post(any())).thenThrow(tError);
         // WHEN
         final call = googleMapApiCaller.postData(path: tPath);
         // THEN
@@ -149,7 +148,7 @@ void main() {
       () async {
         // GIVEN
         when(
-          mockDio.patch(tPath, data: tData, options: tOptions),
+          () => mockDio.patch(tPath, data: tData, options: tOptions),
         ).thenAnswer((_) async => tResponse);
         // WHEN
         await googleMapApiCaller.patchData(
@@ -158,7 +157,8 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(mockDio.patch(tPath, data: tData, options: tOptions)).called(1);
+        verify(() => mockDio.patch(tPath, data: tData, options: tOptions))
+            .called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -167,7 +167,7 @@ void main() {
       'should return same result from Dio.patch when the response is successful',
       () async {
         // GIVEN
-        when(mockDio.patch(any)).thenAnswer((_) async => tResponse);
+        when(() => mockDio.patch(any())).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await googleMapApiCaller.patchData(path: tPath);
         // THEN
@@ -180,7 +180,7 @@ void main() {
       'when the response is unsuccessful',
       () async {
         // GIVEN
-        when(mockDio.patch(any)).thenThrow(tError);
+        when(() => mockDio.patch(any())).thenThrow(tError);
         // WHEN
         final call = googleMapApiCaller.patchData(path: tPath);
         // THEN
@@ -198,7 +198,7 @@ void main() {
       () async {
         // GIVEN
         when(
-          mockDio.put(tPath, data: tData, options: tOptions),
+          () => mockDio.put(tPath, data: tData, options: tOptions),
         ).thenAnswer((_) async => tResponse);
         // WHEN
         await googleMapApiCaller.putData(
@@ -207,7 +207,8 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(mockDio.put(tPath, data: tData, options: tOptions)).called(1);
+        verify(() => mockDio.put(tPath, data: tData, options: tOptions))
+            .called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -216,7 +217,7 @@ void main() {
       'should return same result from Dio.put when the response is successful',
       () async {
         // GIVEN
-        when(mockDio.put(any)).thenAnswer((_) async => tResponse);
+        when(() => mockDio.put(any())).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await googleMapApiCaller.putData(path: tPath);
         // THEN
@@ -229,7 +230,7 @@ void main() {
       'when the response is unsuccessful',
       () async {
         // GIVEN
-        when(mockDio.put(any)).thenThrow(tError);
+        when(() => mockDio.put(any())).thenThrow(tError);
         // WHEN
         final call = googleMapApiCaller.putData(path: tPath);
         // THEN
@@ -247,7 +248,7 @@ void main() {
       () async {
         // GIVEN
         when(
-          mockDio.delete(tPath, data: tData, options: tOptions),
+          () => mockDio.delete(tPath, data: tData, options: tOptions),
         ).thenAnswer((_) async => tResponse);
         // WHEN
         await googleMapApiCaller.deleteData(
@@ -256,7 +257,8 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(mockDio.delete(tPath, data: tData, options: tOptions)).called(1);
+        verify(() => mockDio.delete(tPath, data: tData, options: tOptions))
+            .called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -265,7 +267,7 @@ void main() {
       'should return same result from Dio.delete when the response is successful',
       () async {
         // GIVEN
-        when(mockDio.delete(any)).thenAnswer((_) async => tResponse);
+        when(() => mockDio.delete(any())).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await googleMapApiCaller.deleteData(path: tPath);
         // THEN
@@ -278,7 +280,7 @@ void main() {
       'when the response is unsuccessful',
       () async {
         // GIVEN
-        when(mockDio.delete(any)).thenThrow(tError);
+        when(() => mockDio.delete(any())).thenThrow(tError);
         // WHEN
         final call = googleMapApiCaller.deleteData(path: tPath);
         // THEN

@@ -4,17 +4,15 @@ import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart
 import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'sign_out_provider_test.mocks.dart';
+class MockSignOutUC extends Mock implements SignOutUC {}
 
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
   void call(T? previous, T value);
 }
 
-@GenerateMocks([SignOutUC])
 void main() {
   late MockSignOutUC mockSignOutUC;
 
@@ -90,7 +88,7 @@ void main() {
           // THEN
           expect(signOutStatus, errorState);
 
-          verify(listener(null, errorState));
+          verify(() => listener(null, errorState));
           verifyNoMoreInteractions(listener);
         },
       );
@@ -112,7 +110,7 @@ void main() {
           // THEN
           expect(signOutStatus, initialState);
 
-          verify(listener(null, initialState));
+          verify(() => listener(null, initialState));
           verifyNoMoreInteractions(listener);
         },
       );
@@ -133,10 +131,10 @@ void main() {
           final authListener = setUpAuthStateListener(container);
 
           // WHEN
-          verify(listener(null, initialState));
+          verify(() => listener(null, initialState));
           verifyNoMoreInteractions(listener);
 
-          verify(authListener(null, AuthState.authenticated));
+          verify(() => authListener(null, AuthState.authenticated));
           verifyNoMoreInteractions(listener);
 
           container.read(signOutTriggerProvider.notifier).state = true;
@@ -144,8 +142,9 @@ void main() {
 
           // THEN
           verifyInOrder([
-            authListener(AuthState.authenticated, AuthState.unauthenticated),
-            listener(initialState, successState),
+            () => authListener(
+                AuthState.authenticated, AuthState.unauthenticated),
+            () => listener(initialState, successState),
           ]);
           verifyNoMoreInteractions(authListener);
           verifyNoMoreInteractions(listener);
@@ -202,7 +201,7 @@ void main() {
         'should emit AsyncData(void) when use case returns normally',
         () async {
           // GIVEN
-          when(mockSignOutUC()).thenAnswer((_) => Future.value());
+          when(() => mockSignOutUC()).thenAnswer((_) => Future.value());
 
           final container = setUpContainer(
             overrides: [
@@ -212,7 +211,7 @@ void main() {
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(signOutProvider.future);
@@ -221,8 +220,8 @@ void main() {
           await expectLater(call, completes);
 
           verifyInOrder([
-            mockSignOutUC(),
-            listener(loadingState, dataState),
+            () => mockSignOutUC(),
+            () => listener(loadingState, dataState),
           ]);
           verifyNoMoreInteractions(mockSignOutUC);
           verifyNoMoreInteractions(listener);
@@ -233,7 +232,7 @@ void main() {
         'should emit AsyncError when use case throws',
         () async {
           // GIVEN
-          when(mockSignOutUC()).thenAnswer(
+          when(() => mockSignOutUC()).thenAnswer(
             (_) => Error.throwWithStackTrace(tException, tStackTrace),
           );
 
@@ -249,10 +248,10 @@ void main() {
           final authListener = setUpAuthStateListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          verify(authListener(null, AuthState.authenticated));
+          verify(() => authListener(null, AuthState.authenticated));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(signOutProvider.future);
@@ -261,8 +260,8 @@ void main() {
           await expectLater(call, throwsA(tException));
 
           verifyInOrder([
-            mockSignOutUC(),
-            listener(loadingState, errorState),
+            () => mockSignOutUC(),
+            () => listener(loadingState, errorState),
           ]);
           verifyNoMoreInteractions(mockSignOutUC);
           verifyNoMoreInteractions(listener);

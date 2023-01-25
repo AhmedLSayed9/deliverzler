@@ -2,12 +2,10 @@ import 'package:deliverzler/core/core_features/theme/data/repos/theme_repo.dart'
 import 'package:deliverzler/core/core_features/theme/data/data_sources/theme_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'theme_repo_test.mocks.dart';
+class MockIThemeLocalDataSource extends Mock implements IThemeLocalDataSource {}
 
-@GenerateMocks([IThemeLocalDataSource])
 void main() {
   late MockIThemeLocalDataSource mockIThemeLocalDataSource;
 
@@ -38,7 +36,7 @@ void main() {
         'when the cached data is present',
         () async {
           // GIVEN
-          when(mockIThemeLocalDataSource.getAppTheme())
+          when(() => mockIThemeLocalDataSource.getAppTheme())
               .thenAnswer((_) async => tTheme);
           final container = setUpContainer();
 
@@ -47,7 +45,7 @@ void main() {
           final result = await themeRepo.getAppTheme();
 
           // THEN
-          verify(mockIThemeLocalDataSource.getAppTheme());
+          verify(() => mockIThemeLocalDataSource.getAppTheme());
           expect(result, equals(tTheme));
           verifyNoMoreInteractions(mockIThemeLocalDataSource);
         },
@@ -58,7 +56,8 @@ void main() {
         'when there is no cached data present',
         () async {
           // GIVEN
-          when(mockIThemeLocalDataSource.getAppTheme()).thenThrow(tException);
+          when(() => mockIThemeLocalDataSource.getAppTheme())
+              .thenThrow(tException);
           final container = setUpContainer();
 
           // WHEN
@@ -67,7 +66,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIThemeLocalDataSource.getAppTheme());
+          verify(() => mockIThemeLocalDataSource.getAppTheme());
           verifyNoMoreInteractions(mockIThemeLocalDataSource);
         },
       );
@@ -83,7 +82,7 @@ void main() {
         'should call LocalDataSource.cacheAppTheme with the proper param',
         () async {
           // GIVEN
-          when(mockIThemeLocalDataSource.cacheAppTheme(tTheme))
+          when(() => mockIThemeLocalDataSource.cacheAppTheme(tTheme))
               .thenAnswer((_) async => Future.value());
           final container = setUpContainer();
 
@@ -92,7 +91,7 @@ void main() {
           await themeRepo.cacheAppTheme(tTheme);
 
           // THEN
-          verify(mockIThemeLocalDataSource.cacheAppTheme(tTheme));
+          verify(() => mockIThemeLocalDataSource.cacheAppTheme(tTheme));
           verifyNoMoreInteractions(mockIThemeLocalDataSource);
         },
       );
@@ -102,7 +101,7 @@ void main() {
         'when the call to local data source is unsuccessful',
         () async {
           // GIVEN
-          when(mockIThemeLocalDataSource.cacheAppTheme(tTheme))
+          when(() => mockIThemeLocalDataSource.cacheAppTheme(tTheme))
               .thenThrow(tException);
           final container = setUpContainer();
 
@@ -112,7 +111,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIThemeLocalDataSource.cacheAppTheme(tTheme));
+          verify(() => mockIThemeLocalDataSource.cacheAppTheme(tTheme));
           verifyNoMoreInteractions(mockIThemeLocalDataSource);
         },
       );

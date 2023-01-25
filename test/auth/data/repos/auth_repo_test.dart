@@ -6,12 +6,14 @@ import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
 import 'package:deliverzler/core/data/network/network_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'auth_repo_test.mocks.dart';
+class MockIAuthRemoteDataSource extends Mock implements IAuthRemoteDataSource {}
 
-@GenerateMocks([IAuthRemoteDataSource, IAuthLocalDataSource, INetworkInfo])
+class MockIAuthLocalDataSource extends Mock implements IAuthLocalDataSource {}
+
+class MockINetworkInfo extends Mock implements INetworkInfo {}
+
 void main() {
   late MockIAuthRemoteDataSource mockIAuthRemoteDataSource;
   late MockIAuthLocalDataSource mockIAuthLocalDataSource;
@@ -39,7 +41,7 @@ void main() {
   void runTestsWhenConnected(Function body) {
     group('has network connection', () {
       setUp(() {
-        when(mockINetworkInfo.hasInternetConnection)
+        when(() => mockINetworkInfo.hasInternetConnection)
             .thenAnswer((_) async => true);
       });
       body.call();
@@ -49,7 +51,7 @@ void main() {
   void runTestsWhenDisconnected(Function body) {
     group('has no network connection', () {
       setUp(() {
-        when(mockINetworkInfo.hasInternetConnection)
+        when(() => mockINetworkInfo.hasInternetConnection)
             .thenAnswer((_) async => false);
       });
       body.call();
@@ -76,7 +78,7 @@ void main() {
         'when the call to remote data source is successful',
         () async {
           // GIVEN
-          when(mockIAuthRemoteDataSource.signInWithEmail(tParams))
+          when(() => mockIAuthRemoteDataSource.signInWithEmail(tParams))
               .thenAnswer((_) async => tUserModel);
 
           final container = setUpContainer();
@@ -86,7 +88,8 @@ void main() {
           final result = await authRepo.signInWithEmail(tParams);
 
           // THEN
-          verify(mockIAuthRemoteDataSource.signInWithEmail(tParams)).called(1);
+          verify(() => mockIAuthRemoteDataSource.signInWithEmail(tParams))
+              .called(1);
           expect(result, equals(tUser));
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
         },
@@ -97,7 +100,7 @@ void main() {
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
-          when(mockIAuthRemoteDataSource.signInWithEmail(tParams))
+          when(() => mockIAuthRemoteDataSource.signInWithEmail(tParams))
               .thenThrow(tException);
 
           final container = setUpContainer();
@@ -108,7 +111,8 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIAuthRemoteDataSource.signInWithEmail(tParams)).called(1);
+          verify(() => mockIAuthRemoteDataSource.signInWithEmail(tParams))
+              .called(1);
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
         },
       );
@@ -124,7 +128,7 @@ void main() {
         () async {
           // GIVEN
           const tAuthUid = 'uid';
-          when(mockIAuthRemoteDataSource.getUserAuthUid())
+          when(() => mockIAuthRemoteDataSource.getUserAuthUid())
               .thenAnswer((_) async => tAuthUid);
 
           final container = setUpContainer();
@@ -134,7 +138,7 @@ void main() {
           final result = await authRepo.getUserAuthUid();
 
           // THEN
-          verify(mockIAuthRemoteDataSource.getUserAuthUid()).called(1);
+          verify(() => mockIAuthRemoteDataSource.getUserAuthUid()).called(1);
           expect(result, equals(tAuthUid));
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
         },
@@ -145,7 +149,7 @@ void main() {
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
-          when(mockIAuthRemoteDataSource.getUserAuthUid())
+          when(() => mockIAuthRemoteDataSource.getUserAuthUid())
               .thenThrow(tException);
 
           final container = setUpContainer();
@@ -156,7 +160,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIAuthRemoteDataSource.getUserAuthUid()).called(1);
+          verify(() => mockIAuthRemoteDataSource.getUserAuthUid()).called(1);
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
         },
       );
@@ -181,7 +185,7 @@ void main() {
           } catch (_) {}
 
           // THEN
-          verify(mockINetworkInfo.hasInternetConnection).called(1);
+          verify(() => mockINetworkInfo.hasInternetConnection).called(1);
         },
       );
 
@@ -192,7 +196,7 @@ void main() {
             'when the call to remote data source is successful',
             () async {
               // GIVEN
-              when(mockIAuthRemoteDataSource.getUserData(tAuthUid))
+              when(() => mockIAuthRemoteDataSource.getUserData(tAuthUid))
                   .thenAnswer((_) async => tUserModel);
 
               final container = setUpContainer();
@@ -202,8 +206,9 @@ void main() {
               final result = await authRepo.getUserData(tAuthUid);
 
               // THEN
-              verify(mockIAuthRemoteDataSource.getUserData(tAuthUid)).called(1);
-              verify(mockIAuthLocalDataSource.cacheUserData(tUserModel));
+              verify(() => mockIAuthRemoteDataSource.getUserData(tAuthUid))
+                  .called(1);
+              verify(() => mockIAuthLocalDataSource.cacheUserData(tUserModel));
               expect(result, equals(tUser));
               verifyNoMoreInteractions(mockIAuthRemoteDataSource);
               verifyNoMoreInteractions(mockIAuthLocalDataSource);
@@ -214,7 +219,7 @@ void main() {
             'when the call to remote data source is unsuccessful',
             () async {
               // GIVEN
-              when(mockIAuthRemoteDataSource.getUserAuthUid())
+              when(() => mockIAuthRemoteDataSource.getUserAuthUid())
                   .thenThrow(tException);
 
               final container = setUpContainer();
@@ -225,7 +230,8 @@ void main() {
 
               // THEN
               await expectLater(() => call, throwsA(tException));
-              verify(mockIAuthRemoteDataSource.getUserAuthUid()).called(1);
+              verify(() => mockIAuthRemoteDataSource.getUserAuthUid())
+                  .called(1);
               verifyNoMoreInteractions(mockIAuthRemoteDataSource);
             },
           );
@@ -239,7 +245,7 @@ void main() {
             'when the cached data is present',
             () async {
               // GIVEN
-              when(mockIAuthLocalDataSource.getUserData())
+              when(() => mockIAuthLocalDataSource.getUserData())
                   .thenAnswer((_) async => tUserModel);
 
               final container = setUpContainer();
@@ -249,7 +255,7 @@ void main() {
               final result = await authRepo.getUserData(tAuthUid);
 
               // THEN
-              verify(mockIAuthLocalDataSource.getUserData());
+              verify(() => mockIAuthLocalDataSource.getUserData());
               expect(result, tUser);
               verifyZeroInteractions(mockIAuthRemoteDataSource);
               verifyNoMoreInteractions(mockIAuthLocalDataSource);
@@ -260,7 +266,7 @@ void main() {
             'when there is no cached data present',
             () async {
               // GIVEN
-              when(mockIAuthLocalDataSource.getUserData())
+              when(() => mockIAuthLocalDataSource.getUserData())
                   .thenThrow(tException);
 
               final container = setUpContainer();
@@ -271,7 +277,7 @@ void main() {
 
               // THEN
               await expectLater(() => call, throwsA(tException));
-              verify(mockIAuthLocalDataSource.getUserData());
+              verify(() => mockIAuthLocalDataSource.getUserData());
               verifyZeroInteractions(mockIAuthRemoteDataSource);
               verifyNoMoreInteractions(mockIAuthLocalDataSource);
             },
@@ -289,7 +295,7 @@ void main() {
         'and try to cache the data locally',
         () async {
           // GIVEN
-          when(mockIAuthRemoteDataSource.setUserData(tUserModel))
+          when(() => mockIAuthRemoteDataSource.setUserData(tUserModel))
               .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
@@ -300,8 +306,9 @@ void main() {
 
           // THEN
           await expectLater(() => call, returnsNormally);
-          verify(mockIAuthRemoteDataSource.setUserData(tUserModel)).called(1);
-          verify(mockIAuthLocalDataSource.cacheUserData(tUserModel));
+          verify(() => mockIAuthRemoteDataSource.setUserData(tUserModel))
+              .called(1);
+          verify(() => mockIAuthLocalDataSource.cacheUserData(tUserModel));
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
           verifyNoMoreInteractions(mockIAuthLocalDataSource);
         },
@@ -311,7 +318,7 @@ void main() {
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
-          when(mockIAuthRemoteDataSource.setUserData(tUserModel))
+          when(() => mockIAuthRemoteDataSource.setUserData(tUserModel))
               .thenThrow(tException);
 
           final container = setUpContainer();
@@ -322,7 +329,8 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIAuthRemoteDataSource.setUserData(tUserModel)).called(1);
+          verify(() => mockIAuthRemoteDataSource.setUserData(tUserModel))
+              .called(1);
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
         },
       );
@@ -337,7 +345,7 @@ void main() {
         'and try to clear the cached data',
         () async {
           // GIVEN
-          when(mockIAuthRemoteDataSource.signOut())
+          when(() => mockIAuthRemoteDataSource.signOut())
               .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
@@ -348,8 +356,8 @@ void main() {
 
           // THEN
           await expectLater(() => call, returnsNormally);
-          verify(mockIAuthRemoteDataSource.signOut()).called(1);
-          verify(mockIAuthLocalDataSource.clearUserData());
+          verify(() => mockIAuthRemoteDataSource.signOut()).called(1);
+          verify(() => mockIAuthLocalDataSource.clearUserData());
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
           verifyNoMoreInteractions(mockIAuthLocalDataSource);
         },
@@ -359,7 +367,7 @@ void main() {
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
-          when(mockIAuthRemoteDataSource.signOut()).thenThrow(tException);
+          when(() => mockIAuthRemoteDataSource.signOut()).thenThrow(tException);
 
           final container = setUpContainer();
 
@@ -369,7 +377,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIAuthRemoteDataSource.signOut()).called(1);
+          verify(() => mockIAuthRemoteDataSource.signOut()).called(1);
           verifyNoMoreInteractions(mockIAuthRemoteDataSource);
         },
       );

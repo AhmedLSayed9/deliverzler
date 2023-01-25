@@ -2,13 +2,11 @@ import 'package:deliverzler/core/data/local/extensions/local_error_extension.dar
 import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'shared_pref_local_storage_caller_test.mocks.dart';
+class MockSharedPreferences extends Mock implements SharedPreferences {}
 
-@GenerateMocks([SharedPreferences])
 void main() {
   late MockSharedPreferences mockSharedPreferences;
   late SharedPrefsLocalStorageCaller sharedPrefCaller;
@@ -34,7 +32,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(mockSharedPreferences.setString(tKey, tStringValue))
+        when(() => mockSharedPreferences.setString(tKey, tStringValue))
             .thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefCaller.saveData(
@@ -43,7 +41,8 @@ void main() {
           dataType: DataType.string,
         );
         // THEN
-        verify(mockSharedPreferences.setString(tKey, tStringValue)).called(1);
+        verify(() => mockSharedPreferences.setString(tKey, tStringValue))
+            .called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -54,7 +53,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(mockSharedPreferences.setInt(tKey, tIntValue))
+        when(() => mockSharedPreferences.setInt(tKey, tIntValue))
             .thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefCaller.saveData(
@@ -63,7 +62,7 @@ void main() {
           dataType: DataType.int,
         );
         // THEN
-        verify(mockSharedPreferences.setInt(tKey, tIntValue)).called(1);
+        verify(() => mockSharedPreferences.setInt(tKey, tIntValue)).called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -74,7 +73,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(mockSharedPreferences.setDouble(tKey, tDoubleValue))
+        when(() => mockSharedPreferences.setDouble(tKey, tDoubleValue))
             .thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefCaller.saveData(
@@ -83,7 +82,8 @@ void main() {
           dataType: DataType.double,
         );
         // THEN
-        verify(mockSharedPreferences.setDouble(tKey, tDoubleValue)).called(1);
+        verify(() => mockSharedPreferences.setDouble(tKey, tDoubleValue))
+            .called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -94,7 +94,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(mockSharedPreferences.setBool(tKey, tBoolValue))
+        when(() => mockSharedPreferences.setBool(tKey, tBoolValue))
             .thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefCaller.saveData(
@@ -103,7 +103,7 @@ void main() {
           dataType: DataType.bool,
         );
         // THEN
-        verify(mockSharedPreferences.setBool(tKey, tBoolValue)).called(1);
+        verify(() => mockSharedPreferences.setBool(tKey, tBoolValue)).called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -114,7 +114,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(mockSharedPreferences.setStringList(tKey, tStringList))
+        when(() => mockSharedPreferences.setStringList(tKey, tStringList))
             .thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefCaller.saveData(
@@ -123,7 +123,7 @@ void main() {
           dataType: DataType.stringList,
         );
         // THEN
-        verify(mockSharedPreferences.setStringList(tKey, tStringList))
+        verify(() => mockSharedPreferences.setStringList(tKey, tStringList))
             .called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
@@ -136,7 +136,7 @@ void main() {
       'when the call to SharedPreferences.setString is unsuccessful',
       () async {
         // GIVEN
-        when(mockSharedPreferences.setString(tKey, tStringValue))
+        when(() => mockSharedPreferences.setString(tKey, tStringValue))
             .thenThrow(tError);
         // WHEN
         final call = sharedPrefCaller.saveData(
@@ -149,7 +149,8 @@ void main() {
           () => call,
           throwsA(tError.localErrorToCacheException()),
         );
-        verify(mockSharedPreferences.setString(tKey, tStringValue)).called(1);
+        verify(() => mockSharedPreferences.setString(tKey, tStringValue))
+            .called(1);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
     );
@@ -161,7 +162,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = tStringValue;
-        when(mockSharedPreferences.getString(tKey))
+        when(() => mockSharedPreferences.getString(tKey))
             .thenAnswer((_) => tResponse);
         // WHEN
         final result = await sharedPrefCaller.restoreData(
@@ -169,7 +170,7 @@ void main() {
           dataType: DataType.string,
         );
         // THEN
-        verify(mockSharedPreferences.getString(tKey)).called(1);
+        verify(() => mockSharedPreferences.getString(tKey)).called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -179,14 +180,15 @@ void main() {
       'should return same result from SharedPreferences.getInt when dataType is DataType.int',
       () async {
         // GIVEN
-        when(mockSharedPreferences.getInt(tKey)).thenAnswer((_) => tIntValue);
+        when(() => mockSharedPreferences.getInt(tKey))
+            .thenAnswer((_) => tIntValue);
         // WHEN
         final result = await sharedPrefCaller.restoreData(
           key: tKey,
           dataType: DataType.int,
         );
         // THEN
-        verify(mockSharedPreferences.getInt(tKey)).called(1);
+        verify(() => mockSharedPreferences.getInt(tKey)).called(1);
         expect(result, tIntValue);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -196,7 +198,7 @@ void main() {
       'should return same result from SharedPreferences.getDouble when dataType is DataType.double',
       () async {
         // GIVEN
-        when(mockSharedPreferences.getDouble(tKey))
+        when(() => mockSharedPreferences.getDouble(tKey))
             .thenAnswer((_) => tDoubleValue);
         // WHEN
         final result = await sharedPrefCaller.restoreData(
@@ -204,7 +206,7 @@ void main() {
           dataType: DataType.double,
         );
         // THEN
-        verify(mockSharedPreferences.getDouble(tKey)).called(1);
+        verify(() => mockSharedPreferences.getDouble(tKey)).called(1);
         expect(result, tDoubleValue);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -214,14 +216,15 @@ void main() {
       'should return same result from SharedPreferences.getBool when dataType is DataType.bool',
       () async {
         // GIVEN
-        when(mockSharedPreferences.getBool(tKey)).thenAnswer((_) => tBoolValue);
+        when(() => mockSharedPreferences.getBool(tKey))
+            .thenAnswer((_) => tBoolValue);
         // WHEN
         final result = await sharedPrefCaller.restoreData(
           key: tKey,
           dataType: DataType.bool,
         );
         // THEN
-        verify(mockSharedPreferences.getBool(tKey)).called(1);
+        verify(() => mockSharedPreferences.getBool(tKey)).called(1);
         expect(result, tBoolValue);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -231,7 +234,7 @@ void main() {
       'should return same result from SharedPreferences.getStringList when dataType is DataType.stringList',
       () async {
         // GIVEN
-        when(mockSharedPreferences.getStringList(tKey))
+        when(() => mockSharedPreferences.getStringList(tKey))
             .thenAnswer((_) => tStringList);
         // WHEN
         final result = await sharedPrefCaller.restoreData(
@@ -239,7 +242,7 @@ void main() {
           dataType: DataType.stringList,
         );
         // THEN
-        verify(mockSharedPreferences.getStringList(tKey)).called(1);
+        verify(() => mockSharedPreferences.getStringList(tKey)).called(1);
         expect(result, tStringList);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -251,7 +254,7 @@ void main() {
       'when the call to SharedPreferences.getString is unsuccessful',
       () async {
         // GIVEN
-        when(mockSharedPreferences.getString(tKey)).thenThrow(tError);
+        when(() => mockSharedPreferences.getString(tKey)).thenThrow(tError);
         // WHEN
         final call = sharedPrefCaller.restoreData(
           key: tKey,
@@ -262,7 +265,7 @@ void main() {
           () => call,
           throwsA(tError.localErrorToCacheException()),
         );
-        verify(mockSharedPreferences.getString(tKey)).called(1);
+        verify(() => mockSharedPreferences.getString(tKey)).called(1);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
     );
@@ -274,11 +277,12 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(mockSharedPreferences.clear()).thenAnswer((_) async => tResponse);
+        when(() => mockSharedPreferences.clear())
+            .thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefCaller.clearAll();
         // THEN
-        verify(mockSharedPreferences.clear()).called(1);
+        verify(() => mockSharedPreferences.clear()).called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -289,7 +293,7 @@ void main() {
       'when the call to SharedPreferences.clear is unsuccessful',
       () async {
         // GIVEN
-        when(mockSharedPreferences.clear()).thenThrow(tError);
+        when(() => mockSharedPreferences.clear()).thenThrow(tError);
         // WHEN
         final call = sharedPrefCaller.clearAll();
         // THEN
@@ -297,7 +301,7 @@ void main() {
           () => call,
           throwsA(tError.localErrorToCacheException()),
         );
-        verify(mockSharedPreferences.clear()).called(1);
+        verify(() => mockSharedPreferences.clear()).called(1);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
     );
@@ -309,12 +313,12 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(mockSharedPreferences.remove(tKey))
+        when(() => mockSharedPreferences.remove(tKey))
             .thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefCaller.clearKey(key: tKey);
         // THEN
-        verify(mockSharedPreferences.remove(tKey)).called(1);
+        verify(() => mockSharedPreferences.remove(tKey)).called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
@@ -325,7 +329,7 @@ void main() {
       'when the call to SharedPreferences.remove is unsuccessful',
       () async {
         // GIVEN
-        when(mockSharedPreferences.remove(tKey)).thenThrow(tError);
+        when(() => mockSharedPreferences.remove(tKey)).thenThrow(tError);
         // WHEN
         final call = sharedPrefCaller.clearKey(key: tKey);
         // THEN
@@ -333,7 +337,7 @@ void main() {
           () => call,
           throwsA(tError.localErrorToCacheException()),
         );
-        verify(mockSharedPreferences.remove(tKey)).called(1);
+        verify(() => mockSharedPreferences.remove(tKey)).called(1);
         verifyNoMoreInteractions(mockSharedPreferences);
       },
     );

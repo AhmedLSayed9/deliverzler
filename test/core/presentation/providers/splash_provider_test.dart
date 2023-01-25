@@ -8,16 +8,16 @@ import 'package:deliverzler/core/presentation/providers/splash_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'splash_provider_test.mocks.dart';
+class MockINetworkInfo extends Mock implements INetworkInfo {}
+
+class MockCheckAuthUC extends Mock implements CheckAuthUC {}
 
 class Listener<T> extends Mock {
   void call(T? previous, T value);
 }
 
-@GenerateMocks([INetworkInfo, CheckAuthUC])
 void main() {
   late MockINetworkInfo mockINetworkInfo;
   late MockCheckAuthUC mockCheckAuthUC;
@@ -69,7 +69,7 @@ void main() {
         'should emit checkAuthProvider future when hasInternetConnection is true',
         () async {
           // GIVEN
-          when(mockINetworkInfo.hasInternetConnection)
+          when(() => mockINetworkInfo.hasInternetConnection)
               .thenAnswer((_) async => true);
 
           const tCheckAuthPath = 'tPath';
@@ -81,7 +81,7 @@ void main() {
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(splashProvider.future);
@@ -90,8 +90,9 @@ void main() {
           await expectLater(call, completion(tCheckAuthPath));
 
           verifyInOrder([
-            mockINetworkInfo.hasInternetConnection,
-            listener(loadingState, const AsyncData<String>(tCheckAuthPath)),
+            () => mockINetworkInfo.hasInternetConnection,
+            () =>
+                listener(loadingState, const AsyncData<String>(tCheckAuthPath)),
           ]);
           verifyNoMoreInteractions(mockINetworkInfo);
           verifyNoMoreInteractions(listener);
@@ -102,14 +103,14 @@ void main() {
         'should emit AsyncData(noInternetPath) when hasInternetConnection is false',
         () async {
           // GIVEN
-          when(mockINetworkInfo.hasInternetConnection)
+          when(() => mockINetworkInfo.hasInternetConnection)
               .thenAnswer((_) async => false);
 
           final container = setUpContainer();
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(splashProvider.future);
@@ -118,8 +119,8 @@ void main() {
           await expectLater(call, completion(noInternetPath));
 
           verifyInOrder([
-            mockINetworkInfo.hasInternetConnection,
-            listener(loadingState, noInternetState),
+            () => mockINetworkInfo.hasInternetConnection,
+            () => listener(loadingState, noInternetState),
           ]);
           verifyNoMoreInteractions(mockINetworkInfo);
           verifyNoMoreInteractions(listener);
@@ -166,17 +167,17 @@ void main() {
         'then emit AsyncData(authGuardPath)',
         () async {
           // GIVEN
-          when(mockCheckAuthUC()).thenAnswer((_) async => tUser);
+          when(() => mockCheckAuthUC()).thenAnswer((_) async => tUser);
 
           final container = setUpContainer();
           final listener = setUpListener(container);
           final authListener = setUpAuthStateListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          verify(authListener(null, AuthState.unauthenticated));
+          verify(() => authListener(null, AuthState.unauthenticated));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(checkAuthProvider.future);
@@ -185,12 +186,12 @@ void main() {
           await expectLater(call, completion(authGuardPath));
 
           verifyInOrder([
-            mockCheckAuthUC(),
-            authListener(
-              AuthState.unauthenticated,
-              AuthState.authenticated,
-            ),
-            listener(loadingState, authGuardState),
+            () => mockCheckAuthUC(),
+            () => authListener(
+                  AuthState.unauthenticated,
+                  AuthState.authenticated,
+                ),
+            () => listener(loadingState, authGuardState),
           ]);
           verifyNoMoreInteractions(mockCheckAuthUC);
           verifyNoMoreInteractions(listener);
@@ -207,7 +208,7 @@ void main() {
           // GIVEN
           final tException = Exception('test_exception');
           final tStackTrace = StackTrace.current;
-          when(mockCheckAuthUC()).thenAnswer(
+          when(() => mockCheckAuthUC()).thenAnswer(
             (_) => Error.throwWithStackTrace(tException, tStackTrace),
           );
 
@@ -216,10 +217,10 @@ void main() {
           final authListener = setUpAuthStateListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          verify(authListener(null, AuthState.unauthenticated));
+          verify(() => authListener(null, AuthState.unauthenticated));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(checkAuthProvider.future);
@@ -228,8 +229,8 @@ void main() {
           await expectLater(call, completion(authGuardPath));
 
           verifyInOrder([
-            mockCheckAuthUC(),
-            listener(loadingState, authGuardState),
+            () => mockCheckAuthUC(),
+            () => listener(loadingState, authGuardState),
           ]);
           verifyNoMoreInteractions(mockCheckAuthUC);
           verifyNoMoreInteractions(listener);

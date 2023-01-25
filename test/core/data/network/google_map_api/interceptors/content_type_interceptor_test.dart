@@ -2,9 +2,10 @@ import 'package:deliverzler/core/data/network/google_map_api/interceptors/conten
 import 'package:deliverzler/core/data/network/i_api_config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'logging_interceptor_test.mocks.dart';
+class MockRequestInterceptorHandler extends Mock
+    implements RequestInterceptorHandler {}
 
 void main() {
   late MockRequestInterceptorHandler mockRequestInterceptorHandler;
@@ -35,7 +36,7 @@ void main() {
           tOptions.headers[IApiConfig.contentTypeHeaderKey],
           IApiConfig.multipartFormDataContentType,
         );
-        verify(mockRequestInterceptorHandler.next(tOptions)).called(1);
+        verify(() => mockRequestInterceptorHandler.next(tOptions)).called(1);
         verifyNoMoreInteractions(mockRequestInterceptorHandler);
       },
     );
@@ -59,7 +60,7 @@ void main() {
           tOptions.headers[IApiConfig.contentTypeHeaderKey],
           IApiConfig.emptyContentType,
         );
-        verify(mockRequestInterceptorHandler.next(tOptions)).called(1);
+        verify(() => mockRequestInterceptorHandler.next(tOptions)).called(1);
         verifyNoMoreInteractions(mockRequestInterceptorHandler);
       },
     );

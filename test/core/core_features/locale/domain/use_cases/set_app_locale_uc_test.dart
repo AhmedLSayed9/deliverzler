@@ -1,10 +1,11 @@
 import 'package:deliverzler/core/core_features/locale/data/repos/locale_repo.dart';
+import 'package:deliverzler/core/core_features/locale/domain/repos/i_locale_repo.dart';
 import 'package:deliverzler/core/core_features/locale/domain/use_cases/set_app_locale_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'get_app_locale_uc_test.mocks.dart';
+class MockILocaleRepo extends Mock implements ILocaleRepo {}
 
 void main() {
   late MockILocaleRepo mockILocaleRepo;
@@ -34,7 +35,7 @@ void main() {
         'should return proper data when Repo.cacheAppLocale returns normally',
         () async {
           // GIVEN
-          when(mockILocaleRepo.cacheAppLocale(tLocale))
+          when(() => mockILocaleRepo.cacheAppLocale(tLocale))
               .thenAnswer((_) async => Future.value());
           final container = setUpContainer();
 
@@ -43,7 +44,7 @@ void main() {
           await setAppLocaleUC(tLocale);
 
           // THEN
-          verify(mockILocaleRepo.cacheAppLocale(tLocale));
+          verify(() => mockILocaleRepo.cacheAppLocale(tLocale));
           verifyNoMoreInteractions(mockILocaleRepo);
         },
       );
@@ -52,7 +53,8 @@ void main() {
         'should throw same Exception when Repo.cacheAppLocale throws',
         () async {
           // GIVEN
-          when(mockILocaleRepo.cacheAppLocale(tLocale)).thenThrow(tException);
+          when(() => mockILocaleRepo.cacheAppLocale(tLocale))
+              .thenThrow(tException);
           final container = setUpContainer();
 
           // WHEN
@@ -61,7 +63,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockILocaleRepo.cacheAppLocale(tLocale)).called(1);
+          verify(() => mockILocaleRepo.cacheAppLocale(tLocale)).called(1);
           verifyNoMoreInteractions(mockILocaleRepo);
         },
       );

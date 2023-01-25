@@ -4,12 +4,10 @@ import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart';
 import 'package:deliverzler/auth/domain/use_cases/get_user_data_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'sign_in_with_email_uc_test.mocks.dart';
+class MockIAuthRepo extends Mock implements IAuthRepo {}
 
-@GenerateMocks([IAuthRepo])
 void main() {
   late MockIAuthRepo mockIAuthRepo;
 
@@ -46,7 +44,7 @@ void main() {
         'should return proper data when Repo.getUserData returns normally',
         () async {
           // GIVEN
-          when(mockIAuthRepo.getUserData(tAuthUid))
+          when(() => mockIAuthRepo.getUserData(tAuthUid))
               .thenAnswer((_) async => tUser);
 
           final container = setUpContainer();
@@ -56,7 +54,7 @@ void main() {
           final result = await useCase(tAuthUid);
 
           // THEN
-          verify(mockIAuthRepo.getUserData(tAuthUid)).called(1);
+          verify(() => mockIAuthRepo.getUserData(tAuthUid)).called(1);
           expect(result, tUser);
           verifyNoMoreInteractions(mockIAuthRepo);
         },
@@ -66,7 +64,7 @@ void main() {
         'should throw same Exception when Repo.getUserData throws',
         () async {
           // GIVEN
-          when(mockIAuthRepo.getUserData(tAuthUid)).thenThrow(tException);
+          when(() => mockIAuthRepo.getUserData(tAuthUid)).thenThrow(tException);
 
           final container = setUpContainer();
 
@@ -76,7 +74,7 @@ void main() {
 
           // THEN
           await expectLater(() => call, throwsA(tException));
-          verify(mockIAuthRepo.getUserData(tAuthUid)).called(1);
+          verify(() => mockIAuthRepo.getUserData(tAuthUid)).called(1);
           verifyNoMoreInteractions(mockIAuthRepo);
         },
       );

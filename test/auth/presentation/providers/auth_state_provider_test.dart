@@ -4,7 +4,7 @@ import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
@@ -62,7 +62,7 @@ void main() {
           final listener = setUpListener(container);
 
           // THEN
-          verify(listener(null, unauthenticatedState));
+          verify(() => listener(null, unauthenticatedState));
           verifyNoMoreInteractions(listener);
         },
       );
@@ -82,10 +82,10 @@ void main() {
           final userListener = setUpUserListener(container);
 
           // WHEN
-          verify(listener(null, unauthenticatedState));
+          verify(() => listener(null, unauthenticatedState));
           verifyNoMoreInteractions(listener);
 
-          verify(userListener(null, noneUser));
+          verify(() => userListener(null, noneUser));
           verifyNoMoreInteractions(userListener);
 
           container
@@ -94,8 +94,8 @@ void main() {
 
           // THEN
           verifyInOrder([
-            userListener(noneUser, someUser),
-            listener(unauthenticatedState, authenticatedState),
+            () => userListener(noneUser, someUser),
+            () => listener(unauthenticatedState, authenticatedState),
           ]);
           verifyNoMoreInteractions(listener);
           verifyNoMoreInteractions(userListener);
@@ -120,10 +120,10 @@ void main() {
           final userListener = setUpUserListener(container);
 
           // WHEN
-          verify(listener(null, authenticatedState));
+          verify(() => listener(null, authenticatedState));
           verifyNoMoreInteractions(listener);
 
-          verify(userListener(null, someUser));
+          verify(() => userListener(null, someUser));
           verifyNoMoreInteractions(userListener);
 
           container
@@ -131,7 +131,7 @@ void main() {
               .unAuthenticateUser();
 
           // THEN
-          verify(listener(authenticatedState, unauthenticatedState));
+          verify(() => listener(authenticatedState, unauthenticatedState));
           verifyNoMoreInteractions(listener);
 
           await expectLater(
@@ -140,7 +140,7 @@ void main() {
             }),
             noneUser,
           );
-          verify(userListener(someUser, noneUser));
+          verify(() => userListener(someUser, noneUser));
           verifyNoMoreInteractions(userListener);
         },
       );

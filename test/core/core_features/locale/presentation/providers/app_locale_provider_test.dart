@@ -4,18 +4,17 @@ import 'package:deliverzler/core/core_features/locale/domain/use_cases/set_app_l
 import 'package:deliverzler/core/core_features/locale/presentation/providers/app_locale_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'app_locale_provider_test.mocks.dart';
+class MockGetAppLocaleUC extends Mock implements GetAppLocaleUC {}
+
+class MockSetAppLocaleUC extends Mock implements SetAppLocaleUC {}
 
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
   void call(T? previous, T value);
 }
 
-@GenerateMocks([GetAppLocaleUC])
-@GenerateMocks([SetAppLocaleUC])
 void main() {
   late MockGetAppLocaleUC mockGetAppLocaleUC;
   late MockSetAppLocaleUC mockSetAppLocaleUC;
@@ -61,13 +60,14 @@ void main() {
         'should emit AsyncData(tLocale) when use case returns normally',
         () async {
           // GIVEN
-          when(mockGetAppLocaleUC()).thenAnswer((_) async => tLocale.code);
+          when(() => mockGetAppLocaleUC())
+              .thenAnswer((_) async => tLocale.code);
 
           final container = setUpContainer();
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(appLocaleControllerProvider.future);
@@ -76,8 +76,8 @@ void main() {
           await expectLater(call, completion(tLocale));
 
           verifyInOrder([
-            mockGetAppLocaleUC(),
-            listener(loadingState, tLocaleState),
+            () => mockGetAppLocaleUC(),
+            () => listener(loadingState, tLocaleState),
           ]);
           verifyNoMoreInteractions(mockGetAppLocaleUC);
           verifyNoMoreInteractions(listener);
@@ -87,7 +87,7 @@ void main() {
         'should emit AsyncError when use case throws',
         () async {
           // GIVEN
-          when(mockGetAppLocaleUC()).thenAnswer(
+          when(() => mockGetAppLocaleUC()).thenAnswer(
             (_) => Error.throwWithStackTrace(tException, tStackTrace),
           );
 
@@ -95,7 +95,7 @@ void main() {
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, loadingState));
+          verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(appLocaleControllerProvider.future);
@@ -104,8 +104,8 @@ void main() {
           await expectLater(call, throwsA(tException));
 
           verifyInOrder([
-            mockGetAppLocaleUC(),
-            listener(loadingState, errorState),
+            () => mockGetAppLocaleUC(),
+            () => listener(loadingState, errorState),
           ]);
           verifyNoMoreInteractions(mockGetAppLocaleUC);
           verifyNoMoreInteractions(listener);
@@ -124,15 +124,17 @@ void main() {
         'should emit AsyncData(tChangeLocale) then call the concrete use case',
         () async {
           // GIVEN
-          when(mockGetAppLocaleUC()).thenAnswer((_) async => tLocale.code);
-          when(mockSetAppLocaleUC(any)).thenAnswer((_) async => Future.value());
+          when(() => mockGetAppLocaleUC())
+              .thenAnswer((_) async => tLocale.code);
+          when(() => mockSetAppLocaleUC(any()))
+              .thenAnswer((_) async => Future.value());
 
           final container = setUpContainer();
           await container.read(appLocaleControllerProvider.future);
           final listener = setUpListener(container);
 
           // WHEN
-          verify(listener(null, tLocaleState));
+          verify(() => listener(null, tLocaleState));
           verifyNoMoreInteractions(listener);
 
           final call = container
@@ -143,8 +145,8 @@ void main() {
           await expectLater(call, completion(null));
 
           verifyInOrder([
-            listener(tLocaleState, tChangeLocaleState),
-            mockSetAppLocaleUC(tChangeLocale.code),
+            () => listener(tLocaleState, tChangeLocaleState),
+            () => mockSetAppLocaleUC(tChangeLocale.code),
           ]);
           verifyNoMoreInteractions(mockSetAppLocaleUC);
           verifyNoMoreInteractions(listener);
