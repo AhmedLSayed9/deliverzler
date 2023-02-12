@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:deliverzler/core/presentation/routing/navigator_route_observer.dart';
 import 'package:flutter/material.dart';
+
+export 'package:deliverzler/core/presentation/extensions/route_extension.dart';
 
 typedef OnRouteChange = void Function(Route? route, Route? previousRoute);
 
@@ -95,8 +98,7 @@ class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
 
   void _logStack() {
     if (enableLogger) {
-      final mappedStack =
-          _stack.map((Route route) => route.settings.name).toList();
+      final mappedStack = _stack.map((Route route) => route.routeName).toList();
       log('Navigator stack: $mappedStack');
     }
   }
