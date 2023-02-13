@@ -7,7 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'sign_in_provider.g.dart';
 
-//Using [Option] to indicate initial(none)/success(some) states.
+//Using [Option] to indicate idle(none)/success(some) states.
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
 AsyncValue<Option<User>> signInState(SignInStateRef ref) {

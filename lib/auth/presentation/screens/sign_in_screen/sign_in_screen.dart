@@ -13,7 +13,7 @@ class SignInScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    ref.listen<AsyncValue<void>>(
+    ref.listen(
       signInStateProvider,
       (prevState, newState) {
         prevState?.unwrapPrevious().whenOrNull(
