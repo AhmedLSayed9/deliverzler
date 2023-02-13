@@ -47,8 +47,10 @@ class UpcomingOrdersComponent extends ConsumerWidget {
                     final container = ProviderScope.containerOf(context);
                     final sub = container.listen(
                         selectedOrderIdProvider, (prev, value) {});
-                    ref.read(selectedOrderIdProvider.notifier).state =
-                        Some(orderId);
+                    ref
+                        .read(selectedOrderIdProvider.notifier)
+                        .update((_) => Some(orderId));
+
                     await NavigationService.push(
                       context,
                       isNamed: true,

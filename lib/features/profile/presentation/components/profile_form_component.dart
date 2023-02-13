@@ -51,7 +51,9 @@ class ProfileFormComponent extends HookConsumerWidget {
           name: nameController.text,
           phone: mobileController.text,
         );
-        ref.read(updateProfileDataParamsProvider.notifier).state = Some(params);
+        ref
+            .read(updateProfileDataEventProvider.notifier)
+            .update((_) => Some(params));
       }
     }, []);
 

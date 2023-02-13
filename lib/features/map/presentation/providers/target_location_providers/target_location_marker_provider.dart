@@ -5,9 +5,12 @@ import 'package:deliverzler/features/map/presentation/providers/target_location_
 import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_geo_point_provider.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final targetLocationMarkerProvider = StateProvider.autoDispose<Marker>((ref) {
+part 'target_location_marker_provider.g.dart';
+
+@riverpod
+Marker targetLocationMarker(TargetLocationMarkerRef ref) {
   final cameraTarget = ref.watch(
     targetLocationCameraPositionProvider.select((camera) => camera.target),
   );
@@ -23,8 +26,8 @@ final targetLocationMarkerProvider = StateProvider.autoDispose<Marker>((ref) {
     onDragEnd: (newPosition) {
       final position =
           Some(GeoPoint(newPosition.latitude, newPosition.longitude));
-      ref.watch(targetLocationGeoPointProvider.notifier).state = position;
+      ref.read(targetLocationGeoPointProvider.notifier).update((_) => position);
     },
   );
   return targetMarker;
-});
+}

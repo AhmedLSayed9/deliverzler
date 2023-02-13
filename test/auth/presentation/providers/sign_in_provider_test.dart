@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_overriding_member
+
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
@@ -9,6 +11,11 @@ import 'package:mocktail/mocktail.dart';
 
 class MockSignInWithEmailUC extends Mock implements SignInWithEmailUC {}
 
+class MockSignInWithEmailEvent
+    extends AutoDisposeNotifier<Option<SignInWithEmailParams>>
+    with Mock
+    implements SignInWithEmailEvent {}
+
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
   void call(T? previous, T value);
@@ -16,9 +23,11 @@ class Listener<T> extends Mock {
 
 void main() {
   late MockSignInWithEmailUC mockSignInWithEmailUC;
+  late MockSignInWithEmailEvent mockSignInWithEmailEvent;
 
   setUp(() {
     mockSignInWithEmailUC = MockSignInWithEmailUC();
+    mockSignInWithEmailEvent = MockSignInWithEmailEvent();
   });
 
   ProviderContainer setUpContainer({List<Override>? overrides}) {
@@ -70,13 +79,15 @@ void main() {
       }
 
       test(
-        'should emit signInWithEmailProvider state when signInWithEmailParamsProvider is some',
+        'should emit signInWithEmailProvider state when signInWithEmailEventProvider is some',
         () async {
           // GIVEN
+          when(mockSignInWithEmailEvent.build).thenReturn(const Some(tParams));
+
           final container = setUpContainer(
             overrides: [
-              signInWithEmailParamsProvider
-                  .overrideWith((ref) => const Some(tParams)),
+              signInWithEmailEventProvider
+                  .overrideWith(() => mockSignInWithEmailEvent),
               signInWithEmailProvider(tParams).overrideWith((ref) => tUser),
             ],
           );
@@ -94,12 +105,15 @@ void main() {
       );
 
       test(
-        'should emit initialState when signInWithEmailParamsProvider is none',
+        'should emit initialState when signInWithEmailEventProvider is none',
         () async {
           // GIVEN
+          when(mockSignInWithEmailEvent.build).thenReturn(const None());
+
           final container = setUpContainer(
             overrides: [
-              signInWithEmailParamsProvider.overrideWith((ref) => const None()),
+              signInWithEmailEventProvider
+                  .overrideWith(() => mockSignInWithEmailEvent),
             ],
           );
           final listener = setUpListener(container);
@@ -134,8 +148,9 @@ void main() {
           verify(() => listener(null, initialState));
           verifyNoMoreInteractions(listener);
 
-          container.read(signInWithEmailParamsProvider.notifier).state =
-              const Some(tParams);
+          container
+              .read(signInWithEmailEventProvider.notifier)
+              .update((_) => const Some(tParams));
           container.read(signInStateProvider);
 
           // THEN
@@ -152,7 +167,7 @@ void main() {
   );
 
   group(
-    'signInWithEmailParamsProvider',
+    'signInWithEmailEventProvider',
     () {
       test(
         'initial state should be none',
@@ -162,7 +177,7 @@ void main() {
           addTearDown(container.dispose);
 
           // THEN
-          expect(container.read(signInWithEmailParamsProvider), const None());
+          expect(container.read(signInWithEmailEventProvider), const None());
         },
       );
     },

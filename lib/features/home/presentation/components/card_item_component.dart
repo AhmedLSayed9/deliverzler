@@ -46,7 +46,7 @@ class CardItemComponent extends HookConsumerWidget {
 
       final container = ProviderScope.containerOf(context);
       final sub = container.listen(selectedOrderIdProvider, (prev, value) {});
-      ref.read(selectedOrderIdProvider.notifier).state = Some(order.id);
+      ref.read(selectedOrderIdProvider.notifier).update((_) => Some(order.id));
       await NavigationService.push(
         context,
         isNamed: true,
@@ -68,8 +68,9 @@ class CardItemComponent extends HookConsumerWidget {
           orderId: order.id,
           deliveryStatus: DeliveryStatus.delivered,
         );
-        ref.read(updateDeliveryStatusParamsProvider.notifier).state =
-            Some(params);
+        ref
+            .read(updateDeliveryStatusEventProvider.notifier)
+            .update((_) => Some(params));
       }
     }, []);
 
@@ -86,8 +87,9 @@ class CardItemComponent extends HookConsumerWidget {
           deliveryStatus: DeliveryStatus.onTheWay,
           deliveryId: userId,
         );
-        ref.read(updateDeliveryStatusParamsProvider.notifier).state =
-            Some(params);
+        ref
+            .read(updateDeliveryStatusEventProvider.notifier)
+            .update((_) => Some(params));
       }
     }, []);
 
@@ -102,8 +104,9 @@ class CardItemComponent extends HookConsumerWidget {
           deliveryStatus: DeliveryStatus.canceled,
           employeeCancelNote: cancelNote,
         );
-        ref.read(updateDeliveryStatusParamsProvider.notifier).state =
-            Some(params);
+        ref
+            .read(updateDeliveryStatusEventProvider.notifier)
+            .update((_) => Some(params));
       }
     }, []);
 

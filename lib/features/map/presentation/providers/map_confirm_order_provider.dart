@@ -1,6 +1,6 @@
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'map_confirm_order_provider.g.dart';
@@ -16,26 +16,27 @@ AsyncValue<MapConfirmOrderState> mapConfirmOrderStatus(
 ) {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
-      error: (_, __) => ref.invalidate(mapConfirmOrderParamsProvider),
+      error: (_, __) => ref.invalidate(mapConfirmOrderEventProvider),
       data: (state) {
         if (state == MapConfirmOrderState.success) {
-          ref.invalidate(mapConfirmOrderParamsProvider);
+          ref.invalidate(mapConfirmOrderEventProvider);
         }
       },
     );
   });
 
-  final params = ref.watch(mapConfirmOrderParamsProvider);
-  return params.match(
+  final event = ref.watch(mapConfirmOrderEventProvider);
+  return event.match(
     () => const AsyncData(MapConfirmOrderState.initial),
     (params) => ref.watch(mapConfirmOrderProvider(params)),
   );
 }
 
-final mapConfirmOrderParamsProvider =
-    StateProvider.autoDispose<Option<UpdateDeliveryStatusParams>>((ref) {
-  return const None();
-});
+@riverpod
+class MapConfirmOrderEvent extends _$MapConfirmOrderEvent with NotifierUpdate {
+  @override
+  Option<UpdateDeliveryStatusParams> build() => const None();
+}
 
 @riverpod
 Future<MapConfirmOrderState> mapConfirmOrder(

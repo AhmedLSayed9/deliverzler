@@ -4,7 +4,6 @@ import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_autocomplete_uc.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'place_autocomplete_provider.g.dart';
@@ -20,10 +19,12 @@ AsyncValue<List<PlaceAutocomplete>> placeAutocompleteState(
   );
 }
 
-final placeAutocompleteQueryProvider =
-    StateProvider.autoDispose<Option<String>>((ref) {
-  return const None();
-});
+@riverpod
+class PlaceAutocompleteQuery extends _$PlaceAutocompleteQuery
+    with NotifierUpdate {
+  @override
+  Option<String> build() => const None();
+}
 
 @riverpod
 Future<List<PlaceAutocomplete>> getPlaceAutocomplete(

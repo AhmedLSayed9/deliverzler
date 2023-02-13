@@ -47,7 +47,9 @@ class UserImageComponent extends HookConsumerWidget {
         try {
           final image =
               await ref.read(pickProfileImageProvider(pickSource).future);
-          ref.read(selectedProfileImageProvider.notifier).state = Some(image);
+          ref
+              .read(updateProfileImageEventProvider.notifier)
+              .update((_) => Some(image));
         } catch (_) {}
       }
     }, []);

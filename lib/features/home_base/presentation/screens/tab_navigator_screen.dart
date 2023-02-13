@@ -24,8 +24,9 @@ class TabNavigatorScreen extends HookConsumerWidget {
     //Cache the instance of NavigatorRouteObserver to prevent re-creating it
     final navRouteObserver = useMemoized(() => NavigatorRouteObserver(
           routesStackCallBack: (List<Route> routes) {
-            ref.read(tabCurrentRouteProvider(tabItem).notifier).state =
-                routes.last.routeName;
+            ref
+                .read(tabCurrentRouteProvider(tabItem).notifier)
+                .update((_) => routes.last.routeName);
           },
         ));
 

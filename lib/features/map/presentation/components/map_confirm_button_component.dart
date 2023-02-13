@@ -51,7 +51,9 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
             orderId: order.id,
             deliveryStatus: DeliveryStatus.delivered,
           );
-          ref.read(mapConfirmOrderParamsProvider.notifier).state = Some(params);
+          ref
+              .read(mapConfirmOrderEventProvider.notifier)
+              .update((_) => Some(params));
         },
       );
     }, []);

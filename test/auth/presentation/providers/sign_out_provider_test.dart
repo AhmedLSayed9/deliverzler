@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_overriding_member
+
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
@@ -8,6 +10,10 @@ import 'package:mocktail/mocktail.dart';
 
 class MockSignOutUC extends Mock implements SignOutUC {}
 
+class MockSignOutEvent extends AutoDisposeNotifier<bool>
+    with Mock
+    implements SignOutEvent {}
+
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
   void call(T? previous, T value);
@@ -15,9 +21,11 @@ class Listener<T> extends Mock {
 
 void main() {
   late MockSignOutUC mockSignOutUC;
+  late MockSignOutEvent mockSignOutEvent;
 
   setUp(() {
     mockSignOutUC = MockSignOutUC();
+    mockSignOutEvent = MockSignOutEvent();
   });
 
   ProviderContainer setUpContainer({List<Override>? overrides}) {
@@ -69,12 +77,14 @@ void main() {
       }
 
       test(
-        'should emit signOutProvider state when signOutTriggerProvider is true',
+        'should emit signOutProvider state when signOutEventProvider is true',
         () async {
           // GIVEN
+          when(mockSignOutEvent.build).thenReturn(true);
+
           final container = setUpContainer(
             overrides: [
-              signOutTriggerProvider.overrideWith((ref) => true),
+              signOutEventProvider.overrideWith(() => mockSignOutEvent),
               signOutProvider.overrideWith(
                 (ref) => Error.throwWithStackTrace(tException, tStackTrace),
               ),
@@ -94,12 +104,14 @@ void main() {
       );
 
       test(
-        'should emit AsyncData(SignOutState.initial) when signOutTriggerProvider is false',
+        'should emit AsyncData(SignOutState.initial) when signOutEventProvider is false',
         () async {
           // GIVEN
+          when(mockSignOutEvent.build).thenReturn(false);
+
           final container = setUpContainer(
             overrides: [
-              signOutTriggerProvider.overrideWith((ref) => false),
+              signOutEventProvider.overrideWith(() => mockSignOutEvent),
             ],
           );
           final listener = setUpListener(container);
@@ -137,7 +149,7 @@ void main() {
           verify(() => authListener(null, AuthState.authenticated));
           verifyNoMoreInteractions(listener);
 
-          container.read(signOutTriggerProvider.notifier).state = true;
+          container.read(signOutEventProvider.notifier).update((_) => true);
           container.read(signOutStateProvider);
 
           // THEN
@@ -154,7 +166,7 @@ void main() {
   );
 
   group(
-    'signOutTriggerProvider',
+    'signOutEventProvider',
     () {
       test(
         'initial state should be false',
@@ -164,7 +176,7 @@ void main() {
           addTearDown(container.dispose);
 
           // THEN
-          expect(container.read(signOutTriggerProvider), false);
+          expect(container.read(signOutEventProvider), false);
         },
       );
     },

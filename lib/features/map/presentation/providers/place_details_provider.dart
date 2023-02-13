@@ -4,7 +4,6 @@ import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart
 import 'package:deliverzler/features/map/domain/entities/place_details.dart';
 import 'package:deliverzler/features/map/domain/use_cases/get_place_details_uc.dart';
 import 'package:deliverzler/features/map/presentation/providers/session_token_provider.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'place_details_provider.g.dart';
@@ -25,10 +24,12 @@ Option<PlaceDetails> currentPlaceDetails(CurrentPlaceDetailsRef ref) {
   );
 }
 
-final selectedPlaceAutocompleteProvider =
-    StateProvider.autoDispose<Option<PlaceAutocomplete>>((ref) {
-  return const None();
-});
+@riverpod
+class SelectedPlaceAutocomplete extends _$SelectedPlaceAutocomplete
+    with NotifierUpdate {
+  @override
+  Option<PlaceAutocomplete> build() => const None();
+}
 
 @riverpod
 Future<PlaceDetails> getPlaceDetails(

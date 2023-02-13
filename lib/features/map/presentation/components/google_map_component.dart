@@ -33,7 +33,9 @@ class GoogleMapComponent extends HookConsumerWidget {
         final isDark = ref.read(currentAppThemeProvider) == AppTheme.dark;
         final mapStyle = await MapStyleHelper.getMapStyle(isDark);
         await controller.setMapStyle(mapStyle);
-        ref.read(currentMapControllerProvider.notifier).state = controller;
+        ref
+            .read(currentMapControllerProvider.notifier)
+            .update((_) => controller);
       },
     );
   }

@@ -17,7 +17,7 @@ class LogoutComponent extends HookConsumerWidget {
       final bool canSubmit = !ref.read(signOutStateProvider).isLoading;
 
       if (canSubmit) {
-        ref.read(signOutTriggerProvider.notifier).state = true;
+        ref.read(signOutEventProvider.notifier).update((_) => true);
       }
     }, []);
 

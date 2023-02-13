@@ -73,9 +73,9 @@ class HomeBaseScreen extends HookConsumerWidget {
       (previous, next) {
         if (next is Some<AppNotification>) {
           final notification = next.value;
-          ref.read(selectedTabProvider.notifier).state = TabItem.values
-              .firstWhere(
-                  (tab) => tab.initialRoute == notification.initialRoute);
+          final initialTab = TabItem.values.firstWhere(
+              (tab) => tab.initialRoute == notification.initialRoute);
+          ref.read(selectedTabProvider.notifier).update((_) => initialTab);
           if (notification.route != null) {
             NavigationService.push(
               navigatorKeys[selectedTab]!.currentContext!,
@@ -96,7 +96,7 @@ class HomeBaseScreen extends HookConsumerWidget {
         }
         //This prevent popping when tab isn't (Home) & instead will back to home
         if (selectedTab != TabItem.home) {
-          ref.read(selectedTabProvider.notifier).state = TabItem.home;
+          ref.read(selectedTabProvider.notifier).update((_) => TabItem.home);
           return false;
         }
         return true;
@@ -130,7 +130,7 @@ class HomeBaseScreen extends HookConsumerWidget {
             context,
             currentTab: selectedTab,
             onSelectTab: (tab) {
-              ref.read(selectedTabProvider.notifier).state = tab;
+              ref.read(selectedTabProvider.notifier).update((_) => tab);
             },
           ),
         ),

@@ -39,7 +39,9 @@ class MapFloatingSearchBar extends HookConsumerWidget {
       debounceDelay: const Duration(milliseconds: 300),
       onQueryChanged: (query) {
         if (query.isNotEmpty) {
-          ref.read(placeAutocompleteQueryProvider.notifier).state = Some(query);
+          ref
+              .read(placeAutocompleteQueryProvider.notifier)
+              .update((_) => Some(query));
         }
       },
       actions: [

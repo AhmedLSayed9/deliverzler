@@ -1,5 +1,6 @@
 import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
 import 'package:deliverzler/core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/features/map/domain/entities/place_directions.dart';
 import 'package:deliverzler/features/map/presentation/helpers/map_style_helper.dart';
 import 'package:deliverzler/features/map/presentation/providers/my_location_providers/my_location_camera_position_provider.dart';
@@ -7,15 +8,15 @@ import 'package:deliverzler/features/map/presentation/providers/target_location_
 import 'package:deliverzler/features/map/presentation/utils/constants.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'map_controller_provider.g.dart';
 
-final currentMapControllerProvider =
-    StateProvider.autoDispose<GoogleMapController?>((ref) {
-  return null;
-});
+@riverpod
+class CurrentMapController extends _$CurrentMapController with NotifierUpdate {
+  @override
+  GoogleMapController? build() => null;
+}
 
 @riverpod
 class MapController extends _$MapController {

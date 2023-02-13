@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/features/profile/domain/use_cases/update_profile_image_uc.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'update_profile_image_provider.g.dart';
@@ -15,19 +15,19 @@ AsyncValue<Option<String>> updateProfileImageState(
     UpdateProfileImageStateRef ref) {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
-      error: (_, __) => ref.invalidate(selectedProfileImageProvider),
+      error: (_, __) => ref.invalidate(updateProfileImageEventProvider),
       data: (imageUrl) {
         if (imageUrl is Some<String>) {
           ref
               .read(userControllerProvider.notifier)
               .updateUserImage(imageUrl.value);
-          ref.invalidate(selectedProfileImageProvider);
+          ref.invalidate(updateProfileImageEventProvider);
         }
       },
     );
   });
 
-  final selectedImage = ref.watch(selectedProfileImageProvider);
+  final selectedImage = ref.watch(updateProfileImageEventProvider);
   return selectedImage.match(
     () => const AsyncData(None()),
     (image) {
@@ -38,10 +38,12 @@ AsyncValue<Option<String>> updateProfileImageState(
   );
 }
 
-final selectedProfileImageProvider =
-    StateProvider.autoDispose<Option<File>>((ref) {
-  return const None();
-});
+
+@riverpod
+class UpdateProfileImageEvent extends _$UpdateProfileImageEvent with NotifierUpdate {
+  @override
+  Option<File> build() => const None();
+}
 
 @riverpod
 Future<String> updateProfileImage(

@@ -26,7 +26,9 @@ class LoginFormComponent extends HookConsumerWidget {
           email: emailController.text,
           password: passwordController.text,
         );
-        ref.read(signInWithEmailParamsProvider.notifier).state = Some(params);
+        ref
+            .read(signInWithEmailEventProvider.notifier)
+            .update((_) => Some(params));
       }
     }, []);
 

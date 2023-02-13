@@ -3,9 +3,12 @@ import 'package:deliverzler/features/map/presentation/helpers/map_style_helper.d
 import 'package:deliverzler/features/map/presentation/providers/my_location_providers/my_location_camera_position_provider.dart';
 import 'package:deliverzler/features/map/presentation/utils/constants.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final myLocationCircleProvider = StateProvider.autoDispose<Circle>((ref) {
+part 'my_location_circle_provider.g.dart';
+
+@riverpod
+Circle myLocationCircle(MyLocationCircleRef ref) {
   final cameraTarget = ref.watch(
     myLocationCameraPositionProvider.select((camera) => camera.target),
   );
@@ -17,4 +20,4 @@ final myLocationCircleProvider = StateProvider.autoDispose<Circle>((ref) {
     position: cameraTarget,
     radius: myLocationAccuracy ?? defaultCircleRadius,
   );
-});
+}

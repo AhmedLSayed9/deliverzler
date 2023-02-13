@@ -1,8 +1,8 @@
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/features/profile/domain/use_cases/update_profile_data_uc.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'update_profile_data_provider.g.dart';
@@ -13,18 +13,18 @@ part 'update_profile_data_provider.g.dart';
 AsyncValue<Option<User>> updateProfileDataState(UpdateProfileDataStateRef ref) {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
-      error: (_, __) => ref.invalidate(updateProfileDataParamsProvider),
+      error: (_, __) => ref.invalidate(updateProfileDataEventProvider),
       data: (user) {
         if (user is Some<User>) {
           ref.read(userControllerProvider.notifier).setUser(user.value);
-          ref.invalidate(updateProfileDataParamsProvider);
+          ref.invalidate(updateProfileDataEventProvider);
         }
       },
     );
   });
 
-  final params = ref.watch(updateProfileDataParamsProvider);
-  return params.match(
+  final event = ref.watch(updateProfileDataEventProvider);
+  return event.match(
     () => const AsyncData(None()),
     (params) {
       return ref
@@ -34,10 +34,12 @@ AsyncValue<Option<User>> updateProfileDataState(UpdateProfileDataStateRef ref) {
   );
 }
 
-final updateProfileDataParamsProvider =
-    StateProvider.autoDispose<Option<User>>((ref) {
-  return const None();
-});
+@riverpod
+class UpdateProfileDataEvent extends _$UpdateProfileDataEvent
+    with NotifierUpdate {
+  @override
+  Option<User> build() => const None();
+}
 
 @riverpod
 Future<User> updateProfileData(

@@ -39,8 +39,9 @@ class MapSearchMenuComponent extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
                   onTap: () {
                     searchBarController.close();
-                    ref.read(selectedPlaceAutocompleteProvider.notifier).state =
-                        Some(placeSearchList[index]);
+                    ref
+                        .read(selectedPlaceAutocompleteProvider.notifier)
+                        .update((_) => Some(placeSearchList[index]));
                   },
                   child: MapSearchMenuItem(
                     placeAutocomplete: placeSearchList[index],
