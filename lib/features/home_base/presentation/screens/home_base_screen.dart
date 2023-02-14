@@ -1,23 +1,25 @@
-import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
-import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/utils/toasts.dart';
-import 'package:deliverzler/core/presentation/utils/dialogs.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_tab_scaffold.dart';
-import 'package:deliverzler/core/presentation/services/connection_stream_service.dart';
-import 'package:deliverzler/features/home_base/presentation/components/bottom_nav_bar_component.dart';
-import 'package:deliverzler/features/home_base/presentation/components/tab_appbar_component.dart';
-import 'package:deliverzler/features/home_base/presentation/screens/tab_navigator_screen.dart';
-import 'package:deliverzler/features/home_base/presentation/utils/tab_item.dart';
-import 'package:deliverzler/features/home_base/presentation/providers/tabs_providers.dart';
-import 'package:deliverzler/features/notifications/domain/entities/app_notification.dart';
-import 'package:deliverzler/features/notifications/presentation/providers/fcm_remote_message_providers.dart';
-import 'package:deliverzler/features/notifications/presentation/providers/tapped_notification_provider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../auth/presentation/providers/sign_out_provider.dart';
+import '../../../../core/presentation/extensions/app_error_extension.dart';
+import '../../../../core/presentation/routing/navigation_service.dart';
+import '../../../../core/presentation/services/connection_stream_service.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/dialogs.dart';
+import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/toasts.dart';
+import '../../../../core/presentation/widgets/platform_widgets/platform_tab_scaffold.dart';
+import '../../../notifications/domain/entities/app_notification.dart';
+import '../../../notifications/presentation/providers/fcm_remote_message_providers.dart';
+import '../../../notifications/presentation/providers/tapped_notification_provider.dart';
+import '../components/bottom_nav_bar_component.dart';
+import '../components/tab_appbar_component.dart';
+import '../providers/tabs_providers.dart';
+import '../utils/tab_item.dart';
+import 'tab_navigator_screen.dart';
 
 class HomeBaseScreen extends HookConsumerWidget {
   const HomeBaseScreen({Key? key}) : super(key: key);

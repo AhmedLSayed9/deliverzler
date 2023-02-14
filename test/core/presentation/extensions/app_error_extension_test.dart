@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_test/flutter_test.dart';
+
 import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
 import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
 import 'package:deliverzler/l10n/l10n.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   Future<BuildContext> getLocalizationsContext(WidgetTester t) async {

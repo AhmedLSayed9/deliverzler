@@ -1,20 +1,22 @@
-import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
-import 'package:deliverzler/features/home/presentation/utils/enums.dart';
-import 'package:deliverzler/features/home/presentation/utils/order_dialog_helper.dart';
-import 'package:deliverzler/features/home/presentation/providers/selected_order_provider.dart';
-import 'package:deliverzler/features/map/presentation/providers/is_arrived_target_location_provider.dart';
-import 'package:deliverzler/features/map/presentation/providers/map_confirm_order_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/widgets/custom_button.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../home/domain/use_cases/update_delivery_status_uc.dart';
+import '../../../home/presentation/providers/selected_order_provider.dart';
+import '../../../home/presentation/utils/enums.dart';
+import '../../../home/presentation/utils/order_dialog_helper.dart';
+import '../providers/is_arrived_target_location_provider.dart';
+import '../providers/map_confirm_order_provider.dart';
 
 class MapConfirmButtonComponent extends HookConsumerWidget {
   const MapConfirmButtonComponent({Key? key}) : super(key: key);

@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
-import 'package:deliverzler/core/data/network/main_api/extensions/firebase_error_extension.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../i_firebase_firestore_caller.dart';
+import '../extensions/firebase_error_extension.dart';
 
 part 'main_api_firestore_caller.g.dart';
 

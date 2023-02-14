@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:deliverzler/core/data/network/i_firebase_storage_caller.dart';
-import 'package:deliverzler/core/data/network/main_api/extensions/firebase_error_extension.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../i_firebase_storage_caller.dart';
+import '../extensions/firebase_error_extension.dart';
 
 part 'main_api_storage_caller.g.dart';
 

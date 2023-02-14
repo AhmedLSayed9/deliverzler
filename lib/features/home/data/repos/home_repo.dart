@@ -1,11 +1,12 @@
 import 'dart:async';
 
-import 'package:deliverzler/features/home/data/data_sources/home_remote_data_source.dart';
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/domain/repos/i_home_repo.dart';
-import 'package:deliverzler/features/home/domain/use_cases/update_delivery_geo_point_uc.dart';
-import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../domain/entities/order.dart';
+import '../../domain/repos/i_home_repo.dart';
+import '../../domain/use_cases/update_delivery_geo_point_uc.dart';
+import '../../domain/use_cases/update_delivery_status_uc.dart';
+import '../data_sources/home_remote_data_source.dart';
 
 part 'home_repo.g.dart';
 

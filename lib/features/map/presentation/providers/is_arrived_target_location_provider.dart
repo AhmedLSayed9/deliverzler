@@ -1,6 +1,7 @@
-import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_directions_provider.dart';
-import 'package:deliverzler/features/map/presentation/utils/constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../utils/constants.dart';
+import 'target_location_providers/target_location_directions_provider.dart';
 
 part 'is_arrived_target_location_provider.g.dart';
 

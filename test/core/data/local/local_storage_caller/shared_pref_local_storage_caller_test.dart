@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/data/local/extensions/local_error_extension.dart';
-import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
-import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:deliverzler/core/data/local/extensions/local_error_extension.dart';
+import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
+import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 

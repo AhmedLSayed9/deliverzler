@@ -1,13 +1,14 @@
 import 'dart:io';
 
-import 'package:deliverzler/core/presentation/services/location_service/i_location_service.dart';
-import 'package:deliverzler/core/presentation/services/location_service/location_service.dart';
-import 'package:deliverzler/core/presentation/utils/location_settings.dart';
-import 'package:deliverzler/features/home/presentation/utils/location_error.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:rxdart/rxdart.dart';
+
+import '../../../../core/presentation/services/location_service/i_location_service.dart';
+import '../../../../core/presentation/services/location_service/location_service.dart';
+import '../../../../core/presentation/utils/location_settings.dart';
+import '../utils/location_error.dart';
 
 part 'location_stream_provider.g.dart';
 

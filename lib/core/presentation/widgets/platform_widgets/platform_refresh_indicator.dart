@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_base_widget.dart';
+
+import 'platform_base_widget.dart';
 
 class PlatformRefreshIndicator
     extends PlatformBaseWidget<RefreshIndicator, CustomScrollView> {

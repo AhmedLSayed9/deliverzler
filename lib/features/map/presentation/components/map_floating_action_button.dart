@@ -1,9 +1,11 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/features/map/presentation/providers/map_controller_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../providers/map_controller_provider.dart';
 
 class MapFloatingActionButton extends ConsumerWidget {
   const MapFloatingActionButton({Key? key}) : super(key: key);

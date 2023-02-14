@@ -1,12 +1,14 @@
-import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
-import 'package:deliverzler/auth/presentation/screens/sign_in_screen/sign_in_screen_compact.dart';
-import 'package:deliverzler/auth/presentation/screens/sign_in_screen/sign_in_screen_medium.dart';
-import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/utils/dialogs.dart';
-import 'package:deliverzler/core/presentation/widgets/responsive_widgets/widget_builders.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../core/presentation/extensions/app_error_extension.dart';
+import '../../../../core/presentation/routing/navigation_service.dart';
+import '../../../../core/presentation/utils/dialogs.dart';
+import '../../../../core/presentation/widgets/responsive_widgets/widget_builders.dart';
+import '../../providers/sign_in_provider.dart';
+import 'sign_in_screen_compact.dart';
+import 'sign_in_screen_medium.dart';
 
 class SignInScreen extends ConsumerWidget {
   const SignInScreen({Key? key}) : super(key: key);

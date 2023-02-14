@@ -1,8 +1,9 @@
-import 'package:deliverzler/auth/data/repos/auth_repo.dart';
-import 'package:deliverzler/auth/domain/entities/user.dart';
-import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart';
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core/domain/use_cases/use_case_base.dart';
+import '../../data/repos/auth_repo.dart';
+import '../entities/user.dart';
+import '../repos/i_auth_repo.dart';
 
 part 'set_user_data_uc.g.dart';
 

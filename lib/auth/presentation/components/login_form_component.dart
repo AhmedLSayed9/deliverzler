@@ -1,13 +1,15 @@
-import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
-import 'package:deliverzler/auth/presentation/components/login_text_fields_section.dart';
-import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../core/presentation/helpers/localization_helper.dart';
+import '../../../core/presentation/styles/sizes.dart';
+import '../../../core/presentation/utils/functional.dart';
+import '../../../core/presentation/widgets/custom_button.dart';
+import '../../domain/use_cases/sign_in_with_email_uc.dart';
+import '../providers/sign_in_provider.dart';
+import 'login_text_fields_section.dart';
 
 class LoginFormComponent extends HookConsumerWidget {
   const LoginFormComponent({Key? key}) : super(key: key);

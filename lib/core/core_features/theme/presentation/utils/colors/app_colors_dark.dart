@@ -1,5 +1,6 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/i_app_colors.dart';
 import 'package:flutter/material.dart';
+
+import 'i_app_colors.dart';
 
 class AppColorsDark implements IAppColors {
   @override

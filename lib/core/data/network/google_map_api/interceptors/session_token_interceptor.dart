@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/data/network/google_map_api/google_map_api_config.dart';
-import 'package:deliverzler/features/map/presentation/providers/session_token_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../../features/map/presentation/providers/session_token_provider.dart';
+import '../google_map_api_config.dart';
 
 part 'session_token_interceptor.g.dart';
 

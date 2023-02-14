@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/custom_button.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
 
 class RetryAgainComponent extends StatelessWidget {
   final String description;

@@ -1,8 +1,9 @@
-import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../domain/entities/place_autocomplete.dart';
 
 class MapSearchMenuItem extends StatelessWidget {
   final PlaceAutocomplete placeAutocomplete;

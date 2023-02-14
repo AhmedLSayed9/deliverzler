@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:deliverzler/auth/domain/use_cases/check_auth_uc.dart';
-import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
-import 'package:deliverzler/core/data/network/network_info.dart';
-import 'package:deliverzler/core/presentation/routing/route_paths.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../auth/domain/use_cases/check_auth_uc.dart';
+import '../../../auth/presentation/providers/auth_state_provider.dart';
+import '../../data/network/network_info.dart';
+import '../routing/route_paths.dart';
 
 part 'splash_provider.g.dart';
 

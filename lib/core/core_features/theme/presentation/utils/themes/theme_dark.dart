@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_colors_dark.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/i_app_colors.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/themes/i_theme.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../colors/app_colors_dark.dart';
+import '../colors/custom_colors.dart';
+import '../colors/i_app_colors.dart';
+import 'i_theme.dart';
 
 class ThemeDark implements ITheme {
   @override
@@ -41,7 +42,7 @@ class ThemeDark implements ITheme {
 
   @override
   late final TextTheme textTheme = TextTheme(
-    subtitle1: TextStyle(
+    titleMedium: TextStyle(
       color: appColors.textFieldSubtitle1Color,
     ),
   );

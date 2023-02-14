@@ -1,17 +1,19 @@
-import 'package:deliverzler/auth/domain/entities/user.dart';
-import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
-import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/utils/dialogs.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
-import 'package:deliverzler/features/profile/presentation/components/profile_text_fields_section.dart';
-import 'package:deliverzler/features/profile/presentation/providers/update_profile_data_provider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../auth/domain/entities/user.dart';
+import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../core/presentation/extensions/app_error_extension.dart';
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/routing/navigation_service.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/dialogs.dart';
+import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/widgets/custom_button.dart';
+import '../providers/update_profile_data_provider.dart';
+import 'profile_text_fields_section.dart';
 
 class ProfileFormComponent extends HookConsumerWidget {
   const ProfileFormComponent({Key? key}) : super(key: key);

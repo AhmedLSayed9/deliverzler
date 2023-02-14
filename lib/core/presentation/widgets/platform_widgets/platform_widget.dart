@@ -1,5 +1,6 @@
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_base_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'platform_base_widget.dart';
 
 class PlatformWidget extends PlatformBaseWidget<Widget, Widget> {
   const PlatformWidget({

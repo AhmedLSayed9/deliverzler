@@ -1,10 +1,11 @@
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
-import 'package:deliverzler/features/map/data/repos/map_repo.dart';
-import 'package:deliverzler/features/map/domain/entities/place_details.dart';
-import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../data/repos/map_repo.dart';
+import '../entities/place_details.dart';
+import '../repos/i_map_repo.dart';
 
 part 'get_place_details_uc.freezed.dart';
 

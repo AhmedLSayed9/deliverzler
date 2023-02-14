@@ -1,8 +1,9 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
 import 'package:deliverzler/core/data/network/data_connection_checker.dart';
 import 'package:deliverzler/core/data/network/network_info.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 class MockDataConnectionChecker extends Mock implements DataConnectionChecker {}
 

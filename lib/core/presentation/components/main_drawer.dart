@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/components/main_drawer_bottom_component.dart';
-import 'package:deliverzler/core/presentation/components/main_drawer_user_info_component.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../helpers/localization_helper.dart';
+import '../styles/app_images.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import '../widgets/custom_text.dart';
+import 'main_drawer_bottom_component.dart';
+import 'main_drawer_user_info_component.dart';
 
 class MainDrawer extends ConsumerWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;

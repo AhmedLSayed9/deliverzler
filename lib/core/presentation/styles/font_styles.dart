@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
+
+import '../helpers/localization_helper.dart';
+import 'sizes.dart';
 
 class FontStyles {
   static String fontFamily(BuildContext context) => tr(context).fontFamily;
@@ -17,7 +18,7 @@ class FontStyles {
 
   static mapSearchBarFontStyle(BuildContext context) => TextStyle(
         fontSize: Sizes.font16,
-        color: Theme.of(context).textTheme.subtitle1!.color,
+        color: Theme.of(context).textTheme.titleMedium!.color,
         fontFamily: fontFamily(context),
         fontWeight: fontWeightNormal,
       );

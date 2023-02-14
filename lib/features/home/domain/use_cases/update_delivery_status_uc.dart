@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
-import 'package:deliverzler/features/home/data/repos/home_repo.dart';
-import 'package:deliverzler/features/home/domain/repos/i_home_repo.dart';
-import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../data/repos/home_repo.dart';
+import '../../presentation/utils/enums.dart';
+import '../repos/i_home_repo.dart';
 
 part 'update_delivery_status_uc.freezed.dart';
 

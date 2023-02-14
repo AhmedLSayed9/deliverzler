@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../../../../presentation/styles/sizes.dart';
 
 abstract class CupertinoCustomTheme {
   static BoxDecoration cupertinoFormSectionDecoration(BuildContext context) =>

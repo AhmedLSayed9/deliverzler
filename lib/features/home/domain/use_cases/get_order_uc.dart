@@ -1,8 +1,9 @@
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
-import 'package:deliverzler/features/home/data/repos/home_repo.dart';
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/domain/repos/i_home_repo.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../data/repos/home_repo.dart';
+import '../entities/order.dart';
+import '../repos/i_home_repo.dart';
 
 part 'get_order_uc.g.dart';
 

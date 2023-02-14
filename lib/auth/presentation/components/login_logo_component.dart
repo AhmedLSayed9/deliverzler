@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../../../core/presentation/helpers/localization_helper.dart';
+import '../../../core/presentation/styles/app_images.dart';
+import '../../../core/presentation/styles/sizes.dart';
+import '../../../core/presentation/widgets/custom_text.dart';
 
 class LoginLogoComponent extends StatelessWidget {
   const LoginLogoComponent({Key? key}) : super(key: key);

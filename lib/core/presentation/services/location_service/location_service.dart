@@ -1,13 +1,15 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:deliverzler/core/presentation/services/location_service/i_location_service.dart';
-import 'package:deliverzler/core/presentation/utils/location_settings.dart';
 import 'package:geolocator/geolocator.dart';
-// ignore: implementation_imports, depend_on_referenced_packages
 import 'package:geolocator_android/src/types/foreground_settings.dart';
 import 'package:location/location.dart' as loc;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../utils/location_settings.dart';
+import 'i_location_service.dart';
+
+// ignore: implementation_imports, depend_on_referenced_packages
 
 part 'location_service.g.dart';
 

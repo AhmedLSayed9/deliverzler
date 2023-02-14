@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_icon.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../helpers/localization_helper.dart';
+import '../styles/app_images.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import '../widgets/custom_icon.dart';
+import '../widgets/custom_text.dart';
 
 class MainDrawerBottomComponent extends ConsumerWidget {
   const MainDrawerBottomComponent({Key? key}) : super(key: key);

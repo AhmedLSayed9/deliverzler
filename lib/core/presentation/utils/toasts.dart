@@ -1,12 +1,13 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/core/presentation/services/connection_stream_service.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
+
+import '../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../helpers/localization_helper.dart';
+import '../services/connection_stream_service.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import '../widgets/custom_text.dart';
+import '../widgets/custom_toast.dart';
 
 abstract class Toasts {
   static showTitledToast(

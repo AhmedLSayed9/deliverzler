@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:deliverzler/auth/data/models/user_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:deliverzler/auth/data/models/user_model.dart';
 import '../../../fixtures/fixture_reader.dart';
 
 void main() {

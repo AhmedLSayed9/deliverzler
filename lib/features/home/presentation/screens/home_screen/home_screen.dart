@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/presentation/widgets/responsive_widgets/widget_builders.dart';
-import 'package:deliverzler/features/home/presentation/screens/home_screen/home_screen_compact.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/presentation/widgets/responsive_widgets/widget_builders.dart';
+import 'home_screen_compact.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

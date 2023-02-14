@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:deliverzler/features/map/domain/entities/place_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../domain/entities/place_details.dart';
 
 part 'place_details_model.freezed.dart';
 

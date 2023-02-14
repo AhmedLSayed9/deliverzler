@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_elevated_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import 'custom_text.dart';
+import 'platform_widgets/platform_elevated_button.dart';
 
 //Composition works better than inheritance: https://groups.google.com/g/flutter-dev/c/muVUV4z71fs/m/DS0twymQCAAJ
 class CustomButton extends StatelessWidget {

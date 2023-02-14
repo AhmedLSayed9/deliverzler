@@ -1,9 +1,11 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
-import 'package:deliverzler/core/presentation/helpers/theme_helper.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../presentation/helpers/theme_helper.dart';
+import '../utils/app_theme.dart';
+import 'app_theme_provider.dart';
 
 part 'current_app_theme_provider.g.dart';
 

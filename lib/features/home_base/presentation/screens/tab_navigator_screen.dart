@@ -1,9 +1,11 @@
-import 'package:deliverzler/core/presentation/routing/navigator_route_observer.dart';
-import 'package:deliverzler/features/home_base/presentation/utils/tab_item.dart';
-import 'package:deliverzler/features/home_base/presentation/providers/tabs_providers.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../core/presentation/routing/navigator_route_observer.dart';
+import '../providers/tabs_providers.dart';
+import '../utils/tab_item.dart';
 
 class TabNavigatorScreen extends HookConsumerWidget {
   const TabNavigatorScreen({

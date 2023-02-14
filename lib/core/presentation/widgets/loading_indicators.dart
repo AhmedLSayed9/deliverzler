@@ -1,11 +1,13 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_circluar_progress_indicator.dart';
 import 'package:flutter/material.dart';
+
 import 'package:lottie/lottie.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../styles/app_images.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import 'custom_text.dart';
+import 'platform_widgets/platform_circluar_progress_indicator.dart';
 
 abstract class LoadingIndicators {
   static Widget defaultLoadingIndicator(

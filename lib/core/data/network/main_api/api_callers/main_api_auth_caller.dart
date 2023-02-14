@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/network/i_firebase_auth_caller.dart';
-import 'package:deliverzler/core/data/network/main_api/extensions/firebase_error_extension.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../error/app_exception.dart';
+import '../../i_firebase_auth_caller.dart';
+import '../extensions/firebase_error_extension.dart';
 
 part 'main_api_auth_caller.g.dart';
 

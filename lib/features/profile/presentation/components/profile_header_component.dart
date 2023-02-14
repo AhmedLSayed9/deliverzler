@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/features/profile/presentation/components/user_details_component.dart';
-import 'package:deliverzler/features/profile/presentation/components/user_image_component.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/presentation/styles/sizes.dart';
+import 'user_details_component.dart';
+import 'user_image_component.dart';
 
 class ProfileHeaderComponent extends StatelessWidget {
   const ProfileHeaderComponent({Key? key}) : super(key: key);

@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/core_features/theme/data/repos/theme_repo.dart';
-import 'package:deliverzler/core/core_features/theme/domain/repos/i_theme_repo.dart';
-import 'package:deliverzler/core/core_features/theme/domain/use_cases/set_app_theme_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'package:deliverzler/core/core_features/theme/data/repos/theme_repo.dart';
+import 'package:deliverzler/core/core_features/theme/domain/repos/i_theme_repo.dart';
+import 'package:deliverzler/core/core_features/theme/domain/use_cases/set_app_theme_uc.dart';
 
 class MockIThemeRepo extends Mock implements IThemeRepo {}
 

@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/widgets/loading_indicators.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../helpers/localization_helper.dart';
+import '../styles/sizes.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text.dart';
+import '../widgets/loading_indicators.dart';
 
 class DataErrorComponent extends StatelessWidget {
   final String title;

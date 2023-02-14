@@ -1,7 +1,9 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluttertoast/fluttertoast.dart';
+
+import '../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../styles/sizes.dart';
 
 abstract class CustomToast {
   static void showToast(

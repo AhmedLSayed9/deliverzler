@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/domain/use_cases/update_delivery_geo_point_uc.dart';
-import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
+import '../entities/order.dart';
+import '../use_cases/update_delivery_geo_point_uc.dart';
+import '../use_cases/update_delivery_status_uc.dart';
 
 abstract class IHomeRepo {
   Stream<List<AppOrder>> getUpcomingOrders();

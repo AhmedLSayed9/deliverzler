@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/presentation/widgets/empty_appbar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_base_widget.dart';
+
+import '../empty_appbar_widget.dart';
+import 'platform_base_widget.dart';
 
 class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
   const PlatformScaffold({

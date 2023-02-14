@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:deliverzler/features/home/domain/use_cases/update_delivery_geo_point_uc.dart';
-import 'package:deliverzler/features/home/presentation/providers/location_stream_provider.dart';
-import 'package:deliverzler/features/home/presentation/providers/my_delivering_orders_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../domain/use_cases/update_delivery_geo_point_uc.dart';
+import 'location_stream_provider.dart';
+import 'my_delivering_orders_provider.dart';
 
 part 'update_delivery_geo_point_provider.g.dart';
 

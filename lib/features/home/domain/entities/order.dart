@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:deliverzler/features/home/domain/entities/address.dart';
-import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../presentation/utils/enums.dart';
+import 'address.dart';
 
 part 'order.freezed.dart';
 

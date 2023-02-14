@@ -1,8 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:deliverzler/core/presentation/services/cache_service.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../services/cache_service.dart';
+import '../styles/app_images.dart';
 
 class CachedNetworkImageCircular extends ConsumerWidget {
   final String? imageUrl;

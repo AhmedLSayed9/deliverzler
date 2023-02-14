@@ -1,19 +1,21 @@
-import 'package:deliverzler/core/core_features/locale/presentation/utils/app_locale.dart';
-import 'package:deliverzler/core/core_features/locale/presentation/providers/current_app_locale_provider.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/routing/route_paths.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_tile_component.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_switch.dart';
-import 'package:deliverzler/features/settings/presentation/components/settings_components/settings_section_component.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../../../../core/core_features/locale/presentation/providers/current_app_locale_provider.dart';
+import '../../../../../core/core_features/locale/presentation/utils/app_locale.dart';
+import '../../../../../core/core_features/theme/presentation/providers/app_theme_provider.dart';
+import '../../../../../core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
+import '../../../../../core/core_features/theme/presentation/utils/app_theme.dart';
+import '../../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../../core/presentation/routing/navigation_service.dart';
+import '../../../../../core/presentation/routing/route_paths.dart';
+import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/widgets/custom_tile_component.dart';
+import '../../../../../core/presentation/widgets/platform_widgets/platform_switch.dart';
+import 'settings_section_component.dart';
 
 class AppSettingsSectionComponent extends ConsumerWidget {
   const AppSettingsSectionComponent({Key? key}) : super(key: key);

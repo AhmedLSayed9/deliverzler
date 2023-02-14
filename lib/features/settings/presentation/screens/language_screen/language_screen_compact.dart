@@ -1,11 +1,12 @@
-import 'package:deliverzler/core/core_features/locale/presentation/utils/app_locale.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/screens/nested_screen_wrapper.dart';
-import 'package:deliverzler/core/presentation/utils/scroll_behaviors.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/features/settings/presentation/components/language_components/language_item_component.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../../../../core/core_features/locale/presentation/utils/app_locale.dart';
+import '../../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../../core/presentation/screens/nested_screen_wrapper.dart';
+import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/utils/scroll_behaviors.dart';
+import '../../../../../core/presentation/widgets/custom_text.dart';
+import '../../components/language_components/language_item_component.dart';
 
 class LanguageScreenCompact extends StatelessWidget {
   const LanguageScreenCompact({Key? key}) : super(key: key);

@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
-import 'package:deliverzler/features/map/data/repos/map_repo.dart';
-import 'package:deliverzler/features/map/domain/entities/place_directions.dart';
-import 'package:deliverzler/features/map/domain/repos/i_map_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../data/repos/map_repo.dart';
+import '../entities/place_directions.dart';
+import '../repos/i_map_repo.dart';
 
 part 'get_place_directions_uc.freezed.dart';
 

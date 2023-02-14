@@ -1,8 +1,9 @@
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_widget.dart';
-import 'package:deliverzler/features/home_base/presentation/components/tab_appbar_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../features/home_base/presentation/components/tab_appbar_component.dart';
+import '../styles/sizes.dart';
+import '../widgets/platform_widgets/platform_widget.dart';
 
 //This is necessary with nested navigation to prevent transparent background of nested screens when navigating
 class NestedScreenWrapper extends StatelessWidget {

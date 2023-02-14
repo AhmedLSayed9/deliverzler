@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
-import 'package:deliverzler/features/profile/data/repos/profile_repo.dart';
-import 'package:deliverzler/features/profile/domain/repos/i_profile_repo.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../data/repos/profile_repo.dart';
+import '../repos/i_profile_repo.dart';
 
 part 'update_profile_image_uc.g.dart';
 

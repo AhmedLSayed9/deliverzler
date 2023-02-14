@@ -1,8 +1,9 @@
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/features/home/domain/use_cases/update_delivery_status_uc.dart';
-import 'package:deliverzler/features/home/presentation/providers/update_delivery_status_provider/update_delivery_status_state.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../../core/presentation/providers/provider_utils.dart';
+import '../../../../../core/presentation/utils/functional.dart';
+import '../../../domain/use_cases/update_delivery_status_uc.dart';
+import 'update_delivery_status_state.dart';
 
 part 'update_delivery_status_provider.g.dart';
 

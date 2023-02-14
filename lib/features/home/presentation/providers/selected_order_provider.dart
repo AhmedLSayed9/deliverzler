@@ -1,11 +1,12 @@
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/presentation/providers/my_delivering_orders_provider.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
+import 'package:collection/collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../core/presentation/providers/provider_utils.dart';
+import '../../../../core/presentation/utils/functional.dart';
+import '../../domain/entities/order.dart';
+import 'my_delivering_orders_provider.dart';
+
 // ignore: depend_on_referenced_packages
-import 'package:collection/collection.dart';
 
 part 'selected_order_provider.g.dart';
 

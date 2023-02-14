@@ -1,4 +1,4 @@
-import 'package:deliverzler/core/data/error/app_exception.dart';
+import '../../error/app_exception.dart';
 
 extension LocaleErrorExtension on Exception {
   CacheException localErrorToCacheException() {

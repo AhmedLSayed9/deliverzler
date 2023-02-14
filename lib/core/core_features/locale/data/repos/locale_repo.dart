@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/core_features/locale/data/data_sources/locale_local_data_source.dart';
-import 'package:deliverzler/core/core_features/locale/domain/repos/i_locale_repo.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../domain/repos/i_locale_repo.dart';
+import '../data_sources/locale_local_data_source.dart';
 
 part 'locale_repo.g.dart';
 

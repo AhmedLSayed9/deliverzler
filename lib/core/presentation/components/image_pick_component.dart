@@ -1,10 +1,11 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../helpers/localization_helper.dart';
+import '../routing/navigation_service.dart';
+import '../styles/app_images.dart';
+import '../styles/sizes.dart';
+import '../widgets/custom_text.dart';
 
 class ImagePickComponent extends StatelessWidget {
   const ImagePickComponent({

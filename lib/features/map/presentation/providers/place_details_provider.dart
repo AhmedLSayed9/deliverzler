@@ -1,10 +1,11 @@
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
-import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
-import 'package:deliverzler/features/map/domain/entities/place_details.dart';
-import 'package:deliverzler/features/map/domain/use_cases/get_place_details_uc.dart';
-import 'package:deliverzler/features/map/presentation/providers/session_token_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/presentation/providers/provider_utils.dart';
+import '../../../../core/presentation/utils/functional.dart';
+import '../../domain/entities/place_autocomplete.dart';
+import '../../domain/entities/place_details.dart';
+import '../../domain/use_cases/get_place_details_uc.dart';
+import 'session_token_provider.dart';
 
 part 'place_details_provider.g.dart';
 

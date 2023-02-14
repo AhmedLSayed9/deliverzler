@@ -1,12 +1,13 @@
 import 'dart:io';
 
-import 'package:deliverzler/auth/data/models/user_model.dart';
-import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
-import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
-import 'package:deliverzler/core/data/network/i_firebase_storage_caller.dart';
-import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_firestore_caller.dart';
-import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_storage_caller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../auth/data/models/user_model.dart';
+import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../core/data/network/i_firebase_firestore_caller.dart';
+import '../../../../core/data/network/i_firebase_storage_caller.dart';
+import '../../../../core/data/network/main_api/api_callers/main_api_firestore_caller.dart';
+import '../../../../core/data/network/main_api/api_callers/main_api_storage_caller.dart';
 
 part 'profile_remote_data_source.g.dart';
 

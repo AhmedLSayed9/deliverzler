@@ -1,12 +1,14 @@
 import 'dart:convert';
 
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/presentation/services/fcm_service/fcm_provider.dart';
-import 'package:deliverzler/core/presentation/services/local_notfication_service/flutter_local_notifications_provider.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../local_notfication_service/flutter_local_notifications_provider.dart';
+import 'fcm_provider.dart';
 
 part 'show_fcm_notification_provider.g.dart';
 

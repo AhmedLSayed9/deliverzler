@@ -1,9 +1,10 @@
-import 'package:deliverzler/features/map/domain/entities/place_directions.dart';
-import 'package:deliverzler/features/map/presentation/helpers/map_coordinates_helper.dart';
-import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_directions_provider.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../../core/presentation/utils/functional.dart';
+import '../../../domain/entities/place_directions.dart';
+import '../../helpers/map_coordinates_helper.dart';
+import '../target_location_providers/target_location_directions_provider.dart';
 
 part 'map_polylines_provider.g.dart';
 

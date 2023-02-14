@@ -1,12 +1,13 @@
 import 'dart:io';
 
-import 'package:deliverzler/auth/data/models/user_model.dart';
-import 'package:deliverzler/auth/domain/entities/user.dart';
-import 'package:deliverzler/core/data/local/image_picker_caller/i_image_picker_caller.dart';
-import 'package:deliverzler/features/profile/data/data_sources/profile_local_data_source.dart';
-import 'package:deliverzler/features/profile/data/data_sources/profile_remote_data_source.dart';
-import 'package:deliverzler/features/profile/domain/repos/i_profile_repo.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../auth/data/models/user_model.dart';
+import '../../../../auth/domain/entities/user.dart';
+import '../../../../core/data/local/image_picker_caller/i_image_picker_caller.dart';
+import '../../domain/repos/i_profile_repo.dart';
+import '../data_sources/profile_local_data_source.dart';
+import '../data_sources/profile_remote_data_source.dart';
 
 part 'profile_repo.g.dart';
 

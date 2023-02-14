@@ -1,14 +1,16 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
-import 'package:deliverzler/features/map/presentation/helpers/map_style_helper.dart';
-import 'package:deliverzler/features/map/presentation/providers/map_controller_provider.dart';
-import 'package:deliverzler/features/map/presentation/providers/map_overlays_providers/map_circles_providers.dart';
-import 'package:deliverzler/features/map/presentation/providers/map_overlays_providers/map_markers_providers.dart';
-import 'package:deliverzler/features/map/presentation/providers/map_overlays_providers/map_polylines_provider.dart';
-import 'package:deliverzler/features/map/presentation/providers/my_location_providers/my_location_camera_position_provider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
+import '../../../../core/core_features/theme/presentation/utils/app_theme.dart';
+import '../helpers/map_style_helper.dart';
+import '../providers/map_controller_provider.dart';
+import '../providers/map_overlays_providers/map_circles_providers.dart';
+import '../providers/map_overlays_providers/map_markers_providers.dart';
+import '../providers/map_overlays_providers/map_polylines_provider.dart';
+import '../providers/my_location_providers/my_location_camera_position_provider.dart';
 
 class GoogleMapComponent extends HookConsumerWidget {
   const GoogleMapComponent({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
-import 'package:deliverzler/core/presentation/utils/window_size_class.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/window_size_class.dart';
 
 class WindowClassLayout extends StatelessWidget {
   const WindowClassLayout({

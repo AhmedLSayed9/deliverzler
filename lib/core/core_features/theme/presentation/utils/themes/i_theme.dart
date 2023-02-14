@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/i_app_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../colors/custom_colors.dart';
+import '../colors/i_app_colors.dart';
 
 abstract class ITheme {
   abstract final ThemeData baseTheme;
@@ -40,7 +41,6 @@ extension ThemeExtension on ITheme {
   ThemeData getThemeData() {
     return baseTheme.copyWith(
       appBarTheme: appBarTheme,
-      bottomAppBarColor: bottomAppBarColor,
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       primaryColor: primaryColor,
       colorScheme: colorScheme,
@@ -54,7 +54,7 @@ extension ThemeExtension on ITheme {
       cardTheme: cardTheme,
       extensions: [
         this.customColors,
-      ],
+      ], bottomAppBarTheme: BottomAppBarTheme(color: bottomAppBarColor),
     );
   }
 }

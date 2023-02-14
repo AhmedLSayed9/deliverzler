@@ -1,17 +1,19 @@
 import 'dart:developer';
 
-import 'package:deliverzler/core/core_features/locale/presentation/providers/app_locale_provider.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
-import 'package:deliverzler/core/presentation/services/fcm_service/fcm_provider.dart';
-import 'package:deliverzler/core/presentation/services/local_notfication_service/flutter_local_notifications_provider.dart';
-import 'package:deliverzler/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../firebase_options.dart';
+import '../../core_features/locale/presentation/providers/app_locale_provider.dart';
+import '../../core_features/theme/presentation/providers/app_theme_provider.dart';
+import '../styles/app_images.dart';
+import 'fcm_service/fcm_provider.dart';
+import 'local_notfication_service/flutter_local_notifications_provider.dart';
 
 part 'services_initializer.g.dart';
 

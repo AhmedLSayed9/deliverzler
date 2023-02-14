@@ -1,12 +1,14 @@
-import 'package:deliverzler/core/core_features/locale/presentation/utils/app_locale.dart';
-import 'package:deliverzler/core/core_features/locale/presentation/providers/app_locale_provider.dart';
-import 'package:deliverzler/core/core_features/locale/presentation/providers/current_app_locale_provider.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_icons.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_widget.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../../../../../core/core_features/locale/presentation/providers/app_locale_provider.dart';
+import '../../../../../core/core_features/locale/presentation/providers/current_app_locale_provider.dart';
+import '../../../../../core/core_features/locale/presentation/utils/app_locale.dart';
+import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../../core/presentation/widgets/platform_widgets/platform_icons.dart';
+import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 
 class LanguageItemComponent extends ConsumerWidget {
   const LanguageItemComponent({

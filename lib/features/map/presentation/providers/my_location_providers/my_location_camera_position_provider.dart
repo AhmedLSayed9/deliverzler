@@ -1,7 +1,8 @@
-import 'package:deliverzler/features/home/presentation/providers/location_stream_provider.dart';
-import 'package:deliverzler/features/map/presentation/utils/constants.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../home/presentation/providers/location_stream_provider.dart';
+import '../../utils/constants.dart';
 
 part 'my_location_camera_position_provider.g.dart';
 

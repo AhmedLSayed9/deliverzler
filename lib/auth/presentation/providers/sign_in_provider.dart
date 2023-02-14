@@ -1,9 +1,10 @@
-import 'package:deliverzler/auth/domain/entities/user.dart';
-import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
-import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core/presentation/providers/provider_utils.dart';
+import '../../../core/presentation/utils/functional.dart';
+import '../../domain/entities/user.dart';
+import '../../domain/use_cases/sign_in_with_email_uc.dart';
+import 'auth_state_provider.dart';
 
 part 'sign_in_provider.g.dart';
 

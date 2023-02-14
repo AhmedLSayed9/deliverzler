@@ -1,10 +1,12 @@
-import 'package:deliverzler/core/presentation/routing/app_router.dart';
-import 'package:deliverzler/core/presentation/routing/route_paths.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_icons.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/routing/app_router.dart';
+import '../../../../core/presentation/routing/route_paths.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/platform_widgets/platform_icons.dart';
 
 enum TabItem {
   profile(

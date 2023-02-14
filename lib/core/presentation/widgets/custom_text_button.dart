@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_text_button.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../styles/sizes.dart';
+import 'custom_text.dart';
+import 'platform_widgets/platform_text_button.dart';
 
 class CustomTextButton extends StatelessWidget {
   final double minHeight;

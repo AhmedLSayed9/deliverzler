@@ -1,14 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mocktail/mocktail.dart';
+
 import 'package:deliverzler/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:deliverzler/auth/data/models/user_model.dart';
 import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
 import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mocktail/mocktail.dart';
-
 import '../../../fixtures/fixture_reader.dart';
 
 class MockILocalStorageCaller extends Mock implements ILocalStorageCaller {}

@@ -1,7 +1,8 @@
-import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart';
-import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core/presentation/providers/provider_utils.dart';
+import '../../domain/use_cases/sign_out_uc.dart';
+import 'auth_state_provider.dart';
 
 part 'sign_out_provider.g.dart';
 

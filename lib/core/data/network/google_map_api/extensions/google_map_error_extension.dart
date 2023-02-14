@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:deliverzler/core/data/error/app_exception.dart';
 import 'package:dio/dio.dart';
+
+import '../../../error/app_exception.dart';
 
 extension GoogleMapErrorExtension on Exception {
   ServerException googleMapErrorToServerException() {

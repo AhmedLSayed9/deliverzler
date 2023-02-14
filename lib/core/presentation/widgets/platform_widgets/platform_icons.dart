@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/helpers/platform_helper.dart';
+
+import '../../helpers/platform_helper.dart';
 
 abstract class PlatformIcons {
   static IconData get back =>

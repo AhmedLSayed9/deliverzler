@@ -1,12 +1,14 @@
-import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_widget.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../../auth/presentation/providers/sign_out_provider.dart';
+import '../../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../../core/presentation/styles/font_styles.dart';
+import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 
 class LogoutComponent extends HookConsumerWidget {
   const LogoutComponent({Key? key}) : super(key: key);

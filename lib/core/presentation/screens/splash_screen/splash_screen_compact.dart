@@ -1,13 +1,15 @@
-import 'package:deliverzler/core/presentation/screens/full_screen_platfom_scaffold.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/utils/scroll_behaviors.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_fadein/flutter_fadein.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../helpers/localization_helper.dart';
+import '../../styles/app_images.dart';
+import '../../styles/font_styles.dart';
+import '../../styles/sizes.dart';
+import '../../utils/scroll_behaviors.dart';
+import '../../widgets/custom_text.dart';
+import '../full_screen_platfom_scaffold.dart';
 
 class SplashScreenCompact extends StatelessWidget {
   const SplashScreenCompact({

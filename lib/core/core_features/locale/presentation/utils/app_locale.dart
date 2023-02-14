@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../presentation/helpers/localization_helper.dart';
+import '../../../../presentation/styles/app_images.dart';
 
 enum AppLocale {
   english('en', AppImages.languageIconEnglish),

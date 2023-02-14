@@ -1,8 +1,9 @@
-import 'package:deliverzler/core/core_features/locale/domain/use_cases/get_app_locale_uc.dart';
-import 'package:deliverzler/core/core_features/locale/domain/use_cases/set_app_locale_uc.dart';
-import 'package:deliverzler/core/core_features/locale/presentation/utils/app_locale.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+import '../../domain/use_cases/get_app_locale_uc.dart';
+import '../../domain/use_cases/set_app_locale_uc.dart';
+import '../utils/app_locale.dart';
 
 part 'app_locale_provider.g.dart';
 

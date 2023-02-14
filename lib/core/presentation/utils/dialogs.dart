@@ -1,14 +1,15 @@
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_button.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_dialog.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_icon.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/core/presentation/widgets/loading_indicators.dart';
 import 'package:flutter/material.dart';
+
+import '../helpers/localization_helper.dart';
+import '../routing/navigation_service.dart';
+import '../styles/app_images.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_dialog.dart';
+import '../widgets/custom_icon.dart';
+import '../widgets/custom_text.dart';
+import '../widgets/loading_indicators.dart';
 
 abstract class Dialogs {
   static Future showLoadingDialog(BuildContext context) async {

@@ -1,7 +1,8 @@
 import 'dart:developer';
 
-import 'package:deliverzler/core/presentation/routing/navigator_route_observer.dart';
 import 'package:flutter/material.dart';
+
+import 'navigator_route_observer.dart';
 
 export 'package:deliverzler/core/presentation/extensions/route_extension.dart';
 

@@ -1,10 +1,11 @@
-import 'package:deliverzler/auth/presentation/components/login_logo_component.dart';
-import 'package:deliverzler/auth/presentation/components/login_content_component.dart';
-import 'package:deliverzler/core/presentation/screens/full_screen_platfom_scaffold.dart';
-import 'package:deliverzler/core/presentation/styles/app_images.dart';
-import 'package:deliverzler/core/presentation/utils/scroll_behaviors.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../../../core/presentation/screens/full_screen_platfom_scaffold.dart';
+import '../../../../core/presentation/styles/app_images.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/scroll_behaviors.dart';
+import '../../components/login_content_component.dart';
+import '../../components/login_logo_component.dart';
 
 class SignInScreenCompact extends StatelessWidget {
   const SignInScreenCompact({Key? key}) : super(key: key);

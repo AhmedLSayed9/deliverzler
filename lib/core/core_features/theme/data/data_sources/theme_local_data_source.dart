@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
-import 'package:deliverzler/core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../data/error/app_exception.dart';
+import '../../../../data/local/local_storage_caller/i_local_storage_caller.dart';
+import '../../../../data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
 
 part 'theme_local_data_source.g.dart';
 

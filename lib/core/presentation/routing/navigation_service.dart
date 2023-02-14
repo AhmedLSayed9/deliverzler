@@ -1,6 +1,8 @@
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_page_route.dart';
 import 'package:flutter/material.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../widgets/platform_widgets/platform_page_route.dart';
 
 abstract class NavigationService {
   static removeAllFocus(BuildContext context) {

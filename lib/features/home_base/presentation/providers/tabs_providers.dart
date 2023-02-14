@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/features/home_base/presentation/utils/tab_item.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/presentation/providers/provider_utils.dart';
+import '../utils/tab_item.dart';
 
 part 'tabs_providers.g.dart';
 

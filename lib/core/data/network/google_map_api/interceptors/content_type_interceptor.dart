@@ -1,5 +1,6 @@
-import 'package:deliverzler/core/data/network/i_api_config.dart';
 import 'package:dio/dio.dart';
+
+import '../../i_api_config.dart';
 
 class ContentTypeInterceptor extends Interceptor {
   @override

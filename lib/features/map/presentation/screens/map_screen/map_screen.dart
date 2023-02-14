@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/presentation/widgets/responsive_widgets/widget_builders.dart';
-import 'package:deliverzler/features/map/presentation/screens/map_screen/map_screen_compact.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/presentation/widgets/responsive_widgets/widget_builders.dart';
+import 'map_screen_compact.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({Key? key}) : super(key: key);

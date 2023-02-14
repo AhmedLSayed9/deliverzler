@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/presentation/helpers/platform_helper.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../helpers/platform_helper.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import 'platform_widgets/platform_text_form_field.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -66,7 +67,7 @@ class CustomTextFormField extends StatelessWidget {
           maxLines: minLines,
           minLines: minLines,
           style: TextStyle(
-            color: Theme.of(context).textTheme.subtitle1?.color,
+            color: Theme.of(context).textTheme.titleMedium?.color,
             fontSize: Sizes.font14,
             fontFamily: FontStyles.fontFamily(context),
           ),

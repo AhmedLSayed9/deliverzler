@@ -1,13 +1,15 @@
-import 'package:deliverzler/core/presentation/screens/nested_screen_wrapper.dart';
-import 'package:deliverzler/features/home/presentation/components/retry_again_component.dart';
-import 'package:deliverzler/features/home/presentation/components/upcoming_orders_component.dart';
-import 'package:deliverzler/features/home/presentation/utils/location_error.dart';
-import 'package:deliverzler/features/home/presentation/providers/location_stream_provider.dart';
-import 'package:deliverzler/features/home/presentation/providers/update_delivery_geo_point_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/widgets/loading_indicators.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../../core/presentation/screens/nested_screen_wrapper.dart';
+import '../../../../../core/presentation/widgets/loading_indicators.dart';
+import '../../components/retry_again_component.dart';
+import '../../components/upcoming_orders_component.dart';
+import '../../providers/location_stream_provider.dart';
+import '../../providers/update_delivery_geo_point_provider.dart';
+import '../../utils/location_error.dart';
 
 class HomeScreenCompact extends HookConsumerWidget {
   const HomeScreenCompact({Key? key}) : super(key: key);

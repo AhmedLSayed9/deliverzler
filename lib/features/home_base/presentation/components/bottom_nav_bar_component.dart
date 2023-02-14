@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_nav_bar.dart';
-import 'package:deliverzler/features/home_base/presentation/utils/tab_item.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/platform_widgets/platform_nav_bar.dart';
+import '../utils/tab_item.dart';
 
 class BottomNavBarComponent extends PlatformNavBar {
   BottomNavBarComponent(

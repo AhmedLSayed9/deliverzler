@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+
+import '../../core_features/theme/presentation/utils/app_theme.dart';
 
 bool isDarkMode([Brightness? platformBrightness]) {
   final brightness =

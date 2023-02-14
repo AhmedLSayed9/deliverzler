@@ -1,10 +1,12 @@
-import 'package:deliverzler/core/presentation/hooks/fade_in_controller_hook.dart';
-import 'package:deliverzler/core/presentation/providers/splash_provider.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/screens/splash_screen/splash_screen_compact.dart';
-import 'package:deliverzler/core/presentation/widgets/responsive_widgets/widget_builders.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../hooks/fade_in_controller_hook.dart';
+import '../../providers/splash_provider.dart';
+import '../../routing/navigation_service.dart';
+import '../../widgets/responsive_widgets/widget_builders.dart';
+import 'splash_screen_compact.dart';
 
 class SplashScreen extends HookConsumerWidget {
   const SplashScreen({Key? key}) : super(key: key);

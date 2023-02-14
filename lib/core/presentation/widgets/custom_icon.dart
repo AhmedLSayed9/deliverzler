@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../styles/sizes.dart';
 
 class CustomIcon extends Container {
   CustomIcon._(

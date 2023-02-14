@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'dart:async';
+import 'dart:io';
 
 /// Represents the status of the data connection.
 /// Returned by [DataConnectionChecker.connectionStatus]

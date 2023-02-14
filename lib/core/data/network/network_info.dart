@@ -1,6 +1,7 @@
-import 'package:deliverzler/core/data/network/data_connection_checker.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'data_connection_checker.dart';
 
 abstract class INetworkInfo {
   Future<bool> get hasInternetConnection;

@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:deliverzler/core/domain/entities/json_converters/geo_point_converter.dart';
-import 'package:deliverzler/features/home/data/models/address_model.dart';
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../core/domain/entities/json_converters/geo_point_converter.dart';
+import '../../domain/entities/order.dart';
+import '../../presentation/utils/enums.dart';
+import 'address_model.dart';
 
 part 'order_model.freezed.dart';
 

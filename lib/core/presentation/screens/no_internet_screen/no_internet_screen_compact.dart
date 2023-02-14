@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/presentation/components/data_error_component.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/utils/scroll_behaviors.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../components/data_error_component.dart';
+import '../../helpers/localization_helper.dart';
+import '../../styles/sizes.dart';
+import '../../utils/scroll_behaviors.dart';
+import '../../widgets/platform_widgets/platform_scaffold.dart';
 
 class NoInternetScreenCompact extends StatelessWidget {
   const NoInternetScreenCompact({

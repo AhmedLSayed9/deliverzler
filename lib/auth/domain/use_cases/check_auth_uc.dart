@@ -1,10 +1,11 @@
-import 'package:deliverzler/auth/data/repos/auth_repo.dart';
-import 'package:deliverzler/auth/domain/entities/user.dart';
-import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart';
-import 'package:deliverzler/auth/domain/use_cases/get_user_data_uc.dart';
-import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart';
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core/domain/use_cases/use_case_base.dart';
+import '../../data/repos/auth_repo.dart';
+import '../entities/user.dart';
+import '../repos/i_auth_repo.dart';
+import 'get_user_data_uc.dart';
+import 'sign_out_uc.dart';
 
 part 'check_auth_uc.g.dart';
 

@@ -1,8 +1,9 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/features/map/domain/entities/place_directions.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart' as gl;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../../domain/entities/place_directions.dart';
 
 abstract class MapCoordinatesHelper {
   static double getDistanceBetweenTwoCoordinates({

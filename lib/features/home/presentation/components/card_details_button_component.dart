@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../core/presentation/widgets/custom_text_button.dart';
 
 class CardDetailsButtonComponent extends StatelessWidget {
   final String title;

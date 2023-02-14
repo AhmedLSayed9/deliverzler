@@ -1,18 +1,17 @@
-import 'package:deliverzler/core/presentation/helpers/platform_helper.dart';
 import 'package:flutter/material.dart';
+
+import '../helpers/platform_helper.dart';
 
 class DisableGlowScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildOverscrollIndicator(context, Widget child, details) {
     return child;
   }
 }
 
 class MainScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildOverscrollIndicator(context, Widget child, details) {
     return child;
   }
 

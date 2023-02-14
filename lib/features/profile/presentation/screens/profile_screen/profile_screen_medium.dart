@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/presentation/screens/nested_screen_wrapper.dart';
-import 'package:deliverzler/core/presentation/utils/scroll_behaviors.dart';
-import 'package:deliverzler/features/profile/presentation/components/profile_form_component.dart';
-import 'package:deliverzler/features/profile/presentation/components/profile_header_component.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../../../../core/presentation/screens/nested_screen_wrapper.dart';
+import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/utils/scroll_behaviors.dart';
+import '../../components/profile_form_component.dart';
+import '../../components/profile_header_component.dart';
 
 class ProfileScreenMedium extends StatelessWidget {
   const ProfileScreenMedium({Key? key}) : super(key: key);

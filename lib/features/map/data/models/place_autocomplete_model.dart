@@ -1,5 +1,6 @@
-import 'package:deliverzler/features/map/domain/entities/place_autocomplete.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../domain/entities/place_autocomplete.dart';
 
 part 'place_autocomplete_model.freezed.dart';
 

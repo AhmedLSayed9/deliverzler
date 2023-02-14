@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
+import '../widgets/custom_text.dart';
 
 class AppBarWithIconComponent extends StatelessWidget {
   final String icon;

@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/core_features/locale/data/repos/locale_repo.dart';
-import 'package:deliverzler/core/core_features/locale/domain/repos/i_locale_repo.dart';
-import 'package:deliverzler/core/domain/use_cases/use_case_base.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../domain/use_cases/use_case_base.dart';
+import '../../data/repos/locale_repo.dart';
+import '../repos/i_locale_repo.dart';
 
 part 'get_app_locale_uc.g.dart';
 

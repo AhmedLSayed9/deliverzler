@@ -1,10 +1,11 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
-import 'package:deliverzler/core/core_features/theme/domain/use_cases/get_app_theme_uc.dart';
-import 'package:deliverzler/core/core_features/theme/domain/use_cases/set_app_theme_uc.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'package:deliverzler/core/core_features/theme/domain/use_cases/get_app_theme_uc.dart';
+import 'package:deliverzler/core/core_features/theme/domain/use_cases/set_app_theme_uc.dart';
+import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
+import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
 
 class MockGetAppThemeUC extends Mock implements GetAppThemeUC {}
 

@@ -1,8 +1,9 @@
-import 'package:deliverzler/features/map/presentation/providers/my_location_providers/my_location_marker_provider.dart';
-import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_marker_provider.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../../core/presentation/utils/functional.dart';
+import '../my_location_providers/my_location_marker_provider.dart';
+import '../target_location_providers/target_location_marker_provider.dart';
 
 part 'map_markers_providers.g.dart';
 

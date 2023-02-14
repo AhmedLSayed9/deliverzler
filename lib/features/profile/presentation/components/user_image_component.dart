@@ -1,17 +1,19 @@
-import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
-import 'package:deliverzler/core/data/local/image_picker_caller/i_image_picker_caller.dart';
-import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/utils/dialogs.dart';
-import 'package:deliverzler/features/profile/presentation/providers/pick_profile_image_provider.dart';
-import 'package:deliverzler/features/profile/presentation/providers/update_profile_image_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/components/image_pick_component.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/cached_network_image_circular.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../core/data/local/image_picker_caller/i_image_picker_caller.dart';
+import '../../../../core/presentation/components/image_pick_component.dart';
+import '../../../../core/presentation/extensions/app_error_extension.dart';
+import '../../../../core/presentation/routing/navigation_service.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/dialogs.dart';
+import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/widgets/cached_network_image_circular.dart';
+import '../providers/pick_profile_image_provider.dart';
+import '../providers/update_profile_image_provider.dart';
 
 class UserImageComponent extends HookConsumerWidget {
   const UserImageComponent({Key? key}) : super(key: key);

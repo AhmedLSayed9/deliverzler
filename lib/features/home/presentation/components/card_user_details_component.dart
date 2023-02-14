@@ -1,10 +1,11 @@
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/cached_network_image_circular.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/features/home/domain/entities/order.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/cached_network_image_circular.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../domain/entities/order.dart';
 
 class CardUserDetailsComponent extends StatelessWidget {
   final AppOrder order;

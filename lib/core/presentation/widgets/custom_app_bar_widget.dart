@@ -1,9 +1,10 @@
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_app_bar.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_icon_button.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../routing/navigation_service.dart';
+import '../styles/sizes.dart';
+import 'platform_widgets/platform_app_bar.dart';
+import 'platform_widgets/platform_icon_button.dart';
+import 'platform_widgets/platform_icons.dart';
 
 class CustomAppBar extends PlatformAppBar {
   CustomAppBar(

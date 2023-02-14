@@ -1,9 +1,10 @@
-import 'package:deliverzler/features/home/presentation/providers/location_stream_provider.dart';
-import 'package:deliverzler/features/map/presentation/helpers/map_style_helper.dart';
-import 'package:deliverzler/features/map/presentation/providers/my_location_providers/my_location_camera_position_provider.dart';
-import 'package:deliverzler/features/map/presentation/utils/constants.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../home/presentation/providers/location_stream_provider.dart';
+import '../../helpers/map_style_helper.dart';
+import '../../utils/constants.dart';
+import 'my_location_camera_position_provider.dart';
 
 part 'my_location_circle_provider.g.dart';
 

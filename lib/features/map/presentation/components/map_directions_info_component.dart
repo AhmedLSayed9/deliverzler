@@ -1,12 +1,14 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import 'package:deliverzler/features/map/presentation/helpers/map_coordinates_helper.dart';
-import 'package:deliverzler/features/map/presentation/providers/target_location_providers/target_location_directions_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
+import '../helpers/map_coordinates_helper.dart';
+import '../providers/target_location_providers/target_location_directions_provider.dart';
 
 class MapDirectionsInfoComponent extends ConsumerWidget {
   const MapDirectionsInfoComponent({Key? key}) : super(key: key);

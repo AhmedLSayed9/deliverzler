@@ -1,10 +1,12 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/themes/cupertino_custom_theme.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text_form_field.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../../core/core_features/theme/presentation/utils/themes/cupertino_custom_theme.dart';
+import '../../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../../core/presentation/widgets/custom_text_form_field.dart';
+import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 
 class CancelOrderNoteComponent extends ConsumerWidget {
   const CancelOrderNoteComponent({

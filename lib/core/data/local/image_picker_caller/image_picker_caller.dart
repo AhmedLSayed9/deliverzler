@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:deliverzler/core/data/error/app_exception.dart';
-import 'package:deliverzler/core/data/local/extensions/local_error_extension.dart';
-import 'package:deliverzler/core/data/local/image_picker_caller/i_image_picker_caller.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../error/app_exception.dart';
+import '../extensions/local_error_extension.dart';
+import 'i_image_picker_caller.dart';
 
 part 'image_picker_caller.g.dart';
 

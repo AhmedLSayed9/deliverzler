@@ -1,11 +1,12 @@
-import 'package:deliverzler/core/presentation/helpers/date_helper.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../../../../core/presentation/helpers/date_helper.dart';
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/styles/font_styles.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../domain/entities/order.dart';
+import '../utils/enums.dart';
 
 class CardOrderDetailsComponent extends StatelessWidget {
   final AppOrder order;

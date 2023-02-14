@@ -1,5 +1,6 @@
-import 'package:deliverzler/features/notifications/domain/entities/app_notification.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../domain/entities/app_notification.dart';
 
 part 'app_notification_model.freezed.dart';
 

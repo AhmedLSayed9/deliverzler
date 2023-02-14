@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:deliverzler/core/domain/entities/json_converters/geo_point_converter.dart';
-import 'package:deliverzler/features/home/domain/entities/address.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../core/domain/entities/json_converters/geo_point_converter.dart';
+import '../../domain/entities/address.dart';
 
 part 'address_model.freezed.dart';
 

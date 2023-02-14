@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/data/local/extensions/local_error_extension.dart';
-import 'package:deliverzler/core/data/local/local_storage_caller/i_local_storage_caller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../extensions/local_error_extension.dart';
+import 'i_local_storage_caller.dart';
 
 part 'shared_pref_local_storage_caller.g.dart';
 

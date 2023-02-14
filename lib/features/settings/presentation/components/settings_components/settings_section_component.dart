@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/presentation/widgets/custom_tile_component.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
+
+import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../../core/presentation/widgets/custom_tile_component.dart';
 
 class SettingsSectionComponent extends StatelessWidget {
   const SettingsSectionComponent({

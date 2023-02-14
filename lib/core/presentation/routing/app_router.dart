@@ -1,15 +1,16 @@
-import 'package:deliverzler/auth/presentation/screens/auth_guard_screen.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_transitions.dart';
-import 'package:deliverzler/core/presentation/routing/route_paths.dart';
-import 'package:deliverzler/core/presentation/screens/no_internet_screen/no_internet_screen.dart';
-import 'package:deliverzler/core/presentation/screens/splash_screen/splash_screen.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_page_route.dart';
-import 'package:deliverzler/features/home/presentation/screens/home_screen/home_screen.dart';
-import 'package:deliverzler/features/map/presentation/screens/map_screen/map_screen.dart';
-import 'package:deliverzler/features/profile/presentation/screens/profile_screen/profile_screen.dart';
-import 'package:deliverzler/features/settings/presentation/screens/language_screen/language_screen.dart';
-import 'package:deliverzler/features/settings/presentation/screens/settings_screen/settings_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../../auth/presentation/screens/auth_guard_screen.dart';
+import '../../../features/home/presentation/screens/home_screen/home_screen.dart';
+import '../../../features/map/presentation/screens/map_screen/map_screen.dart';
+import '../../../features/profile/presentation/screens/profile_screen/profile_screen.dart';
+import '../../../features/settings/presentation/screens/language_screen/language_screen.dart';
+import '../../../features/settings/presentation/screens/settings_screen/settings_screen.dart';
+import '../screens/no_internet_screen/no_internet_screen.dart';
+import '../screens/splash_screen/splash_screen.dart';
+import '../widgets/platform_widgets/platform_page_route.dart';
+import 'navigation_transitions.dart';
+import 'route_paths.dart';
 
 class AppRouter {
   ///Root Navigator

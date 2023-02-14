@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:deliverzler/core/data/local/image_picker_caller/i_image_picker_caller.dart';
-import 'package:deliverzler/core/data/local/image_picker_caller/image_picker_caller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/data/local/image_picker_caller/i_image_picker_caller.dart';
+import '../../../../core/data/local/image_picker_caller/image_picker_caller.dart';
 
 part 'profile_local_data_source.g.dart';
 

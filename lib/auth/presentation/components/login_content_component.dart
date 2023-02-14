@@ -1,7 +1,8 @@
-import 'package:deliverzler/auth/presentation/components/login_form_component.dart';
-import 'package:deliverzler/auth/presentation/components/welcome_component.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/presentation/styles/sizes.dart';
+import 'login_form_component.dart';
+import 'welcome_component.dart';
 
 class LoginContentComponent extends StatelessWidget {
   const LoginContentComponent({Key? key}) : super(key: key);

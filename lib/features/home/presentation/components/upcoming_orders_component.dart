@@ -1,23 +1,25 @@
-import 'package:deliverzler/core/presentation/extensions/app_error_extension.dart';
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/routing/navigation_service.dart';
-import 'package:deliverzler/core/presentation/routing/route_paths.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
-import 'package:deliverzler/core/presentation/utils/dialogs.dart';
-import 'package:deliverzler/core/presentation/utils/scroll_behaviors.dart';
-import 'package:deliverzler/core/presentation/widgets/custom_text.dart';
-import 'package:deliverzler/core/presentation/widgets/loading_indicators.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_refresh_indicator.dart';
-import 'package:deliverzler/core/presentation/widgets/seperated_sliver_child_builder_delegate.dart';
-import 'package:deliverzler/features/home/presentation/components/card_item_component.dart';
-import 'package:deliverzler/features/home/presentation/utils/enums.dart';
-import 'package:deliverzler/features/home/presentation/providers/selected_order_provider.dart';
-import 'package:deliverzler/features/home/presentation/providers/upcoming_orders_provider.dart';
-import 'package:deliverzler/features/home/presentation/providers/update_delivery_status_provider/update_delivery_status_provider.dart';
-import 'package:deliverzler/features/home/presentation/providers/update_delivery_status_provider/update_delivery_status_state.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../core/presentation/extensions/app_error_extension.dart';
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/routing/navigation_service.dart';
+import '../../../../core/presentation/routing/route_paths.dart';
+import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/dialogs.dart';
+import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/scroll_behaviors.dart';
+import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../core/presentation/widgets/loading_indicators.dart';
+import '../../../../core/presentation/widgets/platform_widgets/platform_refresh_indicator.dart';
+import '../../../../core/presentation/widgets/seperated_sliver_child_builder_delegate.dart';
+import '../providers/selected_order_provider.dart';
+import '../providers/upcoming_orders_provider.dart';
+import '../providers/update_delivery_status_provider/update_delivery_status_provider.dart';
+import '../providers/update_delivery_status_provider/update_delivery_status_state.dart';
+import '../utils/enums.dart';
+import 'card_item_component.dart';
 
 class UpcomingOrdersComponent extends ConsumerWidget {
   const UpcomingOrdersComponent({Key? key}) : super(key: key);

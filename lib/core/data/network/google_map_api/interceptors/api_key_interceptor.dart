@@ -1,5 +1,6 @@
-import 'package:deliverzler/core/data/network/google_map_api/google_map_api_config.dart';
 import 'package:dio/dio.dart';
+
+import '../google_map_api_config.dart';
 
 class ApiKeyInterceptor extends QueuedInterceptor {
   @override

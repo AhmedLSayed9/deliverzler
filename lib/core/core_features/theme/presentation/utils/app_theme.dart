@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/themes/i_theme.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/themes/theme_dark.dart';
-import 'package:deliverzler/core/core_features/theme/presentation/utils/themes/theme_light.dart';
 import 'package:flutter/material.dart';
+
+import 'themes/i_theme.dart';
+import 'themes/theme_dark.dart';
+import 'themes/theme_light.dart';
 
 enum AppTheme {
   light,

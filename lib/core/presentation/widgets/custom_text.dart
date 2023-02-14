@@ -1,7 +1,8 @@
-import 'package:deliverzler/core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:deliverzler/core/presentation/styles/font_styles.dart';
-import 'package:deliverzler/core/presentation/styles/sizes.dart';
+
+import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../styles/font_styles.dart';
+import '../styles/sizes.dart';
 
 class CustomText extends Text {
   CustomText._(

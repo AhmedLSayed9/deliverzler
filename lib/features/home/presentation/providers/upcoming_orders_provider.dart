@@ -1,7 +1,8 @@
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/domain/use_cases/get_upcoming_orders_uc.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../domain/entities/order.dart';
+import '../../domain/use_cases/get_upcoming_orders_uc.dart';
 
 final upcomingOrdersProvider =
     StreamProvider.autoDispose<List<AppOrder>>((ref) {

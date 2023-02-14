@@ -1,8 +1,9 @@
-import 'package:deliverzler/core/data/network/google_map_api/api_callers/google_map_dio_providers.dart';
-import 'package:deliverzler/core/data/network/google_map_api/extensions/google_map_error_extension.dart';
-import 'package:deliverzler/core/data/network/i_api_caller.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../i_api_caller.dart';
+import '../extensions/google_map_error_extension.dart';
+import 'google_map_dio_providers.dart';
 
 part 'google_map_api_caller.g.dart';
 

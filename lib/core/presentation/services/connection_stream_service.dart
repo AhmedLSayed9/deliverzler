@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:deliverzler/core/data/network/data_connection_checker.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../data/network/data_connection_checker.dart';
 
 enum ConnectionStatus { connected, disconnected }
 

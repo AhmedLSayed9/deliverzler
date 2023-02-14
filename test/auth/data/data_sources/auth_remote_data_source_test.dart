@@ -1,6 +1,11 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mocktail/mocktail.dart';
+
 import 'package:deliverzler/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:deliverzler/auth/data/models/user_model.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
@@ -9,11 +14,6 @@ import 'package:deliverzler/core/data/network/i_firebase_auth_caller.dart';
 import 'package:deliverzler/core/data/network/i_firebase_firestore_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_auth_caller.dart';
 import 'package:deliverzler/core/data/network/main_api/api_callers/main_api_firestore_caller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mocktail/mocktail.dart';
-
 import '../../../fixtures/fixture_reader.dart';
 
 class MockUserCredential extends Mock implements UserCredential {}

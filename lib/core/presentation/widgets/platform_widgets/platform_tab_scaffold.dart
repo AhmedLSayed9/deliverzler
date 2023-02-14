@@ -1,8 +1,9 @@
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_base_consumer_widget.dart';
-import 'package:deliverzler/core/presentation/widgets/platform_widgets/platform_nav_bar.dart';
-import 'package:deliverzler/features/home_base/presentation/providers/tabs_providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../features/home_base/presentation/providers/tabs_providers.dart';
+import 'platform_base_consumer_widget.dart';
+import 'platform_nav_bar.dart';
 
 typedef IndexedAppBarBuilder = dynamic Function(
     BuildContext context, int index);

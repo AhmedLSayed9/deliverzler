@@ -1,11 +1,12 @@
-import 'package:deliverzler/core/presentation/helpers/localization_helper.dart';
-import 'package:deliverzler/core/presentation/utils/dialogs.dart';
-import 'package:deliverzler/core/presentation/utils/toasts.dart';
-import 'package:deliverzler/features/home/domain/entities/order.dart';
-import 'package:deliverzler/features/home/presentation/components/dialogs/cancel_order_dialog.dart';
-import 'package:deliverzler/features/home/presentation/components/dialogs/confirm_choice_dialog.dart';
-import 'package:deliverzler/features/home/presentation/components/dialogs/order_details_dialog.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/presentation/helpers/localization_helper.dart';
+import '../../../../core/presentation/utils/dialogs.dart';
+import '../../../../core/presentation/utils/toasts.dart';
+import '../../domain/entities/order.dart';
+import '../components/dialogs/cancel_order_dialog.dart';
+import '../components/dialogs/confirm_choice_dialog.dart';
+import '../components/dialogs/order_details_dialog.dart';
 
 abstract class OrderDialogHelper {
   static void showOrderDetailsDialog(

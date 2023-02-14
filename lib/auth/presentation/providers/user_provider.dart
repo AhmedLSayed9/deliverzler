@@ -1,6 +1,7 @@
-import 'package:deliverzler/auth/domain/entities/user.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core/presentation/utils/functional.dart';
+import '../../domain/entities/user.dart';
 
 part 'user_provider.g.dart';
 

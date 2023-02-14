@@ -1,5 +1,6 @@
-import 'package:deliverzler/features/home/presentation/utils/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../utils/enums.dart';
 
 part 'update_delivery_status_state.freezed.dart';
 
