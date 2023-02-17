@@ -10,21 +10,10 @@ part 'update_delivery_status_provider.g.dart';
 @riverpod
 AsyncValue<UpdateDeliveryStatusState> updateDeliveryStatusState(
     UpdateDeliveryStatusStateRef ref) {
-  ref.listenSelf((previous, next) {
-    next.whenOrNull(
-      error: (_, __) => ref.invalidate(updateDeliveryStatusEventProvider),
-      data: (state) {
-        state.mapOrNull(
-          success: (_) => ref.invalidate(updateDeliveryStatusEventProvider),
-        );
-      },
-    );
-  });
-
   final event = ref.watch(updateDeliveryStatusEventProvider);
   return event.match(
-    () => const AsyncData(UpdateDeliveryStatusState.initial()),
-    (params) => ref.watch(updateDeliveryStatusProvider(params)),
+    () => const AsyncData(UpdateDeliveryStatusState.idle()),
+    (event) => ref.watch(updateDeliveryStatusProvider(event)),
   );
 }
 
@@ -32,14 +21,15 @@ AsyncValue<UpdateDeliveryStatusState> updateDeliveryStatusState(
 class UpdateDeliveryStatusEvent extends _$UpdateDeliveryStatusEvent
     with NotifierUpdate {
   @override
-  Option<UpdateDeliveryStatusParams> build() => const None();
+  Option<Event<UpdateDeliveryStatusParams>> build() => const None();
 }
 
 @riverpod
 Future<UpdateDeliveryStatusState> updateDeliveryStatus(
   UpdateDeliveryStatusRef ref,
-  UpdateDeliveryStatusParams params,
+  Event<UpdateDeliveryStatusParams> event,
 ) async {
+  final params = event.arg;
   await ref.watch(updateDeliveryStatusUCProvider).call(params);
   return UpdateDeliveryStatusState.success(
     orderId: params.orderId,

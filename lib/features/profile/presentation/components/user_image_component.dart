@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../auth/presentation/providers/user_provider.dart';
 import '../../../../core/data/local/image_picker_caller/i_image_picker_caller.dart';
+import '../../../../core/domain/entities/event.dart';
 import '../../../../core/presentation/components/image_pick_component.dart';
 import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
@@ -51,7 +52,7 @@ class UserImageComponent extends HookConsumerWidget {
               await ref.read(pickProfileImageProvider(pickSource).future);
           ref
               .read(updateProfileImageEventProvider.notifier)
-              .update((_) => Some(image));
+              .update((_) => Some(Event.unique(image)));
         } catch (_) {}
       }
     }, []);

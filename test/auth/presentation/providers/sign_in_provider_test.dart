@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_use_of_visible_for_overriding_member
 
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
@@ -13,7 +14,7 @@ import 'package:deliverzler/core/presentation/utils/functional.dart';
 class MockSignInWithEmailUC extends Mock implements SignInWithEmailUC {}
 
 class MockSignInWithEmailEvent
-    extends AutoDisposeNotifier<Option<SignInWithEmailParams>>
+    extends AutoDisposeNotifier<Option<Event<SignInWithEmailParams>>>
     with Mock
     implements SignInWithEmailEvent {}
 
@@ -42,6 +43,7 @@ void main() {
   }
 
   const tParams = SignInWithEmailParams(email: 'tEmail', password: 'tPass');
+  final tEvent = Event.unique(tParams);
   const tUser = User(
     id: '1',
     email: 'testEmail@gmail.com',
@@ -56,7 +58,7 @@ void main() {
   group(
     'signInStateProvider',
     () {
-      const initialState = AsyncData<Option<User>>(None());
+      const idleState = AsyncData<Option<User>>(None());
       const successState = AsyncData<Option<User>>(Some(tUser));
 
       Listener setUpListener(ProviderContainer container) {
@@ -83,13 +85,13 @@ void main() {
         'should emit signInWithEmailProvider state when signInWithEmailEventProvider is some',
         () async {
           // GIVEN
-          when(mockSignInWithEmailEvent.build).thenReturn(const Some(tParams));
+          when(mockSignInWithEmailEvent.build).thenReturn(Some(tEvent));
 
           final container = setUpContainer(
             overrides: [
               signInWithEmailEventProvider
                   .overrideWith(() => mockSignInWithEmailEvent),
-              signInWithEmailProvider(tParams).overrideWith((ref) => tUser),
+              signInWithEmailProvider(tEvent).overrideWith((ref) => tUser),
             ],
           );
           final listener = setUpListener(container);
@@ -106,7 +108,7 @@ void main() {
       );
 
       test(
-        'should emit initialState when signInWithEmailEventProvider is none',
+        'should emit idleState when signInWithEmailEventProvider is none',
         () async {
           // GIVEN
           when(mockSignInWithEmailEvent.build).thenReturn(const None());
@@ -123,9 +125,9 @@ void main() {
           final signInState = container.read(signInStateProvider);
 
           // THEN
-          expect(signInState, initialState);
+          expect(signInState, idleState);
 
-          verify(() => listener(null, initialState));
+          verify(() => listener(null, idleState));
           verifyNoMoreInteractions(listener);
         },
       );
@@ -136,7 +138,7 @@ void main() {
           // GIVEN
           final container = setUpContainer(
             overrides: [
-              signInWithEmailProvider(tParams).overrideWith((ref) => tUser),
+              signInWithEmailProvider(tEvent).overrideWith((ref) => tUser),
             ],
           );
           final authListener = setUpAuthStateListener(container);
@@ -146,19 +148,19 @@ void main() {
           verify(() => authListener(null, AuthState.unauthenticated));
           verifyNoMoreInteractions(authListener);
 
-          verify(() => listener(null, initialState));
+          verify(() => listener(null, idleState));
           verifyNoMoreInteractions(listener);
 
           container
               .read(signInWithEmailEventProvider.notifier)
-              .update((_) => const Some(tParams));
+              .update((_) => Some(tEvent));
           container.read(signInStateProvider);
 
           // THEN
           verifyInOrder([
             () => authListener(
                 AuthState.unauthenticated, AuthState.authenticated),
-            () => listener(initialState, successState),
+            () => listener(idleState, successState),
           ]);
           verifyNoMoreInteractions(authListener);
           verifyNoMoreInteractions(listener);
@@ -192,10 +194,10 @@ void main() {
       const dataState = AsyncData<User>(tUser);
 
       Listener setUpListener(
-          ProviderContainer container, SignInWithEmailParams params) {
+          ProviderContainer container, Event<SignInWithEmailParams> event) {
         final listener = Listener();
         container.listen(
-          signInWithEmailProvider(params),
+          signInWithEmailProvider(event),
           listener,
           fireImmediately: true,
         );
@@ -215,13 +217,13 @@ void main() {
                   .overrideWith((ref) => mockSignInWithEmailUC),
             ],
           );
-          final listener = setUpListener(container, tParams);
+          final listener = setUpListener(container, tEvent);
 
           // WHEN
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(signInWithEmailProvider(tParams).future);
+          final call = container.read(signInWithEmailProvider(tEvent).future);
 
           // THEN
           await expectLater(call, completion(tUser));
@@ -249,13 +251,13 @@ void main() {
                   .overrideWith((ref) => mockSignInWithEmailUC),
             ],
           );
-          final listener = setUpListener(container, tParams);
+          final listener = setUpListener(container, tEvent);
 
           // WHEN
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(signInWithEmailProvider(tParams).future);
+          final call = container.read(signInWithEmailProvider(tEvent).future);
 
           // THEN
           await expectLater(call, throwsA(tException));

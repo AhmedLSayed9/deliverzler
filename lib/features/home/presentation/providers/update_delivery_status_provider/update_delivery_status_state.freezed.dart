@@ -18,39 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UpdateDeliveryStatusState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() idle,
     required TResult Function(String orderId, DeliveryStatus deliveryStatus)
         success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? idle,
     TResult? Function(String orderId, DeliveryStatus deliveryStatus)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? idle,
     TResult Function(String orderId, DeliveryStatus deliveryStatus)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(Idle value) idle,
     required TResult Function(Success value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
+    TResult? Function(Idle value)? idle,
     TResult? Function(Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(Idle value)? idle,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) =>
@@ -77,33 +77,33 @@ class _$UpdateDeliveryStatusStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$InitialCopyWith<$Res> {
-  factory _$$InitialCopyWith(_$Initial value, $Res Function(_$Initial) then) =
-      __$$InitialCopyWithImpl<$Res>;
+abstract class _$$IdleCopyWith<$Res> {
+  factory _$$IdleCopyWith(_$Idle value, $Res Function(_$Idle) then) =
+      __$$IdleCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialCopyWithImpl<$Res>
-    extends _$UpdateDeliveryStatusStateCopyWithImpl<$Res, _$Initial>
-    implements _$$InitialCopyWith<$Res> {
-  __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
+class __$$IdleCopyWithImpl<$Res>
+    extends _$UpdateDeliveryStatusStateCopyWithImpl<$Res, _$Idle>
+    implements _$$IdleCopyWith<$Res> {
+  __$$IdleCopyWithImpl(_$Idle _value, $Res Function(_$Idle) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$Idle implements Idle {
+  const _$Idle();
 
   @override
   String toString() {
-    return 'UpdateDeliveryStatusState.initial()';
+    return 'UpdateDeliveryStatusState.idle()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Initial);
+        (other.runtimeType == runtimeType && other is _$Idle);
   }
 
   @override
@@ -112,31 +112,31 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() idle,
     required TResult Function(String orderId, DeliveryStatus deliveryStatus)
         success,
   }) {
-    return initial();
+    return idle();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? idle,
     TResult? Function(String orderId, DeliveryStatus deliveryStatus)? success,
   }) {
-    return initial?.call();
+    return idle?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? idle,
     TResult Function(String orderId, DeliveryStatus deliveryStatus)? success,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (idle != null) {
+      return idle();
     }
     return orElse();
   }
@@ -144,37 +144,37 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(Idle value) idle,
     required TResult Function(Success value) success,
   }) {
-    return initial(this);
+    return idle(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
+    TResult? Function(Idle value)? idle,
     TResult? Function(Success value)? success,
   }) {
-    return initial?.call(this);
+    return idle?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(Idle value)? idle,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (idle != null) {
+      return idle(this);
     }
     return orElse();
   }
 }
 
-abstract class Initial implements UpdateDeliveryStatusState {
-  const factory Initial() = _$Initial;
+abstract class Idle implements UpdateDeliveryStatusState {
+  const factory Idle() = _$Idle;
 }
 
 /// @nodoc
@@ -248,7 +248,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() idle,
     required TResult Function(String orderId, DeliveryStatus deliveryStatus)
         success,
   }) {
@@ -258,7 +258,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? idle,
     TResult? Function(String orderId, DeliveryStatus deliveryStatus)? success,
   }) {
     return success?.call(orderId, deliveryStatus);
@@ -267,7 +267,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? idle,
     TResult Function(String orderId, DeliveryStatus deliveryStatus)? success,
     required TResult orElse(),
   }) {
@@ -280,7 +280,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(Idle value) idle,
     required TResult Function(Success value) success,
   }) {
     return success(this);
@@ -289,7 +289,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
+    TResult? Function(Idle value)? idle,
     TResult? Function(Success value)? success,
   }) {
     return success?.call(this);
@@ -298,7 +298,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(Idle value)? idle,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) {

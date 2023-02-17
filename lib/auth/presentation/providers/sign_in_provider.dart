@@ -14,9 +14,6 @@ part 'sign_in_provider.g.dart';
 AsyncValue<Option<User>> signInState(SignInStateRef ref) {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
-      //If the call emitted an error state, signInWithEmailEventProvider will be invalidated which will
-      //lead to invalidating signInWithEmailProvider too, so that you'll be able to retry the api call again.
-      error: (_, __) => ref.invalidate(signInWithEmailEventProvider),
       data: (user) {
         if (user is Some<User>) {
           ref
@@ -30,9 +27,9 @@ AsyncValue<Option<User>> signInState(SignInStateRef ref) {
   final event = ref.watch(signInWithEmailEventProvider);
   return event.match(
     () => const AsyncData(None()),
-    (params) {
+    (event) {
       return ref
-          .watch(signInWithEmailProvider(params))
+          .watch(signInWithEmailProvider(event))
           .whenData((user) => Some(user));
     },
   );
@@ -41,13 +38,13 @@ AsyncValue<Option<User>> signInState(SignInStateRef ref) {
 @riverpod
 class SignInWithEmailEvent extends _$SignInWithEmailEvent with NotifierUpdate {
   @override
-  Option<SignInWithEmailParams> build() => const None();
+  Option<Event<SignInWithEmailParams>> build() => const None();
 }
 
 @riverpod
 Future<User> signInWithEmail(
   SignInWithEmailRef ref,
-  SignInWithEmailParams params,
+  Event<SignInWithEmailParams> event,
 ) async {
-  return ref.watch(signInWithEmailUCProvider).call(params);
+  return ref.watch(signInWithEmailUCProvider).call(event.arg);
 }

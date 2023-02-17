@@ -16,40 +16,38 @@ AsyncValue<Option<String>> updateProfileImageState(
     UpdateProfileImageStateRef ref) {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
-      error: (_, __) => ref.invalidate(updateProfileImageEventProvider),
       data: (imageUrl) {
         if (imageUrl is Some<String>) {
           ref
               .read(userControllerProvider.notifier)
               .updateUserImage(imageUrl.value);
-          ref.invalidate(updateProfileImageEventProvider);
         }
       },
     );
   });
 
-  final selectedImage = ref.watch(updateProfileImageEventProvider);
-  return selectedImage.match(
+  final event = ref.watch(updateProfileImageEventProvider);
+  return event.match(
     () => const AsyncData(None()),
-    (image) {
+    (event) {
       return ref
-          .watch(updateProfileImageProvider(image))
+          .watch(updateProfileImageProvider(event))
           .whenData((imageUrl) => Some(imageUrl));
     },
   );
 }
 
-
 @riverpod
-class UpdateProfileImageEvent extends _$UpdateProfileImageEvent with NotifierUpdate {
+class UpdateProfileImageEvent extends _$UpdateProfileImageEvent
+    with NotifierUpdate {
   @override
-  Option<File> build() => const None();
+  Option<Event<File>> build() => const None();
 }
 
 @riverpod
 Future<String> updateProfileImage(
   UpdateProfileImageRef ref,
-  File imageFile,
+  Event<File> event,
 ) async {
-  return ref.watch(updateProfileImageUCProvider).call(imageFile);
+  return ref.watch(updateProfileImageUCProvider).call(event.arg);
 }

@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../auth/domain/entities/user.dart';
 import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../core/domain/entities/event.dart';
 import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
@@ -55,7 +56,7 @@ class ProfileFormComponent extends HookConsumerWidget {
         );
         ref
             .read(updateProfileDataEventProvider.notifier)
-            .update((_) => Some(params));
+            .update((_) => Some(Event.unique(params)));
       }
     }, []);
 

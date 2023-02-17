@@ -14,11 +14,9 @@ part 'update_profile_data_provider.g.dart';
 AsyncValue<Option<User>> updateProfileDataState(UpdateProfileDataStateRef ref) {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
-      error: (_, __) => ref.invalidate(updateProfileDataEventProvider),
       data: (user) {
         if (user is Some<User>) {
           ref.read(userControllerProvider.notifier).setUser(user.value);
-          ref.invalidate(updateProfileDataEventProvider);
         }
       },
     );
@@ -27,9 +25,9 @@ AsyncValue<Option<User>> updateProfileDataState(UpdateProfileDataStateRef ref) {
   final event = ref.watch(updateProfileDataEventProvider);
   return event.match(
     () => const AsyncData(None()),
-    (params) {
+    (event) {
       return ref
-          .watch(updateProfileDataProvider(params))
+          .watch(updateProfileDataProvider(event))
           .whenData((user) => Some(user));
     },
   );
@@ -39,14 +37,15 @@ AsyncValue<Option<User>> updateProfileDataState(UpdateProfileDataStateRef ref) {
 class UpdateProfileDataEvent extends _$UpdateProfileDataEvent
     with NotifierUpdate {
   @override
-  Option<User> build() => const None();
+  Option<Event<User>> build() => const None();
 }
 
 @riverpod
 Future<User> updateProfileData(
   UpdateProfileDataRef ref,
-  User user,
+  Event<User> event,
 ) async {
+  final user = event.arg;
   await ref.watch(updateProfileDataUCProvider).call(user);
   return user;
 }

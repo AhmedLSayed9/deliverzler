@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../auth/presentation/providers/user_provider.dart';
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/domain/entities/event.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/styles/font_styles.dart';
 import '../../../../core/presentation/styles/sizes.dart';
@@ -55,7 +56,7 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
           );
           ref
               .read(mapConfirmOrderEventProvider.notifier)
-              .update((_) => Some(params));
+              .update((_) => Some(Event.unique(params)));
         },
       );
     }, []);

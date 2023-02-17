@@ -7,7 +7,7 @@ import '../../../home/domain/use_cases/update_delivery_status_uc.dart';
 part 'map_confirm_order_provider.g.dart';
 
 enum MapConfirmOrderState {
-  initial,
+  idle,
   success,
 }
 
@@ -15,35 +15,24 @@ enum MapConfirmOrderState {
 AsyncValue<MapConfirmOrderState> mapConfirmOrderStatus(
   MapConfirmOrderStatusRef ref,
 ) {
-  ref.listenSelf((previous, next) {
-    next.whenOrNull(
-      error: (_, __) => ref.invalidate(mapConfirmOrderEventProvider),
-      data: (state) {
-        if (state == MapConfirmOrderState.success) {
-          ref.invalidate(mapConfirmOrderEventProvider);
-        }
-      },
-    );
-  });
-
   final event = ref.watch(mapConfirmOrderEventProvider);
   return event.match(
-    () => const AsyncData(MapConfirmOrderState.initial),
-    (params) => ref.watch(mapConfirmOrderProvider(params)),
+    () => const AsyncData(MapConfirmOrderState.idle),
+    (event) => ref.watch(mapConfirmOrderProvider(event)),
   );
 }
 
 @riverpod
 class MapConfirmOrderEvent extends _$MapConfirmOrderEvent with NotifierUpdate {
   @override
-  Option<UpdateDeliveryStatusParams> build() => const None();
+  Option<Event<UpdateDeliveryStatusParams>> build() => const None();
 }
 
 @riverpod
 Future<MapConfirmOrderState> mapConfirmOrder(
   MapConfirmOrderRef ref,
-  UpdateDeliveryStatusParams params,
+  Event<UpdateDeliveryStatusParams> event,
 ) async {
-  await ref.watch(updateDeliveryStatusUCProvider).call(params);
+  await ref.watch(updateDeliveryStatusUCProvider).call(event.arg);
   return MapConfirmOrderState.success;
 }

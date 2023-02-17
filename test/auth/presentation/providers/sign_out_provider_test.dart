@@ -1,5 +1,7 @@
 // ignore_for_file: invalid_use_of_visible_for_overriding_member
 
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
@@ -11,7 +13,7 @@ import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
 
 class MockSignOutUC extends Mock implements SignOutUC {}
 
-class MockSignOutEvent extends AutoDisposeNotifier<bool>
+class MockSignOutEvent extends AutoDisposeNotifier<Option<Event<void>>>
     with Mock
     implements SignOutEvent {}
 
@@ -39,6 +41,7 @@ void main() {
     return container;
   }
 
+  final tEvent = Event.unique(null);
   const tUser = User(
     id: '1',
     email: 'testEmail@gmail.com',
@@ -53,7 +56,7 @@ void main() {
   group(
     'signOutStateProvider',
     () {
-      const initialState = AsyncData<SignOutState>(SignOutState.initial);
+      const idleState = AsyncData<SignOutState>(SignOutState.idle);
       final errorState = AsyncError<SignOutState>(tException, tStackTrace);
       const successState = AsyncData<SignOutState>(SignOutState.success);
 
@@ -78,15 +81,15 @@ void main() {
       }
 
       test(
-        'should emit signOutProvider state when signOutEventProvider is true',
+        'should emit signOutProvider state when signOutEventProvider is some',
         () async {
           // GIVEN
-          when(mockSignOutEvent.build).thenReturn(true);
+          when(mockSignOutEvent.build).thenReturn(Some(tEvent));
 
           final container = setUpContainer(
             overrides: [
               signOutEventProvider.overrideWith(() => mockSignOutEvent),
-              signOutProvider.overrideWith(
+              signOutProvider(tEvent).overrideWith(
                 (ref) => Error.throwWithStackTrace(tException, tStackTrace),
               ),
             ],
@@ -105,10 +108,10 @@ void main() {
       );
 
       test(
-        'should emit AsyncData(SignOutState.initial) when signOutEventProvider is false',
+        'should emit AsyncData(SignOutState.idle) when signOutEventProvider is none',
         () async {
           // GIVEN
-          when(mockSignOutEvent.build).thenReturn(false);
+          when(mockSignOutEvent.build).thenReturn(const None());
 
           final container = setUpContainer(
             overrides: [
@@ -121,9 +124,9 @@ void main() {
           final signOutStatus = container.read(signOutStateProvider);
 
           // THEN
-          expect(signOutStatus, initialState);
+          expect(signOutStatus, idleState);
 
-          verify(() => listener(null, initialState));
+          verify(() => listener(null, idleState));
           verifyNoMoreInteractions(listener);
         },
       );
@@ -134,7 +137,7 @@ void main() {
           // GIVEN
           final container = setUpContainer(
             overrides: [
-              signOutProvider.overrideWith((ref) => () {}),
+              signOutProvider(tEvent).overrideWith((ref) => tEvent),
             ],
           );
           final listener = setUpListener(container);
@@ -144,20 +147,22 @@ void main() {
           final authListener = setUpAuthStateListener(container);
 
           // WHEN
-          verify(() => listener(null, initialState));
+          verify(() => listener(null, idleState));
           verifyNoMoreInteractions(listener);
 
           verify(() => authListener(null, AuthState.authenticated));
           verifyNoMoreInteractions(listener);
 
-          container.read(signOutEventProvider.notifier).update((_) => true);
+          container
+              .read(signOutEventProvider.notifier)
+              .update((_) => Some(tEvent));
           container.read(signOutStateProvider);
 
           // THEN
           verifyInOrder([
             () => authListener(
                 AuthState.authenticated, AuthState.unauthenticated),
-            () => listener(initialState, successState),
+            () => listener(idleState, successState),
           ]);
           verifyNoMoreInteractions(authListener);
           verifyNoMoreInteractions(listener);
@@ -170,14 +175,14 @@ void main() {
     'signOutEventProvider',
     () {
       test(
-        'initial state should be false',
+        'initial state should be none',
         () async {
           // GIVEN
           final container = ProviderContainer();
           addTearDown(container.dispose);
 
           // THEN
-          expect(container.read(signOutEventProvider), false);
+          expect(container.read(signOutEventProvider), const None());
         },
       );
     },
@@ -193,7 +198,7 @@ void main() {
       Listener setUpListener(ProviderContainer container) {
         final listener = Listener();
         container.listen(
-          signOutProvider,
+          signOutProvider(tEvent),
           listener,
           fireImmediately: true,
         );
@@ -227,7 +232,7 @@ void main() {
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(signOutProvider.future);
+          final call = container.read(signOutProvider(tEvent).future);
 
           // THEN
           await expectLater(call, completes);
@@ -267,7 +272,7 @@ void main() {
           verify(() => authListener(null, AuthState.authenticated));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(signOutProvider.future);
+          final call = container.read(signOutProvider(tEvent).future);
 
           // THEN
           await expectLater(call, throwsA(tException));
