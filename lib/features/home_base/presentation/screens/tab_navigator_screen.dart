@@ -26,9 +26,13 @@ class TabNavigatorScreen extends HookConsumerWidget {
     //Cache the instance of NavigatorRouteObserver to prevent re-creating it
     final navRouteObserver = useMemoized(() => NavigatorRouteObserver(
           routesStackCallBack: (List<Route> routes) {
-            ref
-                .read(tabCurrentRouteProvider(tabItem).notifier)
-                .update((_) => routes.last.routeName);
+            //This temporary fix updating current route provider's state while navigating bug
+            //TODO: When migrating to GoRouter, Use state.location instead.
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ref
+                  .read(tabCurrentRouteProvider(tabItem).notifier)
+                  .update((_) => routes.last.routeName);
+            });
           },
         ));
 
