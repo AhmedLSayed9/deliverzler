@@ -40,7 +40,7 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     useOnPlatformBrightnessChange((previous, current) {
-      ref.read(platformBrightnessProvider.notifier).state = current;
+      ref.read(platformBrightnessProvider.notifier).update((_) => current);
     });
     final theme = ref.watch(currentAppThemeProvider);
     final locale = ref.watch(currentAppLocaleProvider);

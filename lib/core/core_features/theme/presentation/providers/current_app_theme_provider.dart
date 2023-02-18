@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../presentation/helpers/theme_helper.dart';
+import '../../../../presentation/providers/provider_utils.dart';
 import '../utils/app_theme.dart';
 import 'app_theme_provider.dart';
 
 part 'current_app_theme_provider.g.dart';
 
-final platformBrightnessProvider = StateProvider<Brightness>((ref) {
-  return WidgetsBinding.instance.window.platformBrightness;
-});
+
+@Riverpod(keepAlive: true)
+class PlatformBrightness extends _$PlatformBrightness with NotifierUpdate {
+  @override
+  Brightness build() => WidgetsBinding.instance.window.platformBrightness;
+}
 
 @Riverpod(keepAlive: true)
 AppTheme currentAppTheme(CurrentAppThemeRef ref) {

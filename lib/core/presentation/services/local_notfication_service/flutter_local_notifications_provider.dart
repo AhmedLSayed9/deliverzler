@@ -42,9 +42,10 @@ Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
       if (payload != null) {
         final Map<String, dynamic> decodedPayload = jsonDecode(payload);
         if (decodedPayload.isNotEmpty) {
-          final notification = AppNotificationModel.fromJson(decodedPayload);
-          ref.read(tappedNotificationProvider.notifier).state =
-              Some(notification.toEntity());
+          final ntf = AppNotificationModel.fromJson(decodedPayload).toEntity();
+          ref
+              .read(tappedNotificationProvider.notifier)
+              .update((_) => Some(ntf));
         }
       }
     },

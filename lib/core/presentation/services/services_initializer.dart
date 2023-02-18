@@ -53,8 +53,10 @@ class ServicesInitializer {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     if (!kIsWeb) {
-      await ref.read(setupFlutterLocalNotificationsProvider.future);
-      await ref.read(setupFCMProvider.future);
+      try {
+        await ref.read(setupFlutterLocalNotificationsProvider.future);
+        await ref.read(setupFCMProvider.future);
+      } catch (_) {}
     }
   }
 

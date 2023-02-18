@@ -37,6 +37,10 @@ Future<PlaceDetails> getPlaceDetails(
   GetPlaceDetailsRef ref,
   String placeId,
 ) async {
+  ref.listenSelf((previous, next) {
+    next.whenData((_) => ref.invalidate(sessionTokenProvider));
+  });
+
   final cancelToken = ref.cancelToken();
 
   final params = GetPlaceDetailsParams(
@@ -44,6 +48,5 @@ Future<PlaceDetails> getPlaceDetails(
     placeId: placeId,
   );
   final placeDetails = await ref.watch(getPlaceDetailsUCProvider).call(params);
-  ref.invalidate(sessionTokenProvider);
   return placeDetails;
 }
