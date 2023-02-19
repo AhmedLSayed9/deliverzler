@@ -12,13 +12,12 @@ part 'sign_in_provider.g.dart';
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
 AsyncValue<Option<User>> signInState(SignInStateRef ref) {
+  final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
   ref.listenSelf((previous, next) {
-    next.whenOrNull(
-      data: (user) {
+    next.whenData(
+      (user) {
         if (user is Some<User>) {
-          ref
-              .read(authStateControllerProvider.notifier)
-              .authenticateUser(user.value);
+          sub.read().authenticateUser(user.value);
         }
       },
     );

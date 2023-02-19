@@ -14,11 +14,12 @@ enum SignOutState {
 
 @riverpod
 AsyncValue<SignOutState> signOutState(SignOutStateRef ref) {
+  final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
   ref.listenSelf((previous, next) {
-    next.whenOrNull(
-      data: (state) {
+    next.whenData(
+      (state) {
         if (state == SignOutState.success) {
-          ref.read(authStateControllerProvider.notifier).unAuthenticateUser();
+          sub.read().unAuthenticateUser();
         }
       },
     );

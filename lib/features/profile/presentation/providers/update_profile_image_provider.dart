@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../core/presentation/utils/functional.dart';
 import '../../domain/use_cases/update_profile_image_uc.dart';
@@ -14,13 +14,12 @@ part 'update_profile_image_provider.g.dart';
 @riverpod
 AsyncValue<Option<String>> updateProfileImageState(
     UpdateProfileImageStateRef ref) {
+  final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
   ref.listenSelf((previous, next) {
-    next.whenOrNull(
-      data: (imageUrl) {
+    next.whenData(
+      (imageUrl) {
         if (imageUrl is Some<String>) {
-          ref
-              .read(userControllerProvider.notifier)
-              .updateUserImage(imageUrl.value);
+          sub.read().updateUserImage(imageUrl.value);
         }
       },
     );

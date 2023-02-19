@@ -23,9 +23,10 @@ Future<String> splash(SplashRef ref) async {
 
 @riverpod
 Future<String> checkAuth(CheckAuthRef ref) async {
+  //TODO: avoid calling side-effect inside provider initialization.
   try {
     final user = await ref.watch(checkAuthUCProvider).call();
-    ref.watch(authStateControllerProvider.notifier).authenticateUser(user);
+    ref.watch(authStateProvider.notifier).authenticateUser(user);
   } catch (_) {}
   return RoutePaths.authGuard;
 }

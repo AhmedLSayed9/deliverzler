@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../auth/data/models/user_model.dart';
-import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/data/network/i_firebase_firestore_caller.dart';
 import '../../../../core/data/network/i_firebase_storage_caller.dart';
 import '../../../../core/data/network/main_api/api_callers/main_api_firestore_caller.dart';

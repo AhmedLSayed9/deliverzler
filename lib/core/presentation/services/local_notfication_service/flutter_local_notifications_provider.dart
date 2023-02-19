@@ -9,18 +9,23 @@ import '../../utils/functional.dart';
 
 part 'flutter_local_notifications_provider.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 FlutterLocalNotificationsPlugin flutterLocalNotifications(
     FlutterLocalNotificationsRef ref) {
   final flutterLocalNotifications = ref.watch(
     setupFlutterLocalNotificationsProvider.select((value) => value.valueOrNull),
   );
-  return flutterLocalNotifications ??
-      (throw Exception(
-          'setupFlutterLocalNotificationsProvider has not initialized'));
+
+  if (flutterLocalNotifications != null) {
+    ref.keepAlive();
+    return flutterLocalNotifications;
+  } else {
+    throw Exception(
+        'setupFlutterLocalNotificationsProvider has not initialized');
+  }
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
     SetupFlutterLocalNotificationsRef ref) async {
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -36,6 +41,7 @@ Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
   const InitializationSettings settings =
       InitializationSettings(android: androidSettings, iOS: iosSettings);
 
+  final sub = ref.listen(tappedNotificationProvider.notifier, (prev, next) {});
   await flutterLocalNotificationsPlugin.initialize(
     settings,
     onSelectNotification: (payload) {
@@ -43,12 +49,11 @@ Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
         final Map<String, dynamic> decodedPayload = jsonDecode(payload);
         if (decodedPayload.isNotEmpty) {
           final ntf = AppNotificationModel.fromJson(decodedPayload).toEntity();
-          ref
-              .read(tappedNotificationProvider.notifier)
-              .update((_) => Some(ntf));
+          sub.read().update((_) => Some(ntf));
         }
       }
     },
   );
+  ref.keepAlive();
   return flutterLocalNotificationsPlugin;
 }

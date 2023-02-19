@@ -52,6 +52,9 @@ void main() {
     image: 'https://www.image.com',
   );
 
+  const authenticatedState = Some<User>(tUser);
+  const unauthenticatedState = None<User>();
+
   final tException = Exception('test_exception');
   final tStackTrace = StackTrace.current;
 
@@ -71,10 +74,10 @@ void main() {
         return listener;
       }
 
-      Listener setUpAuthStateListener(ProviderContainer container) {
-        final listener = Listener<AuthState>();
+      Listener<Option<User>> setUpAuthStateListener(ProviderContainer container) {
+        final listener = Listener<Option<User>>();
         container.listen(
-          authStateControllerProvider,
+          authStateProvider,
           listener,
           fireImmediately: true,
         );
@@ -145,7 +148,7 @@ void main() {
           final listener = setUpListener(container);
 
           // WHEN
-          verify(() => authListener(null, AuthState.unauthenticated));
+          verify(() => authListener(null, unauthenticatedState));
           verifyNoMoreInteractions(authListener);
 
           verify(() => listener(null, idleState));
@@ -158,8 +161,7 @@ void main() {
 
           // THEN
           verifyInOrder([
-            () => authListener(
-                AuthState.unauthenticated, AuthState.authenticated),
+            () => authListener(unauthenticatedState, authenticatedState),
             () => listener(idleState, successState),
           ]);
           verifyNoMoreInteractions(authListener);

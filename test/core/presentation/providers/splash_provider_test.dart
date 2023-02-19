@@ -5,7 +5,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/use_cases/check_auth_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
-import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
 import 'package:deliverzler/core/data/network/network_info.dart';
 import 'package:deliverzler/core/presentation/providers/splash_provider.dart';
 import 'package:deliverzler/core/presentation/routing/route_paths.dart';
@@ -41,6 +40,9 @@ void main() {
   const loadingState = AsyncLoading<String>();
   const authGuardState = AsyncData<String>(authGuardPath);
   const noInternetState = AsyncData<String>(noInternetPath);
+
+  const authenticatedState = Some<User>(tUser);
+  const unauthenticatedState = None<User>();
 
   group(
     'splashProvider',
@@ -154,9 +156,9 @@ void main() {
       }
 
       Listener setUpAuthStateListener(ProviderContainer container) {
-        final listener = Listener<AuthState>();
+        final listener = Listener<Option<User>>();
         container.listen(
-          authStateControllerProvider,
+          authStateProvider,
           listener,
           fireImmediately: true,
         );
@@ -178,7 +180,7 @@ void main() {
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          verify(() => authListener(null, AuthState.unauthenticated));
+          verify(() => authListener(null, unauthenticatedState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(checkAuthProvider.future);
@@ -188,17 +190,14 @@ void main() {
 
           verifyInOrder([
             () => mockCheckAuthUC(),
-            () => authListener(
-                  AuthState.unauthenticated,
-                  AuthState.authenticated,
-                ),
+            () => authListener(unauthenticatedState, authenticatedState),
             () => listener(loadingState, authGuardState),
           ]);
           verifyNoMoreInteractions(mockCheckAuthUC);
           verifyNoMoreInteractions(listener);
           verifyNoMoreInteractions(authListener);
 
-          expect(container.read(userControllerProvider), some<User>(tUser));
+          expect(container.read(currentUserProvider), tUser);
         },
       );
 
@@ -221,7 +220,7 @@ void main() {
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          verify(() => authListener(null, AuthState.unauthenticated));
+          verify(() => authListener(null, unauthenticatedState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(checkAuthProvider.future);

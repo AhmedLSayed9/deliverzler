@@ -50,6 +50,9 @@ void main() {
     image: 'https://www.image.com',
   );
 
+  const authenticatedState = Some<User>(tUser);
+  const unauthenticatedState = None<User>();
+
   final tException = Exception('test_exception');
   final tStackTrace = StackTrace.current;
 
@@ -70,10 +73,11 @@ void main() {
         return listener;
       }
 
-      Listener setUpAuthStateListener(ProviderContainer container) {
-        final listener = Listener<AuthState>();
+      Listener<Option<User>> setUpAuthStateListener(
+          ProviderContainer container) {
+        final listener = Listener<Option<User>>();
         container.listen(
-          authStateControllerProvider,
+          authStateProvider,
           listener,
           fireImmediately: true,
         );
@@ -141,16 +145,14 @@ void main() {
             ],
           );
           final listener = setUpListener(container);
-          container
-              .read(authStateControllerProvider.notifier)
-              .authenticateUser(tUser);
+          container.read(authStateProvider.notifier).authenticateUser(tUser);
           final authListener = setUpAuthStateListener(container);
 
           // WHEN
           verify(() => listener(null, idleState));
           verifyNoMoreInteractions(listener);
 
-          verify(() => authListener(null, AuthState.authenticated));
+          verify(() => authListener(null, authenticatedState));
           verifyNoMoreInteractions(listener);
 
           container
@@ -160,8 +162,7 @@ void main() {
 
           // THEN
           verifyInOrder([
-            () => authListener(
-                AuthState.authenticated, AuthState.unauthenticated),
+            () => authListener(authenticatedState, unauthenticatedState),
             () => listener(idleState, successState),
           ]);
           verifyNoMoreInteractions(authListener);
@@ -205,10 +206,11 @@ void main() {
         return listener;
       }
 
-      Listener setUpAuthStateListener(ProviderContainer container) {
-        final listener = Listener<AuthState>();
+      Listener<Option<User>> setUpAuthStateListener(
+          ProviderContainer container) {
+        final listener = Listener<Option<User>>();
         container.listen(
-          authStateControllerProvider,
+          authStateProvider,
           listener,
           fireImmediately: true,
         );
@@ -261,7 +263,7 @@ void main() {
           );
           final listener = setUpListener(container);
           container
-              .read(authStateControllerProvider.notifier)
+              .read(authStateProvider.notifier)
               .authenticateUser(tUser);
           final authListener = setUpAuthStateListener(container);
 
@@ -269,7 +271,7 @@ void main() {
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          verify(() => authListener(null, AuthState.authenticated));
+          verify(() => authListener(null, authenticatedState));
           verifyNoMoreInteractions(listener);
 
           final call = container.read(signOutProvider(tEvent).future);

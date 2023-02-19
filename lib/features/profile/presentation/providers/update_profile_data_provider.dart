@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../auth/domain/entities/user.dart';
-import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../core/presentation/utils/functional.dart';
 import '../../domain/use_cases/update_profile_data_uc.dart';
@@ -12,11 +12,12 @@ part 'update_profile_data_provider.g.dart';
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
 AsyncValue<Option<User>> updateProfileDataState(UpdateProfileDataStateRef ref) {
+  final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
   ref.listenSelf((previous, next) {
-    next.whenOrNull(
-      data: (user) {
+    next.whenData(
+      (user) {
         if (user is Some<User>) {
-          ref.read(userControllerProvider.notifier).setUser(user.value);
+          sub.read().updateUser(user.value);
         }
       },
     );

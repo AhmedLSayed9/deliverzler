@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../domain/entities/order.dart';
 import '../utils/enums.dart';
 import 'upcoming_orders_provider.dart';

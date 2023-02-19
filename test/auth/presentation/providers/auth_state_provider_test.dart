@@ -4,7 +4,6 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
-import 'package:deliverzler/auth/presentation/providers/user_provider.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 
 // Using mockito to keep track of when a provider notify its listeners
@@ -19,20 +18,20 @@ void main() {
     return container;
   }
 
-  Listener setUpListener(ProviderContainer container) {
-    final listener = Listener<AuthState>();
+  Listener<Option<User>> setUpListener(ProviderContainer container) {
+    final listener = Listener<Option<User>>();
     container.listen(
-      authStateControllerProvider,
+      authStateProvider,
       listener,
       fireImmediately: true,
     );
     return listener;
   }
 
-  Listener setUpUserListener(ProviderContainer container) {
-    final listener = Listener<Option<User>>();
-    container.listen<Option<User>>(
-      userControllerProvider,
+  Listener<AsyncValue<User>> setUpUserListener(ProviderContainer container) {
+    final listener = Listener<AsyncValue<User>>();
+    container.listen(
+      currentUserStateProvider,
       listener,
       fireImmediately: true,
     );
@@ -46,17 +45,17 @@ void main() {
     phone: '0123456789',
     image: 'https://www.image.com',
   );
-  const noneUser = None<User>();
-  final someUser = some<User>(tUser);
+  const loadingState = AsyncLoading<User>();
+  const dataState = AsyncData<User>(tUser);
 
-  const authenticatedState = AuthState.authenticated;
-  const unauthenticatedState = AuthState.unauthenticated;
+  const authenticatedState = Some<User>(tUser);
+  const unauthenticatedState = None<User>();
 
   group(
     'build',
     () {
       test(
-        'initial state should be AuthState.unauthenticated',
+        'initial state should be none',
         () {
           // GIVEN
           final container = setUpContainer();
@@ -74,8 +73,7 @@ void main() {
     'authenticateUser',
     () {
       test(
-        'should call userControllerProvider.setUser'
-        'then emit AuthState.authenticated',
+        'should emit some user',
         () async {
           // GIVEN
           final container = setUpContainer();
@@ -86,17 +84,18 @@ void main() {
           verify(() => listener(null, unauthenticatedState));
           verifyNoMoreInteractions(listener);
 
-          verify(() => userListener(null, noneUser));
+          verify(() => userListener(null, loadingState));
           verifyNoMoreInteractions(userListener);
 
-          container
-              .read(authStateControllerProvider.notifier)
-              .authenticateUser(tUser);
+          container.read(authStateProvider.notifier).authenticateUser(tUser);
 
           // THEN
+          await expectLater(
+              container.read(currentUserStateProvider), dataState);
+
           verifyInOrder([
-            () => userListener(noneUser, someUser),
             () => listener(unauthenticatedState, authenticatedState),
+            () => userListener(loadingState, dataState),
           ]);
           verifyNoMoreInteractions(listener);
           verifyNoMoreInteractions(userListener);
@@ -109,14 +108,11 @@ void main() {
     'unAuthenticateUser',
     () {
       test(
-        'should emit AuthState.unauthenticated'
-        'then invalidate userControllerProvider with a delay of 1 second',
+        'should emit none',
         () async {
           // GIVEN
           final container = setUpContainer();
-          container
-              .read(authStateControllerProvider.notifier)
-              .authenticateUser(tUser);
+          container.read(authStateProvider.notifier).authenticateUser(tUser);
           final listener = setUpListener(container);
           final userListener = setUpUserListener(container);
 
@@ -124,24 +120,23 @@ void main() {
           verify(() => listener(null, authenticatedState));
           verifyNoMoreInteractions(listener);
 
-          verify(() => userListener(null, someUser));
+          verify(() => userListener(null, dataState));
           verifyNoMoreInteractions(userListener);
 
-          container
-              .read(authStateControllerProvider.notifier)
-              .unAuthenticateUser();
+          container.read(authStateProvider.notifier).unAuthenticateUser();
 
           // THEN
           verify(() => listener(authenticatedState, unauthenticatedState));
           verifyNoMoreInteractions(listener);
 
-          await expectLater(
-            await Future.delayed(const Duration(seconds: 1), () {
-              return container.read(userControllerProvider);
-            }),
-            noneUser,
+          final loadingWithPrevData = loadingState.copyWithPrevious(
+            dataState,
+            isRefresh: false,
           );
-          verify(() => userListener(someUser, noneUser));
+
+          expect(container.read(currentUserStateProvider), loadingWithPrevData);
+
+          verify(() => userListener(dataState, loadingWithPrevData));
           verifyNoMoreInteractions(userListener);
         },
       );

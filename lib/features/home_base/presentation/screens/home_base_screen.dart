@@ -7,6 +7,7 @@ import '../../../../auth/presentation/providers/sign_out_provider.dart';
 import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/services/connection_stream_service.dart';
+import '../../../../core/presentation/services/fcm_service/show_fcm_notification_provider.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/functional.dart';
@@ -26,34 +27,36 @@ class HomeBaseScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    ref.listen<AsyncValue<ConnectionStatus>>(
-      connectionStreamProvider,
-      (prevState, newState) {
-        newState.whenOrNull(
-          data: (status) {
-            Toasts.showConnectionToast(context, connectionStatus: status);
-          },
-        );
-      },
-    );
+    ref.listen(connectionStreamProvider, (prevState, newState) {
+      newState.whenOrNull(
+        data: (status) {
+          Toasts.showConnectionToast(context, connectionStatus: status);
+        },
+      );
+    });
 
-    ref.listen<AsyncValue<void>>(
-      signOutStateProvider,
-      (prevState, newState) {
-        prevState?.unwrapPrevious().whenOrNull(
-              loading: () => NavigationService.dismissDialog(context),
-            );
-        newState.unwrapPrevious().whenOrNull(
-              loading: () => Dialogs.showLoadingDialog(context),
-              error: (err, st) {
-                Dialogs.showErrorDialog(
-                  context,
-                  message: err.errorMessage(context),
-                );
-              },
-            );
-      },
-    );
+    ref.listen(signOutStateProvider, (prevState, newState) {
+      prevState?.unwrapPrevious().whenOrNull(
+            loading: () => NavigationService.dismissDialog(context),
+          );
+      newState.unwrapPrevious().whenOrNull(
+            loading: () => Dialogs.showLoadingDialog(context),
+            error: (err, st) {
+              Dialogs.showErrorDialog(
+                context,
+                message: err.errorMessage(context),
+              );
+            },
+          );
+    });
+
+    ref.listen(onMessageProvider, (previous, next) {
+      next.whenData(
+        (message) {
+          ref.read(showFCMNotificationProvider(message));
+        },
+      );
+    });
 
     final selectedTab = ref.watch(selectedTabProvider);
     final navigatorKeys = useMemoized(() => {
@@ -61,13 +64,6 @@ class HomeBaseScreen extends HookConsumerWidget {
           TabItem.home: GlobalKey<NavigatorState>(debugLabel: 'page2'),
           TabItem.settings: GlobalKey<NavigatorState>(debugLabel: 'page3'),
         });
-
-    useEffect(() {
-      ref.read(getInitialMessageProvider);
-      ref.listenManual(onMessageProvider, (previous, next) {});
-      ref.listenManual(onMessageOpenedAppProvider, (previous, next) {});
-      return null;
-    }, []);
 
     //TODO [Enhancement]: use go_router for better deep links handling
     ref.listen<Option<AppNotification>>(

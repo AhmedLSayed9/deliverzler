@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../../../../../core/presentation/styles/font_styles.dart';
 import '../../../../../core/presentation/styles/sizes.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../auth/domain/entities/user.dart';
-import '../../../../auth/presentation/providers/user_provider.dart';
+import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/domain/entities/event.dart';
 import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
