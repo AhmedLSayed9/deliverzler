@@ -6,6 +6,7 @@ import 'package:deliverzler/core/core_features/locale/domain/use_cases/get_app_l
 import 'package:deliverzler/core/core_features/locale/domain/use_cases/set_app_locale_uc.dart';
 import 'package:deliverzler/core/core_features/locale/presentation/providers/app_locale_provider.dart';
 import 'package:deliverzler/core/core_features/locale/presentation/utils/app_locale.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MockGetAppLocaleUC extends Mock implements GetAppLocaleUC {}
 
@@ -17,6 +18,9 @@ class Listener<T> extends Mock {
 }
 
 void main() {
+  SharedPreferences.setMockInitialValues({'test': 'none'});
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   late MockGetAppLocaleUC mockGetAppLocaleUC;
   late MockSetAppLocaleUC mockSetAppLocaleUC;
 

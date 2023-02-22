@@ -4,28 +4,19 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../features/notifications/data/models/app_notification_model.dart';
-import '../../../../features/notifications/presentation/providers/tapped_notification_provider.dart';
+import '../../../../features/notifications/domain/entities/app_notification.dart';
+import '../../providers/provider_utils.dart';
 import '../../utils/functional.dart';
 
 part 'flutter_local_notifications_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 FlutterLocalNotificationsPlugin flutterLocalNotifications(
     FlutterLocalNotificationsRef ref) {
-  final flutterLocalNotifications = ref.watch(
-    setupFlutterLocalNotificationsProvider.select((value) => value.valueOrNull),
-  );
-
-  if (flutterLocalNotifications != null) {
-    ref.keepAlive();
-    return flutterLocalNotifications;
-  } else {
-    throw Exception(
-        'setupFlutterLocalNotificationsProvider has not initialized');
-  }
+  return ref.watch(setupFlutterLocalNotificationsProvider).requireValue;
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
     SetupFlutterLocalNotificationsRef ref) async {
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -41,7 +32,7 @@ Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
   const InitializationSettings settings =
       InitializationSettings(android: androidSettings, iOS: iosSettings);
 
-  final sub = ref.listen(tappedNotificationProvider.notifier, (prev, next) {});
+  final sub = ref.listen(onSelectNotificationProvider.notifier, (prev, next) {});
   await flutterLocalNotificationsPlugin.initialize(
     settings,
     onSelectNotification: (payload) {
@@ -54,6 +45,11 @@ Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
       }
     },
   );
-  ref.keepAlive();
   return flutterLocalNotificationsPlugin;
+}
+
+@Riverpod(keepAlive: true)
+class OnSelectNotification extends _$OnSelectNotification with NotifierUpdate {
+  @override
+  Option<AppNotification> build() => const None();
 }

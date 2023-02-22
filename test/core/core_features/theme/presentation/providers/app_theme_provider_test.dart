@@ -6,6 +6,7 @@ import 'package:deliverzler/core/core_features/theme/domain/use_cases/get_app_th
 import 'package:deliverzler/core/core_features/theme/domain/use_cases/set_app_theme_uc.dart';
 import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
 import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MockGetAppThemeUC extends Mock implements GetAppThemeUC {}
 
@@ -17,6 +18,9 @@ class Listener<T> extends Mock {
 }
 
 void main() {
+  SharedPreferences.setMockInitialValues({'test': 'none'});
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   late MockGetAppThemeUC mockGetAppThemeUC;
   late MockSetAppThemeUC mockSetAppThemeUC;
 

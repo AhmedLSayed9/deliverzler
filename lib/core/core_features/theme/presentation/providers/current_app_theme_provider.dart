@@ -9,7 +9,6 @@ import 'app_theme_provider.dart';
 
 part 'current_app_theme_provider.g.dart';
 
-
 @Riverpod(keepAlive: true)
 class PlatformBrightness extends _$PlatformBrightness with NotifierUpdate {
   @override

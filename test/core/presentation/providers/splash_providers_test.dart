@@ -6,7 +6,7 @@ import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/use_cases/check_auth_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/core/data/network/network_info.dart';
-import 'package:deliverzler/core/presentation/providers/splash_provider.dart';
+import 'package:deliverzler/core/presentation/providers/splash_providers.dart';
 import 'package:deliverzler/core/presentation/routing/route_paths.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
 
@@ -45,7 +45,7 @@ void main() {
   const unauthenticatedState = None<User>();
 
   group(
-    'splashProvider',
+    'splashTargetProvider',
     () {
       ProviderContainer setUpContainer({List<Override>? overrides}) {
         final container = ProviderContainer(
@@ -61,7 +61,7 @@ void main() {
       Listener setUpListener(ProviderContainer container) {
         final listener = Listener<AsyncValue<String>>();
         container.listen(
-          splashProvider,
+          splashTargetProvider,
           listener,
           fireImmediately: true,
         );
@@ -87,7 +87,7 @@ void main() {
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(splashProvider.future);
+          final call = container.read(splashTargetProvider.future);
 
           // THEN
           await expectLater(call, completion(tCheckAuthPath));
@@ -116,7 +116,7 @@ void main() {
           verify(() => listener(null, loadingState));
           verifyNoMoreInteractions(listener);
 
-          final call = container.read(splashProvider.future);
+          final call = container.read(splashTargetProvider.future);
 
           // THEN
           await expectLater(call, completion(noInternetPath));
@@ -181,7 +181,7 @@ void main() {
           verifyNoMoreInteractions(listener);
 
           verify(() => authListener(null, unauthenticatedState));
-          verifyNoMoreInteractions(listener);
+          verifyNoMoreInteractions(authListener);
 
           final call = container.read(checkAuthProvider.future);
 

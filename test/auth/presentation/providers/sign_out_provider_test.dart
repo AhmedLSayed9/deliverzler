@@ -1,7 +1,5 @@
 // ignore_for_file: invalid_use_of_visible_for_overriding_member
 
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,6 +8,8 @@ import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_out_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
+import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
+import 'package:deliverzler/core/presentation/utils/functional.dart';
 
 class MockSignOutUC extends Mock implements SignOutUC {}
 

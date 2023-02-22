@@ -8,7 +8,12 @@ part 'shared_pref_local_storage_caller.g.dart';
 
 @Riverpod(keepAlive: true)
 SharedPreferences sharedPrefs(SharedPrefsRef ref) {
-  throw UnimplementedError('sharedPrefsProvider has not initialized!');
+  return ref.watch(sharedPrefsFutureProvider).requireValue;
+}
+
+@Riverpod(keepAlive: true)
+Future<SharedPreferences> sharedPrefsFuture(SharedPrefsFutureRef ref) async {
+  return await SharedPreferences.getInstance();
 }
 
 @Riverpod(keepAlive: true)
