@@ -46,8 +46,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
                 state.whenOrNull(
                   success: (orderId, deliveryStatus) async {
                     if (deliveryStatus != DeliveryStatus.onTheWay) return;
-                    final container = ProviderScope.containerOf(context);
-                    final sub = container.listen(
+                    final sub = ref.listenManual(
                         selectedOrderIdProvider, (prev, value) {});
                     ref
                         .read(selectedOrderIdProvider.notifier)

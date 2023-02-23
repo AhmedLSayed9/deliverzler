@@ -1,5 +1,4 @@
 // ignore: depend_on_referenced_packages, implementation_imports
-
 import 'package:riverpod/src/notifier.dart' as notifier;
 
 export 'package:deliverzler/core/presentation/extensions/auto_dispose_ref_extension.dart';

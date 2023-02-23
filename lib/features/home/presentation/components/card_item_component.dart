@@ -47,8 +47,7 @@ class CardItemComponent extends HookConsumerWidget {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      final container = ProviderScope.containerOf(context);
-      final sub = container.listen(selectedOrderIdProvider, (prev, value) {});
+      final sub = ref.listenManual(selectedOrderIdProvider, (prev, value) {});
       ref.read(selectedOrderIdProvider.notifier).update((_) => Some(order.id));
       await NavigationService.push(
         context,
