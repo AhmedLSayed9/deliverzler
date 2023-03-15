@@ -1,5 +1,4 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/presentation/services/fcm_service/fcm_provider.dart';
@@ -18,14 +17,15 @@ Future<Option<RemoteMessage>> getInitialMessage(
   return initialMsg.toOption();
 }
 
-final onMessageProvider = StreamProvider.autoDispose<RemoteMessage>((ref) {
+@riverpod
+Stream<RemoteMessage> onMessage(OnMessageRef ref) {
   // Called when FCM payload is received while the app is in the foreground.
   return FirebaseMessaging.onMessage;
-});
+}
 
-final onMessageOpenedAppProvider =
-    StreamProvider.autoDispose<RemoteMessage>((ref) {
+@riverpod
+Stream<RemoteMessage> onMessageOpenedApp(OnMessageOpenedAppRef ref) {
   // Called when a user presses a notification message displayed via FCM.
   // Only if the app has opened from background state (not foreground or terminated).
   return FirebaseMessaging.onMessageOpenedApp;
-});
+}

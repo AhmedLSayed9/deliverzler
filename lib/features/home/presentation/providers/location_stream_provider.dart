@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:geolocator/geolocator.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -12,8 +11,10 @@ import '../utils/location_error.dart';
 
 part 'location_stream_provider.g.dart';
 
-final locationStreamProvider =
-    StreamProvider.autoDispose<Position>((ref) async* {
+@riverpod
+Stream<Position> locationStream(
+  LocationStreamRef ref,
+) async* {
   final locationService = ref.watch(locationServiceProvider);
 
   await ref.watch(enableLocationProvider(locationService).future);
@@ -27,7 +28,7 @@ final locationStreamProvider =
       Error.throwWithStackTrace(LocationError.getLocationTimeout, st);
     },
   );
-});
+}
 
 @riverpod
 Future<void> enableLocation(

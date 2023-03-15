@@ -1,11 +1,13 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/entities/order.dart';
 import '../../domain/use_cases/get_upcoming_orders_uc.dart';
 
-final upcomingOrdersProvider =
-    StreamProvider.autoDispose<List<AppOrder>>((ref) {
+part 'upcoming_orders_provider.g.dart';
+
+@riverpod
+Stream<List<AppOrder>> upcomingOrders(UpcomingOrdersRef ref) {
   final ordersStream = ref.watch(getUpcomingOrdersUCProvider).call();
   return ordersStream.distinct((previous, next) {
     //Compare prev,next streams by deep equals and skip if they're not equal,
@@ -14,4 +16,4 @@ final upcomingOrdersProvider =
     //which will lead to unnecessary api calls.
     return previous.lock == next.lock;
   });
-});
+}
