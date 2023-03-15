@@ -20,7 +20,7 @@ class BottomNavBarComponent extends PlatformNavBar {
           },
           backgroundColor:
               Theme.of(context).bottomNavigationBarTheme.backgroundColor ??
-                  Theme.of(context).bottomAppBarColor,
+                  Theme.of(context).bottomAppBarTheme.color,
           height: Sizes.bottomNavBarHeight60,
           materialData: MaterialBottomNavBarData(
             destinations: TabItem.values

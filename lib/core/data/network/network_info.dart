@@ -1,7 +1,9 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'data_connection_checker.dart';
+
+part 'network_info.g.dart';
 
 abstract class INetworkInfo {
   Future<bool> get hasInternetConnection;
@@ -9,12 +11,13 @@ abstract class INetworkInfo {
   Future<ConnectivityResult> get hasNetworkConnectivity;
 }
 
-final networkInfoProvider = Provider<INetworkInfo>(
-      (ref) => NetworkInfo(
+@Riverpod(keepAlive: true)
+INetworkInfo networkInfo(NetworkInfoRef ref) {
+  return NetworkInfo(
     DataConnectionChecker(),
     Connectivity(),
-  ),
-);
+  );
+}
 
 class NetworkInfo implements INetworkInfo {
   NetworkInfo(this.dataConnectionChecker, this.connectivity);
