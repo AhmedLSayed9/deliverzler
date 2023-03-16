@@ -40,19 +40,15 @@ class UserImageComponent extends ConsumerWidget {
       },
     );
 
-    Future<void> pickImage(PickSource pickSource) async {
-      final bool canSubmit =
-          !ref.read(updateProfileImageStateProvider).isLoading;
-
-      if (canSubmit) {
-        try {
-          final image =
-              await ref.read(pickProfileImageProvider(pickSource).future);
+    void pickImage(PickSource pickSource, BuildContext ctx) {
+      try {
+        ref.read(pickProfileImageProvider(pickSource).future).then((image) {
           ref
               .read(updateProfileImageEventProvider.notifier)
               .update((_) => Some(Event.unique(image)));
-        } catch (_) {}
-      }
+        });
+      } catch (_) {}
+      NavigationService.goBack(ctx);
     }
 
     return Stack(
@@ -65,12 +61,14 @@ class UserImageComponent extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(right: Sizes.paddingH8),
           child: ImagePickComponent(
-            pickFromCameraFunction: () {
-              pickImage(PickSource.camera);
-            },
-            pickFromGalleryFunction: () {
-              pickImage(PickSource.gallery);
-            },
+            pickFromCameraCallBack:
+                ref.isLoading(updateProfileImageStateProvider)
+                    ? null
+                    : (ctx) => pickImage(PickSource.camera, ctx),
+            pickFromGalleryCallBack:
+                ref.isLoading(updateProfileImageStateProvider)
+                    ? null
+                    : (ctx) => pickImage(PickSource.gallery, ctx),
           ),
         ),
       ],

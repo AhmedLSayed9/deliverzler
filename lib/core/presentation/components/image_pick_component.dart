@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../helpers/localization_helper.dart';
-import '../routing/navigation_service.dart';
 import '../styles/app_images.dart';
 import '../styles/sizes.dart';
 import '../widgets/custom_text.dart';
 
 class ImagePickComponent extends StatelessWidget {
   const ImagePickComponent({
-    required this.pickFromCameraFunction,
-    required this.pickFromGalleryFunction,
+    required this.pickFromCameraCallBack,
+    required this.pickFromGalleryCallBack,
     Key? key,
   }) : super(key: key);
 
-  final Function pickFromCameraFunction;
-  final Function pickFromGalleryFunction;
+  final void Function(BuildContext ctx)? pickFromCameraCallBack;
+  final void Function(BuildContext ctx)? pickFromGalleryCallBack;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +29,11 @@ class ImagePickComponent extends StatelessWidget {
         FocusScope.of(context).requestFocus(FocusNode());
         showDialog(
           context: context,
-          builder: (BuildContext context) {
+          builder: (BuildContext ctx) {
             return AlertDialog(
               title: CustomText.f18(
-                context,
-                tr(context).chooseOption,
+                ctx,
+                tr(ctx).chooseOption,
                 color: Colors.blue,
               ),
               content: Column(
@@ -44,12 +43,11 @@ class ImagePickComponent extends StatelessWidget {
                     height: 1,
                   ),
                   Material(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(ctx).primaryColor,
                     child: ListTile(
-                      onTap: () async {
-                        pickFromCameraFunction();
-                        NavigationService.goBack(context);
-                      },
+                      onTap: pickFromCameraCallBack == null
+                          ? null
+                          : () => pickFromCameraCallBack!(ctx),
                       title: CustomText.f18(
                         context,
                         tr(context).camera,
@@ -64,15 +62,14 @@ class ImagePickComponent extends StatelessWidget {
                     height: 1,
                   ),
                   Material(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(ctx).primaryColor,
                     child: ListTile(
-                      onTap: () async {
-                        pickFromGalleryFunction();
-                        NavigationService.goBack(context);
-                      },
+                      onTap: pickFromGalleryCallBack == null
+                          ? null
+                          : () => pickFromGalleryCallBack!(ctx),
                       title: CustomText.f18(
-                        context,
-                        tr(context).gallery,
+                        ctx,
+                        tr(ctx).gallery,
                       ),
                       leading: const Icon(
                         Icons.account_box,

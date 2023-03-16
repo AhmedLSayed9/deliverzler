@@ -2,8 +2,7 @@
 /// the project. It also exports the [FpState] type alias, which is used to
 /// avoid conflicts with the [State] class from the Flutter SDK.
 
-import 'package:fpdart/fpdart.dart' as fpdart show State;
-import 'package:fpdart/fpdart.dart';
+import 'package:fpdart/fpdart.dart' as fpdart;
 
 import 'riverpod_framework.dart';
 
@@ -13,4 +12,4 @@ export 'package:fpdart/fpdart.dart' hide State;
 /// A type alias for the [State] class from the `fpdart` library.
 typedef FpState<S, A> = fpdart.State<S, A>;
 
-Option<T> valueToOption<T>(AsyncValue<T> v) => v.valueOrNull.toOption();
+fpdart.Option<T> valueToOption<T>(AsyncValue<T> v) => v.valueOrNull.toOption();

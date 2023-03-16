@@ -12,7 +12,7 @@ class SplashScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final isWarmedUp = !ref.watch(splashServicesWarmupProvider).isLoading;
+    final isWarmedUp = !ref.isLoading(splashServicesWarmupProvider);
     if (isWarmedUp) {
       ref.listen<AsyncValue<String>>(
         splashTargetProvider,

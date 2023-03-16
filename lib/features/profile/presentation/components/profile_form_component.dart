@@ -44,10 +44,7 @@ class ProfileFormComponent extends HookConsumerWidget {
     final mobileController = useTextEditingController(text: user.phone ?? '');
 
     void updateProfile() {
-      final bool canSubmit =
-          !ref.read(updateProfileDataStateProvider).isLoading;
-
-      if (canSubmit && profileFormKey.currentState!.validate()) {
+      if (profileFormKey.currentState!.validate()) {
         final params = user.copyWith(
           name: nameController.text,
           phone: mobileController.text,
@@ -77,7 +74,9 @@ class ProfileFormComponent extends HookConsumerWidget {
           ),
           CustomButton(
             text: tr(context).confirm,
-            onPressed: updateProfile,
+            onPressed: ref.isLoading(updateProfileDataStateProvider)
+                ? null
+                : updateProfile,
           ),
         ],
       ),

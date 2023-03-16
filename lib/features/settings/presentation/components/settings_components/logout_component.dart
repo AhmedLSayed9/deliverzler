@@ -17,25 +17,21 @@ class LogoutComponent extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     void signOut() {
-      final bool canSubmit = !ref.read(signOutStateProvider).isLoading;
-
-      if (canSubmit) {
-        ref
-            .read(signOutEventProvider.notifier)
-            .update((_) => Some(Event.unique(null)));
-      }
+      ref
+          .read(signOutEventProvider.notifier)
+          .update((_) => Some(Event.unique(null)));
     }
 
     return PlatformWidget(
       material: (_) {
         return InkWell(
-          onTap: signOut,
+          onTap: ref.isLoading(signOutStateProvider) ? null : signOut,
           child: const _SharedItemComponent(),
         );
       },
       cupertino: (_) {
         return GestureDetector(
-          onTap: signOut,
+          onTap: ref.isLoading(signOutStateProvider) ? null : signOut,
           child: const _SharedItemComponent(),
         );
       },

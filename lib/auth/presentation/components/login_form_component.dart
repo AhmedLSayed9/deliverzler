@@ -20,9 +20,7 @@ class LoginFormComponent extends HookConsumerWidget {
     final passwordController = useTextEditingController(text: '');
 
     void signIn() {
-      final bool canSubmit = !ref.read(signInStateProvider).isLoading;
-
-      if (canSubmit && loginFormKey.currentState!.validate()) {
+      if (loginFormKey.currentState!.validate()) {
         final params = SignInWithEmailParams(
           email: emailController.text,
           password: passwordController.text,
@@ -40,16 +38,15 @@ class LoginFormComponent extends HookConsumerWidget {
           LoginTextFieldsSection(
             emailController: emailController,
             passwordController: passwordController,
-            onFieldSubmitted: (value) {
-              signIn();
-            },
+            onFieldSubmitted:
+                ref.isLoading(signInStateProvider) ? null : (_) => signIn(),
           ),
           const SizedBox(
             height: Sizes.marginV40,
           ),
           CustomButton(
             text: tr(context).signIn,
-            onPressed: signIn,
+            onPressed: ref.isLoading(signInStateProvider) ? null : signIn,
           ),
         ],
       ),
