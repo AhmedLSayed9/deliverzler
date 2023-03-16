@@ -21,7 +21,7 @@ class NoInternetScreen extends HookConsumerWidget {
     final networkInfo = ref.watch(networkInfoProvider);
     final isLoading = useState<bool>(false);
 
-    final retryOnPressed = useCallback(() async {
+    Future<void> retryOnPressed() async {
       if (isLoading.value) return;
 
       isLoading.value = true;
@@ -42,7 +42,7 @@ class NoInternetScreen extends HookConsumerWidget {
         },
       );
       isLoading.value = false;
-    }, []);
+    }
 
     return WillPopScope(
       onWillPop: () {

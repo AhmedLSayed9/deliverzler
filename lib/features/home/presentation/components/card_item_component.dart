@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
@@ -21,7 +20,7 @@ import 'card_details_button_component.dart';
 import 'card_order_details_component.dart';
 import 'card_user_details_component.dart';
 
-class CardItemComponent extends HookConsumerWidget {
+class CardItemComponent extends ConsumerWidget {
   const CardItemComponent({
     required this.order,
     Key? key,
@@ -35,15 +34,15 @@ class CardItemComponent extends HookConsumerWidget {
     final bool isUpcomingOrder =
         order.deliveryStatus == DeliveryStatus.upcoming;
 
-    final confirmDeliveryId = useCallback(() {
+    bool confirmDeliveryId() {
       return OrderDialogHelper.confirmDeliveryId(
         context,
         deliveryId: userId,
         orderDeliveryId: order.deliveryId,
       );
-    }, []);
+    }
 
-    final showMap = useCallback(() async {
+    Future<void> showMap() async {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
@@ -55,9 +54,9 @@ class CardItemComponent extends HookConsumerWidget {
         page: RoutePaths.map,
       );
       sub.close();
-    }, []);
+    }
 
-    final confirmOrder = useCallback(() async {
+    Future<void> confirmOrder() async {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
@@ -74,9 +73,9 @@ class CardItemComponent extends HookConsumerWidget {
             .read(updateDeliveryStatusEventProvider.notifier)
             .update((_) => Some(Event.unique(params)));
       }
-    }, []);
+    }
 
-    final deliverOrder = useCallback(() async {
+    Future<void> deliverOrder() async {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
 
       final bool confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
@@ -93,9 +92,9 @@ class CardItemComponent extends HookConsumerWidget {
             .read(updateDeliveryStatusEventProvider.notifier)
             .update((_) => Some(Event.unique(params)));
       }
-    }, []);
+    }
 
-    final cancelOrder = useCallback(() async {
+    Future<void> cancelOrder() async {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
@@ -110,7 +109,7 @@ class CardItemComponent extends HookConsumerWidget {
             .read(updateDeliveryStatusEventProvider.notifier)
             .update((_) => Some(Event.unique(params)));
       }
-    }, []);
+    }
 
     return Card(
       elevation: 6,

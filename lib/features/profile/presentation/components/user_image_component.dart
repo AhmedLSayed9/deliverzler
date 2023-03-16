@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
@@ -16,7 +15,7 @@ import '../../../../core/presentation/widgets/cached_network_image_circular.dart
 import '../providers/pick_profile_image_provider.dart';
 import '../providers/update_profile_image_provider.dart';
 
-class UserImageComponent extends HookConsumerWidget {
+class UserImageComponent extends ConsumerWidget {
   const UserImageComponent({Key? key}) : super(key: key);
 
   @override
@@ -42,7 +41,7 @@ class UserImageComponent extends HookConsumerWidget {
       },
     );
 
-    final pickImage = useCallback((PickSource pickSource) async {
+    Future<void> pickImage(PickSource pickSource) async {
       final bool canSubmit =
           !ref.read(updateProfileImageStateProvider).isLoading;
 
@@ -55,7 +54,7 @@ class UserImageComponent extends HookConsumerWidget {
               .update((_) => Some(Event.unique(image)));
         } catch (_) {}
       }
-    }, []);
+    }
 
     return Stack(
       alignment: Alignment.bottomRight,

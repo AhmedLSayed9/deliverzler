@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +16,7 @@ class LogoutComponent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final signOut = useCallback(() {
+    void signOut() {
       final bool canSubmit = !ref.read(signOutStateProvider).isLoading;
 
       if (canSubmit) {
@@ -25,7 +24,7 @@ class LogoutComponent extends HookConsumerWidget {
             .read(signOutEventProvider.notifier)
             .update((_) => Some(Event.unique(null)));
       }
-    }, []);
+    }
 
     return PlatformWidget(
       material: (_) {

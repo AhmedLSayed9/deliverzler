@@ -21,7 +21,7 @@ class LoginFormComponent extends HookConsumerWidget {
     final emailController = useTextEditingController(text: '');
     final passwordController = useTextEditingController(text: '');
 
-    final signIn = useCallback(() {
+    void signIn() {
       final bool canSubmit = !ref.read(signInStateProvider).isLoading;
 
       if (canSubmit && loginFormKey.currentState!.validate()) {
@@ -33,7 +33,7 @@ class LoginFormComponent extends HookConsumerWidget {
             .read(signInWithEmailEventProvider.notifier)
             .update((_) => Some(Event.unique(params)));
       }
-    }, []);
+    }
 
     return Form(
       key: loginFormKey,

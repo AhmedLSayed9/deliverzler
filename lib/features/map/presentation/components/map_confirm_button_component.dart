@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
@@ -19,14 +18,14 @@ import '../../../home/presentation/utils/order_dialog_helper.dart';
 import '../providers/is_arrived_target_location_provider.dart';
 import '../providers/map_confirm_order_provider.dart';
 
-class MapConfirmButtonComponent extends HookConsumerWidget {
+class MapConfirmButtonComponent extends ConsumerWidget {
   const MapConfirmButtonComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
     final arrivedTargetLocation = ref.watch(isArrivedTargetLocationProvider);
 
-    final confirmDeliveryId = useCallback(() {
+    bool confirmDeliveryId() {
       final userId = ref.read(currentUserProvider).id;
       final orderId = ref.read(selectedOrderProvider).toNullable()?.id;
       return OrderDialogHelper.confirmDeliveryId(
@@ -34,9 +33,9 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
         deliveryId: userId,
         orderDeliveryId: orderId,
       );
-    }, []);
+    }
 
-    final confirmOrder = useCallback(() async {
+    Future<void> confirmOrder() async {
       if (ref.read(mapConfirmOrderStatusProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
@@ -59,7 +58,7 @@ class MapConfirmButtonComponent extends HookConsumerWidget {
               .update((_) => Some(Event.unique(params)));
         },
       );
-    }, []);
+    }
 
     return arrivedTargetLocation
         ? Positioned(

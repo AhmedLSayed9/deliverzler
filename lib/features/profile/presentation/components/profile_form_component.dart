@@ -45,7 +45,7 @@ class ProfileFormComponent extends HookConsumerWidget {
     final nameController = useTextEditingController(text: user.name ?? '');
     final mobileController = useTextEditingController(text: user.phone ?? '');
 
-    final updateProfile = useCallback(() {
+    void updateProfile() {
       final bool canSubmit =
           !ref.read(updateProfileDataStateProvider).isLoading;
 
@@ -58,7 +58,7 @@ class ProfileFormComponent extends HookConsumerWidget {
             .read(updateProfileDataEventProvider.notifier)
             .update((_) => Some(Event.unique(params)));
       }
-    }, []);
+    }
 
     return Form(
       key: profileFormKey,
