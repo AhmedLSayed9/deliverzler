@@ -2,7 +2,7 @@
 import 'package:collection/collection.dart';
 
 import '../../../../core/presentation/providers/provider_utils.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/order.dart';
 import 'my_delivering_orders_provider.dart';

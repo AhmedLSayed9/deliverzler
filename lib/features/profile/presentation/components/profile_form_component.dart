@@ -8,7 +8,7 @@ import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_button.dart';
 import '../providers/update_profile_data_provider.dart';

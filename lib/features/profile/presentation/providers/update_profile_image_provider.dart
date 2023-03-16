@@ -2,7 +2,7 @@ import 'dart:io';
 
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/providers/provider_utils.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/use_cases/update_profile_image_uc.dart';
 

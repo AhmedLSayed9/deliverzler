@@ -6,7 +6,7 @@ import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/hooks/floating_search_bar_controller_hook.dart';
 import '../../../../core/presentation/styles/font_styles.dart';
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../providers/place_autocomplete_provider.dart';
 import 'map_search_menu_component.dart';

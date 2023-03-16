@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../providers/place_autocomplete_provider.dart';
 import '../providers/place_details_provider.dart';

@@ -1,6 +1,6 @@
 
 import '../../../core/presentation/providers/provider_utils.dart';
-import '../../../core/presentation/utils/functional.dart';
+import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/use_cases/sign_in_with_email_uc.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/domain/entities/event.dart';
 import '../../../core/presentation/helpers/localization_helper.dart';
 import '../../../core/presentation/styles/sizes.dart';
-import '../../../core/presentation/utils/functional.dart';
+import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../core/presentation/widgets/custom_button.dart';
 import '../../domain/use_cases/sign_in_with_email_uc.dart';

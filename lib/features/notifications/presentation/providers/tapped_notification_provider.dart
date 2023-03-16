@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../../../core/presentation/services/local_notfication_service/flutter_local_notifications_provider.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../data/models/app_notification_model.dart';
 import '../../domain/entities/app_notification.dart';

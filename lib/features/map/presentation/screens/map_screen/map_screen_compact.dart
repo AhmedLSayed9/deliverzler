@@ -11,7 +11,7 @@ import '../../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../../core/presentation/screens/nested_screen_wrapper.dart';
 import '../../../../../core/presentation/services/local_notfication_service/show_local_notification_provider.dart';
 import '../../../../../core/presentation/utils/dialogs.dart';
-import '../../../../../core/presentation/utils/functional.dart';
+import '../../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/utils/toasts.dart';
 import '../../../../../core/presentation/widgets/loading_indicators.dart';

@@ -7,7 +7,7 @@ import '../../../../core/presentation/services/connection_stream_service.dart';
 import '../../../../core/presentation/services/fcm_service/show_fcm_notification_provider.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/utils/toasts.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_tab_scaffold.dart';

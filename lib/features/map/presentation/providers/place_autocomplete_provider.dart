@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import '../../../../core/presentation/providers/provider_utils.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/place_autocomplete.dart';
 import '../../domain/use_cases/get_place_autocomplete_uc.dart';

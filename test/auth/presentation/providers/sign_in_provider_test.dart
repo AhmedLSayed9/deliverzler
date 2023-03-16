@@ -8,7 +8,7 @@ import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
 import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
+import 'package:deliverzler/core/presentation/utils/fp_framework.dart';
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 class MockSignInWithEmailUC extends Mock implements SignInWithEmailUC {}

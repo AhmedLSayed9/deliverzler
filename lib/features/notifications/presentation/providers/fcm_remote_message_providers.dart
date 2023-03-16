@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../../../core/presentation/services/fcm_service/fcm_provider.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 
 part 'fcm_remote_message_providers.g.dart';

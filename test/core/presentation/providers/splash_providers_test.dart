@@ -7,7 +7,7 @@ import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart
 import 'package:deliverzler/core/data/network/network_info.dart';
 import 'package:deliverzler/core/presentation/providers/splash_providers.dart';
 import 'package:deliverzler/core/presentation/routing/route_paths.dart';
-import 'package:deliverzler/core/presentation/utils/functional.dart';
+import 'package:deliverzler/core/presentation/utils/fp_framework.dart';
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 class MockINetworkInfo extends Mock implements INetworkInfo {}

@@ -6,7 +6,7 @@ import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/routing/route_paths.dart';
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/order.dart';
 import '../../domain/use_cases/update_delivery_status_uc.dart';

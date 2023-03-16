@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../../../core/presentation/utils/functional.dart';
+import '../../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../helpers/map_style_helper.dart';
 import '../place_details_provider.dart';
