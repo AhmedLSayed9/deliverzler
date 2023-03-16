@@ -1,5 +1,6 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 
 part 'session_token_provider.g.dart';
 

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../../i_firebase_storage_caller.dart';
 import '../extensions/firebase_error_extension.dart';
 

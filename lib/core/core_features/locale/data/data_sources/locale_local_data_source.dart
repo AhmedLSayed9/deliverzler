@@ -1,8 +1,9 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 
 import '../../../../data/error/app_exception.dart';
 import '../../../../data/local/local_storage_caller/i_local_storage_caller.dart';
 import '../../../../data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
+import '../../../../presentation/utils/riverpod_framework.dart';
 
 part 'locale_local_data_source.g.dart';
 

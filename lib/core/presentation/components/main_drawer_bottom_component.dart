@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../helpers/localization_helper.dart';
 import '../styles/app_images.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
+import '../utils/riverpod_framework.dart';
 import '../widgets/custom_icon.dart';
 import '../widgets/custom_text.dart';
 

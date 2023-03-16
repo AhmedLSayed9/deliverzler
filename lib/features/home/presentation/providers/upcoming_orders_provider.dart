@@ -1,6 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/order.dart';
 import '../../domain/use_cases/get_upcoming_orders_uc.dart';
 

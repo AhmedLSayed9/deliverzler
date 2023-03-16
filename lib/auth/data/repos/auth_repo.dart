@@ -1,6 +1,7 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 
 import '../../../core/data/network/network_info.dart';
+import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repos/i_auth_repo.dart';
 import '../../domain/use_cases/sign_in_with_email_uc.dart';

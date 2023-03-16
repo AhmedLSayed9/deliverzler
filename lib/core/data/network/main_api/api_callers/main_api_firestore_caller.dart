@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../../i_firebase_firestore_caller.dart';
 import '../extensions/firebase_error_extension.dart';
 

@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:deliverzler/auth/repos/user_repo.dart';
 import 'package:deliverzler/core/domain/failures/failures.dart';

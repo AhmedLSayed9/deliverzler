@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/place_autocomplete.dart';
 import '../../domain/entities/place_details.dart';
 import '../../domain/entities/place_directions.dart';

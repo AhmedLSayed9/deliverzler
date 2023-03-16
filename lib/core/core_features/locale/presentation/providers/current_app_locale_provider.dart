@@ -1,5 +1,6 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../utils/app_locale.dart';
 import 'app_locale_provider.dart';
 

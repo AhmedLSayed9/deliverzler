@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../../core/data/local/image_picker_caller/i_image_picker_caller.dart';
 import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../data/repos/profile_repo.dart';
 import '../repos/i_profile_repo.dart';
 

@@ -1,9 +1,10 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 
 import '../../../../auth/domain/entities/user.dart';
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/use_cases/update_profile_data_uc.dart';
 
 part 'update_profile_data_provider.g.dart';

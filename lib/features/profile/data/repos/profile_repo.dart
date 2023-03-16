@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../../auth/data/models/user_model.dart';
 import '../../../../auth/domain/entities/user.dart';
 import '../../../../core/data/local/image_picker_caller/i_image_picker_caller.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/repos/i_profile_repo.dart';
 import '../data_sources/profile_local_data_source.dart';
 import '../data_sources/profile_remote_data_source.dart';

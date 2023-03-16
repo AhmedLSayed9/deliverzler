@@ -4,7 +4,8 @@
 
 import 'package:fpdart/fpdart.dart' as fpdart show State;
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'riverpod_framework.dart';
 
 /// The `fpdart` library is used to create functional programming constructs.
 export 'package:fpdart/fpdart.dart' hide State;

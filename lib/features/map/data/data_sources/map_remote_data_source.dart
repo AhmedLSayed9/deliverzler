@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/data/network/google_map_api/api_callers/google_map_api_caller.dart';
 import '../../../../core/data/network/google_map_api/google_map_api_config.dart';
 import '../../../../core/data/network/i_api_caller.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/use_cases/get_place_autocomplete_uc.dart';
 import '../../domain/use_cases/get_place_details_uc.dart';
 import '../../domain/use_cases/get_place_directions_uc.dart';

@@ -1,7 +1,8 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 
 import '../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../home/domain/use_cases/update_delivery_status_uc.dart';
 
 part 'map_confirm_order_provider.g.dart';

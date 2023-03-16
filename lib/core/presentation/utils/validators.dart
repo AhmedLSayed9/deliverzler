@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../helpers/localization_helper.dart';
+import 'riverpod_framework.dart';
 
-final validatorsProvider = Provider<Validators>((ref) {
+part 'validators.g.dart';
+
+@Riverpod(keepAlive: true)
+Validators validators(ValidatorsRef ref) {
   return Validators();
-});
+}
 
 class Validators {
   String? Function(String?)? validateMobileNumber(BuildContext context) {
@@ -75,6 +77,7 @@ class Validators {
       }
     };
   }
+
   /*String? Function(String?)? validateEmptyField(BuildContext context) {
     return (value) {
       if (value!.isEmpty) {

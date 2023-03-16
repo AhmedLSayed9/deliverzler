@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/core/core_features/locale/data/data_sources/locale_local_data_source.dart';
 import 'package:deliverzler/core/core_features/locale/data/repos/locale_repo.dart';
+import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 class MockILocaleLocalDataSource extends Mock
     implements ILocaleLocalDataSource {}

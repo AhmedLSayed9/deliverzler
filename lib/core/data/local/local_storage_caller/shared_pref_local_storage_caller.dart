@@ -1,6 +1,6 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../presentation/utils/riverpod_framework.dart';
 import '../extensions/local_error_extension.dart';
 import 'i_local_storage_caller.dart';
 

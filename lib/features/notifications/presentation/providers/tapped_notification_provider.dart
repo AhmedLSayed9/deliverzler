@@ -1,8 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/presentation/services/local_notfication_service/flutter_local_notifications_provider.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../data/models/app_notification_model.dart';
 import '../../domain/entities/app_notification.dart';
 import 'fcm_remote_message_providers.dart';

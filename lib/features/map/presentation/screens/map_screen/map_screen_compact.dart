@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
 import '../../../../../core/core_features/theme/presentation/utils/app_theme.dart';
@@ -14,6 +12,7 @@ import '../../../../../core/presentation/screens/nested_screen_wrapper.dart';
 import '../../../../../core/presentation/services/local_notfication_service/show_local_notification_provider.dart';
 import '../../../../../core/presentation/utils/dialogs.dart';
 import '../../../../../core/presentation/utils/functional.dart';
+import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/utils/toasts.dart';
 import '../../../../../core/presentation/widgets/loading_indicators.dart';
 import '../../../../home/presentation/components/retry_again_component.dart';

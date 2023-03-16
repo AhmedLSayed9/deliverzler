@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../../core/presentation/utils/functional.dart';
+import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../home/presentation/providers/selected_order_provider.dart';
 import '../place_details_provider.dart';
 

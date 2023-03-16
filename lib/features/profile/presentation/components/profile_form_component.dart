@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../auth/domain/entities/user.dart';
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/domain/entities/event.dart';
@@ -12,6 +9,7 @@ import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_button.dart';
 import '../providers/update_profile_data_provider.dart';
 import 'profile_text_fields_section.dart';

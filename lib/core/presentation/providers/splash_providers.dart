@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../auth/domain/use_cases/check_auth_uc.dart';
 import '../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../core_features/locale/presentation/providers/app_locale_provider.dart';
@@ -13,6 +11,7 @@ import '../../data/network/network_info.dart';
 import '../routing/route_paths.dart';
 import '../services/fcm_service/fcm_provider.dart';
 import '../services/local_notfication_service/flutter_local_notifications_provider.dart';
+import '../utils/riverpod_framework.dart';
 
 part 'splash_providers.g.dart';
 

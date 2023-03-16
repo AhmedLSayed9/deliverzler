@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/auth/data/repos/auth_repo.dart';
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/domain/repos/i_auth_repo.dart';
 import 'package:deliverzler/auth/domain/use_cases/set_user_data_uc.dart';
+import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 class MockIAuthRepo extends Mock implements IAuthRepo {}
 

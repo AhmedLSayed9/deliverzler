@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
@@ -9,6 +7,7 @@ import '../../../../core/presentation/routing/route_paths.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/utils/scroll_behaviors.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../core/presentation/widgets/loading_indicators.dart';

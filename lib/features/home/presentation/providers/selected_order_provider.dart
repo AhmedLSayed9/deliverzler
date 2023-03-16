@@ -1,9 +1,9 @@
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/order.dart';
 import 'my_delivering_orders_provider.dart';
 

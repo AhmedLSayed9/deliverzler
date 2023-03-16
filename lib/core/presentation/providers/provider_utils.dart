@@ -1,8 +1,15 @@
-// ignore: depend_on_referenced_packages, implementation_imports
+// ignore_for_file: depend_on_referenced_packages, implementation_imports
+
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:riverpod/src/notifier.dart' as notifier;
 
-export 'package:deliverzler/core/presentation/extensions/auto_dispose_ref_extension.dart';
+import '../utils/riverpod_framework.dart';
+
 export 'package:deliverzler/core/domain/entities/event.dart';
+
+part '../extensions/auto_dispose_ref_extension.dart';
 
 class AbortedException implements Exception {}
 

@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../my_location_providers/my_location_circle_provider.dart';
 
 part 'map_circles_providers.g.dart';

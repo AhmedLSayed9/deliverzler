@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_fadein/flutter_fadein.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+
+import '../utils/riverpod_framework.dart';
 
 FadeInController useFadeInController() {
   return use(const _FadeInController());

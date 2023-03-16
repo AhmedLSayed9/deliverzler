@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../../../../core/presentation/styles/font_styles.dart';
 import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 import '../helpers/map_coordinates_helper.dart';
 import '../providers/target_location_providers/target_location_directions_provider.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../features/home_base/presentation/screens/home_base_screen.dart';
 import '../providers/auth_state_provider.dart';
 import 'sign_in_screen/sign_in_screen.dart';

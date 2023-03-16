@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../auth/presentation/providers/sign_out_provider.dart';
 import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
@@ -11,6 +8,7 @@ import '../../../../core/presentation/services/fcm_service/show_fcm_notification
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/utils/toasts.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_tab_scaffold.dart';
 import '../../../notifications/domain/entities/app_notification.dart';

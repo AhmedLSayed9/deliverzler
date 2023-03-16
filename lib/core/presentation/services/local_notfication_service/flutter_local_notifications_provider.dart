@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../features/notifications/data/models/app_notification_model.dart';
 import '../../../../features/notifications/domain/entities/app_notification.dart';
 import '../../providers/provider_utils.dart';
 import '../../utils/functional.dart';
+import '../../utils/riverpod_framework.dart';
 
 part 'flutter_local_notifications_provider.g.dart';
 

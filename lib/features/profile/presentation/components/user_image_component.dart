@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/data/local/image_picker_caller/i_image_picker_caller.dart';
 import '../../../../core/domain/entities/event.dart';
@@ -11,6 +9,7 @@ import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/cached_network_image_circular.dart';
 import '../providers/pick_profile_image_provider.dart';
 import '../providers/update_profile_image_provider.dart';

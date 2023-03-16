@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../features/map/presentation/providers/session_token_provider.dart';
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../google_map_api_config.dart';
 
 part 'session_token_interceptor.g.dart';

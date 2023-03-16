@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../core/domain/entities/event.dart';
 import '../../../core/presentation/helpers/localization_helper.dart';
 import '../../../core/presentation/styles/sizes.dart';
 import '../../../core/presentation/utils/functional.dart';
+import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../core/presentation/widgets/custom_button.dart';
 import '../../domain/use_cases/sign_in_with_email_uc.dart';
 import '../providers/sign_in_provider.dart';

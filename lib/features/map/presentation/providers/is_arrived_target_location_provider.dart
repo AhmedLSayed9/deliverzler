@@ -1,5 +1,4 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../utils/constants.dart';
 import 'target_location_providers/target_location_directions_provider.dart';
 

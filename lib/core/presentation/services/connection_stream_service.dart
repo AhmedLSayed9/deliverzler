@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../data/network/data_connection_checker.dart';
+import '../utils/riverpod_framework.dart';
 
 part 'connection_stream_service.g.dart';
 

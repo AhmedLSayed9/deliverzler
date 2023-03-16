@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../core/data/error/app_exception.dart';
 import '../../../core/data/local/local_storage_caller/i_local_storage_caller.dart';
 import '../../../core/data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
+import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../models/user_model.dart';
 
 part 'auth_local_data_source.g.dart';

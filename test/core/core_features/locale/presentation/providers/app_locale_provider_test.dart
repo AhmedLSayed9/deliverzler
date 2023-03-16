@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:deliverzler/core/core_features/locale/domain/use_cases/get_app_locale_uc.dart';
 import 'package:deliverzler/core/core_features/locale/domain/use_cases/set_app_locale_uc.dart';
 import 'package:deliverzler/core/core_features/locale/presentation/providers/app_locale_provider.dart';
 import 'package:deliverzler/core/core_features/locale/presentation/utils/app_locale.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 class MockGetAppLocaleUC extends Mock implements GetAppLocaleUC {}
 

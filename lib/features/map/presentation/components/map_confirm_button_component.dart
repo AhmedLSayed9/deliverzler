@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../../../../core/domain/entities/event.dart';
@@ -9,6 +7,7 @@ import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/styles/font_styles.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_button.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../home/domain/use_cases/update_delivery_status_uc.dart';

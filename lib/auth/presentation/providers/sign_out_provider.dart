@@ -1,7 +1,8 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 
 import '../../../core/presentation/providers/provider_utils.dart';
 import '../../../core/presentation/utils/functional.dart';
+import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/use_cases/sign_out_uc.dart';
 import 'auth_state_provider.dart';
 

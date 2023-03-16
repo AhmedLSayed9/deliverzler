@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../core/core_features/theme/presentation/utils/themes/cupertino_custom_theme.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/utils/validators.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 import '../widgets/titled_text_field_item.dart';

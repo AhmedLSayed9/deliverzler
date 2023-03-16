@@ -1,10 +1,10 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
 import '../../../../core/core_features/theme/presentation/utils/app_theme.dart';
 import '../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/place_directions.dart';
 import '../helpers/map_style_helper.dart';
 import '../utils/constants.dart';

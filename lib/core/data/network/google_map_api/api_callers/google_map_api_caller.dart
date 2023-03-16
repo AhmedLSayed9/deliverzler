@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../../i_api_caller.dart';
 import '../extensions/google_map_error_extension.dart';
 import 'google_map_dio_providers.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+
+import '../utils/riverpod_framework.dart';
 
 FloatingSearchBarController useFloatingSearchBarController() {
   return use(const _FloatingSearchBarController());

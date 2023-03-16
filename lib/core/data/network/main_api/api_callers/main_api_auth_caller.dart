@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../../../error/app_exception.dart';
 import '../../i_firebase_auth_caller.dart';
 import '../extensions/firebase_error_extension.dart';

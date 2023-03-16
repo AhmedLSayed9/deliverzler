@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../../presentation/helpers/theme_helper.dart';
 import '../../../../presentation/providers/provider_utils.dart';
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../utils/app_theme.dart';
 import 'app_theme_provider.dart';
 

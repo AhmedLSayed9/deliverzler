@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../data/repos/home_repo.dart';
 import '../../presentation/utils/enums.dart';
 import '../repos/i_home_repo.dart';

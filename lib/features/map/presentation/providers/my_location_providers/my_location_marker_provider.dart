@@ -1,7 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../core/presentation/utils/functional.dart';
+import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../home/presentation/providers/location_stream_provider.dart';
 import '../../helpers/map_style_helper.dart';
 import 'my_location_camera_position_provider.dart';

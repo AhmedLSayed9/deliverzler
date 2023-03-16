@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/use_cases/update_delivery_geo_point_uc.dart';
 import 'location_stream_provider.dart';
 import 'my_delivering_orders_provider.dart';

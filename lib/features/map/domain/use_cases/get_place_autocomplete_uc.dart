@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/domain/use_cases/use_case_base.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../data/repos/map_repo.dart';
 import '../entities/place_autocomplete.dart';
 import '../repos/i_map_repo.dart';

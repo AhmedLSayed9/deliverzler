@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/screens/nested_screen_wrapper.dart';
+import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/widgets/loading_indicators.dart';
 import '../../components/retry_again_component.dart';
 import '../../components/upcoming_orders_component.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/core/core_features/locale/data/repos/locale_repo.dart';
 import 'package:deliverzler/core/core_features/locale/domain/repos/i_locale_repo.dart';
 import 'package:deliverzler/core/core_features/locale/domain/use_cases/get_app_locale_uc.dart';
+import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 class MockILocaleRepo extends Mock implements ILocaleRepo {}
 

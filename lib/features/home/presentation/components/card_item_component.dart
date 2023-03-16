@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/domain/entities/event.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
@@ -9,6 +7,7 @@ import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/routing/route_paths.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/functional.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/entities/order.dart';
 import '../../domain/use_cases/update_delivery_status_uc.dart';
 import '../providers/selected_order_provider.dart';

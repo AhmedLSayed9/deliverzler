@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../providers/map_controller_provider.dart';
 
 class MapFloatingActionButton extends ConsumerWidget {

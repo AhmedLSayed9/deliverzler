@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../presentation/utils/riverpod_framework.dart';
 import '../../error/app_exception.dart';
 import '../extensions/local_error_extension.dart';
 import 'i_image_picker_caller.dart';

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../hooks/fade_in_controller_hook.dart';
 import '../../providers/splash_providers.dart';
 import '../../routing/navigation_service.dart';
+import '../../utils/riverpod_framework.dart';
 import '../../widgets/responsive_widgets/widget_builders.dart';
 import 'splash_screen_compact.dart';
 

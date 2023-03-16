@@ -1,6 +1,7 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 
 import '../../../../domain/use_cases/use_case_base.dart';
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../../data/repos/locale_repo.dart';
 import '../repos/i_locale_repo.dart';
 

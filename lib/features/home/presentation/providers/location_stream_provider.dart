@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:geolocator/geolocator.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../core/presentation/services/location_service/i_location_service.dart';
 import '../../../../core/presentation/services/location_service/location_service.dart';
 import '../../../../core/presentation/utils/location_settings.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../utils/location_error.dart';
 
 part 'location_stream_provider.g.dart';

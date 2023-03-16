@@ -1,8 +1,8 @@
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../../data/local/local_storage_caller/shared_pref_local_storage_caller.dart';
+import '../../../../presentation/utils/riverpod_framework.dart';
 import '../../domain/use_cases/get_app_locale_uc.dart';
 import '../../domain/use_cases/set_app_locale_uc.dart';
 import '../utils/app_locale.dart';

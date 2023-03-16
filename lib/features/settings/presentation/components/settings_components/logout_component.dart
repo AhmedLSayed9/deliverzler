@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:fpdart/fpdart.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../auth/presentation/providers/sign_out_provider.dart';
 import '../../../../../core/domain/entities/event.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/styles/font_styles.dart';
 import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 

@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../presentation/utils/riverpod_framework.dart';
 import 'data_connection_checker.dart';
 
 part 'network_info.g.dart';

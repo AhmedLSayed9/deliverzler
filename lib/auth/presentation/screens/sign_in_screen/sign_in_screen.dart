@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/utils/dialogs.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/responsive_widgets/widget_builders.dart';
 import '../../providers/sign_in_provider.dart';
 import 'sign_in_screen_compact.dart';

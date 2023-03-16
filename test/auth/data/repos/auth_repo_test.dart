@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/auth/data/data_sources/auth_local_data_source.dart';
@@ -8,6 +7,7 @@ import 'package:deliverzler/auth/data/models/user_model.dart';
 import 'package:deliverzler/auth/data/repos/auth_repo.dart';
 import 'package:deliverzler/auth/domain/use_cases/sign_in_with_email_uc.dart';
 import 'package:deliverzler/core/data/network/network_info.dart';
+import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 class MockIAuthRemoteDataSource extends Mock implements IAuthRemoteDataSource {}
 

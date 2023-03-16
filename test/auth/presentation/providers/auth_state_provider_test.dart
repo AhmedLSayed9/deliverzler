@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/auth/domain/entities/user.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/core/presentation/utils/functional.dart';
+import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 
 // Using mockito to keep track of when a provider notify its listeners
 class Listener<T> extends Mock {
