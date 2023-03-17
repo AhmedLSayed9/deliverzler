@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
-import 'navigator_route_observer.dart';
+import 'package:logging/logging.dart';
 
-export 'package:deliverzler/core/presentation/extensions/route_extension.dart';
+import '../extensions/route_extension.dart';
 
 typedef OnRouteChange = void Function(Route? route, Route? previousRoute);
 
@@ -15,13 +13,15 @@ typedef RoutesStackCallBack = void Function(List<Route> routes);
 //https://medium.com/flutter-community/flutter-navigator-middleware-part-2-middleware-service-class-c9035f4fff68
 class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   NavigatorRouteObserver({
-    this.enableLogger = false,
+    this.enableLogger = true,
     this.routesStackCallBack,
     this.onPush,
     this.onPop,
     this.onReplace,
     this.onRemove,
   }) : _stack = [];
+
+  static final log = Logger('RouteLogger');
 
   final bool enableLogger;
   final List<Route> _stack;
@@ -93,14 +93,14 @@ class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
 
   void _logIt(String content) {
     if (enableLogger) {
-      log(content);
+      log.fine(content);
     }
   }
 
   void _logStack() {
     if (enableLogger) {
       final mappedStack = _stack.map((Route route) => route.routeName).toList();
-      log('Navigator stack: $mappedStack');
+      log.fine('Navigator stack: $mappedStack');
     }
   }
 }

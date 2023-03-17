@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../data/network/data_connection_checker.dart';
@@ -10,6 +10,8 @@ import '../utils/riverpod_framework.dart';
 part 'connection_stream_service.g.dart';
 
 enum ConnectionStatus { connected, disconnected }
+
+final _log = Logger('ConnectionLogger');
 
 @riverpod
 Stream<ConnectionStatus> connectionStream(ConnectionStreamRef ref) {
@@ -22,7 +24,7 @@ Stream<ConnectionStatus> connectionStream(ConnectionStreamRef ref) {
       .debounceTime(const Duration(milliseconds: 300))
       .listen(
     (status) {
-      log("NetworkConnectivity status changed: $status");
+      _log.fine("NetworkConnectivity status changed: $status");
       if (status == ConnectivityResult.none) {
         controller.sink.add(ConnectionStatus.disconnected);
       }
@@ -33,7 +35,7 @@ Stream<ConnectionStatus> connectionStream(ConnectionStreamRef ref) {
   //Add <uses-permission android:name="android.permission.INTERNET"/> in AndroidManifest to work.
   final dataConnectionSub = DataConnectionChecker().onStatusChange.listen(
     (status) {
-      log("InternetConnection status changed: $status");
+      _log.fine("InternetConnection status changed: $status");
       if (status == DataConnectionStatus.disconnected) {
         controller.sink.add(ConnectionStatus.disconnected);
       } else {

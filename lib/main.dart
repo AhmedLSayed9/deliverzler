@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:logging/logging.dart';
 
 import 'app.dart';
 import 'core/presentation/providers/provider_observers.dart';
@@ -17,7 +18,7 @@ void main() async {
   await _mainInitializer();
   runApp(
     ProviderScope(
-      observers: [LogProviderObserver()],
+      observers: [ProviderLogger()],
       child: const MyApp(),
     ),
   );

@@ -2,6 +2,7 @@ part of '../../../main.dart';
 
 Future<void> _mainInitializer() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  _setupLogger();
   await _initFirebase();
   //This Prevent closing native splash screen until we finish warming-up custom splash images.
   //App layout will be built but not displayed.
@@ -15,7 +16,14 @@ Future<void> _mainInitializer() async {
   });
 }
 
-_initFirebase() async {
+void _setupLogger() {
+  Logger.root.level = Level.ALL; // defaults to Level.INFO
+  Logger.root.onRecord.listen((r) {
+    log('[${r.loggerName}] ${r.level.name} ${r.time.toString().substring(11)}: ${r.message}');
+  });
+}
+
+Future<void> _initFirebase() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

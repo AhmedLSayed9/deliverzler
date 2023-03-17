@@ -1,8 +1,10 @@
-import 'dart:developer';
+import 'package:logging/logging.dart';
 
 import '../utils/riverpod_framework.dart';
 
-class LogProviderObserver extends ProviderObserver {
+class ProviderLogger extends ProviderObserver {
+  static final log = Logger('ProviderLogger');
+
   @override
   void didUpdateProvider(
     ProviderBase provider,
@@ -10,7 +12,13 @@ class LogProviderObserver extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    log('DidUpdateProvider: [${provider.name ?? provider.runtimeType}] value: $newValue');
+    log.fine(
+        '[DidUpdateProvider: ${provider.name ?? provider.runtimeType}] newValue: $newValue');
+  }
+
+  @override
+  void didDisposeProvider(ProviderBase provider, ProviderContainer container) {
+    log.fine('[DidDisposeProvider: ${provider.name ?? provider.runtimeType}]');
   }
 
   @override
@@ -20,6 +28,10 @@ class LogProviderObserver extends ProviderObserver {
     StackTrace stackTrace,
     ProviderContainer container,
   ) {
-    log('ProviderDidFail: [${provider.name ?? provider.runtimeType}] error: $error stackTrace: $stackTrace');
+    log.severe(
+      '[ProviderDidFail: ${provider.name ?? provider.runtimeType}]',
+      error,
+      stackTrace,
+    );
   }
 }

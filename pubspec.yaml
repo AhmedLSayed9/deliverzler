@@ -13,6 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  logging: ^1.1.1
 
   #StateManagement & DI
   hooks_riverpod: ^2.3.1

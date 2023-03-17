@@ -1,11 +1,11 @@
-import 'dart:developer';
+// ignore_for_file: depend_on_referenced_packages, implementation_imports
+
 import 'dart:io';
 
 import 'package:geolocator/geolocator.dart';
-
-// ignore: depend_on_referenced_packages, implementation_imports
 import 'package:geolocator_android/src/types/foreground_settings.dart';
 import 'package:location/location.dart' as loc;
+import 'package:logging/logging.dart';
 
 import '../../utils/location_settings.dart';
 import '../../utils/riverpod_framework.dart';
@@ -111,7 +111,7 @@ class GeoLocatorLocationService implements ILocationService {
         timeLimit: const Duration(seconds: getLocationTimeLimit),
       );
     } catch (e) {
-      log(e.toString());
+      Logger.root.shout(e.toString());
       return null;
     }
   }

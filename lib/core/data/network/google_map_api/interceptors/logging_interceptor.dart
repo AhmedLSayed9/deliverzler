@@ -1,11 +1,12 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
+import 'package:logging/logging.dart';
 
 class LoggingInterceptor extends Interceptor {
+  static final log = Logger('InterceptorLogger');
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log('LogInterceptor: REQUEST[${options.method}] => PATH: ${options.path} => DATA: ${options.data}');
+    log.fine('REQUEST[${options.method}] => PATH: ${options.path} => DATA: ${options.data}');
     return handler.next(options);
   }
 
@@ -15,13 +16,13 @@ class LoggingInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log('LogInterceptor: RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} => DATA: ${response.data}');
+    log.fine('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} => DATA: ${response.data}');
     return handler.next(response);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    log('LogInterceptor: ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} MESSAGE: ${err.message}');
+    log.fine('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} MESSAGE: ${err.message}');
     return handler.next(err);
   }
 }

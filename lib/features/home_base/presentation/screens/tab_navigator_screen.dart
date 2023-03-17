@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/presentation/extensions/route_extension.dart';
 import '../../../../core/presentation/routing/navigator_route_observer.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../providers/tabs_providers.dart';
