@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/routing/route_paths.dart';
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/utils/scroll_behaviors.dart';
@@ -16,7 +14,6 @@ import '../../../../core/presentation/widgets/seperated_sliver_child_builder_del
 import '../providers/selected_order_provider.dart';
 import '../providers/upcoming_orders_provider.dart';
 import '../providers/update_delivery_status_provider/update_delivery_status_provider.dart';
-import '../providers/update_delivery_status_provider/update_delivery_status_state.dart';
 import '../utils/enums.dart';
 import 'card_item_component.dart';
 
@@ -25,42 +22,26 @@ class UpcomingOrdersComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    ref.listen<AsyncValue<UpdateDeliveryStatusState>>(
+    ref.easyListen(
       updateDeliveryStatusStateProvider,
-      (prevState, newState) {
-        prevState?.unwrapPrevious().whenOrNull(
-          loading: () {
-            NavigationService.dismissDialog(context);
+      whenData: (state) {
+        state.whenOrNull(
+          success: (orderId, deliveryStatus) async {
+            if (deliveryStatus != DeliveryStatus.onTheWay) return;
+            final sub =
+                ref.listenManual(selectedOrderIdProvider, (prev, value) {});
+            ref
+                .read(selectedOrderIdProvider.notifier)
+                .update((_) => Some(orderId));
+
+            await NavigationService.push(
+              context,
+              isNamed: true,
+              page: RoutePaths.map,
+            );
+            sub.close();
           },
         );
-        newState.unwrapPrevious().whenOrNull(
-              loading: () => Dialogs.showLoadingDialog(context),
-              error: (err, st) {
-                Dialogs.showErrorDialog(
-                  context,
-                  message: err.errorMessage(context),
-                );
-              },
-              data: (state) {
-                state.whenOrNull(
-                  success: (orderId, deliveryStatus) async {
-                    if (deliveryStatus != DeliveryStatus.onTheWay) return;
-                    final sub = ref.listenManual(
-                        selectedOrderIdProvider, (prev, value) {});
-                    ref
-                        .read(selectedOrderIdProvider.notifier)
-                        .update((_) => Some(orderId));
-
-                    await NavigationService.push(
-                      context,
-                      isNamed: true,
-                      page: RoutePaths.map,
-                    );
-                    sub.close();
-                  },
-                );
-              },
-            );
       },
     );
 

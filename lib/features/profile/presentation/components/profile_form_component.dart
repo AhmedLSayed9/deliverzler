@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../auth/domain/entities/user.dart';
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/domain/entities/event.dart';
-import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_button.dart';
@@ -19,25 +15,9 @@ class ProfileFormComponent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final user = ref.watch(currentUserProvider);
+    ref.easyListen(updateProfileDataStateProvider);
 
-    ref.listen<AsyncValue<Option<User>>>(
-      updateProfileDataStateProvider,
-      (prevState, newState) {
-        prevState?.unwrapPrevious().whenOrNull(
-              loading: () => NavigationService.dismissDialog(context),
-            );
-        newState.unwrapPrevious().whenOrNull(
-              loading: () => Dialogs.showLoadingDialog(context),
-              error: (err, st) {
-                Dialogs.showErrorDialog(
-                  context,
-                  message: err.errorMessage(context),
-                );
-              },
-            );
-      },
-    );
+    final user = ref.watch(currentUserProvider);
 
     final profileFormKey = useMemoized(() => GlobalKey<FormState>());
     final nameController = useTextEditingController(text: user.name ?? '');

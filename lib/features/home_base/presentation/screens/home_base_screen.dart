@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../auth/presentation/providers/sign_out_provider.dart';
-import '../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/services/connection_stream_service.dart';
 import '../../../../core/presentation/services/fcm_service/show_fcm_notification_provider.dart';
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/utils/dialogs.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/utils/toasts.dart';
@@ -33,20 +31,7 @@ class HomeBaseScreen extends HookConsumerWidget {
       );
     });
 
-    ref.listen(signOutStateProvider, (prevState, newState) {
-      prevState?.unwrapPrevious().whenOrNull(
-            loading: () => NavigationService.dismissDialog(context),
-          );
-      newState.unwrapPrevious().whenOrNull(
-            loading: () => Dialogs.showLoadingDialog(context),
-            error: (err, st) {
-              Dialogs.showErrorDialog(
-                context,
-                message: err.errorMessage(context),
-              );
-            },
-          );
-    });
+    ref.easyListen(signOutStateProvider);
 
     ref.listen(onMessageProvider, (previous, next) {
       next.whenData(

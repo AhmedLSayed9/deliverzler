@@ -4,13 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../../core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
 import '../../../../../core/core_features/theme/presentation/utils/app_theme.dart';
-import '../../../../../core/presentation/extensions/app_error_extension.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/helpers/theme_helper.dart';
 import '../../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../../core/presentation/screens/nested_screen_wrapper.dart';
 import '../../../../../core/presentation/services/local_notfication_service/show_local_notification_provider.dart';
-import '../../../../../core/presentation/utils/dialogs.dart';
 import '../../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/utils/toasts.dart';
@@ -59,28 +57,12 @@ class MapScreenCompact extends HookConsumerWidget {
       }
     });
 
-    ref.listen<AsyncValue<MapConfirmOrderState>>(
+    ref.easyListen(
       mapConfirmOrderStatusProvider,
-      (prevState, newState) {
-        prevState?.unwrapPrevious().whenOrNull(
-          loading: () {
-            NavigationService.dismissDialog(context);
-          },
-        );
-        newState.unwrapPrevious().whenOrNull(
-              loading: () => Dialogs.showLoadingDialog(context),
-              error: (err, st) {
-                Dialogs.showErrorDialog(
-                  context,
-                  message: err.errorMessage(context),
-                );
-              },
-              data: (state) {
-                if (state == MapConfirmOrderState.success) {
-                  NavigationService.goBack(context);
-                }
-              },
-            );
+      whenData: (state) {
+        if (state == MapConfirmOrderState.success) {
+          NavigationService.goBack(context);
+        }
       },
     );
 
