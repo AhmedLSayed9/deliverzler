@@ -5,6 +5,11 @@ extension WidgetRefExtension on WidgetRef {
     return watch(provider.select((AsyncValue<T> s) => s.isLoading));
   }
 
+  /// Listen to a provider while easy handling Loading/Error dialogs.
+  ///
+  /// You can set handleLoading/handleError to false to turn off auto handling for either of them.
+  ///
+  /// Use `whenData` If you want to perform something when the newState is data.
   void easyListen<T>(
     ProviderListenable<AsyncValue<T>> provider, {
     bool handleLoading = true,
