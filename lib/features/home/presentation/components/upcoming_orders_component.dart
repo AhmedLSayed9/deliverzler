@@ -28,18 +28,19 @@ class UpcomingOrdersComponent extends ConsumerWidget {
         state.whenOrNull(
           success: (orderId, deliveryStatus) async {
             if (deliveryStatus != DeliveryStatus.onTheWay) return;
-            final sub =
-                ref.listenManual(selectedOrderIdProvider, (prev, value) {});
-            ref
-                .read(selectedOrderIdProvider.notifier)
-                .update((_) => Some(orderId));
-
-            await NavigationService.push(
-              context,
-              isNamed: true,
-              page: RoutePaths.map,
+            ref.listenUntil(
+              selectedOrderIdProvider,
+              () async {
+                ref
+                    .read(selectedOrderIdProvider.notifier)
+                    .update((_) => Some(orderId));
+                await NavigationService.push(
+                  context,
+                  isNamed: true,
+                  page: RoutePaths.map,
+                );
+              },
             );
-            sub.close();
           },
         );
       },

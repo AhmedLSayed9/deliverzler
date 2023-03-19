@@ -40,4 +40,23 @@ extension WidgetRefExtension on WidgetRef {
       },
     );
   }
+
+  /// Keep listening to a provider until a Future function is complete.
+  ///
+  /// This method should be called asynchronously, like inside an onPressed.
+  /// It shouldn't be used directly inside the build method.
+  ///
+  /// This is useful to preserve provider's state when navigating to a route
+  /// until that route is popped off.
+  Future<void> listenUntil<T>(
+    ProviderListenable<T> provider,
+    Future<void> Function() cb,
+  ) async {
+    final sub = listenManual(provider, (_, __) {});
+    try {
+      return await cb();
+    } finally {
+      sub.close();
+    }
+  }
 }

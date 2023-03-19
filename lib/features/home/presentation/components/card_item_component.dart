@@ -45,14 +45,19 @@ class CardItemComponent extends ConsumerWidget {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      final sub = ref.listenManual(selectedOrderIdProvider, (prev, value) {});
-      ref.read(selectedOrderIdProvider.notifier).update((_) => Some(order.id));
-      await NavigationService.push(
-        context,
-        isNamed: true,
-        page: RoutePaths.map,
+      ref.listenUntil(
+        selectedOrderIdProvider,
+        () async {
+          ref
+              .read(selectedOrderIdProvider.notifier)
+              .update((_) => Some(order.id));
+          await NavigationService.push(
+            context,
+            isNamed: true,
+            page: RoutePaths.map,
+          );
+        },
       );
-      sub.close();
     }
 
     Future<void> confirmOrder() async {
