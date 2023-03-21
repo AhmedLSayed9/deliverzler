@@ -45,12 +45,10 @@ class CardItemComponent extends ConsumerWidget {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      ref.listenUntil(
+      ref.listenWhile(
         selectedOrderIdProvider,
-        () async {
-          ref
-              .read(selectedOrderIdProvider.notifier)
-              .update((_) => Some(order.id));
+        (notifier) async {
+          notifier.update((_) => Some(order.id));
           await NavigationService.push(
             context,
             isNamed: true,

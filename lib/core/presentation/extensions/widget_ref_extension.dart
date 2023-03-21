@@ -41,20 +41,20 @@ extension WidgetRefExtension on WidgetRef {
     );
   }
 
-  /// Keep listening to a provider until a Future function is complete.
+  /// Keep listening to [AutoDisposeNotifierProvider] until a Future function is complete.
   ///
   /// This method should be called asynchronously, like inside an onPressed.
   /// It shouldn't be used directly inside the build method.
   ///
-  /// This is useful to preserve provider's state when navigating to a route
-  /// until that route is popped off.
-  Future<void> listenUntil<T>(
-    ProviderListenable<T> provider,
-    Future<void> Function() cb,
+  /// This is primarily used to preserve the state of the provider when navigating
+  /// to a route until that route is popped off.
+  Future<void> listenWhile<NotifierT extends AutoDisposeNotifier<T>, T>(
+    AutoDisposeNotifierProvider<NotifierT, T> provider,
+    Future<void> Function(NotifierT notifier) cb,
   ) async {
     final sub = listenManual(provider, (_, __) {});
     try {
-      return await cb();
+      return await cb(read(provider.notifier));
     } finally {
       sub.close();
     }

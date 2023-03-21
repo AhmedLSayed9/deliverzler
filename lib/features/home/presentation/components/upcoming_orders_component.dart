@@ -28,12 +28,10 @@ class UpcomingOrdersComponent extends ConsumerWidget {
         state.whenOrNull(
           success: (orderId, deliveryStatus) async {
             if (deliveryStatus != DeliveryStatus.onTheWay) return;
-            ref.listenUntil(
+            ref.listenWhile(
               selectedOrderIdProvider,
-              () async {
-                ref
-                    .read(selectedOrderIdProvider.notifier)
-                    .update((_) => Some(orderId));
+              (notifier) async {
+                notifier.update((_) => Some(orderId));
                 await NavigationService.push(
                   context,
                   isNamed: true,
