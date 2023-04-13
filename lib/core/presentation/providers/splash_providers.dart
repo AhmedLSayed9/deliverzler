@@ -17,7 +17,7 @@ part 'splash_providers.g.dart';
 
 @riverpod
 Future<void> splashServicesWarmup(SplashServicesWarmupRef ref) async {
-  await ref.watch(sharedPrefsFutureProvider.future);
+  await ref.watch(sharedPrefsAsyncProvider.future);
   final min = Future.delayed(const Duration(seconds: 1)); //Min Time of splash
   final s1 = ref.watch(appThemeControllerProvider.future);
   final s2 = ref.watch(appLocaleControllerProvider.future);

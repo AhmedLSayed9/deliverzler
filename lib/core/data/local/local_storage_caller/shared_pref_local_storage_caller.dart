@@ -8,11 +8,11 @@ part 'shared_pref_local_storage_caller.g.dart';
 
 @Riverpod(keepAlive: true)
 SharedPreferences sharedPrefs(SharedPrefsRef ref) {
-  return ref.watch(sharedPrefsFutureProvider).requireValue;
+  return ref.watch(sharedPrefsAsyncProvider).requireValue;
 }
 
 @Riverpod(keepAlive: true)
-Future<SharedPreferences> sharedPrefsFuture(SharedPrefsFutureRef ref) async {
+Future<SharedPreferences> sharedPrefsAsync(SharedPrefsAsyncRef ref) async {
   return await SharedPreferences.getInstance();
 }
 

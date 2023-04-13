@@ -12,7 +12,7 @@ part 'app_theme_provider.g.dart';
 class AppThemeController extends _$AppThemeController {
   @override
   Future<AppTheme> build() async {
-    await ref.watch(sharedPrefsFutureProvider.future);
+    await ref.watch(sharedPrefsAsyncProvider.future);
     _getAppThemeUC = ref.watch(getAppThemeUCProvider);
     _setAppThemeUC = ref.watch(setAppThemeUCProvider);
     return _getUserStoredTheme();

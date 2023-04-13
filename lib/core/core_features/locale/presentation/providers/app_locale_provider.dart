@@ -15,7 +15,7 @@ class AppLocaleController extends _$AppLocaleController {
 
   @override
   Future<AppLocale> build() async {
-    await ref.watch(sharedPrefsFutureProvider.future);
+    await ref.watch(sharedPrefsAsyncProvider.future);
     _getAppLocaleUC = ref.watch(getAppLocaleUCProvider);
     _setAppLocaleUC = ref.watch(setAppLocaleUCProvider);
     if (firstBuild) {
