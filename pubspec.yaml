@@ -12,7 +12,7 @@ dependencies:
   flutter_native_splash: ^2.1.5
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.1
   logging: ^1.1.1
 
   #StateManagement & DI
