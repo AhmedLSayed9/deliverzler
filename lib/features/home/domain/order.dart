@@ -38,7 +38,7 @@ class AppOrder with _$AppOrder {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppOrder &&
-            (identical(other.id, this.id) || other.id == this.id) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.pickupOption, pickupOption) ||
                 other.pickupOption == pickupOption) &&

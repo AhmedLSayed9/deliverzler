@@ -14,7 +14,7 @@ Future<Option<RemoteMessage>> getInitialMessage(
   // Should be called in app initState or at home screen because we need context for navigation.
   final fcm = ref.watch(fcmProvider);
   final initialMsg = await fcm.getInitialMessage();
-  return initialMsg.toOption();
+  return Option.fromNullable(initialMsg);
 }
 
 @riverpod

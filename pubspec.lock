@@ -617,10 +617,10 @@ packages:
     dependency: "direct main"
     description:
       name: fpdart
-      sha256: "4a0d047c3359a4bdd19e4941603bbe394bd133b3772a38049e17f9534d47106e"
+      sha256: df0cf5072957febac66481090164b375608d349282fafd1207ca3722451f2f1c
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "1.0.0-beta.1"
   freezed:
     dependency: "direct dev"
     description:
