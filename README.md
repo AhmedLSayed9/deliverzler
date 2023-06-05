@@ -88,7 +88,7 @@ approach is also utilized if you're interested:
 
 ---
 
-**Appreciation**: I was inspired by @RandalSchwartz to adopt and implement Domain-Driven Design (DDD) with Riverpod Framework.
+**Appreciation**: I was inspired by [@RandalSchwartz](https://github.com/RandalSchwartz) to adopt and implement Domain-Driven Design (DDD) with Riverpod Framework.
 Also, ResoCoder’s DDD course (outdated) was helpful to get some ideas about implementing DDD in Flutter.
 
 Give a ⭐️ if you like the project.. Thanks!
