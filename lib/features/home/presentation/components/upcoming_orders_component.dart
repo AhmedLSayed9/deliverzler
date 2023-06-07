@@ -71,10 +71,12 @@ class UpcomingOrdersComponent extends ConsumerWidget {
                       ),
                     )
                   : SliverFillRemaining(
-                      child: CustomText.f18(
-                        context,
-                        tr(context).thereAreNoOrders,
-                        //alignment: Alignment.center,
+                      child: Center(
+                        child: CustomText.f18(
+                          context,
+                          tr(context).thereAreNoOrders,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
             ],
@@ -84,11 +86,12 @@ class UpcomingOrdersComponent extends ConsumerWidget {
           onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
           slivers: [
             SliverFillRemaining(
-              child: CustomText.f18(
-                context,
-                '${tr(context).somethingWentWrong}\n${tr(context).pleaseTryAgain}',
-                //alignment: Alignment.center,
-                textAlign: TextAlign.center,
+              child: Center(
+                child: CustomText.f18(
+                  context,
+                  '${tr(context).somethingWentWrong}\n${tr(context).pleaseTryAgain}',
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
           ],
