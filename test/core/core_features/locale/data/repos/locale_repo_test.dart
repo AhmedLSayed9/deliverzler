@@ -66,7 +66,7 @@ void main() {
           final call = localeRepo.getAppLocale();
 
           // THEN
-          await expectLater(() => call, throwsA(tException));
+          await expectLater(call, throwsA(tException));
           verifyOnly(mockLocaleLocalDataSource,
               () => mockLocaleLocalDataSource.getAppLocale());
         },
@@ -84,7 +84,7 @@ void main() {
         () async {
           // GIVEN
           when(() => mockLocaleLocalDataSource.cacheAppLocale(tLocale))
-              .thenAnswer((_) async => Future.value());
+              .thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
@@ -113,7 +113,7 @@ void main() {
           final call = localeRepo.cacheAppLocale(tLocale);
 
           // THEN
-          await expectLater(() => call, throwsA(tException));
+          await expectLater(call, throwsA(tException));
           verifyOnly(mockLocaleLocalDataSource,
               () => mockLocaleLocalDataSource.cacheAppLocale(tLocale));
         },

@@ -202,7 +202,7 @@ void main() {
           when(() => mockFirebaseFirestore.setData(
                 path: any(named: 'path'),
                 data: any(named: 'data'),
-              )).thenAnswer((_) async => Future.value());
+              )).thenAnswer((_) async {});
 
           final container = setUpFirebaseContainer();
 
@@ -230,8 +230,7 @@ void main() {
         'should call FirebaseAuthCaller.signOut',
         () async {
           // GIVEN
-          when(() => mockFirebaseAuth.signOut())
-              .thenAnswer((_) async => Future.value());
+          when(() => mockFirebaseAuth.signOut()).thenAnswer((_) async {});
 
           final container = setUpFirebaseContainer();
 

@@ -63,9 +63,9 @@ void main() {
       () {
         // GIVEN
         when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         when(() => mockNavigatorObserverFns.onPush(any(), any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         // WHEN
         navigatorRouteObserver.didPush(mockRoute, mockPreviousRoute);
         // THEN
@@ -101,9 +101,9 @@ void main() {
       () {
         // GIVEN
         when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         when(() => mockNavigatorObserverFns.onPop(any(), any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         // WHEN
         navigatorRouteObserver.didPop(mockRoute, mockPreviousRoute);
         // THEN
@@ -151,9 +151,9 @@ void main() {
       () {
         // GIVEN
         when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         when(() => mockNavigatorObserverFns.onReplace(any(), any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         // WHEN
         navigatorRouteObserver.didReplace(
             newRoute: mockRoute, oldRoute: mockPreviousRoute);
@@ -189,9 +189,9 @@ void main() {
       () {
         // GIVEN
         when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         when(() => mockNavigatorObserverFns.onRemove(any(), any()))
-            .thenAnswer((_) {});
+            .thenReturn(null);
         // WHEN
         navigatorRouteObserver.didRemove(mockRoute, mockPreviousRoute);
         // THEN

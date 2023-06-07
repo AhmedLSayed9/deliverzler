@@ -90,7 +90,7 @@ void main() {
       when(() => mockAuthRepo.getUserAuthUid()).thenAnswer(
         (_) => Error.throwWithStackTrace(tException, tStackTrace),
       );
-      when(() => mockAuthRepo.signOut()).thenAnswer((_) => Future.value());
+      when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
 
       const signOutEvent = Event(arg: unit);
       bool calledSignOut = false;
@@ -137,7 +137,7 @@ void main() {
       when(() => mockAuthRepo.getUserData(tUser.id)).thenAnswer(
         (_) => Error.throwWithStackTrace(tException, tStackTrace),
       );
-      when(() => mockAuthRepo.signOut()).thenAnswer((_) => Future.value());
+      when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
 
       const signOutEvent = Event(arg: unit);
       bool calledSignOut = false;

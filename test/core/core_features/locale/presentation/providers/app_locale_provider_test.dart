@@ -110,7 +110,7 @@ void main() {
           when(() => mockLocaleRepo.getAppLocale())
               .thenAnswer((_) async => tLocale.code);
           when(() => mockLocaleRepo.cacheAppLocale(any()))
-              .thenAnswer((_) async => Future.value());
+              .thenAnswer((_) async => {});
 
           final container = setUpRepoContainer();
           await container.read(appLocaleControllerProvider.future);

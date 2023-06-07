@@ -189,7 +189,7 @@ void main() {
           when(() => mockAuthRepo.getUserData(any()))
               .thenAnswer((_) => Future.value(tUser));
           when(() => mockFcm.subscribeToTopic(any()))
-              .thenAnswer((_) => Future.value());
+              .thenAnswer((_) async {});
 
           final container = setUpContainer(
             overrides: [

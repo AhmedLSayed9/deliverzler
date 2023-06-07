@@ -108,7 +108,7 @@ void main() {
           when(() => mockThemeRepo.getAppTheme())
               .thenAnswer((_) async => tTheme.name);
           when(() => mockThemeRepo.cacheAppTheme(any()))
-              .thenAnswer((_) async => Future.value());
+              .thenAnswer((_) async {});
 
           final container = setUpRepoContainer();
           await container.read(appThemeControllerProvider.future);

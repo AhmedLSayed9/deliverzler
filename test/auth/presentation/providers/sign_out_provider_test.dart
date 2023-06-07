@@ -177,9 +177,9 @@ void main() {
         'and fcm.unsubscribeFromTopic("general") return normally',
         () async {
           // GIVEN
-          when(() => mockAuthRepo.signOut()).thenAnswer((_) => Future.value());
+          when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
           when(() => mockFcm.unsubscribeFromTopic(any()))
-              .thenAnswer((_) => Future.value());
+              .thenAnswer((_) async {});
 
           final container = setUpContainer(
             overrides: [

@@ -109,7 +109,7 @@ void main() {
           final call = authRepo.signInWithEmail(tParams);
 
           // THEN
-          await expectLater(() => call, throwsA(tException));
+          await expectLater(call, throwsA(tException));
           verifyOnly(mockAuthRemoteDataSource,
               () => mockAuthRemoteDataSource.signInWithEmail(tParams));
         },
@@ -157,7 +157,7 @@ void main() {
           final call = authRepo.getUserAuthUid();
 
           // THEN
-          await expectLater(() => call, throwsA(tException));
+          await expectLater(call, throwsA(tException));
           verifyOnly(mockAuthRemoteDataSource,
               () => mockAuthRemoteDataSource.getUserAuthUid());
         },
@@ -227,7 +227,7 @@ void main() {
               final call = authRepo.getUserAuthUid();
 
               // THEN
-              await expectLater(() => call, throwsA(tException));
+              await expectLater(call, throwsA(tException));
               verifyOnly(mockAuthRemoteDataSource,
                   () => mockAuthRemoteDataSource.getUserAuthUid());
             },
@@ -273,7 +273,7 @@ void main() {
               final call = authRepo.getUserData(tAuthUid);
 
               // THEN
-              await expectLater(() => call, throwsA(tException));
+              await expectLater(call, throwsA(tException));
               verifyOnly(mockAuthLocalDataSource,
                   () => mockAuthLocalDataSource.getUserData());
               verifyZeroInteractions(mockAuthRemoteDataSource);
@@ -293,7 +293,7 @@ void main() {
         () async {
           // GIVEN
           when(() => mockAuthRemoteDataSource.setUserData(tUserDto))
-              .thenAnswer((_) async => Future.value());
+              .thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
@@ -302,7 +302,7 @@ void main() {
           final call = authRepo.setUserData(tUser);
 
           // THEN
-          await expectLater(() => call, returnsNormally);
+          await expectLater(call, completes);
           verifyOnly(mockAuthRemoteDataSource,
               () => mockAuthRemoteDataSource.setUserData(tUserDto));
           verifyOnly(mockAuthLocalDataSource,
@@ -324,7 +324,7 @@ void main() {
           final call = authRepo.setUserData(tUser);
 
           // THEN
-          await expectLater(() => call, throwsA(tException));
+          await expectLater(call, throwsA(tException));
           verifyOnly(mockAuthRemoteDataSource,
               () => mockAuthRemoteDataSource.setUserData(tUserDto));
         },
@@ -341,7 +341,7 @@ void main() {
         () async {
           // GIVEN
           when(() => mockAuthRemoteDataSource.signOut())
-              .thenAnswer((_) async => Future.value());
+              .thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
@@ -350,7 +350,7 @@ void main() {
           final call = authRepo.signOut();
 
           // THEN
-          await expectLater(() => call, returnsNormally);
+          await expectLater(call, completes);
           verifyOnly(mockAuthRemoteDataSource,
               () => mockAuthRemoteDataSource.signOut());
           verifyOnly(mockAuthLocalDataSource,
@@ -371,7 +371,7 @@ void main() {
           final call = authRepo.signOut();
 
           // THEN
-          await expectLater(() => call, throwsA(tException));
+          await expectLater(call, throwsA(tException));
           verifyOnly(mockAuthRemoteDataSource,
               () => mockAuthRemoteDataSource.signOut());
         },
