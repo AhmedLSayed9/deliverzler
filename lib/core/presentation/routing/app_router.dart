@@ -28,7 +28,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 Raw<GoRouter> goRouter(GoRouterRef ref) {
   final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: SplashRoute.path,
+    initialLocation: const SplashRoute().location,
     routes: [
       // Temporary using generated routes separately to be able to use
       // StatefulShellRoute until it's supported by app_route_builder.
@@ -62,33 +62,28 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         //   to when loading it for the first time) etc.
         branches: <StatefulShellBranch>[
           StatefulShellBranch(
-            routes: [
-              $profileRoute,
-            ],
+            routes: [$profileRoute],
           ),
           StatefulShellBranch(
-            routes: [
-              $homeRoute,
-            ],
+            routes: [$homeRoute],
           ),
           StatefulShellBranch(
-            routes: [
-              $settingsRoute,
-            ],
+            routes: [$settingsRoute],
           ),
         ],
       ),
     ],
     redirect: (BuildContext context, GoRouterState state) {
       final bool isAuthenticated = ref.read(authStateProvider).isSome();
-      const allowedRoutes = [
-        SplashRoute.path,
-        NoInternetRoute.path,
-        SignInRoute.path,
+      final allowedRoutes = [
+        const SplashRoute().location,
+        const NoInternetRoute().location,
+        const SignInRoute().location,
       ];
 
       // If the user is authenticated but still on the login page, send to home.
-      if (isAuthenticated && state.location.startsWith(SignInRoute.path)) {
+      if (isAuthenticated &&
+          state.location.startsWith(const SignInRoute().location)) {
         return const HomeRoute().location;
       }
 
@@ -108,33 +103,27 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
   return router;
 }
 
-@TypedGoRoute<SplashRoute>(path: SplashRoute.path)
+@TypedGoRoute<SplashRoute>(path: '/splash')
 class SplashRoute extends GoRouteData {
   const SplashRoute();
-
-  static const path = '/splash';
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const SplashScreen();
 }
 
-@TypedGoRoute<NoInternetRoute>(path: NoInternetRoute.path)
+@TypedGoRoute<NoInternetRoute>(path: '/no_internet')
 class NoInternetRoute extends GoRouteData {
   const NoInternetRoute();
-
-  static const path = '/no_internet';
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const NoInternetScreen();
 }
 
-@TypedGoRoute<SignInRoute>(path: SignInRoute.path)
+@TypedGoRoute<SignInRoute>(path: '/login')
 class SignInRoute extends GoRouteData {
   const SignInRoute();
-
-  static const path = '/login';
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
@@ -142,15 +131,13 @@ class SignInRoute extends GoRouteData {
 }
 
 @TypedGoRoute<HomeRoute>(
-  path: HomeRoute.path,
+  path: '/home',
   routes: [
-    TypedGoRoute<MapRoute>(path: MapRoute.path),
+    TypedGoRoute<MapRoute>(path: 'map'),
   ],
 )
 class HomeRoute extends GoRouteData {
   const HomeRoute();
-
-  static const path = '/home';
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
@@ -159,18 +146,14 @@ class HomeRoute extends GoRouteData {
 class MapRoute extends GoRouteData {
   const MapRoute();
 
-  static const path = 'map';
-
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
       NoTransitionPage(key: state.pageKey, child: const MapScreen());
 }
 
-@TypedGoRoute<ProfileRoute>(path: ProfileRoute.path)
+@TypedGoRoute<ProfileRoute>(path: '/profile')
 class ProfileRoute extends GoRouteData {
   const ProfileRoute();
-
-  static const path = '/profile';
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
@@ -178,15 +161,13 @@ class ProfileRoute extends GoRouteData {
 }
 
 @TypedGoRoute<SettingsRoute>(
-  path: SettingsRoute.path,
+  path: '/settings',
   routes: [
-    TypedGoRoute<LanguageRoute>(path: LanguageRoute.path),
+    TypedGoRoute<LanguageRoute>(path: 'language'),
   ],
 )
 class SettingsRoute extends GoRouteData {
   const SettingsRoute();
-
-  static const path = '/settings';
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
@@ -195,8 +176,6 @@ class SettingsRoute extends GoRouteData {
 
 class LanguageRoute extends GoRouteData {
   const LanguageRoute();
-
-  static const path = 'language';
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
