@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../components/no_internet_error_component.dart';
+import '../../components/route_error_component.dart';
 import '../../styles/sizes.dart';
 import '../../utils/scroll_behaviors.dart';
 import '../../widgets/platform_widgets/platform_scaffold.dart';
 
-class NoInternetScreenCompact extends StatelessWidget {
-  const NoInternetScreenCompact({super.key});
+class ErrorScreenCompact extends StatelessWidget {
+  const ErrorScreenCompact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class NoInternetScreenCompact extends StatelessWidget {
                   vertical: Sizes.screenMarginV16,
                   horizontal: Sizes.screenMarginH28,
                 ),
-                child: NoInternetErrorComponent(),
+                child: RouteErrorComponent(),
               ),
             ),
           ],

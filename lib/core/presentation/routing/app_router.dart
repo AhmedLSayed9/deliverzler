@@ -11,6 +11,7 @@ import '../../../features/profile/presentation/screens/profile_screen/profile_sc
 import '../../../features/settings/presentation/screens/language_screen/language_screen.dart';
 import '../../../features/settings/presentation/screens/settings_screen/settings_screen.dart';
 import '../screens/no_internet_screen/no_internet_screen.dart';
+import '../screens/route_error_screen/route_error_screen.dart';
 import '../screens/splash_screen/splash_screen.dart';
 import '../utils/riverpod_framework.dart';
 import 'app_router_refresh_listenable.dart';
@@ -98,6 +99,7 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
       return null;
     },
     refreshListenable: ref.watch(appRouterRefreshListenableProvider.notifier),
+    errorBuilder: (_, state) => RouteErrorScreen(state.error),
   );
   ref.onDispose(router.dispose);
   return router;

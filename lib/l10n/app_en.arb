@@ -4,6 +4,8 @@
   "appName": "Deliverzler",
   "fontFamily": "poppins",
   "noInternetConnection": "No internet connection",
+  "screenNotFound": "Oops! Screen not found!",
+  "goToHome": "Go to Home",
   "pleaseCheckYourDeviceNetwork":
       "Please check your device\"s network connection.",
   "retry": "Retry",
