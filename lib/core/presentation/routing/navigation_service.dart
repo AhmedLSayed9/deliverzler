@@ -21,7 +21,7 @@ abstract class NavigationService {
     if (closeOverlays) {
       _removeOverlays();
     }
-    if (!context.mounted && context.canPop()) {
+    if (context.mounted && context.canPop()) {
       // Note: GoRouter logging will wrongly log that it's popping current route
       // when popping a dialog: https://github.com/flutter/flutter/issues/119237
       return context.pop(result);
