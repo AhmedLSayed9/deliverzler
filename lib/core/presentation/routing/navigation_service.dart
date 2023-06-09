@@ -4,11 +4,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class NavigationService {
-  static _removeAllFocus() {
+  static removeFocus() {
     FocusManager.instance.primaryFocus?.unfocus();
   }
 
-  static _removeOverlays() {
+  static _closeOverlays() {
     FToast().removeQueuedCustomToasts();
   }
 
@@ -17,14 +17,23 @@ abstract class NavigationService {
     T? result,
     bool closeOverlays = false,
   }) async {
-    _removeAllFocus();
     if (closeOverlays) {
-      _removeOverlays();
+      _closeOverlays();
     }
-    if (context.mounted && context.canPop()) {
+    if (context.canPop()) {
       // Note: GoRouter logging will wrongly log that it's popping current route
       // when popping a dialog: https://github.com/flutter/flutter/issues/119237
       return context.pop(result);
+    }
+  }
+
+  static Future<void> popDialog<T>(
+    BuildContext context, {
+    T? result,
+  }) async {
+    final navigator = Navigator.of(context, rootNavigator: true);
+    if (navigator.canPop()) {
+      return navigator.pop(result);
     }
   }
 }

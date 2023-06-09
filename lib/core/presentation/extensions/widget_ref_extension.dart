@@ -21,7 +21,8 @@ extension WidgetRefExtension on WidgetRef {
       (prevState, newState) {
         prevState?.whenOrNull(
           skipLoadingOnRefresh: false,
-          loading: handleLoading ? () => NavigationService.pop(context) : null,
+          loading:
+              handleLoading ? () => NavigationService.popDialog(context) : null,
         );
         newState.whenOrNull(
           skipLoadingOnRefresh: false,

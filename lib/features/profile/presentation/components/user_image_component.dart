@@ -30,7 +30,7 @@ class UserImageComponent extends ConsumerWidget {
               .update((_) => Some(Event.unique(image)));
         });
       } catch (_) {}
-      NavigationService.pop(ctx);
+      NavigationService.popDialog(ctx);
     }
 
     return Stack(

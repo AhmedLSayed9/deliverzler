@@ -4,7 +4,7 @@ import '../../../../../core/core_features/theme/presentation/providers/current_a
 import '../../../../../core/core_features/theme/presentation/utils/app_theme.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/helpers/theme_helper.dart';
-import '../../../../../core/presentation/routing/navigation_service.dart';
+import '../../../../../core/presentation/routing/app_router.dart';
 import '../../../../../core/presentation/screens/nested_screen_scaffold.dart';
 import '../../../../../core/presentation/services/local_notfication_service/show_local_notification_provider.dart';
 import '../../../../../core/presentation/utils/fp_framework.dart';
@@ -59,7 +59,7 @@ class MapScreenCompact extends HookConsumerWidget {
       mapConfirmOrderStatusProvider,
       whenData: (state) {
         if (state == MapConfirmOrderState.success) {
-          NavigationService.pop(context);
+          const HomeRoute().go(context);
         }
       },
     );

@@ -93,7 +93,7 @@ abstract class Dialogs {
           ),
           CustomButton(
             text: tr(context).oK,
-            onPressed: () => NavigationService.pop(context),
+            onPressed: () => NavigationService.popDialog(context),
           ),
         ],
       ),

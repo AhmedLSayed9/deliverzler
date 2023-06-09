@@ -49,7 +49,7 @@ class CancelOrderDialog extends HookWidget {
                     height: Sizes.buttonHeight44,
                     width: Sizes.buttonWidth120,
                     onPressed: () {
-                      NavigationService.pop(context);
+                      NavigationService.popDialog(context);
                     },
                     child: CustomText.f16(
                       context,
@@ -66,7 +66,7 @@ class CancelOrderDialog extends HookWidget {
                     height: Sizes.buttonHeight44,
                     width: Sizes.buttonWidth120,
                     onPressed: () {
-                      NavigationService.pop(
+                      NavigationService.popDialog(
                         context,
                         result: [cancelNoteController.text],
                       );

@@ -166,7 +166,7 @@ class OrderDetailsDialog extends StatelessWidget {
               text: tr(context).back,
               height: Sizes.buttonHeight44,
               width: Sizes.buttonWidth220,
-              onPressed: () => NavigationService.pop(context),
+              onPressed: () => NavigationService.popDialog(context),
             ),
           ),
         ],

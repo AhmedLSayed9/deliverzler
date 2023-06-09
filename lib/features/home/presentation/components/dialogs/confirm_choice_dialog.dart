@@ -57,7 +57,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
                     height: Sizes.buttonHeight44,
                     width: Sizes.buttonWidth120,
                     onPressed: () {
-                      NavigationService.pop(context);
+                      NavigationService.popDialog(context);
                     },
                     child: CustomText.f16(
                       context,
@@ -74,7 +74,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
                     height: Sizes.buttonHeight44,
                     width: Sizes.buttonWidth120,
                     onPressed: () {
-                      NavigationService.pop(context, result: [true]);
+                      NavigationService.popDialog(context, result: [true]);
                     },
                   ),
                 ),
