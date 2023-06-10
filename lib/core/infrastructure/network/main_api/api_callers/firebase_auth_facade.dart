@@ -27,7 +27,7 @@ class FirebaseAuthFacade {
     required String email,
     required String password,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await firebaseAuth.signInWithEmailAndPassword(
           email: email,
@@ -38,7 +38,7 @@ class FirebaseAuthFacade {
   }
 
   Future<User> getCurrentUser() async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         final currentUser = firebaseAuth.currentUser;
         if (currentUser != null) {
@@ -54,18 +54,19 @@ class FirebaseAuthFacade {
   }
 
   Future<void> signOut() async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await firebaseAuth.signOut();
       },
     );
   }
 
-  FutureOr<T> _tryCatchWrapper<T>(FutureOr<T> Function() body) async {
+  Future<T> _errorHandler<T>(Future<T> Function() body) async {
     try {
       return await body();
-    } on Exception catch (e) {
-      throw e.firebaseErrorToServerException();
+    } catch (e, st) {
+      final error = e.firebaseErrorToServerException();
+      throw Error.throwWithStackTrace(error, st);
     }
   }
 }

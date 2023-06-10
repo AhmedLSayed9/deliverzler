@@ -27,7 +27,7 @@ class FirebaseStorageFacade {
     required String path,
     required File file,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         final uploadTask = firebaseStorage.ref().child(path).putFile(file);
         final downloadURL = await (await uploadTask).ref.getDownloadURL();
@@ -37,7 +37,7 @@ class FirebaseStorageFacade {
   }
 
   Future<void> deleteImage({required String path}) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await firebaseStorage.ref().child(path).delete();
       },
@@ -45,7 +45,7 @@ class FirebaseStorageFacade {
   }
 
   Future<void> deleteAllFolderImages({required String path}) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await firebaseStorage.ref().child(path).listAll().then(
           (result) {
@@ -58,11 +58,12 @@ class FirebaseStorageFacade {
     );
   }
 
-  FutureOr<T> _tryCatchWrapper<T>(FutureOr<T> Function() body) async {
+  FutureOr<T> _errorHandler<T>(FutureOr<T> Function() body) async {
     try {
       return await body();
-    } on Exception catch (e) {
-      throw e.firebaseErrorToServerException();
+    } catch (e, st) {
+      final error = e.firebaseErrorToServerException();
+      throw Error.throwWithStackTrace(error, st);
     }
   }
 }

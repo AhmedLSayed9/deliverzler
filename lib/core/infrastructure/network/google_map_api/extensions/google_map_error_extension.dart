@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../../error/app_exception.dart';
 
-extension GoogleMapErrorExtension on Exception {
+extension GoogleMapErrorExtension on Object {
   ServerException googleMapErrorToServerException() {
     final error = this;
 

@@ -1,6 +1,6 @@
 import '../../error/app_exception.dart';
 
-extension LocaleErrorExtension on Exception {
+extension LocaleErrorExtension on Object {
   CacheException localErrorToCacheException() {
     final error = this;
 

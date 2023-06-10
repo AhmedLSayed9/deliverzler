@@ -31,7 +31,7 @@ class FirebaseFirestoreFacade {
     required Map<String, dynamic> data,
     bool merge = false,
   }) async {
-    return await _tryCatchWrapper(
+    return await _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
         return await reference.set(data, SetOptions(merge: merge));
@@ -43,7 +43,7 @@ class FirebaseFirestoreFacade {
     required String path,
     required Map<String, dynamic> data,
   }) async {
-    return await _tryCatchWrapper(
+    return await _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
         return await reference.update(data);
@@ -52,7 +52,7 @@ class FirebaseFirestoreFacade {
   }
 
   Future<void> deleteData({required String path}) async {
-    return await _tryCatchWrapper(
+    return await _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
         return await reference.delete();
@@ -64,7 +64,7 @@ class FirebaseFirestoreFacade {
     required String path,
     required Map<String, dynamic> data,
   }) async {
-    return await _tryCatchWrapper(
+    return await _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.collection(path);
         return await reference.add(data).then((value) => value.id);
@@ -75,7 +75,7 @@ class FirebaseFirestoreFacade {
   Future<DocumentSnapshot> getData({
     required String path,
   }) async {
-    return await _tryCatchWrapper(
+    return await _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
         return await reference.get();
@@ -87,7 +87,7 @@ class FirebaseFirestoreFacade {
     required String path,
     QueryBuilder? queryBuilder,
   }) async {
-    return await _tryCatchWrapper(
+    return await _futureErrorHandler(
       () async {
         Query<Map<String, dynamic>> reference =
             firebaseFirestore.collection(path);
@@ -102,7 +102,7 @@ class FirebaseFirestoreFacade {
   Future<void> deleteAllCollectionData({
     required String path,
   }) async {
-    return await _tryCatchWrapper(
+    return await _futureErrorHandler(
       () async {
         final WriteBatch batch = FirebaseFirestore.instance.batch();
         const int batchSize = 100;
@@ -131,7 +131,7 @@ class FirebaseFirestoreFacade {
     required String path,
     QueryBuilder? queryBuilder,
   }) {
-    return _streamTryCatchWrapper(
+    return _streamErrorHandler(
       () {
         Query<Map<String, dynamic>> reference =
             firebaseFirestore.collection(path);
@@ -146,7 +146,7 @@ class FirebaseFirestoreFacade {
   Stream documentStream({
     required String path,
   }) {
-    return _streamTryCatchWrapper(
+    return _streamErrorHandler(
       () {
         final reference = firebaseFirestore.doc(path);
         return reference.snapshots();
@@ -154,19 +154,19 @@ class FirebaseFirestoreFacade {
     );
   }
 
-  Future<T> _tryCatchWrapper<T>(Future<T> Function() body) async {
+  Future<T> _futureErrorHandler<T>(Future<T> Function() body) async {
     try {
       return await body();
-    } on Exception catch (e) {
-      throw e.firebaseErrorToServerException();
+    } catch (e, st) {
+      final error = e.firebaseErrorToServerException();
+      throw Error.throwWithStackTrace(error, st);
     }
   }
 
-  Stream<T> _streamTryCatchWrapper<T>(Stream<T> Function() body) {
-    try {
-      return body();
-    } on Exception catch (e) {
-      throw e.firebaseErrorToServerException();
-    }
+  Stream<T> _streamErrorHandler<T>(Stream<T> Function() body) {
+    return body().handleError((Object e, StackTrace st) {
+      final error = e.firebaseErrorToServerException();
+      throw Error.throwWithStackTrace(error, st);
+    });
   }
 }

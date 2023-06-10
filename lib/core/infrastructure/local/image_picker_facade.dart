@@ -30,7 +30,7 @@ class ImagePickerFacade {
     double? maxHeight,
     double? maxWidth,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         final pickedFile = await imagePicker.pickImage(
           source: pickSource == PickSource.camera
@@ -51,11 +51,12 @@ class ImagePickerFacade {
     );
   }
 
-  Future<T> _tryCatchWrapper<T>(Function body) async {
+  Future<T> _errorHandler<T>(Function body) async {
     try {
       return await body.call();
-    } on Exception catch (e) {
-      throw e.localErrorToCacheException();
+    } catch (e, st) {
+      final error = e.localErrorToCacheException();
+      throw Error.throwWithStackTrace(error, st);
     }
   }
 }

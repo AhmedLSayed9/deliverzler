@@ -24,7 +24,7 @@ class GoogleMapApiFacade {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await dio.get(
           path,
@@ -44,7 +44,7 @@ class GoogleMapApiFacade {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await dio.post(
           path,
@@ -63,7 +63,7 @@ class GoogleMapApiFacade {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await dio.patch(
           path,
@@ -81,7 +81,7 @@ class GoogleMapApiFacade {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await dio.put(
           path,
@@ -99,7 +99,7 @@ class GoogleMapApiFacade {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await dio.delete(
           path,
@@ -111,11 +111,12 @@ class GoogleMapApiFacade {
     );
   }
 
-  Future<T> _tryCatchWrapper<T>(Future<T> Function() body) async {
+  Future<T> _errorHandler<T>(Future<T> Function() body) async {
     try {
       return await body();
-    } on Exception catch (e) {
-      throw e.googleMapErrorToServerException();
+    } catch (e, st) {
+      final error = e.googleMapErrorToServerException();
+      throw Error.throwWithStackTrace(error, st);
     }
   }
 }

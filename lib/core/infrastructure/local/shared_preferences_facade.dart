@@ -24,7 +24,8 @@ SharedPreferences _sharedPrefs(_SharedPrefsRef ref) {
 }
 
 @Riverpod(keepAlive: true)
-SharedPreferencesFacade sharedPreferencesFacade(SharedPreferencesFacadeRef ref) {
+SharedPreferencesFacade sharedPreferencesFacade(
+    SharedPreferencesFacadeRef ref) {
   return SharedPreferencesFacade(
     sharedPrefs: ref.watch(_sharedPrefsProvider),
   );
@@ -51,7 +52,7 @@ class SharedPreferencesFacade {
     required dynamic value,
     required DataType dataType,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await getSetMethod(sharedPrefsMethod: dataType)(key, value);
       },
@@ -62,7 +63,7 @@ class SharedPreferencesFacade {
     required String key,
     required DataType dataType,
   }) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await getGetMethod(sharedPrefsMethod: dataType)(key);
       },
@@ -70,7 +71,7 @@ class SharedPreferencesFacade {
   }
 
   Future<bool> clearAll() async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await sharedPrefs.clear();
       },
@@ -78,7 +79,7 @@ class SharedPreferencesFacade {
   }
 
   Future<bool> clearKey({required key}) async {
-    return await _tryCatchWrapper(
+    return await _errorHandler(
       () async {
         return await sharedPrefs.remove(key);
       },
@@ -115,11 +116,12 @@ class SharedPreferencesFacade {
     }
   }
 
-  Future<T> _tryCatchWrapper<T>(Function body) async {
+  Future<T> _errorHandler<T>(Function body) async {
     try {
       return await body.call();
-    } on Exception catch (e) {
-      throw e.localErrorToCacheException();
+    } catch (e, st) {
+      final error = e.localErrorToCacheException();
+      throw Error.throwWithStackTrace(error, st);
     }
   }
 }

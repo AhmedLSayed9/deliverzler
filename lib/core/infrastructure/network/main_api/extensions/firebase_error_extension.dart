@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../error/app_exception.dart';
 
-extension FirebaseErrorExtension on Exception {
+extension FirebaseErrorExtension on Object {
   ServerException firebaseErrorToServerException() {
     final exception = this;
 
