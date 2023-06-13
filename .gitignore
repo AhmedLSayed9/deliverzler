@@ -53,4 +53,3 @@ lib/firebase_options.dart
 # Ignoring generated files
 *.g.dart
 *.freezed.dart
-!lib/**/*.freezed.dart
