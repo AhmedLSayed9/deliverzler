@@ -13,10 +13,10 @@ import '../providers/map_overlays_providers/map_polylines_provider.dart';
 import '../providers/my_location_providers/my_location_camera_position_provider.dart';
 
 class GoogleMapComponent extends HookConsumerWidget {
-  const GoogleMapComponent({Key? key}) : super(key: key);
+  const GoogleMapComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<GoogleMapController?>(
       mapControllerProvider,
       (previous, next) {},
@@ -24,20 +24,16 @@ class GoogleMapComponent extends HookConsumerWidget {
 
     return GoogleMap(
       initialCameraPosition: ref.watch(myLocationCameraPositionProvider),
-      mapType: MapType.normal,
       markers: ref.watch(mapMarkersProvider),
       circles: ref.watch(mapCirclesProvider),
       polylines: ref.watch(mapPolylinesProvider),
-      myLocationEnabled: false,
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
       onMapCreated: (controller) async {
         final isDark = ref.read(currentAppThemeProvider) == AppTheme.dark;
-        final mapStyle = await MapStyleHelper.getMapStyle(isDark);
+        final mapStyle = await MapStyleHelper.getMapStyle(isDarkMode: isDark);
         await controller.setMapStyle(mapStyle);
-        ref
-            .read(currentMapControllerProvider.notifier)
-            .update((_) => controller);
+        ref.read(currentMapControllerProvider.notifier).update((_) => controller);
       },
     );
   }

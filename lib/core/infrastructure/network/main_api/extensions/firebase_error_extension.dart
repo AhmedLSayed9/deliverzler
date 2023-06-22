@@ -14,8 +14,7 @@ extension FirebaseErrorExtension on Object {
     if (exception is TimeoutException) {
       return ServerException(
         type: ServerExceptionType.timeOut,
-        message: exception.message ??
-            'Connecting timed out [${exception.duration}ms]',
+        message: exception.message ?? 'Connecting timed out [${exception.duration}ms]',
         code: 408,
       );
     }
@@ -27,25 +26,25 @@ extension FirebaseErrorExtension on Object {
 }
 
 extension _FirebaseAuthErrorExtension on FirebaseAuthException {
-  //TODO: Handle all auth exception cases and add unit tests
+  // TODO(Ahmed): Handle all auth exception cases and add unit tests
   ServerException firebaseAuthToServerException() {
     switch (code) {
-      case "invalid-email":
+      case 'invalid-email':
         return ServerException(
           type: ServerExceptionType.authInvalidEmail,
           message: message ?? code,
         );
-      case "wrong-password":
+      case 'wrong-password':
         return ServerException(
           type: ServerExceptionType.authWrongPassword,
           message: message ?? code,
         );
-      case "user-not-found":
+      case 'user-not-found':
         return ServerException(
           type: ServerExceptionType.authUserNotFound,
           message: message ?? code,
         );
-      case "user-disabled":
+      case 'user-disabled':
         return ServerException(
           type: ServerExceptionType.authUserDisabled,
           message: message ?? code,

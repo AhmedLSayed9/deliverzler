@@ -30,29 +30,26 @@ void main() {
   ProviderContainer setUpRemoteContainer() {
     return setUpContainer(
       overrides: [
-        authRemoteDataSourceProvider
-            .overrideWithValue(mockAuthRemoteDataSource),
+        authRemoteDataSourceProvider.overrideWithValue(mockAuthRemoteDataSource),
         authLocalDataSourceProvider.overrideWithValue(mockAuthLocalDataSource),
         networkInfoProvider.overrideWithValue(mockNetworkInfo),
       ],
     );
   }
 
-  void runTestsWhenConnected(Function body) {
+  void runTestsWhenConnected(void Function() body) {
     group('has network connection', () {
       setUp(() {
-        when(() => mockNetworkInfo.hasInternetConnection)
-            .thenAnswer((_) async => true);
+        when(() => mockNetworkInfo.hasInternetConnection).thenAnswer((_) async => true);
       });
       body.call();
     });
   }
 
-  void runTestsWhenDisconnected(Function body) {
+  void runTestsWhenDisconnected(void Function() body) {
     group('has no network connection', () {
       setUp(() {
-        when(() => mockNetworkInfo.hasInternetConnection)
-            .thenAnswer((_) async => false);
+        when(() => mockNetworkInfo.hasInternetConnection).thenAnswer((_) async => false);
       });
       body.call();
     });
@@ -74,7 +71,7 @@ void main() {
     'signInWithEmail',
     () {
       test(
-        'should return remote data'
+        'should return remote data '
         'when the call to remote data source is successful',
         () async {
           // GIVEN
@@ -88,19 +85,20 @@ void main() {
           final result = await authRepo.signInWithEmail(tParams);
 
           // THEN
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.signInWithEmail(tParams));
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.signInWithEmail(tParams),
+          );
           expect(result, equals(tUser));
         },
       );
 
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
-          when(() => mockAuthRemoteDataSource.signInWithEmail(tParams))
-              .thenThrow(tException);
+          when(() => mockAuthRemoteDataSource.signInWithEmail(tParams)).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -110,8 +108,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.signInWithEmail(tParams));
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.signInWithEmail(tParams),
+          );
         },
       );
     },
@@ -121,13 +121,12 @@ void main() {
     'getUserAuthUid',
     () {
       test(
-        'should return remote data'
+        'should return remote data '
         'when the call to remote data source is successful',
         () async {
           // GIVEN
           const tAuthUid = 'uid';
-          when(() => mockAuthRemoteDataSource.getUserAuthUid())
-              .thenAnswer((_) async => tAuthUid);
+          when(() => mockAuthRemoteDataSource.getUserAuthUid()).thenAnswer((_) async => tAuthUid);
 
           final container = setUpRemoteContainer();
 
@@ -136,19 +135,20 @@ void main() {
           final result = await authRepo.getUserAuthUid();
 
           // THEN
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.getUserAuthUid());
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.getUserAuthUid(),
+          );
           expect(result, equals(tAuthUid));
         },
       );
 
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
-          when(() => mockAuthRemoteDataSource.getUserAuthUid())
-              .thenThrow(tException);
+          when(() => mockAuthRemoteDataSource.getUserAuthUid()).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -158,8 +158,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.getUserAuthUid());
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.getUserAuthUid(),
+          );
         },
       );
     },
@@ -184,14 +186,16 @@ void main() {
 
           // THEN
           verifyOnly(
-              mockNetworkInfo, () => mockNetworkInfo.hasInternetConnection);
+            mockNetworkInfo,
+            () => mockNetworkInfo.hasInternetConnection,
+          );
         },
       );
 
       runTestsWhenConnected(
         () {
           test(
-            'should return remote data and try to cache the data locally'
+            'should return remote data and try to cache the data locally '
             'when the call to remote data source is successful',
             () async {
               // GIVEN
@@ -205,20 +209,23 @@ void main() {
               final result = await authRepo.getUserData(tAuthUid);
 
               // THEN
-              verifyOnly(mockAuthRemoteDataSource,
-                  () => mockAuthRemoteDataSource.getUserData(tAuthUid));
-              verifyOnly(mockAuthLocalDataSource,
-                  () => mockAuthLocalDataSource.cacheUserData(tUserDto));
+              verifyOnly(
+                mockAuthRemoteDataSource,
+                () => mockAuthRemoteDataSource.getUserData(tAuthUid),
+              );
+              verifyOnly(
+                mockAuthLocalDataSource,
+                () => mockAuthLocalDataSource.cacheUserData(tUserDto),
+              );
               expect(result, equals(tUser));
             },
           );
           test(
-            'should throw same Exception'
+            'should throw same Exception '
             'when the call to remote data source is unsuccessful',
             () async {
               // GIVEN
-              when(() => mockAuthRemoteDataSource.getUserAuthUid())
-                  .thenThrow(tException);
+              when(() => mockAuthRemoteDataSource.getUserAuthUid()).thenThrow(tException);
 
               final container = setUpRemoteContainer();
 
@@ -228,8 +235,10 @@ void main() {
 
               // THEN
               await expectLater(call, throwsA(tException));
-              verifyOnly(mockAuthRemoteDataSource,
-                  () => mockAuthRemoteDataSource.getUserAuthUid());
+              verifyOnly(
+                mockAuthRemoteDataSource,
+                () => mockAuthRemoteDataSource.getUserAuthUid(),
+              );
             },
           );
         },
@@ -238,12 +247,11 @@ void main() {
       runTestsWhenDisconnected(
         () {
           test(
-            'should return cached data'
+            'should return cached data '
             'when the cached data is present',
             () async {
               // GIVEN
-              when(() => mockAuthLocalDataSource.getUserData())
-                  .thenAnswer((_) async => tUserDto);
+              when(() => mockAuthLocalDataSource.getUserData()).thenAnswer((_) async => tUserDto);
 
               final container = setUpRemoteContainer();
 
@@ -252,19 +260,20 @@ void main() {
               final result = await authRepo.getUserData(tAuthUid);
 
               // THEN
-              verifyOnly(mockAuthLocalDataSource,
-                  () => mockAuthLocalDataSource.getUserData());
+              verifyOnly(
+                mockAuthLocalDataSource,
+                () => mockAuthLocalDataSource.getUserData(),
+              );
               expect(result, tUser);
               verifyZeroInteractions(mockAuthRemoteDataSource);
             },
           );
           test(
-            'should throw same Exception'
+            'should throw same Exception '
             'when there is no cached data present',
             () async {
               // GIVEN
-              when(() => mockAuthLocalDataSource.getUserData())
-                  .thenThrow(tException);
+              when(() => mockAuthLocalDataSource.getUserData()).thenThrow(tException);
 
               final container = setUpRemoteContainer();
 
@@ -274,8 +283,10 @@ void main() {
 
               // THEN
               await expectLater(call, throwsA(tException));
-              verifyOnly(mockAuthLocalDataSource,
-                  () => mockAuthLocalDataSource.getUserData());
+              verifyOnly(
+                mockAuthLocalDataSource,
+                () => mockAuthLocalDataSource.getUserData(),
+              );
               verifyZeroInteractions(mockAuthRemoteDataSource);
             },
           );
@@ -288,12 +299,11 @@ void main() {
     'setUserData',
     () {
       test(
-        'should call RemoteDataSource.setUserData with the proper param'
+        'should call RemoteDataSource.setUserData with the proper param '
         'and try to cache the data locally',
         () async {
           // GIVEN
-          when(() => mockAuthRemoteDataSource.setUserData(tUserDto))
-              .thenAnswer((_) async {});
+          when(() => mockAuthRemoteDataSource.setUserData(tUserDto)).thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
@@ -303,19 +313,22 @@ void main() {
 
           // THEN
           await expectLater(call, completes);
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.setUserData(tUserDto));
-          verifyOnly(mockAuthLocalDataSource,
-              () => mockAuthLocalDataSource.cacheUserData(tUserDto));
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.setUserData(tUserDto),
+          );
+          verifyOnly(
+            mockAuthLocalDataSource,
+            () => mockAuthLocalDataSource.cacheUserData(tUserDto),
+          );
         },
       );
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
-          when(() => mockAuthRemoteDataSource.setUserData(tUserDto))
-              .thenThrow(tException);
+          when(() => mockAuthRemoteDataSource.setUserData(tUserDto)).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -325,8 +338,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.setUserData(tUserDto));
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.setUserData(tUserDto),
+          );
         },
       );
     },
@@ -336,12 +351,11 @@ void main() {
     'signOut',
     () {
       test(
-        'should call RemoteDataSource.signOut'
+        'should call RemoteDataSource.signOut '
         'and try to clear the cached data',
         () async {
           // GIVEN
-          when(() => mockAuthRemoteDataSource.signOut())
-              .thenAnswer((_) async {});
+          when(() => mockAuthRemoteDataSource.signOut()).thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
@@ -351,14 +365,18 @@ void main() {
 
           // THEN
           await expectLater(call, completes);
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.signOut());
-          verifyOnly(mockAuthLocalDataSource,
-              () => mockAuthLocalDataSource.clearUserData());
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.signOut(),
+          );
+          verifyOnly(
+            mockAuthLocalDataSource,
+            () => mockAuthLocalDataSource.clearUserData(),
+          );
         },
       );
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when the call to remote data source is unsuccessful',
         () async {
           // GIVEN
@@ -372,8 +390,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockAuthRemoteDataSource,
-              () => mockAuthRemoteDataSource.signOut());
+          verifyOnly(
+            mockAuthRemoteDataSource,
+            () => mockAuthRemoteDataSource.signOut(),
+          );
         },
       );
     },

@@ -26,7 +26,7 @@ class HomeShellScreen extends HookConsumerWidget {
   final StatefulNavigationShell navigationShell;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(connectionStreamProvider, (prevState, newState) {
       newState.whenOrNull(
         data: (status) {

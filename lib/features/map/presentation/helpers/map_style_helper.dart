@@ -6,15 +6,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../core/presentation/styles/app_images.dart';
 
 abstract class MapStyleHelper {
-  static Future<String> getMapStyle(bool isDarkMode) async {
-    return await rootBundle.loadString(
+  static Future<String> getMapStyle({required bool isDarkMode}) async {
+    return rootBundle.loadString(
       isDarkMode ? AppImages.mapDarkStyle : AppImages.mapLightStyle,
     );
   }
 
   static Future<BitmapDescriptor> getMyLocationMarkerIcon() async {
-    return await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(),
+    return BitmapDescriptor.fromAssetImage(
+      ImageConfiguration.empty,
       AppImages.mapDeliveryIcon,
     );
   }
@@ -54,7 +54,7 @@ abstract class MapStyleHelper {
   static Marker getSelectedPlaceMarker({
     required LatLng position,
     required String description,
-    required Function(LatLng) onDragEnd,
+    required void Function(LatLng)? onDragEnd,
   }) {
     return Marker(
       markerId: const MarkerId('selectedPlace'),

@@ -18,7 +18,7 @@ class ProfileLocalDataSource {
   final ImagePickerFacade imagePicker;
 
   Future<File> pickProfileImage(PickSource pickSource) async {
-    return await imagePicker.pickImage(
+    return imagePicker.pickImage(
       pickSource: pickSource,
       maxHeight: 400,
       maxWidth: 400,

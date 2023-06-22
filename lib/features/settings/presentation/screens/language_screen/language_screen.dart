@@ -4,7 +4,7 @@ import '../../../../../core/presentation/widgets/responsive_widgets/widget_build
 import 'language_screen_compact.dart';
 
 class LanguageScreen extends StatelessWidget {
-  const LanguageScreen({Key? key}) : super(key: key);
+  const LanguageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

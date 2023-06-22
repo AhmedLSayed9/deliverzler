@@ -10,10 +10,10 @@ import '../helpers/map_coordinates_helper.dart';
 import '../providers/target_location_providers/target_location_directions_provider.dart';
 
 class MapDirectionsInfoComponent extends ConsumerWidget {
-  const MapDirectionsInfoComponent({Key? key}) : super(key: key);
+  const MapDirectionsInfoComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final targetLocationDirections =
         ref.watch(targetLocationDirectionsProvider);
 

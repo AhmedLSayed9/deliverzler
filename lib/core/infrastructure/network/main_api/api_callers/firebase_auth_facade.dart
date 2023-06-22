@@ -27,9 +27,9 @@ class FirebaseAuthFacade {
     required String email,
     required String password,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await firebaseAuth.signInWithEmailAndPassword(
+        return firebaseAuth.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
@@ -38,7 +38,7 @@ class FirebaseAuthFacade {
   }
 
   Future<User> getCurrentUser() async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
         final currentUser = firebaseAuth.currentUser;
         if (currentUser != null) {
@@ -54,9 +54,9 @@ class FirebaseAuthFacade {
   }
 
   Future<void> signOut() async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await firebaseAuth.signOut();
+        return firebaseAuth.signOut();
       },
     );
   }

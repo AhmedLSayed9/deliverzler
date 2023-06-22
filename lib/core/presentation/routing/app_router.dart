@@ -33,7 +33,7 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
     routes: [
       // Temporary using generated routes separately to be able to use
       // StatefulShellRoute until it's supported by app_route_builder.
-      // TODO: migrate StatefulShellRoute to code gen and use $appRoutes:
+      // TODO(Ahmed): migrate StatefulShellRoute to code gen and use $appRoutes:
       // https://github.com/flutter/flutter/issues/127371
       $splashRoute,
       $noInternetRoute,
@@ -50,7 +50,7 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
               navigationShell: navigationShell,
               // This key fixes ShellRoute bug with CupertinoTabScaffold:
               // https://github.com/flutter/flutter/issues/113757
-              key: GlobalKey(debugLabel: "HomeShellScreen"),
+              key: GlobalKey(debugLabel: 'HomeShellScreen'),
             ),
           );
         },
@@ -75,7 +75,7 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
       ),
     ],
     redirect: (BuildContext context, GoRouterState state) {
-      final bool isAuthenticated = ref.read(authStateProvider).isSome();
+      final isAuthenticated = ref.read(authStateProvider).isSome();
       final allowedRoutes = [
         const SplashRoute().location,
         const NoInternetRoute().location,
@@ -83,8 +83,7 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
       ];
 
       // If the user is authenticated but still on the login page, send to home.
-      if (isAuthenticated &&
-          state.location.startsWith(const SignInRoute().location)) {
+      if (isAuthenticated && state.location.startsWith(const SignInRoute().location)) {
         return const HomeRoute().location;
       }
 
@@ -110,8 +109,7 @@ class SplashRoute extends GoRouteData {
   const SplashRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const SplashScreen();
+  Widget build(BuildContext context, GoRouterState state) => const SplashScreen();
 }
 
 @TypedGoRoute<NoInternetRoute>(path: '/no_internet')
@@ -119,8 +117,7 @@ class NoInternetRoute extends GoRouteData {
   const NoInternetRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const NoInternetScreen();
+  Widget build(BuildContext context, GoRouterState state) => const NoInternetScreen();
 }
 
 @TypedGoRoute<SignInRoute>(path: '/login')
@@ -158,8 +155,7 @@ class ProfileRoute extends GoRouteData {
   const ProfileRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const ProfileScreen();
+  Widget build(BuildContext context, GoRouterState state) => const ProfileScreen();
 }
 
 @TypedGoRoute<SettingsRoute>(
@@ -172,14 +168,12 @@ class SettingsRoute extends GoRouteData {
   const SettingsRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const SettingsScreen();
+  Widget build(BuildContext context, GoRouterState state) => const SettingsScreen();
 }
 
 class LanguageRoute extends GoRouteData {
   const LanguageRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const LanguageScreen();
+  Widget build(BuildContext context, GoRouterState state) => const LanguageScreen();
 }

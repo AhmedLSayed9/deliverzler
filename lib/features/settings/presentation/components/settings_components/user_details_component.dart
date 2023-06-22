@@ -9,10 +9,10 @@ import '../../../../../core/presentation/widgets/cached_network_image_circular.d
 import '../../../../../core/presentation/widgets/custom_text.dart';
 
 class UserDetailsComponent extends ConsumerWidget {
-  const UserDetailsComponent({Key? key}) : super(key: key);
+  const UserDetailsComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentUserProvider);
 
     return Row(

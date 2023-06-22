@@ -42,14 +42,12 @@ void main() {
   const unauthenticatedState = None();
 
   test(
-    'should emit AsyncData(user) when AuthRepo.getUserAuthUid & AuthRepo.getUserData returns normally'
+    'should emit AsyncData(user) when AuthRepo.getUserAuthUid & AuthRepo.getUserData returns normally '
     'and authenticate user',
     () async {
       // GIVEN
-      when(() => mockAuthRepo.getUserAuthUid())
-          .thenAnswer((_) => Future.value(tUser.id));
-      when(() => mockAuthRepo.getUserData(tUser.id))
-          .thenAnswer((_) => Future.value(tUser));
+      when(() => mockAuthRepo.getUserAuthUid()).thenAnswer((_) => Future.value(tUser.id));
+      when(() => mockAuthRepo.getUserData(tUser.id)).thenAnswer((_) => Future.value(tUser));
 
       final container = setUpContainer(
         overrides: [
@@ -61,7 +59,9 @@ void main() {
 
       // WHEN
       verifyOnly(
-          checkAuthListener, () => checkAuthListener(null, loadingState));
+        checkAuthListener,
+        () => checkAuthListener(null, loadingState),
+      );
 
       verifyOnly(authListener, () => authListener(null, unauthenticatedState));
 
@@ -83,7 +83,7 @@ void main() {
   );
 
   test(
-    'should emit AsyncError when AuthRepo.getUserAuthUid throws'
+    'should emit AsyncError when AuthRepo.getUserAuthUid throws '
     'and call signOutProvider',
     () async {
       // GIVEN
@@ -93,12 +93,11 @@ void main() {
       when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
 
       const signOutEvent = Event(arg: unit);
-      bool calledSignOut = false;
+      var calledSignOut = false;
       final container = setUpContainer(
         overrides: [
           authRepoProvider.overrideWithValue(mockAuthRepo),
-          signOutProvider(signOutEvent)
-              .overrideWith((ref) => calledSignOut = true),
+          signOutProvider(signOutEvent).overrideWith((ref) => calledSignOut = true),
         ],
       );
       final checkAuthListener = setUpListener(container, checkAuthProvider);
@@ -106,7 +105,9 @@ void main() {
 
       // WHEN
       verifyOnly(
-          checkAuthListener, () => checkAuthListener(null, loadingState));
+        checkAuthListener,
+        () => checkAuthListener(null, loadingState),
+      );
 
       verifyOnly(authListener, () => authListener(null, unauthenticatedState));
 
@@ -128,24 +129,22 @@ void main() {
   );
 
   test(
-    'should emit AsyncError when AuthRepo.getUserData throws'
+    'should emit AsyncError when AuthRepo.getUserData throws '
     'and call signOutProvider',
     () async {
       // GIVEN
-      when(() => mockAuthRepo.getUserAuthUid())
-          .thenAnswer((_) => Future.value(tUser.id));
+      when(() => mockAuthRepo.getUserAuthUid()).thenAnswer((_) => Future.value(tUser.id));
       when(() => mockAuthRepo.getUserData(tUser.id)).thenAnswer(
         (_) => Error.throwWithStackTrace(tException, tStackTrace),
       );
       when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
 
       const signOutEvent = Event(arg: unit);
-      bool calledSignOut = false;
+      var calledSignOut = false;
       final container = setUpContainer(
         overrides: [
           authRepoProvider.overrideWithValue(mockAuthRepo),
-          signOutProvider(signOutEvent)
-              .overrideWith((ref) => calledSignOut = true),
+          signOutProvider(signOutEvent).overrideWith((ref) => calledSignOut = true),
         ],
       );
       final checkAuthListener = setUpListener(container, checkAuthProvider);
@@ -153,7 +152,9 @@ void main() {
 
       // WHEN
       verifyOnly(
-          checkAuthListener, () => checkAuthListener(null, loadingState));
+        checkAuthListener,
+        () => checkAuthListener(null, loadingState),
+      );
 
       verifyOnly(authListener, () => authListener(null, unauthenticatedState));
 

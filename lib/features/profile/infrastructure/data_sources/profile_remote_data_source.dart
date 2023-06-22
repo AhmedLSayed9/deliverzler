@@ -10,7 +10,8 @@ part 'profile_remote_data_source.g.dart';
 
 @Riverpod(keepAlive: true)
 ProfileRemoteDataSource profileRemoteDataSource(
-    ProfileRemoteDataSourceRef ref) {
+  ProfileRemoteDataSourceRef ref,
+) {
   return ProfileRemoteDataSource(
     ref,
     firebaseFirestore: ref.watch(firebaseFirestoreFacadeProvider),
@@ -35,8 +36,7 @@ class ProfileRemoteDataSource {
 
   static const String usersStorageFolderPath = 'users';
 
-  static String userStorageFolderPath(String uid) =>
-      '$usersStorageFolderPath/$uid';
+  static String userStorageFolderPath(String uid) => '$usersStorageFolderPath/$uid';
 
   Future<String> uploadProfileImage(File imageFile) async {
     final uid = ref.read(currentUserProvider).id;
@@ -50,7 +50,7 @@ class ProfileRemoteDataSource {
 
   Future<void> updateProfileImage(String imageUrl) async {
     final uid = ref.read(currentUserProvider).id;
-    return await firebaseFirestore.setData(
+    return firebaseFirestore.setData(
       path: userDocPath(uid),
       data: {'image': imageUrl},
       merge: true,
@@ -59,7 +59,7 @@ class ProfileRemoteDataSource {
 
   Future<void> updateProfileData(ProfileDetailsDto params) async {
     final uid = ref.read(currentUserProvider).id;
-    return await firebaseFirestore.setData(
+    return firebaseFirestore.setData(
       path: userDocPath(uid),
       data: params.toJson(),
       merge: true,

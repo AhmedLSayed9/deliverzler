@@ -9,7 +9,7 @@ import '../../../core/presentation/widgets/custom_icon.dart';
 import '../../../core/presentation/widgets/custom_text.dart';
 
 class WelcomeComponent extends StatelessWidget {
-  const WelcomeComponent({Key? key}) : super(key: key);
+  const WelcomeComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

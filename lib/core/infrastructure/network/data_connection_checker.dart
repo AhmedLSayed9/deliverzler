@@ -11,6 +11,24 @@ enum DataConnectionStatus {
 /// This is a singleton that can be accessed like a regular constructor
 /// i.e. DataConnectionChecker() always returns the same instance.
 class DataConnectionChecker {
+  /// This is a singleton that can be accessed like a regular constructor
+  /// i.e. DataConnectionChecker() always returns the same instance.
+  factory DataConnectionChecker() => _instance;
+
+  DataConnectionChecker._() {
+    // immediately perform an initial check so we know the last status?
+    // connectionStatus.then((status) => _lastStatus = status);
+
+    // start sending status updates to onStatusChange when there are listeners
+    // (emits only if there's any change since the last status update)
+    _statusController.onListen = _maybeEmitStatusUpdate;
+    // stop sending status updates when no one is listening
+    _statusController.onCancel = () {
+      _timerHandle?.cancel();
+      _lastStatus = null; // reset last status
+    };
+  }
+
   /// More info on why default port is 53
   /// here:
   /// - https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
@@ -51,8 +69,7 @@ class DataConnectionChecker {
   /// | 8.8.4.4        | Google     | https://developers.google.com/speed/public-dns/ |
   /// | 208.67.222.222 | OpenDNS    | https://use.opendns.com/                        |
   /// | 208.67.220.220 | OpenDNS    | https://use.opendns.com/                        |
-  static final List<AddressCheckOptions> defaultAddresses =
-  List<AddressCheckOptions>.unmodifiable(
+  static final List<AddressCheckOptions> defaultAddresses = List<AddressCheckOptions>.unmodifiable(
     <AddressCheckOptions>[
       AddressCheckOptions(
         InternetAddress(
@@ -107,33 +124,13 @@ class DataConnectionChecker {
   /// See [AddressCheckOptions] for more info.
   List<AddressCheckOptions> addresses = defaultAddresses;
 
-  /// This is a singleton that can be accessed like a regular constructor
-  /// i.e. DataConnectionChecker() always returns the same instance.
-  factory DataConnectionChecker() => _instance;
-
-  DataConnectionChecker._() {
-    // immediately perform an initial check so we know the last status?
-    // connectionStatus.then((status) => _lastStatus = status);
-
-    // start sending status updates to onStatusChange when there are listeners
-    // (emits only if there's any change since the last status update)
-    _statusController.onListen = () {
-      _maybeEmitStatusUpdate();
-    };
-    // stop sending status updates when no one is listening
-    _statusController.onCancel = () {
-      _timerHandle?.cancel();
-      _lastStatus = null; // reset last status
-    };
-  }
-
   static final DataConnectionChecker _instance = DataConnectionChecker._();
 
   /// Ping a single address. See [AddressCheckOptions] for
   /// info on the accepted argument.
   Future<AddressCheckResult> isHostReachable(
-      AddressCheckOptions options,
-      ) async {
+    AddressCheckOptions options,
+  ) async {
     Socket? sock;
     try {
       sock = await Socket.connect(
@@ -142,10 +139,10 @@ class DataConnectionChecker {
         timeout: options.timeout,
       );
       sock.destroy();
-      return AddressCheckResult(options, true);
+      return AddressCheckResult(options, isSuccess: true);
     } catch (e) {
       sock?.destroy();
-      return AddressCheckResult(options, false);
+      return AddressCheckResult(options, isSuccess: false);
     }
   }
 
@@ -154,12 +151,12 @@ class DataConnectionChecker {
   /// we assume an internet connection is available and return `true`.
   /// `false` otherwise.
   Future<bool> get hasConnection async {
-    final Completer<bool> result = Completer<bool>();
-    int length = addresses.length;
+    final result = Completer<bool>();
+    var length = addresses.length;
 
-    for (final AddressCheckOptions addressOptions in addresses) {
-      isHostReachable(addressOptions).then(
-            (AddressCheckResult request) {
+    for (final addressOptions in addresses) {
+      await isHostReachable(addressOptions).then(
+        (AddressCheckResult request) {
           length -= 1;
           if (!result.isCompleted) {
             if (request.isSuccess) {
@@ -181,9 +178,7 @@ class DataConnectionChecker {
   /// [DataConnectionStatus.connected].
   /// [DataConnectionStatus.disconnected] otherwise.
   Future<DataConnectionStatus> get connectionStatus async {
-    return await hasConnection
-        ? DataConnectionStatus.connected
-        : DataConnectionStatus.disconnected;
+    return await hasConnection ? DataConnectionStatus.connected : DataConnectionStatus.disconnected;
   }
 
   /// The interval between periodic checks. Periodic checks are
@@ -204,7 +199,7 @@ class DataConnectionChecker {
     _timerHandle?.cancel();
     timer?.cancel();
 
-    final DataConnectionStatus currentStatus = await connectionStatus;
+    final currentStatus = await connectionStatus;
 
     // only send status update if last status differs from current
     // and if someone is actually listening
@@ -226,8 +221,7 @@ class DataConnectionChecker {
   Timer? _timerHandle;
 
   // controller for the exposed 'onStatusChange' Stream
-  final StreamController<DataConnectionStatus> _statusController =
-  StreamController.broadcast();
+  final StreamController<DataConnectionStatus> _statusController = StreamController.broadcast();
 
   /// Subscribe to this stream to receive events whenever the
   /// [DataConnectionStatus] changes. When a listener is attached
@@ -298,31 +292,29 @@ class DataConnectionChecker {
 /// and [DataConnectionChecker.defaultTimeout]
 /// Also... yeah, I'm not great at naming things.
 class AddressCheckOptions {
+  AddressCheckOptions(
+    this.address, {
+    this.port = DataConnectionChecker.defaultPort,
+    this.timeout = DataConnectionChecker.defaultTimeout,
+  });
   final InternetAddress address;
   final int port;
   final Duration timeout;
 
-  AddressCheckOptions(
-      this.address, {
-        this.port = DataConnectionChecker.defaultPort,
-        this.timeout = DataConnectionChecker.defaultTimeout,
-      });
-
   @override
-  String toString() => "AddressCheckOptions($address, $port, $timeout)";
+  String toString() => 'AddressCheckOptions($address, $port, $timeout)';
 }
 
 /// Helper class that contains the address options and indicates whether
 /// opening a socket to it succeeded.
 class AddressCheckResult {
+  AddressCheckResult(
+    this.options, {
+    required this.isSuccess,
+  });
   final AddressCheckOptions options;
   final bool isSuccess;
 
-  AddressCheckResult(
-      this.options,
-      this.isSuccess,
-      );
-
   @override
-  String toString() => "AddressCheckResult($options, $isSuccess)";
+  String toString() => 'AddressCheckResult($options, $isSuccess)';
 }

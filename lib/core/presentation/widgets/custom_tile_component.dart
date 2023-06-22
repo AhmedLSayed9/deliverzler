@@ -14,10 +14,13 @@ class CustomTileComponent extends StatelessWidget {
     this.customTrailing,
     this.onTap,
     this.contentPadding,
-    Key? key,
-  })  : assert((trailingText == null || customTrailing == null) &&
-            (leadingIcon == null || customLeading == null)),
-        super(key: key);
+    super.key,
+  }) : assert(
+          (trailingText == null || customTrailing == null) &&
+              (leadingIcon == null || customLeading == null),
+          'Either trailingText or customTrailing should be null '
+          'Either leadingIcon or customLeading should be null',
+        );
 
   final String title;
   final IconData? leadingIcon;
@@ -34,7 +37,7 @@ class CustomTileComponent extends StatelessWidget {
       child: ListTile(
         dense: true,
         contentPadding: contentPadding,
-        minLeadingWidth: 0.0,
+        minLeadingWidth: 0,
         horizontalTitleGap: Sizes.marginH8,
         title: CustomText.f16(
           context,
@@ -47,8 +50,7 @@ class CustomTileComponent extends StatelessWidget {
                 ? Icon(
                     leadingIcon,
                     size: Sizes.icon16,
-                    color:
-                        leadingIconColor ?? customColors(context).font16Color,
+                    color: leadingIconColor ?? customColors(context).font16Color,
                   )
                 : null),
         trailing: customTrailing ??

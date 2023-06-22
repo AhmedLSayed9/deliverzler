@@ -6,17 +6,17 @@ import 'platform_base_widget.dart';
 
 class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
   const PlatformScaffold({
-    super.key,
+    required this.body,
     this.widgetKey,
     this.platformAppBar,
     this.hasEmptyAppbar = true,
-    required this.body,
     this.backgroundColor,
     this.materialData,
+    super.key,
   });
 
   final Key? widgetKey;
-  final dynamic platformAppBar;
+  final Object? platformAppBar;
   final bool hasEmptyAppbar;
   final Widget body;
   final Color? backgroundColor;
@@ -26,16 +26,17 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
   Scaffold createMaterialWidget(BuildContext context) {
     return Scaffold(
       key: widgetKey,
-      appBar: platformAppBar ?? hasEmptyAppbar
-          ? EmptyAppBar(
-              statusBarColor: materialData?.statusBarColor,
-            )
-          : null,
+      appBar: platformAppBar != null
+          ? platformAppBar! as PreferredSizeWidget
+          : hasEmptyAppbar
+              ? EmptyAppBar(
+                  statusBarColor: materialData?.statusBarColor,
+                )
+              : null,
       body: body,
       floatingActionButton: materialData?.floatingActionButton,
       drawer: materialData?.drawer,
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       extendBodyBehindAppBar: materialData?.extendBodyBehindAppBar ?? false,
     );
   }
@@ -44,14 +45,15 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
   Widget createCupertinoWidget(BuildContext context) {
     return CupertinoPageScaffold(
       key: widgetKey,
-      navigationBar: platformAppBar ?? hasEmptyAppbar
-          ? const EmptyAppBar(
-              //It's not allowed to set statusBarColor for iOS without an appbar.
-              statusBarColor: Colors.transparent,
-            )
-          : null,
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+      navigationBar: platformAppBar != null
+          ? platformAppBar! as ObstructingPreferredSizeWidget
+          : hasEmptyAppbar
+              ? const EmptyAppBar(
+                  //It's not allowed to set statusBarColor for iOS without an appbar.
+                  statusBarColor: Colors.transparent,
+                )
+              : null,
+      backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       child: body,
     );
   }

@@ -7,12 +7,10 @@ part 'user_dto.freezed.dart';
 
 part 'user_dto.g.dart';
 
-//TODO: extend User entity when extending another Freezed class is supported:
-//https://github.com/rrousselGit/freezed/issues/907
+// TODO(Ahmed): extend User entity when extending another Freezed class is supported:
+// https://github.com/rrousselGit/freezed/issues/907
 @freezed
 class UserDto with _$UserDto {
-  const UserDto._();
-
   const factory UserDto({
     required String id,
     required String email,
@@ -21,8 +19,9 @@ class UserDto with _$UserDto {
     required String? image,
   }) = _UserDto;
 
-  factory UserDto.fromJson(Map<String, dynamic> json) =>
-      _$UserDtoFromJson(json);
+  const UserDto._();
+
+  factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
   factory UserDto.fromUserCredential(f_auth.User user) {
     return UserDto(

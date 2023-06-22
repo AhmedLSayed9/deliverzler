@@ -6,7 +6,7 @@ import '../../utils/scroll_behaviors.dart';
 import '../../widgets/platform_widgets/platform_scaffold.dart';
 
 class ErrorScreenCompact extends StatelessWidget {
-  const ErrorScreenCompact({Key? key}) : super(key: key);
+  const ErrorScreenCompact({super.key});
 
   @override
   Widget build(BuildContext context) {

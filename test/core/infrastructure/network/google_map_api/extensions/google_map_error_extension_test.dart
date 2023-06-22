@@ -9,17 +9,17 @@ void main() {
     const tErrorMessage = 'test_error_message';
 
     test(
-      'should return type ServerExceptionType.general with same message and statusCode'
+      'should return type ServerExceptionType.general with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 400',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 400,
           ),
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           type: DioErrorType.badResponse,
         );
         // WHEN
@@ -37,17 +37,17 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.unauthorized with same message and statusCode'
+      'should return type ServerExceptionType.unauthorized with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 401',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 401,
           ),
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           type: DioErrorType.badResponse,
         );
         // WHEN
@@ -65,17 +65,17 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.forbidden with same message and statusCode'
+      'should return type ServerExceptionType.forbidden with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 403',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 403,
           ),
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           type: DioErrorType.badResponse,
         );
         // WHEN
@@ -97,10 +97,10 @@ void main() {
       final tError = DioError(
         error: tErrorMessage,
         response: Response(
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           statusCode: statusCode,
         ),
-        requestOptions: RequestOptions(path: ''),
+        requestOptions: RequestOptions(),
         type: DioErrorType.badResponse,
       );
       // WHEN
@@ -117,7 +117,7 @@ void main() {
     }
 
     test(
-      'should return type ServerExceptionType.notFound with same message and statusCode'
+      'should return type ServerExceptionType.notFound with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 404',
       () async {
         runNotFoundServerExceptionTest(statusCode: 404);
@@ -125,7 +125,7 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.notFound with same message and statusCode'
+      'should return type ServerExceptionType.notFound with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 405',
       () async {
         runNotFoundServerExceptionTest(statusCode: 405);
@@ -133,7 +133,7 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.notFound with same message and statusCode'
+      'should return type ServerExceptionType.notFound with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 501',
       () async {
         runNotFoundServerExceptionTest(statusCode: 501);
@@ -141,17 +141,17 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.conflict with same message and statusCode'
+      'should return type ServerExceptionType.conflict with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 409',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 409,
           ),
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           type: DioErrorType.badResponse,
         );
         // WHEN
@@ -173,10 +173,10 @@ void main() {
       final tError = DioError(
         error: tErrorMessage,
         response: Response(
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           statusCode: statusCode,
         ),
-        requestOptions: RequestOptions(path: ''),
+        requestOptions: RequestOptions(),
         type: DioErrorType.badResponse,
       );
       // WHEN
@@ -193,7 +193,7 @@ void main() {
     }
 
     test(
-      'should return type ServerExceptionType.internal with same message and statusCode'
+      'should return type ServerExceptionType.internal with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 500',
       () async {
         // GIVEN
@@ -202,7 +202,7 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.internal with same message and statusCode'
+      'should return type ServerExceptionType.internal with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 502',
       () async {
         // GIVEN
@@ -211,17 +211,17 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.serviceUnavailable with same message and statusCode'
+      'should return type ServerExceptionType.serviceUnavailable with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is 503',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 503,
           ),
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           type: DioErrorType.badResponse,
         );
         // WHEN
@@ -239,17 +239,17 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.unknown with same message and statusCode'
+      'should return type ServerExceptionType.unknown with same message and statusCode '
       'if error type is DioErrorType.badResponse and statusCode is unknown',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 0,
           ),
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           type: DioErrorType.badResponse,
         );
         // WHEN
@@ -270,7 +270,7 @@ void main() {
       // GIVEN
       final tError = DioError(
         error: tErrorMessage,
-        requestOptions: RequestOptions(path: ''),
+        requestOptions: RequestOptions(),
         type: dioErrorType,
       );
       // WHEN
@@ -287,16 +287,17 @@ void main() {
     }
 
     test(
-      'should return type ServerExceptionType.connectTimeout with same message and statusCode 408'
+      'should return type ServerExceptionType.connectTimeout with same message and statusCode 408 '
       'if error type is DioErrorType.connectionTimeout',
       () async {
         runTimeOutServerExceptionTest(
-            dioErrorType: DioErrorType.connectionTimeout);
+          dioErrorType: DioErrorType.connectionTimeout,
+        );
       },
     );
 
     test(
-      'should return type ServerExceptionType.connectTimeout with same message and statusCode 408'
+      'should return type ServerExceptionType.connectTimeout with same message and statusCode 408 '
       'if error type is DioErrorType.sendTimeout',
       () async {
         runTimeOutServerExceptionTest(dioErrorType: DioErrorType.sendTimeout);
@@ -304,26 +305,27 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.connectTimeout with same message and statusCode 408'
+      'should return type ServerExceptionType.connectTimeout with same message and statusCode 408 '
       'if error type is DioErrorType.receiveTimeout',
       () async {
         runTimeOutServerExceptionTest(
-            dioErrorType: DioErrorType.receiveTimeout);
+          dioErrorType: DioErrorType.receiveTimeout,
+        );
       },
     );
 
     test(
-      'should return type ServerExceptionType.unknown with same message and statusCode'
+      'should return type ServerExceptionType.unknown with same message and statusCode '
       'if error type is DioErrorType.cancel',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 0,
           ),
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           type: DioErrorType.cancel,
         );
         // WHEN
@@ -341,18 +343,17 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.unknown with same message and statusCode'
+      'should return type ServerExceptionType.unknown with same message and statusCode '
       'if error type is DioErrorType.unknown',
       () async {
         // GIVEN
         final tError = DioError(
           error: tErrorMessage,
           response: Response(
-            requestOptions: RequestOptions(path: ''),
+            requestOptions: RequestOptions(),
             statusCode: 0,
           ),
-          requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.unknown,
+          requestOptions: RequestOptions(),
         );
         // WHEN
         final result = tError.googleMapErrorToServerException();
@@ -369,7 +370,7 @@ void main() {
     );
 
     test(
-      'should return type ServerExceptionType.unknown with error.toString'
+      'should return type ServerExceptionType.unknown with error.toString '
       'if error is not DioError',
       () async {
         // GIVEN

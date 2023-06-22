@@ -12,13 +12,13 @@ import '../widgets/map_search_menu_item.dart';
 class MapSearchMenuComponent extends ConsumerWidget {
   const MapSearchMenuComponent({
     required this.searchBarController,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FloatingSearchBarController searchBarController;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final placeSearchList =
         ref.watch(placeAutocompleteStateProvider).valueOrNull ?? [];
 

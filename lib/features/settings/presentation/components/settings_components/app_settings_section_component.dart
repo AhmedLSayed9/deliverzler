@@ -16,10 +16,10 @@ import '../../../../../core/presentation/widgets/platform_widgets/platform_switc
 import 'settings_section_component.dart';
 
 class AppSettingsSectionComponent extends ConsumerWidget {
-  const AppSettingsSectionComponent({Key? key}) : super(key: key);
+  const AppSettingsSectionComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(currentAppLocaleProvider);
     final currentTheme = ref.watch(currentAppThemeProvider);
 

@@ -7,24 +7,23 @@ import '../styles/app_images.dart';
 import '../utils/riverpod_framework.dart';
 
 class CachedNetworkImageCircular extends ConsumerWidget {
+
+  const CachedNetworkImageCircular({
+    required this.imageUrl,
+    required this.radius, this.spareImageUrl =
+        '',
+    this.maxHeightDiskCache = 400,
+    this.maxWidthDiskCache = 400,
+    super.key,
+  });
   final String? imageUrl;
   final String spareImageUrl;
   final double radius;
   final int? maxHeightDiskCache;
   final int? maxWidthDiskCache;
 
-  const CachedNetworkImageCircular({
-    required this.imageUrl,
-    this.spareImageUrl =
-        '',
-    required this.radius,
-    this.maxHeightDiskCache = 400,
-    this.maxWidthDiskCache = 400,
-    Key? key,
-  }) : super(key: key);
-
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final cacheService = ref.watch(cacheServiceProvider);
 
     return CachedNetworkImage(

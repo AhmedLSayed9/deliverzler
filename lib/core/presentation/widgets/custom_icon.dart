@@ -1,3 +1,6 @@
+// ignore_for_file: inference_failure_on_untyped_parameter, argument_type_not_assignable
+// TODO(Ahmed): Fix this ignore.
+
 import 'package:flutter/material.dart';
 
 import '../styles/sizes.dart';
@@ -5,7 +8,7 @@ import '../styles/sizes.dart';
 class CustomIcon extends Container {
   CustomIcon._(
     String path, {
-    Key? key,
+    super.key,
     bundle,
     frameBuilder,
     errorBuilder,
@@ -27,12 +30,9 @@ class CustomIcon extends Container {
     filterQuality = FilterQuality.low,
     cacheWidth,
     cacheHeight,
-    EdgeInsetsGeometry? margin,
-    EdgeInsetsGeometry? padding,
+    super.margin,
+    super.padding,
   }) : super(
-          key: key,
-          margin: margin,
-          padding: padding,
           child: Image.asset(
             path,
             bundle: bundle,
@@ -96,7 +96,6 @@ class CustomIcon extends Container {
         );
 
   CustomIcon.i32(
-    BuildContext context,
     String path, {
     Key? key,
     Color? color,

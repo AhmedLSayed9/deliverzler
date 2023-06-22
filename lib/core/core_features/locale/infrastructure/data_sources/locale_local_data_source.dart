@@ -19,7 +19,7 @@ class LocaleLocalDataSource {
   static const String appLocaleKey = 'app_locale';
 
   Future<String> getAppLocale() async {
-    final locale = await sharedPreferences.restoreData(
+    final locale = await sharedPreferences.restoreData<String>(
       key: appLocaleKey,
       dataType: DataType.string,
     );

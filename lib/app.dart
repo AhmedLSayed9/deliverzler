@@ -10,10 +10,10 @@ import 'core/presentation/widgets/platform_widgets/platform_app.dart';
 import 'l10n/l10n.dart';
 
 class MyApp extends HookConsumerWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
 
     useOnPlatformBrightnessChange((previous, current) {

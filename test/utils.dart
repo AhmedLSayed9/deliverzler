@@ -51,7 +51,7 @@ Listener<T> setUpListener<T>(
   bool fireImmediately = true,
 }) {
   final listener = Listener<T>();
-  container.listen(provider, listener, fireImmediately: fireImmediately);
+  container.listen(provider, listener.call, fireImmediately: fireImmediately);
   return listener;
 }
 

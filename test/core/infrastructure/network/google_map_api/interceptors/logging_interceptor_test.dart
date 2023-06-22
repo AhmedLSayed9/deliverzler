@@ -4,14 +4,11 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/core/infrastructure/network/google_map_api/interceptors/logging_interceptor.dart';
 
-class MockResponseInterceptorHandler extends Mock
-    implements ResponseInterceptorHandler {}
+class MockResponseInterceptorHandler extends Mock implements ResponseInterceptorHandler {}
 
-class MockRequestInterceptorHandler extends Mock
-    implements RequestInterceptorHandler {}
+class MockRequestInterceptorHandler extends Mock implements RequestInterceptorHandler {}
 
-class MockErrorInterceptorHandler extends Mock
-    implements ErrorInterceptorHandler {}
+class MockErrorInterceptorHandler extends Mock implements ErrorInterceptorHandler {}
 
 void main() {
   late MockResponseInterceptorHandler mockResponseInterceptorHandler;
@@ -31,10 +28,12 @@ void main() {
       'should call handler.next',
       () async {
         // GIVEN
-        final tResponse = Response(requestOptions: RequestOptions(path: ''));
+        final tResponse = Response<dynamic>(requestOptions: RequestOptions());
         // WHEN
         loggingInterceptor.onResponse(
-            tResponse, mockResponseInterceptorHandler);
+          tResponse,
+          mockResponseInterceptorHandler,
+        );
         // THEN
         verify(() => mockResponseInterceptorHandler.next(tResponse)).called(1);
         verifyNoMoreInteractions(mockResponseInterceptorHandler);
@@ -47,7 +46,7 @@ void main() {
       'should call handler.next',
       () async {
         // GIVEN
-        final tOptions = RequestOptions(path: '');
+        final tOptions = RequestOptions();
         // WHEN
         loggingInterceptor.onRequest(tOptions, mockRequestInterceptorHandler);
         // THEN
@@ -62,7 +61,7 @@ void main() {
       'should call handler.next',
       () async {
         // GIVEN
-        final tError = DioError(requestOptions: RequestOptions(path: ''));
+        final tError = DioError(requestOptions: RequestOptions());
         // WHEN
         loggingInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN

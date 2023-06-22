@@ -11,10 +11,10 @@ import '../../providers/update_delivery_geo_point_provider.dart';
 import '../../utils/location_error.dart';
 
 class HomeScreenCompact extends HookConsumerWidget {
-  const HomeScreenCompact({Key? key}) : super(key: key);
+  const HomeScreenCompact({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final locationAsync = ref.watch(
       //Using select to avoid rebuilding when location change
       locationStreamProvider.select((value) => value.whenData((value) => true)),

@@ -55,11 +55,11 @@ abstract class LoadingIndicators {
 }
 
 class SmallLoadingAnimation extends StatelessWidget {
-  const SmallLoadingAnimation(
-      {this.height = Sizes.loadingIndicatorR150,
-      this.width = Sizes.loadingIndicatorR150,
-      Key? key})
-      : super(key: key);
+  const SmallLoadingAnimation({
+    this.height = Sizes.loadingIndicatorR150,
+    this.width = Sizes.loadingIndicatorR150,
+    super.key,
+  });
 
   final double height;
   final double width;
@@ -67,7 +67,7 @@ class SmallLoadingAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: ColoredBox(
         color: Colors.transparent,
         child: Lottie.asset(
           AppImages.loadingAnimation,

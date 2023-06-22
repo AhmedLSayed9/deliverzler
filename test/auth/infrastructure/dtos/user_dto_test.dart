@@ -6,15 +6,14 @@ import 'package:deliverzler/auth/infrastructure/dtos/user_dto.dart';
 import '../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final Map<String, dynamic> jsonMap =
-      json.decode(fixtureReader('auth/user.json'));
+  final jsonMap = json.decode(fixtureReader('auth/user.json')) as Map<String, dynamic>;
 
   final tUserDto = UserDto(
-    id: jsonMap['id'],
-    email: jsonMap['email'],
-    name: jsonMap['name'],
-    phone: jsonMap['phone'],
-    image: jsonMap['image'],
+    id: jsonMap['id'] as String,
+    email: jsonMap['email'] as String,
+    name: jsonMap['name'] as String?,
+    phone: jsonMap['phone'] as String?,
+    image: jsonMap['image'] as String?,
   );
 
   group(

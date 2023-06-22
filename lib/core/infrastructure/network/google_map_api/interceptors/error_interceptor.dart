@@ -1,10 +1,12 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:dio/dio.dart';
 
 class ErrorInterceptor extends Interceptor {
   //This needed if your api use statusCode 200 for business errors..
   //If has error, we reject with proper DioError: [error message from backend / statusCode 400 / DioErrorType.response]
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
+  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
     if (response.data?['status'] != 'OK') {
       final tError = DioError(
         error: response.data?['status'],

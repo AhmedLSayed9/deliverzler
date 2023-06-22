@@ -31,18 +31,12 @@ Future<void> setupFCM(SetupFCMRef ref) async {
 
 @riverpod
 Future<AuthorizationStatus> _grantFCMPermission(
-    _GrantFCMPermissionRef ref) async {
+    _GrantFCMPermissionRef ref,) async {
   // On iOS, macOS & web, before FCM payloads can be received on your device
   // you must first ask the user's permission.
   // Android applications are not required to request permission.
   final settings = await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
     provisional: true,
-    sound: true,
   );
   return settings.authorizationStatus;
 }
@@ -66,7 +60,6 @@ Future<void> _setupIOSHeadsUp(_SetupIOSHeadsUpRef ref) async {
   // Disable alert if you're using flutterLocalNotification to handle foreground
   // notifications instead of FCM, otherwise, you'll get duplicated heads up notification.
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: false,
     sound: true,
     badge: true,
   );

@@ -9,8 +9,8 @@ class EmptyAppBar extends StatelessWidget
     this.systemOverlayStyle,
     this.statusBarColor,
     this.elevation,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final SystemUiOverlayStyle? systemOverlayStyle;
   final Color? statusBarColor;

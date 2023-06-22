@@ -6,14 +6,12 @@ import 'platform_base_widget.dart';
 class PlatformNavBar
     extends PlatformBaseWidget<NavigationBar, CupertinoTabBar> {
   const PlatformNavBar({
-    super.key,
+    required this.materialData, required this.cupertinoData, super.key,
     this.widgetKey,
     this.currentIndex = 0,
     this.onTap,
     this.backgroundColor,
     this.height,
-    required this.materialData,
-    required this.cupertinoData,
   });
 
   final Key? widgetKey;

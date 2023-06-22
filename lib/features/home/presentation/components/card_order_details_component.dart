@@ -9,12 +9,12 @@ import '../../domain/order.dart';
 import '../../domain/value_objects.dart';
 
 class CardOrderDetailsComponent extends StatelessWidget {
-  final AppOrder order;
 
   const CardOrderDetailsComponent({
     required this.order,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final AppOrder order;
 
   @override
   Widget build(BuildContext context) {

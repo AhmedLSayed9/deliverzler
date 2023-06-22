@@ -10,14 +10,14 @@ class FullScreenPlatformScaffold extends ConsumerWidget {
   const FullScreenPlatformScaffold({
     required this.body,
     this.darkOverlays,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Widget body;
   final bool? darkOverlays;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(currentAppThemeProvider);
 
     return PlatformScaffold(

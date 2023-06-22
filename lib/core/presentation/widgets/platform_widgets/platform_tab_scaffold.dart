@@ -1,22 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/riverpod_framework.dart';
 import 'platform_base_consumer_widget.dart';
 import 'platform_nav_bar.dart';
 
 typedef IndexedAppBarBuilder = dynamic Function(
-    BuildContext context, int index);
+  BuildContext context,
+  int index,
+);
 
-class PlatformTabScaffold
-    extends PlatformBaseConsumerWidget<Scaffold, CupertinoTabScaffold> {
+class PlatformTabScaffold extends PlatformBaseConsumerWidget<Scaffold, CupertinoTabScaffold> {
   const PlatformTabScaffold({
+    required this.bottomNavigationBar,
+    required this.materialData,
+    required this.cupertinoData,
     super.key,
     this.widgetKey,
     this.backgroundColor,
     this.resizeToAvoidBottomInset = true,
-    required this.bottomNavigationBar,
-    required this.materialData,
-    required this.cupertinoData,
   });
 
   final Key? widgetKey;
@@ -27,7 +29,7 @@ class PlatformTabScaffold
   final CupertinoTabScaffoldData cupertinoData;
 
   @override
-  Scaffold createMaterialWidget(BuildContext context, ref) {
+  Scaffold createMaterialWidget(BuildContext context, WidgetRef ref) {
     return Scaffold(
       key: widgetKey,
       appBar: materialData.appBar,
@@ -35,21 +37,19 @@ class PlatformTabScaffold
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: materialData.floatingActionButton,
       drawer: materialData.drawer,
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBodyBehindAppBar: materialData.extendBodyBehindAppBar ?? false,
     );
   }
 
   @override
-  CupertinoTabScaffold createCupertinoWidget(BuildContext context, ref) {
+  CupertinoTabScaffold createCupertinoWidget(BuildContext context, WidgetRef ref) {
     return CupertinoTabScaffold(
       key: widgetKey,
       tabBuilder: cupertinoData.cupertinoTabBuilder,
       tabBar: bottomNavigationBar.createCupertinoWidget(context),
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
     );
   }
@@ -57,8 +57,8 @@ class PlatformTabScaffold
 
 class MaterialTabScaffoldData {
   MaterialTabScaffoldData({
-    this.appBar,
     required this.body,
+    this.appBar,
     this.floatingActionButton,
     this.drawer,
     this.extendBodyBehindAppBar,

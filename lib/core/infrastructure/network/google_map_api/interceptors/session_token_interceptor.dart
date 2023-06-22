@@ -8,7 +8,7 @@ part 'session_token_interceptor.g.dart';
 
 @Riverpod(keepAlive: true)
 SessionTokenInterceptor sessionTokenInterceptor(
-    SessionTokenInterceptorRef ref) {
+    SessionTokenInterceptorRef ref,) {
   return SessionTokenInterceptor(ref);
 }
 

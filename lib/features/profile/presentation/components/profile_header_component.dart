@@ -5,7 +5,7 @@ import 'user_details_component.dart';
 import 'user_image_component.dart';
 
 class ProfileHeaderComponent extends StatelessWidget {
-  const ProfileHeaderComponent({Key? key}) : super(key: key);
+  const ProfileHeaderComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,8 +8,6 @@ part 'place_autocomplete_dto.g.dart';
 
 @Freezed(toJson: false)
 class PlaceAutocompleteDto with _$PlaceAutocompleteDto {
-  const PlaceAutocompleteDto._();
-
   const factory PlaceAutocompleteDto({
     @JsonKey(name: 'place_id') required String placeId,
     @JsonKey(name: 'description') required String description,
@@ -17,16 +15,7 @@ class PlaceAutocompleteDto with _$PlaceAutocompleteDto {
     @JsonKey(readValue: _readSecondaryText) required String secondaryText,
   }) = _PlaceAutocompleteDto;
 
-  factory PlaceAutocompleteDto.fromJson(Map<String, dynamic> json) =>
-      _$PlaceAutocompleteDtoFromJson(json);
-
-  static List<PlaceAutocompleteDto> parseListOfMap(List<dynamic> data) {
-    return List<PlaceAutocompleteDto>.from(
-      data.map(
-        (place) => (PlaceAutocompleteDto.fromJson(place)),
-      ),
-    );
-  }
+  const PlaceAutocompleteDto._();
 
   factory PlaceAutocompleteDto.fromDomain(PlaceAutocomplete autocomplete) {
     return PlaceAutocompleteDto(
@@ -34,6 +23,15 @@ class PlaceAutocompleteDto with _$PlaceAutocompleteDto {
       description: autocomplete.description,
       mainText: autocomplete.mainText,
       secondaryText: autocomplete.secondaryText,
+    );
+  }
+
+  factory PlaceAutocompleteDto.fromJson(Map<String, dynamic> json) =>
+      _$PlaceAutocompleteDtoFromJson(json);
+
+  static List<PlaceAutocompleteDto> parseListOfMap(List<Map<String, dynamic>> data) {
+    return List<PlaceAutocompleteDto>.from(
+      data.map(PlaceAutocompleteDto.fromJson),
     );
   }
 
@@ -47,8 +45,8 @@ class PlaceAutocompleteDto with _$PlaceAutocompleteDto {
   }
 }
 
-String _readMainText(Map json, String key) =>
-    json['structured_formatting']['main_text'];
+String _readMainText(Map<dynamic, dynamic> json, String key) =>
+    (json['structured_formatting'] as Map<String, dynamic>)['main_text'] as String;
 
-String _readSecondaryText(Map json, String key) =>
-    json['structured_formatting']['secondary_text'];
+String _readSecondaryText(Map<dynamic, dynamic> json, String key) =>
+    (json['structured_formatting'] as Map<String, dynamic>)['secondary_text'] as String;

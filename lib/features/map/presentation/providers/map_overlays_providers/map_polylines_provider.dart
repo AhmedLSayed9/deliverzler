@@ -18,9 +18,7 @@ class MapPolylines extends _$MapPolylines {
       (previous, next) {
         next.fold(
           () {},
-          (placeDirections) {
-            _addPolylineFromDirections(placeDirections);
-          },
+          _addPolylineFromDirections,
         );
       },
       fireImmediately: true,
@@ -28,12 +26,12 @@ class MapPolylines extends _$MapPolylines {
     return state;
   }
 
-  _addPolylineFromDirections(PlaceDirections placeDirections) {
+  void _addPolylineFromDirections(PlaceDirections placeDirections) {
     final polyline = MapCoordinatesHelper.getPolylineFromRouteCoordinates(
       polylinePoints: placeDirections.polylinePoints,
     );
 
-    final Set<Polyline> mapPolylines = Set.from(state);
+    final mapPolylines = Set<Polyline>.from(state);
     //If mapPolylines already has polyline with same id,
     //remove it first to avoid adding duplicate polylines and replace it instead.
     mapPolylines.removeWhere((p) => p.polylineId == p.polylineId);

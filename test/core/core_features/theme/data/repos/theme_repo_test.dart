@@ -18,8 +18,7 @@ void main() {
   ProviderContainer setUpRemoteContainer() {
     return setUpContainer(
       overrides: [
-        themeLocalDataSourceProvider
-            .overrideWithValue(mockThemeLocalDataSource),
+        themeLocalDataSourceProvider.overrideWithValue(mockThemeLocalDataSource),
       ],
     );
   }
@@ -32,12 +31,11 @@ void main() {
       const tTheme = 'light';
 
       test(
-        'should return cached data'
+        'should return cached data '
         'when the cached data is present',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.getAppTheme())
-              .thenAnswer((_) async => tTheme);
+          when(() => mockThemeLocalDataSource.getAppTheme()).thenAnswer((_) async => tTheme);
 
           final container = setUpRemoteContainer();
 
@@ -46,19 +44,20 @@ void main() {
           final result = await themeRepo.getAppTheme();
 
           // THEN
-          verifyOnly(mockThemeLocalDataSource,
-              () => mockThemeLocalDataSource.getAppTheme());
+          verifyOnly(
+            mockThemeLocalDataSource,
+            () => mockThemeLocalDataSource.getAppTheme(),
+          );
           expect(result, equals(tTheme));
         },
       );
 
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when there is no cached data present',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.getAppTheme())
-              .thenThrow(tException);
+          when(() => mockThemeLocalDataSource.getAppTheme()).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -68,8 +67,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockThemeLocalDataSource,
-              () => mockThemeLocalDataSource.getAppTheme());
+          verifyOnly(
+            mockThemeLocalDataSource,
+            () => mockThemeLocalDataSource.getAppTheme(),
+          );
         },
       );
     },
@@ -84,8 +85,7 @@ void main() {
         'should call LocalDataSource.cacheAppTheme with the proper param',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.cacheAppTheme(tTheme))
-              .thenAnswer((_) async {});
+          when(() => mockThemeLocalDataSource.cacheAppTheme(tTheme)).thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
@@ -94,18 +94,19 @@ void main() {
           await themeRepo.cacheAppTheme(tTheme);
 
           // THEN
-          verifyOnly(mockThemeLocalDataSource,
-              () => mockThemeLocalDataSource.cacheAppTheme(tTheme));
+          verifyOnly(
+            mockThemeLocalDataSource,
+            () => mockThemeLocalDataSource.cacheAppTheme(tTheme),
+          );
         },
       );
 
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when the call to local data source is unsuccessful',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.cacheAppTheme(tTheme))
-              .thenThrow(tException);
+          when(() => mockThemeLocalDataSource.cacheAppTheme(tTheme)).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -115,8 +116,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockThemeLocalDataSource,
-              () => mockThemeLocalDataSource.cacheAppTheme(tTheme));
+          verifyOnly(
+            mockThemeLocalDataSource,
+            () => mockThemeLocalDataSource.cacheAppTheme(tTheme),
+          );
         },
       );
     },

@@ -26,18 +26,18 @@ class CacheService {
 
   final CacheManager customCacheManager;
 
-  clearCustomCache() async {
+  Future<void> clearCustomCache() async {
     await customCacheManager.emptyCache();
   }
 
-  clearAllCache() async {
+  Future<void> clearAllCache() async {
     await customCacheManager.emptyCache();
     //These clear app's live cache not global or stored cache
     imageCache.clear();
     imageCache.clearLiveImages();
   }
 
-  removeFileFromCache(String cacheKey) async {
+  Future<void> removeFileFromCache(String cacheKey) async {
     await customCacheManager.removeFile(cacheKey);
   }
 }

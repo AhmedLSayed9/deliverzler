@@ -7,16 +7,16 @@ import '../../../../core/presentation/widgets/custom_outlined_button.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 
 class CardButtonComponent extends StatelessWidget {
-  final String title;
-  final bool isColored;
-  final VoidCallback? onPressed;
 
   const CardButtonComponent({
     required this.title,
     required this.isColored,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final String title;
+  final bool isColored;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

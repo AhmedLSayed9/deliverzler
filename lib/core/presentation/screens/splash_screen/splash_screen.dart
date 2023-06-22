@@ -10,10 +10,10 @@ import '../../widgets/responsive_widgets/widget_builders.dart';
 import 'splash_screen_compact.dart';
 
 class SplashScreen extends HookConsumerWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isWarmedUp = !ref.isLoading(splashServicesWarmupProvider);
     if (isWarmedUp) {
       ref.listen<AsyncValue<String>>(

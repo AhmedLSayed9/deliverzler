@@ -10,7 +10,7 @@ import '../widgets/custom_text.dart';
 import '../widgets/loading_indicators.dart';
 
 class NoInternetErrorComponent extends StatelessWidget {
-  const NoInternetErrorComponent({Key? key}) : super(key: key);
+  const NoInternetErrorComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

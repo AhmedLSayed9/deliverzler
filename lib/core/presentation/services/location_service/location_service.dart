@@ -21,7 +21,7 @@ ILocationService locationService(LocationServiceRef ref) {
 class GeoLocatorLocationService implements ILocationService {
   @override
   Future<bool> isLocationServiceEnabled() async {
-    return await Geolocator.isLocationServiceEnabled();
+    return Geolocator.isLocationServiceEnabled();
   }
 
   @override
@@ -36,12 +36,11 @@ class GeoLocatorLocationService implements ILocationService {
 
   @override
   Future<bool> enableLocationService() async {
-    bool serviceEnabled = await isLocationServiceEnabled();
+    final serviceEnabled = await isLocationServiceEnabled();
     if (serviceEnabled) {
       return true;
     } else {
-      serviceEnabled = await loc.Location().requestService();
-      return serviceEnabled;
+      return loc.Location().requestService();
     }
   }
 
@@ -61,7 +60,7 @@ class GeoLocatorLocationService implements ILocationService {
       return true;
     } else {
       await Geolocator.requestPermission();
-      return await isAlwaysPermissionGranted();
+      return isAlwaysPermissionGranted();
     }
   }
 
@@ -79,10 +78,8 @@ class GeoLocatorLocationService implements ILocationService {
         //Set foreground notification config to keep app alive in background
         foregroundNotificationConfig: const ForegroundNotificationConfig(
           notificationTitle: 'Deliverzler Delivery Service',
-          notificationText:
-              'Deliverzler will receive your location in background.',
-          notificationIcon:
-              AndroidResource(name: 'notification_icon', defType: 'drawable'),
+          notificationText: 'Deliverzler will receive your location in background.',
+          notificationIcon: AndroidResource(name: 'notification_icon'),
           enableWakeLock: true,
         ),
       );

@@ -2,30 +2,28 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-class FadeTransitionPage extends CustomTransitionPage {
+class FadeTransitionPage<T> extends CustomTransitionPage<T> {
   FadeTransitionPage(
     LocalKey pageKey,
     Widget child, {
-    Duration transitionDuration = const Duration(milliseconds: 400),
+    super.transitionDuration = const Duration(milliseconds: 400),
   }) : super(
           key: pageKey,
           child: child,
-          transitionsBuilder: (_, a, __, c) =>
-              FadeTransition(opacity: a, child: c),
-          transitionDuration: transitionDuration,
+          transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
           reverseTransitionDuration: const Duration(milliseconds: 300),
         );
 }
 
-class SlideFromSideTransitionPage extends CustomTransitionPage {
+class SlideFromSideTransitionPage<T> extends CustomTransitionPage<T> {
   SlideFromSideTransitionPage(LocalKey pageKey, Widget child)
       : super(
           key: pageKey,
           child: child,
           transitionsBuilder: (_, a, __, c) => SlideTransition(
             position: Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: const Offset(0.0, 0.0),
+              begin: const Offset(1, 0),
+              end: Offset.zero,
             ).animate(a),
             child: c,
           ),

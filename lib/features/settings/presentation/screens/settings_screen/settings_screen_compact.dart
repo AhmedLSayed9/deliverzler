@@ -8,7 +8,7 @@ import '../../components/settings_components/logout_component.dart';
 import '../../components/settings_components/user_details_component.dart';
 
 class SettingsScreenCompact extends StatelessWidget {
-  const SettingsScreenCompact({Key? key}) : super(key: key);
+  const SettingsScreenCompact({super.key});
 
   @override
   Widget build(BuildContext context) {

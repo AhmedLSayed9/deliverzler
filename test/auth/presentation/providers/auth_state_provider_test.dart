@@ -47,12 +47,13 @@ void main() {
           // GIVEN
           final container = setUpContainer();
           final authListener = setUpListener(container, authStateProvider);
-          final userListener =
-              setUpListener(container, currentUserStateProvider);
+          final userListener = setUpListener(container, currentUserStateProvider);
 
           // WHEN
           verifyOnly(
-              authListener, () => authListener(null, unauthenticatedState));
+            authListener,
+            () => authListener(null, unauthenticatedState),
+          );
 
           verifyOnly(userListener, () => userListener(null, loadingState));
 
@@ -85,12 +86,13 @@ void main() {
           final container = setUpContainer();
           container.read(authStateProvider.notifier).authenticateUser(tUser);
           final authListener = setUpListener(container, authStateProvider);
-          final userListener =
-              setUpListener(container, currentUserStateProvider);
+          final userListener = setUpListener(container, currentUserStateProvider);
 
           // WHEN
           verifyOnly(
-              authListener, () => authListener(null, authenticatedState));
+            authListener,
+            () => authListener(null, authenticatedState),
+          );
 
           verifyOnly(userListener, () => userListener(null, dataState));
 
@@ -100,7 +102,7 @@ void main() {
           // THEN
           verifyInOrder([
             () => authListener(authenticatedState, unauthenticatedState),
-            () => userListener(dataState, any(that: isA<AsyncLoading>())),
+            () => userListener(dataState, any(that: isA<AsyncLoading<User>>())),
           ]);
           verifyNoMoreInteractions(authListener);
           verifyNoMoreInteractions(userListener);

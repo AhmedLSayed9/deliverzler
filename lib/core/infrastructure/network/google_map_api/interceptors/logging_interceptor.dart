@@ -15,14 +15,18 @@ class LoggingInterceptor extends Interceptor {
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log.fine('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} => DATA: ${response.data}');
+  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
+    log.fine(
+      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} => DATA: ${response.data}',
+    );
     return handler.next(response);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    log.fine('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} MESSAGE: ${err.message}');
+    log.fine(
+      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} MESSAGE: ${err.message}',
+    );
     return handler.next(err);
   }
 }

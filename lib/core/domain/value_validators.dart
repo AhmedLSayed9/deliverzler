@@ -4,7 +4,7 @@ import '../presentation/helpers/localization_helper.dart';
 
 class ValueValidators {
   static FormFieldValidator<String?> validateEmail(BuildContext context) {
-    String patternEmail = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)";
+    const patternEmail = r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)';
     return (value) {
       if (value!.isEmpty) {
         return tr(context).thisFieldIsEmpty;
@@ -16,8 +16,7 @@ class ValueValidators {
     };
   }
 
-  static FormFieldValidator<String?> validateLoginPassword(
-      BuildContext context) {
+  static FormFieldValidator<String?> validateLoginPassword(BuildContext context) {
     return (value) {
       if (value!.isEmpty) {
         return tr(context).thisFieldIsEmpty;
@@ -27,23 +26,21 @@ class ValueValidators {
     };
   }
 
-  static FormFieldValidator<String?> validateMobileNumber(
-      BuildContext context) {
-    Pattern patternMobileNumber =
-        r'^(?:[+0]9)?[0-9|٩|٠|١|٢|٣|٤|٥|٦|٧|٨]{10,15}$';
+  static FormFieldValidator<String?> validateMobileNumber(BuildContext context) {
+    const patternMobileNumber = r'^(?:[+0]9)?[0-9|٩|٠|١|٢|٣|٤|٥|٦|٧|٨]{10,15}$';
     return (value) {
       value = value?.trim();
       if (value!.isEmpty) {
         return tr(context).thisFieldIsEmpty;
-      } else if (value.contains("+") &&
-          value.contains(RegExp(r'[0-9]|٩|٠|١|٢|٣|٤|٥|٦|٧|٨')) &&
-          !value.contains(RegExp(r'[a-zA-Z]')) &&
-          !value.contains(RegExp(r'[ء-ي]'))) {
+      } else if (value.contains('+') &&
+          value.contains(RegExp('[0-9]|٩|٠|١|٢|٣|٤|٥|٦|٧|٨')) &&
+          !value.contains(RegExp('[a-zA-Z]')) &&
+          !value.contains(RegExp('[ء-ي]'))) {
         return tr(context).pleaseEnterValidNumber;
-      } else if (!value.contains(RegExp(r'[a-zA-Z]')) &&
-          value.contains(RegExp(r'[0-9]|٩|٠|١|٢|٣|٤|٥|٦|٧|٨')) &&
-          !value.contains("+") &&
-          !value.contains(RegExp(r'[ء-ي]'))) {
+      } else if (!value.contains(RegExp('[a-zA-Z]')) &&
+          value.contains(RegExp('[0-9]|٩|٠|١|٢|٣|٤|٥|٦|٧|٨')) &&
+          !value.contains('+') &&
+          !value.contains(RegExp('[ء-ي]'))) {
         if (!checkPattern(pattern: patternMobileNumber, value: value)) {
           return tr(context).pleaseEnterValidNumber;
         }
@@ -56,13 +53,13 @@ class ValueValidators {
     //english name: r'^[a-zA-Z,.\-]+$'
     //arabic name: r'^[\u0621-\u064A\040]+$'
     //english and arabic names
-    String patternName = r"^[\u0621-\u064A\040\a-zA-Z,.\-]+$";
+    const patternName = r'^[\u0621-\u064A\040\a-zA-Z,.\-]+$';
     return (value) {
       if (value!.isEmpty) {
         return tr(context).thisFieldIsEmpty;
-      } else if (value.toString().length < 2) {
+      } else if (value.length < 2) {
         return tr(context).nameMustBeAtLeast2Letters;
-      } else if (value.toString().length > 30) {
+      } else if (value.length > 30) {
         return tr(context).nameMustBeAtMost30Letters;
       } else if (!checkPattern(pattern: patternName, value: value)) {
         return tr(context).pleaseEnterValidName;
@@ -230,17 +227,17 @@ class ValueValidators {
   }*/
 
   static bool isNumeric(String str) {
-    Pattern patternInteger = r'^-?[0-9]+$';
+    const patternInteger = r'^-?[0-9]+$';
     return checkPattern(pattern: patternInteger, value: str);
   }
 
   static bool isNumericPositive(String str) {
-    Pattern patternPositiveInteger = r'^[1-9]\d*$';
+    const patternPositiveInteger = r'^[1-9]\d*$';
     return checkPattern(pattern: patternPositiveInteger, value: str);
   }
 
-  static bool checkPattern({pattern, value}) {
-    RegExp regularCheck = RegExp(pattern);
+  static bool checkPattern({required String pattern, required String value}) {
+    final regularCheck = RegExp(pattern);
     return regularCheck.hasMatch(value);
   }
 }

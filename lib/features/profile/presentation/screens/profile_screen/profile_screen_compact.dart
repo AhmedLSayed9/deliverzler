@@ -7,7 +7,7 @@ import '../../components/profile_form_component.dart';
 import '../../components/profile_header_component.dart';
 
 class ProfileScreenCompact extends StatelessWidget {
-  const ProfileScreenCompact({Key? key}) : super(key: key);
+  const ProfileScreenCompact({super.key});
 
   @override
   Widget build(BuildContext context) {

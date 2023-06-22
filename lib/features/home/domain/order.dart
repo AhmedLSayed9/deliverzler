@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,8 +11,6 @@ part 'order.freezed.dart';
 
 @freezed
 class AppOrder with _$AppOrder {
-  const AppOrder._();
-
   const factory AppOrder({
     required String id,
     required int date,
@@ -27,6 +27,7 @@ class AppOrder with _$AppOrder {
     required String? deliveryId,
     required GeoPoint? deliveryGeoPoint,
   }) = _AppOrder;
+  const AppOrder._();
 
   Option<String> get validatedUserPhone =>
       ValueValidators.isNumeric(userPhone) ? Some(userPhone) : none();
@@ -40,42 +41,37 @@ class AppOrder with _$AppOrder {
             other is _$_AppOrder &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.pickupOption, pickupOption) ||
-                other.pickupOption == pickupOption) &&
+            (identical(other.pickupOption, pickupOption) || other.pickupOption == pickupOption) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
-            (identical(other.userImage, userImage) ||
-                other.userImage == userImage) &&
-            (identical(other.userPhone, userPhone) ||
-                other.userPhone == userPhone) &&
-            (identical(other.userNote, userNote) ||
-                other.userNote == userNote) &&
+            (identical(other.userName, userName) || other.userName == userName) &&
+            (identical(other.userImage, userImage) || other.userImage == userImage) &&
+            (identical(other.userPhone, userPhone) || other.userPhone == userPhone) &&
+            (identical(other.userNote, userNote) || other.userNote == userNote) &&
             (identical(other.employeeCancelNote, employeeCancelNote) ||
                 other.employeeCancelNote == employeeCancelNote) &&
             (identical(other.deliveryStatus, deliveryStatus) ||
                 other.deliveryStatus == deliveryStatus) &&
-            (identical(other.deliveryId, deliveryId) ||
-                other.deliveryId == deliveryId));
+            (identical(other.deliveryId, deliveryId) || other.deliveryId == deliveryId));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      date,
-      pickupOption,
-      paymentMethod,
-      address,
-      userId,
-      userName,
-      userImage,
-      userPhone,
-      userNote,
-      employeeCancelNote,
-      deliveryStatus,
-      deliveryId);
+        runtimeType,
+        id,
+        date,
+        pickupOption,
+        paymentMethod,
+        address,
+        userId,
+        userName,
+        userImage,
+        userPhone,
+        userNote,
+        employeeCancelNote,
+        deliveryStatus,
+        deliveryId,
+      );
 }

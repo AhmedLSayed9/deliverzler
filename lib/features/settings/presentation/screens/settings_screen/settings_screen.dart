@@ -4,7 +4,7 @@ import '../../../../../core/presentation/widgets/responsive_widgets/widget_build
 import 'settings_screen_compact.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

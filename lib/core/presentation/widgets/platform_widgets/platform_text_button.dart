@@ -6,10 +6,8 @@ import 'platform_base_widget.dart';
 class PlatformTextButton
     extends PlatformBaseWidget<TextButton, CupertinoButton> {
   const PlatformTextButton({
-    super.key,
+    required this.child, required this.onPressed, super.key,
     this.widgetKey,
-    required this.child,
-    required this.onPressed,
     this.materialData,
     this.cupertinoData,
   });

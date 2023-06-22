@@ -7,10 +7,10 @@ import 'sign_in_screen_compact.dart';
 import 'sign_in_screen_medium.dart';
 
 class SignInScreen extends ConsumerWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.easyListen(signInStateProvider);
 
     return WindowClassLayout(

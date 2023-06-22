@@ -8,6 +8,25 @@ import 'platform_widgets/platform_elevated_button.dart';
 
 //Composition works better than inheritance: https://groups.google.com/g/flutter-dev/c/muVUV4z71fs/m/DS0twymQCAAJ
 class CustomButton extends StatelessWidget {
+  const CustomButton({
+    required this.onPressed,
+    this.height,
+    this.width,
+    this.minHeight,
+    this.minWidth,
+    this.child,
+    this.text,
+    this.shape,
+    this.elevation,
+    this.buttonColor,
+    this.splashColor,
+    this.shadowColor,
+    this.gradientColor,
+    this.gradientBorderRadius,
+    this.padding,
+    this.onLongPress,
+    super.key,
+  }) : assert(text != null || child != null, "Either text or child shouldn't be null");
   final double? height;
   final double? width;
   final double? minHeight;
@@ -24,27 +43,6 @@ class CustomButton extends StatelessWidget {
   final BorderRadiusGeometry? gradientBorderRadius;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onLongPress;
-
-  const CustomButton({
-    this.height,
-    this.width,
-    this.minHeight,
-    this.minWidth,
-    this.child,
-    this.text,
-    required this.onPressed,
-    this.shape,
-    this.elevation,
-    this.buttonColor,
-    this.splashColor,
-    this.shadowColor,
-    this.gradientColor,
-    this.gradientBorderRadius,
-    this.padding,
-    this.onLongPress,
-    Key? key,
-  })  : assert(text != null || child != null),
-        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +71,7 @@ class CustomButton extends StatelessWidget {
         color: buttonColor,
         padding: padding ?? EdgeInsets.zero,
         borderRadius: shape != null
-            ? (shape as RoundedRectangleBorder)
+            ? (shape! as RoundedRectangleBorder)
                 .borderRadius
                 .resolve(Directionality.maybeOf(context))
             : BorderRadius.circular(Sizes.buttonR24),
@@ -85,10 +83,8 @@ class CustomButton extends StatelessWidget {
         width: width ?? Sizes.buttonWidth220,
         decoration: buttonColor == null
             ? BoxDecoration(
-                borderRadius: gradientBorderRadius ??
-                    BorderRadius.circular(Sizes.buttonR24),
-                gradient:
-                    gradientColor ?? AppStaticColors.primaryIngredientColor,
+                borderRadius: gradientBorderRadius ?? BorderRadius.circular(Sizes.buttonR24),
+                gradient: gradientColor ?? AppStaticColors.primaryIngredientColor,
               )
             : null,
         child: child ??

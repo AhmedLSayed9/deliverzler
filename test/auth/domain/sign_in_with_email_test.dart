@@ -6,7 +6,7 @@ import '../../utils.dart';
 
 void main() {
   testWidgets(
-    'should return same result of ValueValidators.validateEmail'
+    'should return same result of ValueValidators.validateEmail '
     'when SignInWithEmail.validateEmail is called',
     (WidgetTester tester) async {
       // GIVEN
@@ -21,7 +21,7 @@ void main() {
   );
 
   testWidgets(
-    'should return same result of ValueValidators.validateLoginPassword'
+    'should return same result of ValueValidators.validateLoginPassword '
     'when SignInWithEmail.validatePassword is called',
     (WidgetTester tester) async {
       // GIVEN

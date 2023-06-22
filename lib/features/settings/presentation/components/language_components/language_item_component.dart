@@ -12,20 +12,18 @@ import '../../../../../core/presentation/widgets/platform_widgets/platform_widge
 class LanguageItemComponent extends ConsumerWidget {
   const LanguageItemComponent({
     required this.appLocale,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final AppLocale appLocale;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PlatformWidget(
       material: (_) {
         return InkWell(
           onTap: () {
-            ref
-                .read(appLocaleControllerProvider.notifier)
-                .changeLocale(appLocale);
+            ref.read(appLocaleControllerProvider.notifier).changeLocale(appLocale);
           },
           child: _SharedItemComponent(appLocale),
         );
@@ -33,9 +31,7 @@ class LanguageItemComponent extends ConsumerWidget {
       cupertino: (_) {
         return GestureDetector(
           onTap: () {
-            ref
-                .read(appLocaleControllerProvider.notifier)
-                .changeLocale(appLocale);
+            ref.read(appLocaleControllerProvider.notifier).changeLocale(appLocale);
           },
           child: _SharedItemComponent(appLocale),
         );
@@ -45,10 +41,7 @@ class LanguageItemComponent extends ConsumerWidget {
 }
 
 class _SharedItemComponent extends StatelessWidget {
-  const _SharedItemComponent(
-    this.appLocale, {
-    Key? key,
-  }) : super(key: key);
+  const _SharedItemComponent(this.appLocale);
 
   final AppLocale appLocale;
 
@@ -70,7 +63,6 @@ class _SharedItemComponent extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Stack(
             alignment: AlignmentDirectional.center,
@@ -84,10 +76,7 @@ class _SharedItemComponent extends StatelessWidget {
                   final currentLocale = ref.watch(currentAppLocaleProvider);
                   return (currentLocale.code == appLocale.code)
                       ? CircleAvatar(
-                          backgroundColor: Theme.of(context)
-                              .colorScheme
-                              .secondary
-                              .withOpacity(0.8),
+                          backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.8),
                           radius: Sizes.icon16,
                           child: Icon(
                             PlatformIcons.checkMark,

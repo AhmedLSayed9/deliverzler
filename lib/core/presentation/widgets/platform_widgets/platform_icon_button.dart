@@ -6,10 +6,8 @@ import 'platform_base_widget.dart';
 class PlatformIconButton
     extends PlatformBaseWidget<IconButton, CupertinoButton> {
   const PlatformIconButton({
-    super.key,
+    required this.icon, required this.onPressed, super.key,
     this.widgetKey,
-    required this.icon,
-    required this.onPressed,
     this.padding,
     this.materialData,
     this.cupertinoData,

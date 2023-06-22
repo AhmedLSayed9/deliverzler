@@ -34,22 +34,22 @@ class SeparatedSliverChildBuilderDelegate extends SliverChildBuilderDelegate {
   /// [SliverChildBuilderDelegate.addSemanticIndexes] property. None may be
   /// null.
   SeparatedSliverChildBuilderDelegate({
+    required IndexedWidgetBuilder itemBuilder,
+    required int itemCount,
+    required IndexedWidgetBuilder separatorBuilder,
     bool addAutomaticKeepAlives = true,
     bool addRepaintBoundaries = true,
     bool addSemanticIndexes = true,
     ChildIndexGetter? findChildIndexCallback,
-    required IndexedWidgetBuilder itemBuilder,
-    required int itemCount,
-    required IndexedWidgetBuilder separatorBuilder,
   }) : super(
           (BuildContext context, int index) {
-            final int itemIndex = index ~/ 2;
+            final itemIndex = index ~/ 2;
 
             if (index.isEven) {
               return itemBuilder(context, itemIndex);
             }
 
-            final Widget widget = separatorBuilder(context, itemIndex);
+            final widget = separatorBuilder(context, itemIndex);
 
             return widget;
           },

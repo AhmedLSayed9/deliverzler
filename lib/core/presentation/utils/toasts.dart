@@ -10,7 +10,7 @@ import '../widgets/custom_text.dart';
 import '../widgets/custom_toast.dart';
 
 abstract class Toasts {
-  static showTitledToast(
+  static void showTitledToast(
     BuildContext context, {
     required String title,
     required String description,
@@ -51,7 +51,7 @@ abstract class Toasts {
     );
   }
 
-  static showConnectionToast(
+  static void showConnectionToast(
     BuildContext context, {
     required ConnectionStatus connectionStatus,
   }) {
@@ -59,16 +59,17 @@ abstract class Toasts {
       context,
       child: Row(
         children: <Widget>[
-          connectionStatus == ConnectionStatus.disconnected
-              ? const Icon(
-                  Icons.wifi_off,
-                  size: Sizes.icon24,
-                )
-              : Icon(
-                  Icons.wifi,
-                  size: Sizes.icon24,
-                  color: customColors(context).greenColor,
-                ),
+          if (connectionStatus == ConnectionStatus.disconnected)
+            const Icon(
+              Icons.wifi_off,
+              size: Sizes.icon24,
+            )
+          else
+            Icon(
+              Icons.wifi,
+              size: Sizes.icon24,
+              color: customColors(context).greenColor,
+            ),
           const SizedBox(
             width: Sizes.marginH12,
           ),
@@ -85,7 +86,7 @@ abstract class Toasts {
     );
   }
 
-  static Future showBackgroundMessageToast(
+  static Future<void> showBackgroundMessageToast(
     BuildContext context, {
     required String message,
   }) async {

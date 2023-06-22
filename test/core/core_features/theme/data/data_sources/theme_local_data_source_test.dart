@@ -7,8 +7,7 @@ import 'package:deliverzler/core/infrastructure/local/shared_preferences_facade.
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 import '../../../../../utils.dart';
 
-class MockSharedPreferencesFacade extends Mock
-    implements SharedPreferencesFacade {}
+class MockSharedPreferencesFacade extends Mock implements SharedPreferencesFacade {}
 
 void main() {
   late MockSharedPreferencesFacade mockSharedPrefs;
@@ -39,7 +38,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
@@ -47,14 +46,13 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final themeLocalDataSource =
-              container.read(themeLocalDataSourceProvider);
+          final themeLocalDataSource = container.read(themeLocalDataSourceProvider);
           final result = await themeLocalDataSource.getAppTheme();
 
           // THEN
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: ThemeLocalDataSource.appThemeKey,
               dataType: DataType.string,
             ),
@@ -67,7 +65,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
@@ -75,8 +73,7 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final themeLocalDataSource =
-              container.read(themeLocalDataSourceProvider);
+          final themeLocalDataSource = container.read(themeLocalDataSourceProvider);
           final call = themeLocalDataSource.getAppTheme();
 
           // THEN
@@ -84,7 +81,10 @@ void main() {
             () => call,
             throwsA(
               isA<CacheException>().having(
-                  (e) => e.type, 'type', equals(CacheExceptionType.notFound)),
+                (e) => e.type,
+                'type',
+                equals(CacheExceptionType.notFound),
+              ),
             ),
           );
         },
@@ -111,8 +111,7 @@ void main() {
           ).thenAnswer((_) async => true);
 
           // WHEN
-          final themeLocalDataSource =
-              container.read(themeLocalDataSourceProvider);
+          final themeLocalDataSource = container.read(themeLocalDataSourceProvider);
           await themeLocalDataSource.cacheAppTheme(tTheme);
 
           // THEN

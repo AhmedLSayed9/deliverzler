@@ -4,8 +4,7 @@ import '../../utils/window_size_class.dart';
 
 class WindowClassLayout extends StatelessWidget {
   const WindowClassLayout({
-    super.key,
-    required this.compact,
+    required this.compact, super.key,
     this.medium,
     this.expanded,
   });
@@ -40,8 +39,7 @@ class WindowClassLayout extends StatelessWidget {
 
 class OrientationLayout extends StatelessWidget {
   const OrientationLayout({
-    super.key,
-    required this.portrait,
+    required this.portrait, super.key,
     this.landscape,
   });
 

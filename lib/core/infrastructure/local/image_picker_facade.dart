@@ -30,12 +30,10 @@ class ImagePickerFacade {
     double? maxHeight,
     double? maxWidth,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
         final pickedFile = await imagePicker.pickImage(
-          source: pickSource == PickSource.camera
-              ? ImageSource.camera
-              : ImageSource.gallery,
+          source: pickSource == PickSource.camera ? ImageSource.camera : ImageSource.gallery,
           maxHeight: maxHeight,
           maxWidth: maxWidth,
         );
@@ -51,7 +49,7 @@ class ImagePickerFacade {
     );
   }
 
-  Future<T> _errorHandler<T>(Function body) async {
+  Future<T> _errorHandler<T>(Future<T> Function() body) async {
     try {
       return await body.call();
     } catch (e, st) {

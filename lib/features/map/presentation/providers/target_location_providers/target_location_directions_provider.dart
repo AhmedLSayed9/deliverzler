@@ -16,7 +16,7 @@ Option<PlaceDirections> targetLocationDirections(
         skipError: true,
         skipLoadingOnReload: true,
         skipLoadingOnRefresh: true,
-        data: (directions) => Some(directions),
+        data: Some.new,
         orElse: () => const None(),
       );
 }
@@ -25,13 +25,11 @@ Option<PlaceDirections> targetLocationDirections(
 Future<PlaceDirections> getTargetLocationDirections(
   GetTargetLocationDirectionsRef ref,
 ) async {
-  final myLocation =
-      ref.watch(locationStreamProvider.select((value) => value.valueOrNull));
+  final myLocation = ref.watch(locationStreamProvider.select((value) => value.valueOrNull));
   if (myLocation == null) throw AbortedException();
 
-  final targetLocation = ref
-      .watch(targetLocationGeoPointProvider)
-      .getOrElse(() => throw AbortedException());
+  final targetLocation =
+      ref.watch(targetLocationGeoPointProvider).getOrElse(() => throw AbortedException());
 
   final cancelToken = ref.cancelToken();
   final query = PlaceDirectionsQuery(

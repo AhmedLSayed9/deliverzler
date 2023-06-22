@@ -20,8 +20,8 @@ class MapCircles extends _$MapCircles {
     return state;
   }
 
-  _addCircle(Circle circle) {
-    final Set<Circle> mapCircles = Set.from(state);
+  void _addCircle(Circle circle) {
+    final mapCircles = Set<Circle>.from(state);
     //If mapCircles already has circle with same id,
     //remove it first to avoid adding duplicate circles and replace it instead.
     mapCircles.removeWhere((c) => c.circleId == circle.circleId);

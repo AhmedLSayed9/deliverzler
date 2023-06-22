@@ -11,7 +11,7 @@ import '../../../../../core/presentation/widgets/custom_text.dart';
 import 'cancel_order_note_component.dart';
 
 class CancelOrderDialog extends HookWidget {
-  const CancelOrderDialog({Key? key}) : super(key: key);
+  const CancelOrderDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

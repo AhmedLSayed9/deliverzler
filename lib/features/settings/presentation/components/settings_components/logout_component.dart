@@ -12,14 +12,12 @@ import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 
 class LogoutComponent extends HookConsumerWidget {
-  const LogoutComponent({Key? key}) : super(key: key);
+  const LogoutComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     void signOut() {
-      ref
-          .read(signOutEventProvider.notifier)
-          .update((_) => Some(Event.unique(unit)));
+      ref.read(signOutEventProvider.notifier).update((_) => Some(Event.unique(unit)));
     }
 
     return PlatformWidget(
@@ -40,9 +38,7 @@ class LogoutComponent extends HookConsumerWidget {
 }
 
 class _SharedItemComponent extends StatelessWidget {
-  const _SharedItemComponent({
-    Key? key,
-  }) : super(key: key);
+  const _SharedItemComponent();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +50,6 @@ class _SharedItemComponent extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(Sizes.dialogR6),
         border: Border.all(
-          width: 1,
           color: Theme.of(context).colorScheme.primary,
         ),
         boxShadow: [

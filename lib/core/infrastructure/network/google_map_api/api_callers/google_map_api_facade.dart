@@ -18,15 +18,15 @@ class GoogleMapApiFacade {
 
   final Dio dio;
 
-  Future<Response> getData({
+  Future<Response<T>> getData<T>({
     required String path,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await dio.get(
+        return dio.get(
           path,
           queryParameters: queryParameters,
           //Every request can pass an Options object which will be merged with Dio.options
@@ -37,16 +37,16 @@ class GoogleMapApiFacade {
     );
   }
 
-  Future<Response> postData({
+  Future<Response<T>> postData<T>({
     required String path,
     Map<String, dynamic>? queryParameters,
     dynamic data,
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await dio.post(
+        return dio.post(
           path,
           queryParameters: queryParameters,
           data: data,
@@ -57,15 +57,15 @@ class GoogleMapApiFacade {
     );
   }
 
-  Future<Response> patchData({
+  Future<Response<T>> patchData<T>({
     required String path,
     dynamic data,
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await dio.patch(
+        return dio.patch(
           path,
           data: data,
           options: options,
@@ -75,15 +75,15 @@ class GoogleMapApiFacade {
     );
   }
 
-  Future<Response> putData({
+  Future<Response<T>> putData<T>({
     required String path,
     dynamic data,
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await dio.put(
+        return dio.put(
           path,
           data: data,
           options: options,
@@ -93,15 +93,15 @@ class GoogleMapApiFacade {
     );
   }
 
-  Future<Response> deleteData({
+  Future<Response<T>> deleteData<T>({
     required String path,
     dynamic data,
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await dio.delete(
+        return dio.delete(
           path,
           data: data,
           options: options,

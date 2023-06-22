@@ -24,7 +24,7 @@ Stream<Position> locationStream(
     locationSettings: locationService.getLocationSettings(),
     //Throttling location's stream as intervalDuration is not supported on iOS
   ).throttleTime(const Duration(seconds: locationChangeInterval)).handleError(
-    (err, st) {
+    (Object err, StackTrace st) {
       Error.throwWithStackTrace(LocationError.getLocationTimeout, st);
     },
   );
@@ -38,7 +38,9 @@ Future<void> enableLocation(
   final enabled = await locationService.enableLocationService();
   if (!enabled) {
     Error.throwWithStackTrace(
-        LocationError.notEnabledLocation, StackTrace.current);
+      LocationError.notEnabledLocation,
+      StackTrace.current,
+    );
   }
 }
 
@@ -50,14 +52,18 @@ Future<void> requestLocationPermission(
   final whileInUseGranted = await locationService.requestWhileInUsePermission();
   if (!whileInUseGranted) {
     Error.throwWithStackTrace(
-        LocationError.notGrantedLocationPermission, StackTrace.current);
+      LocationError.notGrantedLocationPermission,
+      StackTrace.current,
+    );
   }
 
   if (Platform.isAndroid) {
     final alwaysGranted = await locationService.requestAlwaysPermission();
     if (!alwaysGranted) {
       Error.throwWithStackTrace(
-          LocationError.notGrantedLocationPermission, StackTrace.current);
+        LocationError.notGrantedLocationPermission,
+        StackTrace.current,
+      );
     }
   }
 }

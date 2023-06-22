@@ -22,11 +22,12 @@ abstract class OrderDialogHelper {
   }
 
   static Future<String?> showCancelOrderDialog(BuildContext context) async {
-    return await Dialogs.showCustomDialog(
+    return Dialogs.showCustomDialog(
       context,
       child: const CancelOrderDialog(),
-    ).then((value) async {
-      return value?[0];
+    ).then((result) async {
+      final res = result as List<String>?;
+      return res?[0];
     });
   }
 
@@ -51,14 +52,15 @@ abstract class OrderDialogHelper {
     BuildContext context,
     String message,
   ) async {
-    return await Dialogs.showCustomDialog(
+    return Dialogs.showCustomDialog(
       context,
       child: ConfirmChoiceDialog(
         message: message,
       ),
-    ).then((value) {
-      if (value == null) return false;
-      return value[0];
+    ).then((result) {
+      final res = result as List<String>?;
+      if (res == null) return false;
+      return res[0] as bool;
     });
   }
 }

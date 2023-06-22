@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-CustomColors customColors(BuildContext context) =>
-    Theme.of(context).extension<CustomColors>()!;
+CustomColors customColors(BuildContext context) => Theme.of(context).extension<CustomColors>()!;
 
 @immutable
 class CustomColors extends ThemeExtension<CustomColors> {
@@ -48,7 +47,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
     Color? blackColor,
     Color? redColor,
     Color? greenColor,
-    greyColor,
+    Color? greyColor,
     Color? orangeColor,
     Color? marinerColor,
     Color? loadingIndicatorColor,
@@ -66,8 +65,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
       greenColor: greenColor ?? this.greenColor,
       greyColor: greyColor ?? this.greyColor,
       marinerColor: marinerColor ?? this.marinerColor,
-      loadingIndicatorColor:
-          loadingIndicatorColor ?? this.loadingIndicatorColor,
+      loadingIndicatorColor: loadingIndicatorColor ?? this.loadingIndicatorColor,
     );
   }
 
@@ -90,8 +88,7 @@ class CustomColors extends ThemeExtension<CustomColors> {
       greenColor: Color.lerp(greenColor, other.greenColor, t),
       greyColor: Color.lerp(greyColor, other.greyColor, t),
       marinerColor: Color.lerp(marinerColor, other.marinerColor, t),
-      loadingIndicatorColor:
-          Color.lerp(loadingIndicatorColor, other.loadingIndicatorColor, t),
+      loadingIndicatorColor: Color.lerp(loadingIndicatorColor, other.loadingIndicatorColor, t),
     );
   }
 

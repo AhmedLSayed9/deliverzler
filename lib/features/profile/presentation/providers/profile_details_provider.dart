@@ -11,7 +11,7 @@ part 'profile_details_provider.g.dart';
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
 FutureOr<Option<ProfileDetails>> profileDetailsState(
-    ProfileDetailsStateRef ref) {
+    ProfileDetailsStateRef ref,) {
   final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
   ref.listenSelf((previous, next) {
     next.whenData(

@@ -7,10 +7,10 @@ import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../providers/map_controller_provider.dart';
 
 class MapFloatingActionButton extends ConsumerWidget {
-  const MapFloatingActionButton({Key? key}) : super(key: key);
+  const MapFloatingActionButton({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Positioned(
       bottom: Sizes.mapFABBottom,
       right: Sizes.mapFABRight,

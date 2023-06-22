@@ -8,7 +8,7 @@ import 'platform_widgets/platform_text_form_field.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    Key? key,
+    super.key,
     this.initialValue,
     this.controller,
     this.validator,
@@ -27,7 +27,7 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines,
     this.minLines,
     this.errorMaxLines,
-  }) : super(key: key);
+  });
 
   final String? initialValue;
   final TextEditingController? controller;
@@ -92,8 +92,7 @@ class CustomTextFormField extends StatelessWidget {
               prefixIconColor:
                   Theme.of(context).inputDecorationTheme.prefixIconColor,
               prefixIconConstraints: const BoxConstraints(
-                minHeight: 0,
-                minWidth: 0,
+                
               ),
               suffixIcon: suffix != null
                   ? Padding(
@@ -106,8 +105,7 @@ class CustomTextFormField extends StatelessWidget {
               suffixIconColor:
                   Theme.of(context).inputDecorationTheme.suffixIconColor,
               suffixIconConstraints: const BoxConstraints(
-                minHeight: 0,
-                minWidth: 0,
+                
               ),
               errorStyle: TextStyle(
                 color: Theme.of(context).inputDecorationTheme.errorStyle?.color,

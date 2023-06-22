@@ -4,14 +4,14 @@ import '../helpers/platform_helper.dart';
 
 class DisableGlowScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(context, Widget child, details) {
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }
 
 class MainScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(context, Widget child, details) {
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 

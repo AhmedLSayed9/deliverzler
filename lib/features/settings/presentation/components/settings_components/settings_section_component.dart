@@ -8,10 +8,9 @@ class SettingsSectionComponent extends StatelessWidget {
   const SettingsSectionComponent({
     required this.headerIcon,
     required this.headerTitle,
-    this.headerTrailing,
-    required this.tileList,
-    Key? key,
-  }) : super(key: key);
+    required this.tileList, this.headerTrailing,
+    super.key,
+  });
 
   final IconData headerIcon;
   final String headerTitle;

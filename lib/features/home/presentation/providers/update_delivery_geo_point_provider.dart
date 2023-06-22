@@ -10,20 +10,20 @@ part 'update_delivery_geo_point_provider.g.dart';
 
 @riverpod
 Future<void> updateDeliveryGeoPointState(
-    UpdateDeliveryGeoPointStateRef ref) async {
+    UpdateDeliveryGeoPointStateRef ref,) async {
   final myDeliveryOrders = ref.watch(myDeliveringOrdersProvider);
   final position = ref.watch(locationStreamProvider).valueOrNull;
 
   if (myDeliveryOrders.isEmpty || position == null) return;
 
-  final List<Future<void>> futures = [];
+  final futures = <Future<void>>[];
   for (final order in myDeliveryOrders) {
     final deliveryGeoPoint = UpdateDeliveryGeoPoint(
       orderId: order.id,
       geoPoint: GeoPoint(position.latitude, position.longitude),
     );
     futures.add(
-        ref.watch(updateDeliveryGeoPointProvider(deliveryGeoPoint).future));
+        ref.watch(updateDeliveryGeoPointProvider(deliveryGeoPoint).future),);
   }
   //Run all calls in parallel to ensure all orders get updated in case the location is changing fast.
   await Future.wait(futures);

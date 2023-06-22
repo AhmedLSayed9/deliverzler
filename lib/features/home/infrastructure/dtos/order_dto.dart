@@ -11,10 +11,7 @@ part 'order_dto.g.dart';
 
 @Freezed(toJson: false)
 class OrderDto with _$OrderDto {
-  const OrderDto._();
-
   const factory OrderDto({
-    @JsonKey(includeToJson: false) String? id,
     required int date,
     required PickupOption pickupOption,
     required String paymentMethod,
@@ -28,22 +25,8 @@ class OrderDto with _$OrderDto {
     required DeliveryStatus deliveryStatus,
     required String? deliveryId,
     @GeoPointConverter() required GeoPoint? deliveryGeoPoint,
+    @JsonKey(includeToJson: false) String? id,
   }) = _OrderDto;
-
-  factory OrderDto.fromJson(Map<String, dynamic> json) =>
-      _$OrderDtoFromJson(json);
-
-  factory OrderDto.fromFirestore(DocumentSnapshot document) {
-    return OrderDto.fromJson(document.data() as Map<String, dynamic>)
-        .copyWith(id: document.id);
-  }
-
-  static List<OrderDto> parseListOfDocument(
-      List<QueryDocumentSnapshot> documents) {
-    return List<OrderDto>.from(
-      documents.map((doc) => OrderDto.fromFirestore(doc)),
-    );
-  }
 
   factory OrderDto.fromDomain(AppOrder order) {
     return OrderDto(
@@ -51,8 +34,7 @@ class OrderDto with _$OrderDto {
       date: order.date,
       pickupOption: order.pickupOption,
       paymentMethod: order.paymentMethod,
-      address:
-          order.address != null ? AddressDto.fromDomain(order.address!) : null,
+      address: order.address != null ? AddressDto.fromDomain(order.address!) : null,
       userId: order.userId,
       userName: order.userName,
       userImage: order.userImage,
@@ -63,6 +45,19 @@ class OrderDto with _$OrderDto {
       deliveryId: order.deliveryId,
       deliveryGeoPoint: order.deliveryGeoPoint,
     );
+  }
+  const OrderDto._();
+
+  factory OrderDto.fromJson(Map<String, dynamic> json) => _$OrderDtoFromJson(json);
+
+  factory OrderDto.fromFirestore(DocumentSnapshot document) {
+    return OrderDto.fromJson(document.data()! as Map<String, dynamic>).copyWith(id: document.id);
+  }
+
+  static List<OrderDto> parseListOfDocument(
+    List<QueryDocumentSnapshot> documents,
+  ) {
+    return List<OrderDto>.from(documents.map(OrderDto.fromFirestore));
   }
 
   AppOrder toDomain() {
@@ -87,8 +82,6 @@ class OrderDto with _$OrderDto {
 
 @Freezed(toJson: false)
 class AddressDto with _$AddressDto {
-  const AddressDto._();
-
   const factory AddressDto({
     required String state,
     required String city,
@@ -96,9 +89,9 @@ class AddressDto with _$AddressDto {
     required String mobile,
     @GeoPointConverter() required GeoPoint? geoPoint,
   }) = _AddressDto;
+  const AddressDto._();
 
-  factory AddressDto.fromJson(Map<String, dynamic> json) =>
-      _$AddressDtoFromJson(json);
+  factory AddressDto.fromJson(Map<String, dynamic> json) => _$AddressDtoFromJson(json);
 
   factory AddressDto.fromDomain(Address address) {
     return AddressDto(

@@ -11,12 +11,12 @@ import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../domain/order.dart';
 
 class OrderDetailsDialog extends StatelessWidget {
-  final AppOrder order;
 
   const OrderDetailsDialog({
     required this.order,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final AppOrder order;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,6 @@ class OrderDetailsDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: Sizes.imageR100,

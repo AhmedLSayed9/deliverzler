@@ -6,7 +6,7 @@ import '../../../core/presentation/styles/sizes.dart';
 import '../../../core/presentation/widgets/custom_text.dart';
 
 class LoginLogoComponent extends StatelessWidget {
-  const LoginLogoComponent({Key? key}) : super(key: key);
+  const LoginLogoComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

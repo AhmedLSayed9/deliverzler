@@ -13,10 +13,10 @@ import '../providers/pick_profile_image_provider.dart';
 import '../providers/update_profile_image_provider.dart';
 
 class UserImageComponent extends ConsumerWidget {
-  const UserImageComponent({Key? key}) : super(key: key);
+  const UserImageComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.easyListen(updateProfileImageStateProvider);
 
     final userImage =

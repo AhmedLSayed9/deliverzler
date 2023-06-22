@@ -25,10 +25,10 @@ import '../../providers/map_confirm_order_provider.dart';
 import '../../providers/target_location_providers/target_location_geo_point_provider.dart';
 
 class MapScreenCompact extends HookConsumerWidget {
-  const MapScreenCompact({Key? key}) : super(key: key);
+  const MapScreenCompact({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(currentAppThemeProvider);
     final locationAsync = ref.watch(locationStreamProvider);
 
@@ -43,7 +43,7 @@ class MapScreenCompact extends HookConsumerWidget {
         });
       }
       return null;
-    }, []);
+    }, [],);
 
     ref.listen<bool>(isArrivedTargetLocationProvider, (previous, next) {
       if (next == true) {

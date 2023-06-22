@@ -18,10 +18,10 @@ import '../providers/is_arrived_target_location_provider.dart';
 import '../providers/map_confirm_order_provider.dart';
 
 class MapConfirmButtonComponent extends ConsumerWidget {
-  const MapConfirmButtonComponent({Key? key}) : super(key: key);
+  const MapConfirmButtonComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final arrivedTargetLocation = ref.watch(isArrivedTargetLocationProvider);
 
     bool confirmDeliveryId() {
@@ -38,7 +38,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
       if (ref.read(mapConfirmOrderStatusProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      final bool confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
+      final confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
         context,
         tr(context).doYouWantToConfirmTheOrder,
       );

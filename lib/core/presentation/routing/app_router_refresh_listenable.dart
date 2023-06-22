@@ -1,3 +1,5 @@
+// ignore_for_file: comment_references
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -12,12 +14,11 @@ part 'app_router_refresh_listenable.g.dart';
 ///
 /// This was motivated by @lucavenir GoRouter & Riverpod integration: https://github.com/lucavenir/go_router_riverpod
 @riverpod
-class AppRouterRefreshListenable extends _$AppRouterRefreshListenable
-    implements Listenable {
+class AppRouterRefreshListenable extends _$AppRouterRefreshListenable implements Listenable {
   VoidCallback? _routerListener;
 
   @override
-  void build() async {
+  void build() {
     ref.listen(
       authStateProvider.select((user) => user.isSome()),
       (_, __) => _routerListener?.call(),

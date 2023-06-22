@@ -8,7 +8,7 @@ import '../../components/login_content_component.dart';
 import '../../components/login_logo_component.dart';
 
 class SignInScreenMedium extends StatelessWidget {
-  const SignInScreenMedium({Key? key}) : super(key: key);
+  const SignInScreenMedium({super.key});
 
   @override
   Widget build(BuildContext context) {

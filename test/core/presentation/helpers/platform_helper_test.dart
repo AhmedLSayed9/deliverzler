@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:deliverzler/core/presentation/helpers/platform_helper.dart';
 
 void main() {
-  setUpTargetPlatform(TargetPlatform targetPlatform) {
+  void setUpTargetPlatform(TargetPlatform targetPlatform) {
     debugDefaultTargetPlatformOverride = targetPlatform;
     addTearDown(() {
       debugDefaultTargetPlatformOverride = null;

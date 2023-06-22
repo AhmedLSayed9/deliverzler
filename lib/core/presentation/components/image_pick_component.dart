@@ -10,8 +10,8 @@ class ImagePickComponent extends StatelessWidget {
   const ImagePickComponent({
     required this.pickFromCameraCallBack,
     required this.pickFromGalleryCallBack,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final void Function(BuildContext ctx)? pickFromCameraCallBack;
   final void Function(BuildContext ctx)? pickFromGalleryCallBack;
@@ -27,7 +27,7 @@ class ImagePickComponent extends StatelessWidget {
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       onPressed: () {
         FocusScope.of(context).requestFocus(FocusNode());
-        showDialog(
+        showDialog<void>(
           context: context,
           builder: (BuildContext ctx) {
             return AlertDialog(

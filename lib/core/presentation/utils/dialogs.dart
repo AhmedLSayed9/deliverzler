@@ -12,8 +12,8 @@ import '../widgets/custom_text.dart';
 import '../widgets/loading_indicators.dart';
 
 abstract class Dialogs {
-  static Future showLoadingDialog(BuildContext context) async {
-    return await CustomDialog.showDialog(
+  static Future<T?> showLoadingDialog<T extends Object?>(BuildContext context) async {
+    return CustomDialog.showDialog(
       context,
       barrierDismissible: false,
       contentPadding: const EdgeInsets.symmetric(
@@ -25,7 +25,6 @@ abstract class Dialogs {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const SmallLoadingAnimation(
@@ -45,11 +44,11 @@ abstract class Dialogs {
     );
   }
 
-  static Future showErrorDialog(
+  static Future<T?> showErrorDialog<T extends Object?>(
     BuildContext context, {
     required String message,
   }) async {
-    return await CustomDialog.showDialog(
+    return CustomDialog.showDialog(
       context,
       contentPadding: const EdgeInsets.symmetric(
         vertical: Sizes.dialogPaddingV28,
@@ -63,7 +62,6 @@ abstract class Dialogs {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           CustomIcon.i72(
@@ -100,11 +98,11 @@ abstract class Dialogs {
     );
   }
 
-  static Future showCustomDialog(
+  static Future<T?> showCustomDialog<T extends Object?>(
     BuildContext context, {
     required Widget child,
   }) async {
-    return await CustomDialog.showDialog(
+    return CustomDialog.showDialog<T>(
       context,
       contentPadding: const EdgeInsets.symmetric(
         vertical: Sizes.dialogPaddingV28,

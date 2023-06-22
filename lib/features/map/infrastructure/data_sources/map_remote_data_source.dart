@@ -34,7 +34,7 @@ class MapRemoteDataSource {
     CancelToken cancelToken,
     String placeName,
   ) async {
-    final Response response = await googleMapApi.getData(
+    final response = await googleMapApi.getData<Map<String, dynamic>>(
       path: googleMapAutoCompletePath,
       queryParameters: {
         'types': '(cities)',
@@ -47,14 +47,16 @@ class MapRemoteDataSource {
       ),
       cancelToken: cancelToken,
     );
-    return PlaceAutocompleteDto.parseListOfMap(response.data['predictions']);
+    return PlaceAutocompleteDto.parseListOfMap(
+      response.data!['predictions']! as List<Map<String, dynamic>>,
+    );
   }
 
   Future<PlaceDetailsDto> getPlaceDetails(
     CancelToken cancelToken,
     String placeId,
   ) async {
-    final Response response = await googleMapApi.getData(
+    final response = await googleMapApi.getData<Map<String, dynamic>>(
       path: googleMapPlaceDetailsPath,
       queryParameters: {
         'fields': 'geometry', //Specify wanted fields to lower billing rate
@@ -65,18 +67,19 @@ class MapRemoteDataSource {
       ),
       cancelToken: cancelToken,
     );
-    return PlaceDetailsDto.fromJson(response.data['result']);
+    return PlaceDetailsDto.fromJson(response.data!['result'] as Map<String, dynamic>);
   }
 
   Future<PlaceDirectionsDto> getPlaceDirections(
     CancelToken cancelToken,
     PlaceDirectionsQueryDto query,
   ) async {
-    final Response response = await googleMapApi.getData(
+    final response = await googleMapApi.getData<Map<String, dynamic>>(
       path: googleMapDirectionsPath,
       queryParameters: query.toJson(),
       cancelToken: cancelToken,
     );
-    return PlaceDirectionsDto.fromJson(response.data['routes'][0]);
+    // ignore: avoid_dynamic_calls
+    return PlaceDirectionsDto.fromJson(response.data!['routes'][0] as Map<String, dynamic>);
   }
 }

@@ -6,10 +6,8 @@ import 'platform_base_widget.dart';
 class PlatformRefreshIndicator
     extends PlatformBaseWidget<RefreshIndicator, CustomScrollView> {
   const PlatformRefreshIndicator({
-    super.key,
+    required this.onRefresh, required this.slivers, super.key,
     this.widgetKey,
-    required this.onRefresh,
-    required this.slivers,
     this.scrollController,
   });
 

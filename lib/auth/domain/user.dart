@@ -6,7 +6,6 @@ part 'user.freezed.dart';
 
 @freezed
 class User with _$User {
-  const User._();
 
   const factory User({
     required String id,
@@ -15,6 +14,7 @@ class User with _$User {
     required String? phone,
     required String? image,
   }) = _User;
+  const User._();
 
   User copyWithProfileDetails(ProfileDetails profileDetails) {
     return copyWith(

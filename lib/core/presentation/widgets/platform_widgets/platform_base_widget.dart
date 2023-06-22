@@ -5,7 +5,7 @@ import '../../helpers/platform_helper.dart';
 /// Base class to be extended by all platform widgets
 abstract class PlatformBaseWidget<A extends Widget, I extends Widget>
     extends StatelessWidget {
-  const PlatformBaseWidget({Key? key}) : super(key: key);
+  const PlatformBaseWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

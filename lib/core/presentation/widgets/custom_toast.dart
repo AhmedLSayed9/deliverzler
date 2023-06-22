@@ -58,14 +58,13 @@ abstract class CustomToast {
     Toast toastLength = Toast.LENGTH_LONG,
     ToastGravity toastGravity = ToastGravity.BOTTOM,
   }) async {
-    return await Fluttertoast.showToast(
+    return Fluttertoast.showToast(
       msg: msg,
       fontSize: Sizes.font16,
       textColor: AppStaticColors.lightBlack,
       backgroundColor: backgroundColor ?? AppStaticColors.toastColor,
       toastLength: toastLength,
       gravity: toastGravity,
-      timeInSecForIosWeb: 1,
     );
   }
 }

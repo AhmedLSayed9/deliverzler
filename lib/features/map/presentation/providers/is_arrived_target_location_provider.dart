@@ -13,5 +13,5 @@ bool isArrivedTargetLocation(IsArrivedTargetLocationRef ref) {
         (directions) => directions.distance < targetArriveDistance,
       );
     },
-  ));
+  ),);
 }

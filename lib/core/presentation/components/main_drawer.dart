@@ -10,15 +10,15 @@ import 'main_drawer_bottom_component.dart';
 import 'main_drawer_user_info_component.dart';
 
 class MainDrawer extends ConsumerWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
 
   const MainDrawer({
     required this.scaffoldKey,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     //final _indexNotifier = 0;
     /*ref.watch(HomeBaseNavProviders.currentIndex.notifier);*/
 
@@ -67,16 +67,16 @@ class MainDrawer extends ConsumerWidget {
 }
 
 class DrawerItem extends StatelessWidget {
-  final String title;
-  final String icon;
-  final VoidCallback onTap;
 
   const DrawerItem({
     required this.title,
     required this.icon,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final String title;
+  final String icon;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {

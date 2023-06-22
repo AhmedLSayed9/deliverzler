@@ -10,23 +10,22 @@ part 'place_details_provider.g.dart';
 
 @riverpod
 Option<PlaceDetails> currentPlaceDetails(CurrentPlaceDetailsRef ref) {
-  final Option<String> selectedPlaceId =
-      ref.watch(selectedPlaceAutocompleteProvider.select(
-    (value) => value.match(
-      () => const None(),
-      (autocomplete) => Some(autocomplete.placeId),
+  final selectedPlaceId = ref.watch(
+    selectedPlaceAutocompleteProvider.select(
+      (value) => value.match<Option<String>>(
+        () => const None(),
+        (autocomplete) => Some(autocomplete.placeId),
+      ),
     ),
-  ));
+  );
 
   return selectedPlaceId.flatMap(
-    (placeId) =>
-        ref.watch(getPlaceDetailsProvider(placeId).select(valueToOption)),
+    (placeId) => ref.watch(getPlaceDetailsProvider(placeId).select(valueToOption)),
   );
 }
 
 @riverpod
-class SelectedPlaceAutocomplete extends _$SelectedPlaceAutocomplete
-    with NotifierUpdate {
+class SelectedPlaceAutocomplete extends _$SelectedPlaceAutocomplete with NotifierUpdate {
   @override
   Option<PlaceAutocomplete> build() => const None();
 }
@@ -42,7 +41,6 @@ Future<PlaceDetails> getPlaceDetails(
 
   final cancelToken = ref.cancelToken();
 
-  final placeDetails =
-      await ref.watch(mapRepoProvider).getPlaceDetails(cancelToken, placeId);
+  final placeDetails = await ref.watch(mapRepoProvider).getPlaceDetails(cancelToken, placeId);
   return placeDetails;
 }

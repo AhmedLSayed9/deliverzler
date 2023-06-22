@@ -21,13 +21,11 @@ extension WidgetRefExtension on WidgetRef {
       (prevState, newState) {
         prevState?.whenOrNull(
           skipLoadingOnRefresh: false,
-          loading:
-              handleLoading ? () => NavigationService.popDialog(context) : null,
+          loading: handleLoading ? () => NavigationService.popDialog(context) : null,
         );
         newState.whenOrNull(
           skipLoadingOnRefresh: false,
-          loading:
-              handleLoading ? () => Dialogs.showLoadingDialog(context) : null,
+          loading: handleLoading ? () => Dialogs.showLoadingDialog(context) : null,
           error: handleError
               ? (err, st) => Dialogs.showErrorDialog(
                     context,
@@ -48,7 +46,7 @@ extension WidgetRefExtension on WidgetRef {
   /// This is primarily used to initialize and preserve the state of the provider
   /// when navigating to a route until that route is popped off.
   ///
-  /// Note: for Navigator 2.0 use [AutoDisposeRefExtension.keepAliveUntilNoListeners]
+  /// Note: for Navigator 2.0 use "AutoDisposeRefExtension.keepAliveUntilNoListeners"
   Future<void> listenWhile<NotifierT extends AutoDisposeNotifier<T>, T>(
     AutoDisposeNotifierProvider<NotifierT, T> provider,
     Future<void> Function(NotifierT notifier) cb,

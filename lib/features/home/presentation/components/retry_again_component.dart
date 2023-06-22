@@ -7,14 +7,14 @@ import '../../../../core/presentation/widgets/custom_button.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 
 class RetryAgainComponent extends StatelessWidget {
-  final String description;
-  final VoidCallback onPressed;
 
   const RetryAgainComponent({
     required this.description,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final String description;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {

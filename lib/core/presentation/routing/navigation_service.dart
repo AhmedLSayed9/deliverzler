@@ -4,11 +4,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class NavigationService {
-  static removeFocus() {
+  static void removeFocus() {
     FocusManager.instance.primaryFocus?.unfocus();
   }
 
-  static _closeOverlays() {
+  static void _closeOverlays() {
     FToast().removeQueuedCustomToasts();
   }
 
@@ -27,7 +27,7 @@ abstract class NavigationService {
     }
   }
 
-  static Future<void> popDialog<T>(
+  static Future<void> popDialog<T extends Object?>(
     BuildContext context, {
     T? result,
   }) async {

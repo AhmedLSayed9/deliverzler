@@ -14,8 +14,8 @@ import '../full_screen_platfom_scaffold.dart';
 class SplashScreenCompact extends StatelessWidget {
   const SplashScreenCompact({
     required this.fadeInController,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FadeInController fadeInController;
 
@@ -35,7 +35,6 @@ class SplashScreenCompact extends StatelessWidget {
             behavior: MainScrollBehavior(),
             child: SingleChildScrollView(
               child: FadeIn(
-                curve: Curves.easeIn,
                 controller: fadeInController,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(

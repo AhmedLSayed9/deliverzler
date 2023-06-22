@@ -12,15 +12,15 @@ import '../providers/profile_details_provider.dart';
 import 'profile_text_fields_section.dart';
 
 class ProfileFormComponent extends HookConsumerWidget {
-  const ProfileFormComponent({Key? key}) : super(key: key);
+  const ProfileFormComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.easyListen(profileDetailsStateProvider);
 
     final user = ref.watch(currentUserProvider);
 
-    final profileFormKey = useMemoized(() => GlobalKey<FormState>());
+    final profileFormKey = useMemoized(GlobalKey<FormState>.new);
     final nameController = useTextEditingController(text: user.name ?? '');
     final mobileController = useTextEditingController(text: user.phone ?? '');
 
@@ -30,9 +30,7 @@ class ProfileFormComponent extends HookConsumerWidget {
           name: nameController.text,
           phone: mobileController.text,
         );
-        ref
-            .read(profileDetailsEventProvider.notifier)
-            .update((_) => Some(Event.unique(params)));
+        ref.read(profileDetailsEventProvider.notifier).update((_) => Some(Event.unique(params)));
       }
     }
 
@@ -55,9 +53,7 @@ class ProfileFormComponent extends HookConsumerWidget {
           ),
           CustomButton(
             text: tr(context).confirm,
-            onPressed: ref.isLoading(profileDetailsStateProvider)
-                ? null
-                : updateProfile,
+            onPressed: ref.isLoading(profileDetailsStateProvider) ? null : updateProfile,
           ),
         ],
       ),

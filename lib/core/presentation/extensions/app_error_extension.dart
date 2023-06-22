@@ -9,7 +9,7 @@ extension AppErrorExtension on Object {
     if (error is AppException) {
       return error.map(
         serverException: (ex) => ex.serverErrorMessage(context),
-        //TODO: handle other cache exception error messages
+        // TODO(Ahmed): handle other cache exception error messages
         cacheException: (ex) => tr(context).unknownError,
       );
     }

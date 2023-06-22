@@ -4,7 +4,7 @@ import '../../../../../core/presentation/widgets/responsive_widgets/widget_build
 import 'home_screen_compact.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -26,11 +26,11 @@ abstract class MapCoordinatesHelper {
       width: 4,
       geodesic: true,
       startCap: Cap.roundCap,
-      endCap: Cap.buttCap,
       color: AppStaticColors.blue,
       points: polylinePoints!
-          .map((polylinePoint) =>
-              LatLng(polylinePoint.latitude, polylinePoint.longitude))
+          .map(
+            (polylinePoint) => LatLng(polylinePoint.latitude, polylinePoint.longitude),
+          )
           .toList(),
     );
   }
@@ -47,7 +47,7 @@ abstract class MapCoordinatesHelper {
     if (distance < 1000) {
       return '$distance m';
     } else {
-      double distanceInKM = (distance / 1000);
+      final distanceInKM = distance / 1000;
       return '${distanceInKM.toStringAsFixed(2)} km';
     }
   }

@@ -11,8 +11,7 @@ import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 import '../../../fixtures/fixture_reader.dart';
 import '../../../utils.dart';
 
-class MockSharedPreferencesFacade extends Mock
-    implements SharedPreferencesFacade {}
+class MockSharedPreferencesFacade extends Mock implements SharedPreferencesFacade {}
 
 void main() {
   late MockSharedPreferencesFacade mockSharedPrefs;
@@ -33,7 +32,7 @@ void main() {
     );
   }
 
-  final tResponseMap = json.decode(fixtureReader('auth/user.json'));
+  final tResponseMap = json.decode(fixtureReader('auth/user.json')) as Map<String, dynamic>;
   final tUserDto = UserDto.fromJson(tResponseMap);
 
   group(
@@ -54,8 +53,7 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final authLocalDataSource =
-              container.read(authLocalDataSourceProvider);
+          final authLocalDataSource = container.read(authLocalDataSourceProvider);
           await authLocalDataSource.cacheUserData(tUserDto);
 
           // THEN
@@ -81,7 +79,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
@@ -90,14 +88,13 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final authLocalDataSource =
-              container.read(authLocalDataSourceProvider);
+          final authLocalDataSource = container.read(authLocalDataSourceProvider);
           final result = await authLocalDataSource.getUserData();
 
           // THEN
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: AuthLocalDataSource.userDataKey,
               dataType: DataType.string,
             ),
@@ -110,7 +107,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
@@ -119,14 +116,13 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final authLocalDataSource =
-              container.read(authLocalDataSourceProvider);
+          final authLocalDataSource = container.read(authLocalDataSourceProvider);
           final call = authLocalDataSource.getUserData();
 
           // THEN
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: AuthLocalDataSource.userDataKey,
               dataType: DataType.string,
             ),
@@ -135,7 +131,10 @@ void main() {
             () => call,
             throwsA(
               isA<CacheException>().having(
-                  (e) => e.type, 'type', equals(CacheExceptionType.notFound)),
+                (e) => e.type,
+                'type',
+                equals(CacheExceptionType.notFound),
+              ),
             ),
           );
         },
@@ -159,8 +158,7 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final authLocalDataSource =
-              container.read(authLocalDataSourceProvider);
+          final authLocalDataSource = container.read(authLocalDataSourceProvider);
           await authLocalDataSource.clearUserData();
 
           // THEN

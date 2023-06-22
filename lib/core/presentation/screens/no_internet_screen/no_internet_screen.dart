@@ -6,10 +6,10 @@ import '../../widgets/responsive_widgets/widget_builders.dart';
 import 'no_internet_screen_compact.dart';
 
 class NoInternetScreen extends HookConsumerWidget {
-  const NoInternetScreen({Key? key}) : super(key: key);
+  const NoInternetScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return WillPopScope(
       onWillPop: () {
         const SplashRoute().go(context);

@@ -28,7 +28,7 @@ FutureOr<Option<User>> signInState(SignInStateRef ref) {
   return event.match(
     () => const None(),
     (event) {
-      return ref.watch(signInProvider(event).future).then((user) => Some(user));
+      return ref.watch(signInProvider(event).future).then(Some.new);
     },
   );
 }

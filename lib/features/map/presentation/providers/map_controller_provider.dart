@@ -28,7 +28,7 @@ class MapController extends _$MapController {
       currentAppThemeProvider,
       (previous, next) async {
         final isDark = next == AppTheme.dark;
-        state?.setMapStyle(await MapStyleHelper.getMapStyle(isDark));
+        await state?.setMapStyle(await MapStyleHelper.getMapStyle(isDarkMode: isDark));
       },
     );
     ref.listen<Option<PlaceDirections>>(
@@ -50,7 +50,7 @@ class MapController extends _$MapController {
   void centerFocus() {
     final directions = ref.read(targetLocationDirectionsProvider);
     directions.fold(
-      () => _animateToMyLocation(),
+      _animateToMyLocation,
       (directions) => _animateToBounds(directions.bounds),
     );
   }

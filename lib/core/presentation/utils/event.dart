@@ -9,8 +9,7 @@ part 'event.freezed.dart';
 @freezed
 class Event<T> with _$Event<T> {
   const factory Event({
-    Key? key,
-    required T arg,
+    required T arg, Key? key,
   }) = _Event<T>;
 
   factory Event.unique(T arg) => Event(

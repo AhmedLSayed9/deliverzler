@@ -46,8 +46,8 @@ class AuthRemoteDataSource {
 
   Future<UserDto> getUserData(String uid) async {
     final response = await firebaseFirestore.getData(path: userDocPath(uid));
-    if (response.data() != null) {
-      return UserDto.fromJson(response.data() as Map<String, dynamic>);
+    if (response.data() case final data?) {
+      return UserDto.fromJson(data as Map<String, dynamic>);
     } else {
       throw const ServerException(
         type: ServerExceptionType.notFound,
@@ -57,13 +57,13 @@ class AuthRemoteDataSource {
   }
 
   Future<void> setUserData(UserDto userDto) async {
-    return await firebaseFirestore.setData(
+    return firebaseFirestore.setData(
       path: userDocPath(userDto.id),
       data: userDto.toJson(),
     );
   }
 
   Future<void> signOut() async {
-    return await firebaseAuth.signOut();
+    return firebaseAuth.signOut();
   }
 }

@@ -11,7 +11,7 @@ class RouteErrorScreen extends HookConsumerWidget {
   final Exception? error;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return WillPopScope(
       onWillPop: () {
         const SplashRoute().go(context);

@@ -6,7 +6,7 @@ import '../../utils/riverpod_framework.dart';
 /// Base class to be extended by all platform widgets
 abstract class PlatformBaseConsumerWidget<A extends Widget, I extends Widget>
     extends ConsumerWidget {
-  const PlatformBaseConsumerWidget({Key? key}) : super(key: key);
+  const PlatformBaseConsumerWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

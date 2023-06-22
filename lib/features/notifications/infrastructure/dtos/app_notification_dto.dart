@@ -8,13 +8,12 @@ part 'app_notification_dto.g.dart';
 
 @freezed
 class AppNotificationDto with _$AppNotificationDto {
-  const AppNotificationDto._();
-
   const factory AppNotificationDto({
     required String tabName,
     required String? routeLocation,
     required Map<String, dynamic>? data,
   }) = _AppNotificationDto;
+  const AppNotificationDto._();
 
   factory AppNotificationDto.fromJson(Map<String, dynamic> json) =>
       _$AppNotificationDtoFromJson(json);

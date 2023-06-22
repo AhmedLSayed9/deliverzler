@@ -7,7 +7,7 @@ import '../../components/profile_form_component.dart';
 import '../../components/profile_header_component.dart';
 
 class ProfileScreenMedium extends StatelessWidget {
-  const ProfileScreenMedium({Key? key}) : super(key: key);
+  const ProfileScreenMedium({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +27,12 @@ class ProfileScreenMedium extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      flex: 1,
                       child: ProfileHeaderComponent(),
                     ),
                     SizedBox(
                       width: Sizes.marginH16,
                     ),
                     Flexible(
-                      flex: 1,
                       child: ProfileFormComponent(),
                     ),
                   ],

@@ -6,10 +6,8 @@ import 'platform_base_widget.dart';
 class PlatformElevatedButton
     extends PlatformBaseWidget<ElevatedButton, CupertinoTheme> {
   const PlatformElevatedButton({
-    super.key,
+    required this.child, required this.onPressed, super.key,
     this.widgetKey,
-    required this.child,
-    required this.onPressed,
     this.materialData,
     this.cupertinoData,
   });

@@ -42,7 +42,7 @@ Future<void> showFCMNotification(
 
   if (notification != null && !kIsWeb) {
     final notificationService = ref.watch(flutterLocalNotificationsProvider);
-    notificationService.show(
+    await notificationService.show(
       notification.hashCode,
       notification.title,
       notification.body,
@@ -60,7 +60,6 @@ final fcmNotificationDetails = NotificationDetails(
     importance: fcmChannel.importance,
     priority: Priority.high,
     color: AppStaticColors.primary,
-    playSound: true,
     enableLights: true,
   ),
   iOS: const IOSNotificationDetails(

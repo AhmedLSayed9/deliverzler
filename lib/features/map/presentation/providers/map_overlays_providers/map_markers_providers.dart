@@ -17,9 +17,7 @@ class MapMarkers extends _$MapMarkers {
       (previous, next) {
         next.fold(
           () {},
-          (marker) {
-            _addMarker(marker);
-          },
+          _addMarker,
         );
       },
       fireImmediately: true,
@@ -34,8 +32,8 @@ class MapMarkers extends _$MapMarkers {
     return state;
   }
 
-  _addMarker(Marker marker) {
-    final Set<Marker> mapMarkers = Set.from(state);
+  void _addMarker(Marker marker) {
+    final mapMarkers = Set<Marker>.from(state);
     //If mapMarkers already has marker with same id,
     //remove it first to avoid adding duplicate markers and replace it instead.
     mapMarkers.removeWhere((m) => m.markerId == marker.markerId);

@@ -24,7 +24,7 @@ Stream<ConnectionStatus> connectionStream(ConnectionStreamRef ref) {
       .debounceTime(const Duration(milliseconds: 300))
       .listen(
     (status) {
-      _log.fine("NetworkConnectivity status changed: $status");
+      _log.fine('NetworkConnectivity status changed: $status');
       if (status == ConnectivityResult.none) {
         controller.sink.add(ConnectionStatus.disconnected);
       }
@@ -35,7 +35,7 @@ Stream<ConnectionStatus> connectionStream(ConnectionStreamRef ref) {
   //Add <uses-permission android:name="android.permission.INTERNET"/> in AndroidManifest to work.
   final dataConnectionSub = DataConnectionChecker().onStatusChange.listen(
     (status) {
-      _log.fine("InternetConnection status changed: $status");
+      _log.fine('InternetConnection status changed: $status');
       if (status == DataConnectionStatus.disconnected) {
         controller.sink.add(ConnectionStatus.disconnected);
       } else {

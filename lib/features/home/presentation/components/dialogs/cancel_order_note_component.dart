@@ -10,13 +10,13 @@ import '../../../../../core/presentation/widgets/platform_widgets/platform_widge
 class CancelOrderNoteComponent extends ConsumerWidget {
   const CancelOrderNoteComponent({
     required this.cancelNoteController,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final TextEditingController cancelNoteController;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PlatformWidget(
       material: (_) {
         return Column(

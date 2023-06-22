@@ -21,16 +21,15 @@ import 'card_user_details_component.dart';
 class CardItemComponent extends ConsumerWidget {
   const CardItemComponent({
     required this.order,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final AppOrder order;
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final userId = ref.watch(currentUserProvider.select((user) => user.id));
-    final bool isUpcomingOrder =
-        order.deliveryStatus == DeliveryStatus.upcoming;
+    final isUpcomingOrder = order.deliveryStatus == DeliveryStatus.upcoming;
 
     bool confirmDeliveryId() {
       return OrderDialogHelper.confirmDeliveryId(
@@ -52,7 +51,7 @@ class CardItemComponent extends ConsumerWidget {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      final bool confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
+      final confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
         context,
         tr(context).doYouWantToConfirmTheOrder,
       );
@@ -70,7 +69,7 @@ class CardItemComponent extends ConsumerWidget {
     Future<void> deliverOrder() async {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
 
-      final bool confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
+      final confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
         context,
         tr(context).doYouWantToDeliverTheOrder,
       );
@@ -161,17 +160,18 @@ class CardItemComponent extends ConsumerWidget {
                   isColored: false,
                   onPressed: cancelOrder,
                 ),
-                isUpcomingOrder
-                    ? CardButtonComponent(
-                        title: tr(context).deliver,
-                        isColored: true,
-                        onPressed: deliverOrder,
-                      )
-                    : CardButtonComponent(
-                        title: tr(context).confirm,
-                        isColored: true,
-                        onPressed: confirmOrder,
-                      ),
+                if (isUpcomingOrder)
+                  CardButtonComponent(
+                    title: tr(context).deliver,
+                    isColored: true,
+                    onPressed: deliverOrder,
+                  )
+                else
+                  CardButtonComponent(
+                    title: tr(context).confirm,
+                    isColored: true,
+                    onPressed: confirmOrder,
+                  ),
               ],
             ),
           ],

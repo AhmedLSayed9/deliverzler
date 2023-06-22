@@ -11,33 +11,29 @@ import '../../utils/riverpod_framework.dart';
 part 'flutter_local_notifications_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-FlutterLocalNotificationsPlugin flutterLocalNotifications(
-    FlutterLocalNotificationsRef ref) {
+FlutterLocalNotificationsPlugin flutterLocalNotifications(FlutterLocalNotificationsRef ref) {
   return ref.watch(setupFlutterLocalNotificationsProvider).requireValue;
 }
 
 @Riverpod(keepAlive: true)
 Future<FlutterLocalNotificationsPlugin> setupFlutterLocalNotifications(
-    SetupFlutterLocalNotificationsRef ref) async {
+  SetupFlutterLocalNotificationsRef ref,
+) async {
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  const AndroidInitializationSettings androidSettings =
-      AndroidInitializationSettings('notification_icon');
-  const IOSInitializationSettings iosSettings = IOSInitializationSettings(
-    requestAlertPermission: true,
-    requestSoundPermission: true,
+  const androidSettings = AndroidInitializationSettings('notification_icon');
+  const iosSettings = IOSInitializationSettings(
     requestBadgePermission: false,
   );
 
-  const InitializationSettings settings =
-      InitializationSettings(android: androidSettings, iOS: iosSettings);
+  const settings = InitializationSettings(android: androidSettings, iOS: iosSettings);
 
   final sub = ref.listen(onSelectNotificationProvider.notifier, (prev, next) {});
   await flutterLocalNotificationsPlugin.initialize(
     settings,
     onSelectNotification: (payload) {
       if (payload != null) {
-        final Map<String, dynamic> decodedPayload = jsonDecode(payload);
+        final decodedPayload = jsonDecode(payload) as Map<String, dynamic>;
         if (decodedPayload.isNotEmpty) {
           final ntf = AppNotificationDto.fromJson(decodedPayload).toDomain();
           sub.read().update((_) => Some(ntf));

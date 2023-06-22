@@ -7,23 +7,24 @@ class ProviderLogger extends ProviderObserver {
 
   @override
   void didUpdateProvider(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     Object? previousValue,
     Object? newValue,
     ProviderContainer container,
   ) {
     log.fine(
-        '[DidUpdateProvider: ${provider.name ?? provider.runtimeType}] newValue: $newValue');
+      '[DidUpdateProvider: ${provider.name ?? provider.runtimeType}] newValue: $newValue',
+    );
   }
 
   @override
-  void didDisposeProvider(ProviderBase provider, ProviderContainer container) {
+  void didDisposeProvider(ProviderBase<dynamic> provider, ProviderContainer container) {
     log.fine('[DidDisposeProvider: ${provider.name ?? provider.runtimeType}]');
   }
 
   @override
   void providerDidFail(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     Object error,
     StackTrace stackTrace,
     ProviderContainer container,

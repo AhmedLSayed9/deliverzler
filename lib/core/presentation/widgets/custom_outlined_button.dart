@@ -6,6 +6,25 @@ import '../styles/sizes.dart';
 import 'custom_text.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
+
+  const CustomOutlinedButton({
+    required this.onPressed, this.height,
+    this.width,
+    this.minHeight,
+    this.child,
+    this.text,
+    this.shape,
+    this.side,
+    this.elevation,
+    this.buttonColor,
+    this.splashColor,
+    this.shadowColor,
+    this.gradientColor,
+    this.gradientBorderRadius,
+    this.padding,
+    this.onLongPress,
+    super.key,
+  });
   final double? height;
   final double? width;
   final double? minHeight;
@@ -22,26 +41,6 @@ class CustomOutlinedButton extends StatelessWidget {
   final BorderRadiusGeometry? gradientBorderRadius;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onLongPress;
-
-  const CustomOutlinedButton({
-    this.height,
-    this.width,
-    this.minHeight,
-    this.child,
-    this.text,
-    required this.onPressed,
-    this.shape,
-    this.side,
-    this.elevation,
-    this.buttonColor,
-    this.splashColor,
-    this.shadowColor,
-    this.gradientColor,
-    this.gradientBorderRadius,
-    this.padding,
-    this.onLongPress,
-    Key? key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -10,5 +10,5 @@ class UpdateDeliveryStatusState with _$UpdateDeliveryStatusState {
 
   const factory UpdateDeliveryStatusState.success(
       {required String orderId,
-      required DeliveryStatus deliveryStatus}) = Success;
+      required DeliveryStatus deliveryStatus,}) = Success;
 }

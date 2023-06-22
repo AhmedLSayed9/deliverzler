@@ -16,8 +16,6 @@ CameraPosition myLocationCameraPosition(MyLocationCameraPositionRef ref) {
       myLocation?.latitude ?? defaultLatLng.latitude,
       myLocation?.longitude ?? defaultLatLng.longitude,
     ),
-    bearing: 0.0,
-    tilt: 0.0,
     zoom: defaultMapZoom,
   );
 }

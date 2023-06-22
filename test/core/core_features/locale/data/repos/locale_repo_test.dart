@@ -18,8 +18,7 @@ void main() {
   ProviderContainer setUpRemoteContainer() {
     return setUpContainer(
       overrides: [
-        localeLocalDataSourceProvider
-            .overrideWithValue(mockLocaleLocalDataSource),
+        localeLocalDataSourceProvider.overrideWithValue(mockLocaleLocalDataSource),
       ],
     );
   }
@@ -32,12 +31,11 @@ void main() {
       const tLocale = 'en';
 
       test(
-        'should return cached data'
+        'should return cached data '
         'when the cached data is present',
         () async {
           // GIVEN
-          when(() => mockLocaleLocalDataSource.getAppLocale())
-              .thenAnswer((_) async => tLocale);
+          when(() => mockLocaleLocalDataSource.getAppLocale()).thenAnswer((_) async => tLocale);
 
           final container = setUpRemoteContainer();
 
@@ -46,19 +44,20 @@ void main() {
           final result = await localeRepo.getAppLocale();
 
           // THEN
-          verifyOnly(mockLocaleLocalDataSource,
-              () => mockLocaleLocalDataSource.getAppLocale());
+          verifyOnly(
+            mockLocaleLocalDataSource,
+            () => mockLocaleLocalDataSource.getAppLocale(),
+          );
           expect(result, equals(tLocale));
         },
       );
 
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when there is no cached data present',
         () async {
           // GIVEN
-          when(() => mockLocaleLocalDataSource.getAppLocale())
-              .thenThrow(tException);
+          when(() => mockLocaleLocalDataSource.getAppLocale()).thenThrow(tException);
           final container = setUpRemoteContainer();
 
           // WHEN
@@ -67,8 +66,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockLocaleLocalDataSource,
-              () => mockLocaleLocalDataSource.getAppLocale());
+          verifyOnly(
+            mockLocaleLocalDataSource,
+            () => mockLocaleLocalDataSource.getAppLocale(),
+          );
         },
       );
     },
@@ -83,8 +84,7 @@ void main() {
         'should call LocalDataSource.cacheAppLocale with the proper param',
         () async {
           // GIVEN
-          when(() => mockLocaleLocalDataSource.cacheAppLocale(tLocale))
-              .thenAnswer((_) async {});
+          when(() => mockLocaleLocalDataSource.cacheAppLocale(tLocale)).thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
@@ -93,18 +93,19 @@ void main() {
           await localeRepo.cacheAppLocale(tLocale);
 
           // THEN
-          verifyOnly(mockLocaleLocalDataSource,
-              () => mockLocaleLocalDataSource.cacheAppLocale(tLocale));
+          verifyOnly(
+            mockLocaleLocalDataSource,
+            () => mockLocaleLocalDataSource.cacheAppLocale(tLocale),
+          );
         },
       );
 
       test(
-        'should throw same Exception'
+        'should throw same Exception '
         'when the call to local data source is unsuccessful',
         () async {
           // GIVEN
-          when(() => mockLocaleLocalDataSource.cacheAppLocale(tLocale))
-              .thenThrow(tException);
+          when(() => mockLocaleLocalDataSource.cacheAppLocale(tLocale)).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -114,8 +115,10 @@ void main() {
 
           // THEN
           await expectLater(call, throwsA(tException));
-          verifyOnly(mockLocaleLocalDataSource,
-              () => mockLocaleLocalDataSource.cacheAppLocale(tLocale));
+          verifyOnly(
+            mockLocaleLocalDataSource,
+            () => mockLocaleLocalDataSource.cacheAppLocale(tLocale),
+          );
         },
       );
     },

@@ -8,7 +8,7 @@ import '../../components/login_content_component.dart';
 import '../../components/login_logo_component.dart';
 
 class SignInScreenCompact extends StatelessWidget {
-  const SignInScreenCompact({Key? key}) : super(key: key);
+  const SignInScreenCompact({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,6 @@ class SignInScreenCompact extends StatelessWidget {
                   child: Column(
                     children: [
                       Flexible(
-                        flex: 1,
                         child: LoginLogoComponent(),
                       ),
                       SizedBox(

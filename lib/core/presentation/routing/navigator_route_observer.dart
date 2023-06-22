@@ -4,15 +4,15 @@ import 'package:logging/logging.dart';
 
 import '../extensions/route_extension.dart';
 
-typedef OnRouteChange = void Function(Route? route, Route? previousRoute);
+typedef OnRouteChange<T> = void Function(Route<T>? route, Route<T>? previousRoute);
 
-typedef RoutesStackCallBack = void Function(List<Route> routes);
+typedef RoutesStackCallBack<T> = void Function(List<Route<T>> routes);
 
 // This is no longer needed.
 //Tutorial
 //https://medium.com/flutter-community/flutter-navigator-middleware-part1-9ebc47cea2f2
 //https://medium.com/flutter-community/flutter-navigator-middleware-part-2-middleware-service-class-c9035f4fff68
-class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
+class NavigatorRouteObserver<T> extends RouteObserver<PageRoute<T>> {
   NavigatorRouteObserver({
     this.enableLogger = true,
     this.routesStackCallBack,
@@ -25,19 +25,19 @@ class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   static final log = Logger('RouteLogger');
 
   final bool enableLogger;
-  final List<Route> _stack;
+  final List<Route<dynamic>> _stack;
 
-  final RoutesStackCallBack? routesStackCallBack;
-  final OnRouteChange? onPush;
-  final OnRouteChange? onPop;
-  final OnRouteChange? onReplace;
-  final OnRouteChange? onRemove;
+  final RoutesStackCallBack<dynamic>? routesStackCallBack;
+  final OnRouteChange<dynamic>? onPush;
+  final OnRouteChange<dynamic>? onPop;
+  final OnRouteChange<dynamic>? onReplace;
+  final OnRouteChange<dynamic>? onRemove;
 
   //create clone list from stack
-  List<Route> get stack => List<Route>.from(_stack);
+  List<Route<dynamic>> get stack => List<Route<dynamic>>.from(_stack);
 
   @override
-  void didPush(Route route, Route? previousRoute) {
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _logIt('{didPush} \n route: $route \n previousRoute: $previousRoute');
     _stack.add(route);
     _logStack();
@@ -47,7 +47,7 @@ class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   }
 
   @override
-  void didPop(Route route, Route? previousRoute) {
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _logIt('{didPop} \n route: $route \n previousRoute: $previousRoute');
     _stack.remove(route);
     _logStack();
@@ -57,7 +57,7 @@ class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   }
 
   @override
-  void didReplace({Route? newRoute, Route? oldRoute}) {
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     _logIt('{didReplace} \n newRoute: $newRoute \n oldRoute: $oldRoute');
     if (oldRoute != null && _stack.contains(oldRoute)) {
       final oldItemIndex = _stack.indexOf(oldRoute);
@@ -70,7 +70,7 @@ class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   }
 
   @override
-  void didRemove(Route route, Route? previousRoute) {
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _logIt('{didRemove} \n route: $route \n previousRoute: $previousRoute');
     _stack.remove(route);
     //_logStack();
@@ -100,7 +100,7 @@ class NavigatorRouteObserver extends RouteObserver<PageRoute<dynamic>> {
 
   void _logStack() {
     if (enableLogger) {
-      final mappedStack = _stack.map((Route route) => route.routeName).toList();
+      final mappedStack = _stack.map((Route<dynamic> route) => route.routeName).toList();
       log.fine('Navigator stack: $mappedStack');
     }
   }

@@ -39,7 +39,7 @@ class FirebaseStorageFacade {
   Future<void> deleteImage({required String path}) async {
     return await _errorHandler(
       () async {
-        return await firebaseStorage.ref().child(path).delete();
+        return firebaseStorage.ref().child(path).delete();
       },
     );
   }
@@ -47,7 +47,7 @@ class FirebaseStorageFacade {
   Future<void> deleteAllFolderImages({required String path}) async {
     return await _errorHandler(
       () async {
-        return await firebaseStorage.ref().child(path).listAll().then(
+        return firebaseStorage.ref().child(path).listAll().then(
           (result) {
             for (final file in result.items) {
               file.delete();

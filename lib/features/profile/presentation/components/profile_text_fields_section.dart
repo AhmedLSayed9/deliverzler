@@ -12,8 +12,8 @@ class ProfileTextFieldsSection extends StatelessWidget {
   const ProfileTextFieldsSection({
     required this.nameController,
     required this.mobileController,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final TextEditingController nameController;
   final TextEditingController mobileController;
@@ -28,8 +28,7 @@ class ProfileTextFieldsSection extends StatelessWidget {
       },
       cupertino: (_) {
         return CupertinoFormSection.insetGrouped(
-          decoration:
-              CupertinoCustomTheme.cupertinoFormSectionDecoration(context),
+          decoration: CupertinoCustomTheme.cupertinoFormSectionDecoration(context),
           backgroundColor: Colors.transparent,
           margin: EdgeInsets.zero,
           children: _sharedItemComponent(context, false),
@@ -38,7 +37,7 @@ class ProfileTextFieldsSection extends StatelessWidget {
     );
   }
 
-  _sharedItemComponent(BuildContext context, bool isMaterial) {
+  List<Widget> _sharedItemComponent(BuildContext context, bool isMaterial) {
     return [
       TitledTextFieldItem(
         title: tr(context).fullName,

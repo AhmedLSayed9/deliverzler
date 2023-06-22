@@ -11,11 +11,11 @@ import '../providers/sign_in_provider.dart';
 import 'login_text_fields_section.dart';
 
 class LoginFormComponent extends HookConsumerWidget {
-  const LoginFormComponent({Key? key}) : super(key: key);
+  const LoginFormComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
-    final loginFormKey = useMemoized(() => GlobalKey<FormState>());
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginFormKey = useMemoized(GlobalKey<FormState>.new);
     final emailController = useTextEditingController(text: '');
     final passwordController = useTextEditingController(text: '');
 
@@ -25,9 +25,7 @@ class LoginFormComponent extends HookConsumerWidget {
           email: emailController.text,
           password: passwordController.text,
         );
-        ref
-            .read(signInWithEmailEventProvider.notifier)
-            .update((_) => Some(Event.unique(params)));
+        ref.read(signInWithEmailEventProvider.notifier).update((_) => Some(Event.unique(params)));
       }
     }
 
@@ -38,8 +36,7 @@ class LoginFormComponent extends HookConsumerWidget {
           LoginTextFieldsSection(
             emailController: emailController,
             passwordController: passwordController,
-            onFieldSubmitted:
-                ref.isLoading(signInStateProvider) ? null : (_) => signIn(),
+            onFieldSubmitted: ref.isLoading(signInStateProvider) ? null : (_) => signIn(),
           ),
           const SizedBox(
             height: Sizes.marginV40,

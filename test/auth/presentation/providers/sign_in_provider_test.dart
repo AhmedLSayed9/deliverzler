@@ -19,8 +19,7 @@ class MockAuthRepo extends Mock implements AuthRepo {}
 
 class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
 
-class MockSignInWithEmailEvent
-    extends AutoDisposeNotifier<Option<Event<SignInWithEmail>>>
+class MockSignInWithEmailEvent extends AutoDisposeNotifier<Option<Event<SignInWithEmail>>>
     with Mock
     implements SignInWithEmailEvent {}
 
@@ -67,8 +66,7 @@ void main() {
 
           final container = setUpContainer(
             overrides: [
-              signInWithEmailEventProvider
-                  .overrideWith(() => mockSignInWithEmailEvent),
+              signInWithEmailEventProvider.overrideWith(() => mockSignInWithEmailEvent),
               signInProvider(tEvent).overrideWith((ref) => tUser),
             ],
           );
@@ -96,8 +94,7 @@ void main() {
 
           final container = setUpContainer(
             overrides: [
-              signInWithEmailEventProvider
-                  .overrideWith(() => mockSignInWithEmailEvent),
+              signInWithEmailEventProvider.overrideWith(() => mockSignInWithEmailEvent),
             ],
           );
           final listener = setUpListener(container, signInStateProvider);
@@ -120,28 +117,30 @@ void main() {
             ],
           );
           final authListener = setUpListener(container, authStateProvider);
-          final signInStateListener =
-              setUpListener(container, signInStateProvider);
+          final signInStateListener = setUpListener(container, signInStateProvider);
 
           // WHEN
           verifyOnly(
-              authListener, () => authListener(null, unauthenticatedState));
+            authListener,
+            () => authListener(null, unauthenticatedState),
+          );
 
           verifyOnly(
-              signInStateListener, () => signInStateListener(null, idleState));
+            signInStateListener,
+            () => signInStateListener(null, idleState),
+          );
 
-          container
-              .read(signInWithEmailEventProvider.notifier)
-              .update((_) => Some(tEvent));
+          container.read(signInWithEmailEventProvider.notifier).update((_) => Some(tEvent));
           await container.read(signInStateProvider.future);
 
           // THEN
           verifyInOrder([
-            () =>
-                signInStateListener(idleState, any(that: isA<AsyncLoading>())),
+            () => signInStateListener(idleState, any(that: isA<AsyncLoading<Option<User>>>())),
             () => authListener(unauthenticatedState, authenticatedState),
             () => signInStateListener(
-                any(that: isA<AsyncLoading>()), successState),
+                  any(that: isA<AsyncLoading<Option<User>>>()),
+                  successState,
+                ),
           ]);
           verifyNoMoreInteractions(authListener);
           verifyNoMoreInteractions(signInStateListener);
@@ -176,20 +175,18 @@ void main() {
       setUp(() {
         registerFallbackValue(const AsyncLoading<User>());
         registerFallbackValue(
-            const SignInWithEmail(email: '', password: ''));
+          const SignInWithEmail(email: '', password: ''),
+        );
       });
 
       test(
-        'should emit AsyncData(user) when AuthRepo.signInWithEmail, AuthRepo.getUserData'
+        'should emit AsyncData(user) when AuthRepo.signInWithEmail, AuthRepo.getUserData '
         'and fcm.subscribeToTopic("general") return normally',
         () async {
           // GIVEN
-          when(() => mockAuthRepo.signInWithEmail(any()))
-              .thenAnswer((_) => Future.value(tUser));
-          when(() => mockAuthRepo.getUserData(any()))
-              .thenAnswer((_) => Future.value(tUser));
-          when(() => mockFcm.subscribeToTopic(any()))
-              .thenAnswer((_) async {});
+          when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer((_) => Future.value(tUser));
+          when(() => mockAuthRepo.getUserData(any())).thenAnswer((_) => Future.value(tUser));
+          when(() => mockFcm.subscribeToTopic(any())).thenAnswer((_) async {});
 
           final container = setUpContainer(
             overrides: [
@@ -255,8 +252,7 @@ void main() {
         'should emit AsyncError when AuthRepo.getUserData throws',
         () async {
           // GIVEN
-          when(() => mockAuthRepo.signInWithEmail(any()))
-              .thenAnswer((_) => Future.value(tUser));
+          when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer((_) => Future.value(tUser));
           when(() => mockAuthRepo.getUserData(any())).thenAnswer(
             (_) => Error.throwWithStackTrace(tException, tStackTrace),
           );

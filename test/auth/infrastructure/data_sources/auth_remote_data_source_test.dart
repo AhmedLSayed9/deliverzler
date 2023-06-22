@@ -21,8 +21,7 @@ class MockUser extends Mock implements User {}
 
 class MockFirebaseAuthFacade extends Mock implements FirebaseAuthFacade {}
 
-class MockFirebaseFirestoreFacade extends Mock
-    implements FirebaseFirestoreFacade {}
+class MockFirebaseFirestoreFacade extends Mock implements FirebaseFirestoreFacade {}
 
 // ignore: subtype_of_sealed_class
 class MockDocumentSnapshot extends Mock implements DocumentSnapshot {}
@@ -46,14 +45,13 @@ void main() {
     return setUpContainer(
       overrides: [
         firebaseAuthFacadeProvider.overrideWithValue(mockFirebaseAuth),
-        firebaseFirestoreFacadeProvider
-            .overrideWithValue(mockFirebaseFirestore),
+        firebaseFirestoreFacadeProvider.overrideWithValue(mockFirebaseFirestore),
       ],
     );
   }
 
   const tParams = SignInWithEmail(email: 'tEmail', password: 'tPassword');
-  final tResponseMap = json.decode(fixtureReader('auth/user.json'));
+  final tResponseMap = json.decode(fixtureReader('auth/user.json')) as Map<String, dynamic>;
   final tUserDto = UserDto.fromJson(tResponseMap);
 
   void setUpMockUser() {
@@ -68,24 +66,25 @@ void main() {
     'signInWithEmail',
     () {
       test(
-        'should call FirebaseAuthCaller.signInWithEmailAndPassword and return the proper remote data'
+        'should call FirebaseAuthCaller.signInWithEmailAndPassword and return the proper remote data  '
         'when the response is successful',
         () async {
           // GIVEN
           //This is just necessary to assure we return a working value not null value
           //so the signInWithEmail method continue without throwing exceptions
-          when(() => mockFirebaseAuth.signInWithEmailAndPassword(
-                email: any(named: 'email'),
-                password: any(named: 'password'),
-              )).thenAnswer((_) async => mockUserCredential);
+          when(
+            () => mockFirebaseAuth.signInWithEmailAndPassword(
+              email: any(named: 'email'),
+              password: any(named: 'password'),
+            ),
+          ).thenAnswer((_) async => mockUserCredential);
           when(() => mockUserCredential.user).thenReturn(mockUser);
           setUpMockUser();
 
           final container = setUpFirebaseContainer();
 
           // WHEN
-          final authRemoteDataSource =
-              container.read(authRemoteDataSourceProvider);
+          final authRemoteDataSource = container.read(authRemoteDataSourceProvider);
           final result = await authRemoteDataSource.signInWithEmail(tParams);
 
           // THEN
@@ -108,19 +107,17 @@ void main() {
     'getUserAuthUid',
     () {
       test(
-        'should call FirebaseAuthCaller.getCurrentUser and return the proper remote data'
+        'should call FirebaseAuthCaller.getCurrentUser and return the proper remote data  '
         'when the response is successful',
         () async {
           // GIVEN
-          when(() => mockFirebaseAuth.getCurrentUser())
-              .thenAnswer((_) async => mockUser);
+          when(() => mockFirebaseAuth.getCurrentUser()).thenAnswer((_) async => mockUser);
           setUpMockUser();
 
           final container = setUpFirebaseContainer();
 
           // WHEN
-          final authRemoteDataSource =
-              container.read(authRemoteDataSourceProvider);
+          final authRemoteDataSource = container.read(authRemoteDataSourceProvider);
           final result = await authRemoteDataSource.getUserAuthUid();
 
           // THEN
@@ -138,7 +135,7 @@ void main() {
       final tParam = AuthRemoteDataSource.userDocPath(tAuthUid);
 
       test(
-        'should call FirebaseFirestoreCaller.getData and return the proper remote data'
+        'should call FirebaseFirestoreCaller.getData and return the proper remote data '
         'when the response is successful and data is not null',
         () async {
           // GIVEN
@@ -149,18 +146,19 @@ void main() {
           final container = setUpFirebaseContainer();
 
           // WHEN
-          final authRemoteDataSource =
-              container.read(authRemoteDataSourceProvider);
+          final authRemoteDataSource = container.read(authRemoteDataSourceProvider);
           final result = await authRemoteDataSource.getUserData(tAuthUid);
 
           // THEN
-          verifyOnly(mockFirebaseAuth,
-              () => mockFirebaseFirestore.getData(path: tParam));
+          verifyOnly(
+            mockFirebaseAuth,
+            () => mockFirebaseFirestore.getData(path: tParam),
+          );
           expect(result, equals(tUserDto));
         },
       );
       test(
-        'should throw a ServerException of type ServerExceptionType.notFound'
+        'should throw a ServerException of type ServerExceptionType.notFound '
         'when the response is successful and data is null',
         () async {
           // GIVEN
@@ -171,18 +169,22 @@ void main() {
           final container = setUpFirebaseContainer();
 
           // WHEN
-          final authRemoteDataSource =
-              container.read(authRemoteDataSourceProvider);
+          final authRemoteDataSource = container.read(authRemoteDataSourceProvider);
           final result = authRemoteDataSource.getUserData(tAuthUid);
 
           // THEN
-          verifyOnly(mockFirebaseAuth,
-              () => mockFirebaseFirestore.getData(path: tParam));
+          verifyOnly(
+            mockFirebaseAuth,
+            () => mockFirebaseFirestore.getData(path: tParam),
+          );
           await expectLater(
             () => result,
             throwsA(
               isA<ServerException>().having(
-                  (e) => e.type, 'type', equals(ServerExceptionType.notFound)),
+                (e) => e.type,
+                'type',
+                equals(ServerExceptionType.notFound),
+              ),
             ),
           );
         },
@@ -199,25 +201,27 @@ void main() {
         'should call FirebaseAuthCaller.setData with the proper params',
         () async {
           // GIVEN
-          when(() => mockFirebaseFirestore.setData(
-                path: any(named: 'path'),
-                data: any(named: 'data'),
-              )).thenAnswer((_) async {});
+          when(
+            () => mockFirebaseFirestore.setData(
+              path: any(named: 'path'),
+              data: any(named: 'data'),
+            ),
+          ).thenAnswer((_) async {});
 
           final container = setUpFirebaseContainer();
 
           // WHEN
-          final authRemoteDataSource =
-              container.read(authRemoteDataSourceProvider);
+          final authRemoteDataSource = container.read(authRemoteDataSourceProvider);
           await authRemoteDataSource.setUserData(tUserDto);
 
           // THEN
           verifyOnly(
-              mockFirebaseAuth,
-              () => mockFirebaseFirestore.setData(
-                    path: tPath,
-                    data: tUserDto.toJson(),
-                  ));
+            mockFirebaseAuth,
+            () => mockFirebaseFirestore.setData(
+              path: tPath,
+              data: tUserDto.toJson(),
+            ),
+          );
         },
       );
     },
@@ -235,8 +239,7 @@ void main() {
           final container = setUpFirebaseContainer();
 
           // WHEN
-          final authRemoteDataSource =
-              container.read(authRemoteDataSourceProvider);
+          final authRemoteDataSource = container.read(authRemoteDataSourceProvider);
           await authRemoteDataSource.signOut();
 
           // THEN

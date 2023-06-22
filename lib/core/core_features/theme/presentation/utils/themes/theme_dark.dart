@@ -31,7 +31,7 @@ class ThemeDark implements ITheme {
       systemNavigationBarColor: appColors.bottomNavBarColor,
       systemNavigationBarIconBrightness: Brightness.light,
     ),
-    elevation: 0.0,
+    elevation: 0,
   );
 
   @override

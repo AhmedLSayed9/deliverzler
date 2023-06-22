@@ -8,7 +8,7 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_text.dart';
 
 class RouteErrorComponent extends StatelessWidget {
-  const RouteErrorComponent({Key? key}) : super(key: key);
+  const RouteErrorComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

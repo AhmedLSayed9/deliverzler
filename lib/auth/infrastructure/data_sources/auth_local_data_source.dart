@@ -31,12 +31,12 @@ class AuthLocalDataSource {
   }
 
   Future<UserDto> getUserData() async {
-    final jsonString = await sharedPreferences.restoreData(
+    final jsonString = await sharedPreferences.restoreData<String>(
       key: userDataKey,
       dataType: DataType.string,
     );
     if (jsonString != null) {
-      final userDto = UserDto.fromJson(json.decode(jsonString));
+      final userDto = UserDto.fromJson(json.decode(jsonString) as Map<String, dynamic>);
       return userDto;
     } else {
       throw const CacheException(

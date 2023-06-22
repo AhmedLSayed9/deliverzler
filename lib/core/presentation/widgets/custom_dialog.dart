@@ -12,14 +12,13 @@ abstract class CustomDialog {
   }) async {
     final alertDialog = AlertDialog(
       content: child,
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       shape: shape,
       insetPadding: margin ?? EdgeInsets.zero,
       contentPadding: contentPadding ?? EdgeInsets.zero,
     );
 
-    return await showGeneralDialog(
+    return showGeneralDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,
       barrierLabel: '',
@@ -34,8 +33,11 @@ abstract class CustomDialog {
           ),
         ),
       ),
-      pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) =>
+      pageBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+      ) =>
           const SizedBox(),
     );
   }

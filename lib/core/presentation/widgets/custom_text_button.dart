@@ -5,6 +5,22 @@ import 'custom_text.dart';
 import 'platform_widgets/platform_text_button.dart';
 
 class CustomTextButton extends StatelessWidget {
+  const CustomTextButton({
+    required this.onPressed,
+    this.minHeight = 0,
+    this.minWidth = 0,
+    this.child,
+    this.text,
+    this.shape,
+    this.elevation,
+    this.buttonColor,
+    this.splashColor,
+    this.shadowColor,
+    this.padding,
+    this.onLongPress,
+    this.tapTargetSize,
+    super.key,
+  }) : assert(text != null || child != null, "Either text or child shouldn't be null");
   final double minHeight;
   final double minWidth;
   final Widget? child;
@@ -18,24 +34,6 @@ class CustomTextButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onLongPress;
   final MaterialTapTargetSize? tapTargetSize;
-
-  const CustomTextButton({
-    this.minHeight = 0,
-    this.minWidth = 0,
-    this.child,
-    this.text,
-    required this.onPressed,
-    this.shape,
-    this.elevation,
-    this.buttonColor,
-    this.splashColor,
-    this.shadowColor,
-    this.padding,
-    this.onLongPress,
-    this.tapTargetSize,
-    Key? key,
-  })  : assert(text != null || child != null),
-        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +64,7 @@ class CustomTextButton extends StatelessWidget {
               horizontal: Sizes.paddingH8,
             ),
         borderRadius: shape != null
-            ? (shape as RoundedRectangleBorder)
+            ? (shape! as RoundedRectangleBorder)
                 .borderRadius
                 .resolve(Directionality.maybeOf(context))
             : null,

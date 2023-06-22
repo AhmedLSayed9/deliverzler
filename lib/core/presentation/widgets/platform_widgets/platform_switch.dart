@@ -5,10 +5,8 @@ import 'platform_base_widget.dart';
 
 class PlatformSwitch extends PlatformBaseWidget<Switch, CupertinoSwitch> {
   const PlatformSwitch({
-    super.key,
+    required this.value, required this.onChanged, super.key,
     this.widgetKey,
-    required this.value,
-    required this.onChanged,
     this.activeTrackColor,
     this.inactiveTrackColor,
     this.thumbColor,

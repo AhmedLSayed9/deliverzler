@@ -9,15 +9,12 @@ part 'place_details_dto.g.dart';
 
 @Freezed(toJson: false)
 class PlaceDetailsDto with _$PlaceDetailsDto {
+  const factory PlaceDetailsDto({
+    @JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint) required GeoPoint geoPoint,
+  }) = _PlaceDetailsDto;
   const PlaceDetailsDto._();
 
-  const factory PlaceDetailsDto({
-    @JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint)
-        required GeoPoint geoPoint,
-  }) = _PlaceDetailsDto;
-
-  factory PlaceDetailsDto.fromJson(Map<String, dynamic> json) =>
-      _$PlaceDetailsDtoFromJson(json);
+  factory PlaceDetailsDto.fromJson(Map<String, dynamic> json) => _$PlaceDetailsDtoFromJson(json);
 
   factory PlaceDetailsDto.fromDomain(PlaceDetails placeDetails) {
     return PlaceDetailsDto(
@@ -34,7 +31,9 @@ class PlaceDetailsDto with _$PlaceDetailsDto {
 
 GeoPoint _fromJsonGeoPoint(Map<String, dynamic> json) {
   return GeoPoint(
-    json['location']['lat'],
-    json['location']['lng'],
+    // ignore: avoid_dynamic_calls
+    json['location']['lat'] as double,
+    // ignore: avoid_dynamic_calls
+    json['location']['lng'] as double,
   );
 }

@@ -15,7 +15,7 @@ enum DataType {
 
 @Riverpod(keepAlive: true)
 Future<SharedPreferences> sharedPrefsAsync(SharedPrefsAsyncRef ref) async {
-  return await SharedPreferences.getInstance();
+  return SharedPreferences.getInstance();
 }
 
 @Riverpod(keepAlive: true)
@@ -24,8 +24,7 @@ SharedPreferences _sharedPrefs(_SharedPrefsRef ref) {
 }
 
 @Riverpod(keepAlive: true)
-SharedPreferencesFacade sharedPreferencesFacade(
-    SharedPreferencesFacadeRef ref) {
+SharedPreferencesFacade sharedPreferencesFacade(SharedPreferencesFacadeRef ref) {
   return SharedPreferencesFacade(
     sharedPrefs: ref.watch(_sharedPrefsProvider),
   );
@@ -48,75 +47,67 @@ class SharedPreferencesFacade {
   }*/
 
   Future<bool> saveData({
-    required String key,
-    required dynamic value,
     required DataType dataType,
+    required String key,
+    required Object value,
   }) async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await getSetMethod(sharedPrefsMethod: dataType)(key, value);
+        switch (dataType) {
+          case DataType.string:
+            return sharedPrefs.setString(key, value as String);
+          case DataType.int:
+            return sharedPrefs.setInt(key, value as int);
+          case DataType.double:
+            return sharedPrefs.setDouble(key, value as double);
+          case DataType.bool:
+            return sharedPrefs.setBool(key, value as bool);
+          case DataType.stringList:
+            return sharedPrefs.setStringList(key, value as List<String>);
+        }
       },
     );
   }
 
-  Future<dynamic> restoreData({
-    required String key,
+  FutureOr<T?> restoreData<T>({
     required DataType dataType,
-  }) async {
-    return await _errorHandler(
-      () async {
-        return await getGetMethod(sharedPrefsMethod: dataType)(key);
+    required String key,
+  }) {
+    return _errorHandler(
+      () {
+        switch (dataType) {
+          case DataType.string:
+            return sharedPrefs.getString(key) as T?;
+          case DataType.int:
+            return sharedPrefs.getInt(key) as T?;
+          case DataType.double:
+            return sharedPrefs.getDouble(key) as T?;
+          case DataType.bool:
+            return sharedPrefs.getBool(key) as T?;
+          case DataType.stringList:
+            return sharedPrefs.getStringList(key) as T?;
+        }
       },
     );
   }
 
   Future<bool> clearAll() async {
-    return await _errorHandler(
+    return _errorHandler(
       () async {
-        return await sharedPrefs.clear();
+        return sharedPrefs.clear();
       },
     );
   }
 
-  Future<bool> clearKey({required key}) async {
-    return await _errorHandler(
+  Future<bool> clearKey({required String key}) async {
+    return _errorHandler(
       () async {
-        return await sharedPrefs.remove(key);
+        return sharedPrefs.remove(key);
       },
     );
   }
 
-  getSetMethod({required DataType sharedPrefsMethod}) {
-    switch (sharedPrefsMethod) {
-      case DataType.string:
-        return sharedPrefs.setString;
-      case DataType.int:
-        return sharedPrefs.setInt;
-      case DataType.double:
-        return sharedPrefs.setDouble;
-      case DataType.bool:
-        return sharedPrefs.setBool;
-      case DataType.stringList:
-        return sharedPrefs.setStringList;
-    }
-  }
-
-  getGetMethod({required DataType sharedPrefsMethod}) {
-    switch (sharedPrefsMethod) {
-      case DataType.string:
-        return sharedPrefs.getString;
-      case DataType.int:
-        return sharedPrefs.getInt;
-      case DataType.double:
-        return sharedPrefs.getDouble;
-      case DataType.bool:
-        return sharedPrefs.getBool;
-      case DataType.stringList:
-        return sharedPrefs.getStringList;
-    }
-  }
-
-  Future<T> _errorHandler<T>(Function body) async {
+  FutureOr<T> _errorHandler<T>(FutureOr<T> Function() body) async {
     try {
       return await body.call();
     } catch (e, st) {

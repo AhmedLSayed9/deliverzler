@@ -117,30 +117,32 @@ void main() {
               signOutProvider(tEvent).overrideWith((ref) => unit),
             ],
           );
-          final signOutStateListener =
-              setUpListener(container, signOutStateProvider);
+          final signOutStateListener = setUpListener(container, signOutStateProvider);
           container.read(authStateProvider.notifier).authenticateUser(tUser);
           final authListener = setUpListener(container, authStateProvider);
 
           // WHEN
-          verifyOnly(signOutStateListener,
-              () => signOutStateListener(null, idleState));
+          verifyOnly(
+            signOutStateListener,
+            () => signOutStateListener(null, idleState),
+          );
 
           verifyOnly(
-              authListener, () => authListener(null, authenticatedState));
+            authListener,
+            () => authListener(null, authenticatedState),
+          );
 
-          container
-              .read(signOutEventProvider.notifier)
-              .update((_) => Some(tEvent));
+          container.read(signOutEventProvider.notifier).update((_) => Some(tEvent));
           await container.read(signOutStateProvider.future);
 
           // THEN
           verifyInOrder([
-            () =>
-                signOutStateListener(idleState, any(that: isA<AsyncLoading>())),
+            () => signOutStateListener(idleState, any(that: isA<AsyncLoading<SignOutState>>())),
             () => authListener(authenticatedState, unauthenticatedState),
             () => signOutStateListener(
-                any(that: isA<AsyncLoading>()), successState),
+                  any(that: isA<AsyncLoading<SignOutState>>()),
+                  successState,
+                ),
           ]);
           verifyNoMoreInteractions(signOutStateListener);
           verifyNoMoreInteractions(authListener);
@@ -173,13 +175,12 @@ void main() {
       const dataState = AsyncData<void>(null);
 
       test(
-        'should emit AsyncData(void) when AuthRepo.signOut'
+        'should emit AsyncData(void) when AuthRepo.signOut '
         'and fcm.unsubscribeFromTopic("general") return normally',
         () async {
           // GIVEN
           when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
-          when(() => mockFcm.unsubscribeFromTopic(any()))
-              .thenAnswer((_) async {});
+          when(() => mockFcm.unsubscribeFromTopic(any())).thenAnswer((_) async {});
 
           final container = setUpContainer(
             overrides: [
@@ -221,17 +222,20 @@ void main() {
               authRepoProvider.overrideWith((ref) => mockAuthRepo),
             ],
           );
-          final signOutListener =
-              setUpListener(container, signOutProvider(tEvent));
+          final signOutListener = setUpListener(container, signOutProvider(tEvent));
           container.read(authStateProvider.notifier).authenticateUser(tUser);
           final authListener = setUpListener(container, authStateProvider);
 
           // WHEN
           verifyOnly(
-              signOutListener, () => signOutListener(null, loadingState));
+            signOutListener,
+            () => signOutListener(null, loadingState),
+          );
 
           verifyOnly(
-              authListener, () => authListener(null, authenticatedState));
+            authListener,
+            () => authListener(null, authenticatedState),
+          );
 
           final call = container.read(signOutProvider(tEvent).future);
 

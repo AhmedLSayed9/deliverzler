@@ -4,7 +4,7 @@ import '../../../../../core/presentation/widgets/responsive_widgets/widget_build
 import 'map_screen_compact.dart';
 
 class MapScreen extends StatelessWidget {
-  const MapScreen({Key? key}) : super(key: key);
+  const MapScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

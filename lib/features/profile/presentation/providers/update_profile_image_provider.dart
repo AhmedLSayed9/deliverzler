@@ -12,7 +12,8 @@ part 'update_profile_image_provider.g.dart';
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
 AsyncValue<Option<String>> updateProfileImageState(
-    UpdateProfileImageStateRef ref) {
+  UpdateProfileImageStateRef ref,
+) {
   final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
   ref.listenSelf((previous, next) {
     next.whenData(
@@ -28,16 +29,13 @@ AsyncValue<Option<String>> updateProfileImageState(
   return event.match(
     () => const AsyncData(None()),
     (event) {
-      return ref
-          .watch(updateProfileImageProvider(event))
-          .whenData((imageUrl) => Some(imageUrl));
+      return ref.watch(updateProfileImageProvider(event)).whenData(Some.new);
     },
   );
 }
 
 @riverpod
-class UpdateProfileImageEvent extends _$UpdateProfileImageEvent
-    with NotifierUpdate {
+class UpdateProfileImageEvent extends _$UpdateProfileImageEvent with NotifierUpdate {
   @override
   Option<Event<File>> build() => const None();
 }

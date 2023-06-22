@@ -9,10 +9,10 @@ import '../widgets/custom_icon.dart';
 import '../widgets/custom_text.dart';
 
 class MainDrawerBottomComponent extends ConsumerWidget {
-  const MainDrawerBottomComponent({Key? key}) : super(key: key);
+  const MainDrawerBottomComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsetsDirectional.only(
         start: Sizes.drawerPaddingH28,
@@ -30,7 +30,6 @@ class MainDrawerBottomComponent extends ConsumerWidget {
             width: Sizes.marginH6,
           ),
           CustomIcon.i32(
-            context,
             AppImages.appLogoIcon,
             fit: BoxFit.fill,
           ),

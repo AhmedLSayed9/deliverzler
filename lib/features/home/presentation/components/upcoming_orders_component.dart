@@ -17,19 +17,17 @@ import '../providers/update_delivery_status_provider/update_delivery_status_prov
 import 'card_item_component.dart';
 
 class UpcomingOrdersComponent extends ConsumerWidget {
-  const UpcomingOrdersComponent({Key? key}) : super(key: key);
+  const UpcomingOrdersComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.easyListen(
       updateDeliveryStatusStateProvider,
       whenData: (state) {
         state.whenOrNull(
           success: (orderId, deliveryStatus) async {
             if (deliveryStatus != DeliveryStatus.onTheWay) return;
-            ref
-                .read(selectedOrderIdProvider.notifier)
-                .update((_) => Some(orderId));
+            ref.read(selectedOrderIdProvider.notifier).update((_) => Some(orderId));
             const MapRoute().go(context);
           },
         );
@@ -47,38 +45,39 @@ class UpcomingOrdersComponent extends ConsumerWidget {
           return PlatformRefreshIndicator(
             onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
             slivers: [
-              upcomingOrders.isNotEmpty
-                  ? SliverPadding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Sizes.screenMarginV16,
-                        horizontal: Sizes.screenMarginH28,
-                      ),
-                      sliver: SliverList(
-                        delegate: SeparatedSliverChildBuilderDelegate(
-                          itemBuilder: (BuildContext context, int index) {
-                            return CardItemComponent(
-                              key: ValueKey(upcomingOrders[index].id),
-                              order: upcomingOrders[index],
-                            );
-                          },
-                          itemCount: upcomingOrders.length,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(
-                              height: Sizes.marginV28,
-                            );
-                          },
-                        ),
-                      ),
-                    )
-                  : SliverFillRemaining(
-                      child: Center(
-                        child: CustomText.f18(
-                          context,
-                          tr(context).thereAreNoOrders,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+              if (upcomingOrders.isNotEmpty)
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.screenMarginV16,
+                    horizontal: Sizes.screenMarginH28,
+                  ),
+                  sliver: SliverList(
+                    delegate: SeparatedSliverChildBuilderDelegate(
+                      itemBuilder: (BuildContext context, int index) {
+                        return CardItemComponent(
+                          key: ValueKey(upcomingOrders[index].id),
+                          order: upcomingOrders[index],
+                        );
+                      },
+                      itemCount: upcomingOrders.length,
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(
+                          height: Sizes.marginV28,
+                        );
+                      },
                     ),
+                  ),
+                )
+              else
+                SliverFillRemaining(
+                  child: Center(
+                    child: CustomText.f18(
+                      context,
+                      tr(context).thereAreNoOrders,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
             ],
           );
         },

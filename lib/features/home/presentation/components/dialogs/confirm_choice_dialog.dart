@@ -9,12 +9,12 @@ import '../../../../../core/presentation/widgets/custom_button.dart';
 import '../../../../../core/presentation/widgets/custom_text.dart';
 
 class ConfirmChoiceDialog extends StatelessWidget {
-  final String message;
 
   const ConfirmChoiceDialog({
     required this.message,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final String message;
 
   @override
   Widget build(BuildContext context) {

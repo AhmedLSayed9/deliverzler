@@ -12,10 +12,10 @@ import '../providers/place_autocomplete_provider.dart';
 import 'map_search_menu_component.dart';
 
 class MapFloatingSearchBar extends HookConsumerWidget {
-  const MapFloatingSearchBar({Key? key}) : super(key: key);
+  const MapFloatingSearchBar({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final searchBarController = useFloatingSearchBarController();
 
     return FloatingSearchBar(
@@ -30,7 +30,6 @@ class MapFloatingSearchBar extends HookConsumerWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: Sizes.paddingH4),
       borderRadius: BorderRadius.circular(Sizes.mapSearchBarRadius),
-      elevation: 4,
       hint: tr(context).searchForAPlace,
       hintStyle: FontStyles.mapSearchBarFontStyle(context),
       queryStyle: FontStyles.mapSearchBarFontStyle(context),
@@ -48,7 +47,6 @@ class MapFloatingSearchBar extends HookConsumerWidget {
       },
       actions: [
         FloatingSearchBarAction.icon(
-          showIfOpened: false,
           icon: Icon(
             Icons.place,
             color: Theme.of(context).textTheme.titleMedium!.color,

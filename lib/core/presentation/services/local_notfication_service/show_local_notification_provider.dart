@@ -13,7 +13,7 @@ Future<void> showLocalNotification(
 ) async {
   final notificationService = ref.watch(flutterLocalNotificationsProvider);
 
-  return await notificationService.show(
+  return notificationService.show(
     0,
     params.title,
     params.body,
@@ -23,9 +23,8 @@ Future<void> showLocalNotification(
 }
 
 class ShowLocalNotificationParams {
-  final String? title, body, payload;
-
   const ShowLocalNotificationParams({this.title, this.body, this.payload});
+  final String? title, body, payload;
 }
 
 const localNotificationDetails = NotificationDetails(
@@ -36,7 +35,6 @@ const localNotificationDetails = NotificationDetails(
     importance: Importance.max,
     priority: Priority.high,
     color: AppStaticColors.primary,
-    playSound: true,
     enableLights: true,
   ),
   iOS: IOSNotificationDetails(

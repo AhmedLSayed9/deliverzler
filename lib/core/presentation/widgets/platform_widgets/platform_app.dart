@@ -5,9 +5,9 @@ import 'platform_base_widget.dart';
 
 class PlatformApp extends PlatformBaseWidget<MaterialApp, CupertinoApp> {
   const PlatformApp({
+    required this.routerConfig,
     super.key,
     this.widgetKey,
-    this.routerConfig,
     this.builder,
     this.title = '',
     this.color,
@@ -17,10 +17,10 @@ class PlatformApp extends PlatformBaseWidget<MaterialApp, CupertinoApp> {
     this.debugShowCheckedModeBanner = true,
     this.materialData,
     this.cupertinoData,
-  }) : assert(routerConfig != null);
+  });
 
   final Key? widgetKey;
-  final RouterConfig<Object>? routerConfig;
+  final RouterConfig<Object> routerConfig;
   final TransitionBuilder? builder;
   final String title;
   final Color? color;

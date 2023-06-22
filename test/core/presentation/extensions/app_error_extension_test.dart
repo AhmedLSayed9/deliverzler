@@ -12,7 +12,7 @@ void main() {
     const tMessage = 'tMessage';
 
     testWidgets(
-      'should return same result of tr(context).unknownError'
+      'should return same result of tr(context).unknownError '
       'when AppException is CacheException',
       (WidgetTester tester) async {
         // GIVEN
@@ -32,7 +32,7 @@ void main() {
       required BuildContext context,
       required ServerExceptionType type,
       required String expectedResult,
-    }) async {
+    }) {
       // GIVEN
       final AppException tException = ServerException(
         type: type,
@@ -45,7 +45,7 @@ void main() {
     }
 
     testWidgets(
-      'should return same message from server'
+      'should return same message from server '
       'when AppException is ServerException and type is general',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -58,7 +58,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).unauthorizedError'
+      'should return same result of tr(context).unauthorizedError '
       'when AppException is ServerException and type is unauthorized',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -71,7 +71,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).forbiddenError'
+      'should return same result of tr(context).forbiddenError '
       'when AppException is ServerException and type is forbidden',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -84,7 +84,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).notFoundError'
+      'should return same result of tr(context).notFoundError '
       'when AppException is ServerException and type is notFound',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -97,7 +97,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).conflictError'
+      'should return same result of tr(context).conflictError '
       'when AppException is ServerException and type is conflict',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -110,7 +110,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).internalServerError'
+      'should return same result of tr(context).internalServerError '
       'when AppException is ServerException and type is internal',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -123,7 +123,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).serviceUnavailableError'
+      'should return same result of tr(context).serviceUnavailableError '
       'when AppException is ServerException and type is serviceUnavailable',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -136,7 +136,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).timeoutError'
+      'should return same result of tr(context).timeoutError '
       'when AppException is ServerException and type is timeOut',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -149,7 +149,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).noInternetError'
+      'should return same result of tr(context).noInternetError '
       'when AppException is ServerException and type is noInternet',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -162,7 +162,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).unknownError'
+      'should return same result of tr(context).unknownError '
       'when AppException is ServerException and type is unknown',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -175,7 +175,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).authInvalidEmailError'
+      'should return same result of tr(context).authInvalidEmailError '
       'when AppException is ServerException and type is authInvalidEmail',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -188,7 +188,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).authWrongPasswordError'
+      'should return same result of tr(context).authWrongPasswordError '
       'when AppException is ServerException and type is authWrongPassword',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -201,7 +201,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).authUserNotFoundError'
+      'should return same result of tr(context).authUserNotFoundError '
       'when AppException is ServerException and type is authUserNotFound',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);
@@ -214,7 +214,7 @@ void main() {
     );
 
     testWidgets(
-      'should return same result of tr(context).authUserDisabledError'
+      'should return same result of tr(context).authUserDisabledError '
       'when AppException is ServerException and type is authUserDisabled',
       (WidgetTester tester) async {
         final context = await setUpLocalizationsContext(tester);

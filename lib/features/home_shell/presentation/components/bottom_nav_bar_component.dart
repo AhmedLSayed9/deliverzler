@@ -9,11 +9,8 @@ import '../utils/tab_item.dart';
 class BottomNavBarComponent extends PlatformNavBar {
   BottomNavBarComponent(
     BuildContext context, {
-    Key? key,
-    required TabItem currentTab,
-    required ValueChanged<TabItem> onSelectTab,
+    required TabItem currentTab, required ValueChanged<TabItem> onSelectTab, super.key,
   }) : super(
-          key: key,
           currentIndex: currentTab.index,
           onTap: (index) {
             onSelectTab(TabItem.values[index]);
@@ -42,7 +39,7 @@ class BottomNavBarComponent extends PlatformNavBar {
                         selectedIcon: tabItem.getTabItemSelectedIcon(context),
                         label: tabItem.getTabItemLabel(context),
                       ),
-                    ))
+                    ),)
                 .toList(),
             elevation: 2,
           ),
@@ -52,7 +49,7 @@ class BottomNavBarComponent extends PlatformNavBar {
                       icon: tabItem.getTabItemIcon(context),
                       activeIcon: tabItem.getTabItemSelectedIcon(context),
                       label: tabItem.getTabItemLabel(context),
-                    ))
+                    ),)
                 .toList(),
             activeColor: Theme.of(context).colorScheme.primary,
           ),

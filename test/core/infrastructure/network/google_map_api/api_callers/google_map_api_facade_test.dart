@@ -1,3 +1,5 @@
+// ignore_for_file: inference_failure_on_function_invocation
+
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -16,21 +18,21 @@ void main() {
     googleMapApiFacade = GoogleMapApiFacade(dio: mockDio);
   });
 
-  const String tPath = 'tPath';
-  const Map<String, String> tQueryParameters = {'tQueryKey': 'tQueryValue'};
-  final FormData tData = FormData.fromMap({'tDataKey': 'tDataValue'});
-  final Options tOptions = Options(
+  const tPath = 'tPath';
+  const tQueryParameters = <String, String>{'tQueryKey': 'tQueryValue'};
+  final tData = FormData.fromMap({'tDataKey': 'tDataValue'});
+  final tOptions = Options(
     headers: {'tHeaderKey': 'tHeaderValue'},
   );
-  final Response tResponse = Response(
-    requestOptions: RequestOptions(path: ''),
+  final tResponse = Response(
+    requestOptions: RequestOptions(),
     data: {'tResponseKey': 'tResponseValue'},
     statusCode: 200,
   );
 
   final tError = DioError(
     error: 'error',
-    requestOptions: RequestOptions(path: ''),
+    requestOptions: RequestOptions(),
     type: DioErrorType.badResponse,
   );
 
@@ -77,7 +79,7 @@ void main() {
     );
 
     test(
-      'should throw error.googleMapErrorToServerException'
+      'should throw error.googleMapErrorToServerException '
       'when the response is unsuccessful',
       () async {
         // GIVEN
@@ -108,8 +110,7 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(() => mockDio.post(tPath, data: tData, options: tOptions))
-            .called(1);
+        verify(() => mockDio.post(tPath, data: tData, options: tOptions)).called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -127,7 +128,7 @@ void main() {
     );
 
     test(
-      'should throw error.googleMapErrorToServerException'
+      'should throw error.googleMapErrorToServerException '
       'when the response is unsuccessful',
       () async {
         // GIVEN
@@ -158,8 +159,7 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(() => mockDio.patch(tPath, data: tData, options: tOptions))
-            .called(1);
+        verify(() => mockDio.patch(tPath, data: tData, options: tOptions)).called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -177,7 +177,7 @@ void main() {
     );
 
     test(
-      'should throw error.googleMapErrorToServerException'
+      'should throw error.googleMapErrorToServerException '
       'when the response is unsuccessful',
       () async {
         // GIVEN
@@ -208,8 +208,7 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(() => mockDio.put(tPath, data: tData, options: tOptions))
-            .called(1);
+        verify(() => mockDio.put(tPath, data: tData, options: tOptions)).called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -227,7 +226,7 @@ void main() {
     );
 
     test(
-      'should throw error.googleMapErrorToServerException'
+      'should throw error.googleMapErrorToServerException '
       'when the response is unsuccessful',
       () async {
         // GIVEN
@@ -258,8 +257,7 @@ void main() {
           options: tOptions,
         );
         // THEN
-        verify(() => mockDio.delete(tPath, data: tData, options: tOptions))
-            .called(1);
+        verify(() => mockDio.delete(tPath, data: tData, options: tOptions)).called(1);
         verifyNoMoreInteractions(mockDio);
       },
     );
@@ -277,7 +275,7 @@ void main() {
     );
 
     test(
-      'should throw error.googleMapErrorToServerException'
+      'should throw error.googleMapErrorToServerException '
       'when the response is unsuccessful',
       () async {
         // GIVEN

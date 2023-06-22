@@ -14,12 +14,12 @@ class LoginTextFieldsSection extends StatelessWidget {
     required this.emailController,
     required this.passwordController,
     required this.onFieldSubmitted,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final Function(String)? onFieldSubmitted;
+  final ValueChanged<String>? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,7 @@ class LoginTextFieldsSection extends StatelessWidget {
       },
       cupertino: (_) {
         return CupertinoFormSection.insetGrouped(
-          decoration:
-              CupertinoCustomTheme.cupertinoFormSectionDecoration(context),
+          decoration: CupertinoCustomTheme.cupertinoFormSectionDecoration(context),
           backgroundColor: Colors.transparent,
           margin: EdgeInsets.zero,
           children: _sharedItemComponent(context, false),

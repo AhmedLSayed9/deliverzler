@@ -7,6 +7,17 @@ import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../core/presentation/widgets/custom_text_form_field.dart';
 
 class TitledTextFieldItem extends StatelessWidget {
+
+  const TitledTextFieldItem({
+    required this.title,
+    required this.hint,
+    required this.validator, this.prefix,
+    this.suffix,
+    this.controller,
+    this.keyboardType,
+    this.isLastTextField = false,
+    super.key,
+  });
   final String title;
   final String hint;
   final Widget? prefix;
@@ -15,18 +26,6 @@ class TitledTextFieldItem extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
   final bool isLastTextField;
-
-  const TitledTextFieldItem({
-    required this.title,
-    required this.hint,
-    this.prefix,
-    this.suffix,
-    this.controller,
-    required this.validator,
-    this.keyboardType,
-    this.isLastTextField = false,
-    Key? key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

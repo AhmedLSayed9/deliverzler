@@ -8,13 +8,13 @@ import '../widgets/cached_network_image_circular.dart';
 import '../widgets/custom_text.dart';
 
 class MainDrawerUserInfoComponent extends ConsumerWidget {
-  const MainDrawerUserInfoComponent({Key? key}) : super(key: key);
+  const MainDrawerUserInfoComponent({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     //final _userModel = ref.watch(userRepoProvider).userModel;
     //ignore this
-    final UserDto userModel = UserDto.fromJson(const {});
+    final userModel = UserDto.fromJson(const {});
 
     return Column(
       children: [

@@ -51,8 +51,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(() => mockSharedPrefs.setInt(tKey, tIntValue))
-            .thenAnswer((_) async => tResponse);
+        when(() => mockSharedPrefs.setInt(tKey, tIntValue)).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefsFacade.saveData(
           key: tKey,
@@ -91,8 +90,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(() => mockSharedPrefs.setBool(tKey, tBoolValue))
-            .thenAnswer((_) async => tResponse);
+        when(() => mockSharedPrefs.setBool(tKey, tBoolValue)).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefsFacade.saveData(
           key: tKey,
@@ -120,8 +118,7 @@ void main() {
           dataType: DataType.stringList,
         );
         // THEN
-        verify(() => mockSharedPrefs.setStringList(tKey, tStringList))
-            .called(1);
+        verify(() => mockSharedPrefs.setStringList(tKey, tStringList)).called(1);
         expect(result, tResponse);
         verifyNoMoreInteractions(mockSharedPrefs);
       },
@@ -129,12 +126,11 @@ void main() {
 
     //No need to test for all DataTypes
     test(
-      'should throw error.localErrorToCacheException'
+      'should throw error.localErrorToCacheException '
       'when the call to SharedPreferences.setString is unsuccessful',
       () async {
         // GIVEN
-        when(() => mockSharedPrefs.setString(tKey, tStringValue))
-            .thenThrow(tError);
+        when(() => mockSharedPrefs.setString(tKey, tStringValue)).thenThrow(tError);
         // WHEN
         final call = sharedPrefsFacade.saveData(
           key: tKey,
@@ -158,10 +154,9 @@ void main() {
       () async {
         // GIVEN
         const tResponse = tStringValue;
-        when(() => mockSharedPrefs.getString(tKey))
-            .thenAnswer((_) => tResponse);
+        when(() => mockSharedPrefs.getString(tKey)).thenAnswer((_) => tResponse);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData(
+        final result = await sharedPrefsFacade.restoreData<String>(
           key: tKey,
           dataType: DataType.string,
         );
@@ -178,7 +173,7 @@ void main() {
         // GIVEN
         when(() => mockSharedPrefs.getInt(tKey)).thenAnswer((_) => tIntValue);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData(
+        final result = await sharedPrefsFacade.restoreData<int>(
           key: tKey,
           dataType: DataType.int,
         );
@@ -193,10 +188,9 @@ void main() {
       'should return same result from SharedPreferences.getDouble when dataType is DataType.double',
       () async {
         // GIVEN
-        when(() => mockSharedPrefs.getDouble(tKey))
-            .thenAnswer((_) => tDoubleValue);
+        when(() => mockSharedPrefs.getDouble(tKey)).thenAnswer((_) => tDoubleValue);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData(
+        final result = await sharedPrefsFacade.restoreData<double>(
           key: tKey,
           dataType: DataType.double,
         );
@@ -213,7 +207,7 @@ void main() {
         // GIVEN
         when(() => mockSharedPrefs.getBool(tKey)).thenAnswer((_) => tBoolValue);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData(
+        final result = await sharedPrefsFacade.restoreData<bool>(
           key: tKey,
           dataType: DataType.bool,
         );
@@ -228,10 +222,9 @@ void main() {
       'should return same result from SharedPreferences.getStringList when dataType is DataType.stringList',
       () async {
         // GIVEN
-        when(() => mockSharedPrefs.getStringList(tKey))
-            .thenAnswer((_) => tStringList);
+        when(() => mockSharedPrefs.getStringList(tKey)).thenAnswer((_) => tStringList);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData(
+        final result = await sharedPrefsFacade.restoreData<List<String>>(
           key: tKey,
           dataType: DataType.stringList,
         );
@@ -244,13 +237,13 @@ void main() {
 
     //No need to test for all DataTypes
     test(
-      'should throw error.localErrorToCacheException'
+      'should throw error.localErrorToCacheException '
       'when the call to SharedPreferences.getString is unsuccessful',
       () async {
         // GIVEN
         when(() => mockSharedPrefs.getString(tKey)).thenThrow(tError);
         // WHEN
-        final call = sharedPrefsFacade.restoreData(
+        final call = sharedPrefsFacade.restoreData<String>(
           key: tKey,
           dataType: DataType.string,
         );
@@ -282,7 +275,7 @@ void main() {
     );
 
     test(
-      'should throw error.localErrorToCacheException'
+      'should throw error.localErrorToCacheException '
       'when the call to SharedPreferences.clear is unsuccessful',
       () async {
         // GIVEN
@@ -306,8 +299,7 @@ void main() {
       () async {
         // GIVEN
         const tResponse = true;
-        when(() => mockSharedPrefs.remove(tKey))
-            .thenAnswer((_) async => tResponse);
+        when(() => mockSharedPrefs.remove(tKey)).thenAnswer((_) async => tResponse);
         // WHEN
         final result = await sharedPrefsFacade.clearKey(key: tKey);
         // THEN
@@ -318,7 +310,7 @@ void main() {
     );
 
     test(
-      'should throw error.localErrorToCacheException'
+      'should throw error.localErrorToCacheException '
       'when the call to SharedPreferences.remove is unsuccessful',
       () async {
         // GIVEN

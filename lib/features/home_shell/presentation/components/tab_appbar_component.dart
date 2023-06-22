@@ -12,12 +12,11 @@ import '../../../../core/presentation/widgets/custom_app_bar_widget.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 
 /// The default height of the toolbar component of the [AppBar].
-const double kToolbarHeight = 56.0;
+const double kToolbarHeight = 56;
 
 class PreferredAppBarSize extends Size {
   PreferredAppBarSize(this.toolbarHeight, this.bottomHeight)
-      : super.fromHeight(
-            (toolbarHeight ?? kToolbarHeight) + (bottomHeight ?? 0));
+      : super.fromHeight((toolbarHeight ?? kToolbarHeight) + (bottomHeight ?? 0));
 
   final double? toolbarHeight;
   final double? bottomHeight;
@@ -29,10 +28,8 @@ class TabAppBarComponent extends StatelessWidget
     this.toolbarHeight,
     this.bottom,
     this.backgroundColor,
-    Key? key,
-  })  : preferredSize =
-            PreferredAppBarSize(toolbarHeight, bottom?.preferredSize.height),
-        super(key: key);
+    super.key,
+  }) : preferredSize = PreferredAppBarSize(toolbarHeight, bottom?.preferredSize.height);
 
   static final IList<String> _noAppBarLocations = IListConst([
     const MapRoute().location,
@@ -100,9 +97,8 @@ class TabAppBarComponent extends StatelessWidget
 
   @override
   bool shouldFullyObstruct(BuildContext context) {
-    final Color backgroundColor =
-        CupertinoDynamicColor.maybeResolve(this.backgroundColor, context) ??
-            CupertinoTheme.of(context).barBackgroundColor;
+    final backgroundColor = CupertinoDynamicColor.maybeResolve(this.backgroundColor, context) ??
+        CupertinoTheme.of(context).barBackgroundColor;
     return backgroundColor.alpha == 0xFF;
   }
 }

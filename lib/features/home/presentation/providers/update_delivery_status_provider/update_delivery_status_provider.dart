@@ -9,7 +9,7 @@ part 'update_delivery_status_provider.g.dart';
 
 @riverpod
 FutureOr<UpdateDeliveryStatusState> updateDeliveryStatusState(
-    UpdateDeliveryStatusStateRef ref) {
+    UpdateDeliveryStatusStateRef ref,) {
   final event = ref.watch(updateDeliveryStatusEventProvider);
   return event.match(() => const UpdateDeliveryStatusState.idle(), (event) {
     final updateDelivery = event.arg;

@@ -7,8 +7,7 @@ import 'package:deliverzler/core/infrastructure/local/shared_preferences_facade.
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 import '../../../../../utils.dart';
 
-class MockSharedPreferencesFacade extends Mock
-    implements SharedPreferencesFacade {}
+class MockSharedPreferencesFacade extends Mock implements SharedPreferencesFacade {}
 
 void main() {
   late MockSharedPreferencesFacade mockSharedPrefs;
@@ -39,7 +38,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
@@ -47,14 +46,13 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final localeLocalDataSource =
-              container.read(localeLocalDataSourceProvider);
+          final localeLocalDataSource = container.read(localeLocalDataSourceProvider);
           final result = await localeLocalDataSource.getAppLocale();
 
           // THEN
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: LocaleLocalDataSource.appLocaleKey,
               dataType: DataType.string,
             ),
@@ -67,7 +65,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData(
+            () => mockSharedPrefs.restoreData<String>(
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
@@ -75,8 +73,7 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final localeLocalDataSource =
-              container.read(localeLocalDataSourceProvider);
+          final localeLocalDataSource = container.read(localeLocalDataSourceProvider);
           final call = localeLocalDataSource.getAppLocale();
 
           // THEN
@@ -84,7 +81,10 @@ void main() {
             () => call,
             throwsA(
               isA<CacheException>().having(
-                  (e) => e.type, 'type', equals(CacheExceptionType.notFound)),
+                (e) => e.type,
+                'type',
+                equals(CacheExceptionType.notFound),
+              ),
             ),
           );
         },
@@ -111,8 +111,7 @@ void main() {
           final container = setUpSharedPrefsContainer();
 
           // WHEN
-          final localeLocalDataSource =
-              container.read(localeLocalDataSourceProvider);
+          final localeLocalDataSource = container.read(localeLocalDataSourceProvider);
           await localeLocalDataSource.cacheAppLocale(tLocale);
 
           // THEN

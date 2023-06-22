@@ -6,12 +6,12 @@ import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../domain/place_autocomplete.dart';
 
 class MapSearchMenuItem extends StatelessWidget {
-  final PlaceAutocomplete placeAutocomplete;
 
   const MapSearchMenuItem({
     required this.placeAutocomplete,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final PlaceAutocomplete placeAutocomplete;
 
   @override
   Widget build(BuildContext context) {

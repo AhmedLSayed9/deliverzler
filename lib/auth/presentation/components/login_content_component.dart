@@ -5,7 +5,7 @@ import 'login_form_component.dart';
 import 'welcome_component.dart';
 
 class LoginContentComponent extends StatelessWidget {
-  const LoginContentComponent({Key? key}) : super(key: key);
+  const LoginContentComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

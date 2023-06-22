@@ -1,3 +1,6 @@
+// ignore_for_file: inference_failure_on_untyped_parameter, argument_type_not_assignable
+// TODO(Ahmed): Fix this ignore.
+
 import 'package:flutter/material.dart';
 
 import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
@@ -7,27 +10,25 @@ import '../styles/sizes.dart';
 class CustomText extends Text {
   CustomText._(
     BuildContext context,
-    String text, {
-    Key? key,
+    super.text, {
+    super.key,
     double? size,
     color,
     weight,
-    bool underline = false,
-    strutStyle,
-    textAlign,
-    textDirection,
-    locale,
-    softWrap,
-    overflow,
-    textScaleFactor,
-    maxLines,
-    semanticsLabel,
-    textWidthBasis,
     height,
-    textHeightBehavior,
+    bool underline = false,
+    super.strutStyle,
+    super.textAlign,
+    super.textDirection,
+    super.locale,
+    super.softWrap,
+    super.overflow,
+    super.textScaleFactor,
+    super.maxLines,
+    super.semanticsLabel,
+    super.textWidthBasis,
+    super.textHeightBehavior,
   }) : super(
-          key: key,
-          text,
           style: TextStyle(
             color: color,
             height: height,
@@ -36,17 +37,6 @@ class CustomText extends Text {
             decoration: underline ? TextDecoration.underline : null,
             fontFamily: FontStyles.fontFamily(context),
           ),
-          strutStyle: strutStyle,
-          textAlign: textAlign,
-          textDirection: textDirection,
-          locale: locale,
-          softWrap: softWrap,
-          overflow: overflow,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          semanticsLabel: semanticsLabel,
-          textWidthBasis: textWidthBasis,
-          textHeightBehavior: textHeightBehavior,
         );
 
   CustomText.f28(
@@ -55,7 +45,6 @@ class CustomText extends Text {
     Key? key,
     Color? color,
     FontWeight? weight,
-    bool? underline,
     TextAlign? textAlign,
     double? height,
     int? maxLines,

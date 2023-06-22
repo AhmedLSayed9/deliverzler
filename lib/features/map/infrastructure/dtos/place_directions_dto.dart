@@ -12,8 +12,6 @@ part 'place_directions_dto.g.dart';
 
 @Freezed(toJson: false)
 class PlaceDirectionsDto with _$PlaceDirectionsDto {
-  const PlaceDirectionsDto._();
-
   const factory PlaceDirectionsDto({
     @JsonKey(fromJson: _fromJsonBounds) required LatLngBounds bounds,
     @JsonKey(name: 'overview_polyline', fromJson: _fromJsonPolylinePoints)
@@ -21,6 +19,7 @@ class PlaceDirectionsDto with _$PlaceDirectionsDto {
     @JsonKey(readValue: _readDistance) required int distance,
     @JsonKey(readValue: _readDuration) required String duration,
   }) = _PlaceDirectionsDto;
+  const PlaceDirectionsDto._();
 
   factory PlaceDirectionsDto.fromJson(Map<String, dynamic> json) =>
       _$PlaceDirectionsDtoFromJson(json);
@@ -60,24 +59,25 @@ class PlaceDirectionsQueryDto with _$PlaceDirectionsQueryDto {
 }
 
 LatLngBounds _fromJsonBounds(Map<String, dynamic> json) {
-  final southwestBounds = json['southwest'];
-  final northeastBounds = json['northeast'];
+  final southwestBounds = json['southwest'] as Map<String, dynamic>;
+  final northeastBounds = json['northeast'] as Map<String, dynamic>;
   return LatLngBounds(
-    southwest: LatLng(southwestBounds['lat'], southwestBounds['lng']),
-    northeast: LatLng(northeastBounds['lat'], northeastBounds['lng']),
+    southwest: LatLng(southwestBounds['lat'] as double, southwestBounds['lng'] as double),
+    northeast: LatLng(northeastBounds['lat'] as double, northeastBounds['lng'] as double),
   );
 }
 
 List<PointLatLng> _fromJsonPolylinePoints(Map<String, dynamic> json) {
-  return PolylinePoints().decodePolyline(
-    json['points'],
-  );
+  return PolylinePoints().decodePolyline(json['points'] as String);
 }
 
-int _readDistance(Map json, String key) => json['legs'][0]['distance']['value'];
+int _readDistance(Map<dynamic, dynamic> json, String key) =>
+// ignore: avoid_dynamic_calls
+    json['legs'][0]['distance']['value'] as int;
 
-String _readDuration(Map json, String key) =>
-    json['legs'][0]['duration']['text'];
+String _readDuration(Map<dynamic, dynamic> json, String key) =>
+// ignore: avoid_dynamic_calls
+    json['legs'][0]['duration']['text'] as String;
 
 String _toJsonOrigin(Position p) => '${p.latitude},${p.longitude}';
 

@@ -12,8 +12,8 @@ class NestedScreenScaffold extends StatelessWidget {
     this.backgroundColor,
     this.resizeToAvoidBottomInset = true,
     this.hasAppBar = true,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Widget body;
   final Color? backgroundColor;
@@ -22,7 +22,7 @@ class NestedScreenScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       child: PlatformWidget(
         material: (_) {
@@ -33,12 +33,10 @@ class NestedScreenScaffold extends StatelessWidget {
             navigationBar: hasAppBar
                 ? TabAppBarComponent(
                     toolbarHeight: Sizes.appBarHeight56,
-                    backgroundColor:
-                        Theme.of(context).appBarTheme.backgroundColor,
+                    backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
                   )
                 : null,
-            backgroundColor:
-                backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+            backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
             resizeToAvoidBottomInset: resizeToAvoidBottomInset,
             child: body,
           );

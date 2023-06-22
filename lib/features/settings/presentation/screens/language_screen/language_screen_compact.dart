@@ -9,7 +9,7 @@ import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../components/language_components/language_item_component.dart';
 
 class LanguageScreenCompact extends StatelessWidget {
-  const LanguageScreenCompact({Key? key}) : super(key: key);
+  const LanguageScreenCompact({super.key});
 
   @override
   Widget build(BuildContext context) {

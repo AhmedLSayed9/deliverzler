@@ -13,7 +13,7 @@ class CustomAppBar extends PlatformAppBar {
     double? height = Sizes.appBarHeight56,
     Color? backgroundColor,
     GlobalKey<ScaffoldState>? scaffoldKey,
-    Widget? title,
+    super.title,
     bool centerTitle = false,
     bool hasBackButton = false,
     dynamic result,
@@ -42,7 +42,6 @@ class CustomAppBar extends PlatformAppBar {
                 width: Sizes.appBarButtonR32 * 2,
               ),
           ],
-          title: title,
           materialData: MaterialAppBarData(
             centerTitle: centerTitle,
             elevation: elevation,
@@ -57,18 +56,18 @@ class CustomAppBar extends PlatformAppBar {
 }
 
 class CustomBackButton extends StatelessWidget {
-  final dynamic result;
-  final Color? color;
-  final EdgeInsets? padding;
-  final bool isLTROnly;
 
   const CustomBackButton({
     required this.result,
     this.color,
     this.padding,
     this.isLTROnly = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final dynamic result;
+  final Color? color;
+  final EdgeInsets? padding;
+  final bool isLTROnly;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,7 @@ class CustomBackButton extends StatelessWidget {
         highlightColor: Colors.transparent,
       ),
       cupertinoData: const CupertinoButtonData(
-        minSize: 0.0,
+        minSize: 0,
         alignment: Alignment.center,
       ),
     );
@@ -98,12 +97,12 @@ class CustomBackButton extends StatelessWidget {
 }
 
 class CustomMenuButton extends StatelessWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
 
   const CustomMenuButton({
     required this.scaffoldKey,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +124,7 @@ class CustomMenuButton extends StatelessWidget {
         highlightColor: Colors.transparent,
       ),
       cupertinoData: const CupertinoButtonData(
-        minSize: 0.0,
+        minSize: 0,
         alignment: Alignment.center,
       ),
     );

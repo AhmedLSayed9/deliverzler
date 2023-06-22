@@ -21,5 +21,5 @@ Future<User> checkAuth(CheckAuthRef ref) async {
   });
 
   final uid = await ref.watch(authRepoProvider).getUserAuthUid();
-  return await ref.watch(authRepoProvider).getUserData(uid);
+  return ref.watch(authRepoProvider).getUserData(uid);
 }

@@ -8,12 +8,14 @@ import '../extensions/firebase_error_extension.dart';
 part 'firebase_firestore_facade.g.dart';
 
 typedef QueryBuilder = Query<Map<String, dynamic>> Function(
-    Query<Map<String, dynamic>> reference);
+  Query<Map<String, dynamic>> reference,
+);
 
 //Our main API is Firebase
 @Riverpod(keepAlive: true)
 FirebaseFirestoreFacade firebaseFirestoreFacade(
-    FirebaseFirestoreFacadeRef ref) {
+  FirebaseFirestoreFacadeRef ref,
+) {
   return FirebaseFirestoreFacade(
     firebaseFirestore: FirebaseFirestore.instance,
   );
@@ -31,10 +33,10 @@ class FirebaseFirestoreFacade {
     required Map<String, dynamic> data,
     bool merge = false,
   }) async {
-    return await _futureErrorHandler(
+    return _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
-        return await reference.set(data, SetOptions(merge: merge));
+        return reference.set(data, SetOptions(merge: merge));
       },
     );
   }
@@ -43,19 +45,19 @@ class FirebaseFirestoreFacade {
     required String path,
     required Map<String, dynamic> data,
   }) async {
-    return await _futureErrorHandler(
+    return _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
-        return await reference.update(data);
+        return reference.update(data);
       },
     );
   }
 
   Future<void> deleteData({required String path}) async {
-    return await _futureErrorHandler(
+    return _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
-        return await reference.delete();
+        return reference.delete();
       },
     );
   }
@@ -64,10 +66,10 @@ class FirebaseFirestoreFacade {
     required String path,
     required Map<String, dynamic> data,
   }) async {
-    return await _futureErrorHandler(
+    return _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.collection(path);
-        return await reference.add(data).then((value) => value.id);
+        return reference.add(data).then((value) => value.id);
       },
     );
   }
@@ -75,10 +77,10 @@ class FirebaseFirestoreFacade {
   Future<DocumentSnapshot> getData({
     required String path,
   }) async {
-    return await _futureErrorHandler(
+    return _futureErrorHandler(
       () async {
         final reference = firebaseFirestore.doc(path);
-        return await reference.get();
+        return reference.get();
       },
     );
   }
@@ -87,14 +89,13 @@ class FirebaseFirestoreFacade {
     required String path,
     QueryBuilder? queryBuilder,
   }) async {
-    return await _futureErrorHandler(
+    return _futureErrorHandler(
       () async {
-        Query<Map<String, dynamic>> reference =
-            firebaseFirestore.collection(path);
+        Query<Map<String, dynamic>> reference = firebaseFirestore.collection(path);
         if (queryBuilder != null) {
           reference = queryBuilder(reference);
         }
-        return await reference.get();
+        return reference.get();
       },
     );
   }
@@ -102,18 +103,18 @@ class FirebaseFirestoreFacade {
   Future<void> deleteAllCollectionData({
     required String path,
   }) async {
-    return await _futureErrorHandler(
+    return _futureErrorHandler(
       () async {
-        final WriteBatch batch = FirebaseFirestore.instance.batch();
-        const int batchSize = 100;
-        bool lastBatch = false;
+        final batch = FirebaseFirestore.instance.batch();
+        const batchSize = 100;
+        var lastBatch = false;
 
         final query = firebaseFirestore.collection(path).limit(batchSize);
         await query.get().then((snapshot) {
           if (snapshot.size < batchSize) {
             lastBatch = true;
           }
-          for (DocumentSnapshot document in snapshot.docs) {
+          for (final DocumentSnapshot document in snapshot.docs) {
             batch.delete(document.reference);
           }
         });
@@ -122,7 +123,7 @@ class FirebaseFirestoreFacade {
         if (!lastBatch) {
           await deleteAllCollectionData(path: path);
         }
-        return await batch.commit();
+        return batch.commit();
       },
     );
   }
@@ -133,8 +134,7 @@ class FirebaseFirestoreFacade {
   }) {
     return _streamErrorHandler(
       () {
-        Query<Map<String, dynamic>> reference =
-            firebaseFirestore.collection(path);
+        Query<Map<String, dynamic>> reference = firebaseFirestore.collection(path);
         if (queryBuilder != null) {
           reference = queryBuilder(reference);
         }
@@ -143,7 +143,7 @@ class FirebaseFirestoreFacade {
     );
   }
 
-  Stream documentStream({
+  Stream<DocumentSnapshot<Map<String, dynamic>>> documentStream({
     required String path,
   }) {
     return _streamErrorHandler(

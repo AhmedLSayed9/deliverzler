@@ -5,27 +5,27 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:deliverzler/core/presentation/routing/navigator_route_observer.dart';
 
-class MockRoute extends Mock implements Route {}
+class MockRoute<T> extends Mock implements Route<T> {}
 
 class MockNavigatorObserverFns extends Mock implements NavigatorObserverFns {}
 
 abstract class NavigatorObserverFns {
-  void routesStackCallBack(List<Route> routes);
+  void routesStackCallBack(List<Route<dynamic>> routes);
 
-  void onPush(Route? route, Route? previousRoute);
+  void onPush(Route<dynamic>? route, Route<dynamic>? previousRoute);
 
-  void onPop(Route? route, Route? previousRoute);
+  void onPop(Route<dynamic>? route, Route<dynamic>? previousRoute);
 
-  void onReplace(Route? route, Route? previousRoute);
+  void onReplace(Route<dynamic>? route, Route<dynamic>? previousRoute);
 
-  void onRemove(Route? route, Route? previousRoute);
+  void onRemove(Route<dynamic>? route, Route<dynamic>? previousRoute);
 }
 
 void main() {
-  late MockRoute mockRoute;
-  late MockRoute mockPreviousRoute;
+  late MockRoute<dynamic> mockRoute;
+  late MockRoute<dynamic> mockPreviousRoute;
   late MockNavigatorObserverFns mockNavigatorObserverFns;
-  late NavigatorRouteObserver navigatorRouteObserver;
+  late NavigatorRouteObserver<dynamic> navigatorRouteObserver;
 
   setUp(() {
     mockRoute = MockRoute();
@@ -58,20 +58,17 @@ void main() {
       },
     );
     test(
-      'should call routesStackCallBack with the proper routes stack'
+      'should call routesStackCallBack with the proper routes stack '
       'should call onPush with the proper route/previousRoute',
       () {
         // GIVEN
-        when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenReturn(null);
-        when(() => mockNavigatorObserverFns.onPush(any(), any()))
-            .thenReturn(null);
+        when(() => mockNavigatorObserverFns.routesStackCallBack(any())).thenReturn(null);
+        when(() => mockNavigatorObserverFns.onPush(any(), any())).thenReturn(null);
         // WHEN
         navigatorRouteObserver.didPush(mockRoute, mockPreviousRoute);
         // THEN
         verify(
-          () => mockNavigatorObserverFns
-              .routesStackCallBack(navigatorRouteObserver.stack),
+          () => mockNavigatorObserverFns.routesStackCallBack(navigatorRouteObserver.stack),
         ).called(1);
         verify(
           () => mockNavigatorObserverFns.onPush(mockRoute, mockPreviousRoute),
@@ -96,20 +93,17 @@ void main() {
       },
     );
     test(
-      'should call routesStackCallBack with the proper routes stack'
+      'should call routesStackCallBack with the proper routes stack '
       'should call onPop with the proper route/previousRoute',
       () {
         // GIVEN
-        when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenReturn(null);
-        when(() => mockNavigatorObserverFns.onPop(any(), any()))
-            .thenReturn(null);
+        when(() => mockNavigatorObserverFns.routesStackCallBack(any())).thenReturn(null);
+        when(() => mockNavigatorObserverFns.onPop(any(), any())).thenReturn(null);
         // WHEN
         navigatorRouteObserver.didPop(mockRoute, mockPreviousRoute);
         // THEN
         verify(
-          () => mockNavigatorObserverFns
-              .routesStackCallBack(navigatorRouteObserver.stack),
+          () => mockNavigatorObserverFns.routesStackCallBack(navigatorRouteObserver.stack),
         ).called(1);
         verify(
           () => mockNavigatorObserverFns.onPop(mockRoute, mockPreviousRoute),
@@ -126,7 +120,9 @@ void main() {
         // WHEN
         navigatorRouteObserver.didPush(mockPreviousRoute, null);
         navigatorRouteObserver.didReplace(
-            newRoute: mockRoute, oldRoute: mockPreviousRoute);
+          newRoute: mockRoute,
+          oldRoute: mockPreviousRoute,
+        );
         // THEN
         final expectedFirstRoute = navigatorRouteObserver.stack[0];
         final expectedStackLength = navigatorRouteObserver.stack.length;
@@ -139,32 +135,32 @@ void main() {
       () {
         // WHEN
         navigatorRouteObserver.didReplace(
-            newRoute: mockRoute, oldRoute: mockPreviousRoute);
+          newRoute: mockRoute,
+          oldRoute: mockPreviousRoute,
+        );
         // THEN
         final expectedStackLength = navigatorRouteObserver.stack.length;
         expect(expectedStackLength, 0);
       },
     );
     test(
-      'should call routesStackCallBack with the proper routes stack'
+      'should call routesStackCallBack with the proper routes stack '
       'should call onReplace with the proper route/previousRoute',
       () {
         // GIVEN
-        when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenReturn(null);
-        when(() => mockNavigatorObserverFns.onReplace(any(), any()))
-            .thenReturn(null);
+        when(() => mockNavigatorObserverFns.routesStackCallBack(any())).thenReturn(null);
+        when(() => mockNavigatorObserverFns.onReplace(any(), any())).thenReturn(null);
         // WHEN
         navigatorRouteObserver.didReplace(
-            newRoute: mockRoute, oldRoute: mockPreviousRoute);
+          newRoute: mockRoute,
+          oldRoute: mockPreviousRoute,
+        );
         // THEN
         verify(
-          () => mockNavigatorObserverFns
-              .routesStackCallBack(navigatorRouteObserver.stack),
+          () => mockNavigatorObserverFns.routesStackCallBack(navigatorRouteObserver.stack),
         ).called(1);
         verify(
-          () =>
-              mockNavigatorObserverFns.onReplace(mockRoute, mockPreviousRoute),
+          () => mockNavigatorObserverFns.onReplace(mockRoute, mockPreviousRoute),
         ).called(1);
         verifyNoMoreInteractions(mockNavigatorObserverFns);
       },
@@ -184,20 +180,17 @@ void main() {
       },
     );
     test(
-      'should call routesStackCallBack with the proper routes stack'
+      'should call routesStackCallBack with the proper routes stack '
       'should call onRemove with the proper route/previousRoute',
       () {
         // GIVEN
-        when(() => mockNavigatorObserverFns.routesStackCallBack(any()))
-            .thenReturn(null);
-        when(() => mockNavigatorObserverFns.onRemove(any(), any()))
-            .thenReturn(null);
+        when(() => mockNavigatorObserverFns.routesStackCallBack(any())).thenReturn(null);
+        when(() => mockNavigatorObserverFns.onRemove(any(), any())).thenReturn(null);
         // WHEN
         navigatorRouteObserver.didRemove(mockRoute, mockPreviousRoute);
         // THEN
         verify(
-          () => mockNavigatorObserverFns
-              .routesStackCallBack(navigatorRouteObserver.stack),
+          () => mockNavigatorObserverFns.routesStackCallBack(navigatorRouteObserver.stack),
         ).called(1);
         verify(
           () => mockNavigatorObserverFns.onRemove(mockRoute, mockPreviousRoute),

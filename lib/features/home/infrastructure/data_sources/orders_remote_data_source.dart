@@ -37,7 +37,7 @@ class OrdersRemoteDataSource {
           .where('deliveryStatus', whereIn: [
         DeliveryStatus.upcoming.name,
         DeliveryStatus.onTheWay.name
-      ]).orderBy('date', descending: true),
+      ],).orderBy('date', descending: true),
     );
 
     return snapshots

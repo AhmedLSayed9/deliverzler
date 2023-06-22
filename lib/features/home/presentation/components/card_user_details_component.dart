@@ -8,17 +8,16 @@ import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../domain/order.dart';
 
 class CardUserDetailsComponent extends StatelessWidget {
-  final AppOrder order;
 
   const CardUserDetailsComponent({
     required this.order,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+  final AppOrder order;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CachedNetworkImageCircular(
           imageUrl: order.userImage,
