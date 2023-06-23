@@ -17,7 +17,7 @@ extension AppErrorExtension on Object {
   }
 }
 
-extension ServerErrorExtension on ServerException {
+extension _ServerErrorExtension on ServerException {
   String serverErrorMessage(BuildContext context) {
     switch (type) {
       case ServerExceptionType.unknown:
