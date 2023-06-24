@@ -93,14 +93,29 @@ dev_dependencies:
   json_serializable: ^6.7.0
   go_router_builder: ^2.1.1
 
-flutter_icons:
-  image_path_android: "assets/images/core/icon.png"
-  image_path_ios: "assets/images/core/icon.png"
+flutter_launcher_icons:
+  # Android
   android: true
+  min_sdk_android: 23
+  image_path_android: "assets/icons/app_icon/icon-192x192-android.png" # used for android versions less than Android 8.0
+  adaptive_icon_background: "#121B24" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/icons/app_icon/icon-foreground-432x432.png" # only available for Android 8.0 devices and above
+  # IOS
   ios: true
+  image_path_ios: "assets/icons/app_icon/icon-1024x1024.png"
   remove_alpha_ios: true
-  adaptive_icon_background: "#121B24"
-  adaptive_icon_foreground: "assets/images/core/icon_adaptive_fore.png"
+  # web:
+  #   generate: true
+  #   image_path: "assets/icons/app_icon/icon-1024x1024.png"
+  #   background_color: "#hexcode"
+  #   theme_color: "#hexcode"
+  # windows:
+  #   generate: true
+  #   image_path: ""assets/icons/app_icon/icon-1024x1024.png"
+  #   icon_size: 48 # min:48, max:256, default: 48
+  # macos:
+  #   generate: true
+  #   image_path: "assets/icons/app_icon/icon-1024x1024.png"
 
 flutter_native_splash:
   color: "#FAFAFA"
