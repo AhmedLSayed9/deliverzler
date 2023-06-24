@@ -150,9 +150,9 @@ flutter:
       fonts:
         - asset: assets/fonts/poppins.ttf
         - asset: assets/fonts/poppins_bold.ttf
-          weight: 900
+          weight: 700
     - family: tajawal
       fonts:
         - asset: assets/fonts/tajawal.ttf
         - asset: assets/fonts/tajawal_bold.ttf
-          weight: 900
+          weight: 700
