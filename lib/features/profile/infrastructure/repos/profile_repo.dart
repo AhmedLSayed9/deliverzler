@@ -2,7 +2,7 @@ import 'dart:io';
 
 import '../../../../core/infrastructure/local/image_picker_facade.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../domain/value_objects.dart';
+import '../../domain/profile_details.dart';
 import '../data_sources/profile_local_data_source.dart';
 import '../data_sources/profile_remote_data_source.dart';
 import '../dtos/profile_details_dto.dart';

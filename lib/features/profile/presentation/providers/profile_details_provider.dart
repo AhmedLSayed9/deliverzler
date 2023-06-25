@@ -2,7 +2,7 @@ import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/providers/provider_utils.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../domain/value_objects.dart';
+import '../../domain/profile_details.dart';
 import '../../infrastructure/repos/profile_repo.dart';
 
 part 'profile_details_provider.g.dart';
@@ -11,7 +11,8 @@ part 'profile_details_provider.g.dart';
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
 FutureOr<Option<ProfileDetails>> profileDetailsState(
-    ProfileDetailsStateRef ref,) {
+  ProfileDetailsStateRef ref,
+) {
   final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
   ref.listenSelf((previous, next) {
     next.whenData(

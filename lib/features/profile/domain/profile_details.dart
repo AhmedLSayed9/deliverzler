@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/domain/value_validators.dart';
 
-part 'value_objects.freezed.dart';
+part 'profile_details.freezed.dart';
 
 @freezed
 class ProfileDetails with _$ProfileDetails {

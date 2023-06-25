@@ -5,7 +5,7 @@ import '../../../../core/core_features/theme/presentation/utils/themes/cupertino
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
-import '../../domain/value_objects.dart';
+import '../../domain/profile_details.dart';
 import '../widgets/titled_text_field_item.dart';
 
 class ProfileTextFieldsSection extends StatelessWidget {

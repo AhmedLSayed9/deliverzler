@@ -7,7 +7,7 @@ import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_button.dart';
-import '../../domain/value_objects.dart';
+import '../../domain/profile_details.dart';
 import '../providers/profile_details_provider.dart';
 import 'profile_text_fields_section.dart';
 

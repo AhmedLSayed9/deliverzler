@@ -1,6 +1,6 @@
 import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../features/profile/domain/value_objects.dart';
+import '../../../features/profile/domain/profile_details.dart';
 import '../../domain/user.dart';
 
 part 'auth_state_provider.g.dart';

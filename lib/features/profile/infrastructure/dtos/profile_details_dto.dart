@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/value_objects.dart';
+import '../../domain/profile_details.dart';
 
 part 'profile_details_dto.freezed.dart';
 
