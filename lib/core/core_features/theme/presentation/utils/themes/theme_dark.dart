@@ -90,8 +90,7 @@ class ThemeDark implements ITheme {
   );
 
   @override
-  late final IconThemeData iconTheme =
-      IconThemeData(color: appColors.iconColor);
+  late final IconThemeData iconTheme = IconThemeData(color: appColors.iconColor);
 
   @override
   late final ButtonThemeData buttonTheme = ButtonThemeData(
@@ -113,19 +112,5 @@ class ThemeDark implements ITheme {
   );
 
   @override
-  late final CustomColors customColors = CustomColors(
-    font28Color: appColors.customFont28Color,
-    font20Color: appColors.customFont20Color,
-    font18Color: appColors.customFont18Color,
-    font16Color: appColors.customFont16Color,
-    font14Color: appColors.customFont14Color,
-    font12Color: appColors.customFont12Color,
-    whiteColor: appColors.customWhiteColor,
-    blackColor: appColors.customBlackColor,
-    redColor: appColors.customRedColor,
-    greenColor: appColors.customGreenColor,
-    greyColor: appColors.customGreyColor,
-    marinerColor: appColors.customMarinerColor,
-    loadingIndicatorColor: appColors.customLoadingIndicatorColor,
-  );
+  late final CustomColors customColors = appColors.customColors;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'custom_colors.dart';
 import 'i_app_colors.dart';
 
 class AppColorsLight implements IAppColors {
@@ -63,29 +64,19 @@ class AppColorsLight implements IAppColors {
   final Color cardShadowColor = const Color(0x8A000000);
 
   @override
-  final Color customFont28Color = const Color(0xff000000);
-  @override
-  final Color customFont20Color = const Color(0xff000000);
-  @override
-  final Color customFont18Color = const Color(0xff000000);
-  @override
-  final Color customFont16Color = const Color(0xff000000);
-  @override
-  final Color customFont14Color = const Color(0xff000000);
-  @override
-  final Color customFont12Color = const Color(0xFF858992);
-  @override
-  final Color customWhiteColor = const Color(0xffffffff);
-  @override
-  final Color customBlackColor = const Color(0xff000000);
-  @override
-  final Color customRedColor = const Color(0xFFF44336);
-  @override
-  final Color customGreenColor = const Color(0xFF2bbb2b);
-  @override
-  final Color customGreyColor = const Color(0xFF9E9E9E);
-  @override
-  final Color customMarinerColor = const Color(0xFF4268A1);
-  @override
-  final Color customLoadingIndicatorColor = const Color(0xFF193764);
+  final CustomColors customColors = const CustomColors(
+    font28Color: Color(0xff000000),
+    font20Color: Color(0xff000000),
+    font18Color: Color(0xff000000),
+    font16Color: Color(0xff000000),
+    font14Color: Color(0xff000000),
+    font12Color: Color(0xFF858992),
+    whiteColor: Color(0xffffffff),
+    blackColor: Color(0xff000000),
+    redColor: Color(0xFFF44336),
+    greenColor: Color(0xFF2bbb2b),
+    greyColor: Color(0xFF9E9E9E),
+    marinerColor: Color(0xFF4268A1),
+    loadingIndicatorColor: Color(0xFF193764),
+  );
 }

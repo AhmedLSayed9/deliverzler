@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_colors.dart';
+
 abstract class IAppColors {
   ///Main
   // The background color for major parts of the app (toolbars, tab bars, etc)
@@ -49,20 +51,5 @@ abstract class IAppColors {
   abstract final Color cardShadowColor;
 
   ///Custom Colors
-  //Fonts Colors
-  abstract final Color customFont28Color;
-  abstract final Color customFont20Color;
-  abstract final Color customFont18Color;
-  abstract final Color customFont16Color;
-  abstract final Color customFont14Color;
-  abstract final Color customFont12Color;
-  //Main Colors
-  abstract final Color customWhiteColor;
-  abstract final Color customBlackColor;
-  abstract final Color customRedColor;
-  abstract final Color customGreenColor;
-  abstract final Color customGreyColor;
-  abstract final Color customMarinerColor;
-  //Others
-  abstract final Color customLoadingIndicatorColor;
+  abstract final CustomColors customColors;
 }
