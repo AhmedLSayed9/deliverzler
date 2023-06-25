@@ -70,7 +70,7 @@ class SmallLoadingAnimation extends StatelessWidget {
       child: ColoredBox(
         color: Colors.transparent,
         child: Lottie.asset(
-          MyAssets.ASSETS_JSON_LOADING_ANIMATION_JSON,
+          MyAssets.ASSETS_IMAGES_CORE_LOADING_ANIMATION_JSON,
           height: height,
           width: width,
         ),

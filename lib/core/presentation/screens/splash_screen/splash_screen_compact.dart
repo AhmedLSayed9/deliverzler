@@ -26,7 +26,7 @@ class SplashScreenCompact extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Image.asset(
-            MyAssets.ASSETS_SPLASH_SCREEN_CUSTOM_SPLASH_PNG,
+            MyAssets.ASSETS_IMAGES_CORE_CUSTOM_SPLASH_PNG,
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -50,7 +50,7 @@ class SplashScreenCompact extends StatelessWidget {
                         child: FractionallySizedBox(
                           widthFactor: 0.64,
                           child: Lottie.asset(
-                            MyAssets.ASSETS_SPLASH_SCREEN_CUSTOM_SPLASH_ANIMATION_JSON,
+                            MyAssets.ASSETS_IMAGES_CORE_CUSTOM_SPLASH_ANIMATION_JSON,
                           ),
                         ),
                       ),

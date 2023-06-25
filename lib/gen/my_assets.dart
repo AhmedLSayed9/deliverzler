@@ -71,9 +71,21 @@ class MyAssets {
   static const String ASSETS_IMAGES_CORE_APP_LOGO_PNG =
       'assets/images/core/app_logo.png';
 
+  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/images/core/custom_splash.png)
+  static const String ASSETS_IMAGES_CORE_CUSTOM_SPLASH_PNG =
+      'assets/images/core/custom_splash.png';
+
+  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/images/core/custom_splash_animation.json)
+  static const String ASSETS_IMAGES_CORE_CUSTOM_SPLASH_ANIMATION_JSON =
+      'assets/images/core/custom_splash_animation.json';
+
   /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/images/core/loading.gif)
   static const String ASSETS_IMAGES_CORE_LOADING_GIF =
       'assets/images/core/loading.gif';
+
+  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/images/core/loading_animation.json)
+  static const String ASSETS_IMAGES_CORE_LOADING_ANIMATION_JSON =
+      'assets/images/core/loading_animation.json';
 
   /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/images/core/no_internet.jpg)
   static const String ASSETS_IMAGES_CORE_NO_INTERNET_JPG =
@@ -87,28 +99,11 @@ class MyAssets {
   static const String ASSETS_IMAGES_LOGIN_LOGIN_BACKGROUND_PNG =
       'assets/images/login/login_background.png';
 
-  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/json/loading_animation.json)
-  static const String ASSETS_JSON_LOADING_ANIMATION_JSON =
-      'assets/json/loading_animation.json';
+  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/map_styles/dark_map.json)
+  static const String ASSETS_MAP_STYLES_DARK_MAP_JSON =
+      'assets/map_styles/dark_map.json';
 
-  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/json/map_style_dark.json)
-  static const String ASSETS_JSON_MAP_STYLE_DARK_JSON =
-      'assets/json/map_style_dark.json';
-
-  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/json/map_style_light.json)
-  static const String ASSETS_JSON_MAP_STYLE_LIGHT_JSON =
-      'assets/json/map_style_light.json';
-
-  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/splash_screen/android12_transparent_splash_icon.png)
-  static const String
-      ASSETS_SPLASH_SCREEN_ANDROID12_TRANSPARENT_SPLASH_ICON_PNG =
-      'assets/splash_screen/android12_transparent_splash_icon.png';
-
-  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/splash_screen/custom_splash.png)
-  static const String ASSETS_SPLASH_SCREEN_CUSTOM_SPLASH_PNG =
-      'assets/splash_screen/custom_splash.png';
-
-  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/splash_screen/custom_splash_animation.json)
-  static const String ASSETS_SPLASH_SCREEN_CUSTOM_SPLASH_ANIMATION_JSON =
-      'assets/splash_screen/custom_splash_animation.json';
+  /// ![preview](file:///Users/bx777/development/Flutter/Projects/deliverzler/assets/map_styles/light_map.json)
+  static const String ASSETS_MAP_STYLES_LIGHT_MAP_JSON =
+      'assets/map_styles/light_map.json';
 }

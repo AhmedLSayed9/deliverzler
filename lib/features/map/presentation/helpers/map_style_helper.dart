@@ -9,8 +9,8 @@ abstract class MapStyleHelper {
   static Future<String> getMapStyle({required bool isDarkMode}) async {
     return rootBundle.loadString(
       isDarkMode
-          ? MyAssets.ASSETS_JSON_MAP_STYLE_DARK_JSON
-          : MyAssets.ASSETS_JSON_MAP_STYLE_LIGHT_JSON,
+          ? MyAssets.ASSETS_MAP_STYLES_DARK_MAP_JSON
+          : MyAssets.ASSETS_MAP_STYLES_LIGHT_MAP_JSON,
     );
   }
 

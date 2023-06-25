@@ -102,14 +102,13 @@ flutter:
   generate: true # Enable generation for localizations
 
   assets:
+    - assets/map_styles/
     - assets/icons/
     - assets/icons/dialog_widget_icons/
     - assets/icons/languages_icons/
     - assets/icons/screens_icons/
     - assets/images/core/
     - assets/images/login/
-    - assets/json/
-    - assets/splash_screen/
 
   fonts:
     - family: Poppins
