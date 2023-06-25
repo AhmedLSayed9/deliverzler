@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../gen/my_assets.dart';
 import '../helpers/localization_helper.dart';
-import '../styles/app_images.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
 import '../utils/riverpod_framework.dart';
@@ -10,7 +10,6 @@ import 'main_drawer_bottom_component.dart';
 import 'main_drawer_user_info_component.dart';
 
 class MainDrawer extends ConsumerWidget {
-
   const MainDrawer({
     required this.scaffoldKey,
     super.key,
@@ -39,7 +38,7 @@ class MainDrawer extends ConsumerWidget {
                 ),
                 DrawerItem(
                   title: tr(context).myProfile,
-                  icon: AppImages.profileScreenIcon,
+                  icon: MyAssets.ASSETS_ICONS_SCREENS_ICONS_PROFILE_PNG,
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
                     //_indexNotifier.state = 0;
@@ -47,7 +46,7 @@ class MainDrawer extends ConsumerWidget {
                 ),
                 DrawerItem(
                   title: tr(context).settings,
-                  icon: AppImages.settingsScreenIcon,
+                  icon: MyAssets.ASSETS_ICONS_SCREENS_ICONS_SETTINGS_PNG,
                   onTap: () {
                     scaffoldKey.currentState!.openEndDrawer();
                     //_indexNotifier.state = 2;
@@ -67,7 +66,6 @@ class MainDrawer extends ConsumerWidget {
 }
 
 class DrawerItem extends StatelessWidget {
-
   const DrawerItem({
     required this.title,
     required this.icon,

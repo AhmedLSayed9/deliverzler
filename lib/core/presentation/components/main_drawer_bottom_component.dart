@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../gen/my_assets.dart';
 import '../helpers/localization_helper.dart';
-import '../styles/app_images.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
 import '../utils/riverpod_framework.dart';
@@ -30,7 +30,7 @@ class MainDrawerBottomComponent extends ConsumerWidget {
             width: Sizes.marginH6,
           ),
           CustomIcon.i32(
-            AppImages.appLogoIcon,
+            MyAssets.ASSETS_IMAGES_CORE_APP_LOGO_PNG,
             fit: BoxFit.fill,
           ),
         ],

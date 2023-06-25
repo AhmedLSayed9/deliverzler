@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../gen/my_assets.dart';
 import '../../../../presentation/helpers/localization_helper.dart';
-import '../../../../presentation/styles/app_images.dart';
 
 enum AppLocale {
-  english('en', AppImages.languageIconEnglish),
-  arabic('ar', AppImages.languageIconArabic);
+  english('en', MyAssets.ASSETS_ICONS_LANGUAGES_ICONS_ENGLISH_PNG),
+  arabic('ar', MyAssets.ASSETS_ICONS_LANGUAGES_ICONS_ARABIC_PNG);
 
   const AppLocale(this.code, this.flag);
 

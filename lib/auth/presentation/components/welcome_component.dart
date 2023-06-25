@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../../../core/presentation/helpers/localization_helper.dart';
-import '../../../core/presentation/styles/app_images.dart';
 import '../../../core/presentation/styles/font_styles.dart';
 import '../../../core/presentation/styles/sizes.dart';
 import '../../../core/presentation/widgets/custom_icon.dart';
 import '../../../core/presentation/widgets/custom_text.dart';
+import '../../../gen/my_assets.dart';
 
 class WelcomeComponent extends StatelessWidget {
   const WelcomeComponent({super.key});
@@ -28,7 +28,7 @@ class WelcomeComponent extends StatelessWidget {
               ),
             ),
             CustomIcon.i48(
-              AppImages.hiHand,
+              MyAssets.ASSETS_IMAGES_LOGIN_HI_HAND_PNG,
               padding: const EdgeInsetsDirectional.only(
                 bottom: Sizes.marginV6,
               ),

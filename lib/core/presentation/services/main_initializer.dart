@@ -48,7 +48,7 @@ Future<void> _initFirebase() async {
 
 Future<void> _precacheCustomSplashImages(BuildContext context) async {
   await Future.wait([
-    precacheImage(const AssetImage(AppImages.splash), context),
+    precacheImage(const AssetImage(MyAssets.ASSETS_SPLASH_SCREEN_CUSTOM_SPLASH_PNG), context),
   ]);
 }
 

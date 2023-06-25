@@ -7,9 +7,9 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/presentation/components/appbar_with_icon_component.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/app_router.dart';
-import '../../../../core/presentation/styles/app_images.dart';
 import '../../../../core/presentation/widgets/custom_app_bar_widget.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../gen/my_assets.dart';
 
 /// The default height of the toolbar component of the [AppBar].
 const double kToolbarHeight = 56;
@@ -63,7 +63,7 @@ class TabAppBarComponent extends StatelessWidget
       return CustomAppBar(
         context,
         title: AppBarWithIconComponent(
-          icon: AppImages.profileScreenIcon,
+          icon: MyAssets.ASSETS_ICONS_SCREENS_ICONS_PROFILE_PNG,
           title: tr(context).myProfile,
         ),
       );
@@ -74,7 +74,7 @@ class TabAppBarComponent extends StatelessWidget
       return CustomAppBar(
         context,
         title: AppBarWithIconComponent(
-          icon: AppImages.settingsScreenIcon,
+          icon: MyAssets.ASSETS_ICONS_SCREENS_ICONS_SETTINGS_PNG,
           title: tr(context).settings,
         ),
       );
@@ -83,7 +83,7 @@ class TabAppBarComponent extends StatelessWidget
         context,
         hasBackButton: true,
         title: AppBarWithIconComponent(
-          icon: AppImages.languageScreenIcon,
+          icon: MyAssets.ASSETS_ICONS_SCREENS_ICONS_LANGUAGE_PNG,
           title: tr(context).language,
         ),
       );

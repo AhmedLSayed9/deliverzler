@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../gen/my_assets.dart';
 import '../helpers/localization_helper.dart';
 import '../routing/navigation_service.dart';
-import '../styles/app_images.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
 import '../widgets/custom_button.dart';
@@ -65,7 +65,7 @@ abstract class Dialogs {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           CustomIcon.i72(
-            AppImages.error,
+            MyAssets.ASSETS_ICONS_DIALOG_WIDGET_ICONS_ERROR_PNG,
             color: const Color(0xffcca76a),
           ),
           const SizedBox(

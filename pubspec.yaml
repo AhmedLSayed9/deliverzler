@@ -102,23 +102,23 @@ flutter:
   generate: true # Enable generation for localizations
 
   assets:
+    - assets/icons/
+    - assets/icons/dialog_widget_icons/
+    - assets/icons/languages_icons/
+    - assets/icons/screens_icons/
     - assets/images/core/
     - assets/images/login/
-    - assets/images/core/dialog_widget_icons/
-    - assets/images/app_icons/
-    - assets/images/app_icons/screens_icons/
-    - assets/images/app_icons/languages_icons/
     - assets/json/
-    - assets/json/map_styles/
+    - assets/splash_screen/
 
   fonts:
-    - family: poppins
+    - family: Poppins
       fonts:
-        - asset: assets/fonts/poppins.ttf
-        - asset: assets/fonts/poppins_bold.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
-    - family: tajawal
+    - family: Tajawal
       fonts:
-        - asset: assets/fonts/tajawal.ttf
-        - asset: assets/fonts/tajawal_bold.ttf
+        - asset: assets/fonts/Tajawal-Regular.ttf
+        - asset: assets/fonts/Tajawal-Bold.ttf
           weight: 700

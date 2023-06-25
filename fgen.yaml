@@ -1,0 +1,7 @@
+# Current generated assets command:
+# fgen --no-watch --output lib/gen/my_assets.dart --name MyAssets
+# For help: fgen -h
+
+exclude:
+
+include:

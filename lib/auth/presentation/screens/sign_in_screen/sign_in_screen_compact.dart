@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/screens/full_screen_platfom_scaffold.dart';
-import '../../../../core/presentation/styles/app_images.dart';
+import '../../../../core/presentation/screens/full_screen_platform_scaffold.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/scroll_behaviors.dart';
+import '../../../../gen/my_assets.dart';
 import '../../components/login_content_component.dart';
 import '../../components/login_logo_component.dart';
 
@@ -23,7 +23,7 @@ class SignInScreenCompact extends StatelessWidget {
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                      AppImages.loginBackground,
+                      MyAssets.ASSETS_IMAGES_LOGIN_LOGIN_BACKGROUND_PNG,
                     ),
                     fit: BoxFit.cover,
                   ),

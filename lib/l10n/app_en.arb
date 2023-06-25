@@ -1,13 +1,11 @@
 {
-  "@_CORE": {
-  },
+  "@_CORE": {},
   "appName": "Deliverzler",
-  "fontFamily": "poppins",
+  "fontFamily": "Poppins",
   "noInternetConnection": "No internet connection",
   "screenNotFound": "Oops! Screen not found!",
   "goToHome": "Go to Home",
-  "pleaseCheckYourDeviceNetwork":
-      "Please check your device\"s network connection.",
+  "pleaseCheckYourDeviceNetwork": "Please check your device\"s network connection.",
   "retry": "Retry",
   "ops_err": "Oops! Something went wrong!",
   "pleaseTryAgain": "Please try again!",
@@ -57,18 +55,15 @@
   "error_500": "Internal server error, please contact support for more details.",
   "error_503": "Service not available",
   "error_occurred": "Unexpected error occurred!",
-  "@_AUTH": {
-  },
+  "@_AUTH": {},
   "welcome": "Welcome",
   "signInToYourAccount": "Sign in to your account",
   "signIn": "SIGN IN",
   "email": "Email",
   "password": "Password",
   "phone": "Phone",
-  "emailOrPasswordIsInCorrect":
-      "Email or password is incorrect. Please try again.",
-  "@_GENERAL": {
-  },
+  "emailOrPasswordIsInCorrect": "Email or password is incorrect. Please try again.",
+  "@_GENERAL": {},
   "english": "English",
   "arabic": "Arabic",
   "settings": "Settings",
@@ -77,15 +72,13 @@
   "theme": "Theme",
   "language": "Language",
   "selectYourPreferredLanguage": "Select Your Preferred Language",
-  "@_PROFILE": {
-  },
+  "@_PROFILE": {},
   "myProfile": "My Profile",
   "fullName": "Full Name",
   "enterYourName": "Enter Your Name",
   "mobileNumber": "Mobile Number",
   "enterYourNumber": "Enter Your Number",
-  "@_HOME": {
-  },
+  "@_HOME": {},
   "home": "Home",
   "please_enable_location_service": "Please enable location services, and try again",
   "location_permission_required": "Without location permission you can't deliver orders",
@@ -112,13 +105,10 @@
   "doYouWantToDeliverTheOrder": "Do you want to Deliver the order?",
   "doYouWantToConfirmTheOrder": "Do you want to Confirm the order?",
   "youCanNotProceedThisOrder": "You can\"t proceed this order!",
-  "youCanOnlyProceedOrdersYouDelivering":
-      "You can only proceed orders that you\"re delivering.",
+  "youCanOnlyProceedOrdersYouDelivering": "You can only proceed orders that you\"re delivering.",
   "arrivedLocation": "Arrived Location!",
-  "youAreCloseToLocationArea":
-      "You\"re close to location area. Order delivery confirmation has enabled.",
-  "@_MAP": {
-  },
+  "youAreCloseToLocationArea": "You\"re close to location area. Order delivery confirmation has enabled.",
+  "@_MAP": {},
   "searchForAPlace": "Search for a place...",
   "myCurrentLocation": "My current location",
   "pleaseSearchForLocation": "Please search for the location!",

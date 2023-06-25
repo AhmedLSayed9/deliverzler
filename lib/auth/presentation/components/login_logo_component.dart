@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/presentation/helpers/localization_helper.dart';
-import '../../../core/presentation/styles/app_images.dart';
 import '../../../core/presentation/styles/sizes.dart';
 import '../../../core/presentation/widgets/custom_text.dart';
+import '../../../gen/my_assets.dart';
 
 class LoginLogoComponent extends StatelessWidget {
   const LoginLogoComponent({super.key});
@@ -14,7 +14,7 @@ class LoginLogoComponent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          AppImages.appLogoIcon,
+          MyAssets.ASSETS_IMAGES_CORE_APP_LOGO_PNG,
           height: Sizes.imageR140,
           width: Sizes.imageR140,
           fit: BoxFit.cover,

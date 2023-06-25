@@ -1,8 +1,7 @@
 {
-  "@_CORE": {
-  },
+  "@_CORE": {},
   "appName": "Deliverzler",
-  "fontFamily": "tajawal",
+  "fontFamily": "Tajawal",
   "noInternetConnection": "لا يوجد اتصال بالانترنت",
   "screenNotFound": "عذرًا! لم يتم العثور على الصفحة!",
   "goToHome": "الذهاب للصفحة الرئيسية",
@@ -56,18 +55,15 @@
   "error_500": "خطأ داخلي في الخادم ، يرجى التواصل مع الدعم لمزيد من التفاصيل.",
   "error_503": "الخدمة غير متوفرة",
   "error_occurred": "لقد حدث خطأ ما!",
-  "@_AUTH": {
-  },
+  "@_AUTH": {},
   "welcome": "مرحباً",
   "signInToYourAccount": "قم بتسجيل الدخول إلى حسابك",
   "signIn": "تسجيل الدخول",
   "email": "البريد الإلكتروني",
   "password": "الرقم السري",
   "phone": "رقم الهاتف",
-  "emailOrPasswordIsInCorrect":
-      "البريد أو الرقم السري غير صحيح، حاول مرة أخرى!",
-  "@_GENERAL": {
-  },
+  "emailOrPasswordIsInCorrect": "البريد أو الرقم السري غير صحيح، حاول مرة أخرى!",
+  "@_GENERAL": {},
   "english": "الإنجليزية",
   "arabic": "العربية",
   "settings": "الإعدادات",
@@ -76,15 +72,13 @@
   "theme": "المظهر",
   "language": "اللغة",
   "selectYourPreferredLanguage": "اختر لغتك المفضلة",
-  "@_PROFILE": {
-  },
+  "@_PROFILE": {},
   "myProfile": "الملف الشخصي",
   "fullName": "الاسم بالكامل",
   "enterYourName": "أدخل الاسم الشخصي",
   "mobileNumber": "رقم الهاتف",
   "enterYourNumber": "أدخل رقم الهاتف",
-  "@_HOME": {
-  },
+  "@_HOME": {},
   "home": "الرئيسية",
   "please_enable_location_service": "الرجاء تمكين خدمة الموقع ، وحاول مرة أخرى...",
   "location_permission_required": "بدون إذن الموقع لا يمكنك توصيل الطلبات",
@@ -111,12 +105,10 @@
   "doYouWantToDeliverTheOrder": "هل تريد توصيل هذا الطلب؟",
   "doYouWantToConfirmTheOrder": "هل تريد تأكيد توصيل هذا الطلب؟",
   "youCanNotProceedThisOrder": "لا يمكنك تنفيذ هذا الطلب!",
-  "youCanOnlyProceedOrdersYouDelivering":
-      "يمكنك تنفيذ الطلبات التي تقوم بتوصيلها فقط.",
+  "youCanOnlyProceedOrdersYouDelivering": "يمكنك تنفيذ الطلبات التي تقوم بتوصيلها فقط.",
   "arrivedLocation": "تم الوصول للموقع!",
   "youAreCloseToLocationArea": "أنت قريب من الموقع. تم تفعيل تأكيد الطلب.",
-  "@_MAP": {
-  },
+  "@_MAP": {},
   "searchForAPlace": "ابحث عن موقع...",
   "myCurrentLocation": "موقعي الحالي",
   "pleaseSearchForLocation": "الرجاء البحث عن الموقع!",

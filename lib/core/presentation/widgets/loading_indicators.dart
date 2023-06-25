@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:lottie/lottie.dart';
 
+import '../../../gen/my_assets.dart';
 import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
-import '../styles/app_images.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
 import 'custom_text.dart';
@@ -70,7 +70,7 @@ class SmallLoadingAnimation extends StatelessWidget {
       child: ColoredBox(
         color: Colors.transparent,
         child: Lottie.asset(
-          AppImages.loadingAnimation,
+          MyAssets.ASSETS_JSON_LOADING_ANIMATION_JSON,
           height: height,
           width: width,
         ),
