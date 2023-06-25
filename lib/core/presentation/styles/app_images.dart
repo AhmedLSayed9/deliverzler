@@ -2,23 +2,20 @@ import 'dart:core';
 
 class AppImages {
   static const String jsonPath = 'assets/json/';
-  static const String welcomeImagesPath = 'assets/images/welcome/';
-  static const String loginImagesPath = 'assets/images/login/';
   static const String coreImagesPath = 'assets/images/core/';
-  static const String dialogWidgetIconsPath =
-      '${coreImagesPath}dialog_widget_icons/';
+  static const String loginImagesPath = 'assets/images/login/';
+  static const String dialogWidgetIconsPath = '${coreImagesPath}dialog_widget_icons/';
   static const String appIconsPath = 'assets/images/app_icons/';
   static const String appImagesPath = 'assets/images/app_images/';
   static const String appScreensIconsPath = '${appIconsPath}screens_icons/';
   static const String appLanguagesIconsPath = '${appIconsPath}languages_icons/';
 
   /// Splash Screen + OnBoarding
-  static const String splash = '${welcomeImagesPath}splash.png';
+  static const String splash = '${coreImagesPath}splash.png';
   static const String splashAnimation = '${jsonPath}splash_animation.json';
 
   /// Login
-  static const String loginBackground =
-      '${loginImagesPath}login_background.png';
+  static const String loginBackground = '${loginImagesPath}login_background.png';
   static const String hiHand = '${loginImagesPath}hi_hand.png';
 
   /// Core
@@ -44,8 +41,7 @@ class AppImages {
   static const String settingsScreenIcon = '${appScreensIconsPath}settings.png';
   static const String languageScreenIcon = '${appScreensIconsPath}language.png';
   //Languages Icons
-  static const String languageIconEnglish =
-      '${appLanguagesIconsPath}english.png';
+  static const String languageIconEnglish = '${appLanguagesIconsPath}english.png';
   static const String languageIconArabic = '${appLanguagesIconsPath}arabic.png';
   //Map
   static const String mapLightStyle = '${jsonPath}map_styles/light.json';

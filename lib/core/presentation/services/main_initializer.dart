@@ -8,9 +8,16 @@ Future<void> _mainInitializer() async {
   // App layout will be built but not displayed.
   widgetsBinding.deferFirstFrame();
   widgetsBinding.addPostFrameCallback((_) async {
-    // Run any function you want to wait for before showing app layout
+    // Run any function you want to wait for before showing app layout.
     final BuildContext context = widgetsBinding.rootElement!;
     await _precacheCustomSplashImages(context);
+
+    // Show the notification bar back when the app loads after the native splash.
+    await SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
+    );
+
     // Closes splash screen, and show the app layout.
     widgetsBinding.allowFirstFrame();
   });

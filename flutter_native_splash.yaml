@@ -1,0 +1,37 @@
+flutter_native_splash:
+  # color or background_image is the only required parameter.  Use color to set the background
+  # of your splash screen to a solid color.  Use background_image to set the background of your
+  # splash screen to a png image.  This is useful for gradients. The image will be stretch to the
+  # size of the app. Only one parameter can be used, color and background_image cannot both be set.
+  color: "#FAFAFA"
+  color_dark: "#303030"
+  #background_image: assets/splash_screen/background.png
+  #background_image_dark: assets/splash_screen/background_dark.png
+
+  # The image parameter allows you to specify an image used in the splash screen.
+  # It must be a png file and should be sized for 4x pixel density.
+  # image: assets/splash_screen/splash_icon.png
+  # image_dark: assets/splash_screen/splash_icon_dark.png
+  # image: assets/splash_screen/android12_transparent_splash_icon.png
+  # image_dark: assets/splash_screen/android12_transparent_splash_icon.png
+
+  # Android 12 handles the splash screen differently than previous versions.
+  # The image parameter sets the splash screen icon image.
+  # If this parameter is not specified, the app's launcher icon will be used instead.
+  # Please note that the splash screen will be clipped to a circle on the center of the screen.
+  # App icon with an icon background: This should be 960×960 pixels, and fit within a circle 640 pixels in diameter.
+  # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle 768 pixels in diameter.
+  android_12:
+    image: assets/splash_screen/android12_transparent_splash_icon.png
+    image_dark: assets/splash_screen/android12_transparent_splash_icon.png
+
+  # To hide the notification bar, use the fullscreen parameter.  Has no effect in web since web
+  # has no notification bar.  Defaults to false.
+  # NOTE: Unlike Android, iOS will not automatically show the notification bar when the app loads.
+  #       To show the notification bar, add the following code to your Flutter app:
+  #       WidgetsFlutterBinding.ensureInitialized();
+  #       SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  fullscreen: true
+
+  android_gravity: center
+  ios_content_mode: center
