@@ -20,8 +20,6 @@ extension AppErrorExtension on Object {
 extension _ServerErrorExtension on ServerException {
   String serverErrorMessage(BuildContext context) {
     switch (type) {
-      case ServerExceptionType.unknown:
-        return tr(context).unknownError;
       case ServerExceptionType.general:
         return message; //Business logic error message from the backend
       case ServerExceptionType.unauthorized:
@@ -48,6 +46,8 @@ extension _ServerErrorExtension on ServerException {
         return tr(context).authUserNotFoundError;
       case ServerExceptionType.authUserDisabled:
         return tr(context).authUserDisabledError;
+      case ServerExceptionType.unknown:
+        return tr(context).unknownError;
     }
   }
 }
