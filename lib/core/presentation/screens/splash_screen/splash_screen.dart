@@ -20,10 +20,10 @@ class SplashScreen extends HookConsumerWidget {
         splashTargetProvider,
         (prevState, newState) {
           late String nextRoute;
-          newState.unwrapPrevious().whenOrNull(
-                data: (next) => nextRoute = next,
-                error: (e, st) => nextRoute = const NoInternetRoute().location,
-              );
+          newState.whenOrNull(
+            data: (next) => nextRoute = next,
+            error: (e, st) => nextRoute = const NoInternetRoute().location,
+          );
           context.go(nextRoute);
         },
       );
