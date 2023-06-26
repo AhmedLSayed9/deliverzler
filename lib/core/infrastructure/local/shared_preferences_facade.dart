@@ -35,17 +35,6 @@ class SharedPreferencesFacade {
 
   final SharedPreferences sharedPrefs;
 
-  /*
-  late final bool hasHistory;
-  initHasHistory() async {
-    hasHistory =
-        await restoreData(key: 'has_history', dataType: DataType.bool) ?? false;
-    log('hasHistory: ' + hasHistory.toString());
-    if (!hasHistory){
-      saveData(key: 'has_history', value: true, dataType: DataType.bool);
-    }
-  }*/
-
   Future<bool> saveData({
     required DataType dataType,
     required String key,
