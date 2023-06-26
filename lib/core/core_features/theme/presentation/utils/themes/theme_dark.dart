@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../../presentation/styles/sizes.dart';
 import '../colors/app_colors_dark.dart';
 import '../colors/custom_colors.dart';
 import '../colors/i_app_colors.dart';
@@ -61,24 +62,36 @@ class ThemeDark implements ITheme {
     prefixIconColor: appColors.textFieldPrefixIconColor,
     suffixIconColor: appColors.textFieldSuffixIconColor,
     border: OutlineInputBorder(
+      borderRadius: const BorderRadius.all(
+        Radius.circular(Sizes.textFieldR12),
+      ),
       borderSide: BorderSide(
         color: appColors.textFieldBorderColor,
         width: 0.8,
       ),
     ),
     enabledBorder: OutlineInputBorder(
+      borderRadius: const BorderRadius.all(
+        Radius.circular(Sizes.textFieldR12),
+      ),
       borderSide: BorderSide(
         color: appColors.textFieldEnabledBorderColor,
         width: 0.8,
       ),
     ),
     focusedBorder: OutlineInputBorder(
+      borderRadius: const BorderRadius.all(
+        Radius.circular(Sizes.textFieldR12),
+      ),
       borderSide: BorderSide(
         color: appColors.textFieldFocusedBorderColor,
         width: 1.2,
       ),
     ),
     errorBorder: OutlineInputBorder(
+      borderRadius: const BorderRadius.all(
+        Radius.circular(Sizes.textFieldR12),
+      ),
       borderSide: BorderSide(
         color: appColors.textFieldErrorBorderColor,
         width: 0.8,

@@ -89,11 +89,8 @@ class CustomTextFormField extends StatelessWidget {
                 color: Theme.of(context).hintColor,
               ),
               prefixIcon: materialPrefix,
-              prefixIconColor:
-                  Theme.of(context).inputDecorationTheme.prefixIconColor,
-              prefixIconConstraints: const BoxConstraints(
-                
-              ),
+              prefixIconColor: Theme.of(context).inputDecorationTheme.prefixIconColor,
+              prefixIconConstraints: const BoxConstraints(),
               suffixIcon: suffix != null
                   ? Padding(
                       padding: const EdgeInsetsDirectional.only(
@@ -102,11 +99,8 @@ class CustomTextFormField extends StatelessWidget {
                       child: suffix,
                     )
                   : null,
-              suffixIconColor:
-                  Theme.of(context).inputDecorationTheme.suffixIconColor,
-              suffixIconConstraints: const BoxConstraints(
-                
-              ),
+              suffixIconColor: Theme.of(context).inputDecorationTheme.suffixIconColor,
+              suffixIconConstraints: const BoxConstraints(),
               errorStyle: TextStyle(
                 color: Theme.of(context).inputDecorationTheme.errorStyle?.color,
                 fontWeight: FontStyles.fontWeightNormal,
@@ -114,49 +108,11 @@ class CustomTextFormField extends StatelessWidget {
                 fontFamily: FontStyles.fontFamily(context),
               ),
               errorMaxLines: errorMaxLines,
-              border: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(Sizes.textFieldR12),
-                ),
-                borderSide:
-                    Theme.of(context).inputDecorationTheme.border!.borderSide,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(Sizes.textFieldR12),
-                ),
-                borderSide: Theme.of(context)
-                    .inputDecorationTheme
-                    .enabledBorder!
-                    .borderSide,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(Sizes.textFieldR12),
-                ),
-                borderSide: Theme.of(context)
-                    .inputDecorationTheme
-                    .focusedBorder!
-                    .borderSide,
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(Sizes.textFieldR12),
-                ),
-                borderSide: Theme.of(context)
-                    .inputDecorationTheme
-                    .errorBorder!
-                    .borderSide,
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(Sizes.textFieldR12),
-                ),
-                borderSide: Theme.of(context)
-                    .inputDecorationTheme
-                    .errorBorder!
-                    .borderSide,
-              ),
+              border: Theme.of(context).inputDecorationTheme.border,
+              enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
+              focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
+              errorBorder: Theme.of(context).inputDecorationTheme.errorBorder,
+              focusedErrorBorder: Theme.of(context).inputDecorationTheme.errorBorder,
             ),
           ),
           cupertinoData: CupertinoFormRowData(
