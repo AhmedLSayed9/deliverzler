@@ -43,12 +43,10 @@ void main() {
         'should emit AsyncData(tLocale) when LocaleRepo.getAppLocale returns normally',
         () async {
           // GIVEN
-          when(() => mockLocaleRepo.getAppLocale())
-              .thenAnswer((_) async => tLocale.code);
+          when(() => mockLocaleRepo.getAppLocale()).thenReturn(tLocale.code);
 
           final container = setUpRepoContainer();
-          final listener =
-              setUpListener(container, appLocaleControllerProvider);
+          final listener = setUpListener(container, appLocaleControllerProvider);
 
           // WHEN
           verifyOnly(listener, () => listener(null, loadingState));
@@ -75,8 +73,7 @@ void main() {
           );
 
           final container = setUpRepoContainer();
-          final listener =
-              setUpListener(container, appLocaleControllerProvider);
+          final listener = setUpListener(container, appLocaleControllerProvider);
 
           // WHEN
           verifyOnly(listener, () => listener(null, loadingState));
@@ -107,23 +104,19 @@ void main() {
         'should emit AsyncData(tChangeLocale) then call LocaleRepo.cacheAppLocale',
         () async {
           // GIVEN
-          when(() => mockLocaleRepo.getAppLocale())
-              .thenAnswer((_) async => tLocale.code);
-          when(() => mockLocaleRepo.cacheAppLocale(any()))
-              .thenAnswer((_) async => {});
+          when(() => mockLocaleRepo.getAppLocale()).thenReturn(tLocale.code);
+          when(() => mockLocaleRepo.cacheAppLocale(any())).thenAnswer((_) async => {});
 
           final container = setUpRepoContainer();
           await container.read(appLocaleControllerProvider.future);
-          final listener =
-              setUpListener(container, appLocaleControllerProvider);
+          final listener = setUpListener(container, appLocaleControllerProvider);
 
           // WHEN
           verifyOnly(listener, () => listener(null, tLocaleState));
           verifyOnly(mockLocaleRepo, () => mockLocaleRepo.getAppLocale());
 
-          final call = container
-              .read(appLocaleControllerProvider.notifier)
-              .changeLocale(tChangeLocale);
+          final call =
+              container.read(appLocaleControllerProvider.notifier).changeLocale(tChangeLocale);
 
           // THEN
           await expectLater(call, completion(null));

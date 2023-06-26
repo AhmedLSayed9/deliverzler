@@ -154,9 +154,9 @@ void main() {
       () async {
         // GIVEN
         const tResponse = tStringValue;
-        when(() => mockSharedPrefs.getString(tKey)).thenAnswer((_) => tResponse);
+        when(() => mockSharedPrefs.getString(tKey)).thenReturn(tResponse);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData<String>(
+        final result = sharedPrefsFacade.restoreData<String>(
           key: tKey,
           dataType: DataType.string,
         );
@@ -171,9 +171,9 @@ void main() {
       'should return same result from SharedPreferences.getInt when dataType is DataType.int',
       () async {
         // GIVEN
-        when(() => mockSharedPrefs.getInt(tKey)).thenAnswer((_) => tIntValue);
+        when(() => mockSharedPrefs.getInt(tKey)).thenReturn(tIntValue);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData<int>(
+        final result = sharedPrefsFacade.restoreData<int>(
           key: tKey,
           dataType: DataType.int,
         );
@@ -188,9 +188,9 @@ void main() {
       'should return same result from SharedPreferences.getDouble when dataType is DataType.double',
       () async {
         // GIVEN
-        when(() => mockSharedPrefs.getDouble(tKey)).thenAnswer((_) => tDoubleValue);
+        when(() => mockSharedPrefs.getDouble(tKey)).thenReturn(tDoubleValue);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData<double>(
+        final result = sharedPrefsFacade.restoreData<double>(
           key: tKey,
           dataType: DataType.double,
         );
@@ -205,9 +205,9 @@ void main() {
       'should return same result from SharedPreferences.getBool when dataType is DataType.bool',
       () async {
         // GIVEN
-        when(() => mockSharedPrefs.getBool(tKey)).thenAnswer((_) => tBoolValue);
+        when(() => mockSharedPrefs.getBool(tKey)).thenReturn(tBoolValue);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData<bool>(
+        final result = sharedPrefsFacade.restoreData<bool>(
           key: tKey,
           dataType: DataType.bool,
         );
@@ -222,9 +222,9 @@ void main() {
       'should return same result from SharedPreferences.getStringList when dataType is DataType.stringList',
       () async {
         // GIVEN
-        when(() => mockSharedPrefs.getStringList(tKey)).thenAnswer((_) => tStringList);
+        when(() => mockSharedPrefs.getStringList(tKey)).thenReturn(tStringList);
         // WHEN
-        final result = await sharedPrefsFacade.restoreData<List<String>>(
+        final result = sharedPrefsFacade.restoreData<List<String>>(
           key: tKey,
           dataType: DataType.stringList,
         );
@@ -242,14 +242,13 @@ void main() {
       () async {
         // GIVEN
         when(() => mockSharedPrefs.getString(tKey)).thenThrow(tError);
-        // WHEN
-        final call = sharedPrefsFacade.restoreData<String>(
-          key: tKey,
-          dataType: DataType.string,
-        );
+
         // THEN
-        await expectLater(
-          () => call,
+        expect(
+          () => sharedPrefsFacade.restoreData<String>(
+            key: tKey,
+            dataType: DataType.string,
+          ),
           throwsA(tError.localErrorToCacheException()),
         );
         verify(() => mockSharedPrefs.getString(tKey)).called(1);

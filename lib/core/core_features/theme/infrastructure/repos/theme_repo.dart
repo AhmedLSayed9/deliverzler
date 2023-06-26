@@ -15,12 +15,7 @@ class ThemeRepo {
 
   final ThemeLocalDataSource localDataSource;
 
-  Future<String> getAppTheme() async {
-    final theme = await localDataSource.getAppTheme();
-    return theme;
-  }
+  String getAppTheme() => localDataSource.getAppTheme();
 
-  Future<void> cacheAppTheme(String themeString) async {
-    await localDataSource.cacheAppTheme(themeString);
-  }
+  Future<void> cacheAppTheme(String themeString) => localDataSource.cacheAppTheme(themeString);
 }

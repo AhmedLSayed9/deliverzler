@@ -35,13 +35,13 @@ void main() {
         'when the cached data is present',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.getAppTheme()).thenAnswer((_) async => tTheme);
+          when(() => mockThemeLocalDataSource.getAppTheme()).thenReturn(tTheme);
 
           final container = setUpRemoteContainer();
 
           // WHEN
           final themeRepo = container.read(themeRepoProvider);
-          final result = await themeRepo.getAppTheme();
+          final result = themeRepo.getAppTheme();
 
           // THEN
           verifyOnly(
@@ -63,10 +63,9 @@ void main() {
 
           // WHEN
           final themeRepo = container.read(themeRepoProvider);
-          final call = themeRepo.getAppTheme();
 
           // THEN
-          await expectLater(call, throwsA(tException));
+          expect(themeRepo.getAppTheme, throwsA(tException));
           verifyOnly(
             mockThemeLocalDataSource,
             () => mockThemeLocalDataSource.getAppTheme(),
@@ -112,10 +111,9 @@ void main() {
 
           // WHEN
           final themeRepo = container.read(themeRepoProvider);
-          final call = themeRepo.cacheAppTheme(tTheme);
 
           // THEN
-          await expectLater(call, throwsA(tException));
+          expect(() => themeRepo.cacheAppTheme(tTheme), throwsA(tException));
           verifyOnly(
             mockThemeLocalDataSource,
             () => mockThemeLocalDataSource.cacheAppTheme(tTheme),

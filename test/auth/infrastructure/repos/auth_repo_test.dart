@@ -251,7 +251,7 @@ void main() {
             'when the cached data is present',
             () async {
               // GIVEN
-              when(() => mockAuthLocalDataSource.getUserData()).thenAnswer((_) async => tUserDto);
+              when(() => mockAuthLocalDataSource.getUserData()).thenReturn(tUserDto);
 
               final container = setUpRemoteContainer();
 

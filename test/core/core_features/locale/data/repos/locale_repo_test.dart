@@ -35,13 +35,13 @@ void main() {
         'when the cached data is present',
         () async {
           // GIVEN
-          when(() => mockLocaleLocalDataSource.getAppLocale()).thenAnswer((_) async => tLocale);
+          when(() => mockLocaleLocalDataSource.getAppLocale()).thenAnswer((_) => tLocale);
 
           final container = setUpRemoteContainer();
 
           // WHEN
           final localeRepo = container.read(localeRepoProvider);
-          final result = await localeRepo.getAppLocale();
+          final result = localeRepo.getAppLocale();
 
           // THEN
           verifyOnly(
@@ -62,10 +62,9 @@ void main() {
 
           // WHEN
           final localeRepo = container.read(localeRepoProvider);
-          final call = localeRepo.getAppLocale();
 
           // THEN
-          await expectLater(call, throwsA(tException));
+          expect(localeRepo.getAppLocale, throwsA(tException));
           verifyOnly(
             mockLocaleLocalDataSource,
             () => mockLocaleLocalDataSource.getAppLocale(),
@@ -111,10 +110,9 @@ void main() {
 
           // WHEN
           final localeRepo = container.read(localeRepoProvider);
-          final call = localeRepo.cacheAppLocale(tLocale);
 
           // THEN
-          await expectLater(call, throwsA(tException));
+          expect(() => localeRepo.cacheAppLocale(tLocale), throwsA(tException));
           verifyOnly(
             mockLocaleLocalDataSource,
             () => mockLocaleLocalDataSource.cacheAppLocale(tLocale),

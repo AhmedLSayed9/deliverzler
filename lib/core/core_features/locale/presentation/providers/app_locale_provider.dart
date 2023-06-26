@@ -32,8 +32,8 @@ class AppLocaleController extends _$AppLocaleController {
     await initializeDateFormatting();
   }
 
-  Future<AppLocale> _getUserStoredLocale() async {
-    final storedLocale = await ref.watch(localeRepoProvider).getAppLocale();
+  AppLocale _getUserStoredLocale() {
+    final storedLocale = ref.watch(localeRepoProvider).getAppLocale();
     return AppLocale.values.firstWhere((l) => l.code == storedLocale);
   }
 

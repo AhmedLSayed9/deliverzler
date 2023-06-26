@@ -13,8 +13,8 @@ class AppThemeController extends _$AppThemeController {
     return _getUserStoredTheme();
   }
 
-  Future<AppTheme> _getUserStoredTheme() async {
-    final storedTheme = await ref.watch(themeRepoProvider).getAppTheme();
+  AppTheme _getUserStoredTheme() {
+    final storedTheme = ref.watch(themeRepoProvider).getAppTheme();
     return AppTheme.values.byName(storedTheme);
   }
 

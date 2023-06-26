@@ -42,12 +42,12 @@ void main() {
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
-          ).thenAnswer((_) async => tTheme);
+          ).thenReturn(tTheme);
           final container = setUpSharedPrefsContainer();
 
           // WHEN
           final themeLocalDataSource = container.read(themeLocalDataSourceProvider);
-          final result = await themeLocalDataSource.getAppTheme();
+          final result = themeLocalDataSource.getAppTheme();
 
           // THEN
           verifyOnly(
@@ -69,16 +69,15 @@ void main() {
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
-          ).thenAnswer((_) async => null);
+          ).thenReturn(null);
           final container = setUpSharedPrefsContainer();
 
           // WHEN
           final themeLocalDataSource = container.read(themeLocalDataSourceProvider);
-          final call = themeLocalDataSource.getAppTheme();
 
           // THEN
-          await expectLater(
-            () => call,
+          expect(
+            themeLocalDataSource.getAppTheme,
             throwsA(
               isA<CacheException>().having(
                 (e) => e.type,

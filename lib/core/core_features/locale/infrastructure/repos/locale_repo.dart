@@ -15,12 +15,7 @@ class LocaleRepo {
 
   final LocaleLocalDataSource localDataSource;
 
-  Future<String> getAppLocale() async {
-    final locale = await localDataSource.getAppLocale();
-    return locale;
-  }
+  String getAppLocale() => localDataSource.getAppLocale();
 
-  Future<void> cacheAppLocale(String languageCode) async {
-    await localDataSource.cacheAppLocale(languageCode);
-  }
+  Future<void> cacheAppLocale(String languageCode) => localDataSource.cacheAppLocale(languageCode);
 }

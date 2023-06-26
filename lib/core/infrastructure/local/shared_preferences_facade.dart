@@ -40,7 +40,7 @@ class SharedPreferencesFacade {
     required String key,
     required Object value,
   }) async {
-    return _errorHandler(
+    return _futureErrorHandler(
       () async {
         switch (dataType) {
           case DataType.string:
@@ -58,7 +58,7 @@ class SharedPreferencesFacade {
     );
   }
 
-  FutureOr<T?> restoreData<T>({
+  T? restoreData<T>({
     required DataType dataType,
     required String key,
   }) {
@@ -81,7 +81,7 @@ class SharedPreferencesFacade {
   }
 
   Future<bool> clearAll() async {
-    return _errorHandler(
+    return _futureErrorHandler(
       () async {
         return sharedPrefs.clear();
       },
@@ -89,14 +89,23 @@ class SharedPreferencesFacade {
   }
 
   Future<bool> clearKey({required String key}) async {
-    return _errorHandler(
+    return _futureErrorHandler(
       () async {
         return sharedPrefs.remove(key);
       },
     );
   }
 
-  FutureOr<T> _errorHandler<T>(FutureOr<T> Function() body) async {
+  T _errorHandler<T>(T Function() body) {
+    try {
+      return body.call();
+    } catch (e, st) {
+      final error = e.localErrorToCacheException();
+      throw Error.throwWithStackTrace(error, st);
+    }
+  }
+
+  Future<T> _futureErrorHandler<T>(Future<T> Function() body) async {
     try {
       return await body.call();
     } catch (e, st) {

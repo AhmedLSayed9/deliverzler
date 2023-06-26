@@ -46,7 +46,7 @@ class AuthRepo {
       } catch (_) {}
       return user.toDomain();
     } else {
-      final user = await localDataSource.getUserData();
+      final user = localDataSource.getUserData();
       return user.toDomain();
     }
   }

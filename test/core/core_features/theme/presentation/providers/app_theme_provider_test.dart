@@ -43,8 +43,7 @@ void main() {
         'should emit AsyncData(tTheme) when ThemeRepo.getAppTheme returns normally',
         () async {
           // GIVEN
-          when(() => mockThemeRepo.getAppTheme())
-              .thenAnswer((_) async => tTheme.name);
+          when(() => mockThemeRepo.getAppTheme()).thenReturn(tTheme.name);
 
           final container = setUpRepoContainer();
           final listener = setUpListener(container, appThemeControllerProvider);
@@ -105,10 +104,8 @@ void main() {
         'should emit AsyncData(tChangeTheme) then call ThemeRepo.cacheAppTheme',
         () async {
           // GIVEN
-          when(() => mockThemeRepo.getAppTheme())
-              .thenAnswer((_) async => tTheme.name);
-          when(() => mockThemeRepo.cacheAppTheme(any()))
-              .thenAnswer((_) async {});
+          when(() => mockThemeRepo.getAppTheme()).thenReturn(tTheme.name);
+          when(() => mockThemeRepo.cacheAppTheme(any())).thenAnswer((_) async {});
 
           final container = setUpRepoContainer();
           await container.read(appThemeControllerProvider.future);
@@ -118,9 +115,8 @@ void main() {
           verifyOnly(listener, () => listener(null, tThemeState));
           verifyOnly(mockThemeRepo, () => mockThemeRepo.getAppTheme());
 
-          final call = container
-              .read(appThemeControllerProvider.notifier)
-              .changeTheme(tChangeTheme);
+          final call =
+              container.read(appThemeControllerProvider.notifier).changeTheme(tChangeTheme);
 
           // THEN
           await expectLater(call, completion(null));

@@ -30,8 +30,8 @@ class AuthLocalDataSource {
     );
   }
 
-  Future<UserDto> getUserData() async {
-    final jsonString = await sharedPreferences.restoreData<String>(
+  UserDto getUserData() {
+    final jsonString = sharedPreferences.restoreData<String>(
       key: userDataKey,
       dataType: DataType.string,
     );

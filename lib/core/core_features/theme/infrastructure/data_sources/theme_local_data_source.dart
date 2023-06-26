@@ -18,8 +18,8 @@ class ThemeLocalDataSource {
 
   static const String appThemeKey = 'app_theme';
 
-  Future<String> getAppTheme() async {
-    final theme = await sharedPreferences.restoreData<String>(
+  String getAppTheme() {
+    final theme = sharedPreferences.restoreData<String>(
       key: appThemeKey,
       dataType: DataType.string,
     );

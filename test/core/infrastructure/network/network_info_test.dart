@@ -30,8 +30,7 @@ void main() {
         //When both are equal then we assured that hasConnection method from the package has been returned.
         //So, we assure we don't return true/false from networkInfo and ignore hasConnection returned value.
         final tHasConnectionFuture = Future.value(true);
-        when(() => mockDataConnectionChecker.hasConnection)
-            .thenAnswer((_) => tHasConnectionFuture);
+        when(() => mockDataConnectionChecker.hasConnection).thenAnswer((_) => tHasConnectionFuture);
         // WHEN
         final result = networkInfo.hasInternetConnection;
         // THEN

@@ -42,12 +42,12 @@ void main() {
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
-          ).thenAnswer((_) async => tLocale);
+          ).thenReturn(tLocale);
           final container = setUpSharedPrefsContainer();
 
           // WHEN
           final localeLocalDataSource = container.read(localeLocalDataSourceProvider);
-          final result = await localeLocalDataSource.getAppLocale();
+          final result = localeLocalDataSource.getAppLocale();
 
           // THEN
           verifyOnly(
@@ -69,22 +69,18 @@ void main() {
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
-          ).thenAnswer((_) async => null);
+          ).thenReturn(null);
           final container = setUpSharedPrefsContainer();
 
           // WHEN
           final localeLocalDataSource = container.read(localeLocalDataSourceProvider);
-          final call = localeLocalDataSource.getAppLocale();
 
           // THEN
-          await expectLater(
-            () => call,
+          expect(
+            localeLocalDataSource.getAppLocale,
             throwsA(
-              isA<CacheException>().having(
-                (e) => e.type,
-                'type',
-                equals(CacheExceptionType.notFound),
-              ),
+              isA<CacheException>()
+                  .having((e) => e.type, 'type', equals(CacheExceptionType.notFound)),
             ),
           );
         },

@@ -83,13 +83,13 @@ void main() {
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
-          ).thenAnswer((_) async => fixtureReader('auth/user.json'));
+          ).thenReturn(fixtureReader('auth/user.json'));
 
           final container = setUpSharedPrefsContainer();
 
           // WHEN
           final authLocalDataSource = container.read(authLocalDataSourceProvider);
-          final result = await authLocalDataSource.getUserData();
+          final result = authLocalDataSource.getUserData();
 
           // THEN
           verifyOnly(
@@ -111,30 +111,29 @@ void main() {
               key: any(named: 'key'),
               dataType: any(named: 'dataType'),
             ),
-          ).thenAnswer((_) async => null);
+          ).thenReturn(null);
 
           final container = setUpSharedPrefsContainer();
 
           // WHEN
           final authLocalDataSource = container.read(authLocalDataSourceProvider);
-          final call = authLocalDataSource.getUserData();
 
           // THEN
-          verifyOnly(
-            mockSharedPrefs,
-            () => mockSharedPrefs.restoreData<String>(
-              key: AuthLocalDataSource.userDataKey,
-              dataType: DataType.string,
-            ),
-          );
-          await expectLater(
-            () => call,
+          expect(
+            authLocalDataSource.getUserData,
             throwsA(
               isA<CacheException>().having(
                 (e) => e.type,
                 'type',
                 equals(CacheExceptionType.notFound),
               ),
+            ),
+          );
+          verifyOnly(
+            mockSharedPrefs,
+            () => mockSharedPrefs.restoreData<String>(
+              key: AuthLocalDataSource.userDataKey,
+              dataType: DataType.string,
             ),
           );
         },
