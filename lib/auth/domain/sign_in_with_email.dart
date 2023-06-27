@@ -9,6 +9,8 @@ part 'sign_in_with_email.freezed.dart';
 @freezed
 class SignInWithEmail with _$SignInWithEmail {
   const factory SignInWithEmail({
+    // Note: You should consider using separate value object (with its validator method)
+    // for these values if they're used in other entities.
     required String email,
     required String password,
   }) = _SignInWithEmail;
