@@ -43,7 +43,7 @@ class TabAppBarComponent extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    final location = GoRouter.of(context).location;
+    final location = GoRouterState.of(context).location;
 
     /// Home Tab
     if (location == const HomeRoute().location) {
