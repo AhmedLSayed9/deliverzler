@@ -13,8 +13,9 @@ import '../../../features/settings/presentation/screens/settings_screen/settings
 import '../screens/no_internet_screen/no_internet_screen.dart';
 import '../screens/route_error_screen/route_error_screen.dart';
 import '../screens/splash_screen/splash_screen.dart';
+import '../utils/event.dart';
+import '../utils/fp_framework.dart';
 import '../utils/riverpod_framework.dart';
-import 'app_router_refresh_listenable.dart';
 import 'navigation_transitions.dart';
 
 part 'app_router.g.dart';
@@ -27,6 +28,13 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
+  final listenable = ValueNotifier<Event<Unit>>(Event.unique(unit));
+
+  ref.listen(
+    authStateProvider.select((user) => user.isSome()),
+    (_, __) => listenable.value = Event.unique(unit),
+  );
+
   final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: const SplashRoute().location,
@@ -97,7 +105,7 @@ GoRouter goRouter(GoRouterRef ref) {
       // Return null (no redirecting) if the user is authenticated.
       return null;
     },
-    refreshListenable: ref.watch(appRouterRefreshListenableProvider.notifier),
+    refreshListenable: listenable,
     errorBuilder: (_, state) => RouteErrorScreen(state.error),
   );
   ref.onDispose(router.dispose);
