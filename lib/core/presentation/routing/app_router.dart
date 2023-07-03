@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
+import '../../../auth/domain/user.dart';
 import '../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../auth/presentation/screens/sign_in_screen/sign_in_screen.dart';
 import '../../../features/home/presentation/screens/home_screen/home_screen.dart';
@@ -19,6 +20,7 @@ import '../utils/riverpod_framework.dart';
 import 'navigation_transitions.dart';
 
 part 'app_router.g.dart';
+part 'app_router_utils.dart';
 
 // This or other ShellRoutes keys can be used to display a child route on a different Navigator.
 // i.e: use the rootNavigatorKey for a child route inside a ShellRoute
@@ -83,26 +85,24 @@ GoRouter goRouter(GoRouterRef ref) {
       ),
     ],
     redirect: (BuildContext context, GoRouterState state) {
-      final isAuthenticated = ref.read(authStateProvider).isSome();
-      final allowedRoutes = [
-        const SplashRoute().location,
-        const NoInternetRoute().location,
-        const SignInRoute().location,
-      ];
+      final authState = ref.read(authStateProvider);
+      final routeAuthority = state.routeAuthority;
+      final isLegitRoute = <RouteAuthority>[
+        RouteAuthority.fromAuthState(authState),
+        RouteAuthority.public
+      ].any(routeAuthority.contains);
 
-      // If the user is authenticated but still on the login page, send to home.
-      if (isAuthenticated && state.location.startsWith(const SignInRoute().location)) {
-        return const HomeRoute().location;
+      if (!isLegitRoute) {
+        switch (authState) {
+          // If the user is authenticated but still on the login page or similar, send to home.
+          case Some():
+            return const HomeRoute().location;
+          case None():
+            return const SignInRoute().location;
+        }
       }
 
-      if (!isAuthenticated) {
-        // Return null (no redirecting) if the route is allowed for
-        // unAuthenticated users or else redirect to login page.
-        if (allowedRoutes.any(state.location.startsWith)) return null;
-        return const SignInRoute().location;
-      }
-
-      // Return null (no redirecting) if the user is authenticated.
+      // Return null (no redirecting) if the user is at or heading to a legit route.
       return null;
     },
     refreshListenable: listenable,
