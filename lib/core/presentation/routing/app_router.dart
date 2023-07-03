@@ -20,7 +20,7 @@ import '../utils/riverpod_framework.dart';
 import 'navigation_transitions.dart';
 
 part 'app_router.g.dart';
-part 'app_router_utils.dart';
+part 'routes_authority.dart';
 
 // This or other ShellRoutes keys can be used to display a child route on a different Navigator.
 // i.e: use the rootNavigatorKey for a child route inside a ShellRoute
