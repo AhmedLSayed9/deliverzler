@@ -19,10 +19,7 @@ class ThemeLocalDataSource {
   static const String appThemeKey = 'app_theme';
 
   String getAppTheme() {
-    final theme = sharedPreferences.restoreData<String>(
-      key: appThemeKey,
-      dataType: DataType.string,
-    );
+    final theme = sharedPreferences.restoreData<String>(appThemeKey);
     if (theme != null) {
       return theme;
     } else {
@@ -37,7 +34,6 @@ class ThemeLocalDataSource {
     await sharedPreferences.saveData(
       value: themeString,
       key: appThemeKey,
-      dataType: DataType.string,
     );
   }
 }

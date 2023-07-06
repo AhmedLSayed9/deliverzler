@@ -25,16 +25,12 @@ class AuthLocalDataSource {
     final jsonString = json.encode(userDto.toJson());
     await sharedPreferences.saveData(
       key: userDataKey,
-      dataType: DataType.string,
       value: jsonString,
     );
   }
 
   UserDto getUserData() {
-    final jsonString = sharedPreferences.restoreData<String>(
-      key: userDataKey,
-      dataType: DataType.string,
-    );
+    final jsonString = sharedPreferences.restoreData<String>(userDataKey);
     if (jsonString != null) {
       final userDto = UserDto.fromJson(json.decode(jsonString) as Map<String, dynamic>);
       return userDto;

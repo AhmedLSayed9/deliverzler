@@ -19,10 +19,7 @@ class LocaleLocalDataSource {
   static const String appLocaleKey = 'app_locale';
 
   String getAppLocale() {
-    final locale = sharedPreferences.restoreData<String>(
-      key: appLocaleKey,
-      dataType: DataType.string,
-    );
+    final locale = sharedPreferences.restoreData<String>(appLocaleKey);
     if (locale != null) {
       return locale;
     } else {
@@ -37,7 +34,6 @@ class LocaleLocalDataSource {
     await sharedPreferences.saveData(
       value: languageCode,
       key: appLocaleKey,
-      dataType: DataType.string,
     );
   }
 }

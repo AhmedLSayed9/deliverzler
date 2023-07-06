@@ -5,14 +5,6 @@ import 'extensions/local_error_extension.dart';
 
 part 'shared_preferences_facade.g.dart';
 
-enum DataType {
-  string,
-  int,
-  double,
-  bool,
-  stringList,
-}
-
 @Riverpod(keepAlive: true)
 Future<SharedPreferences> sharedPrefsAsync(SharedPrefsAsyncRef ref) async {
   return SharedPreferences.getInstance();
@@ -36,45 +28,51 @@ class SharedPreferencesFacade {
   final SharedPreferences sharedPrefs;
 
   Future<bool> saveData({
-    required DataType dataType,
     required String key,
     required Object value,
   }) async {
     return _futureErrorHandler(
       () async {
-        switch (dataType) {
-          case DataType.string:
-            return sharedPrefs.setString(key, value as String);
-          case DataType.int:
-            return sharedPrefs.setInt(key, value as int);
-          case DataType.double:
-            return sharedPrefs.setDouble(key, value as double);
-          case DataType.bool:
-            return sharedPrefs.setBool(key, value as bool);
-          case DataType.stringList:
-            return sharedPrefs.setStringList(key, value as List<String>);
+        switch (value) {
+          case final String value:
+            return sharedPrefs.setString(key, value);
+          case final int value:
+            return sharedPrefs.setInt(key, value);
+          case final double value:
+            return sharedPrefs.setDouble(key, value);
+          case final bool value:
+            return sharedPrefs.setBool(key, value);
+          case final List<String> value:
+            return sharedPrefs.setStringList(key, value);
+          default:
+            throw UnsupportedError(
+              'The type of this value is not supported. '
+              'All supported types are: String | int | double | bool | List<String>.',
+            );
         }
       },
     );
   }
 
-  T? restoreData<T>({
-    required DataType dataType,
-    required String key,
-  }) {
+  T? restoreData<T>(String key) {
     return _errorHandler(
       () {
-        switch (dataType) {
-          case DataType.string:
+        switch (T) {
+          case String:
             return sharedPrefs.getString(key) as T?;
-          case DataType.int:
+          case int:
             return sharedPrefs.getInt(key) as T?;
-          case DataType.double:
+          case double:
             return sharedPrefs.getDouble(key) as T?;
-          case DataType.bool:
+          case bool:
             return sharedPrefs.getBool(key) as T?;
-          case DataType.stringList:
+          case const (List<String>):
             return sharedPrefs.getStringList(key) as T?;
+          default:
+            throw UnsupportedError(
+              'The generic type is not supported. '
+              'All supported types are: String | int | double | bool | List<String>.',
+            );
         }
       },
     );

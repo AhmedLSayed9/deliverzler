@@ -16,10 +16,6 @@ class MockSharedPreferencesFacade extends Mock implements SharedPreferencesFacad
 void main() {
   late MockSharedPreferencesFacade mockSharedPrefs;
 
-  setUpAll(() {
-    registerFallbackValue(DataType.int);
-  });
-
   setUp(() {
     mockSharedPrefs = MockSharedPreferencesFacade();
   });
@@ -45,7 +41,6 @@ void main() {
           when(
             () => mockSharedPrefs.saveData(
               key: any(named: 'key'),
-              dataType: any(named: 'dataType'),
               value: any(named: 'value'),
             ),
           ).thenAnswer((_) async => true);
@@ -62,7 +57,6 @@ void main() {
             mockSharedPrefs,
             () => mockSharedPrefs.saveData(
               key: AuthLocalDataSource.userDataKey,
-              dataType: DataType.string,
               value: expectedJsonString,
             ),
           );
@@ -79,10 +73,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData<String>(
-              key: any(named: 'key'),
-              dataType: any(named: 'dataType'),
-            ),
+            () => mockSharedPrefs.restoreData<String>(any()),
           ).thenReturn(fixtureReader('auth/user.json'));
 
           final container = setUpSharedPrefsContainer();
@@ -94,10 +85,7 @@ void main() {
           // THEN
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.restoreData<String>(
-              key: AuthLocalDataSource.userDataKey,
-              dataType: DataType.string,
-            ),
+            () => mockSharedPrefs.restoreData<String>(AuthLocalDataSource.userDataKey),
           );
           expect(result, equals(tUserDto));
         },
@@ -107,10 +95,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData<String>(
-              key: any(named: 'key'),
-              dataType: any(named: 'dataType'),
-            ),
+            () => mockSharedPrefs.restoreData<String>(any()),
           ).thenReturn(null);
 
           final container = setUpSharedPrefsContainer();
@@ -131,10 +116,7 @@ void main() {
           );
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.restoreData<String>(
-              key: AuthLocalDataSource.userDataKey,
-              dataType: DataType.string,
-            ),
+            () => mockSharedPrefs.restoreData<String>(AuthLocalDataSource.userDataKey),
           );
         },
       );

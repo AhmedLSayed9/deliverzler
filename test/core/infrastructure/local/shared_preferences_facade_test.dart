@@ -27,7 +27,7 @@ void main() {
 
   group('saveData', () {
     test(
-      'should call SharedPreferences.setString with the proper params when dataType is DataType.string',
+      'should call SharedPreferences.setString with the proper params when value is String',
       () async {
         // GIVEN
         const tResponse = true;
@@ -37,7 +37,6 @@ void main() {
         final result = await sharedPrefsFacade.saveData(
           key: tKey,
           value: tStringValue,
-          dataType: DataType.string,
         );
         // THEN
         verify(() => mockSharedPrefs.setString(tKey, tStringValue)).called(1);
@@ -47,7 +46,7 @@ void main() {
     );
 
     test(
-      'should call SharedPreferences.setInt with the proper params when dataType is DataType.int',
+      'should call SharedPreferences.setInt with the proper params when value is int',
       () async {
         // GIVEN
         const tResponse = true;
@@ -56,7 +55,6 @@ void main() {
         final result = await sharedPrefsFacade.saveData(
           key: tKey,
           value: tIntValue,
-          dataType: DataType.int,
         );
         // THEN
         verify(() => mockSharedPrefs.setInt(tKey, tIntValue)).called(1);
@@ -66,7 +64,7 @@ void main() {
     );
 
     test(
-      'should call SharedPreferences.setDouble with the proper params when dataType is DataType.double',
+      'should call SharedPreferences.setDouble with the proper params when value is double',
       () async {
         // GIVEN
         const tResponse = true;
@@ -76,7 +74,6 @@ void main() {
         final result = await sharedPrefsFacade.saveData(
           key: tKey,
           value: tDoubleValue,
-          dataType: DataType.double,
         );
         // THEN
         verify(() => mockSharedPrefs.setDouble(tKey, tDoubleValue)).called(1);
@@ -86,7 +83,7 @@ void main() {
     );
 
     test(
-      'should call SharedPreferences.setBool with the proper params when dataType is DataType.bool',
+      'should call SharedPreferences.setBool with the proper params when value is bool',
       () async {
         // GIVEN
         const tResponse = true;
@@ -95,7 +92,6 @@ void main() {
         final result = await sharedPrefsFacade.saveData(
           key: tKey,
           value: tBoolValue,
-          dataType: DataType.bool,
         );
         // THEN
         verify(() => mockSharedPrefs.setBool(tKey, tBoolValue)).called(1);
@@ -105,7 +101,7 @@ void main() {
     );
 
     test(
-      'should call SharedPreferences.setStringList with the proper params when dataType is DataType.stringList',
+      'should call SharedPreferences.setStringList with the proper params when value is List<String>',
       () async {
         // GIVEN
         const tResponse = true;
@@ -115,7 +111,6 @@ void main() {
         final result = await sharedPrefsFacade.saveData(
           key: tKey,
           value: tStringList,
-          dataType: DataType.stringList,
         );
         // THEN
         verify(() => mockSharedPrefs.setStringList(tKey, tStringList)).called(1);
@@ -124,7 +119,7 @@ void main() {
       },
     );
 
-    //No need to test for all DataTypes
+    //No need to test for other value types
     test(
       'should throw error.localErrorToCacheException '
       'when the call to SharedPreferences.setString is unsuccessful',
@@ -135,7 +130,6 @@ void main() {
         final call = sharedPrefsFacade.saveData(
           key: tKey,
           value: tStringValue,
-          dataType: DataType.string,
         );
         // THEN
         await expectLater(
@@ -150,16 +144,13 @@ void main() {
 
   group('restoreData', () {
     test(
-      'should return same result from SharedPreferences.getString when dataType is DataType.string',
+      'should return same result from SharedPreferences.getString when the generic type is String',
       () async {
         // GIVEN
         const tResponse = tStringValue;
         when(() => mockSharedPrefs.getString(tKey)).thenReturn(tResponse);
         // WHEN
-        final result = sharedPrefsFacade.restoreData<String>(
-          key: tKey,
-          dataType: DataType.string,
-        );
+        final result = sharedPrefsFacade.restoreData<String>(tKey);
         // THEN
         verify(() => mockSharedPrefs.getString(tKey)).called(1);
         expect(result, tResponse);
@@ -168,15 +159,12 @@ void main() {
     );
 
     test(
-      'should return same result from SharedPreferences.getInt when dataType is DataType.int',
+      'should return same result from SharedPreferences.getInt when the generic type is int',
       () async {
         // GIVEN
         when(() => mockSharedPrefs.getInt(tKey)).thenReturn(tIntValue);
         // WHEN
-        final result = sharedPrefsFacade.restoreData<int>(
-          key: tKey,
-          dataType: DataType.int,
-        );
+        final result = sharedPrefsFacade.restoreData<int>(tKey);
         // THEN
         verify(() => mockSharedPrefs.getInt(tKey)).called(1);
         expect(result, tIntValue);
@@ -185,15 +173,12 @@ void main() {
     );
 
     test(
-      'should return same result from SharedPreferences.getDouble when dataType is DataType.double',
+      'should return same result from SharedPreferences.getDouble when the generic type is double',
       () async {
         // GIVEN
         when(() => mockSharedPrefs.getDouble(tKey)).thenReturn(tDoubleValue);
         // WHEN
-        final result = sharedPrefsFacade.restoreData<double>(
-          key: tKey,
-          dataType: DataType.double,
-        );
+        final result = sharedPrefsFacade.restoreData<double>(tKey);
         // THEN
         verify(() => mockSharedPrefs.getDouble(tKey)).called(1);
         expect(result, tDoubleValue);
@@ -202,15 +187,12 @@ void main() {
     );
 
     test(
-      'should return same result from SharedPreferences.getBool when dataType is DataType.bool',
+      'should return same result from SharedPreferences.getBool when the generic type is bool',
       () async {
         // GIVEN
         when(() => mockSharedPrefs.getBool(tKey)).thenReturn(tBoolValue);
         // WHEN
-        final result = sharedPrefsFacade.restoreData<bool>(
-          key: tKey,
-          dataType: DataType.bool,
-        );
+        final result = sharedPrefsFacade.restoreData<bool>(tKey);
         // THEN
         verify(() => mockSharedPrefs.getBool(tKey)).called(1);
         expect(result, tBoolValue);
@@ -219,15 +201,12 @@ void main() {
     );
 
     test(
-      'should return same result from SharedPreferences.getStringList when dataType is DataType.stringList',
+      'should return same result from SharedPreferences.getStringList when the generic type is List<String>',
       () async {
         // GIVEN
         when(() => mockSharedPrefs.getStringList(tKey)).thenReturn(tStringList);
         // WHEN
-        final result = sharedPrefsFacade.restoreData<List<String>>(
-          key: tKey,
-          dataType: DataType.stringList,
-        );
+        final result = sharedPrefsFacade.restoreData<List<String>>(tKey);
         // THEN
         verify(() => mockSharedPrefs.getStringList(tKey)).called(1);
         expect(result, tStringList);
@@ -235,7 +214,7 @@ void main() {
       },
     );
 
-    //No need to test for all DataTypes
+    //No need to test for other value types
     test(
       'should throw error.localErrorToCacheException '
       'when the call to SharedPreferences.getString is unsuccessful',
@@ -245,10 +224,7 @@ void main() {
 
         // THEN
         expect(
-          () => sharedPrefsFacade.restoreData<String>(
-            key: tKey,
-            dataType: DataType.string,
-          ),
+          () => sharedPrefsFacade.restoreData<String>(tKey),
           throwsA(tError.localErrorToCacheException()),
         );
         verify(() => mockSharedPrefs.getString(tKey)).called(1);

@@ -12,10 +12,6 @@ class MockSharedPreferencesFacade extends Mock implements SharedPreferencesFacad
 void main() {
   late MockSharedPreferencesFacade mockSharedPrefs;
 
-  setUpAll(() {
-    registerFallbackValue(DataType.int);
-  });
-
   setUp(() {
     mockSharedPrefs = MockSharedPreferencesFacade();
   });
@@ -38,10 +34,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData<String>(
-              key: any(named: 'key'),
-              dataType: any(named: 'dataType'),
-            ),
+            () => mockSharedPrefs.restoreData<String>(any()),
           ).thenReturn(tLocale);
           final container = setUpSharedPrefsContainer();
 
@@ -52,10 +45,7 @@ void main() {
           // THEN
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.restoreData<String>(
-              key: LocaleLocalDataSource.appLocaleKey,
-              dataType: DataType.string,
-            ),
+            () => mockSharedPrefs.restoreData<String>(LocaleLocalDataSource.appLocaleKey),
           );
           expect(result, equals(tLocale));
         },
@@ -65,10 +55,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.restoreData<String>(
-              key: any(named: 'key'),
-              dataType: any(named: 'dataType'),
-            ),
+            () => mockSharedPrefs.restoreData<String>(any()),
           ).thenReturn(null);
           final container = setUpSharedPrefsContainer();
 
@@ -100,7 +87,6 @@ void main() {
           when(
             () => mockSharedPrefs.saveData(
               key: any(named: 'key'),
-              dataType: any(named: 'dataType'),
               value: any(named: 'value'),
             ),
           ).thenAnswer((_) async => true);
@@ -115,7 +101,6 @@ void main() {
             mockSharedPrefs,
             () => mockSharedPrefs.saveData(
               key: LocaleLocalDataSource.appLocaleKey,
-              dataType: DataType.string,
               value: tLocale,
             ),
           );
