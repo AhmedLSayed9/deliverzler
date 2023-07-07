@@ -42,7 +42,7 @@ dependencies:
   dio: ^5.1.2
 
   # Firebase
-  firebase_core: ^2.3.0
+  firebase_core: ^2.14.0
   cloud_firestore: ^4.1.0
   firebase_auth: ^4.1.5
   firebase_storage: ^11.0.6

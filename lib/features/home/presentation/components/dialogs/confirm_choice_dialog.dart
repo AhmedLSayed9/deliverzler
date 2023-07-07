@@ -9,7 +9,6 @@ import '../../../../../core/presentation/widgets/custom_button.dart';
 import '../../../../../core/presentation/widgets/custom_text.dart';
 
 class ConfirmChoiceDialog extends StatelessWidget {
-
   const ConfirmChoiceDialog({
     required this.message,
     super.key,
@@ -74,7 +73,7 @@ class ConfirmChoiceDialog extends StatelessWidget {
                     height: Sizes.buttonHeight44,
                     width: Sizes.buttonWidth120,
                     onPressed: () {
-                      NavigationService.popDialog(context, result: [true]);
+                      NavigationService.popDialog(context, result: true);
                     },
                   ),
                 ),

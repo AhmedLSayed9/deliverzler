@@ -25,9 +25,8 @@ abstract class OrderDialogHelper {
     return Dialogs.showCustomDialog(
       context,
       child: const CancelOrderDialog(),
-    ).then((result) async {
-      final res = result as List<String>?;
-      return res?[0];
+    ).then((result) {
+      return result as String?;
     });
   }
 
@@ -58,9 +57,8 @@ abstract class OrderDialogHelper {
         message: message,
       ),
     ).then((result) {
-      final res = result as List<String>?;
-      if (res == null) return false;
-      return res[0] as bool;
+      final res = result as bool?;
+      return res ?? false;
     });
   }
 }
