@@ -73,10 +73,10 @@ GoRouter goRouter(GoRouterRef ref) {
         //   to when loading it for the first time) etc.
         branches: <StatefulShellBranch>[
           StatefulShellBranch(
-            routes: [$profileRoute],
+            routes: [$homeRoute],
           ),
           StatefulShellBranch(
-            routes: [$homeRoute],
+            routes: [$profileRoute],
           ),
           StatefulShellBranch(
             routes: [$settingsRoute],
