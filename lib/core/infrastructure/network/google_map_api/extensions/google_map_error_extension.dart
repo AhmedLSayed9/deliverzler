@@ -22,94 +22,74 @@ extension _DioErrorExtension on DioError {
     final statusCode = response?.statusCode;
     final message = error?.toString() ?? '';
 
-    switch (type) {
-      case DioErrorType.badResponse:
-        switch (statusCode) {
+    return switch (type) {
+      DioErrorType.badResponse => switch (statusCode) {
           //400 is our business logic errors code.
           //It's handled by error interceptors of each API.
-          case 400:
-            return ServerException(
+          400 => ServerException(
               type: ServerExceptionType.general,
               message: message,
               code: statusCode,
-            );
-          case 401:
-            return ServerException(
+            ),
+          401 => ServerException(
               type: ServerExceptionType.unauthorized,
               message: message,
               code: statusCode,
-            );
-          case 403:
-            return ServerException(
+            ),
+          403 => ServerException(
               type: ServerExceptionType.forbidden,
               message: message,
               code: statusCode,
-            );
-          case 404:
-          case 405:
-          case 501:
-            return ServerException(
+            ),
+          404 || 405 || 501 => ServerException(
               type: ServerExceptionType.notFound,
               message: message,
               code: statusCode,
-            );
-          case 409:
-            return ServerException(
+            ),
+          409 => ServerException(
               type: ServerExceptionType.conflict,
               message: message,
               code: statusCode,
-            );
-          case 500:
-          case 502:
-            return ServerException(
+            ),
+          500 || 502 => ServerException(
               type: ServerExceptionType.internal,
               message: message,
               code: statusCode,
-            );
-          case 503:
-            return ServerException(
+            ),
+          503 => ServerException(
               type: ServerExceptionType.serviceUnavailable,
               message: message,
               code: statusCode,
-            );
-          default:
-            return ServerException(
+            ),
+          _ => ServerException(
               type: ServerExceptionType.unknown,
               message: message,
               code: statusCode,
-            );
-        }
-
-      case DioErrorType.connectionTimeout:
-      case DioErrorType.sendTimeout:
-      case DioErrorType.receiveTimeout:
-        return ServerException(
+            ),
+        },
+      DioErrorType.connectionTimeout ||
+      DioErrorType.sendTimeout ||
+      DioErrorType.receiveTimeout =>
+        ServerException(
           type: ServerExceptionType.timeOut,
           message: message,
           code: 408,
-        );
-
-      case DioErrorType.connectionError:
-        return ServerException(
+        ),
+      DioErrorType.connectionError => ServerException(
           type: ServerExceptionType.noInternet,
           message: message,
           code: 101,
-        );
-
-      case DioErrorType.badCertificate:
-        return ServerException(
+        ),
+      DioErrorType.badCertificate => ServerException(
           type: ServerExceptionType.unknown,
           message: message,
           code: statusCode,
-        );
-
-      case DioErrorType.cancel:
-      case DioErrorType.unknown:
-        return ServerException(
+        ),
+      DioErrorType.cancel || DioErrorType.unknown => ServerException(
           type: ServerExceptionType.unknown,
           message: message,
           code: statusCode,
-        );
-    }
+        ),
+    };
   }
 }

@@ -11,22 +11,16 @@ enum AppTheme {
 
 extension ThemeExtension on AppTheme {
   ThemeData getThemeData() {
-    switch (this) {
-      case AppTheme.light:
-        final themeLight = ThemeLight();
-        return themeLight.getThemeData();
-      case AppTheme.dark:
-        final themeDark = ThemeDark();
-        return themeDark.getThemeData();
-    }
+    return switch (this) {
+      AppTheme.light => ThemeLight().getThemeData(),
+      AppTheme.dark => ThemeDark().getThemeData(),
+    };
   }
 
   IconData getThemeIcon() {
-    switch (this) {
-      case AppTheme.light:
-        return Icons.wb_sunny;
-      case AppTheme.dark:
-        return Icons.nights_stay;
-    }
+    return switch (this) {
+      AppTheme.light => Icons.wb_sunny,
+      AppTheme.dark => Icons.nights_stay,
+    };
   }
 }

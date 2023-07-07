@@ -28,32 +28,27 @@ extension FirebaseErrorExtension on Object {
 extension _FirebaseAuthErrorExtension on FirebaseAuthException {
   // TODO(Ahmed): Handle all auth exception cases and add unit tests
   ServerException firebaseAuthToServerException() {
-    switch (code) {
-      case 'invalid-email':
-        return ServerException(
+    return switch (code) {
+      'invalid-email' => ServerException(
           type: ServerExceptionType.authInvalidEmail,
           message: message ?? code,
-        );
-      case 'wrong-password':
-        return ServerException(
+        ),
+      'wrong-password' => ServerException(
           type: ServerExceptionType.authWrongPassword,
           message: message ?? code,
-        );
-      case 'user-not-found':
-        return ServerException(
+        ),
+      'user-not-found' => ServerException(
           type: ServerExceptionType.authUserNotFound,
           message: message ?? code,
-        );
-      case 'user-disabled':
-        return ServerException(
+        ),
+      'user-disabled' => ServerException(
           type: ServerExceptionType.authUserDisabled,
           message: message ?? code,
-        );
-      default:
-        return ServerException(
+        ),
+      _ => ServerException(
           type: ServerExceptionType.unknown,
           message: message ?? code,
-        );
-    }
+        ),
+    };
   }
 }

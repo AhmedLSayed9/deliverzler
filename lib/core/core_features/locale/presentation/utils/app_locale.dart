@@ -15,11 +15,9 @@ enum AppLocale {
 
 extension LanguageExtension on AppLocale {
   String getLanguageName(BuildContext context) {
-    switch (this) {
-      case AppLocale.arabic:
-        return tr(context).arabic;
-      case AppLocale.english:
-        return tr(context).english;
-    }
+    return switch (this) {
+      AppLocale.arabic => tr(context).arabic,
+      AppLocale.english => tr(context).english,
+    };
   }
 }
