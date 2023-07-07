@@ -66,10 +66,7 @@ class CancelOrderDialog extends HookWidget {
                     height: Sizes.buttonHeight44,
                     width: Sizes.buttonWidth120,
                     onPressed: () {
-                      NavigationService.popDialog(
-                        context,
-                        result: [cancelNoteController.text],
-                      );
+                      NavigationService.popDialog(context, result: cancelNoteController.text);
                     },
                   ),
                 ),
