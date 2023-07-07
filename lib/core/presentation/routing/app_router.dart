@@ -93,13 +93,11 @@ GoRouter goRouter(GoRouterRef ref) {
       ].any(routeAuthority.contains);
 
       if (!isLegitRoute) {
-        switch (authState) {
+        return switch (authState) {
           // If the user is authenticated but still on the login page or similar, send to home.
-          case Some():
-            return const HomeRoute().location;
-          case None():
-            return const SignInRoute().location;
-        }
+          Some() => const HomeRoute().location,
+          None() => const SignInRoute().location,
+        };
       }
 
       // Return null (no redirecting) if the user is at or heading to a legit route.

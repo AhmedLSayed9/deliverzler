@@ -12,25 +12,19 @@ enum TabItem {
 
 extension TabItemExtension on TabItem {
   Widget getTabItemIcon(BuildContext context) {
-    switch (this) {
-      case TabItem.home:
-        return _getTabIcon(context, PlatformIcons.home);
-      case TabItem.profile:
-        return _getTabIcon(context, PlatformIcons.accountCircleSolid);
-      case TabItem.settings:
-        return _getTabIcon(context, PlatformIcons.settingsSolid);
-    }
+    return switch (this) {
+      TabItem.home => _getTabIcon(context, PlatformIcons.home),
+      TabItem.profile => _getTabIcon(context, PlatformIcons.accountCircleSolid),
+      TabItem.settings => _getTabIcon(context, PlatformIcons.settingsSolid),
+    };
   }
 
   Widget getTabItemSelectedIcon(BuildContext context) {
-    switch (this) {
-      case TabItem.home:
-        return _getTabIcon(context, PlatformIcons.home, isSelected: true);
-      case TabItem.profile:
-        return _getTabIcon(context, PlatformIcons.accountCircleSolid, isSelected: true);
-      case TabItem.settings:
-        return _getTabIcon(context, PlatformIcons.settingsSolid, isSelected: true);
-    }
+    return switch (this) {
+      TabItem.home => _getTabIcon(context, PlatformIcons.home, isSelected: true),
+      TabItem.profile => _getTabIcon(context, PlatformIcons.accountCircleSolid, isSelected: true),
+      TabItem.settings => _getTabIcon(context, PlatformIcons.settingsSolid, isSelected: true),
+    };
   }
 
   Widget _getTabIcon(
@@ -46,13 +40,10 @@ extension TabItemExtension on TabItem {
   }
 
   String getTabItemLabel(BuildContext context) {
-    switch (this) {
-      case TabItem.home:
-        return tr(context).home;
-      case TabItem.profile:
-        return tr(context).myProfile;
-      case TabItem.settings:
-        return tr(context).settings;
-    }
+    return switch (this) {
+      TabItem.home => tr(context).home,
+      TabItem.profile => tr(context).myProfile,
+      TabItem.settings => tr(context).settings,
+    };
   }
 }

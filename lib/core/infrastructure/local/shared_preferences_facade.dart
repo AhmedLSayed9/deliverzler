@@ -33,23 +33,17 @@ class SharedPreferencesFacade {
   }) async {
     return _futureErrorHandler(
       () async {
-        switch (value) {
-          case final String value:
-            return sharedPrefs.setString(key, value);
-          case final int value:
-            return sharedPrefs.setInt(key, value);
-          case final double value:
-            return sharedPrefs.setDouble(key, value);
-          case final bool value:
-            return sharedPrefs.setBool(key, value);
-          case final List<String> value:
-            return sharedPrefs.setStringList(key, value);
-          default:
-            throw UnsupportedError(
+        return switch (value) {
+          final String value => sharedPrefs.setString(key, value),
+          final int value => sharedPrefs.setInt(key, value),
+          final double value => sharedPrefs.setDouble(key, value),
+          final bool value => sharedPrefs.setBool(key, value),
+          final List<String> value => sharedPrefs.setStringList(key, value),
+          _ => throw UnsupportedError(
               'The type of this value is not supported. '
               'All supported types are: String | int | double | bool | List<String>.',
-            );
-        }
+            ),
+        };
       },
     );
   }
@@ -57,23 +51,17 @@ class SharedPreferencesFacade {
   T? restoreData<T>(String key) {
     return _errorHandler(
       () {
-        switch (T) {
-          case String:
-            return sharedPrefs.getString(key) as T?;
-          case int:
-            return sharedPrefs.getInt(key) as T?;
-          case double:
-            return sharedPrefs.getDouble(key) as T?;
-          case bool:
-            return sharedPrefs.getBool(key) as T?;
-          case const (List<String>):
-            return sharedPrefs.getStringList(key) as T?;
-          default:
-            throw UnsupportedError(
+        return switch (T) {
+          String => sharedPrefs.getString(key) as T?,
+          int => sharedPrefs.getInt(key) as T?,
+          double => sharedPrefs.getDouble(key) as T?,
+          bool => sharedPrefs.getBool(key) as T?,
+          const (List<String>) => sharedPrefs.getStringList(key) as T?,
+          _ => throw UnsupportedError(
               'The generic type is not supported. '
               'All supported types are: String | int | double | bool | List<String>.',
-            );
-        }
+            ),
+        };
       },
     );
   }
