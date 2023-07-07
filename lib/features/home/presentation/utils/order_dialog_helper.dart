@@ -58,7 +58,7 @@ abstract class OrderDialogHelper {
         message: message,
       ),
     ).then((result) {
-      final res = result as List<String>?;
+      final res = result as List<dynamic>?;
       if (res == null) return false;
       return res[0] as bool;
     });
