@@ -41,6 +41,7 @@ Future<PlaceDetails> getPlaceDetails(
 
   final cancelToken = ref.cancelToken();
 
-  final placeDetails = await ref.watch(mapRepoProvider).getPlaceDetails(cancelToken, placeId);
+  final placeDetails =
+      await ref.watch(mapRepoProvider).getPlaceDetails(placeId, cancelToken: cancelToken);
   return placeDetails;
 }

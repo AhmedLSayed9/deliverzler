@@ -36,5 +36,5 @@ Future<PlaceDirections> getTargetLocationDirections(
     origin: myLocation,
     destination: targetLocation,
   );
-  return ref.watch(mapRepoProvider).getPlaceDirections(cancelToken, query);
+  return ref.watch(mapRepoProvider).getPlaceDirections(query, cancelToken: cancelToken);
 }

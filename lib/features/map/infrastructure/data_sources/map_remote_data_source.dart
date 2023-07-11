@@ -31,9 +31,9 @@ class MapRemoteDataSource {
   static const String googleMapDirectionsPath = '/directions/json';
 
   Future<List<PlaceAutocompleteDto>> getPlaceAutocomplete(
-    CancelToken cancelToken,
-    String placeName,
-  ) async {
+    String placeName, {
+    required CancelToken? cancelToken,
+  }) async {
     final response = await googleMapApi.getData<Map<String, dynamic>>(
       path: googleMapAutoCompletePath,
       queryParameters: {
@@ -53,9 +53,9 @@ class MapRemoteDataSource {
   }
 
   Future<PlaceDetailsDto> getPlaceDetails(
-    CancelToken cancelToken,
-    String placeId,
-  ) async {
+    String placeId, {
+    required CancelToken? cancelToken,
+  }) async {
     final response = await googleMapApi.getData<Map<String, dynamic>>(
       path: googleMapPlaceDetailsPath,
       queryParameters: {
@@ -71,9 +71,9 @@ class MapRemoteDataSource {
   }
 
   Future<PlaceDirectionsDto> getPlaceDirections(
-    CancelToken cancelToken,
-    PlaceDirectionsQueryDto query,
-  ) async {
+    PlaceDirectionsQueryDto query, {
+    required CancelToken? cancelToken,
+  }) async {
     final response = await googleMapApi.getData<Map<String, dynamic>>(
       path: googleMapDirectionsPath,
       queryParameters: query.toJson(),

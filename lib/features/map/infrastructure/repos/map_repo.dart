@@ -26,30 +26,28 @@ class MapRepo {
   final MapRemoteDataSource remoteDataSource;
 
   Future<List<PlaceAutocomplete>> getPlaceAutocomplete(
-    CancelToken cancelToken,
-    String placeName,
-  ) async {
+    String placeName, {
+    CancelToken? cancelToken,
+  }) async {
     final autocomplete =
-        await remoteDataSource.getPlaceAutocomplete(cancelToken, placeName);
+        await remoteDataSource.getPlaceAutocomplete(placeName, cancelToken: cancelToken);
     return autocomplete.map((item) => item.toDomain()).toList();
   }
 
   Future<PlaceDetails> getPlaceDetails(
-    CancelToken cancelToken,
-    String placeId,
-  ) async {
-    final placeDetails =
-        await remoteDataSource.getPlaceDetails(cancelToken, placeId);
+    String placeId, {
+    CancelToken? cancelToken,
+  }) async {
+    final placeDetails = await remoteDataSource.getPlaceDetails(placeId, cancelToken: cancelToken);
     return placeDetails.toDomain();
   }
 
   Future<PlaceDirections> getPlaceDirections(
-    CancelToken cancelToken,
-    PlaceDirectionsQuery query,
-  ) async {
+    PlaceDirectionsQuery query, {
+    CancelToken? cancelToken,
+  }) async {
     final dto = PlaceDirectionsQueryDto.fromDomain(query);
-    final directions =
-        await remoteDataSource.getPlaceDirections(cancelToken, dto);
+    final directions = await remoteDataSource.getPlaceDirections(dto, cancelToken: cancelToken);
     return directions.toDomain();
   }
 }
