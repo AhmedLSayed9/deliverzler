@@ -8,6 +8,25 @@ extension AutoDisposeRefExtension<T> on AutoDisposeRef<T> {
     onDispose(timer.cancel);
   }
 
+  /// Configures the amount of time before a provider is disposed when it is not listened.
+  void disposeDelay(Duration duration) {
+    final link = keepAlive();
+    Timer? timer;
+
+    onDispose(() {
+      timer?.cancel();
+    });
+
+    onCancel(() {
+      timer?.cancel();
+      timer = Timer(duration, link.close);
+    });
+
+    onResume(() {
+      timer?.cancel();
+    });
+  }
+
   CancelToken cancelToken() {
     // An object from package:dio that allows cancelling pending network requests
     // if they are no-longer needed.
