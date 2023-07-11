@@ -13,13 +13,12 @@ extension AutoDisposeRefExtension<T> on AutoDisposeRef<T> {
     final link = keepAlive();
     Timer? timer;
 
-    onDispose(() {
-      timer?.cancel();
+    onCancel(() {
+      timer = Timer(duration, link.close);
     });
 
-    onCancel(() {
+    onDispose(() {
       timer?.cancel();
-      timer = Timer(duration, link.close);
     });
 
     onResume(() {
