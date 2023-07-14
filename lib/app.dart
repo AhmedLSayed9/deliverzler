@@ -7,6 +7,7 @@ import 'core/core_features/theme/presentation/utils/app_theme.dart';
 import 'core/presentation/routing/app_router.dart';
 import 'core/presentation/routing/navigation_service.dart';
 import 'core/presentation/utils/riverpod_framework.dart';
+import 'core/presentation/utils/scroll_behaviors.dart';
 import 'core/presentation/widgets/platform_widgets/platform_app.dart';
 
 class MyApp extends HookConsumerWidget {
@@ -27,9 +28,12 @@ class MyApp extends HookConsumerWidget {
       child: PlatformApp(
         routerConfig: router,
         builder: (_, child) {
-          return GestureDetector(
-            onTap: NavigationService.removeFocus,
-            child: child,
+          return ScrollConfiguration(
+            behavior: MainScrollBehavior(),
+            child: GestureDetector(
+              onTap: NavigationService.removeFocus,
+              child: child,
+            ),
           );
         },
         title: 'Deliverzler',

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/presentation/screens/nested_screen_scaffold.dart';
 import '../../../../../core/presentation/styles/sizes.dart';
-import '../../../../../core/presentation/utils/scroll_behaviors.dart';
 import '../../components/profile_form_component.dart';
 import '../../components/profile_header_component.dart';
 
@@ -11,10 +10,9 @@ class ProfileScreenMedium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NestedScreenScaffold(
+    return const NestedScreenScaffold(
       body: CustomScrollView(
-        scrollBehavior: MainScrollBehavior(),
-        slivers: const [
+        slivers: [
           SliverFillRemaining(
             hasScrollBody: false,
             child: Padding(

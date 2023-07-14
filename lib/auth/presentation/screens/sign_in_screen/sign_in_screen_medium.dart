@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/screens/full_screen_platform_scaffold.dart';
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/utils/scroll_behaviors.dart';
 import '../../../../gen/my_assets.dart';
 import '../../components/login_content_component.dart';
 import '../../components/login_logo_component.dart';
@@ -14,7 +13,6 @@ class SignInScreenMedium extends StatelessWidget {
   Widget build(BuildContext context) {
     return FullScreenPlatformScaffold(
       body: CustomScrollView(
-        scrollBehavior: MainScrollBehavior(),
         slivers: [
           SliverFillRemaining(
             hasScrollBody: false,
