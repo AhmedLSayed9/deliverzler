@@ -21,7 +21,6 @@ class ConfirmChoiceDialog extends StatelessWidget {
       width: Sizes.dialogWidth280,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
           CustomText.f18(
             context,

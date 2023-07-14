@@ -7,7 +7,7 @@ import '../styles/sizes.dart';
 import '../utils/riverpod_framework.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text.dart';
-import '../widgets/loading_indicators.dart';
+import '../widgets/loading_widgets.dart';
 
 class NoInternetErrorComponent extends StatelessWidget {
   const NoInternetErrorComponent({super.key});
@@ -17,7 +17,7 @@ class NoInternetErrorComponent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const SmallLoadingAnimation(),
+        const DeliveryLoadingAnimation(),
         const SizedBox(
           height: Sizes.marginV32,
         ),

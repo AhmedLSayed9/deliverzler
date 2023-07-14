@@ -11,7 +11,6 @@ import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../domain/order.dart';
 
 class OrderDetailsDialog extends StatelessWidget {
-
   const OrderDetailsDialog({
     required this.order,
     super.key,
@@ -24,7 +23,6 @@ class OrderDetailsDialog extends StatelessWidget {
       width: Sizes.dialogWidth280,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [

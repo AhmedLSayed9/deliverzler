@@ -21,7 +21,6 @@ class CancelOrderDialog extends HookWidget {
       width: Sizes.dialogWidth280,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
           CustomText.f16(
             context,

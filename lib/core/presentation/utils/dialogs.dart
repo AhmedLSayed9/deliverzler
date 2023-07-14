@@ -9,7 +9,7 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_dialog.dart';
 import '../widgets/custom_icon.dart';
 import '../widgets/custom_text.dart';
-import '../widgets/loading_indicators.dart';
+import '../widgets/loading_widgets.dart';
 
 abstract class Dialogs {
   static Future<T?> showLoadingDialog<T extends Object?>(BuildContext context) async {
@@ -24,10 +24,9 @@ abstract class Dialogs {
         borderRadius: BorderRadius.circular(Sizes.dialogR20),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SmallLoadingAnimation(
+          const DeliveryLoadingAnimation(
             width: Sizes.loadingIndicatorR90,
             height: Sizes.loadingIndicatorR90,
           ),
@@ -61,7 +60,6 @@ abstract class Dialogs {
         borderRadius: BorderRadius.circular(Sizes.dialogR20),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           CustomIcon.i72(
@@ -114,7 +112,12 @@ abstract class Dialogs {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Sizes.dialogR20),
       ),
-      child: child,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          child,
+        ],
+      ),
     );
   }
 }

@@ -9,19 +9,19 @@ import '../styles/sizes.dart';
 import 'custom_text.dart';
 import 'platform_widgets/platform_circluar_progress_indicator.dart';
 
-abstract class LoadingIndicators {
-  static Widget defaultLoadingIndicator(
-    BuildContext context, {
-    String? message,
-  }) {
+class LoadingIndicator extends StatelessWidget {
+  const LoadingIndicator({this.message, super.key});
+
+  final String? message;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(
         vertical: Sizes.dialogPaddingV28,
         horizontal: Sizes.dialogPaddingH20,
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           PlatformCircularProgressIndicator(
@@ -37,7 +37,7 @@ abstract class LoadingIndicators {
               radius: 20,
             ),
           ),
-          if (message != null) ...[
+          if (message case final message?) ...[
             const SizedBox(
               height: Sizes.marginV20,
             ),
@@ -54,8 +54,8 @@ abstract class LoadingIndicators {
   }
 }
 
-class SmallLoadingAnimation extends StatelessWidget {
-  const SmallLoadingAnimation({
+class DeliveryLoadingAnimation extends StatelessWidget {
+  const DeliveryLoadingAnimation({
     this.height = Sizes.loadingIndicatorR150,
     this.width = Sizes.loadingIndicatorR150,
     super.key,

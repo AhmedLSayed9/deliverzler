@@ -7,7 +7,7 @@ import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/utils/scroll_behaviors.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
-import '../../../../core/presentation/widgets/loading_indicators.dart';
+import '../../../../core/presentation/widgets/loading_widgets.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_refresh_indicator.dart';
 import '../../../../core/presentation/widgets/seperated_sliver_child_builder_delegate.dart';
 import '../../domain/value_objects.dart';
@@ -95,7 +95,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
             ),
           ],
         ),
-        loading: () => const SmallLoadingAnimation(),
+        loading: () => const DeliveryLoadingAnimation(),
       ),
     );
   }

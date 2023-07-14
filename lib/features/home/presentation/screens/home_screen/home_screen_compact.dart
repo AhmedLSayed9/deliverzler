@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/screens/nested_screen_scaffold.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../../core/presentation/widgets/loading_indicators.dart';
+import '../../../../../core/presentation/widgets/loading_widgets.dart';
 import '../../components/retry_again_component.dart';
 import '../../components/upcoming_orders_component.dart';
 import '../../providers/location_stream_provider.dart';
@@ -26,10 +26,7 @@ class HomeScreenCompact extends HookConsumerWidget {
       body: locationAsync.when(
         skipLoadingOnReload: true,
         skipLoadingOnRefresh: !locationAsync.hasError,
-        loading: () => LoadingIndicators.defaultLoadingIndicator(
-          context,
-          message: tr(context).determine_location,
-        ),
+        loading: () => LoadingIndicator(message: tr(context).determine_location),
         error: (error, st) => RetryAgainComponent(
           description: (error as LocationError).getErrorText(context),
           onPressed: () {

@@ -10,7 +10,7 @@ import '../../../../../core/presentation/services/local_notfication_service/show
 import '../../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/utils/toasts.dart';
-import '../../../../../core/presentation/widgets/loading_indicators.dart';
+import '../../../../../core/presentation/widgets/loading_widgets.dart';
 import '../../../../home/presentation/components/retry_again_component.dart';
 import '../../../../home/presentation/providers/location_stream_provider.dart';
 import '../../../../home/presentation/utils/location_error.dart';
@@ -32,18 +32,21 @@ class MapScreenCompact extends HookConsumerWidget {
     final currentTheme = ref.watch(currentAppThemeProvider);
     final locationAsync = ref.watch(locationStreamProvider);
 
-    useEffect(() {
-      if (ref.read(targetLocationGeoPointProvider) is None) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          Toasts.showTitledToast(
-            context,
-            title: tr(context).pleaseSearchForLocation,
-            description: tr(context).userHasNotProvidedLocation,
-          );
-        });
-      }
-      return null;
-    }, [],);
+    useEffect(
+      () {
+        if (ref.read(targetLocationGeoPointProvider) is None) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Toasts.showTitledToast(
+              context,
+              title: tr(context).pleaseSearchForLocation,
+              description: tr(context).userHasNotProvidedLocation,
+            );
+          });
+        }
+        return null;
+      },
+      [],
+    );
 
     ref.listen<bool>(isArrivedTargetLocationProvider, (previous, next) {
       if (next == true) {
@@ -74,10 +77,7 @@ class MapScreenCompact extends HookConsumerWidget {
         body: locationAsync.when(
           skipLoadingOnReload: true,
           skipLoadingOnRefresh: !locationAsync.hasError,
-          loading: () => LoadingIndicators.defaultLoadingIndicator(
-            context,
-            message: tr(context).determine_location,
-          ),
+          loading: () => LoadingIndicator(message: tr(context).determine_location),
           error: (error, st) => RetryAgainComponent(
             description: (error as LocationError).getErrorText(context),
             onPressed: () {
