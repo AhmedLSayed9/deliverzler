@@ -5,7 +5,6 @@ import '../../../../core/presentation/routing/app_router.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../core/presentation/utils/scroll_behaviors.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../core/presentation/widgets/loading_widgets.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_refresh_indicator.dart';

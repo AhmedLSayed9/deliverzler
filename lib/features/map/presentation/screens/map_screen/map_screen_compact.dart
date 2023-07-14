@@ -77,7 +77,7 @@ class MapScreenCompact extends HookConsumerWidget {
         body: locationAsync.when(
           skipLoadingOnReload: true,
           skipLoadingOnRefresh: !locationAsync.hasError,
-          loading: () => LoadingIndicator(message: tr(context).determine_location),
+          loading: () => TitledLoadingIndicator(message: tr(context).determine_location),
           error: (error, st) => RetryAgainComponent(
             description: (error as LocationError).getErrorText(context),
             onPressed: () {

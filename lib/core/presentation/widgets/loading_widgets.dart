@@ -10,7 +10,34 @@ import 'custom_text.dart';
 import 'platform_widgets/platform_circluar_progress_indicator.dart';
 
 class LoadingIndicator extends StatelessWidget {
-  const LoadingIndicator({this.message, super.key});
+  const LoadingIndicator({this.padding, super.key});
+
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      padding: padding,
+      child: PlatformCircularProgressIndicator(
+        color: customColors(context).loadingIndicatorColor,
+        materialData: MaterialProgressIndicatorData(
+          strokeWidth: 3,
+          backgroundColor: Colors.transparent,
+          valueColor: AlwaysStoppedAnimation<Color>(
+            customColors(context).loadingIndicatorColor!,
+          ),
+        ),
+        cupertinoData: const CupertinoActivityIndicatorData(
+          radius: 20,
+        ),
+      ),
+    );
+  }
+}
+
+class TitledLoadingIndicator extends StatelessWidget {
+  const TitledLoadingIndicator({this.message, super.key});
 
   final String? message;
 
@@ -24,19 +51,7 @@ class LoadingIndicator extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          PlatformCircularProgressIndicator(
-            color: customColors(context).loadingIndicatorColor,
-            materialData: MaterialProgressIndicatorData(
-              strokeWidth: 3,
-              backgroundColor: Colors.transparent,
-              valueColor: AlwaysStoppedAnimation<Color>(
-                customColors(context).loadingIndicatorColor!,
-              ),
-            ),
-            cupertinoData: const CupertinoActivityIndicatorData(
-              radius: 20,
-            ),
-          ),
+          const LoadingIndicator(),
           if (message case final message?) ...[
             const SizedBox(
               height: Sizes.marginV20,
