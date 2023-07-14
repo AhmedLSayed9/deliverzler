@@ -12,35 +12,33 @@ class ProfileScreenMedium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NestedScreenScaffold(
-      body: ScrollConfiguration(
-        behavior: MainScrollBehavior(),
-        child: const CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: Sizes.screenMarginV20,
-                  horizontal: Sizes.screenMarginH36,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: ProfileHeaderComponent(),
-                    ),
-                    SizedBox(
-                      width: Sizes.marginH16,
-                    ),
-                    Flexible(
-                      child: ProfileFormComponent(),
-                    ),
-                  ],
-                ),
+      body: CustomScrollView(
+        scrollBehavior: MainScrollBehavior(),
+        slivers: const [
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: Sizes.screenMarginV20,
+                horizontal: Sizes.screenMarginH36,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: ProfileHeaderComponent(),
+                  ),
+                  SizedBox(
+                    width: Sizes.marginH16,
+                  ),
+                  Flexible(
+                    child: ProfileFormComponent(),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

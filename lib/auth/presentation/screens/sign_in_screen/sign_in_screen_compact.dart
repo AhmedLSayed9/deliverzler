@@ -13,45 +13,43 @@ class SignInScreenCompact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FullScreenPlatformScaffold(
-      body: ScrollConfiguration(
-        behavior: MainScrollBehavior(),
-        child: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      MyAssets.ASSETS_IMAGES_LOGIN_LOGIN_BACKGROUND_PNG,
-                    ),
-                    fit: BoxFit.cover,
+      body: CustomScrollView(
+        scrollBehavior: MainScrollBehavior(),
+        slivers: [
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    MyAssets.ASSETS_IMAGES_LOGIN_LOGIN_BACKGROUND_PNG,
                   ),
+                  fit: BoxFit.cover,
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: Sizes.screenMarginV16,
-                    horizontal: Sizes.screenMarginH28,
-                  ),
-                  child: Column(
-                    children: [
-                      Flexible(
-                        child: LoginLogoComponent(),
-                      ),
-                      SizedBox(
-                        height: Sizes.marginV12,
-                      ),
-                      Flexible(
-                        flex: 2,
-                        child: LoginContentComponent(),
-                      ),
-                    ],
-                  ),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: Sizes.screenMarginV16,
+                  horizontal: Sizes.screenMarginH28,
+                ),
+                child: Column(
+                  children: [
+                    Flexible(
+                      child: LoginLogoComponent(),
+                    ),
+                    SizedBox(
+                      height: Sizes.marginV12,
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: LoginContentComponent(),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

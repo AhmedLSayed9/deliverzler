@@ -1,20 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/scroll_behaviors.dart';
 import 'platform_base_widget.dart';
 
-class PlatformRefreshIndicator
-    extends PlatformBaseWidget<RefreshIndicator, CustomScrollView> {
+class PlatformRefreshIndicator extends PlatformBaseWidget<RefreshIndicator, CustomScrollView> {
   const PlatformRefreshIndicator({
-    required this.onRefresh, required this.slivers, super.key,
+    required this.onRefresh,
+    required this.slivers,
+    super.key,
     this.widgetKey,
     this.scrollController,
+    this.scrollBehavior,
   });
 
   final Key? widgetKey;
   final Future<void> Function() onRefresh;
   final List<Widget> slivers;
   final ScrollController? scrollController;
+  final ScrollBehavior? scrollBehavior;
 
   @override
   RefreshIndicator createMaterialWidget(BuildContext context) {
@@ -24,6 +28,7 @@ class PlatformRefreshIndicator
       child: CustomScrollView(
         key: widgetKey,
         controller: scrollController,
+        scrollBehavior: scrollBehavior ?? MainScrollBehavior(),
         slivers: slivers,
       ),
     );
@@ -34,6 +39,7 @@ class PlatformRefreshIndicator
     return CustomScrollView(
       key: widgetKey,
       controller: scrollController,
+      scrollBehavior: scrollBehavior ?? MainScrollBehavior(),
       slivers: [
         CupertinoSliverRefreshControl(
           onRefresh: onRefresh,

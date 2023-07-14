@@ -11,22 +11,20 @@ class ErrorScreenCompact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      body: ScrollConfiguration(
-        behavior: MainScrollBehavior(),
-        child: const CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: Sizes.screenMarginV16,
-                  horizontal: Sizes.screenMarginH28,
-                ),
-                child: RouteErrorComponent(),
+      body: CustomScrollView(
+        scrollBehavior: MainScrollBehavior(),
+        slivers: const [
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: Sizes.screenMarginV16,
+                horizontal: Sizes.screenMarginH28,
               ),
+              child: RouteErrorComponent(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

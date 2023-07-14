@@ -36,67 +36,64 @@ class UpcomingOrdersComponent extends ConsumerWidget {
 
     final upcomingOrdersAsync = ref.watch(upcomingOrdersProvider);
 
-    return ScrollConfiguration(
-      behavior: MainScrollBehavior(),
-      child: upcomingOrdersAsync.when(
-        skipLoadingOnReload: true,
-        skipLoadingOnRefresh: !upcomingOrdersAsync.hasError,
-        data: (upcomingOrders) {
-          return PlatformRefreshIndicator(
-            onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
-            slivers: [
-              if (upcomingOrders.isNotEmpty)
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.screenMarginV16,
-                    horizontal: Sizes.screenMarginH28,
-                  ),
-                  sliver: SliverList(
-                    delegate: SeparatedSliverChildBuilderDelegate(
-                      itemBuilder: (BuildContext context, int index) {
-                        return CardItemComponent(
-                          key: ValueKey(upcomingOrders[index].id),
-                          order: upcomingOrders[index],
-                        );
-                      },
-                      itemCount: upcomingOrders.length,
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(
-                          height: Sizes.marginV28,
-                        );
-                      },
-                    ),
-                  ),
-                )
-              else
-                SliverFillRemaining(
-                  child: Center(
-                    child: CustomText.f18(
-                      context,
-                      tr(context).thereAreNoOrders,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-            ],
-          );
-        },
-        error: (error, st) => PlatformRefreshIndicator(
+    return upcomingOrdersAsync.when(
+      skipLoadingOnReload: true,
+      skipLoadingOnRefresh: !upcomingOrdersAsync.hasError,
+      data: (upcomingOrders) {
+        return PlatformRefreshIndicator(
           onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
           slivers: [
-            SliverFillRemaining(
-              child: Center(
-                child: CustomText.f18(
-                  context,
-                  '${tr(context).somethingWentWrong}\n${tr(context).pleaseTryAgain}',
-                  textAlign: TextAlign.center,
+            if (upcomingOrders.isNotEmpty)
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: Sizes.screenMarginV16,
+                  horizontal: Sizes.screenMarginH28,
+                ),
+                sliver: SliverList(
+                  delegate: SeparatedSliverChildBuilderDelegate(
+                    itemBuilder: (BuildContext context, int index) {
+                      return CardItemComponent(
+                        key: ValueKey(upcomingOrders[index].id),
+                        order: upcomingOrders[index],
+                      );
+                    },
+                    itemCount: upcomingOrders.length,
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: Sizes.marginV28,
+                      );
+                    },
+                  ),
+                ),
+              )
+            else
+              SliverFillRemaining(
+                child: Center(
+                  child: CustomText.f18(
+                    context,
+                    tr(context).thereAreNoOrders,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-            ),
           ],
-        ),
-        loading: () => const DeliveryLoadingAnimation(),
+        );
+      },
+      error: (error, st) => PlatformRefreshIndicator(
+        onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
+        slivers: [
+          SliverFillRemaining(
+            child: Center(
+              child: CustomText.f18(
+                context,
+                '${tr(context).somethingWentWrong}\n${tr(context).pleaseTryAgain}',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ],
       ),
+      loading: () => const DeliveryLoadingAnimation(),
     );
   }
 }
