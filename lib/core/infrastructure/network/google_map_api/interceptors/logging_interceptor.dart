@@ -1,3 +1,6 @@
+/* 
+/// Legacy.
+
 import 'package:dio/dio.dart';
 import 'package:logging/logging.dart';
 
@@ -30,3 +33,4 @@ class LoggingInterceptor extends Interceptor {
     return handler.next(err);
   }
 }
+ */

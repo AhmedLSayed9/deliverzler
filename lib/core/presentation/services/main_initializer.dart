@@ -24,18 +24,8 @@ Future<void> _mainInitializer() async {
 }
 
 void _setupLogger() {
-  Logger.root.level = Level.ALL; // defaults to Level.INFO
-  Logger.root.onRecord.listen((r) {
-    late final String emoji;
-    if (r.level == Level.WARNING) {
-      emoji = '❗ ';
-    } else if (r.level == Level.SEVERE) {
-      emoji = '⛔️ ';
-    } else {
-      emoji = 'ℹ️ ';
-    }
-    log('$emoji[${r.loggerName}] ${r.level.name} ${r.time.toString().substring(11)}: ${r.message}');
-  });
+  hierarchicalLoggingEnabled = true;
+  Logger.root.level = Level.ALL;
 }
 
 Future<void> _initFirebase() async {

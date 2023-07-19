@@ -19,7 +19,7 @@ void main() async {
   await _mainInitializer();
   runApp(
     ProviderScope(
-      observers: [ProviderLogger()],
+      observers: [ProviderLogger(), ProviderCrashlytics()],
       child: const MyApp(),
     ),
   );

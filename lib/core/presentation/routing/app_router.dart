@@ -38,6 +38,7 @@ GoRouter goRouter(GoRouterRef ref) {
   );
 
   final router = GoRouter(
+    debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     initialLocation: const SplashRoute().location,
     routes: [
