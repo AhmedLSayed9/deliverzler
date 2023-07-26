@@ -5,24 +5,51 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Deliverzler",
+      "name": "Run",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart"
     },
     {
-      "name": "Deliverzler (profile mode)",
+      "name": "Run (profile mode)",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
       "flutterMode": "profile"
     },
     {
-      "name": "Deliverzler (release mode)",
+      "name": "Run (release mode)",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
       "flutterMode": "release"
+    },
+    {
+      "name": "Run Android 13 (API 33)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "emulator-5554"
+    },
+    {
+      "name": "Run iPhone 14 Pro Max",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "1F19CF3B-1BA3-484E-9EFA-8ECC2C9C4630"
+    },
+    {
+      "name": "Run macOS 13.4.1 (Rosetta)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "macos"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run Android & iPhone",
+      "configurations": ["Run Android 13 (API 33)", "Run iPhone 14 Pro Max"]
     }
   ]
 }
