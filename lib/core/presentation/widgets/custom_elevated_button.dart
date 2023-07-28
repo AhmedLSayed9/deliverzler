@@ -8,10 +8,12 @@ class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
     required this.onPressed,
     required this.child,
+    this.onLongPress,
     this.padding = const EdgeInsets.symmetric(
       vertical: Sizes.buttonPaddingV14,
       horizontal: Sizes.buttonPaddingH80,
     ),
+    this.constraints,
     this.borderRadius,
     this.buttonColor,
     this.splashColor,
@@ -23,8 +25,10 @@ class CustomElevatedButton extends StatelessWidget {
   });
 
   final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
   final Widget child;
   final EdgeInsetsGeometry padding;
+  final BoxConstraints? constraints;
   final BorderRadius? borderRadius;
   final Color? buttonColor;
   final Color? splashColor;
@@ -33,48 +37,55 @@ class CustomElevatedButton extends StatelessWidget {
   final Gradient? gradient;
   final double elevation;
 
+  BorderRadius get _borderRadius => borderRadius ?? BorderRadius.circular(Sizes.buttonR24);
+
+  Color? get _buttonColor => enableGradient ? Colors.transparent : buttonColor;
+
   @override
   Widget build(BuildContext context) {
     return PlatformElevatedButton(
       onPressed: onPressed,
-      color: enableGradient ? Colors.transparent : buttonColor,
+      color: _buttonColor, // Must be provided at top to affect cupertino.
       material: (context, __) {
         return MaterialElevatedButtonData(
-          // Ink is a workaround for gradient until https://github.com/flutter/flutter/issues/89563 is solved.
-          child: Ink(
-            padding: padding,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius ?? BorderRadius.circular(Sizes.buttonR24),
-              gradient: enableGradient ? gradient : null,
-            ),
-            child: child,
-          ),
+          onLongPress: onLongPress,
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.zero,
             minimumSize: Size.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: borderRadius ?? BorderRadius.circular(Sizes.buttonR24),
-            ),
-            backgroundColor: enableGradient ? Colors.transparent : buttonColor,
+            shape: RoundedRectangleBorder(borderRadius: _borderRadius),
+            backgroundColor: _buttonColor,
             foregroundColor: splashColor,
             shadowColor: shadowColor,
             elevation: elevation,
+          ),
+          // Ink is a workaround for gradient until https://github.com/flutter/flutter/issues/89563 is solved.
+          child: Ink(
+            decoration: BoxDecoration(
+              borderRadius: _borderRadius,
+              gradient: enableGradient ? gradient : null,
+            ),
+            child: Container(
+              padding: padding,
+              constraints: constraints,
+              child: child,
+            ),
           ),
         );
       },
       cupertino: (context, __) {
         return CupertinoElevatedButtonData(
-          child: Container(
-            padding: padding,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius ?? BorderRadius.circular(Sizes.buttonR24),
-              gradient: enableGradient ? gradient : null,
-            ),
-            child: child,
-          ),
           padding: EdgeInsets.zero,
           minSize: 0,
-          borderRadius: BorderRadius.circular(Sizes.buttonR24),
+          borderRadius: _borderRadius,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: _borderRadius,
+              gradient: enableGradient ? gradient : null,
+            ),
+            padding: padding,
+            constraints: constraints,
+            child: child,
+          ),
         );
       },
     );

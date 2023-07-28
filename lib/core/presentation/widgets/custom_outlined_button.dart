@@ -38,6 +38,10 @@ class CustomOutlinedButton extends StatelessWidget {
   final Gradient? gradient;
   final double elevation;
 
+  BorderRadius get _borderRadius => borderRadius ?? BorderRadius.circular(Sizes.buttonR24);
+
+  Color? get _buttonColor => enableGradient ? Colors.transparent : buttonColor;
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
@@ -46,11 +50,9 @@ class CustomOutlinedButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         padding: EdgeInsets.zero,
         minimumSize: Size.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: borderRadius ?? BorderRadius.circular(Sizes.buttonR24),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: _borderRadius),
         side: side,
-        backgroundColor: enableGradient ? Colors.transparent : buttonColor,
+        backgroundColor: _buttonColor,
         foregroundColor: splashColor,
         shadowColor: shadowColor,
         elevation: elevation,
@@ -58,12 +60,12 @@ class CustomOutlinedButton extends StatelessWidget {
       // Ink is a workaround for gradient until https://github.com/flutter/flutter/issues/89563 is solved.
       child: Ink(
         decoration: BoxDecoration(
-          borderRadius: borderRadius ?? BorderRadius.circular(Sizes.buttonR24),
+          borderRadius: _borderRadius,
           gradient: enableGradient ? gradient : null,
         ),
         child: Container(
-          constraints: constraints,
           padding: padding,
+          constraints: constraints,
           child: child,
         ),
       ),
