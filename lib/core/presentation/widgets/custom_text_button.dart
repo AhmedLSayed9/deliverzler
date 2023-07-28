@@ -1,82 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import '../styles/sizes.dart';
-import 'custom_text.dart';
-import 'platform_widgets/platform_text_button.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     required this.onPressed,
-    this.minHeight = 0,
-    this.minWidth = 0,
-    this.child,
-    this.text,
-    this.shape,
-    this.elevation,
+    required this.child,
+    this.padding = const EdgeInsets.symmetric(
+      vertical: 10,
+      horizontal: 12,
+    ),
+    this.borderRadius,
     this.buttonColor,
     this.splashColor,
     this.shadowColor,
-    this.padding,
-    this.onLongPress,
-    this.tapTargetSize,
+    this.elevation = 0,
     super.key,
-  }) : assert(text != null || child != null, "Either text or child shouldn't be null");
-  final double minHeight;
-  final double minWidth;
-  final Widget? child;
-  final String? text;
+  });
+
   final VoidCallback? onPressed;
-  final OutlinedBorder? shape;
-  final double? elevation;
+  final Widget child;
+  final EdgeInsetsGeometry padding;
+  final BorderRadius? borderRadius;
   final Color? buttonColor;
   final Color? splashColor;
   final Color? shadowColor;
-  final EdgeInsetsGeometry? padding;
-  final VoidCallback? onLongPress;
-  final MaterialTapTargetSize? tapTargetSize;
+  final double elevation;
+
+  static const double _defaultRadius = Sizes.buttonR4;
 
   @override
   Widget build(BuildContext context) {
     return PlatformTextButton(
       onPressed: onPressed,
-      materialData: MaterialTextButtonData(
-        onLongPress: onLongPress,
-        style: TextButton.styleFrom(
-          padding: padding ??
-              const EdgeInsets.symmetric(
-                vertical: Sizes.paddingV4,
-                horizontal: Sizes.paddingH8,
-              ),
-          shape: shape,
-          elevation: elevation ?? 0,
-          backgroundColor: buttonColor,
-          foregroundColor: splashColor ?? Theme.of(context).colorScheme.primary,
-          shadowColor: shadowColor,
-          minimumSize: Size(minWidth, minHeight),
-          tapTargetSize: tapTargetSize,
-        ),
-      ),
-      cupertinoData: CupertinoTextButtonData(
-        color: buttonColor,
-        padding: padding ??
-            const EdgeInsets.symmetric(
-              vertical: Sizes.paddingV4,
-              horizontal: Sizes.paddingH8,
+      padding: padding,
+      color: buttonColor,
+      child: child,
+      material: (context, __) {
+        return MaterialTextButtonData(
+          style: TextButton.styleFrom(
+            minimumSize: Size.zero,
+            padding: padding,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius ?? BorderRadius.circular(_defaultRadius),
             ),
-        borderRadius: shape != null
-            ? (shape! as RoundedRectangleBorder)
-                .borderRadius
-                .resolve(Directionality.maybeOf(context))
-            : null,
-        minSize: minHeight,
-      ),
-      child: child ??
-          CustomText.f14(
-            context,
-            text!,
-            color: Theme.of(context).colorScheme.primary,
-            //alignment: Alignment.center,
+            backgroundColor: buttonColor,
+            foregroundColor: splashColor,
+            shadowColor: shadowColor,
+            elevation: elevation,
           ),
+        );
+      },
+      cupertino: (context, __) {
+        return CupertinoTextButtonData(
+          minSize: 0,
+          borderRadius: BorderRadius.circular(_defaultRadius),
+        );
+      },
     );
   }
 }

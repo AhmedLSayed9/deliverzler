@@ -83,6 +83,7 @@ abstract class Sizes {
   static const double buttonWidth60 = 60;
   static const double buttonWidth40 = 40;
   static const double buttonR24 = 24;
+  static const double buttonR4 = 4;
 
   //TextField
   static const double textFieldR12 = 12;
