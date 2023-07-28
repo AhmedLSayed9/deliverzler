@@ -1,88 +1,71 @@
 import 'package:flutter/material.dart';
 
 import '../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
-import 'custom_text.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-
   const CustomOutlinedButton({
-    required this.onPressed, this.height,
-    this.width,
-    this.minHeight,
-    this.child,
-    this.text,
-    this.shape,
+    required this.onPressed,
+    required this.child,
+    this.onLongPress,
+    this.padding = const EdgeInsets.symmetric(
+      vertical: Sizes.buttonPaddingV14,
+      horizontal: Sizes.buttonPaddingH80,
+    ),
+    this.constraints,
+    this.borderRadius,
     this.side,
-    this.elevation,
     this.buttonColor,
     this.splashColor,
     this.shadowColor,
-    this.gradientColor,
-    this.gradientBorderRadius,
-    this.padding,
-    this.onLongPress,
+    this.enableGradient = false,
+    this.gradient = AppStaticColors.primaryIngredientColor,
+    this.elevation = 0,
     super.key,
   });
-  final double? height;
-  final double? width;
-  final double? minHeight;
-  final Widget? child;
-  final String? text;
+
   final VoidCallback? onPressed;
-  final OutlinedBorder? shape;
+  final VoidCallback? onLongPress;
+  final Widget child;
+  final EdgeInsetsGeometry padding;
+  final BoxConstraints? constraints;
+  final BorderRadius? borderRadius;
   final BorderSide? side;
-  final double? elevation;
   final Color? buttonColor;
   final Color? splashColor;
   final Color? shadowColor;
-  final Gradient? gradientColor;
-  final BorderRadiusGeometry? gradientBorderRadius;
-  final EdgeInsetsGeometry? padding;
-  final VoidCallback? onLongPress;
+  final bool enableGradient;
+  final Gradient? gradient;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        shape: shape ??
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(Sizes.buttonR24),
-            ),
-        side: side,
-        elevation: elevation ?? 0,
-        backgroundColor: buttonColor,
-        foregroundColor: splashColor,
-        shadowColor: shadowColor,
-        padding: padding ??
-            EdgeInsets.zero, //Not necessary if you added height and width.
-      ),
       onPressed: onPressed,
       onLongPress: onLongPress,
-      child: Container(
-        alignment: Alignment.center,
-        height: height ?? Sizes.buttonHeight48,
-        width: width ?? Sizes.buttonWidth280,
-        constraints: BoxConstraints(
-          minHeight: minHeight ?? Sizes.buttonHeight40,
+      style: OutlinedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: borderRadius ?? BorderRadius.circular(Sizes.buttonR24),
         ),
-        decoration: buttonColor == null
-            ? BoxDecoration(
-                borderRadius: gradientBorderRadius ??
-                    BorderRadius.circular(Sizes.buttonR24),
-                gradient:
-                    gradientColor ?? AppStaticColors.primaryIngredientColor,
-              )
-            : null,
-        child: child ??
-            CustomText.f18(
-              context,
-              text!,
-              color: buttonColor == null ? const Color(0xffffffff) : null,
-              weight: FontStyles.fontWeightSemiBold,
-              //alignment: Alignment.center,
-            ),
+        side: side,
+        backgroundColor: enableGradient ? Colors.transparent : buttonColor,
+        foregroundColor: splashColor,
+        shadowColor: shadowColor,
+        elevation: elevation,
+      ),
+      // Ink is a workaround for gradient until https://github.com/flutter/flutter/issues/89563 is solved.
+      child: Ink(
+        decoration: BoxDecoration(
+          borderRadius: borderRadius ?? BorderRadius.circular(Sizes.buttonR24),
+          gradient: enableGradient ? gradient : null,
+        ),
+        child: Container(
+          constraints: constraints,
+          padding: padding,
+          child: child,
+        ),
       ),
     );
   }

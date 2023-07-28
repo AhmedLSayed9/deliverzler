@@ -35,7 +35,7 @@ class RouteErrorComponent extends StatelessWidget {
             color: const Color(0xffffffff),
             weight: FontStyles.fontWeightSemiBold,
           ),
-        )
+        ),
       ],
     );
   }
