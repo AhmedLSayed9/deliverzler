@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'package:lottie/lottie.dart';
 
@@ -7,7 +8,6 @@ import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
 import 'custom_text.dart';
-import 'platform_widgets/platform_circluar_progress_indicator.dart';
 
 class LoadingIndicator extends StatelessWidget {
   const LoadingIndicator({this.padding, super.key});
@@ -20,17 +20,22 @@ class LoadingIndicator extends StatelessWidget {
       alignment: Alignment.center,
       padding: padding,
       child: PlatformCircularProgressIndicator(
-        color: customColors(context).loadingIndicatorColor,
-        materialData: MaterialProgressIndicatorData(
-          strokeWidth: 3,
-          backgroundColor: Colors.transparent,
-          valueColor: AlwaysStoppedAnimation<Color>(
-            customColors(context).loadingIndicatorColor!,
-          ),
-        ),
-        cupertinoData: const CupertinoActivityIndicatorData(
-          radius: 20,
-        ),
+        material: (_, __) {
+          return MaterialProgressIndicatorData(
+            strokeWidth: 3,
+            backgroundColor: Colors.transparent,
+            color: customColors(context).loadingIndicatorColor,
+            valueColor: AlwaysStoppedAnimation<Color>(
+              customColors(context).loadingIndicatorColor!,
+            ),
+          );
+        },
+        cupertino: (_, __) {
+          return CupertinoProgressIndicatorData(
+            color: customColors(context).loadingIndicatorColor,
+            radius: 20,
+          );
+        },
       ),
     );
   }
