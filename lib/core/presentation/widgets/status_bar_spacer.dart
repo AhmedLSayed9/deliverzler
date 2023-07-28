@@ -2,18 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-//This show StatusBar without an AppBar
-class EmptyAppBar extends StatelessWidget
+/// A widget that occupies the space of the status bar and customizes its appearance
+/// without providing an actual app bar.
+class StatusBarSpacer extends StatelessWidget
     implements PreferredSizeWidget, ObstructingPreferredSizeWidget {
-  const EmptyAppBar({
-    this.systemOverlayStyle,
+  /// Creates a StatusBarSpacer.
+  /// It's a widget that occupies the space of the status bar and customizes its appearance
+  /// without providing an actual app bar.
+  const StatusBarSpacer({
     this.statusBarColor,
+    this.systemOverlayStyle,
     this.elevation,
     super.key,
   });
 
-  final SystemUiOverlayStyle? systemOverlayStyle;
   final Color? statusBarColor;
+  final SystemUiOverlayStyle? systemOverlayStyle;
   final double? elevation;
 
   @override
@@ -25,7 +29,7 @@ class EmptyAppBar extends StatelessWidget
               .appBarTheme
               .systemOverlayStyle
               ?.copyWith(statusBarColor: statusBarColor),
-      elevation: elevation ?? Theme.of(context).appBarTheme.elevation,
+      elevation: elevation,
     );
   }
 
@@ -33,7 +37,5 @@ class EmptyAppBar extends StatelessWidget
   Size get preferredSize => const Size.fromHeight(0);
 
   @override
-  bool shouldFullyObstruct(BuildContext context) {
-    return true;
-  }
+  bool shouldFullyObstruct(BuildContext context) => true;
 }

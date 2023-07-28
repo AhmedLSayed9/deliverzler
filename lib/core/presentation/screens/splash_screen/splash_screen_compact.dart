@@ -8,7 +8,7 @@ import '../../helpers/localization_helper.dart';
 import '../../styles/font_styles.dart';
 import '../../styles/sizes.dart';
 import '../../widgets/custom_text.dart';
-import '../full_screen_platform_scaffold.dart';
+import '../full_screen_scaffold.dart';
 
 class SplashScreenCompact extends StatelessWidget {
   const SplashScreenCompact({
@@ -20,7 +20,7 @@ class SplashScreenCompact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FullScreenPlatformScaffold(
+    return FullScreenScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [

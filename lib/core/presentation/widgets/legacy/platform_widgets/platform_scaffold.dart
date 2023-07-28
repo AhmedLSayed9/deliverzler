@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../empty_appbar_widget.dart';
-import 'platform_base_widget.dart';
+import '../../status_bar_spacer.dart';
+import '../../platform_widgets/platform_base_widget.dart';
 
 class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
   const PlatformScaffold({
     required this.body,
     this.widgetKey,
     this.platformAppBar,
-    this.hasEmptyAppbar = true,
+    this.hasStatusBarSpace = true,
     this.backgroundColor,
     this.materialData,
     super.key,
@@ -17,7 +17,7 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
 
   final Key? widgetKey;
   final Object? platformAppBar;
-  final bool hasEmptyAppbar;
+  final bool hasStatusBarSpace;
   final Widget body;
   final Color? backgroundColor;
   final MaterialScaffoldData? materialData;
@@ -28,8 +28,8 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
       key: widgetKey,
       appBar: platformAppBar != null
           ? platformAppBar! as PreferredSizeWidget
-          : hasEmptyAppbar
-              ? EmptyAppBar(
+          : hasStatusBarSpace
+              ? StatusBarSpacer(
                   statusBarColor: materialData?.statusBarColor,
                 )
               : null,
@@ -47,8 +47,8 @@ class PlatformScaffold extends PlatformBaseWidget<Scaffold, Widget> {
       key: widgetKey,
       navigationBar: platformAppBar != null
           ? platformAppBar! as ObstructingPreferredSizeWidget
-          : hasEmptyAppbar
-              ? const EmptyAppBar(
+          : hasStatusBarSpace
+              ? const StatusBarSpacer(
                   //It's not allowed to set statusBarColor for iOS without an appbar.
                   statusBarColor: Colors.transparent,
                 )

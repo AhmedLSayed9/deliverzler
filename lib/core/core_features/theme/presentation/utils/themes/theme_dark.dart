@@ -39,14 +39,36 @@ class ThemeDark implements ITheme {
   late final Color scaffoldBackgroundColor = appColors.scaffoldBGColor;
 
   @override
-  late final Color bottomAppBarColor = appColors.bottomNavBarColor;
+  late final NavigationBarThemeData navigationBarTheme = NavigationBarThemeData(
+    backgroundColor: appColors.bottomNavBarColor,
+    surfaceTintColor: Colors.transparent,
+    shadowColor: appColors.bottomNavBarColor,
+    indicatorColor: Colors.blue.shade100,
+    labelTextStyle: MaterialStateProperty.resolveWith((states) {
+      return TextStyle(
+        color: appColors.customColors.font14Color,
+        fontSize: Sizes.font12,
+      );
+    }),
+    elevation: 4,
+  );
+
+  @override
+  late final NavigationRailThemeData navigationRailTheme = NavigationRailThemeData(
+    backgroundColor: appColors.bottomNavBarColor,
+    elevation: 4,
+  );
 
   @override
   late final TextTheme textTheme = TextTheme(
     titleMedium: TextStyle(
       color: appColors.textFieldSubtitle1Color,
+      fontSize: Sizes.font14,
     ),
   );
+
+  @override
+  late final TextTheme primaryTextTheme = baseTheme.primaryTextTheme;
 
   @override
   late final Color hintColor = appColors.textFieldHintColor;
@@ -58,7 +80,17 @@ class ThemeDark implements ITheme {
 
   @override
   late final InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
+    contentPadding: const EdgeInsets.symmetric(
+      vertical: Sizes.textFieldPaddingV14,
+      horizontal: Sizes.textFieldPaddingH14,
+    ),
+    isDense: true,
+    filled: true,
     fillColor: appColors.textFieldFillColor,
+    hintStyle: TextStyle(
+      fontSize: Sizes.font12,
+      color: appColors.textFieldHintColor,
+    ),
     prefixIconColor: appColors.textFieldPrefixIconColor,
     suffixIconColor: appColors.textFieldSuffixIconColor,
     border: OutlineInputBorder(
@@ -97,8 +129,18 @@ class ThemeDark implements ITheme {
         width: 0.8,
       ),
     ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: const BorderRadius.all(
+        Radius.circular(Sizes.textFieldR12),
+      ),
+      borderSide: BorderSide(
+        color: appColors.textFieldErrorBorderColor,
+        width: 0.8,
+      ),
+    ),
     errorStyle: TextStyle(
       color: appColors.textFieldErrorStyleColor,
+      fontSize: Sizes.font12,
     ),
   );
 

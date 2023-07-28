@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'platform_base_widget.dart';
+import '../../platform_widgets/platform_base_widget.dart';
 
-class PlatformIconButton
-    extends PlatformBaseWidget<IconButton, CupertinoButton> {
+class PlatformIconButton extends PlatformBaseWidget<IconButton, CupertinoButton> {
   const PlatformIconButton({
-    required this.icon, required this.onPressed, super.key,
+    required this.icon,
+    required this.onPressed,
+    super.key,
     this.widgetKey,
     this.padding,
     this.materialData,

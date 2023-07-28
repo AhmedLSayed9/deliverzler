@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'platform_base_widget.dart';
+import '../../platform_widgets/platform_base_widget.dart';
 
-class PlatformNavBar
-    extends PlatformBaseWidget<NavigationBar, CupertinoTabBar> {
+class PlatformNavBar extends PlatformBaseWidget<NavigationBar, CupertinoTabBar> {
   const PlatformNavBar({
-    required this.materialData, required this.cupertinoData, super.key,
+    required this.materialData,
+    required this.cupertinoData,
+    super.key,
     this.widgetKey,
     this.currentIndex = 0,
     this.onTap,

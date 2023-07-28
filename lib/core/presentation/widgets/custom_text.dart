@@ -35,7 +35,6 @@ class CustomText extends Text {
             fontSize: size,
             fontWeight: weight,
             decoration: underline ? TextDecoration.underline : null,
-            fontFamily: FontStyles.fontFamily(context),
           ),
         );
 

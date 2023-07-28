@@ -19,7 +19,7 @@ void main() {
         // GIVEN
         setUpTargetPlatform(TargetPlatform.iOS);
         // WHEN
-        final result = PlatformHelper.isMaterialApp();
+        final result = PlatformHelper.isMaterialApp;
         // THEN
         expect(result, false);
       },
@@ -31,7 +31,7 @@ void main() {
         // GIVEN
         setUpTargetPlatform(TargetPlatform.macOS);
         // WHEN
-        final result = PlatformHelper.isMaterialApp();
+        final result = PlatformHelper.isMaterialApp;
         // THEN
         expect(result, false);
       },
@@ -43,7 +43,7 @@ void main() {
         // GIVEN
         setUpTargetPlatform(TargetPlatform.android);
         // WHEN
-        final result = PlatformHelper.isMaterialApp();
+        final result = PlatformHelper.isMaterialApp;
         // THEN
         expect(result, true);
       },
@@ -55,7 +55,7 @@ void main() {
         // GIVEN
         setUpTargetPlatform(TargetPlatform.fuchsia);
         // WHEN
-        final result = PlatformHelper.isMaterialApp();
+        final result = PlatformHelper.isMaterialApp;
         // THEN
         expect(result, true);
       },
@@ -67,7 +67,7 @@ void main() {
         // GIVEN
         setUpTargetPlatform(TargetPlatform.windows);
         // WHEN
-        final result = PlatformHelper.isMaterialApp();
+        final result = PlatformHelper.isMaterialApp;
         // THEN
         expect(result, true);
       },

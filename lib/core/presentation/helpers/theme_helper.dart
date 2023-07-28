@@ -24,13 +24,13 @@ SystemUiOverlayStyle getFullScreenOverlayStyle(
       ? SystemUiOverlayStyle.dark.copyWith(
           //For Android
           statusBarColor: Colors.transparent,
-          systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
+          systemNavigationBarColor: Theme.of(context).navigationBarTheme.backgroundColor,
           systemNavigationBarIconBrightness: Brightness.dark,
         )
       : SystemUiOverlayStyle.light.copyWith(
           //For Android
           statusBarColor: Colors.transparent,
-          systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
+          systemNavigationBarColor: Theme.of(context).navigationBarTheme.backgroundColor,
           systemNavigationBarIconBrightness: Brightness.light,
         );
 }

@@ -1,74 +1,48 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/helpers/platform_helper.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
-import '../../../../core/presentation/widgets/custom_text_form_field.dart';
 
 class TitledTextFieldItem extends StatelessWidget {
-
   const TitledTextFieldItem({
+    required this.controller,
     required this.title,
-    required this.hint,
-    required this.validator, this.prefix,
-    this.suffix,
-    this.controller,
+    required this.hintText,
+    required this.validator,
+    this.textInputAction = TextInputAction.next,
     this.keyboardType,
-    this.isLastTextField = false,
     super.key,
   });
+
   final String title;
-  final String hint;
-  final Widget? prefix;
-  final Widget? suffix;
   final TextEditingController? controller;
+  final String hintText;
   final FormFieldValidator<String>? validator;
+  final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
-  final bool isLastTextField;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (PlatformHelper.isMaterialApp())
-          Padding(
-            padding: const EdgeInsetsDirectional.only(
-              start: Sizes.paddingH4,
-              bottom: Sizes.paddingV8,
-            ),
-            child: CustomText.f16(
-              context,
-              title,
-            ),
+        Padding(
+          padding: const EdgeInsetsDirectional.only(
+            start: Sizes.paddingH4,
+            bottom: Sizes.paddingV8,
           ),
-        CustomTextFormField(
-          controller: controller,
-          validator: validator,
-          textInputAction:
-              isLastTextField ? TextInputAction.done : TextInputAction.next,
-          keyboardType: keyboardType,
-          materialPrefix: prefix,
-          cupertinoPrefix: Row(
-            children: [
-              SizedBox(
-                width: Sizes.textFieldPrefixWidth144,
-                child: CustomText.f18(
-                  context,
-                  title,
-                  weight: FontStyles.fontWeightSemiBold,
-                ),
-              ),
-              const SizedBox(
-                width: Sizes.marginH6,
-              ),
-              if (prefix != null) prefix!,
-            ],
+          child: CustomText.f16(
+            context,
+            title,
           ),
-          suffix: suffix,
-          hintText: hint,
+        ),
+        TextFormField(
           key: ValueKey(title),
+          controller: controller,
+          decoration: InputDecoration(hintText: hintText),
+          validator: validator,
+          textInputAction: textInputAction,
+          keyboardType: keyboardType,
         ),
       ],
     );

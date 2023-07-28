@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../core/presentation/widgets/responsive_widgets/widget_builders.dart';
+import '../../../../core/presentation/widgets/responsive_widgets/responsive_layouts.dart';
 import '../../providers/sign_in_provider.dart';
 import 'sign_in_screen_compact.dart';
 import 'sign_in_screen_medium.dart';

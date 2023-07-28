@@ -9,7 +9,7 @@ import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_button.dart';
 import '../../domain/profile_details.dart';
 import '../providers/profile_details_provider.dart';
-import 'profile_text_fields_section.dart';
+import '../widgets/titled_text_field_item.dart';
 
 class ProfileFormComponent extends HookConsumerWidget {
   const ProfileFormComponent({super.key});
@@ -43,9 +43,27 @@ class ProfileFormComponent extends HookConsumerWidget {
             constraints: const BoxConstraints(
               maxWidth: Sizes.maxWidth360,
             ),
-            child: ProfileTextFieldsSection(
-              nameController: nameController,
-              mobileController: mobileController,
+            child: Column(
+              children: [
+                TitledTextFieldItem(
+                  controller: nameController,
+                  title: tr(context).fullName,
+                  hintText: tr(context).enterYourName,
+                  validator: ProfileDetails.validateName(context),
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(
+                  height: Sizes.textFieldMarginV24,
+                ),
+                TitledTextFieldItem(
+                  title: tr(context).mobileNumber,
+                  controller: mobileController,
+                  hintText: tr(context).enterYourNumber,
+                  validator: ProfileDetails.validateMobile(context),
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.done,
+                ),
+              ],
             ),
           ),
           const SizedBox(

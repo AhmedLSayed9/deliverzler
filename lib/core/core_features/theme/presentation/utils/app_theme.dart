@@ -10,10 +10,10 @@ enum AppTheme {
 }
 
 extension ThemeExtension on AppTheme {
-  ThemeData getThemeData() {
+  ThemeData getThemeData(String fontFamily) {
     return switch (this) {
-      AppTheme.light => ThemeLight().getThemeData(),
-      AppTheme.dark => ThemeDark().getThemeData(),
+      AppTheme.light => ThemeLight().getThemeData(fontFamily),
+      AppTheme.dark => ThemeDark().getThemeData(fontFamily),
     };
   }
 

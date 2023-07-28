@@ -115,7 +115,7 @@ abstract class Sizes {
 
   //AppBar
   static const double appBarHeight56 = 56;
-  static const double appBarButtonR32 = 32;
+  static const double appBarLeadingWidth = 68;
 
   //Drawer
   static const double drawerWidth240 = 240;

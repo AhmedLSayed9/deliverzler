@@ -6,7 +6,7 @@ import '../../hooks/fade_in_controller_hook.dart';
 import '../../providers/splash_providers.dart';
 import '../../routing/app_router.dart';
 import '../../utils/riverpod_framework.dart';
-import '../../widgets/responsive_widgets/widget_builders.dart';
+import '../../widgets/responsive_widgets/responsive_layouts.dart';
 import 'splash_screen_compact.dart';
 
 class SplashScreen extends HookConsumerWidget {

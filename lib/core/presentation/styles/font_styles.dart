@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/localization_helper.dart';
 import 'sizes.dart';
 
 class FontStyles {
-  static String fontFamily(BuildContext context) => tr(context).fontFamily;
+  static const String familyPoppins = 'Poppins';
+  static const String familyTajawal = 'Tajawal';
 
   static const fontWeightBlack = FontWeight.w900;
   static const fontWeightExtraBold = FontWeight.w800;
@@ -19,7 +19,6 @@ class FontStyles {
   static TextStyle mapSearchBarFontStyle(BuildContext context) => TextStyle(
         fontSize: Sizes.font16,
         color: Theme.of(context).textTheme.titleMedium!.color,
-        fontFamily: fontFamily(context),
         fontWeight: fontWeightNormal,
       );
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../styles/sizes.dart';
-import 'platform_base_widget.dart';
+import '../../../styles/sizes.dart';
+import '../../platform_widgets/platform_base_widget.dart';
 
 class PlatformAppBar extends PlatformBaseWidget<AppBar, SizedBox> {
   const PlatformAppBar({
@@ -50,8 +50,7 @@ class PlatformAppBar extends PlatformBaseWidget<AppBar, SizedBox> {
     return SizedBox(
       //Have to add height here in addition to PreferredSizeWidget..
       //https://github.com/flutter/flutter/issues/112326
-      height: Sizes.statusBarHeight +
-          (toolbarHeight ?? kMinInteractiveDimensionCupertino),
+      height: Sizes.statusBarHeight + (toolbarHeight ?? kMinInteractiveDimensionCupertino),
       child: CupertinoNavigationBar(
         key: widgetKey,
         backgroundColor: backgroundColor,

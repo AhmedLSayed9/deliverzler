@@ -16,9 +16,13 @@ abstract class ITheme {
 
   abstract final Color scaffoldBackgroundColor;
 
-  abstract final Color bottomAppBarColor;
+  abstract final NavigationBarThemeData navigationBarTheme;
+
+  abstract final NavigationRailThemeData navigationRailTheme;
 
   abstract final TextTheme textTheme;
+
+  abstract final TextTheme primaryTextTheme;
 
   abstract final Color hintColor;
 
@@ -38,23 +42,27 @@ abstract class ITheme {
 }
 
 extension ThemeExtension on ITheme {
-  ThemeData getThemeData() {
+  //TODO(AHMED): useMaterial3
+  ThemeData getThemeData(String fontFamily) {
     return baseTheme.copyWith(
       appBarTheme: appBarTheme,
       scaffoldBackgroundColor: scaffoldBackgroundColor,
+      navigationBarTheme: navigationBarTheme,
+      navigationRailTheme: navigationRailTheme,
       primaryColor: primaryColor,
       colorScheme: colorScheme,
+      textTheme: textTheme.apply(fontFamily: fontFamily),
+      primaryTextTheme: primaryTextTheme.apply(fontFamily: fontFamily),
       iconTheme: iconTheme,
       buttonTheme: buttonTheme,
       toggleButtonsTheme: toggleButtonsTheme,
-      textTheme: textTheme,
       hintColor: hintColor,
       textSelectionTheme: textSelectionTheme,
       inputDecorationTheme: inputDecorationTheme,
       cardTheme: cardTheme,
       extensions: [
         this.customColors,
-      ], bottomAppBarTheme: BottomAppBarTheme(color: bottomAppBarColor),
+      ],
     );
   }
 }

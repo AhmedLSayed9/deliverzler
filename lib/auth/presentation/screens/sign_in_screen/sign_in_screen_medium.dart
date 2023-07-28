@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/screens/full_screen_platform_scaffold.dart';
+import '../../../../core/presentation/screens/full_screen_scaffold.dart';
 import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../gen/my_assets.dart';
 import '../../components/login_content_component.dart';
@@ -11,7 +11,7 @@ class SignInScreenMedium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FullScreenPlatformScaffold(
+    return FullScreenScaffold(
       body: CustomScrollView(
         slivers: [
           SliverFillRemaining(

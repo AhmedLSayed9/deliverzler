@@ -68,6 +68,8 @@ dependencies:
   timeago: ^3.4.0
 
   # Widgets
+  flutter_platform_widgets: ^4.0.0-beta.3
+  flutter_adaptive_scaffold: ^0.1.6
   fluttertoast: ^8.2.2
   qr_flutter: ^4.1.0
   material_floating_search_bar:

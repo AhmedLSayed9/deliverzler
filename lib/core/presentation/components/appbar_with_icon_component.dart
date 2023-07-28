@@ -5,7 +5,6 @@ import '../styles/sizes.dart';
 import '../widgets/custom_text.dart';
 
 class AppBarWithIconComponent extends StatelessWidget {
-
   const AppBarWithIconComponent({
     required this.icon,
     required this.title,
@@ -17,6 +16,7 @@ class AppBarWithIconComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ImageIcon(

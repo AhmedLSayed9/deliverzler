@@ -486,6 +486,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_adaptive_scaffold:
+    dependency: "direct main"
+    description:
+      name: flutter_adaptive_scaffold
+      sha256: "4f448902314bc9b6cf820c85d5bad4de6489c0eff75dcedf5098f3a53ec981ee"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.6"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -563,6 +571,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  flutter_platform_widgets:
+    dependency: "direct main"
+    description:
+      name: flutter_platform_widgets
+      sha256: d55914d258ddff94474388a19be97f3096a83c58792b1857bc90935ebff6cade
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0-beta.3"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -1645,4 +1661,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.0.0 <4.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.10.0"

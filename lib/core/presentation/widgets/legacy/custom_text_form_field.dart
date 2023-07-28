@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../helpers/platform_helper.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
+import '../../helpers/platform_helper.dart';
+import '../../styles/font_styles.dart';
+import '../../styles/sizes.dart';
 import 'platform_widgets/platform_text_form_field.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -69,7 +69,6 @@ class CustomTextFormField extends StatelessWidget {
           style: TextStyle(
             color: Theme.of(context).textTheme.titleMedium?.color,
             fontSize: Sizes.font14,
-            fontFamily: FontStyles.fontFamily(context),
           ),
           cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
           materialData: MaterialTextFormFieldData(
@@ -85,7 +84,6 @@ class CustomTextFormField extends StatelessWidget {
               hintText: hintText,
               hintStyle: TextStyle(
                 fontSize: Sizes.font12,
-                fontFamily: FontStyles.fontFamily(context),
                 color: Theme.of(context).hintColor,
               ),
               prefixIcon: materialPrefix,
@@ -105,7 +103,6 @@ class CustomTextFormField extends StatelessWidget {
                 color: Theme.of(context).inputDecorationTheme.errorStyle?.color,
                 fontWeight: FontStyles.fontWeightNormal,
                 fontSize: Sizes.font12,
-                fontFamily: FontStyles.fontFamily(context),
               ),
               errorMaxLines: errorMaxLines,
               border: Theme.of(context).inputDecorationTheme.border,
@@ -125,14 +122,13 @@ class CustomTextFormField extends StatelessWidget {
             placeHolder: hintText,
             placeholderStyle: TextStyle(
               fontSize: Sizes.font12,
-              fontFamily: FontStyles.fontFamily(context),
               color: Theme.of(context).hintColor,
             ),
             prefix: cupertinoPrefix,
           ),
         ),
         //Add suffix manually for iOS https://github.com/flutter/flutter/issues/103385
-        if (suffix != null && !PlatformHelper.isMaterialApp())
+        if (suffix != null && !PlatformHelper.isMaterialApp)
           PositionedDirectional(
             top: (contentPadding?.top ?? Sizes.textFieldPaddingV10) * 1.5,
             end: Sizes.paddingH14,

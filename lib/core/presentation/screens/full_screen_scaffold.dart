@@ -4,24 +4,28 @@ import '../../core_features/theme/presentation/providers/current_app_theme_provi
 import '../../core_features/theme/presentation/utils/app_theme.dart';
 import '../helpers/theme_helper.dart';
 import '../utils/riverpod_framework.dart';
-import '../widgets/platform_widgets/platform_scaffold.dart';
+import '../widgets/status_bar_spacer.dart';
 
-class FullScreenPlatformScaffold extends ConsumerWidget {
-  const FullScreenPlatformScaffold({
+class FullScreenScaffold extends ConsumerWidget {
+  const FullScreenScaffold({
     required this.body,
+    this.hasStatusBarSpace = false,
+    this.statusBarColor,
     this.darkOverlays,
     super.key,
   });
 
   final Widget body;
+  final bool hasStatusBarSpace;
+  final Color? statusBarColor;
   final bool? darkOverlays;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(currentAppThemeProvider);
 
-    return PlatformScaffold(
-      hasEmptyAppbar: false,
+    return Scaffold(
+      appBar: hasStatusBarSpace ? StatusBarSpacer(statusBarColor: statusBarColor) : null,
       body: AnnotatedRegion(
         value: getFullScreenOverlayStyle(
           context,

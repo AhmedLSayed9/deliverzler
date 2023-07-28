@@ -73,7 +73,6 @@ class MapScreenCompact extends HookConsumerWidget {
         darkOverlays: currentTheme == AppTheme.light,
       ),
       child: NestedScreenScaffold(
-        hasAppBar: false,
         body: locationAsync.when(
           skipLoadingOnReload: true,
           skipLoadingOnRefresh: !locationAsync.hasError,

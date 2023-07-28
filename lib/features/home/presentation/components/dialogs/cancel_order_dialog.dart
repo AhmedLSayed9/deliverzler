@@ -8,7 +8,6 @@ import '../../../../../core/presentation/styles/sizes.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/widgets/custom_button.dart';
 import '../../../../../core/presentation/widgets/custom_text.dart';
-import 'cancel_order_note_component.dart';
 
 class CancelOrderDialog extends HookWidget {
   const CancelOrderDialog({super.key});
@@ -29,8 +28,16 @@ class CancelOrderDialog extends HookWidget {
           const SizedBox(
             height: Sizes.marginV12,
           ),
-          CancelOrderNoteComponent(
-            cancelNoteController: cancelNoteController,
+          TextFormField(
+            key: const ValueKey('cancel_note'),
+            controller: cancelNoteController,
+            decoration: InputDecoration(
+              hintText: '${tr(context).typeYourNote}...',
+            ),
+            textInputAction: TextInputAction.newline,
+            minLines: 1,
+            maxLines: 6,
+            maxLength: 200,
           ),
           const SizedBox(
             height: Sizes.marginV20,

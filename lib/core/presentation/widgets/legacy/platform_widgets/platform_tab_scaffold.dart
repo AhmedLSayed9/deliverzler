@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/riverpod_framework.dart';
-import 'platform_base_consumer_widget.dart';
+import '../../../utils/riverpod_framework.dart';
 import 'platform_nav_bar.dart';
+import 'platform_base_consumer_widget.dart';
 
 typedef IndexedAppBarBuilder = dynamic Function(
   BuildContext context,
