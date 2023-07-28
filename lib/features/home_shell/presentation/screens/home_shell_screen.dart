@@ -21,7 +21,8 @@ import '../utils/tab_item.dart';
 /// Builds the "shell" for the home by building a Scaffold with a persistent
 /// BottomNavigationBar or similar, where [navigationShell] is placed in the body of the Scaffold.
 class HomeShellScreen extends HookConsumerWidget {
-  const HomeShellScreen({required this.navigationShell, super.key});
+  const HomeShellScreen({required this.navigationShell, Key? key})
+      : super(key: key ?? const ValueKey<String>('HomeShellScreen'));
 
   /// The navigation shell and container for the branch Navigators.
   final StatefulNavigationShell navigationShell;

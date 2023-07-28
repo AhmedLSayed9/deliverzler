@@ -57,12 +57,7 @@ GoRouter goRouter(GoRouterRef ref) {
             // Return the widget that implements the custom shell.
             // The StatefulNavigationShell is passed to be able access the state
             // of the shell and to navigate to other branches in a stateful way.
-            HomeShellScreen(
-              navigationShell: navigationShell,
-              // This key fixes ShellRoute bug with CupertinoTabScaffold:
-              // https://github.com/flutter/flutter/issues/113757
-              key: GlobalKey(debugLabel: 'HomeShellScreen'),
-            ),
+            HomeShellScreen(navigationShell: navigationShell),
           );
         },
         // Each separate stateful navigation tree (a Navigator) is represented by
