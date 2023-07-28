@@ -4,7 +4,7 @@ import '../helpers/localization_helper.dart';
 import '../routing/app_router.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_text.dart';
 
 class RouteErrorComponent extends StatelessWidget {
@@ -24,12 +24,17 @@ class RouteErrorComponent extends StatelessWidget {
         const SizedBox(
           height: Sizes.marginV28,
         ),
-        CustomButton(
-          text: tr(context).goToHome,
+        CustomElevatedButton(
           onPressed: () {
             const HomeRoute().go(context);
           },
           buttonColor: Theme.of(context).colorScheme.primary,
+          child: CustomText.f16(
+            context,
+            tr(context).goToHome,
+            color: const Color(0xffffffff),
+            weight: FontStyles.fontWeightSemiBold,
+          ),
         )
       ],
     );

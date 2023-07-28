@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/presentation/components/appbar_with_icon_component.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/app_router.dart';
-import '../../../../core/presentation/widgets/custom_app_bar.dart';
+import '../../../../core/presentation/widgets/custom_appbar.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../gen/my_assets.dart';
 

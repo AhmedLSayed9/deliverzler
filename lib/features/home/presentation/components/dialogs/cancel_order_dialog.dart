@@ -6,7 +6,7 @@ import '../../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../../core/presentation/styles/font_styles.dart';
 import '../../../../../core/presentation/styles/sizes.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../../core/presentation/widgets/custom_button.dart';
+import '../../../../../core/presentation/widgets/custom_elevated_button.dart';
 import '../../../../../core/presentation/widgets/custom_text.dart';
 
 class CancelOrderDialog extends HookWidget {
@@ -50,10 +50,12 @@ class CancelOrderDialog extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
-                  child: CustomButton(
+                  child: CustomElevatedButton(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.buttonPaddingV12,
+                      horizontal: Sizes.buttonPaddingH34,
+                    ),
                     buttonColor: customColors(context).greyColor,
-                    height: Sizes.buttonHeight44,
-                    width: Sizes.buttonWidth120,
                     onPressed: () {
                       NavigationService.popDialog(context);
                     },
@@ -62,18 +64,25 @@ class CancelOrderDialog extends HookWidget {
                       tr(context).cancel,
                       color: const Color(0xffffffff),
                       weight: FontStyles.fontWeightSemiBold,
-                      //alignment: Alignment.center,
                     ),
                   ),
                 ),
                 Flexible(
-                  child: CustomButton(
-                    text: tr(context).confirm,
-                    height: Sizes.buttonHeight44,
-                    width: Sizes.buttonWidth120,
+                  child: CustomElevatedButton(
+                    enableGradient: true,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.buttonPaddingV12,
+                      horizontal: Sizes.buttonPaddingH34,
+                    ),
                     onPressed: () {
                       NavigationService.popDialog(context, result: cancelNoteController.text);
                     },
+                    child: CustomText.f16(
+                      context,
+                      tr(context).confirm,
+                      color: const Color(0xffffffff),
+                      weight: FontStyles.fontWeightSemiBold,
+                    ),
                   ),
                 ),
               ],

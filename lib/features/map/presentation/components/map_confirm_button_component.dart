@@ -8,7 +8,7 @@ import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../core/presentation/widgets/custom_button.dart';
+import '../../../../core/presentation/widgets/custom_elevated_button.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../home/domain/update_delivery_status.dart';
 import '../../../home/domain/value_objects.dart';
@@ -52,9 +52,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
             orderId: order.id,
             deliveryStatus: DeliveryStatus.delivered,
           );
-          ref
-              .read(mapConfirmOrderEventProvider.notifier)
-              .update((_) => Some(Event.unique(params)));
+          ref.read(mapConfirmOrderEventProvider.notifier).update((_) => Some(Event.unique(params)));
         },
       );
     }
@@ -63,9 +61,8 @@ class MapConfirmButtonComponent extends ConsumerWidget {
         ? Positioned(
             bottom: Sizes.mapConfirmButtonBottom,
             left: Sizes.mapConfirmButtonLeft,
-            child: CustomButton(
-              height: Sizes.buttonHeight48,
-              width: Sizes.buttonWidth240,
+            child: CustomElevatedButton(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 88),
               buttonColor: Theme.of(context).colorScheme.primary,
               elevation: 2,
               onPressed: confirmOrder,
@@ -74,7 +71,6 @@ class MapConfirmButtonComponent extends ConsumerWidget {
                 tr(context).confirm,
                 color: customColors(context).whiteColor,
                 weight: FontStyles.fontWeightMedium,
-                //alignment: Alignment.center,
               ),
             ),
           )

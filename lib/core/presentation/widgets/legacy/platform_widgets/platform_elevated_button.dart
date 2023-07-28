@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'platform_base_widget.dart';
+import '../../platform_widgets/platform_base_widget.dart';
 
 class PlatformElevatedButton
     extends PlatformBaseWidget<ElevatedButton, CupertinoTheme> {

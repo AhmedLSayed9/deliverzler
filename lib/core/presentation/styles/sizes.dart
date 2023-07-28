@@ -67,6 +67,10 @@ abstract class Sizes {
   static const double maxWidth360 = 360;
 
   //Button
+  static const double buttonPaddingV14 = 14;
+  static const double buttonPaddingV12 = 12;
+  static const double buttonPaddingH80 = 80;
+  static const double buttonPaddingH34 = 34;
   static const double buttonHeight48 = 48;
   static const double buttonHeight44 = 44;
   static const double buttonHeight40 = 40;

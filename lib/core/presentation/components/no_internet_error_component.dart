@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../../infrastructure/network/network_info.dart';
 import '../helpers/localization_helper.dart';
 import '../routing/app_router.dart';
+import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
 import '../utils/riverpod_framework.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/loading_widgets.dart';
 
@@ -56,10 +57,15 @@ class NoInternetErrorComponent extends StatelessWidget {
               isLoading.value = false;
             }
 
-            return CustomButton(
-              text: tr(context).retry,
+            return CustomElevatedButton(
               onPressed: retryOnPressed,
               buttonColor: Theme.of(context).colorScheme.primary,
+              child: CustomText.f16(
+                context,
+                tr(context).signIn,
+                color: const Color(0xffffffff),
+                weight: FontStyles.fontWeightSemiBold,
+              ),
             );
           },
         ),

@@ -5,7 +5,7 @@ import '../helpers/localization_helper.dart';
 import '../routing/navigation_service.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_dialog.dart';
 import '../widgets/custom_icon.dart';
 import '../widgets/custom_text.dart';
@@ -87,9 +87,15 @@ abstract class Dialogs {
           const SizedBox(
             height: Sizes.marginV20,
           ),
-          CustomButton(
-            text: tr(context).oK,
+          CustomElevatedButton(
+            enableGradient: true,
             onPressed: () => NavigationService.popDialog(context),
+            child: CustomText.f16(
+              context,
+              tr(context).oK,
+              color: const Color(0xffffffff),
+              weight: FontStyles.fontWeightSemiBold,
+            ),
           ),
         ],
       ),

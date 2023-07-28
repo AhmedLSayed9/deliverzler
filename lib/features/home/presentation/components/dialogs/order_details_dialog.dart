@@ -6,7 +6,7 @@ import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../../core/presentation/styles/font_styles.dart';
 import '../../../../../core/presentation/styles/sizes.dart';
-import '../../../../../core/presentation/widgets/custom_button.dart';
+import '../../../../../core/presentation/widgets/custom_elevated_button.dart';
 import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../domain/order.dart';
 
@@ -159,11 +159,19 @@ class OrderDetailsDialog extends StatelessWidget {
             height: Sizes.marginV12,
           ),
           Center(
-            child: CustomButton(
-              text: tr(context).back,
-              height: Sizes.buttonHeight44,
-              width: Sizes.buttonWidth220,
+            child: CustomElevatedButton(
+              enableGradient: true,
+              padding: const EdgeInsets.symmetric(
+                vertical: Sizes.buttonPaddingV12,
+                horizontal: Sizes.buttonPaddingH80,
+              ),
               onPressed: () => NavigationService.popDialog(context),
+              child: CustomText.f16(
+                context,
+                tr(context).back,
+                color: const Color(0xffffffff),
+                weight: FontStyles.fontWeightSemiBold,
+              ),
             ),
           ),
         ],

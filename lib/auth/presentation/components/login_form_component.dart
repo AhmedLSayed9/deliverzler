@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/presentation/helpers/localization_helper.dart';
+import '../../../core/presentation/styles/font_styles.dart';
 import '../../../core/presentation/styles/sizes.dart';
 import '../../../core/presentation/utils/event.dart';
 import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../core/presentation/widgets/custom_button.dart';
+import '../../../core/presentation/widgets/custom_elevated_button.dart';
+import '../../../core/presentation/widgets/custom_text.dart';
 import '../../../core/presentation/widgets/platform_widgets/platform_icons.dart';
 import '../../domain/sign_in_with_email.dart';
 import '../providers/sign_in_provider.dart';
@@ -74,9 +76,15 @@ class LoginFormComponent extends HookConsumerWidget {
           const SizedBox(
             height: Sizes.marginV40,
           ),
-          CustomButton(
-            text: tr(context).signIn,
+          CustomElevatedButton(
+            enableGradient: true,
             onPressed: ref.isLoading(signInStateProvider) ? null : signIn,
+            child: CustomText.f16(
+              context,
+              tr(context).signIn,
+              color: const Color(0xffffffff),
+              weight: FontStyles.fontWeightSemiBold,
+            ),
           ),
         ],
       ),

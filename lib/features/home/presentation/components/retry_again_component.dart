@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/styles/font_styles.dart';
 import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/widgets/custom_button.dart';
+import '../../../../core/presentation/widgets/custom_elevated_button.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
 
 class RetryAgainComponent extends StatelessWidget {
-
   const RetryAgainComponent({
     required this.description,
     required this.onPressed,
@@ -34,10 +33,15 @@ class RetryAgainComponent extends StatelessWidget {
           const SizedBox(
             height: Sizes.marginV20,
           ),
-          CustomButton(
-            text: tr(context).retry,
+          CustomElevatedButton(
             onPressed: onPressed,
             buttonColor: Theme.of(context).colorScheme.primary,
+            child: CustomText.f16(
+              context,
+              tr(context).retry,
+              color: const Color(0xffffffff),
+              weight: FontStyles.fontWeightSemiBold,
+            ),
           ),
         ],
       ),
