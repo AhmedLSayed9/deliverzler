@@ -19,7 +19,7 @@ dependencies:
   hooks_riverpod: ^2.3.6
   riverpod_annotation: ^2.1.1
   flutter_hooks: ^0.18.6
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
   # FP
@@ -91,7 +91,7 @@ dev_dependencies:
   # Code gen
   build_runner: ^2.4.5
   riverpod_generator: ^2.2.3
-  freezed: ^2.3.5
+  freezed: ^2.4.1
   json_serializable: ^6.7.0
   go_router_builder: ^2.2.0
 
