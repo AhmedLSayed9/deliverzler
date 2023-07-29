@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'platform_base_widget.dart';
+import '../../platform_widgets/platform_base_widget.dart';
 
-class PlatformTextButton
-    extends PlatformBaseWidget<TextButton, CupertinoButton> {
+class PlatformTextButton extends PlatformBaseWidget<TextButton, CupertinoButton> {
   const PlatformTextButton({
-    required this.child, required this.onPressed, super.key,
+    required this.child,
+    required this.onPressed,
+    super.key,
     this.widgetKey,
     this.materialData,
     this.cupertinoData,

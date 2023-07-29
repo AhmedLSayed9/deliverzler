@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import 'user_details_component.dart';
 import 'user_image_component.dart';
 

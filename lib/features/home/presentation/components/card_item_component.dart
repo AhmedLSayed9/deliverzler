@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/app_router.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';

@@ -5,9 +5,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../gen/my_assets.dart';
 import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
-import 'custom_text.dart';
+import '../styles/styles.dart';
 
 class LoadingIndicator extends StatelessWidget {
   const LoadingIndicator({this.padding, super.key});
@@ -61,10 +59,9 @@ class TitledLoadingIndicator extends StatelessWidget {
             const SizedBox(
               height: Sizes.marginV20,
             ),
-            CustomText.f16(
-              context,
+            Text(
               message,
-              weight: FontStyles.fontWeightSemiBold,
+              style: TextStyles.f16SemiBold(context),
               textAlign: TextAlign.center,
             ),
           ]
@@ -76,8 +73,8 @@ class TitledLoadingIndicator extends StatelessWidget {
 
 class DeliveryLoadingAnimation extends StatelessWidget {
   const DeliveryLoadingAnimation({
-    this.height = Sizes.loadingIndicatorR150,
-    this.width = Sizes.loadingIndicatorR150,
+    this.height = 150,
+    this.width = 150,
     super.key,
   });
 

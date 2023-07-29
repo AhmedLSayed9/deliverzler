@@ -19,7 +19,7 @@ abstract class IAppColors {
   abstract final Color appBarBGColor;
   abstract final Color statusBarColor;
   abstract final Color scaffoldBGColor;
-  abstract final Color bottomNavBarColor;
+  abstract final Color navBarColor;
 
   ///TextField Theme
   abstract final Color textFieldSubtitle1Color;

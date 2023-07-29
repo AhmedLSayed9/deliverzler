@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../gen/my_assets.dart';
 import '../helpers/localization_helper.dart';
 import '../routing/navigation_service.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 import 'custom_elevated_button.dart';
 import 'platform_widgets/platform_alert_dialog.dart';
-import 'custom_icon.dart';
-import 'custom_text.dart';
 import 'loading_widgets.dart';
 
 abstract class Dialogs {
@@ -43,16 +40,15 @@ abstract class Dialogs {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const DeliveryLoadingAnimation(
-            width: Sizes.loadingIndicatorR90,
-            height: Sizes.loadingIndicatorR90,
+            width: 90,
+            height: 90,
           ),
           const SizedBox(
             height: Sizes.marginV12,
           ),
-          CustomText.f18(
-            context,
+          Text(
             tr(context).loading,
-            weight: FontStyles.fontWeightMedium,
+            style: TextStyles.f18(context).copyWith(fontWeight: FontStyles.fontWeightMedium),
           ),
         ],
       ),
@@ -80,9 +76,12 @@ abstract class Dialogs {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          CustomIcon.i72(
+          Image.asset(
             MyAssets.ASSETS_ICONS_DIALOG_WIDGET_ICONS_ERROR_PNG,
             color: const Color(0xffcca76a),
+            height: 72,
+            width: 72,
+            fit: BoxFit.contain,
           ),
           const SizedBox(
             height: Sizes.marginV8,
@@ -98,11 +97,9 @@ abstract class Dialogs {
           CustomElevatedButton(
             enableGradient: true,
             onPressed: () => NavigationService.popDialog(context),
-            child: CustomText.f16(
-              context,
+            child: Text(
               tr(context).oK,
-              color: const Color(0xffffffff),
-              weight: FontStyles.fontWeightSemiBold,
+              style: TextStyles.coloredElevatedButton(context),
             ),
           ),
         ],
@@ -114,10 +111,9 @@ abstract class Dialogs {
         actions: [
           CupertinoDialogAction(
             onPressed: () => NavigationService.popDialog(context),
-            child: CustomText.f16(
-              context,
+            child: Text(
               tr(context).oK,
-              weight: FontStyles.fontWeightSemiBold,
+              style: TextStyles.cupertinoDialogAction(context),
             ),
           ),
         ],

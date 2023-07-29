@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/widgets/custom_text_button.dart';
 
 class CardDetailsButtonComponent extends StatelessWidget {
@@ -20,11 +19,13 @@ class CardDetailsButtonComponent extends StatelessWidget {
       onPressed: onPressed,
       buttonColor: Theme.of(context).colorScheme.secondary,
       elevation: 2,
-      child: CustomText.f14(
-        context,
+      child: Text(
         title,
-        weight: FontStyles.fontWeightSemiBold,
-        color: customColors(context).whiteColor,
+        style: TextStyles.f14(context).copyWith(
+          color: customColors(context).whiteColor,
+          fontWeight: FontStyles.fontWeightSemiBold,
+        ),
+        textAlign: TextAlign.center,
       ),
     );
   }

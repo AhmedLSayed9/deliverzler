@@ -5,9 +5,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../gen/my_assets.dart';
 import '../../helpers/localization_helper.dart';
-import '../../styles/font_styles.dart';
-import '../../styles/sizes.dart';
-import '../../widgets/custom_text.dart';
+import '../../styles/styles.dart';
 import '../full_screen_scaffold.dart';
 
 class SplashScreenCompact extends StatelessWidget {
@@ -35,15 +33,13 @@ class SplashScreenCompact extends StatelessWidget {
               controller: fadeInController,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.screenMarginV16,
-                  horizontal: Sizes.screenMarginH28,
+                  vertical: Sizes.screenPaddingV16,
+                  horizontal: Sizes.screenPaddingH28,
                 ),
                 child: Column(
                   children: [
                     ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: Sizes.maxWidth600,
-                      ),
+                      constraints: const BoxConstraints(maxWidth: 600),
                       child: FractionallySizedBox(
                         widthFactor: 0.64,
                         child: Lottie.asset(
@@ -54,10 +50,10 @@ class SplashScreenCompact extends StatelessWidget {
                     const SizedBox(
                       height: Sizes.marginV12,
                     ),
-                    CustomText.f28(
-                      context,
+                    Text(
                       tr(context).appName,
-                      weight: FontStyles.fontWeightExtraBold,
+                      style: TextStyles.f28(context)
+                          .copyWith(fontWeight: FontStyles.fontWeightExtraBold),
                     ),
                   ],
                 ),

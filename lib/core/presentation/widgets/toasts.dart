@@ -4,9 +4,7 @@ import '../../core_features/theme/presentation/utils/colors/app_static_colors.da
 import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../helpers/localization_helper.dart';
 import '../services/connection_stream_service.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
-import 'custom_text.dart';
+import '../styles/styles.dart';
 import 'custom_toast.dart';
 
 abstract class Toasts {
@@ -29,19 +27,16 @@ abstract class Toasts {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          CustomText.f16(
-            context,
+          Text(
             title,
-            weight: FontStyles.fontWeightSemiBold,
-            color: AppStaticColors.lightBlack,
+            style: TextStyles.f16SemiBold(context).copyWith(color: AppStaticColors.lightBlack),
           ),
           const SizedBox(
             height: Sizes.marginV2,
           ),
-          CustomText.f14(
-            context,
+          Text(
             description,
-            color: AppStaticColors.lightBlack,
+            style: TextStyles.f14(context).copyWith(color: AppStaticColors.lightBlack),
           ),
         ],
       ),
@@ -73,13 +68,11 @@ abstract class Toasts {
           const SizedBox(
             width: Sizes.marginH12,
           ),
-          CustomText.f16(
-            context,
+          Text(
             connectionStatus == ConnectionStatus.disconnected
                 ? tr(context).youAreCurrentlyOffline
                 : tr(context).youAreBackOnline,
-            weight: FontStyles.fontWeightSemiBold,
-            color: AppStaticColors.lightBlack,
+            style: TextStyles.f16SemiBold(context).copyWith(color: AppStaticColors.lightBlack),
           ),
         ],
       ),

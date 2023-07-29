@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/app_router.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../core/presentation/widgets/loading_widgets.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_refresh_indicator.dart';
 import '../../../../core/presentation/widgets/seperated_sliver_child_builder_delegate.dart';
@@ -45,8 +44,8 @@ class UpcomingOrdersComponent extends ConsumerWidget {
             if (upcomingOrders.isNotEmpty)
               SliverPadding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.screenMarginV16,
-                  horizontal: Sizes.screenMarginH28,
+                  vertical: Sizes.screenPaddingV16,
+                  horizontal: Sizes.screenPaddingH28,
                 ),
                 sliver: SliverList(
                   delegate: SeparatedSliverChildBuilderDelegate(
@@ -68,9 +67,9 @@ class UpcomingOrdersComponent extends ConsumerWidget {
             else
               SliverFillRemaining(
                 child: Center(
-                  child: CustomText.f18(
-                    context,
+                  child: Text(
                     tr(context).thereAreNoOrders,
+                    style: TextStyles.f18(context),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -83,9 +82,9 @@ class UpcomingOrdersComponent extends ConsumerWidget {
         slivers: [
           SliverFillRemaining(
             child: Center(
-              child: CustomText.f18(
-                context,
+              child: Text(
                 '${tr(context).somethingWentWrong}\n${tr(context).pleaseTryAgain}',
+                style: TextStyles.f18(context),
                 textAlign: TextAlign.center,
               ),
             ),

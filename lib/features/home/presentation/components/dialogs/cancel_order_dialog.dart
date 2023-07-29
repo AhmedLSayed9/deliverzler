@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/styles/styles.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../../core/presentation/widgets/custom_text.dart';
 
 class CancelOrderDialog extends HookWidget {
   const CancelOrderDialog({super.key});
@@ -19,9 +18,9 @@ class CancelOrderDialog extends HookWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomText.f16(
-            context,
+          Text(
             '${tr(context).reasonForCancelingTheOrder}:',
+            style: TextStyles.f16(context),
           ),
           const SizedBox(
             height: Sizes.marginV12,

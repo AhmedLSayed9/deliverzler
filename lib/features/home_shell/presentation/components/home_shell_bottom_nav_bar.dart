@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../utils/tab_item.dart';
 
 class HomeShellBottomNavBar extends StatelessWidget {
@@ -17,10 +17,10 @@ class HomeShellBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      //TODO(AHMED): remove when migrating the whole app to material3.
+      // TODO(AHMED): remove when migrating the whole app to material3.
       data: Theme.of(context).copyWith(useMaterial3: true),
       child: PlatformNavBar(
-        height: Sizes.bottomNavBarHeight60,
+        height: Sizes.navBarHeight60,
         currentIndex: currentTab.index,
         itemChanged: (index) {
           onSelectTab(TabItem.values[index]);

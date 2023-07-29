@@ -6,8 +6,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/presentation/components/appbar_with_icon_component.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/app_router.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/widgets/custom_appbar.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../gen/my_assets.dart';
 
 class HomeShellAppBar extends StatelessWidget {
@@ -25,10 +25,9 @@ class HomeShellAppBar extends StatelessWidget {
     if (location == const HomeRoute().location) {
       return CustomAppBar(
         centerTitle: true,
-        title: CustomText.f20(
-          context,
+        title: Text(
           tr(context).appName,
-          color: Theme.of(context).colorScheme.primary,
+          style: TextStyles.f20(context).copyWith(color: Theme.of(context).colorScheme.primary),
         ),
       );
     }

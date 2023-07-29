@@ -4,7 +4,7 @@ import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/infrastructure/local/image_picker_facade.dart';
 import '../../../../core/presentation/components/image_pick_component.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
@@ -19,8 +19,7 @@ class UserImageComponent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.easyListen(updateProfileImageStateProvider);
 
-    final userImage =
-        ref.watch(currentUserProvider.select((user) => user.image));
+    final userImage = ref.watch(currentUserProvider.select((user) => user.image));
 
     void pickImage(PickSource pickSource, BuildContext ctx) {
       try {
@@ -38,19 +37,17 @@ class UserImageComponent extends ConsumerWidget {
       children: [
         CachedNetworkImageCircular(
           imageUrl: userImage,
-          radius: Sizes.imageR64,
+          radius: 64,
         ),
         Padding(
           padding: const EdgeInsets.only(right: Sizes.paddingH8),
           child: ImagePickComponent(
-            pickFromCameraCallBack:
-                ref.isLoading(updateProfileImageStateProvider)
-                    ? null
-                    : (ctx) => pickImage(PickSource.camera, ctx),
-            pickFromGalleryCallBack:
-                ref.isLoading(updateProfileImageStateProvider)
-                    ? null
-                    : (ctx) => pickImage(PickSource.gallery, ctx),
+            pickFromCameraCallBack: ref.isLoading(updateProfileImageStateProvider)
+                ? null
+                : (ctx) => pickImage(PickSource.camera, ctx),
+            pickFromGalleryCallBack: ref.isLoading(updateProfileImageStateProvider)
+                ? null
+                : (ctx) => pickImage(PickSource.gallery, ctx),
           ),
         ),
       ],

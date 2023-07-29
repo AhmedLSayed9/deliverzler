@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'platform_base_widget.dart';
+import '../../platform_widgets/platform_base_widget.dart';
 
 class PlatformSwitch extends PlatformBaseWidget<Switch, CupertinoSwitch> {
   const PlatformSwitch({
-    required this.value, required this.onChanged, super.key,
+    required this.value,
+    required this.onChanged,
+    super.key,
     this.widgetKey,
     this.activeTrackColor,
     this.inactiveTrackColor,

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
-import '../widgets/custom_text.dart';
+import '../styles/styles.dart';
 
 class AppBarWithIconComponent extends StatelessWidget {
   const AppBarWithIconComponent({
@@ -29,10 +27,9 @@ class AppBarWithIconComponent extends StatelessWidget {
         const SizedBox(
           width: Sizes.marginH8,
         ),
-        CustomText.f20(
-          context,
+        Text(
           title,
-          weight: FontStyles.fontWeightSemiBold,
+          style: TextStyles.f20(context).copyWith(fontWeight: FontStyles.fontWeightSemiBold),
         ),
       ],
     );

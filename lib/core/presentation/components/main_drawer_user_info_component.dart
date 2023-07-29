@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../auth/infrastructure/dtos/user_dto.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 import '../utils/riverpod_framework.dart';
 import '../widgets/cached_network_image_circular.dart';
-import '../widgets/custom_text.dart';
 
 class MainDrawerUserInfoComponent extends ConsumerWidget {
   const MainDrawerUserInfoComponent({super.key});
@@ -20,32 +18,29 @@ class MainDrawerUserInfoComponent extends ConsumerWidget {
       children: [
         CachedNetworkImageCircular(
           imageUrl: userModel.image,
-          radius: Sizes.imageR56,
+          radius: 56,
         ),
         const SizedBox(
           height: Sizes.marginV6,
         ),
-        CustomText.f18(
-          context,
-          userModel.name!.isEmpty
-              ? 'User${userModel.id.substring(0, 6)}'
-              : userModel.name!,
-          weight: FontStyles.fontWeightMedium,
+        Text(
+          userModel.name!.isEmpty ? 'User${userModel.id.substring(0, 6)}' : userModel.name!,
+          style: TextStyles.f18(context).copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          //alignment: Alignment.center,
         ),
         const SizedBox(
           height: Sizes.marginV2,
         ),
-        CustomText.f14(
-          context,
+        Text(
           userModel.email,
+          style: TextStyles.f14(context),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          //alignment: Alignment.center,
         ),
       ],
     );

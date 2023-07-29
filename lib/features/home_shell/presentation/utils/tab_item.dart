@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_icons.dart';
 
 enum TabItem {
@@ -12,18 +12,18 @@ enum TabItem {
 
 extension TabItemExtension on TabItem {
   Widget getTabItemIcon(BuildContext context) {
-    return switch (this) {
-      TabItem.home => _getTabIcon(context, PlatformIcons.home),
-      TabItem.profile => _getTabIcon(context, PlatformIcons.accountCircleSolid),
-      TabItem.settings => _getTabIcon(context, PlatformIcons.settingsSolid),
-    };
+    return _getTabIcon(context, _getTabIconData(context));
   }
 
   Widget getTabItemSelectedIcon(BuildContext context) {
+    return _getTabIcon(context, _getTabIconData(context), isSelected: true);
+  }
+
+  IconData _getTabIconData(BuildContext context) {
     return switch (this) {
-      TabItem.home => _getTabIcon(context, PlatformIcons.home, isSelected: true),
-      TabItem.profile => _getTabIcon(context, PlatformIcons.accountCircleSolid, isSelected: true),
-      TabItem.settings => _getTabIcon(context, PlatformIcons.settingsSolid, isSelected: true),
+      TabItem.home => AppPlatformIcons.platformIcons(context).home,
+      TabItem.profile => AppPlatformIcons.platformIcons(context).accountCircleSolid,
+      TabItem.settings => AppPlatformIcons.platformIcons(context).settingsSolid,
     };
   }
 
@@ -34,7 +34,7 @@ extension TabItemExtension on TabItem {
   }) {
     return Icon(
       icon,
-      size: Sizes.bottomNavBarIconR22,
+      size: Sizes.navBarIconR22,
       color: isSelected ? Theme.of(context).colorScheme.primary : null,
     );
   }

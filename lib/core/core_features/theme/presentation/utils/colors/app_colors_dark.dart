@@ -18,7 +18,7 @@ class AppColorsDark implements IAppColors {
   @override
   final Color scaffoldBGColor = const Color(0xFF303030);
   @override
-  final Color bottomNavBarColor = const Color(0xFF515151);
+  final Color navBarColor = const Color(0xFF515151);
 
   //in the custom
   final Color font40Color = const Color(0xfff0f0f0);

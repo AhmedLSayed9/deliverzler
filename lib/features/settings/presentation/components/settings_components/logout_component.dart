@@ -4,11 +4,9 @@ import 'package:fpdart/fpdart.dart';
 
 import '../../../../../auth/presentation/providers/sign_out_provider.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../../core/presentation/styles/font_styles.dart';
-import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/styles/styles.dart';
 import '../../../../../core/presentation/utils/event.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 
 class LogoutComponent extends HookConsumerWidget {
@@ -70,11 +68,12 @@ class _SharedItemComponent extends StatelessWidget {
           const SizedBox(
             width: Sizes.marginH16,
           ),
-          CustomText.f18(
-            context,
+          Text(
             tr(context).logOut,
-            weight: FontStyles.fontWeightExtraBold,
-            color: Theme.of(context).colorScheme.primary,
+            style: TextStyles.f18(context).copyWith(
+              fontWeight: FontStyles.fontWeightExtraBold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
         ],
       ),

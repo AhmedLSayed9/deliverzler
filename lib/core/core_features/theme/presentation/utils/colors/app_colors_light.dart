@@ -18,7 +18,7 @@ class AppColorsLight implements IAppColors {
   @override
   final Color scaffoldBGColor = const Color(0xFFFAFAFA);
   @override
-  final Color bottomNavBarColor = const Color(0xFFEFEFEF);
+  final Color navBarColor = const Color(0xFFEFEFEF);
 
   @override
   final Color textFieldSubtitle1Color = const Color(0xff333333);

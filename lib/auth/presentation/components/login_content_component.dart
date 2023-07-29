@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/presentation/styles/sizes.dart';
+import '../../../core/presentation/styles/styles.dart';
 import 'login_form_component.dart';
 import 'welcome_component.dart';
 

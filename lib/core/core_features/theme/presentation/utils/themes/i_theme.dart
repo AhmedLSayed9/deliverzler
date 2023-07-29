@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../colors/custom_colors.dart';
 import '../colors/i_app_colors.dart';
 
-abstract class ITheme {
+abstract interface class ITheme {
   abstract final ThemeData baseTheme;
 
   abstract final IAppColors appColors;
@@ -44,7 +44,7 @@ abstract class ITheme {
 }
 
 extension ThemeExtension on ITheme {
-  //TODO(AHMED): useMaterial3
+  // TODO(AHMED): useMaterial3
   ThemeData getThemeData(String fontFamily) {
     return baseTheme.copyWith(
       appBarTheme: appBarTheme,

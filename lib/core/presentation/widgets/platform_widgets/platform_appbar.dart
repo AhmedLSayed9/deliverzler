@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../styles/sizes.dart';
+import '../../styles/styles.dart';
 
 class PreferredAppBarSize extends Size {
   PreferredAppBarSize(this.toolbarHeight, this.bottomHeight)

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/widgets/custom_outlined_button.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 
 class CardButtonComponent extends StatelessWidget {
   const CardButtonComponent({
@@ -24,17 +22,16 @@ class CardButtonComponent extends StatelessWidget {
         vertical: Sizes.buttonPaddingV12,
         horizontal: Sizes.buttonPaddingH34,
       ),
-      constraints: const BoxConstraints(
-        minWidth: Sizes.buttonWidth136,
-      ),
+      constraints: const BoxConstraints(minWidth: 136),
       side: isColored ? null : BorderSide(color: customColors(context).greyColor!),
       enableGradient: isColored,
       onPressed: onPressed,
-      child: CustomText.f14(
-        context,
+      child: Text(
         title,
-        color: isColored ? customColors(context).whiteColor : null,
-        weight: FontStyles.fontWeightSemiBold,
+        style: TextStyles.f14(context).copyWith(
+          color: isColored ? customColors(context).whiteColor : null,
+          fontWeight: FontStyles.fontWeightSemiBold,
+        ),
         textAlign: TextAlign.center,
       ),
     );

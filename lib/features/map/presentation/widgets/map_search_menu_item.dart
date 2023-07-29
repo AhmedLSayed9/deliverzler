@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../domain/place_autocomplete.dart';
 
 class MapSearchMenuItem extends StatelessWidget {
-
   const MapSearchMenuItem({
     required this.placeAutocomplete,
     super.key,
@@ -33,18 +30,17 @@ class MapSearchMenuItem extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomText.f16(
-              context,
+            Text(
               title,
-              weight: FontStyles.fontWeightBold,
-              overflow: TextOverflow.ellipsis,
+              style: TextStyles.f16(context).copyWith(fontWeight: FontStyles.fontWeightBold),
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            CustomText.f14(
-              context,
+            Text(
               subTitle,
-              overflow: TextOverflow.ellipsis,
+              style: TextStyles.f14(context),
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

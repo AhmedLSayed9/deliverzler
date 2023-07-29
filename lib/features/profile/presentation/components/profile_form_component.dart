@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_elevated_button.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../domain/profile_details.dart';
 import '../providers/profile_details_provider.dart';
 import '../widgets/titled_text_field_item.dart';
@@ -55,7 +53,7 @@ class ProfileFormComponent extends HookConsumerWidget {
                   keyboardType: TextInputType.name,
                 ),
                 const SizedBox(
-                  height: Sizes.textFieldMarginV24,
+                  height: Sizes.marginV24,
                 ),
                 TitledTextFieldItem(
                   title: tr(context).mobileNumber,
@@ -69,16 +67,14 @@ class ProfileFormComponent extends HookConsumerWidget {
             ),
           ),
           const SizedBox(
-            height: Sizes.marginV36,
+            height: Sizes.marginV40,
           ),
           CustomElevatedButton(
             enableGradient: true,
             onPressed: ref.isLoading(profileDetailsStateProvider) ? null : updateProfile,
-            child: CustomText.f16(
-              context,
+            child: Text(
               tr(context).confirm,
-              color: const Color(0xffffffff),
-              weight: FontStyles.fontWeightSemiBold,
+              style: TextStyles.coloredElevatedButton(context),
             ),
           ),
         ],

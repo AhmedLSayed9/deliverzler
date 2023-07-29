@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../../../presentation/styles/font_styles.dart';
-import '../../../../../presentation/styles/sizes.dart';
+import '../../../../../presentation/styles/styles.dart';
 import '../colors/app_colors_dark.dart';
 import '../colors/custom_colors.dart';
 import '../colors/i_app_colors.dart';
@@ -30,10 +29,10 @@ class ThemeDark implements ITheme {
     systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
       //For Android
       statusBarColor: appColors.statusBarColor,
-      systemNavigationBarColor: appColors.bottomNavBarColor,
+      systemNavigationBarColor: appColors.navBarColor,
       systemNavigationBarIconBrightness: Brightness.light,
     ),
-    elevation: 0,
+    elevation: Sizes.appBarElevation,
   );
 
   @override
@@ -41,31 +40,25 @@ class ThemeDark implements ITheme {
 
   @override
   late final NavigationBarThemeData navigationBarTheme = NavigationBarThemeData(
-    backgroundColor: appColors.bottomNavBarColor,
+    backgroundColor: appColors.navBarColor,
     surfaceTintColor: Colors.transparent,
-    shadowColor: appColors.bottomNavBarColor,
+    shadowColor: appColors.navBarColor,
     indicatorColor: Colors.blue.shade100,
-    labelTextStyle: MaterialStateProperty.resolveWith((states) {
-      return TextStyle(
-        color: appColors.customColors.font12Color,
-        fontSize: Sizes.font12,
-      );
-    }),
-    elevation: 4,
+    labelTextStyle: MaterialStatePropertyAll(
+      TextStyles.navigationLabel(appColors.customColors.font12Color!),
+    ),
+    elevation: Sizes.navBarElevation,
   );
 
   @override
   late final NavigationRailThemeData navigationRailTheme = NavigationRailThemeData(
-    backgroundColor: appColors.bottomNavBarColor,
-    elevation: 4,
+    backgroundColor: appColors.navBarColor,
+    elevation: Sizes.navBarElevation,
   );
 
   @override
   late final TextTheme textTheme = TextTheme(
-    titleMedium: TextStyle(
-      color: appColors.textFieldSubtitle1Color,
-      fontSize: Sizes.font14,
-    ),
+    titleMedium: TextStyles.titleMedium(appColors.textFieldSubtitle1Color),
   );
 
   @override
@@ -81,68 +74,19 @@ class ThemeDark implements ITheme {
 
   @override
   late final InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
-    contentPadding: const EdgeInsets.symmetric(
-      vertical: Sizes.textFieldPaddingV14,
-      horizontal: Sizes.textFieldPaddingH14,
-    ),
+    contentPadding: Insets.inputDecorationContentPadding,
     isDense: true,
     filled: true,
     fillColor: appColors.textFieldFillColor,
-    hintStyle: TextStyle(
-      fontSize: Sizes.font12,
-      color: appColors.textFieldHintColor,
-    ),
+    hintStyle: TextStyles.inputDecorationHint(appColors.textFieldHintColor),
     prefixIconColor: appColors.textFieldPrefixIconColor,
     suffixIconColor: appColors.textFieldSuffixIconColor,
-    border: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(Sizes.textFieldR12),
-      ),
-      borderSide: BorderSide(
-        color: appColors.textFieldBorderColor,
-        width: 0.8,
-      ),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(Sizes.textFieldR12),
-      ),
-      borderSide: BorderSide(
-        color: appColors.textFieldEnabledBorderColor,
-        width: 0.8,
-      ),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(Sizes.textFieldR12),
-      ),
-      borderSide: BorderSide(
-        color: appColors.textFieldFocusedBorderColor,
-        width: 1.2,
-      ),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(Sizes.textFieldR12),
-      ),
-      borderSide: BorderSide(
-        color: appColors.textFieldErrorBorderColor,
-        width: 0.8,
-      ),
-    ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(Sizes.textFieldR12),
-      ),
-      borderSide: BorderSide(
-        color: appColors.textFieldErrorBorderColor,
-        width: 0.8,
-      ),
-    ),
-    errorStyle: TextStyle(
-      color: appColors.textFieldErrorStyleColor,
-      fontSize: Sizes.font12,
-    ),
+    border: Borders.inputDecorationBorder(appColors.textFieldBorderColor),
+    enabledBorder: Borders.inputDecorationBorder(appColors.textFieldEnabledBorderColor),
+    focusedBorder: Borders.inputDecorationBorder(appColors.textFieldFocusedBorderColor, 1.2),
+    errorBorder: Borders.inputDecorationBorder(appColors.textFieldErrorBorderColor),
+    focusedErrorBorder: Borders.inputDecorationBorder(appColors.textFieldErrorBorderColor),
+    errorStyle: TextStyles.inputDecorationError(appColors.textFieldErrorStyleColor),
   );
 
   @override
@@ -170,15 +114,8 @@ class ThemeDark implements ITheme {
   @override
   late final DialogTheme dialogTheme = DialogTheme(
     backgroundColor: appColors.scaffoldBGColor,
-    titleTextStyle: TextStyle(
-      color: appColors.customColors.font18Color,
-      fontSize: Sizes.font18,
-      fontWeight: FontStyles.fontWeightBold,
-    ),
-    contentTextStyle: TextStyle(
-      color: appColors.customColors.font18Color,
-      fontSize: Sizes.font16,
-    ),
+    titleTextStyle: TextStyles.dialogTitle(appColors.customColors.font18Color!),
+    contentTextStyle: TextStyles.dialogContent(appColors.customColors.font16Color!),
   );
 
   @override

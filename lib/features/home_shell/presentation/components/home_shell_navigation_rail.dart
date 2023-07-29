@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 
-import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../utils/tab_item.dart';
 
 class HomeShellNavigationRail extends StatelessWidget {
@@ -32,12 +32,13 @@ class HomeShellNavigationRail extends StatelessWidget {
             (tabItem) => NavigationRailDestination(
               icon: tabItem.getTabItemIcon(context),
               selectedIcon: tabItem.getTabItemSelectedIcon(context),
-              label: CustomText.f12(
-                context,
+              label: Text(
                 tabItem.getTabItemLabel(context),
-                color: currentTab.index == tabItem.index
-                    ? Theme.of(context).colorScheme.primary
-                    : null,
+                style: TextStyles.f12(context).copyWith(
+                  color: currentTab.index == tabItem.index
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
+                ),
               ),
             ),
           )

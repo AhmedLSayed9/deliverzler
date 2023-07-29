@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/presentation/styles/sizes.dart';
-import '../../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../../core/presentation/styles/styles.dart';
 import '../../../../../core/presentation/widgets/custom_tile_component.dart';
 
 class SettingsSectionComponent extends StatelessWidget {
   const SettingsSectionComponent({
     required this.headerIcon,
     required this.headerTitle,
-    required this.tileList, this.headerTrailing,
+    required this.tileList,
+    this.headerTrailing,
     super.key,
   });
 
@@ -45,11 +45,11 @@ class SettingsSectionComponent extends StatelessWidget {
               leading: Icon(
                 headerIcon,
               ),
-              title: CustomText.f16(
-                context,
+              title: Text(
                 headerTitle,
-                maxLines: 1,
+                style: TextStyles.f16(context),
                 overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
               trailing: headerTrailing,
             ),

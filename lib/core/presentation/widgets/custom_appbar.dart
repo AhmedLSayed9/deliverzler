@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../routing/navigation_service.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({

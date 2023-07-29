@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
-import '../styles/sizes.dart';
-import 'custom_text.dart';
+import '../styles/styles.dart';
 
 class CustomTileComponent extends StatelessWidget {
   const CustomTileComponent({
@@ -39,9 +38,9 @@ class CustomTileComponent extends StatelessWidget {
         contentPadding: contentPadding,
         minLeadingWidth: 0,
         horizontalTitleGap: Sizes.marginH8,
-        title: CustomText.f16(
-          context,
+        title: Text(
           title,
+          style: TextStyles.f16(context),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
@@ -56,9 +55,9 @@ class CustomTileComponent extends StatelessWidget {
         trailing: customTrailing ??
             (trailingText != null
                 ? FittedBox(
-                    child: CustomText.f14(
-                      context,
+                    child: Text(
                       trailingText!,
+                      style: TextStyles.f14(context),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

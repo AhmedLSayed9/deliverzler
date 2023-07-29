@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton({

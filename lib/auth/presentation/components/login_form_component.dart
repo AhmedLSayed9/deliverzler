@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/presentation/helpers/localization_helper.dart';
-import '../../../core/presentation/styles/font_styles.dart';
-import '../../../core/presentation/styles/sizes.dart';
+import '../../../core/presentation/styles/styles.dart';
 import '../../../core/presentation/utils/event.dart';
 import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../core/presentation/widgets/custom_elevated_button.dart';
-import '../../../core/presentation/widgets/custom_text.dart';
 import '../../../core/presentation/widgets/platform_widgets/platform_icons.dart';
 import '../../domain/sign_in_with_email.dart';
 import '../providers/sign_in_provider.dart';
@@ -44,7 +42,7 @@ class LoginFormComponent extends HookConsumerWidget {
                 padding: EdgeInsetsDirectional.only(
                   end: Theme.of(context).inputDecorationTheme.contentPadding!.horizontal / 2,
                 ),
-                child: Icon(PlatformIcons.mail),
+                child: Icon(AppPlatformIcons.platformIcons(context).mail),
               ),
               suffixIconConstraints: const BoxConstraints(),
             ),
@@ -53,7 +51,7 @@ class LoginFormComponent extends HookConsumerWidget {
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
-            height: Sizes.textFieldMarginV24,
+            height: Sizes.marginV24,
           ),
           TextFormField(
             key: const ValueKey('login_password'),
@@ -64,7 +62,7 @@ class LoginFormComponent extends HookConsumerWidget {
                 padding: EdgeInsetsDirectional.only(
                   end: Theme.of(context).inputDecorationTheme.contentPadding!.horizontal / 2,
                 ),
-                child: Icon(PlatformIcons.password),
+                child: const Icon(Icons.password),
               ),
               suffixIconConstraints: const BoxConstraints(),
             ),
@@ -79,11 +77,9 @@ class LoginFormComponent extends HookConsumerWidget {
           CustomElevatedButton(
             enableGradient: true,
             onPressed: ref.isLoading(signInStateProvider) ? null : signIn,
-            child: CustomText.f16(
-              context,
-              tr(context).signIn,
-              color: const Color(0xffffffff),
-              weight: FontStyles.fontWeightSemiBold,
+            child: Text(
+              tr(context).signIn.toUpperCase(),
+              style: TextStyles.coloredElevatedButton(context),
             ),
           ),
         ],

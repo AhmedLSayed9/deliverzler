@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../gen/my_assets.dart';
 import '../helpers/localization_helper.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 import '../utils/riverpod_framework.dart';
-import '../widgets/custom_text.dart';
 import 'main_drawer_bottom_component.dart';
 import 'main_drawer_user_info_component.dart';
 
@@ -82,10 +80,9 @@ class DrawerItem extends StatelessWidget {
       leading: ImageIcon(
         AssetImage(icon),
       ),
-      title: CustomText.f18(
-        context,
+      title: Text(
         title,
-        weight: FontStyles.fontWeightMedium,
+        style: TextStyles.f18(context).copyWith(fontWeight: FontStyles.fontWeightMedium),
       ),
       onTap: onTap,
       horizontalTitleGap: 0,

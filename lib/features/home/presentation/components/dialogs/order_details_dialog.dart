@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../../core/presentation/styles/font_styles.dart';
-import '../../../../../core/presentation/styles/sizes.dart';
-import '../../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../../core/presentation/styles/styles.dart';
 import '../../../domain/order.dart';
 
 class OrderDetailsDialog extends StatelessWidget {
@@ -27,8 +25,8 @@ class OrderDetailsDialog extends StatelessWidget {
           Row(
             children: [
               SizedBox(
-                height: Sizes.imageR100,
-                width: Sizes.imageR100,
+                height: 100,
+                width: 100,
                 child: QrImageView(
                   data: order.id,
                   // ignore: deprecated_member_use
@@ -43,11 +41,10 @@ class OrderDetailsDialog extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText.f16(
-                      context,
+                    Text(
                       '${tr(context).orderDetails}:',
-                      underline: true,
-                      weight: FontStyles.fontWeightSemiBold,
+                      style: TextStyles.f16SemiBold(context)
+                          .copyWith(decoration: TextDecoration.underline),
                     ),
                     const SizedBox(
                       height: Sizes.marginV8,
@@ -55,14 +52,14 @@ class OrderDetailsDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomText.f16(
-                          context,
+                        Text(
                           '${tr(context).id}:',
+                          style: TextStyles.f16(context),
                         ),
                         Flexible(
-                          child: CustomText.f16(
-                            context,
+                          child: Text(
                             '#${order.id.substring(0, 6)}',
+                            style: TextStyles.f16(context),
                           ),
                         ),
                       ],
@@ -70,14 +67,14 @@ class OrderDetailsDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomText.f16(
-                          context,
+                        Text(
                           '${tr(context).status}:',
+                          style: TextStyles.f16(context),
                         ),
                         Flexible(
-                          child: CustomText.f16(
-                            context,
+                          child: Text(
                             order.pickupOption.name,
+                            style: TextStyles.f16(context),
                           ),
                         ),
                       ],
@@ -85,14 +82,14 @@ class OrderDetailsDialog extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomText.f16(
-                          context,
+                        Text(
                           '${tr(context).payment}:',
+                          style: TextStyles.f16(context),
                         ),
                         Flexible(
-                          child: CustomText.f16(
-                            context,
+                          child: Text(
                             order.paymentMethod,
+                            style: TextStyles.f16(context),
                           ),
                         ),
                       ],
@@ -105,11 +102,9 @@ class OrderDetailsDialog extends StatelessWidget {
           const SizedBox(
             height: Sizes.marginV8,
           ),
-          CustomText.f18(
-            context,
+          Text(
             '${tr(context).userDetails}:',
-            underline: true,
-            weight: FontStyles.fontWeightSemiBold,
+            style: TextStyles.f18SemiBold(context).copyWith(decoration: TextDecoration.underline),
           ),
           const SizedBox(
             height: Sizes.marginV2,
@@ -119,19 +114,19 @@ class OrderDetailsDialog extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText.f16(
-                  context,
+                Text(
                   order.userName.isEmpty
                       ? tr(context).user + order.userId.substring(0, 6)
                       : order.userName,
+                  style: TextStyles.f16(context),
                 ),
-                CustomText.f16(
-                  context,
+                Text(
                   '${order.address!.state}, ${order.address!.city}, ${order.address!.street}',
+                  style: TextStyles.f16(context),
                 ),
-                CustomText.f16(
-                  context,
+                Text(
                   order.address!.mobile,
+                  style: TextStyles.f16(context),
                 ),
               ],
             ),
@@ -139,20 +134,18 @@ class OrderDetailsDialog extends StatelessWidget {
           const SizedBox(
             height: Sizes.marginV8,
           ),
-          CustomText.f18(
-            context,
+          Text(
             '${tr(context).note}:',
-            underline: true,
-            weight: FontStyles.fontWeightSemiBold,
+            style: TextStyles.f18SemiBold(context).copyWith(decoration: TextDecoration.underline),
           ),
           const SizedBox(
             height: Sizes.marginV2,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: Sizes.paddingH14),
-            child: CustomText.f16(
-              context,
+            child: Text(
               order.userNote.isEmpty ? tr(context).none : order.userNote,
+              style: TextStyles.f16(context),
             ),
           ),
         ],

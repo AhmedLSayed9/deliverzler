@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../helpers/localization_helper.dart';
 import '../routing/app_router.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 import '../widgets/custom_elevated_button.dart';
-import '../widgets/custom_text.dart';
 
 class RouteErrorComponent extends StatelessWidget {
   const RouteErrorComponent({super.key});
@@ -15,11 +13,10 @@ class RouteErrorComponent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        CustomText.f20(
-          context,
+        Text(
           tr(context).screenNotFound,
+          style: TextStyles.f20(context).copyWith(fontWeight: FontStyles.fontWeightSemiBold),
           textAlign: TextAlign.center,
-          weight: FontStyles.fontWeightSemiBold,
         ),
         const SizedBox(
           height: Sizes.marginV28,
@@ -29,11 +26,9 @@ class RouteErrorComponent extends StatelessWidget {
             const HomeRoute().go(context);
           },
           buttonColor: Theme.of(context).colorScheme.primary,
-          child: CustomText.f16(
-            context,
+          child: Text(
             tr(context).goToHome,
-            color: const Color(0xffffffff),
-            weight: FontStyles.fontWeightSemiBold,
+            style: TextStyles.coloredElevatedButton(context),
           ),
         ),
       ],

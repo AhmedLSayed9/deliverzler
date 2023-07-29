@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 
 class UserDetailsComponent extends ConsumerWidget {
   const UserDetailsComponent({
@@ -17,17 +15,17 @@ class UserDetailsComponent extends ConsumerWidget {
 
     return Column(
       children: [
-        CustomText.f18(
-          context,
+        Text(
           user.name ?? 'User${user.id.substring(0, 6)}',
-          weight: FontStyles.fontWeightBold,
+          style: TextStyles.f18(context).copyWith(fontWeight: FontStyles.fontWeightBold),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: Sizes.marginV2,
         ),
-        CustomText.f16(
-          context,
+        Text(
           user.email,
+          style: TextStyles.f16(context),
         ),
       ],
     );

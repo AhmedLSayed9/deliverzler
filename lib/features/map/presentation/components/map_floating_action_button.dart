@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import '../../../../core/presentation/styles/sizes.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../providers/map_controller_provider.dart';
 
@@ -12,11 +11,11 @@ class MapFloatingActionButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Positioned(
-      bottom: Sizes.mapFABBottom,
-      right: Sizes.mapFABRight,
+      bottom: 32,
+      right: 28,
       child: SizedBox(
-        height: Sizes.mapFABRadius,
-        width: Sizes.mapFABRadius,
+        height: 56,
+        width: 56,
         child: FloatingActionButton(
           heroTag: const Text('fab1'),
           backgroundColor: AppStaticColors.blue,

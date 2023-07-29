@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/widgets/custom_elevated_button.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 
 class RetryAgainComponent extends StatelessWidget {
   const RetryAgainComponent({
@@ -19,15 +17,14 @@ class RetryAgainComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: Sizes.screenMarginH28,
+        horizontal: Sizes.screenPaddingH28,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          CustomText.f18(
-            context,
+          Text(
             description,
-            weight: FontStyles.fontWeightSemiBold,
+            style: TextStyles.f18SemiBold(context),
             textAlign: TextAlign.center,
           ),
           const SizedBox(
@@ -36,11 +33,9 @@ class RetryAgainComponent extends StatelessWidget {
           CustomElevatedButton(
             onPressed: onPressed,
             buttonColor: Theme.of(context).colorScheme.primary,
-            child: CustomText.f16(
-              context,
+            child: Text(
               tr(context).retry,
-              color: const Color(0xffffffff),
-              weight: FontStyles.fontWeightSemiBold,
+              style: TextStyles.coloredElevatedButton(context),
             ),
           ),
         ],

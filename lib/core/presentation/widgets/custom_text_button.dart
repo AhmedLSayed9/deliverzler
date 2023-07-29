@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import '../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
@@ -51,6 +51,7 @@ class CustomTextButton extends StatelessWidget {
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
             minimumSize: Size.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             shape: RoundedRectangleBorder(borderRadius: _borderRadius),
             backgroundColor: _buttonColor,
             foregroundColor: splashColor,

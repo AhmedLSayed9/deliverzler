@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../core/core_features/locale/presentation/providers/app_locale_provider.dart';
 import '../../../../../core/core_features/locale/presentation/providers/current_app_locale_provider.dart';
 import '../../../../../core/core_features/locale/presentation/utils/app_locale.dart';
-import '../../../../../core/presentation/styles/sizes.dart';
+import '../../../../../core/presentation/styles/styles.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../../../core/presentation/widgets/platform_widgets/platform_icons.dart';
 import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 
@@ -79,7 +78,7 @@ class _SharedItemComponent extends StatelessWidget {
                           backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.8),
                           radius: Sizes.icon16,
                           child: Icon(
-                            PlatformIcons.checkMark,
+                            AppPlatformIcons.platformIcons(context).checkMark,
                             size: Sizes.icon24,
                             color: Theme.of(context).primaryColor,
                           ),
@@ -93,9 +92,9 @@ class _SharedItemComponent extends StatelessWidget {
             width: Sizes.marginH16,
           ),
           Expanded(
-            child: CustomText.f16(
-              context,
+            child: Text(
               appLocale.getLanguageName(context),
+              style: TextStyles.f16(context),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),

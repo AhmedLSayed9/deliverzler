@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
-import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_elevated_button.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../home/domain/orders_service.dart';
 import '../../../home/domain/update_delivery_status.dart';
 import '../../../home/domain/value_objects.dart';
@@ -61,18 +58,16 @@ class MapConfirmButtonComponent extends ConsumerWidget {
 
     return arrivedTargetLocation
         ? Positioned(
-            bottom: Sizes.mapConfirmButtonBottom,
-            left: Sizes.mapConfirmButtonLeft,
+            bottom: 36,
+            left: 36,
             child: CustomElevatedButton(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 88),
               buttonColor: Theme.of(context).colorScheme.primary,
               elevation: 2,
               onPressed: confirmOrder,
-              child: CustomText.f18(
-                context,
+              child: Text(
                 tr(context).confirm,
-                color: customColors(context).whiteColor,
-                weight: FontStyles.fontWeightMedium,
+                style: TextStyles.coloredElevatedButton(context).copyWith(fontSize: Sizes.font18),
               ),
             ),
           )

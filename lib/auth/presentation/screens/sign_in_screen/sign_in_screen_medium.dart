@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/screens/full_screen_scaffold.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../gen/my_assets.dart';
 import '../../components/login_content_component.dart';
 import '../../components/login_logo_component.dart';
@@ -27,8 +27,8 @@ class SignInScreenMedium extends StatelessWidget {
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: Sizes.screenMarginV16,
-                  horizontal: Sizes.screenMarginH28,
+                  vertical: Sizes.screenPaddingV16,
+                  horizontal: Sizes.screenPaddingH28,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../helpers/platform_helper.dart';
-import '../../styles/font_styles.dart';
-import '../../styles/sizes.dart';
+import '../../styles/styles.dart';
 import 'platform_widgets/platform_text_form_field.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -48,6 +47,8 @@ class CustomTextFormField extends StatelessWidget {
   final int? minLines;
   final int? errorMaxLines;
 
+  static const _paddingV10 = 10.0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -74,11 +75,7 @@ class CustomTextFormField extends StatelessWidget {
           materialData: MaterialTextFormFieldData(
             decoration: InputDecoration(
               isDense: true,
-              contentPadding: contentPadding ??
-                  const EdgeInsets.symmetric(
-                    vertical: Sizes.textFieldPaddingV14,
-                    horizontal: Sizes.textFieldPaddingH14,
-                  ),
+              contentPadding: contentPadding,
               filled: true,
               fillColor: Theme.of(context).inputDecorationTheme.fillColor,
               hintText: hintText,
@@ -115,9 +112,9 @@ class CustomTextFormField extends StatelessWidget {
           cupertinoData: CupertinoFormRowData(
             padding: contentPadding ??
                 EdgeInsetsDirectional.only(
-                  top: Sizes.textFieldPaddingV10,
-                  bottom: Sizes.textFieldPaddingV10,
-                  end: suffix != null ? Sizes.textFieldPaddingH38 : 0.0,
+                  top: _paddingV10,
+                  bottom: _paddingV10,
+                  end: suffix != null ? 38 : 0.0,
                 ),
             placeHolder: hintText,
             placeholderStyle: TextStyle(
@@ -130,7 +127,7 @@ class CustomTextFormField extends StatelessWidget {
         //Add suffix manually for iOS https://github.com/flutter/flutter/issues/103385
         if (suffix != null && !PlatformHelper.isMaterialApp)
           PositionedDirectional(
-            top: (contentPadding?.top ?? Sizes.textFieldPaddingV10) * 1.5,
+            top: (contentPadding?.top ?? _paddingV10) * 1.5,
             end: Sizes.paddingH14,
             child: suffix!,
           ),

@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
 import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
-import '../../../../core/presentation/styles/font_styles.dart';
-import '../../../../core/presentation/styles/sizes.dart';
+import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
 import '../helpers/map_coordinates_helper.dart';
 import '../providers/target_location_providers/target_location_directions_provider.dart';
 
 class MapDirectionsInfoComponent extends ConsumerWidget {
   const MapDirectionsInfoComponent({super.key});
 
+  static final BorderRadius _mapDirectionsInfoRadius = BorderRadius.circular(20);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final targetLocationDirections =
-        ref.watch(targetLocationDirectionsProvider);
+    final targetLocationDirections = ref.watch(targetLocationDirectionsProvider);
 
     return targetLocationDirections.fold(
       () => const SizedBox(),
@@ -23,7 +21,7 @@ class MapDirectionsInfoComponent extends ConsumerWidget {
         top: Sizes.mapDirectionsInfoTop,
         child: Material(
           elevation: 2,
-          borderRadius: BorderRadius.circular(Sizes.mapDirectionsInfoRadius),
+          borderRadius: _mapDirectionsInfoRadius,
           child: Container(
             padding: const EdgeInsets.symmetric(
               vertical: Sizes.paddingV8,
@@ -31,14 +29,14 @@ class MapDirectionsInfoComponent extends ConsumerWidget {
             ),
             decoration: BoxDecoration(
               color: AppStaticColors.lightBlue,
-              borderRadius:
-                  BorderRadius.circular(Sizes.mapDirectionsInfoRadius),
+              borderRadius: _mapDirectionsInfoRadius,
             ),
-            child: CustomText.f14(
-              context,
+            child: Text(
               MapCoordinatesHelper.getDirectionInfoText(directions),
-              weight: FontStyles.fontWeightBold,
-              color: customColors(context).blackColor,
+              style: TextStyles.f14(context).copyWith(
+                color: customColors(context).blackColor,
+                fontWeight: FontStyles.fontWeightBold,
+              ),
             ),
           ),
         ),

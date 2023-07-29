@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/core_features/locale/presentation/utils/app_locale.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/screens/nested_screen_scaffold.dart';
-import '../../../../../core/presentation/styles/sizes.dart';
-import '../../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../../core/presentation/styles/styles.dart';
 import '../../components/language_components/language_item_component.dart';
 
 class LanguageScreenCompact extends StatelessWidget {
@@ -16,14 +15,14 @@ class LanguageScreenCompact extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.screenMarginV20,
-            horizontal: Sizes.screenMarginH36,
+            vertical: Sizes.screenPaddingV20,
+            horizontal: Sizes.screenPaddingH36,
           ),
           child: Column(
             children: <Widget>[
-              CustomText.f18(
-                context,
+              Text(
                 tr(context).selectYourPreferredLanguage,
+                style: TextStyles.f18(context),
               ),
               const SizedBox(
                 height: Sizes.marginV20,

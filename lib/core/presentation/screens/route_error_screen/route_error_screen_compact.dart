@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../components/route_error_component.dart';
-import '../../styles/sizes.dart';
+import '../../styles/styles.dart';
 import '../full_screen_scaffold.dart';
 
 class ErrorScreenCompact extends StatelessWidget {
@@ -16,8 +16,8 @@ class ErrorScreenCompact extends StatelessWidget {
             hasScrollBody: false,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                vertical: Sizes.screenMarginV16,
-                horizontal: Sizes.screenMarginH28,
+                vertical: Sizes.screenPaddingV16,
+                horizontal: Sizes.screenPaddingH28,
               ),
               child: RouteErrorComponent(),
             ),

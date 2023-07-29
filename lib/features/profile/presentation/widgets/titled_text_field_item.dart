@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/styles/sizes.dart';
-import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../../core/presentation/styles/styles.dart';
 
 class TitledTextFieldItem extends StatelessWidget {
   const TitledTextFieldItem({
@@ -31,9 +30,9 @@ class TitledTextFieldItem extends StatelessWidget {
             start: Sizes.paddingH4,
             bottom: Sizes.paddingV8,
           ),
-          child: CustomText.f16(
-            context,
+          child: Text(
             title,
+            style: TextStyles.f16(context),
           ),
         ),
         TextFormField(

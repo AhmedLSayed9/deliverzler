@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../styles/sizes.dart';
+import '../../../styles/styles.dart';
 import '../../platform_widgets/platform_base_widget.dart';
 
 class PlatformAppBar extends PlatformBaseWidget<AppBar, SizedBox> {

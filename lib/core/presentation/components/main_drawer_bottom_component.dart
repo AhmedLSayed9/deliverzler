@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../gen/my_assets.dart';
 import '../helpers/localization_helper.dart';
-import '../styles/font_styles.dart';
-import '../styles/sizes.dart';
+import '../styles/styles.dart';
 import '../utils/riverpod_framework.dart';
-import '../widgets/custom_icon.dart';
-import '../widgets/custom_text.dart';
 
 class MainDrawerBottomComponent extends ConsumerWidget {
   const MainDrawerBottomComponent({super.key});
@@ -20,17 +17,20 @@ class MainDrawerBottomComponent extends ConsumerWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CustomText.f18(
-            context,
+          Text(
             tr(context).appName,
-            weight: FontStyles.fontWeightExtraBold,
-            color: Theme.of(context).colorScheme.primary,
+            style: TextStyles.f18(context).copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontStyles.fontWeightExtraBold,
+            ),
           ),
           const SizedBox(
             width: Sizes.marginH6,
           ),
-          CustomIcon.i32(
+          Image.asset(
             MyAssets.ASSETS_IMAGES_CORE_APP_LOGO_PNG,
+            height: 32,
+            width: 32,
             fit: BoxFit.fill,
           ),
         ],
