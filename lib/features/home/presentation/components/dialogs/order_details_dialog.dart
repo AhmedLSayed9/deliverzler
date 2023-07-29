@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../../core/presentation/styles/font_styles.dart';
 import '../../../../../core/presentation/styles/sizes.dart';
-import '../../../../../core/presentation/widgets/custom_elevated_button.dart';
 import '../../../../../core/presentation/widgets/custom_text.dart';
 import '../../../domain/order.dart';
 
@@ -19,8 +17,10 @@ class OrderDetailsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: Sizes.dialogWidth280,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: Sizes.dialogWidth280,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -153,25 +153,6 @@ class OrderDetailsDialog extends StatelessWidget {
             child: CustomText.f16(
               context,
               order.userNote.isEmpty ? tr(context).none : order.userNote,
-            ),
-          ),
-          const SizedBox(
-            height: Sizes.marginV12,
-          ),
-          Center(
-            child: CustomElevatedButton(
-              enableGradient: true,
-              padding: const EdgeInsets.symmetric(
-                vertical: Sizes.buttonPaddingV12,
-                horizontal: Sizes.buttonPaddingH80,
-              ),
-              onPressed: () => NavigationService.popDialog(context),
-              child: CustomText.f16(
-                context,
-                tr(context).back,
-                color: const Color(0xffffffff),
-                weight: FontStyles.fontWeightSemiBold,
-              ),
             ),
           ),
         ],

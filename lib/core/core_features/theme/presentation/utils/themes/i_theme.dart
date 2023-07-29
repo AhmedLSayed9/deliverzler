@@ -38,6 +38,8 @@ abstract class ITheme {
 
   abstract final CardTheme cardTheme;
 
+  abstract final DialogTheme dialogTheme;
+
   abstract final CustomColors customColors;
 }
 
@@ -60,6 +62,7 @@ extension ThemeExtension on ITheme {
       textSelectionTheme: textSelectionTheme,
       inputDecorationTheme: inputDecorationTheme,
       cardTheme: cardTheme,
+      dialogTheme: dialogTheme,
       extensions: [
         this.customColors,
       ],

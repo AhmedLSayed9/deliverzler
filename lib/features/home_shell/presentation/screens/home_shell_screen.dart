@@ -8,7 +8,7 @@ import '../../../../core/presentation/services/connection_stream_service.dart';
 import '../../../../core/presentation/services/fcm_service/show_fcm_notification_provider.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
-import '../../../../core/presentation/utils/toasts.dart';
+import '../../../../core/presentation/widgets/toasts.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_appbar.dart';
 import '../../../notifications/domain/app_notification.dart';
 import '../../../notifications/presentation/providers/fcm_remote_message_providers.dart';

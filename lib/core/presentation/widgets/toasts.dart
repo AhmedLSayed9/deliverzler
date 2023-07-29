@@ -6,8 +6,8 @@ import '../helpers/localization_helper.dart';
 import '../services/connection_stream_service.dart';
 import '../styles/font_styles.dart';
 import '../styles/sizes.dart';
-import '../widgets/custom_text.dart';
-import '../widgets/custom_toast.dart';
+import 'custom_text.dart';
+import 'custom_toast.dart';
 
 abstract class Toasts {
   static void showTitledToast(

@@ -104,6 +104,7 @@ abstract class Sizes {
   static const double dialogR20 = 20;
   static const double dialogR6 = 4;
   static const double dialogPaddingV28 = 28;
+  static const double dialogPaddingV20 = 20;
   static const double dialogPaddingH20 = 20;
   static const double dialogPaddingH10 = 10;
 

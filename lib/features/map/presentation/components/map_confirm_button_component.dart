@@ -13,7 +13,7 @@ import '../../../../core/presentation/widgets/custom_text.dart';
 import '../../../home/domain/update_delivery_status.dart';
 import '../../../home/domain/value_objects.dart';
 import '../../../home/presentation/providers/selected_order_provider.dart';
-import '../../../home/presentation/utils/order_dialog_helper.dart';
+import '../../../home/presentation/widgets/order_dialogs.dart';
 import '../providers/is_arrived_target_location_provider.dart';
 import '../providers/map_confirm_order_provider.dart';
 
@@ -27,7 +27,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
     bool confirmDeliveryId() {
       final userId = ref.read(currentUserProvider).id;
       final orderId = ref.read(selectedOrderProvider).toNullable()?.id;
-      return OrderDialogHelper.confirmDeliveryId(
+      return OrderDialogs.confirmDeliveryId(
         context,
         deliveryId: userId,
         orderDeliveryId: orderId,
@@ -38,7 +38,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
       if (ref.read(mapConfirmOrderStatusProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      final confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
+      final confirmChoice = await OrderDialogs.confirmChoiceDialog(
         context,
         tr(context).doYouWantToConfirmTheOrder,
       );

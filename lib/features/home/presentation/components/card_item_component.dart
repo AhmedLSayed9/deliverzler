@@ -12,7 +12,7 @@ import '../../domain/update_delivery_status.dart';
 import '../../domain/value_objects.dart';
 import '../providers/selected_order_provider.dart';
 import '../providers/update_delivery_status_provider/update_delivery_status_provider.dart';
-import '../utils/order_dialog_helper.dart';
+import '../widgets/order_dialogs.dart';
 import 'card_button_component.dart';
 import 'card_details_button_component.dart';
 import 'card_order_details_component.dart';
@@ -32,7 +32,7 @@ class CardItemComponent extends ConsumerWidget {
     final isUpcomingOrder = order.deliveryStatus == DeliveryStatus.upcoming;
 
     bool confirmDeliveryId() {
-      return OrderDialogHelper.confirmDeliveryId(
+      return OrderDialogs.confirmDeliveryId(
         context,
         deliveryId: userId,
         orderDeliveryId: order.deliveryId,
@@ -51,7 +51,7 @@ class CardItemComponent extends ConsumerWidget {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      final confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
+      final confirmChoice = await OrderDialogs.confirmChoiceDialog(
         context,
         tr(context).doYouWantToConfirmTheOrder,
       );
@@ -69,7 +69,7 @@ class CardItemComponent extends ConsumerWidget {
     Future<void> deliverOrder() async {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
 
-      final confirmChoice = await OrderDialogHelper.confirmChoiceDialog(
+      final confirmChoice = await OrderDialogs.confirmChoiceDialog(
         context,
         tr(context).doYouWantToDeliverTheOrder,
       );
@@ -89,7 +89,7 @@ class CardItemComponent extends ConsumerWidget {
       if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
       if (confirmDeliveryId() == false) return;
 
-      final cancelNote = await OrderDialogHelper.showCancelOrderDialog(context);
+      final cancelNote = await OrderDialogs.showCancelOrderDialog(context);
       if (cancelNote != null) {
         final params = UpdateDeliveryStatus(
           orderId: order.id,
@@ -126,7 +126,7 @@ class CardItemComponent extends ConsumerWidget {
                 CardDetailsButtonComponent(
                   title: tr(context).details,
                   onPressed: () {
-                    OrderDialogHelper.showOrderDetailsDialog(
+                    OrderDialogs.showOrderDetailsDialog(
                       context,
                       order: order,
                     );

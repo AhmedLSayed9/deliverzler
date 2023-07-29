@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../../presentation/styles/font_styles.dart';
 import '../../../../../presentation/styles/sizes.dart';
 import '../colors/app_colors_light.dart';
 import '../colors/custom_colors.dart';
@@ -46,7 +47,7 @@ class ThemeLight implements ITheme {
     indicatorColor: appColors.secondary.withOpacity(0.24),
     labelTextStyle: MaterialStateProperty.resolveWith((states) {
       return TextStyle(
-        color: appColors.customColors.font14Color,
+        color: appColors.customColors.font12Color,
         fontSize: Sizes.font12,
       );
     }),
@@ -164,6 +165,20 @@ class ThemeLight implements ITheme {
   late final CardTheme cardTheme = CardTheme(
     color: appColors.cardBGColor,
     shadowColor: appColors.cardShadowColor,
+  );
+
+  @override
+  late final DialogTheme dialogTheme = DialogTheme(
+    backgroundColor: appColors.scaffoldBGColor,
+    titleTextStyle: TextStyle(
+      color: appColors.customColors.font18Color,
+      fontSize: Sizes.font18,
+      fontWeight: FontStyles.fontWeightBold,
+    ),
+    contentTextStyle: TextStyle(
+      color: appColors.customColors.font18Color,
+      fontSize: Sizes.font16,
+    ),
   );
 
   @override
