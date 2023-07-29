@@ -12,7 +12,7 @@ enum WindowSizeClass {
 
   const WindowSizeClass(this.breakpoint);
 
-  final int breakpoint;
+  final double breakpoint;
 
   static WindowSizeClass determineWindowClass(Size size) {
     // Use width rather than shortestSide when on Web/Desktop.
