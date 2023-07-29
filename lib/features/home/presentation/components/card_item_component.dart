@@ -8,6 +8,7 @@ import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/order.dart';
+import '../../domain/orders_service.dart';
 import '../../domain/update_delivery_status.dart';
 import '../../domain/value_objects.dart';
 import '../providers/selected_order_provider.dart';
@@ -31,74 +32,96 @@ class CardItemComponent extends ConsumerWidget {
     final userId = ref.watch(currentUserProvider.select((user) => user.id));
     final isUpcomingOrder = order.deliveryStatus == DeliveryStatus.upcoming;
 
-    bool confirmDeliveryId() {
-      return OrderDialogs.confirmDeliveryId(
-        context,
-        deliveryId: userId,
-        orderDeliveryId: order.deliveryId,
-      );
+    ({bool canProceed, bool isEnabled}) fetchOrderAuthority() {
+      return ref.read(ordersServiceProvider).orderAuthority(
+            userId: userId,
+            orderDeliveryId: order.deliveryId,
+          );
     }
 
-    Future<void> showMap() async {
-      if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
-      if (confirmDeliveryId() == false) return;
+    void showMap() {
+      final authority = fetchOrderAuthority();
 
-      ref.read(selectedOrderIdProvider.notifier).update((_) => Some(order.id));
-      const MapRoute().go(context);
+      switch (authority) {
+        case (canProceed: true, isEnabled: true):
+          ref.read(selectedOrderIdProvider.notifier).update((_) => Some(order.id));
+          const MapRoute().go(context);
+        case (canProceed: false, isEnabled: _):
+          OrderDialogs.showCanNotProceedDialog(context);
+        case _:
+          return;
+      }
     }
 
     Future<void> confirmOrder() async {
-      if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
-      if (confirmDeliveryId() == false) return;
+      final authority = fetchOrderAuthority();
 
-      final confirmChoice = await OrderDialogs.confirmChoiceDialog(
-        context,
-        tr(context).doYouWantToConfirmTheOrder,
-      );
-      if (confirmChoice) {
-        final params = UpdateDeliveryStatus(
-          orderId: order.id,
-          deliveryStatus: DeliveryStatus.delivered,
-        );
-        ref
-            .read(updateDeliveryStatusEventProvider.notifier)
-            .update((_) => Some(Event.unique(params)));
+      switch (authority) {
+        case (canProceed: true, isEnabled: true):
+          final confirmChoice = await OrderDialogs.confirmChoiceDialog(
+            context,
+            tr(context).doYouWantToConfirmTheOrder,
+          );
+          if (confirmChoice) {
+            final params = UpdateDeliveryStatus(
+              orderId: order.id,
+              deliveryStatus: DeliveryStatus.delivered,
+            );
+            ref
+                .read(updateDeliveryStatusEventProvider.notifier)
+                .update((_) => Some(Event.unique(params)));
+          }
+        case (canProceed: false, isEnabled: _):
+          OrderDialogs.showCanNotProceedDialog(context);
+        case _:
+          return;
       }
     }
 
     Future<void> deliverOrder() async {
-      if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
+      final authority = fetchOrderAuthority();
 
-      final confirmChoice = await OrderDialogs.confirmChoiceDialog(
-        context,
-        tr(context).doYouWantToDeliverTheOrder,
-      );
-      if (confirmChoice) {
-        final params = UpdateDeliveryStatus(
-          orderId: order.id,
-          deliveryStatus: DeliveryStatus.onTheWay,
-          deliveryId: userId,
-        );
-        ref
-            .read(updateDeliveryStatusEventProvider.notifier)
-            .update((_) => Some(Event.unique(params)));
+      switch (authority) {
+        case (canProceed: _, isEnabled: true):
+          final confirmChoice = await OrderDialogs.confirmChoiceDialog(
+            context,
+            tr(context).doYouWantToDeliverTheOrder,
+          );
+          if (confirmChoice) {
+            final params = UpdateDeliveryStatus(
+              orderId: order.id,
+              deliveryStatus: DeliveryStatus.onTheWay,
+              deliveryId: userId,
+            );
+            ref
+                .read(updateDeliveryStatusEventProvider.notifier)
+                .update((_) => Some(Event.unique(params)));
+          }
+        case _:
+          return;
       }
     }
 
     Future<void> cancelOrder() async {
-      if (ref.read(updateDeliveryStatusStateProvider).isLoading) return;
-      if (confirmDeliveryId() == false) return;
+      final authority = fetchOrderAuthority();
 
-      final cancelNote = await OrderDialogs.showCancelOrderDialog(context);
-      if (cancelNote != null) {
-        final params = UpdateDeliveryStatus(
-          orderId: order.id,
-          deliveryStatus: DeliveryStatus.canceled,
-          employeeCancelNote: cancelNote,
-        );
-        ref
-            .read(updateDeliveryStatusEventProvider.notifier)
-            .update((_) => Some(Event.unique(params)));
+      switch (authority) {
+        case (canProceed: true, isEnabled: true):
+          final cancelNote = await OrderDialogs.showCancelOrderDialog(context);
+          if (cancelNote != null) {
+            final params = UpdateDeliveryStatus(
+              orderId: order.id,
+              deliveryStatus: DeliveryStatus.canceled,
+              employeeCancelNote: cancelNote,
+            );
+            ref
+                .read(updateDeliveryStatusEventProvider.notifier)
+                .update((_) => Some(Event.unique(params)));
+          }
+        case (canProceed: false, isEnabled: _):
+          OrderDialogs.showCanNotProceedDialog(context);
+        case _:
+          return;
       }
     }
 

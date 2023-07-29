@@ -64,21 +64,12 @@ abstract class OrderDialogs {
     });
   }
 
-  static bool confirmDeliveryId(
-    BuildContext context, {
-    required String deliveryId,
-    required String? orderDeliveryId,
-  }) {
-    if (deliveryId == orderDeliveryId) {
-      return true;
-    } else {
-      Toasts.showTitledToast(
-        context,
-        title: tr(context).youCanNotProceedThisOrder,
-        description: tr(context).youCanOnlyProceedOrdersYouDelivering,
-      );
-      return false;
-    }
+  static void showCanNotProceedDialog(BuildContext context) {
+    return Toasts.showTitledToast(
+      context,
+      title: tr(context).youCanNotProceedThisOrder,
+      description: tr(context).youCanOnlyProceedOrdersYouDelivering,
+    );
   }
 
   static Future<bool> confirmChoiceDialog(

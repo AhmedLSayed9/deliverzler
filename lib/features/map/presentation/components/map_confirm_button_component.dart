@@ -10,6 +10,7 @@ import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/custom_elevated_button.dart';
 import '../../../../core/presentation/widgets/custom_text.dart';
+import '../../../home/domain/orders_service.dart';
 import '../../../home/domain/update_delivery_status.dart';
 import '../../../home/domain/value_objects.dart';
 import '../../../home/presentation/providers/selected_order_provider.dart';
@@ -24,37 +25,38 @@ class MapConfirmButtonComponent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final arrivedTargetLocation = ref.watch(isArrivedTargetLocationProvider);
 
-    bool confirmDeliveryId() {
-      final userId = ref.read(currentUserProvider).id;
-      final orderId = ref.read(selectedOrderProvider).toNullable()?.id;
-      return OrderDialogs.confirmDeliveryId(
-        context,
-        deliveryId: userId,
-        orderDeliveryId: orderId,
-      );
-    }
-
     Future<void> confirmOrder() async {
-      if (ref.read(mapConfirmOrderStatusProvider).isLoading) return;
-      if (confirmDeliveryId() == false) return;
-
-      final confirmChoice = await OrderDialogs.confirmChoiceDialog(
-        context,
-        tr(context).doYouWantToConfirmTheOrder,
-      );
-      if (!confirmChoice) return;
-
-      final order = ref.read(selectedOrderProvider);
-      order.match(
-        () {},
-        (order) {
-          final params = UpdateDeliveryStatus(
-            orderId: order.id,
-            deliveryStatus: DeliveryStatus.delivered,
+      final authority = ref.read(ordersServiceProvider).orderAuthority(
+            userId: ref.read(currentUserProvider).id,
+            orderDeliveryId: ref.read(selectedOrderProvider).toNullable()?.id,
           );
-          ref.read(mapConfirmOrderEventProvider.notifier).update((_) => Some(Event.unique(params)));
-        },
-      );
+
+      switch (authority) {
+        case (canProceed: true, isEnabled: true):
+          final confirmChoice = await OrderDialogs.confirmChoiceDialog(
+            context,
+            tr(context).doYouWantToConfirmTheOrder,
+          );
+          if (confirmChoice) {
+            final order = ref.read(selectedOrderProvider);
+            order.match(
+              () {},
+              (order) {
+                final params = UpdateDeliveryStatus(
+                  orderId: order.id,
+                  deliveryStatus: DeliveryStatus.delivered,
+                );
+                ref
+                    .read(mapConfirmOrderEventProvider.notifier)
+                    .update((_) => Some(Event.unique(params)));
+              },
+            );
+          }
+        case (canProceed: false, isEnabled: _):
+          OrderDialogs.showCanNotProceedDialog(context);
+        case _:
+          return;
+      }
     }
 
     return arrivedTargetLocation
