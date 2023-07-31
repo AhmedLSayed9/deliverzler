@@ -713,18 +713,18 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "1531542666c2d052c44bbf6e2b48011bf3771da0404b94c60eabec1228a62906"
+      sha256: b3cadd2cd59a4103fd5f6bc572ca75111264698784e927aa471921c3477d5475
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "10.0.0"
   go_router_builder:
     dependency: "direct dev"
     description:
       name: go_router_builder
-      sha256: dbd5028908e5e1409ffc3da02257a489f6ac1caa509a0e03f126b1c2e451bb65
+      sha256: df2034629637d0c7c380aba5daa2f91be4733f2d632e7dff0b082d5ff3155068
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.4"
   google_maps_flutter:
     dependency: "direct main"
     description:
@@ -1086,14 +1086,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.6"
-  path_to_regexp:
-    dependency: transitive
-    description:
-      name: path_to_regexp
-      sha256: "169d78fbd55e61ea8873bcca545979f559d22238f66facdd7ef30870c7f53327"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.0"
   pedantic:
     dependency: transitive
     description:

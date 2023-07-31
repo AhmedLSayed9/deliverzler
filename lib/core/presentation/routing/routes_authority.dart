@@ -37,7 +37,7 @@ extension GoRouterStateX on GoRouterState {
       return defaultAuthority;
     }
 
-    throw UnimplementedError('Route $location has not set routeAuthority.');
+    throw UnimplementedError('Route $uri has not set routeAuthority.');
   }
 }
 
