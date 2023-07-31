@@ -1,6 +1,7 @@
 {
   "@_CORE": {},
   "appName": "Deliverzler",
+  "fontFamily": "Tajawal",
   "noInternetConnection": "لا يوجد اتصال بالانترنت",
   "screenNotFound": "عذرًا! لم يتم العثور على الصفحة!",
   "goToHome": "الذهاب للصفحة الرئيسية",
