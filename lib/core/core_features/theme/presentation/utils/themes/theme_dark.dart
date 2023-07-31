@@ -57,7 +57,7 @@ class ThemeDark implements ITheme {
   );
 
   @override
-  late final TextTheme textTheme = TextTheme(
+  late final TextTheme textTheme = baseTheme.textTheme.copyWith(
     titleMedium: TextStyles.titleMedium(appColors.textFieldSubtitle1Color),
   );
 
