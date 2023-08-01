@@ -35,7 +35,7 @@ abstract class Borders {
   static OutlineInputBorder inputDecorationBorder(Color borderColor, [double borderWidth = 0.8]) =>
       OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
-        borderSide: BorderSide(color: borderColor, width: 0.8),
+        borderSide: BorderSide(color: borderColor, width: borderWidth),
       );
 }
 
