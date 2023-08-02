@@ -20,7 +20,13 @@ import '../utils/riverpod_framework.dart';
 import 'navigation_transitions.dart';
 
 part 'app_router.g.dart';
+
 part 'routes_authority.dart';
+part 'routes/core_routes.dart';
+part 'routes/auth_routes.dart';
+part 'routes/home_routes.dart';
+part 'routes/profile_routes.dart';
+part 'routes/settings_routes.dart';
 
 // This or other ShellRoutes keys can be used to display a child route on a different Navigator.
 // i.e: use the rootNavigatorKey for a child route inside a ShellRoute
@@ -104,78 +110,4 @@ GoRouter goRouter(GoRouterRef ref) {
   );
   ref.onDispose(router.dispose);
   return router;
-}
-
-@TypedGoRoute<SplashRoute>(path: '/splash')
-class SplashRoute extends GoRouteData {
-  const SplashRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const SplashScreen();
-}
-
-@TypedGoRoute<NoInternetRoute>(path: '/no_internet')
-class NoInternetRoute extends GoRouteData {
-  const NoInternetRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const NoInternetScreen();
-}
-
-@TypedGoRoute<SignInRoute>(path: '/login')
-class SignInRoute extends GoRouteData {
-  const SignInRoute();
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      FadeTransitionPage(state.pageKey, const SignInScreen());
-}
-
-@TypedGoRoute<HomeRoute>(
-  path: '/home',
-  routes: [
-    TypedGoRoute<MapRoute>(path: 'map'),
-  ],
-)
-class HomeRoute extends GoRouteData {
-  const HomeRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
-}
-
-class MapRoute extends GoRouteData {
-  const MapRoute();
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(key: state.pageKey, child: const MapScreen());
-}
-
-@TypedGoRoute<ProfileRoute>(path: '/profile')
-class ProfileRoute extends GoRouteData {
-  const ProfileRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const ProfileScreen();
-}
-
-@TypedGoRoute<SettingsRoute>(
-  path: '/settings',
-  routes: [
-    TypedGoRoute<LanguageRoute>(path: 'language'),
-  ],
-)
-class SettingsRoute extends GoRouteData {
-  const SettingsRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const SettingsScreen();
-}
-
-class LanguageRoute extends GoRouteData {
-  const LanguageRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const LanguageScreen();
 }
