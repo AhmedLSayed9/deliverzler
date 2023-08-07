@@ -29,6 +29,7 @@ class RouteErrorComponent extends StatelessWidget {
           child: Text(
             tr(context).goToHome,
             style: TextStyles.coloredElevatedButton(context),
+            textAlign: TextAlign.center,
           ),
         ),
       ],
