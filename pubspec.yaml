@@ -33,7 +33,7 @@ dependencies:
   go_router: ^10.0.0
 
   # Location
-  location: ^4.4.0
+  location: ^5.0.2+1
   geolocator: ^9.0.2
   google_maps_flutter: ^2.2.8
   flutter_polyline_points: ^1.0.0
