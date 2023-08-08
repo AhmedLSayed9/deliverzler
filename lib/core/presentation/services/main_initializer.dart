@@ -37,9 +37,9 @@ Future<void> _initFirebase() async {
 }
 
 Future<void> _precacheCustomSplashImages(BuildContext context) async {
-  await Future.wait([
+  await [
     precacheImage(const AssetImage(MyAssets.ASSETS_IMAGES_CORE_CUSTOM_SPLASH_PNG), context),
-  ]);
+  ].wait.silenceError();
 }
 
 //This provided handler must be a top-level function.

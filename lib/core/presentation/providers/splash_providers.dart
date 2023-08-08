@@ -7,6 +7,7 @@ import '../../core_features/locale/presentation/providers/app_locale_provider.da
 import '../../core_features/theme/presentation/providers/app_theme_provider.dart';
 import '../../infrastructure/local/shared_preferences_facade.dart';
 import '../../infrastructure/network/network_info.dart';
+import '../extensions/future_extensions.dart';
 import '../routing/app_router.dart';
 import '../services/fcm_service/fcm_provider.dart';
 import '../services/local_notfication_service/flutter_local_notifications_provider.dart';
@@ -27,7 +28,7 @@ Future<void> splashServicesWarmup(SplashServicesWarmupRef ref) async {
     }
   });
   final s4 = ref.watch(checkAuthProvider.future);
-  await Future.wait([min, s1, s2, s3, s4]);
+  await [min, s1, s2, s3, s4].wait.throwAllErrors();
 }
 
 @riverpod

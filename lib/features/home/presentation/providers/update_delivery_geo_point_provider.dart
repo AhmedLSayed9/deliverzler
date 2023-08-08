@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../../../core/presentation/extensions/future_extensions.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/update_delivery_geopoint.dart';
 import '../../infrastructure/repos/orders_repo.dart';
@@ -10,7 +11,8 @@ part 'update_delivery_geo_point_provider.g.dart';
 
 @riverpod
 Future<void> updateDeliveryGeoPointState(
-    UpdateDeliveryGeoPointStateRef ref,) async {
+  UpdateDeliveryGeoPointStateRef ref,
+) async {
   final myDeliveryOrders = ref.watch(myDeliveringOrdersProvider);
   final position = ref.watch(locationStreamProvider).valueOrNull;
 
@@ -23,10 +25,11 @@ Future<void> updateDeliveryGeoPointState(
       geoPoint: GeoPoint(position.latitude, position.longitude),
     );
     futures.add(
-        ref.watch(updateDeliveryGeoPointProvider(deliveryGeoPoint).future),);
+      ref.watch(updateDeliveryGeoPointProvider(deliveryGeoPoint).future),
+    );
   }
   //Run all calls in parallel to ensure all orders get updated in case the location is changing fast.
-  await Future.wait(futures);
+  await futures.wait.throwAllErrors();
 }
 
 @riverpod

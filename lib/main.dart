@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 
 import 'app.dart';
+import 'core/presentation/extensions/future_extensions.dart';
 import 'core/presentation/providers/provider_observers.dart';
 import 'core/presentation/utils/riverpod_framework.dart';
 import 'firebase_options.dart';
