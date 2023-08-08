@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/presentation/extensions/future_extensions.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/app_router.dart';
 import '../../../../core/presentation/styles/styles.dart';
@@ -34,12 +35,16 @@ class UpcomingOrdersComponent extends ConsumerWidget {
 
     final upcomingOrdersAsync = ref.watch(upcomingOrdersProvider);
 
+    Future<void> refresh() async {
+      return ref.refresh(upcomingOrdersProvider.future).silenceError();
+    }
+
     return upcomingOrdersAsync.when(
       skipLoadingOnReload: true,
       skipLoadingOnRefresh: !upcomingOrdersAsync.hasError,
       data: (upcomingOrders) {
         return PlatformRefreshIndicator(
-          onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
+          onRefresh: refresh,
           slivers: [
             if (upcomingOrders.isNotEmpty)
               SliverPadding(
@@ -78,7 +83,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
         );
       },
       error: (error, st) => PlatformRefreshIndicator(
-        onRefresh: () => ref.refresh(upcomingOrdersProvider.future),
+        onRefresh: refresh,
         slivers: [
           SliverFillRemaining(
             child: Center(
