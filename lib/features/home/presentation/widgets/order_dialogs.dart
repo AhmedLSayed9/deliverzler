@@ -5,6 +5,7 @@ import '../../../../core/core_features/theme/presentation/utils/colors/custom_co
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/styles/styles.dart';
+import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/dialogs.dart';
 import '../../../../core/presentation/widgets/toasts.dart';
 import '../../../../core/presentation/widgets/custom_elevated_button.dart';
@@ -49,11 +50,27 @@ abstract class OrderDialogs {
   }
 
   static Future<String?> showCancelOrderDialog(BuildContext context) async {
+    late final TextEditingController cancelNoteController;
     return Dialogs.showGeneralDialog(
       context,
-      content: const CancelOrderDialog(),
-      materialActions: _confirmButtonsMaterial(context),
-      cupertinoActions: _confirmButtonsCupertino(context),
+      content: HookBuilder(
+        builder: (context) {
+          cancelNoteController = useTextEditingController(text: '');
+          return CancelOrderDialog(
+            cancelNoteController: cancelNoteController,
+          );
+        },
+      ),
+      materialActions: _confirmButtonsMaterial(
+        context,
+        confirmCallback: () =>
+            NavigationService.popDialog(context, result: cancelNoteController.text),
+      ),
+      cupertinoActions: _confirmButtonsCupertino(
+        context,
+        confirmCallback: () =>
+            NavigationService.popDialog(context, result: cancelNoteController.text),
+      ),
     ).then((result) {
       return result as String?;
     });
@@ -84,15 +101,24 @@ abstract class OrderDialogs {
           style: Theme.of(context).dialogTheme.contentTextStyle,
         ),
       ),
-      materialActions: _confirmButtonsMaterial(context),
-      cupertinoActions: _confirmButtonsCupertino(context),
+      materialActions: _confirmButtonsMaterial(
+        context,
+        confirmCallback: () => NavigationService.popDialog(context, result: true),
+      ),
+      cupertinoActions: _confirmButtonsCupertino(
+        context,
+        confirmCallback: () => NavigationService.popDialog(context),
+      ),
     ).then((result) {
       final res = result as bool?;
       return res ?? false;
     });
   }
 
-  static List<Widget> _confirmButtonsMaterial(BuildContext context) {
+  static List<Widget> _confirmButtonsMaterial(
+    BuildContext context, {
+    required VoidCallback confirmCallback,
+  }) {
     return [
       CustomElevatedButton(
         padding: const EdgeInsets.symmetric(
@@ -112,7 +138,7 @@ abstract class OrderDialogs {
           vertical: Sizes.buttonPaddingV12,
           horizontal: Sizes.buttonPaddingH34,
         ),
-        onPressed: () => NavigationService.popDialog(context, result: true),
+        onPressed: confirmCallback,
         child: Text(
           tr(context).confirm,
           style: TextStyles.coloredElevatedButton(context),
@@ -121,7 +147,10 @@ abstract class OrderDialogs {
     ];
   }
 
-  static List<CupertinoDialogAction> _confirmButtonsCupertino(BuildContext context) {
+  static List<CupertinoDialogAction> _confirmButtonsCupertino(
+    BuildContext context, {
+    required VoidCallback confirmCallback,
+  }) {
     return [
       CupertinoDialogAction(
         onPressed: () => NavigationService.popDialog(context),
@@ -131,7 +160,7 @@ abstract class OrderDialogs {
         ),
       ),
       CupertinoDialogAction(
-        onPressed: () => NavigationService.popDialog(context, result: true),
+        onPressed: confirmCallback,
         child: Text(
           tr(context).confirm,
           style: TextStyles.cupertinoDialogAction(context),

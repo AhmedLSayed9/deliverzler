@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/styles/styles.dart';
-import '../../../../../core/presentation/utils/riverpod_framework.dart';
 
-class CancelOrderDialog extends HookWidget {
-  const CancelOrderDialog({super.key});
+class CancelOrderDialog extends StatelessWidget {
+  const CancelOrderDialog({required this.cancelNoteController, super.key});
+
+  final TextEditingController cancelNoteController;
 
   @override
   Widget build(BuildContext context) {
-    final cancelNoteController = useTextEditingController(text: '');
-
     return ConstrainedBox(
       constraints: const BoxConstraints(
         minWidth: Sizes.dialogWidth280,
