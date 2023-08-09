@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/core_features/theme/presentation/utils/app_static_colors.dart';
+import '../../../../core/core_features/theme/presentation/utils/custom_colors.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../providers/map_controller_provider.dart';
 

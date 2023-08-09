@@ -5,8 +5,8 @@ import '../../../../../core/core_features/locale/presentation/utils/app_locale.d
 import '../../../../../core/core_features/theme/presentation/providers/app_theme_provider.dart';
 import '../../../../../core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
 import '../../../../../core/core_features/theme/presentation/utils/app_theme.dart';
-import '../../../../../core/core_features/theme/presentation/utils/colors/app_static_colors.dart';
-import '../../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../../core/core_features/theme/presentation/utils/app_static_colors.dart';
+import '../../../../../core/core_features/theme/presentation/utils/custom_colors.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/routing/app_router.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';

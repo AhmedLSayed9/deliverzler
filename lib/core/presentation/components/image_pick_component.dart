@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../gen/my_assets.dart';
-import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../core_features/theme/presentation/utils/custom_colors.dart';
 import '../helpers/localization_helper.dart';
 import '../styles/styles.dart';
 

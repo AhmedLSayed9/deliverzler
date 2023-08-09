@@ -3,6 +3,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import '../../core_features/theme/presentation/utils/app_theme.dart';
+import '../../core_features/theme/presentation/utils/theme_dark.dart';
+import '../../core_features/theme/presentation/utils/theme_light.dart';
 
 bool isDarkMode([Brightness? platformBrightness]) {
   final brightness =
@@ -21,16 +23,6 @@ SystemUiOverlayStyle getFullScreenOverlayStyle(
   required bool darkOverlays,
 }) {
   return darkOverlays
-      ? SystemUiOverlayStyle.dark.copyWith(
-          //For Android
-          statusBarColor: Colors.transparent,
-          systemNavigationBarColor: Theme.of(context).navigationBarTheme.backgroundColor,
-          systemNavigationBarIconBrightness: Brightness.dark,
-        )
-      : SystemUiOverlayStyle.light.copyWith(
-          //For Android
-          statusBarColor: Colors.transparent,
-          systemNavigationBarColor: Theme.of(context).navigationBarTheme.backgroundColor,
-          systemNavigationBarIconBrightness: Brightness.light,
-        );
+      ? ThemeLight().appBarTheme.systemOverlayStyle!
+      : ThemeDark().appBarTheme.systemOverlayStyle!;
 }

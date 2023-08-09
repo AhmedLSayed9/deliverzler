@@ -4,7 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../gen/my_assets.dart';
-import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../core_features/theme/presentation/utils/custom_colors.dart';
 import '../styles/styles.dart';
 
 class LoadingIndicator extends StatelessWidget {

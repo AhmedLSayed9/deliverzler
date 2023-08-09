@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../../core/core_features/theme/presentation/utils/custom_colors.dart';
 import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../home/presentation/providers/selected_order_provider.dart';

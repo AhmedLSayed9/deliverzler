@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../../../core_features/theme/presentation/utils/app_static_colors.dart';
 import '../../utils/riverpod_framework.dart';
 import '../local_notfication_service/flutter_local_notifications_provider.dart';
 import 'fcm_provider.dart';

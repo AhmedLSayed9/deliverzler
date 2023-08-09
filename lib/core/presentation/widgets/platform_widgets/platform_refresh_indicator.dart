@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../../core_features/theme/presentation/utils/custom_colors.dart';
 import 'platform_base_widget.dart';
 
 class PlatformRefreshIndicator extends PlatformBaseWidget<RefreshIndicator, CustomScrollView> {

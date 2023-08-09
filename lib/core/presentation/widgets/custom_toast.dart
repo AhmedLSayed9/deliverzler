@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../core_features/theme/presentation/utils/colors/app_static_colors.dart';
+import '../../core_features/theme/presentation/utils/app_static_colors.dart';
 import '../styles/styles.dart';
 
 abstract class CustomToast {

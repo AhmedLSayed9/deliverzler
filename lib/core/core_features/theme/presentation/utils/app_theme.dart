@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'themes/i_theme.dart';
-import 'themes/theme_dark.dart';
-import 'themes/theme_light.dart';
+import 'theme_base.dart';
+import 'theme_dark.dart';
+import 'theme_light.dart';
 
 enum AppTheme {
   light,

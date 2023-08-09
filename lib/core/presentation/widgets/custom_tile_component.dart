@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core_features/theme/presentation/utils/colors/custom_colors.dart';
+import '../../core_features/theme/presentation/utils/custom_colors.dart';
 import '../styles/styles.dart';
 
 class CustomTileComponent extends StatelessWidget {
