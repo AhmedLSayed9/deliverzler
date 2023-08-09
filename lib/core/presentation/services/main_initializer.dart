@@ -12,9 +12,10 @@ Future<void> _mainInitializer() async {
     final BuildContext context = widgetsBinding.rootElement!;
     await _precacheCustomSplashImages(context);
 
-    // Show the notification bar back when the app loads after the native splash.
+    // When the native splash screen is fullscreen, iOS will not automatically show the notification
+    // bar when the app loads. To show it, setEnabledSystemUIMode has to be explicitly set:
     await SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
+      SystemUiMode.edgeToEdge, // https://github.com/flutter/flutter/issues/105714
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
     );
 
