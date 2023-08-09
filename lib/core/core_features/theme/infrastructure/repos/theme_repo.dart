@@ -15,7 +15,8 @@ class ThemeRepo {
 
   final ThemeLocalDataSource localDataSource;
 
-  String getAppTheme() => localDataSource.getAppTheme();
+  String getAppThemeMode() => localDataSource.getAppThemeMode();
 
-  Future<void> cacheAppTheme(String themeString) => localDataSource.cacheAppTheme(themeString);
+  Future<void> cacheAppThemeMode(String themeString) =>
+      localDataSource.cacheAppThemeMode(themeString);
 }

@@ -25,7 +25,7 @@ void main() {
   }
 
   group(
-    'getAppTheme',
+    'getAppThemeMode',
     () {
       const tTheme = 'light';
 
@@ -40,7 +40,7 @@ void main() {
 
           // WHEN
           final themeLocalDataSource = container.read(themeLocalDataSourceProvider);
-          final result = themeLocalDataSource.getAppTheme();
+          final result = themeLocalDataSource.getAppThemeMode();
 
           // THEN
           verifyOnly(
@@ -64,7 +64,7 @@ void main() {
 
           // THEN
           expect(
-            themeLocalDataSource.getAppTheme,
+            themeLocalDataSource.getAppThemeMode,
             throwsA(
               isA<CacheException>().having(
                 (e) => e.type,
@@ -79,7 +79,7 @@ void main() {
   );
 
   group(
-    'cacheAppTheme',
+    'cacheAppThemeMode',
     () {
       const tTheme = 'light';
 
@@ -97,7 +97,7 @@ void main() {
 
           // WHEN
           final themeLocalDataSource = container.read(themeLocalDataSourceProvider);
-          await themeLocalDataSource.cacheAppTheme(tTheme);
+          await themeLocalDataSource.cacheAppThemeMode(tTheme);
 
           // THEN
           verifyOnly(

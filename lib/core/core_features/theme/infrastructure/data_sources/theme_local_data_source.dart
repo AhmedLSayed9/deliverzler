@@ -18,7 +18,7 @@ class ThemeLocalDataSource {
 
   static const String appThemeKey = 'app_theme';
 
-  String getAppTheme() {
+  String getAppThemeMode() {
     final theme = sharedPreferences.restoreData<String>(appThemeKey);
     if (theme != null) {
       return theme;
@@ -30,7 +30,7 @@ class ThemeLocalDataSource {
     }
   }
 
-  Future<void> cacheAppTheme(String themeString) async {
+  Future<void> cacheAppThemeMode(String themeString) async {
     await sharedPreferences.saveData(
       value: themeString,
       key: appThemeKey,

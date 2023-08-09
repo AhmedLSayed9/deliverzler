@@ -8,18 +8,18 @@ part 'app_theme_provider.g.dart';
 @Riverpod(keepAlive: true)
 class AppThemeController extends _$AppThemeController {
   @override
-  Future<AppTheme> build() async {
+  Future<AppThemeMode> build() async {
     await ref.watch(sharedPrefsAsyncProvider.future);
     return _getUserStoredTheme();
   }
 
-  AppTheme _getUserStoredTheme() {
-    final storedTheme = ref.watch(themeRepoProvider).getAppTheme();
-    return AppTheme.values.byName(storedTheme);
+  AppThemeMode _getUserStoredTheme() {
+    final storedTheme = ref.watch(themeRepoProvider).getAppThemeMode();
+    return AppThemeMode.values.byName(storedTheme);
   }
 
-  Future<void> changeTheme(AppTheme appTheme) async {
+  Future<void> changeTheme(AppThemeMode appTheme) async {
     state = AsyncData(appTheme);
-    await ref.watch(themeRepoProvider).cacheAppTheme(appTheme.name);
+    await ref.watch(themeRepoProvider).cacheAppThemeMode(appTheme.name);
   }
 }

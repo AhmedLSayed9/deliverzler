@@ -26,7 +26,7 @@ void main() {
   final tException = Exception('test_exception');
 
   group(
-    'getAppTheme',
+    'getAppThemeMode',
     () {
       const tTheme = 'light';
 
@@ -35,18 +35,18 @@ void main() {
         'when the cached data is present',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.getAppTheme()).thenReturn(tTheme);
+          when(() => mockThemeLocalDataSource.getAppThemeMode()).thenReturn(tTheme);
 
           final container = setUpRemoteContainer();
 
           // WHEN
           final themeRepo = container.read(themeRepoProvider);
-          final result = themeRepo.getAppTheme();
+          final result = themeRepo.getAppThemeMode();
 
           // THEN
           verifyOnly(
             mockThemeLocalDataSource,
-            () => mockThemeLocalDataSource.getAppTheme(),
+            () => mockThemeLocalDataSource.getAppThemeMode(),
           );
           expect(result, equals(tTheme));
         },
@@ -57,7 +57,7 @@ void main() {
         'when there is no cached data present',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.getAppTheme()).thenThrow(tException);
+          when(() => mockThemeLocalDataSource.getAppThemeMode()).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -65,10 +65,10 @@ void main() {
           final themeRepo = container.read(themeRepoProvider);
 
           // THEN
-          expect(themeRepo.getAppTheme, throwsA(tException));
+          expect(themeRepo.getAppThemeMode, throwsA(tException));
           verifyOnly(
             mockThemeLocalDataSource,
-            () => mockThemeLocalDataSource.getAppTheme(),
+            () => mockThemeLocalDataSource.getAppThemeMode(),
           );
         },
       );
@@ -76,26 +76,26 @@ void main() {
   );
 
   group(
-    'cacheAppTheme',
+    'cacheAppThemeMode',
     () {
       const tTheme = 'light';
 
       test(
-        'should call LocalDataSource.cacheAppTheme with the proper param',
+        'should call LocalDataSource.cacheAppThemeMode with the proper param',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.cacheAppTheme(tTheme)).thenAnswer((_) async {});
+          when(() => mockThemeLocalDataSource.cacheAppThemeMode(tTheme)).thenAnswer((_) async {});
 
           final container = setUpRemoteContainer();
 
           // WHEN
           final themeRepo = container.read(themeRepoProvider);
-          await themeRepo.cacheAppTheme(tTheme);
+          await themeRepo.cacheAppThemeMode(tTheme);
 
           // THEN
           verifyOnly(
             mockThemeLocalDataSource,
-            () => mockThemeLocalDataSource.cacheAppTheme(tTheme),
+            () => mockThemeLocalDataSource.cacheAppThemeMode(tTheme),
           );
         },
       );
@@ -105,7 +105,7 @@ void main() {
         'when the call to local data source is unsuccessful',
         () async {
           // GIVEN
-          when(() => mockThemeLocalDataSource.cacheAppTheme(tTheme)).thenThrow(tException);
+          when(() => mockThemeLocalDataSource.cacheAppThemeMode(tTheme)).thenThrow(tException);
 
           final container = setUpRemoteContainer();
 
@@ -113,10 +113,10 @@ void main() {
           final themeRepo = container.read(themeRepoProvider);
 
           // THEN
-          expect(() => themeRepo.cacheAppTheme(tTheme), throwsA(tException));
+          expect(() => themeRepo.cacheAppThemeMode(tTheme), throwsA(tException));
           verifyOnly(
             mockThemeLocalDataSource,
-            () => mockThemeLocalDataSource.cacheAppTheme(tTheme),
+            () => mockThemeLocalDataSource.cacheAppThemeMode(tTheme),
           );
         },
       );

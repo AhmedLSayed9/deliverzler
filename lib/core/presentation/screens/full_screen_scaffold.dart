@@ -22,14 +22,14 @@ class FullScreenScaffold extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(currentAppThemeProvider);
+    final currentTheme = ref.watch(currentAppThemeModeProvider);
 
     return Scaffold(
       appBar: hasStatusBarSpace ? StatusBarSpacer(statusBarColor: statusBarColor) : null,
       body: AnnotatedRegion(
         value: getFullScreenOverlayStyle(
           context,
-          darkOverlays: darkOverlays ?? currentTheme == AppTheme.light,
+          darkOverlays: darkOverlays ?? currentTheme == AppThemeMode.light,
         ),
         child: body,
       ),

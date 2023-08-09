@@ -3,7 +3,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'core/core_features/locale/presentation/providers/current_app_locale_provider.dart';
 import 'core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
-import 'core/core_features/theme/presentation/utils/app_theme.dart';
 import 'core/presentation/routing/app_router.dart';
 import 'core/presentation/routing/navigation_service.dart';
 import 'core/presentation/utils/riverpod_framework.dart';
@@ -36,7 +35,7 @@ class MyApp extends HookConsumerWidget {
       title: 'Deliverzler',
       debugShowCheckedModeBanner: false,
       color: Theme.of(context).colorScheme.primary,
-      theme: theme.getThemeData(locale.fontFamily),
+      theme: theme,
       locale: Locale(locale.code),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

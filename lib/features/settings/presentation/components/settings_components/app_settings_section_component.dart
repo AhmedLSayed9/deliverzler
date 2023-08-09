@@ -19,7 +19,7 @@ class AppSettingsSectionComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(currentAppLocaleProvider);
-    final currentTheme = ref.watch(currentAppThemeProvider);
+    final currentTheme = ref.watch(currentAppThemeModeProvider);
 
     return SettingsSectionComponent(
       headerIcon: Icons.settings,
@@ -27,13 +27,13 @@ class AppSettingsSectionComponent extends ConsumerWidget {
       tileList: [
         CustomTileComponent(
           title: tr(context).theme,
-          leadingIcon: currentTheme.getThemeIcon(),
+          leadingIcon: currentTheme.settingsIcon,
           customTrailing: Container(
             constraints: const BoxConstraints(maxWidth: 40),
             child: Switch.adaptive(
-              value: currentTheme == AppTheme.light,
+              value: currentTheme == AppThemeMode.light,
               onChanged: (value) {
-                final changeTheme = value ? AppTheme.light : AppTheme.dark;
+                final changeTheme = value ? AppThemeMode.light : AppThemeMode.dark;
                 ref.read(appThemeControllerProvider.notifier).changeTheme(changeTheme);
               },
               thumbColor: MaterialStatePropertyAll(customColors(context).whiteColor),

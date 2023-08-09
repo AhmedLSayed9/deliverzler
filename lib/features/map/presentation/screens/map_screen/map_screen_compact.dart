@@ -29,7 +29,7 @@ class MapScreenCompact extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(currentAppThemeProvider);
+    final currentTheme = ref.watch(currentAppThemeModeProvider);
     final locationAsync = ref.watch(locationStreamProvider);
 
     useEffect(
@@ -70,7 +70,7 @@ class MapScreenCompact extends HookConsumerWidget {
     return AnnotatedRegion(
       value: getFullScreenOverlayStyle(
         context,
-        darkOverlays: currentTheme == AppTheme.light,
+        darkOverlays: currentTheme == AppThemeMode.light,
       ),
       child: NestedScreenScaffold(
         body: locationAsync.when(

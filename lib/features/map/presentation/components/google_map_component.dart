@@ -30,7 +30,7 @@ class GoogleMapComponent extends HookConsumerWidget {
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
       onMapCreated: (controller) async {
-        final isDark = ref.read(currentAppThemeProvider) == AppTheme.dark;
+        final isDark = ref.read(currentAppThemeModeProvider) == AppThemeMode.dark;
         final mapStyle = await MapStyleHelper.getMapStyle(isDarkMode: isDark);
         await controller.setMapStyle(mapStyle);
         ref.read(currentMapControllerProvider.notifier).update((_) => controller);

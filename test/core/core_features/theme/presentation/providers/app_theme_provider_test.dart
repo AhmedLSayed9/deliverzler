@@ -28,22 +28,22 @@ void main() {
     );
   }
 
-  const tTheme = AppTheme.light;
+  const tTheme = AppThemeMode.light;
   final tException = Exception('test_exception');
   final tStackTrace = StackTrace.current;
 
-  const loadingState = AsyncLoading<AppTheme>();
-  const tThemeState = AsyncData<AppTheme>(tTheme);
-  final errorState = AsyncError<AppTheme>(tException, tStackTrace);
+  const loadingState = AsyncLoading<AppThemeMode>();
+  const tThemeState = AsyncData<AppThemeMode>(tTheme);
+  final errorState = AsyncError<AppThemeMode>(tException, tStackTrace);
 
   group(
     'build (getUserStoredTheme)',
     () {
       test(
-        'should emit AsyncData(tTheme) when ThemeRepo.getAppTheme returns normally',
+        'should emit AsyncData(tTheme) when ThemeRepo.getAppThemeMode returns normally',
         () async {
           // GIVEN
-          when(() => mockThemeRepo.getAppTheme()).thenReturn(tTheme.name);
+          when(() => mockThemeRepo.getAppThemeMode()).thenReturn(tTheme.name);
 
           final container = setUpRepoContainer();
           final listener = setUpListener(container, appThemeControllerProvider);
@@ -57,7 +57,7 @@ void main() {
           await expectLater(call, completion(tTheme));
 
           verifyInOrder([
-            () => mockThemeRepo.getAppTheme(),
+            () => mockThemeRepo.getAppThemeMode(),
             () => listener(loadingState, tThemeState),
           ]);
           verifyNoMoreInteractions(mockThemeRepo);
@@ -65,10 +65,10 @@ void main() {
         },
       );
       test(
-        'should emit AsyncError when ThemeRepo.getAppTheme throws',
+        'should emit AsyncError when ThemeRepo.getAppThemeMode throws',
         () async {
           // GIVEN
-          when(() => mockThemeRepo.getAppTheme()).thenAnswer(
+          when(() => mockThemeRepo.getAppThemeMode()).thenAnswer(
             (_) => Error.throwWithStackTrace(tException, tStackTrace),
           );
 
@@ -84,7 +84,7 @@ void main() {
           await expectLater(call, throwsA(tException));
 
           verifyInOrder([
-            () => mockThemeRepo.getAppTheme(),
+            () => mockThemeRepo.getAppThemeMode(),
             () => listener(loadingState, errorState),
           ]);
           verifyNoMoreInteractions(mockThemeRepo);
@@ -97,15 +97,15 @@ void main() {
   group(
     'changeTheme',
     () {
-      const tChangeTheme = AppTheme.dark;
-      const tChangeThemeState = AsyncData<AppTheme>(tChangeTheme);
+      const tChangeTheme = AppThemeMode.dark;
+      const tChangeThemeState = AsyncData<AppThemeMode>(tChangeTheme);
 
       test(
-        'should emit AsyncData(tChangeTheme) then call ThemeRepo.cacheAppTheme',
+        'should emit AsyncData(tChangeTheme) then call ThemeRepo.cacheAppThemeMode',
         () async {
           // GIVEN
-          when(() => mockThemeRepo.getAppTheme()).thenReturn(tTheme.name);
-          when(() => mockThemeRepo.cacheAppTheme(any())).thenAnswer((_) async {});
+          when(() => mockThemeRepo.getAppThemeMode()).thenReturn(tTheme.name);
+          when(() => mockThemeRepo.cacheAppThemeMode(any())).thenAnswer((_) async {});
 
           final container = setUpRepoContainer();
           await container.read(appThemeControllerProvider.future);
@@ -113,7 +113,7 @@ void main() {
 
           // WHEN
           verifyOnly(listener, () => listener(null, tThemeState));
-          verifyOnly(mockThemeRepo, () => mockThemeRepo.getAppTheme());
+          verifyOnly(mockThemeRepo, () => mockThemeRepo.getAppThemeMode());
 
           final call =
               container.read(appThemeControllerProvider.notifier).changeTheme(tChangeTheme);
@@ -123,7 +123,7 @@ void main() {
 
           verifyInOrder([
             () => listener(tThemeState, tChangeThemeState),
-            () => mockThemeRepo.cacheAppTheme(tChangeTheme.name),
+            () => mockThemeRepo.cacheAppThemeMode(tChangeTheme.name),
           ]);
           verifyNoMoreInteractions(mockThemeRepo);
           verifyNoMoreInteractions(listener);

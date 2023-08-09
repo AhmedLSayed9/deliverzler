@@ -24,10 +24,10 @@ class MapController extends _$MapController {
   @override
   GoogleMapController? build() {
     state = ref.watch(currentMapControllerProvider);
-    ref.listen<AppTheme>(
-      currentAppThemeProvider,
+    ref.listen<AppThemeMode>(
+      currentAppThemeModeProvider,
       (previous, next) async {
-        final isDark = next == AppTheme.dark;
+        final isDark = next == AppThemeMode.dark;
         await state?.setMapStyle(await MapStyleHelper.getMapStyle(isDarkMode: isDark));
       },
     );
