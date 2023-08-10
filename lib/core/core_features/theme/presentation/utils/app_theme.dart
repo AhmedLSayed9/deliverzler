@@ -13,6 +13,10 @@ enum AppThemeMode {
 }
 
 extension AppThemeModeX on AppThemeMode {
+  ThemeData getThemeData(String fontFamily) {
+    return AppTheme(themeMode: this).getThemeData(fontFamily);
+  }
+
   ThemeData get _baseTheme {
     return switch (this) {
       AppThemeMode.light => ThemeData.light(),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../presentation/helpers/theme_helper.dart';
 import '../../../../presentation/providers/provider_utils.dart';
 import '../../../../presentation/utils/riverpod_framework.dart';
-import '../../../locale/presentation/providers/current_app_locale_provider.dart';
 import '../utils/app_theme.dart';
 import 'app_theme_provider.dart';
 
@@ -21,11 +20,4 @@ AppThemeMode currentAppThemeMode(CurrentAppThemeModeRef ref) {
   final theme = ref.watch(appThemeControllerProvider.select((data) => data.valueOrNull));
   final platformBrightness = ref.watch(platformBrightnessProvider);
   return theme ?? getSystemTheme(platformBrightness);
-}
-
-@Riverpod(keepAlive: true)
-ThemeData currentAppTheme(CurrentAppThemeRef ref) {
-  final themeMode = ref.watch(currentAppThemeModeProvider);
-  final locale = ref.watch(currentAppLocaleProvider);
-  return AppTheme(themeMode: themeMode).getThemeData(locale.fontFamily);
 }
