@@ -9,9 +9,6 @@ part 'device_info_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 FutureOr<Option<AndroidDeviceInfo>> androidDeviceInfo(AndroidDeviceInfoRef ref) async {
-  ref.onDispose(() {
-    print('dispooose');
-  });
   if (Platform.isAndroid) return await DeviceInfoPlugin().androidInfo.then(Some.new);
   return const None();
 }

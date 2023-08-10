@@ -11,8 +11,9 @@ enum AppThemeMode {
 }
 
 extension AppThemeModeX on AppThemeMode {
-  ThemeData getThemeData(String fontFamily, {required bool isOldAndroid}) {
-    return AppTheme(themeMode: this, isOldAndroid: isOldAndroid).getThemeData(fontFamily);
+  ThemeData getThemeData(String fontFamily, {required bool supportsFullscreen}) {
+    return AppTheme(themeMode: this, supportsFullscreen: supportsFullscreen)
+        .getThemeData(fontFamily);
   }
 
   ThemeData get _baseTheme {
@@ -56,13 +57,13 @@ extension AppThemeModeX on AppThemeMode {
 }
 
 class AppTheme {
-  AppTheme({required AppThemeMode themeMode, required bool isOldAndroid})
-      : _isOldAndroid = isOldAndroid,
+  AppTheme({required AppThemeMode themeMode, required bool supportsFullscreen})
+      : _supportsFullscreen = supportsFullscreen,
         _themeMode = themeMode;
 
   final AppThemeMode _themeMode;
 
-  final bool _isOldAndroid;
+  final bool _supportsFullscreen;
 
   late final ThemeData _baseTheme = _themeMode._baseTheme;
 
@@ -81,8 +82,9 @@ class AppTheme {
       statusBarColor: _appColors.statusBarColor,
       // Not using transparent color for old android versions to avoid hidden navigation bar icons:
       // https://github.com/flutter/flutter/issues/105716
-      systemNavigationBarColor:
-          _isOldAndroid ? _appColors.olderAndroidSystemNavBarColor : _appColors.systemNavBarColor,
+      systemNavigationBarColor: _supportsFullscreen
+          ? _appColors.systemNavBarColor
+          : _appColors.olderAndroidSystemNavBarColor,
       systemNavigationBarDividerColor: _appColors.systemNavBarColor,
     ),
     backgroundColor: _appColors.appBarBGColor,

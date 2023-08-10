@@ -21,7 +21,7 @@ class MyApp extends HookConsumerWidget {
     useOnPlatformBrightnessChange((previous, current) {
       ref.read(platformBrightnessProvider.notifier).update((_) => current);
     });
-    final isOldAndroid = ref.watch(androidDeviceInfoProvider).requireValue.isOldAndroid;
+    final supportsFullscreen = ref.watch(androidDeviceInfoProvider).supportsFullscreen;
     final themeMode = ref.watch(currentAppThemeModeProvider);
     final locale = ref.watch(currentAppLocaleProvider);
 
@@ -39,7 +39,7 @@ class MyApp extends HookConsumerWidget {
       title: 'Deliverzler',
       debugShowCheckedModeBanner: false,
       color: Theme.of(context).colorScheme.primary,
-      theme: themeMode.getThemeData(locale.fontFamily, isOldAndroid: isOldAndroid),
+      theme: themeMode.getThemeData(locale.fontFamily, supportsFullscreen: supportsFullscreen),
       locale: Locale(locale.code),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

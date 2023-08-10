@@ -20,11 +20,11 @@ AppThemeMode getSystemTheme([Brightness? platformBrightness]) {
 SystemUiOverlayStyle getFullScreenOverlayStyle(
   BuildContext context, {
   required bool darkOverlays,
-  required bool isOldAndroid,
+  required bool supportsFullscreen,
 }) {
-  final systemNavBarColor = switch (isOldAndroid) {
-    true when darkOverlays => AppColorsLight().olderAndroidSystemNavBarColor,
-    true when !darkOverlays => AppColorsDark().olderAndroidSystemNavBarColor,
+  final systemNavBarColor = switch (supportsFullscreen) {
+    false when darkOverlays => AppColorsLight().olderAndroidSystemNavBarColor,
+    false when !darkOverlays => AppColorsDark().olderAndroidSystemNavBarColor,
     _ => Colors.transparent,
   };
 
