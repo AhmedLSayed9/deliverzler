@@ -32,7 +32,6 @@ void main() {
   final tException = Exception('test_exception');
   final tStackTrace = StackTrace.current;
 
-  const loadingState = AsyncLoading<AppThemeMode>();
   const tThemeState = AsyncData<AppThemeMode>(tTheme);
   final errorState = AsyncError<AppThemeMode>(tException, tStackTrace);
 
@@ -49,8 +48,6 @@ void main() {
           final listener = setUpListener(container, appThemeControllerProvider);
 
           // WHEN
-          verifyOnly(listener, () => listener(null, loadingState));
-
           final call = container.read(appThemeControllerProvider.future);
 
           // THEN
@@ -58,7 +55,7 @@ void main() {
 
           verifyInOrder([
             () => mockThemeRepo.getAppThemeMode(),
-            () => listener(loadingState, tThemeState),
+            () => listener(null, tThemeState),
           ]);
           verifyNoMoreInteractions(mockThemeRepo);
           verifyNoMoreInteractions(listener);
@@ -76,8 +73,6 @@ void main() {
           final listener = setUpListener(container, appThemeControllerProvider);
 
           // WHEN
-          verifyOnly(listener, () => listener(null, loadingState));
-
           final call = container.read(appThemeControllerProvider.future);
 
           // THEN
@@ -85,7 +80,7 @@ void main() {
 
           verifyInOrder([
             () => mockThemeRepo.getAppThemeMode(),
-            () => listener(loadingState, errorState),
+            () => listener(null, errorState),
           ]);
           verifyNoMoreInteractions(mockThemeRepo);
           verifyNoMoreInteractions(listener);

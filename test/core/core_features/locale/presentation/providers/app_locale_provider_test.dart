@@ -32,7 +32,6 @@ void main() {
   final tException = Exception('test_exception');
   final tStackTrace = StackTrace.current;
 
-  const loadingState = AsyncLoading<AppLocale>();
   const tLocaleState = AsyncData<AppLocale>(tLocale);
   final errorState = AsyncError<AppLocale>(tException, tStackTrace);
 
@@ -49,8 +48,6 @@ void main() {
           final listener = setUpListener(container, appLocaleControllerProvider);
 
           // WHEN
-          verifyOnly(listener, () => listener(null, loadingState));
-
           final call = container.read(appLocaleControllerProvider.future);
 
           // THEN
@@ -58,7 +55,7 @@ void main() {
 
           verifyInOrder([
             () => mockLocaleRepo.getAppLocale(),
-            () => listener(loadingState, tLocaleState),
+            () => listener(null, tLocaleState),
           ]);
           verifyNoMoreInteractions(mockLocaleRepo);
           verifyNoMoreInteractions(listener);
@@ -76,8 +73,6 @@ void main() {
           final listener = setUpListener(container, appLocaleControllerProvider);
 
           // WHEN
-          verifyOnly(listener, () => listener(null, loadingState));
-
           final call = container.read(appLocaleControllerProvider.future);
 
           // THEN
@@ -85,7 +80,7 @@ void main() {
 
           verifyInOrder([
             () => mockLocaleRepo.getAppLocale(),
-            () => listener(loadingState, errorState),
+            () => listener(null, errorState),
           ]);
           verifyNoMoreInteractions(mockLocaleRepo);
           verifyNoMoreInteractions(listener);

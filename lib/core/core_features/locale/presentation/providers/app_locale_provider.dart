@@ -1,7 +1,6 @@
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../../../../infrastructure/local/shared_preferences_facade.dart';
 import '../../../../presentation/utils/riverpod_framework.dart';
 import '../../infrastructure/repos/locale_repo.dart';
 import '../utils/app_locale.dart';
@@ -13,11 +12,10 @@ class AppLocaleController extends _$AppLocaleController {
   bool _firstBuild = true;
 
   @override
-  Future<AppLocale> build() async {
-    await ref.watch(sharedPrefsAsyncProvider.future);
+  FutureOr<AppLocale> build() {
     if (_firstBuild) {
       _setTimeAgoLocales();
-      await _initDateFormatting();
+      _initDateFormatting();
       _firstBuild = false;
     }
     return _getUserStoredLocale();

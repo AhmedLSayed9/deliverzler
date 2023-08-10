@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import '../../../auth/presentation/providers/check_auth_provider.dart';
 import '../../core_features/locale/presentation/providers/app_locale_provider.dart';
 import '../../core_features/theme/presentation/providers/app_theme_provider.dart';
-import '../../infrastructure/local/shared_preferences_facade.dart';
 import '../../infrastructure/network/network_info.dart';
 import '../extensions/future_extensions.dart';
 import '../routing/app_router.dart';
@@ -17,7 +16,6 @@ part 'splash_providers.g.dart';
 
 @riverpod
 Future<void> splashServicesWarmup(SplashServicesWarmupRef ref) async {
-  await ref.watch(sharedPrefsAsyncProvider.future);
   final min = Future<void>.delayed(const Duration(seconds: 1)); //Min Time of splash
   final s1 = ref.watch(appThemeControllerProvider.future);
   final s2 = ref.watch(appLocaleControllerProvider.future);
