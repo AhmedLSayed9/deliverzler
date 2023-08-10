@@ -1,5 +1,3 @@
-// ignore_for_file: overridden_fields
-
 part of 'app_colors.dart';
 
 class AppColorsLight implements AppColors {
