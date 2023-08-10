@@ -1,11 +1,17 @@
 part of '../../../main.dart';
 
-Future<void> _mainInitializer() async {
+Future<void> _mainInitializer(ProviderContainer container) async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   _setupLogger();
   await _initFirebase();
+
+  // Caching the android device info to be used synchronously at AppTheme to setup the navigation bar
+  // behavior for older Android versions without flickering (of the navigation bar) when app starts.
+  await container.read(androidDeviceInfoProvider.future).silenceError();
+
   // This Prevent closing native splash screen until we finish warming-up custom splash images.
   // App layout will be built but not displayed.
+  // Also, theme/locale will be loaded (async) during this time (A default theme/locale is set initially).
   widgetsBinding.deferFirstFrame();
   widgetsBinding.addPostFrameCallback((_) async {
     // Run any function you want to wait for before showing app layout.

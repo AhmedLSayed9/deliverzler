@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'custom_colors.dart';
 
+part 'app_colors_light.dart';
+part 'app_colors_dark.dart';
+
 abstract class AppColors {
   ///Main
   // The background color for major parts of the app (toolbars, tab bars, etc)
@@ -18,6 +21,7 @@ abstract class AppColors {
   ///Screen
   Color get statusBarColor;
   Color get systemNavBarColor;
+  Color get olderAndroidSystemNavBarColor;
   Color get appBarBGColor;
   Color get scaffoldBGColor;
   Color get navBarColor;

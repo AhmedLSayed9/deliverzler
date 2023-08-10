@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import '../../../../presentation/styles/styles.dart';
 import 'custom_colors.dart';
 import 'app_colors.dart';
-import 'app_colors_dark.dart';
-import 'app_colors_light.dart';
 
 enum AppThemeMode {
   light,
@@ -13,8 +11,8 @@ enum AppThemeMode {
 }
 
 extension AppThemeModeX on AppThemeMode {
-  ThemeData getThemeData(String fontFamily) {
-    return AppTheme(themeMode: this).getThemeData(fontFamily);
+  ThemeData getThemeData(String fontFamily, {required bool isOldAndroid}) {
+    return AppTheme(themeMode: this, isOldAndroid: isOldAndroid).getThemeData(fontFamily);
   }
 
   ThemeData get _baseTheme {
@@ -58,9 +56,13 @@ extension AppThemeModeX on AppThemeMode {
 }
 
 class AppTheme {
-  AppTheme({required AppThemeMode themeMode}) : _themeMode = themeMode;
+  AppTheme({required AppThemeMode themeMode, required bool isOldAndroid})
+      : _isOldAndroid = isOldAndroid,
+        _themeMode = themeMode;
 
   final AppThemeMode _themeMode;
+
+  final bool _isOldAndroid;
 
   late final ThemeData _baseTheme = _themeMode._baseTheme;
 
@@ -77,7 +79,11 @@ class AppTheme {
     systemOverlayStyle: _themeMode._baseOverlayStyle.copyWith(
       //For Android
       statusBarColor: _appColors.statusBarColor,
-      systemNavigationBarColor: _appColors.systemNavBarColor,
+      // Not using transparent color for old android versions to avoid hidden navigation bar icons:
+      // https://github.com/flutter/flutter/issues/105716
+      systemNavigationBarColor:
+          _isOldAndroid ? _appColors.olderAndroidSystemNavBarColor : _appColors.systemNavBarColor,
+      systemNavigationBarDividerColor: _appColors.systemNavBarColor,
     ),
     backgroundColor: _appColors.appBarBGColor,
     elevation: Sizes.appBarElevation,

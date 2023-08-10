@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/core_features/theme/presentation/providers/current_app_theme_provider.dart';
-import '../../../../../core/core_features/theme/presentation/utils/app_theme.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
-import '../../../../../core/presentation/helpers/theme_helper.dart';
 import '../../../../../core/presentation/routing/app_router.dart';
 import '../../../../../core/presentation/screens/nested_screen_scaffold.dart';
 import '../../../../../core/presentation/services/local_notfication_service/show_local_notification_provider.dart';
@@ -29,7 +26,6 @@ class MapScreenCompact extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(currentAppThemeModeProvider);
     final locationAsync = ref.watch(locationStreamProvider);
 
     useEffect(
@@ -67,34 +63,28 @@ class MapScreenCompact extends HookConsumerWidget {
       },
     );
 
-    return AnnotatedRegion(
-      value: getFullScreenOverlayStyle(
-        context,
-        darkOverlays: currentTheme == AppThemeMode.light,
-      ),
-      child: NestedScreenScaffold(
-        body: locationAsync.when(
-          skipLoadingOnReload: true,
-          skipLoadingOnRefresh: !locationAsync.hasError,
-          loading: () => TitledLoadingIndicator(message: tr(context).determine_location),
-          error: (error, st) => RetryAgainComponent(
-            description: (error as LocationError).getErrorText(context),
-            onPressed: () {
-              ref.invalidate(locationStreamProvider);
-            },
-          ),
-          data: (_) => const Stack(
-            alignment: Alignment.topCenter,
-            fit: StackFit.expand,
-            children: [
-              GoogleMapComponent(),
-              MapDirectionsInfoComponent(),
-              MapPhoneCallComponent(),
-              MapConfirmButtonComponent(),
-              MapFloatingSearchBar(),
-              MapFloatingActionButton(),
-            ],
-          ),
+    return NestedScreenScaffold(
+      body: locationAsync.when(
+        skipLoadingOnReload: true,
+        skipLoadingOnRefresh: !locationAsync.hasError,
+        loading: () => TitledLoadingIndicator(message: tr(context).determine_location),
+        error: (error, st) => RetryAgainComponent(
+          description: (error as LocationError).getErrorText(context),
+          onPressed: () {
+            ref.invalidate(locationStreamProvider);
+          },
+        ),
+        data: (_) => const Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
+          children: [
+            GoogleMapComponent(),
+            MapDirectionsInfoComponent(),
+            MapPhoneCallComponent(),
+            MapConfirmButtonComponent(),
+            MapFloatingSearchBar(),
+            MapFloatingActionButton(),
+          ],
         ),
       ),
     );

@@ -60,6 +60,7 @@ dependencies:
 
   # Utils
   mocktail: ^0.3.0
+  device_info_plus: ^9.0.3
   fast_immutable_collections: ^9.1.5
   flutter_fadein: ^2.0.0
   uuid: ^3.0.7

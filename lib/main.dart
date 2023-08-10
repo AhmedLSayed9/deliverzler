@@ -9,6 +9,7 @@ import 'package:logging/logging.dart';
 
 import 'app.dart';
 import 'core/presentation/extensions/future_extensions.dart';
+import 'core/presentation/providers/device_info_providers.dart';
 import 'core/presentation/providers/provider_observers.dart';
 import 'core/presentation/utils/riverpod_framework.dart';
 import 'firebase_options.dart';
@@ -17,9 +18,11 @@ import 'gen/my_assets.dart';
 part 'core/presentation/services/main_initializer.dart';
 
 void main() async {
-  await _mainInitializer();
+  final container = ProviderContainer();
+  await _mainInitializer(container);
   runApp(
     ProviderScope(
+      parent: container,
       observers: [ProviderLogger(), ProviderCrashlytics()],
       child: const MyApp(),
     ),

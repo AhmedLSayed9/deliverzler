@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'custom_colors.dart';
-import 'app_colors.dart';
+part of 'app_colors.dart';
 
 class AppColorsDark implements AppColors {
   @override
@@ -15,6 +12,8 @@ class AppColorsDark implements AppColors {
   Color get statusBarColor => Colors.transparent;
   @override
   Color get systemNavBarColor => Colors.transparent;
+  @override
+  Color get olderAndroidSystemNavBarColor => scaffoldBGColor;
   @override
   Color get appBarBGColor => scaffoldBGColor;
   @override
