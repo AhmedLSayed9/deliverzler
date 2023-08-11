@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core_features/theme/presentation/providers/current_app_theme_provider.dart';
 import '../../../../core_features/theme/presentation/utils/app_theme.dart';
-import '../../../extensions/device_info_extensions.dart';
 import '../../../helpers/theme_helper.dart';
 import '../../../providers/device_info_providers.dart';
 import '../../../utils/riverpod_framework.dart';

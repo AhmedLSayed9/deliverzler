@@ -7,6 +7,7 @@ import '../../../../gen/my_assets.dart';
 import '../../helpers/localization_helper.dart';
 import '../../styles/styles.dart';
 import '../full_screen_scaffold.dart';
+import 'splash_screen.dart';
 
 class SplashScreenCompact extends StatelessWidget {
   const SplashScreenCompact({
@@ -19,6 +20,7 @@ class SplashScreenCompact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FullScreenScaffold(
+      setOlderAndroidImmersiveMode: SplashScreen.setOlderAndroidImmersiveMode,
       body: Stack(
         alignment: Alignment.center,
         children: [

@@ -6,6 +6,7 @@ import '../utils/fp_framework.dart';
 import '../utils/riverpod_framework.dart';
 
 part 'device_info_providers.g.dart';
+part '../extensions/device_info_extensions.dart';
 
 @Riverpod(keepAlive: true)
 FutureOr<Option<AndroidDeviceInfo>> androidDeviceInfo(AndroidDeviceInfoRef ref) async {

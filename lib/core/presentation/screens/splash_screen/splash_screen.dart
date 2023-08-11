@@ -17,6 +17,8 @@ class SplashScreen extends HookConsumerWidget {
     await precacheImage(const AssetImage(MyAssets.ASSETS_IMAGES_CORE_CUSTOM_SPLASH_PNG), context);
   }
 
+  static const setOlderAndroidImmersiveMode = true;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isWarmedUp = !ref.isLoading(splashServicesWarmupProvider);

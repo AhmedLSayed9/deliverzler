@@ -24,7 +24,6 @@ Future<void> _mainInitializer(ProviderContainer container) async {
     // bar when the app loads. To show it, setEnabledSystemUIMode has to be explicitly set:
     await SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.edgeToEdge, // https://github.com/flutter/flutter/issues/105714
-      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
     );
 
     // Closes splash screen, and show the app layout.
