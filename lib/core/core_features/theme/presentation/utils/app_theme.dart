@@ -37,6 +37,26 @@ extension AppThemeModeX on AppThemeMode {
     };
   }
 
+  SystemUiOverlayStyle overlayStyle({
+    required Color statusBarColor,
+    required bool supportsFullscreen,
+    required Color systemNavBarColor,
+    required Color olderAndroidSystemNavBarColor,
+  }) {
+    return _baseOverlayStyle.copyWith(
+      //For Android
+      statusBarColor: statusBarColor,
+      // Not using transparent color for old android versions to avoid hidden navigation bar icons:
+      // https://github.com/flutter/flutter/issues/105716
+      systemNavigationBarColor:
+          supportsFullscreen ? systemNavBarColor : olderAndroidSystemNavBarColor,
+      systemNavigationBarDividerColor: systemNavBarColor,
+      // Fixes navigation bar can't be transparent:
+      // https://github.com/flutter/flutter/issues/119465#issuecomment-1518007538
+      systemNavigationBarContrastEnforced: false,
+    );
+  }
+
   SystemUiOverlayStyle get _baseOverlayStyle {
     return switch (this) {
       AppThemeMode.light => SystemUiOverlayStyle.dark.copyWith(
@@ -77,15 +97,11 @@ class AppTheme {
   );
 
   late final AppBarTheme _appBarTheme = AppBarTheme(
-    systemOverlayStyle: _themeMode._baseOverlayStyle.copyWith(
-      //For Android
+    systemOverlayStyle: _themeMode.overlayStyle(
       statusBarColor: _appColors.statusBarColor,
-      // Not using transparent color for old android versions to avoid hidden navigation bar icons:
-      // https://github.com/flutter/flutter/issues/105716
-      systemNavigationBarColor: _supportsFullscreen
-          ? _appColors.systemNavBarColor
-          : _appColors.olderAndroidSystemNavBarColor,
-      systemNavigationBarDividerColor: _appColors.systemNavBarColor,
+      supportsFullscreen: _supportsFullscreen,
+      systemNavBarColor: _appColors.systemNavBarColor,
+      olderAndroidSystemNavBarColor: _appColors.olderAndroidSystemNavBarColor,
     ),
     backgroundColor: _appColors.appBarBGColor,
     elevation: Sizes.appBarElevation,

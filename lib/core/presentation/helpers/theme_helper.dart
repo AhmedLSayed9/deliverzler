@@ -22,25 +22,14 @@ SystemUiOverlayStyle getFullScreenOverlayStyle(
   required bool darkOverlays,
   required bool supportsFullscreen,
 }) {
-  final systemNavBarColor = switch (supportsFullscreen) {
-    false when darkOverlays => AppColorsLight().olderAndroidSystemNavBarColor,
-    false when !darkOverlays => AppColorsDark().olderAndroidSystemNavBarColor,
-    _ => Colors.transparent,
-  };
+  final (themeMode, olderAndroidSystemNavBarColor) = darkOverlays
+      ? (AppThemeMode.light, AppColorsLight().olderAndroidSystemNavBarColor)
+      : (AppThemeMode.dark, AppColorsDark().olderAndroidSystemNavBarColor);
 
-  return darkOverlays
-      ? SystemUiOverlayStyle.dark.copyWith(
-          //For Android
-          statusBarColor: Colors.transparent,
-          systemNavigationBarColor: systemNavBarColor,
-          systemNavigationBarDividerColor: systemNavBarColor,
-          systemNavigationBarIconBrightness: Brightness.dark,
-        )
-      : SystemUiOverlayStyle.light.copyWith(
-          //For Android
-          statusBarColor: Colors.transparent,
-          systemNavigationBarColor: systemNavBarColor,
-          systemNavigationBarDividerColor: systemNavBarColor,
-          systemNavigationBarIconBrightness: Brightness.light,
-        );
+  return themeMode.overlayStyle(
+    statusBarColor: Colors.transparent,
+    supportsFullscreen: supportsFullscreen,
+    systemNavBarColor: Colors.transparent,
+    olderAndroidSystemNavBarColor: olderAndroidSystemNavBarColor,
+  );
 }
