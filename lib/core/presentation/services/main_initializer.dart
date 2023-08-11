@@ -18,7 +18,7 @@ Future<void> _mainInitializer(ProviderContainer container) async {
   widgetsBinding.addPostFrameCallback((_) async {
     // Run any function you want to wait for before showing app layout.
     final BuildContext context = widgetsBinding.rootElement!;
-    await _precacheCustomSplashImages(context);
+    await _precacheAssets(context);
 
     // When the native splash screen is fullscreen, iOS will not automatically show the notification
     // bar when the app loads. To show it, setEnabledSystemUIMode has to be explicitly set:
@@ -45,9 +45,9 @@ Future<void> _initFirebase() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 }
 
-Future<void> _precacheCustomSplashImages(BuildContext context) async {
-  await [
-    precacheImage(const AssetImage(MyAssets.ASSETS_IMAGES_CORE_CUSTOM_SPLASH_PNG), context),
+Future<void> _precacheAssets(BuildContext context) async {
+  await <Future<void>>[
+    SplashScreen.precacheAssets(context),
   ].wait.silenceError();
 }
 
