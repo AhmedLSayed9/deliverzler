@@ -20,7 +20,7 @@ class FullScreenPlatformScaffold extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(currentAppThemeModeProvider);
-    final supportsFullscreen = ref.watch(androidDeviceInfoProvider).supportsFullscreen;
+    final supportsEdgeToEdge = ref.watch(androidDeviceInfoProvider).supportsEdgeToEdge;
 
     return PlatformScaffold(
       hasStatusBarSpace: false,
@@ -28,7 +28,7 @@ class FullScreenPlatformScaffold extends ConsumerWidget {
         value: getFullScreenOverlayStyle(
           context,
           darkOverlays: darkOverlays ?? currentTheme == AppThemeMode.light,
-          supportsFullscreen: supportsFullscreen,
+          supportsEdgeToEdge: supportsEdgeToEdge,
         ),
         child: body,
       ),

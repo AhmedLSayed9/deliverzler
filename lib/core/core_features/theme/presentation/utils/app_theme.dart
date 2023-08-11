@@ -11,8 +11,8 @@ enum AppThemeMode {
 }
 
 extension AppThemeModeX on AppThemeMode {
-  ThemeData getThemeData(String fontFamily, {required bool supportsFullscreen}) {
-    return AppTheme(themeMode: this, supportsFullscreen: supportsFullscreen)
+  ThemeData getThemeData(String fontFamily, {required bool supportsEdgeToEdge}) {
+    return AppTheme(themeMode: this, supportsEdgeToEdge: supportsEdgeToEdge)
         .getThemeData(fontFamily);
   }
 
@@ -39,7 +39,7 @@ extension AppThemeModeX on AppThemeMode {
 
   SystemUiOverlayStyle overlayStyle({
     required Color statusBarColor,
-    required bool supportsFullscreen,
+    required bool supportsEdgeToEdge,
     required Color systemNavBarColor,
     required Color olderAndroidSystemNavBarColor,
   }) {
@@ -49,7 +49,7 @@ extension AppThemeModeX on AppThemeMode {
       // Not using transparent color for old android versions to avoid hidden navigation bar icons:
       // https://github.com/flutter/flutter/issues/105716
       systemNavigationBarColor:
-          supportsFullscreen ? systemNavBarColor : olderAndroidSystemNavBarColor,
+          supportsEdgeToEdge ? systemNavBarColor : olderAndroidSystemNavBarColor,
       systemNavigationBarDividerColor: systemNavBarColor,
       // Fixes navigation bar can't be transparent:
       // https://github.com/flutter/flutter/issues/119465#issuecomment-1518007538
@@ -77,13 +77,13 @@ extension AppThemeModeX on AppThemeMode {
 }
 
 class AppTheme {
-  AppTheme({required AppThemeMode themeMode, required bool supportsFullscreen})
-      : _supportsFullscreen = supportsFullscreen,
+  AppTheme({required AppThemeMode themeMode, required bool supportsEdgeToEdge})
+      : _supportsEdgeToEdge = supportsEdgeToEdge,
         _themeMode = themeMode;
 
   final AppThemeMode _themeMode;
 
-  final bool _supportsFullscreen;
+  final bool _supportsEdgeToEdge;
 
   late final ThemeData _baseTheme = _themeMode._baseTheme;
 
@@ -99,7 +99,7 @@ class AppTheme {
   late final AppBarTheme _appBarTheme = AppBarTheme(
     systemOverlayStyle: _themeMode.overlayStyle(
       statusBarColor: _appColors.statusBarColor,
-      supportsFullscreen: _supportsFullscreen,
+      supportsEdgeToEdge: _supportsEdgeToEdge,
       systemNavBarColor: _appColors.systemNavBarColor,
       olderAndroidSystemNavBarColor: _appColors.olderAndroidSystemNavBarColor,
     ),

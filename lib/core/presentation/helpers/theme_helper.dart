@@ -20,7 +20,7 @@ AppThemeMode getSystemTheme([Brightness? platformBrightness]) {
 SystemUiOverlayStyle getFullScreenOverlayStyle(
   BuildContext context, {
   required bool darkOverlays,
-  required bool supportsFullscreen,
+  required bool supportsEdgeToEdge,
 }) {
   final (themeMode, olderAndroidSystemNavBarColor) = darkOverlays
       ? (AppThemeMode.light, AppColorsLight().olderAndroidSystemNavBarColor)
@@ -28,7 +28,7 @@ SystemUiOverlayStyle getFullScreenOverlayStyle(
 
   return themeMode.overlayStyle(
     statusBarColor: Colors.transparent,
-    supportsFullscreen: supportsFullscreen,
+    supportsEdgeToEdge: supportsEdgeToEdge,
     systemNavBarColor: Colors.transparent,
     olderAndroidSystemNavBarColor: olderAndroidSystemNavBarColor,
   );

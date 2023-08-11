@@ -29,20 +29,20 @@ class FullScreenScaffold extends ConsumerStatefulWidget {
 }
 
 class _FullScreenScaffoldState extends ConsumerState<FullScreenScaffold> {
-  late final bool supportsFullscreen;
+  late final bool supportsEdgeToEdge;
 
   @override
   void initState() {
     super.initState();
-    supportsFullscreen = ref.read(androidDeviceInfoProvider).supportsFullscreen;
-    if (!supportsFullscreen && widget.setOlderAndroidImmersiveMode) {
+    supportsEdgeToEdge = ref.read(androidDeviceInfoProvider).supportsEdgeToEdge;
+    if (!supportsEdgeToEdge && widget.setOlderAndroidImmersiveMode) {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     }
   }
 
   @override
   void dispose() {
-    if (!supportsFullscreen && widget.setOlderAndroidImmersiveMode) {
+    if (!supportsEdgeToEdge && widget.setOlderAndroidImmersiveMode) {
       SystemChrome.setEnabledSystemUIMode(
         SystemUiMode.manual,
         overlays: SystemUiOverlay.values,
@@ -61,7 +61,7 @@ class _FullScreenScaffoldState extends ConsumerState<FullScreenScaffold> {
         value: getFullScreenOverlayStyle(
           context,
           darkOverlays: widget.darkOverlays ?? currentTheme == AppThemeMode.light,
-          supportsFullscreen: supportsFullscreen,
+          supportsEdgeToEdge: supportsEdgeToEdge,
         ),
         child: widget.body,
       ),
