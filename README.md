@@ -14,20 +14,20 @@ Freezed, RxDart, FpDart and more.
 ### Folder Structure:
 
 - lib
-    - features
-        - feature1
-            - presentation
-                - screens
-                - components
-                - widgets
-                - providers
-            - domain
-                - entities, aggregates and value objects
-                - interfaces to repos (only if there’re multiple repository implementations)
-            - infrastructure
-                - repos and facades
-                - dtos
-                - data_sources
+  - features
+    - feature1
+      - presentation
+        - screens
+        - components
+        - widgets
+        - providers (all providers that have observable state)
+      - domain
+        - entities, aggregates and value objects
+        - services (encapsulate presentation and business logic, if any)
+      - infrastructure
+        - repos and facades
+        - dtos
+        - data_sources
 
 _Note_: This is my current approach and architecture. In addition, the repository includes other
 branches that implement TDD and Clean Architecture approach if you're interested:
@@ -74,48 +74,48 @@ branches that implement TDD and Clean Architecture approach if you're interested
 
 ## Features
 
-* Using Riverpod Framework with code generation (Most recommended) integrated with Flutter Hooks &
+- Using Riverpod Framework with code generation (Most recommended) integrated with Flutter Hooks &
   Freezed.
-* Simplified Layered architecture by relying on Riverpod to catch exceptions and auto convert it to
+- Simplified Layered architecture by relying on Riverpod to catch exceptions and auto convert it to
   AsyncError instead of the traditional Result/Either pattern, which reduce lots of boilerplate
   code.
-* Navigation 2.0 (declarative routing) with GoRouter using the code generation variant and
+- Navigation 2.0 (declarative routing) with GoRouter using the code generation variant and
   implementing nested navigation.
-* Functional Programming: FpDart(Option in particular) & RxDart.
-* Firebase Firestore as the backend with Firebase Storage, FCM and Cloud Functions.
-* Receive Local notification when arrive client's location and the ability to call him or confirm
+- Functional Programming: FpDart(Option in particular) & RxDart.
+- Firebase Firestore as the backend with Firebase Storage, FCM and Cloud Functions.
+- Receive Local notification when arrive client's location and the ability to call him or confirm
   the order.
-* Receive FCM notification in (Foreground/Background/Terminated) when new order is ready to be
+- Receive FCM notification in (Foreground/Background/Terminated) when new order is ready to be
   delivered.
-* Real-Time Changes from Firebase using Streams, Refreshing current stream capability.
-* Optimized live location tracking using RxDart and updating delivery data on changes.
-* Search places and update its information on map using Google Map Autocomplete & Place Details.
-* Live tracking on map using Place Directions, Perform actions when arrive client's location.
-* Responsive UI, Platform-Aware Widgets, Multi-Themes, Internationalization & Localization (Using
+- Real-Time Changes from Firebase using Streams, Refreshing current stream capability.
+- Optimized live location tracking using RxDart and updating delivery data on changes.
+- Search places and update its information on map using Google Map Autocomplete & Place Details.
+- Live tracking on map using Place Directions, Perform actions when arrive client's location.
+- Responsive UI, Platform-Aware Widgets, Multi-Themes, Internationalization & Localization (Using
   Flutter without external packages).
-* Well documented features and Unit Tests.
+- Well documented features and Unit Tests.
 
 ## Business Logic
 
-* The app can be used by multiple delivery drivers in the restaurant. Also, you can make it work for
+- The app can be used by multiple delivery drivers in the restaurant. Also, you can make it work for
   Multi-Vendor apps.
-* Only login screen for employee. You should authorize them in the backend by an admin app.
-* Home screen will show stream of delivery orders that are ready to be delivered `upcoming` or is
+- Only login screen for employee. You should authorize them in the backend by an admin app.
+- Home screen will show stream of delivery orders that are ready to be delivered `upcoming` or is
   delivering `onTheWay`.
-* Any employee can see order details and deliver `upcoming` orders.
-* Employee can deliver multiple orders.
-* Only the employee that are delivering the order can confirm/cancel or show map of the order.
-* If the client provided his location "in the client app" it'll be loaded to the map, otherwise
+- Any employee can see order details and deliver `upcoming` orders.
+- Employee can deliver multiple orders.
+- Only the employee that are delivering the order can confirm/cancel or show map of the order.
+- If the client provided his location "in the client app" it'll be loaded to the map, otherwise
   employee can search for the location (new session token used for every search session to reduce
   Google Maps bill).
-* When the order arrive to the destination by (200 meter) employee responsible for the order will
+- When the order arrive to the destination by (200 meter) employee responsible for the order will
   get local notification and will be able to confirm and call the client on the map.
-* If the delivery driver location changed with both (5seconds & 50meter change in distance), it'll
+- If the delivery driver location changed with both (5seconds & 50meter change in distance), it'll
   update delivery geoPoint on the backend (for all his current deliverying orders, so the clients
   can listen to it) and will update map directions (for only the opened map, if any).
-* When new order is added to the backend (delivery order). All employees will get notification from
+- When new order is added to the backend (delivery order). All employees will get notification from
   FCM (works with app in foreground, background or terminated).
-* Employee can add/edit his info at the profile screen.
+- Employee can add/edit his info at the profile screen.
 
 ---
 
