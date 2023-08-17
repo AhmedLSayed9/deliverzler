@@ -19,12 +19,10 @@ import 'firebase_options.dart';
 part 'core/presentation/services/main_initializer.dart';
 
 void main() async {
-  final container = ProviderContainer();
-  await _mainInitializer(container);
+  final container = await _mainInitializer();
   runApp(
     ProviderScope(
       parent: container,
-      observers: [ProviderLogger(), ProviderCrashlytics()],
       child: const MyApp(),
     ),
   );

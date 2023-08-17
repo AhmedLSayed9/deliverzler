@@ -1,10 +1,11 @@
 part of '../../../main.dart';
 
-Future<void> _mainInitializer(ProviderContainer container) async {
+Future<ProviderContainer> _mainInitializer() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   _setupLogger();
   await _initFirebase();
 
+  final container = ProviderContainer(observers: [ProviderLogger(), ProviderCrashlytics()]);
   // Warming-up androidDeviceInfoProvider to be used synchronously at AppTheme to setup the navigation bar
   // behavior for older Android versions without flickering (of the navigation bar) when app starts.
   await container.read(androidDeviceInfoProvider.future).silenceError();
@@ -29,6 +30,8 @@ Future<void> _mainInitializer(ProviderContainer container) async {
     // Closes splash screen, and show the app layout.
     widgetsBinding.allowFirstFrame();
   });
+
+  return container;
 }
 
 void _setupLogger() {
