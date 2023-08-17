@@ -1,10 +1,13 @@
 import 'dart:async' as dart_async;
 
 extension FutureErrorX<T> on Future<T> {
-  Future<void> silenceError() async {
+  Future<void> suppressError({bool Function(Object e)? shouldSuppressError}) async {
     try {
       await this;
-    } catch (_) {}
+    } catch (e) {
+      if (shouldSuppressError?.call(e) ?? true) return;
+      rethrow;
+    }
   }
 }
 

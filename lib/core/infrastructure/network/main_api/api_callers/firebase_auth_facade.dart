@@ -65,6 +65,7 @@ class FirebaseAuthFacade {
     try {
       return await body();
     } catch (e, st) {
+      if (e is ServerException) rethrow;
       final error = e.firebaseErrorToServerException();
       throw Error.throwWithStackTrace(error, st);
     }

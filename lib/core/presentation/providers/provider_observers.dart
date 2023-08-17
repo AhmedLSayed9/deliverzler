@@ -1,5 +1,6 @@
 import 'package:logging/logging.dart';
 
+import '../../infrastructure/error/app_exception.dart';
 import '../utils/logger.dart';
 import '../utils/riverpod_framework.dart';
 
@@ -19,8 +20,10 @@ class ProviderLogger extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
+    if (value.skipProviderLog) return;
+
     _logger.fine(
-      '➕ DidAddProvider: ${provider.name ?? provider.runtimeType}\n'
+      '➕ DidAddProvider: ${provider.providerName}\n'
       '=> value: $value',
     );
   }
@@ -33,9 +36,10 @@ class ProviderLogger extends ProviderObserver {
     ProviderContainer container,
   ) {
     if (newValue is AsyncError) return;
+    if (newValue.skipProviderLog) return;
 
     _logger.finer(
-      '🔄 DidUpdateProvider: ${provider.name ?? provider.runtimeType}\n'
+      '🔄 DidUpdateProvider: ${provider.providerName}\n'
       '=> oldValue: $previousValue\n'
       '=> newValue: $newValue',
     );
@@ -43,7 +47,7 @@ class ProviderLogger extends ProviderObserver {
 
   @override
   void didDisposeProvider(ProviderBase<dynamic> provider, ProviderContainer container) {
-    _logger.fine('🗑️ DidDisposeProvider: ${provider.name ?? provider.runtimeType}');
+    _logger.fine('🗑️ DidDisposeProvider: ${provider.providerName}');
   }
 }
 
@@ -64,9 +68,10 @@ class ProviderCrashlytics extends ProviderObserver {
     ProviderContainer container,
   ) {
     if (newValue is! AsyncError) return;
+    if (newValue.skipProviderLog) return;
 
     _logger.severe(
-      '⛔️ ProviderDidFail: ${provider.name ?? provider.runtimeType}\n'
+      '⛔️ ProviderDidFail: ${provider.providerName}\n'
       '=> oldValue: $previousValue\n'
       '=> error: ${newValue.error}\n'
       '=> stackTrace: ${newValue.stackTrace}',
@@ -80,10 +85,30 @@ class ProviderCrashlytics extends ProviderObserver {
     StackTrace stackTrace,
     ProviderContainer container,
   ) {
+    if (error.skipProviderLog) return;
+
     _logger.severe(
-      '⛔️ ProviderDidFail: ${provider.name ?? provider.runtimeType}\n'
+      '⛔️ ProviderDidFail: ${provider.providerName}\n'
       '=> error: $error\n'
       '=> stackTrace: $stackTrace',
     );
+  }
+}
+
+extension _ProviderBaseX on ProviderBase<dynamic> {
+  String get providerName => (name ?? runtimeType).toString();
+}
+
+extension _SkipProviderLogX on Object? {
+  bool get skipProviderLog {
+    final value = this;
+    if (value is! AsyncError) return false;
+
+    final error = value.error;
+    return switch (error) {
+      final CacheException err when err.type == CacheExceptionType.notFound => true,
+      final ServerException err when err.type == ServerExceptionType.unauthorized => true,
+      _ => false,
+    };
   }
 }

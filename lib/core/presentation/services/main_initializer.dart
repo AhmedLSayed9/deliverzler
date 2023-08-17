@@ -8,10 +8,10 @@ Future<ProviderContainer> _mainInitializer() async {
   final container = ProviderContainer(observers: [ProviderLogger(), ProviderCrashlytics()]);
   // Warming-up androidDeviceInfoProvider to be used synchronously at AppTheme to setup the navigation bar
   // behavior for older Android versions without flickering (of the navigation bar) when app starts.
-  await container.read(androidDeviceInfoProvider.future).silenceError();
+  await container.read(androidDeviceInfoProvider.future).suppressError();
   // Warming-up sharedPrefsAsyncProvider to be used synchronously at theme/locale. Not warming-up this
   // at splashServicesWarmup as theme/locale is used early at SplashScreen (avoid theme/locale flickering).
-  await container.read(sharedPrefsAsyncProvider.future).silenceError();
+  await container.read(sharedPrefsAsyncProvider.future).suppressError();
 
   // This Prevent closing native splash screen until we finish warming-up custom splash images.
   // App layout will be built but not displayed.
@@ -50,7 +50,7 @@ Future<void> _initFirebase() async {
 Future<void> _precacheAssets(BuildContext context) async {
   await <Future<void>>[
     SplashScreen.precacheAssets(context),
-  ].wait.silenceError();
+  ].wait.suppressError();
 }
 
 //This provided handler must be a top-level function.

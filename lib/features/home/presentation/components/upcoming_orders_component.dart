@@ -36,7 +36,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
     final upcomingOrdersAsync = ref.watch(upcomingOrdersProvider);
 
     Future<void> refresh() async {
-      return ref.refresh(upcomingOrdersProvider.future).silenceError();
+      return ref.refresh(upcomingOrdersProvider.future).suppressError();
     }
 
     return upcomingOrdersAsync.when(
