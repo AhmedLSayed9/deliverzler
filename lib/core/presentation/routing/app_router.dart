@@ -24,6 +24,7 @@ part 'app_router.g.dart';
 part 'routes_authority.dart';
 part 'routes/core_routes.dart';
 part 'routes/auth_routes.dart';
+part 'routes/home_shell_route.dart';
 part 'routes/home_routes.dart';
 part 'routes/profile_routes.dart';
 part 'routes/settings_routes.dart';
@@ -47,45 +48,7 @@ GoRouter goRouter(GoRouterRef ref) {
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     initialLocation: const SplashRoute().location,
-    routes: [
-      // Temporary using generated routes separately to be able to use
-      // StatefulShellRoute until it's supported by app_route_builder.
-      // TODO(Ahmed): migrate StatefulShellRoute to code gen and use $appRoutes:
-      // https://github.com/flutter/flutter/issues/127371
-      $splashRoute,
-      $noInternetRoute,
-      $signInRoute,
-      // Like ShellRoute but can maintain the state of the Navigators for each branch.
-      StatefulShellRoute.indexedStack(
-        pageBuilder: (_, state, navigationShell) {
-          return FadeTransitionPage(
-            state.pageKey,
-            // Return the widget that implements the custom shell.
-            // The StatefulNavigationShell is passed to be able access the state
-            // of the shell and to navigate to other branches in a stateful way.
-            HomeShellScreen(navigationShell: navigationShell),
-          );
-        },
-        // Each separate stateful navigation tree (a Navigator) is represented by
-        // a StatefulShellBranch, which defines the routes that will be placed on that
-        // Navigator. StatefulShellBranch also makes it possible to configure things like:
-        // - an (optional) Navigator key. It isn't necessary to provide a navigatorKey
-        //   if it isn't needed elsewhere. If not provided, a default key will be used.
-        // - a default location (i.e. the location the branch will be navigated
-        //   to when loading it for the first time) etc.
-        branches: <StatefulShellBranch>[
-          StatefulShellBranch(
-            routes: [$homeRoute],
-          ),
-          StatefulShellBranch(
-            routes: [$profileRoute],
-          ),
-          StatefulShellBranch(
-            routes: [$settingsRoute],
-          ),
-        ],
-      ),
-    ],
+    routes: $appRoutes,
     redirect: (BuildContext context, GoRouterState state) {
       final authState = ref.read(authStateProvider);
       final routeAuthority = state.routeAuthority;
@@ -108,6 +71,8 @@ GoRouter goRouter(GoRouterRef ref) {
     refreshListenable: listenable,
     errorBuilder: (_, state) => RouteErrorScreen(state.error),
   );
+
   ref.onDispose(router.dispose);
+
   return router;
 }

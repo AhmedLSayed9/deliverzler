@@ -1,13 +1,16 @@
 part of '../app_router.dart';
 
-@TypedGoRoute<HomeRoute>(
-  path: '/home',
-  routes: [
-    TypedGoRoute<MapRoute>(path: 'map'),
-  ],
-)
 class HomeRoute extends GoRouteData {
   const HomeRoute();
+
+  static const routes = [
+    TypedGoRoute<HomeRoute>(
+      path: '/home',
+      routes: [
+        TypedGoRoute<MapRoute>(path: 'map'),
+      ],
+    ),
+  ];
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
