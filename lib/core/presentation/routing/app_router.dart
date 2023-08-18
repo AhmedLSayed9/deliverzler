@@ -25,9 +25,9 @@ part 'routes_authority.dart';
 part 'routes/core_routes.dart';
 part 'routes/auth_routes.dart';
 part 'routes/home_shell_route.dart';
-part 'routes/home_routes.dart';
-part 'routes/profile_routes.dart';
-part 'routes/settings_routes.dart';
+part 'routes/home_branch_routes.dart';
+part 'routes/profile_branch_routes.dart';
+part 'routes/settings_branch_routes.dart';
 
 // This or other ShellRoutes keys can be used to display a child route on a different Navigator.
 // i.e: use the rootNavigatorKey for a child route inside a ShellRoute
@@ -46,6 +46,7 @@ GoRouter goRouter(GoRouterRef ref) {
 
   final router = GoRouter(
     debugLogDiagnostics: true,
+    restorationScopeId: 'router',
     navigatorKey: _rootNavigatorKey,
     initialLocation: const SplashRoute().location,
     routes: $appRoutes,

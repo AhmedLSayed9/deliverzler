@@ -30,6 +30,8 @@ class HomeShellRouteData extends StatefulShellRouteData {
       HomeShellScreen(navigationShell: navigationShell),
     );
   }
+
+  static const String $restorationScopeId = 'home_shell';
 }
 
 // Each separate stateful navigation tree (a Navigator) is represented by
@@ -41,12 +43,18 @@ class HomeShellRouteData extends StatefulShellRouteData {
 //   to when loading it for the first time) etc.
 class HomeBranchData extends StatefulShellBranchData {
   const HomeBranchData();
+
+  static const String $restorationScopeId = 'home_branch';
 }
 
 class ProfileBranchData extends StatefulShellBranchData {
   const ProfileBranchData();
+
+  static const String $restorationScopeId = 'profile_branch';
 }
 
 class SettingsBranchData extends StatefulShellBranchData {
   const SettingsBranchData();
+
+  static const String $restorationScopeId = 'settings_branch';
 }

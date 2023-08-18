@@ -26,6 +26,7 @@ class MyApp extends HookConsumerWidget {
 
     return MaterialApp.router(
       routerConfig: router,
+      restorationScopeId: 'app',
       builder: (_, child) {
         return ScrollConfiguration(
           behavior: MainScrollBehavior(),
