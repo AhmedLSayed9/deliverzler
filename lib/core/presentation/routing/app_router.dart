@@ -53,10 +53,7 @@ GoRouter goRouter(GoRouterRef ref) {
     redirect: (BuildContext context, GoRouterState state) {
       final authState = ref.read(authStateProvider);
       final routeAuthority = state.routeAuthority;
-      final isLegitRoute = <RouteAuthority>[
-        RouteAuthority.fromAuthState(authState),
-        RouteAuthority.public
-      ].any(routeAuthority.contains);
+      final isLegitRoute = routeAuthority.contains(RouteAuthority.fromAuthState(authState));
 
       if (!isLegitRoute) {
         return switch (authState) {
