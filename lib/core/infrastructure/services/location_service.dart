@@ -7,34 +7,34 @@ import 'package:geolocator_android/src/types/foreground_settings.dart';
 import 'package:location/location.dart' as loc;
 import 'package:logging/logging.dart';
 
-import '../../../presentation/utils/location_settings.dart';
-import '../../../presentation/utils/riverpod_framework.dart';
-import 'i_location_service.dart';
+import '../../presentation/utils/riverpod_framework.dart';
 
 part 'location_service.g.dart';
 
-@Riverpod(keepAlive: true)
-ILocationService locationService(LocationServiceRef ref) {
-  return GeoLocatorLocationService();
+abstract class AppLocationSettings {
+  static const int getLocationTimeLimit = 20; //in seconds
+  static const int locationChangeInterval = 5; //in seconds
+  static const int locationChangeDistance = 50; //in meters
 }
 
-class GeoLocatorLocationService implements ILocationService {
-  @override
+@Riverpod(keepAlive: true)
+LocationService locationService(LocationServiceRef ref) {
+  return LocationService();
+}
+
+class LocationService {
   Future<bool> isLocationServiceEnabled() async {
     return Geolocator.isLocationServiceEnabled();
   }
 
-  @override
   Future<bool> isWhileInUsePermissionGranted() async {
     return await Geolocator.checkPermission() == LocationPermission.whileInUse;
   }
 
-  @override
   Future<bool> isAlwaysPermissionGranted() async {
     return await Geolocator.checkPermission() == LocationPermission.always;
   }
 
-  @override
   Future<bool> enableLocationService() async {
     final serviceEnabled = await isLocationServiceEnabled();
     if (serviceEnabled) {
@@ -44,7 +44,6 @@ class GeoLocatorLocationService implements ILocationService {
     }
   }
 
-  @override
   Future<bool> requestWhileInUsePermission() async {
     if (await isWhileInUsePermissionGranted()) {
       return true;
@@ -54,7 +53,6 @@ class GeoLocatorLocationService implements ILocationService {
     }
   }
 
-  @override
   Future<bool> requestAlwaysPermission() async {
     if (await isAlwaysPermissionGranted()) {
       return true;
@@ -64,7 +62,6 @@ class GeoLocatorLocationService implements ILocationService {
     }
   }
 
-  @override
   LocationSettings getLocationSettings({
     LocationAccuracy? accuracy,
     int? interval,
@@ -73,8 +70,8 @@ class GeoLocatorLocationService implements ILocationService {
     if (Platform.isAndroid) {
       return AndroidSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: distanceFilter ?? locationChangeDistance,
-        intervalDuration: Duration(seconds: interval ?? locationChangeInterval),
+        distanceFilter: distanceFilter ?? AppLocationSettings.locationChangeDistance,
+        intervalDuration: Duration(seconds: interval ?? AppLocationSettings.locationChangeInterval),
         //Set foreground notification config to keep app alive in background
         foregroundNotificationConfig: const ForegroundNotificationConfig(
           notificationTitle: 'Deliverzler Delivery Service',
@@ -86,7 +83,7 @@ class GeoLocatorLocationService implements ILocationService {
     } else if (Platform.isIOS || Platform.isMacOS) {
       return AppleSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: distanceFilter ?? locationChangeDistance,
+        distanceFilter: distanceFilter ?? AppLocationSettings.locationChangeDistance,
         activityType: ActivityType.automotiveNavigation,
         pauseLocationUpdatesAutomatically: true,
         //Set to true to keep app alive in background
@@ -95,17 +92,16 @@ class GeoLocatorLocationService implements ILocationService {
     } else {
       return LocationSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: distanceFilter ?? locationChangeDistance,
+        distanceFilter: distanceFilter ?? AppLocationSettings.locationChangeDistance,
       );
     }
   }
 
-  @override
   Future<Position?> getLocation() async {
     try {
       return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
-        timeLimit: const Duration(seconds: getLocationTimeLimit),
+        timeLimit: const Duration(seconds: AppLocationSettings.getLocationTimeLimit),
       );
     } catch (e) {
       Logger.root.shout(e.toString());

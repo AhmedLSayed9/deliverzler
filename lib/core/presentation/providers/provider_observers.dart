@@ -1,7 +1,7 @@
 import 'package:logging/logging.dart';
 
 import '../../infrastructure/error/app_exception.dart';
-import '../utils/logger.dart';
+import '../../infrastructure/services/logger.dart';
 import '../utils/riverpod_framework.dart';
 
 const _riverpodEmoji = '🏞️ ';
