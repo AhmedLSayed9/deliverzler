@@ -58,19 +58,22 @@ class CardItemComponent extends ConsumerWidget {
 
       switch (authority) {
         case (canProceed: true, isEnabled: true):
-          final confirmChoice = await OrderDialogs.confirmChoiceDialog(
+          return OrderDialogs.confirmChoiceDialog(
             context,
             tr(context).doYouWantToConfirmTheOrder,
+          ).then(
+            (confirmChoice) {
+              if (confirmChoice) {
+                final params = UpdateDeliveryStatus(
+                  orderId: order.id,
+                  deliveryStatus: DeliveryStatus.delivered,
+                );
+                ref
+                    .read(updateDeliveryStatusEventProvider.notifier)
+                    .update((_) => Some(Event.unique(params)));
+              }
+            },
           );
-          if (confirmChoice) {
-            final params = UpdateDeliveryStatus(
-              orderId: order.id,
-              deliveryStatus: DeliveryStatus.delivered,
-            );
-            ref
-                .read(updateDeliveryStatusEventProvider.notifier)
-                .update((_) => Some(Event.unique(params)));
-          }
         case (canProceed: false, isEnabled: _):
           OrderDialogs.showCanNotProceedDialog(context);
         case _:
@@ -107,17 +110,20 @@ class CardItemComponent extends ConsumerWidget {
 
       switch (authority) {
         case (canProceed: true, isEnabled: true):
-          final cancelNote = await OrderDialogs.showCancelOrderDialog(context);
-          if (cancelNote != null) {
-            final params = UpdateDeliveryStatus(
-              orderId: order.id,
-              deliveryStatus: DeliveryStatus.canceled,
-              employeeCancelNote: cancelNote,
-            );
-            ref
-                .read(updateDeliveryStatusEventProvider.notifier)
-                .update((_) => Some(Event.unique(params)));
-          }
+          return OrderDialogs.showCancelOrderDialog(context).then(
+            (cancelNote) {
+              if (cancelNote != null) {
+                final params = UpdateDeliveryStatus(
+                  orderId: order.id,
+                  deliveryStatus: DeliveryStatus.canceled,
+                  employeeCancelNote: cancelNote,
+                );
+                ref
+                    .read(updateDeliveryStatusEventProvider.notifier)
+                    .update((_) => Some(Event.unique(params)));
+              }
+            },
+          );
         case (canProceed: false, isEnabled: _):
           OrderDialogs.showCanNotProceedDialog(context);
         case _:

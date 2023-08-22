@@ -30,25 +30,26 @@ class MapConfirmButtonComponent extends ConsumerWidget {
 
       switch (authority) {
         case (canProceed: true, isEnabled: true):
-          final confirmChoice = await OrderDialogs.confirmChoiceDialog(
+          return OrderDialogs.confirmChoiceDialog(
             context,
             tr(context).doYouWantToConfirmTheOrder,
-          );
-          if (confirmChoice) {
-            final order = ref.read(selectedOrderProvider);
-            order.match(
-              () {},
-              (order) {
-                final params = UpdateDeliveryStatus(
-                  orderId: order.id,
-                  deliveryStatus: DeliveryStatus.delivered,
-                );
-                ref
-                    .read(mapConfirmOrderEventProvider.notifier)
-                    .update((_) => Some(Event.unique(params)));
-              },
-            );
-          }
+          ).then((confirmChoice) {
+            if (confirmChoice) {
+              final order = ref.read(selectedOrderProvider);
+              order.match(
+                () {},
+                (order) {
+                  final params = UpdateDeliveryStatus(
+                    orderId: order.id,
+                    deliveryStatus: DeliveryStatus.delivered,
+                  );
+                  ref
+                      .read(mapConfirmOrderEventProvider.notifier)
+                      .update((_) => Some(Event.unique(params)));
+                },
+              );
+            }
+          });
         case (canProceed: false, isEnabled: _):
           OrderDialogs.showCanNotProceedDialog(context);
         case _:
