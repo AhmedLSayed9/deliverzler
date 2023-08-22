@@ -1,5 +1,5 @@
 import '../../../core/presentation/providers/provider_utils.dart';
-import '../../../core/presentation/services/fcm_service/fcm_provider.dart';
+import '../../../core/infrastructure/services/fcm_service/fcm_provider.dart';
 import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../infrastructure/repos/auth_repo.dart';
@@ -29,9 +29,7 @@ FutureOr<SignOutState> signOutState(SignOutStateRef ref) {
   return event.match(
     () => SignOutState.idle,
     (event) {
-      return ref
-          .watch(signOutProvider(event).future)
-          .then((_) => SignOutState.success);
+      return ref.watch(signOutProvider(event).future).then((_) => SignOutState.success);
     },
   );
 }

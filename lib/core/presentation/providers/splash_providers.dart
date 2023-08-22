@@ -9,8 +9,8 @@ import '../../infrastructure/error/app_exception.dart';
 import '../../infrastructure/network/network_info.dart';
 import '../extensions/future_extensions.dart';
 import '../routing/app_router.dart';
-import '../services/fcm_service/fcm_provider.dart';
-import '../services/local_notfication_service/flutter_local_notifications_provider.dart';
+import '../../infrastructure/services/fcm_service/fcm_provider.dart';
+import '../../infrastructure/services/local_notfication_service/flutter_local_notifications_provider.dart';
 import '../utils/riverpod_framework.dart';
 
 part 'splash_providers.g.dart';

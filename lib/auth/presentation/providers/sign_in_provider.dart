@@ -1,5 +1,5 @@
 import '../../../core/presentation/providers/provider_utils.dart';
-import '../../../core/presentation/services/fcm_service/fcm_provider.dart';
+import '../../../core/infrastructure/services/fcm_service/fcm_provider.dart';
 import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/sign_in_with_email.dart';

@@ -4,9 +4,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../../features/notifications/domain/app_notification.dart';
 import '../../../../features/notifications/infrastructure/dtos/app_notification_dto.dart';
-import '../../providers/provider_utils.dart';
-import '../../utils/fp_framework.dart';
-import '../../utils/riverpod_framework.dart';
+import '../../../presentation/providers/provider_utils.dart';
+import '../../../presentation/utils/fp_framework.dart';
+import '../../../presentation/utils/riverpod_framework.dart';
 
 part 'flutter_local_notifications_provider.g.dart';
 

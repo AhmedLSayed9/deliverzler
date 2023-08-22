@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../../utils/riverpod_framework.dart';
+import '../../../presentation/utils/riverpod_framework.dart';
 import '../local_notfication_service/flutter_local_notifications_provider.dart';
 
 part 'fcm_provider.g.dart';
@@ -31,7 +31,8 @@ Future<void> setupFCM(SetupFCMRef ref) async {
 
 @riverpod
 Future<AuthorizationStatus> _grantFCMPermission(
-    _GrantFCMPermissionRef ref,) async {
+  _GrantFCMPermissionRef ref,
+) async {
   // On iOS, macOS & web, before FCM payloads can be received on your device
   // you must first ask the user's permission.
   // Android applications are not required to request permission.
@@ -48,8 +49,7 @@ Future<void> _setupAndroidHeadsUp(_SetupAndroidHeadsUpRef ref) async {
   // default FCM channel to enable heads up notifications.
   final notificationService = ref.watch(flutterLocalNotificationsProvider);
   return await notificationService
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(fcmChannel);
 }
 

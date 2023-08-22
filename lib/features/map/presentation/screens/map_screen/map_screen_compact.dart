@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/routing/app_router.dart';
 import '../../../../../core/presentation/screens/nested_screen_scaffold.dart';
-import '../../../../../core/presentation/services/local_notfication_service/show_local_notification_provider.dart';
+import '../../../../../core/infrastructure/services/local_notfication_service/show_local_notification_provider.dart';
 import '../../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/widgets/toasts.dart';

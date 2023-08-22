@@ -1,7 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../core_features/theme/presentation/utils/app_static_colors.dart';
-import '../../utils/riverpod_framework.dart';
+import '../../../presentation/utils/riverpod_framework.dart';
 import 'flutter_local_notifications_provider.dart';
 
 part 'show_local_notification_provider.g.dart';

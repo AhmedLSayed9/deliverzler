@@ -4,8 +4,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../infrastructure/network/data_connection_checker.dart';
-import '../utils/riverpod_framework.dart';
+import '../network/data_connection_checker.dart';
+import '../../presentation/utils/riverpod_framework.dart';
 
 part 'connection_stream_service.g.dart';
 
@@ -19,10 +19,8 @@ Stream<ConnectionStatus> connectionStream(ConnectionStreamRef ref) {
 
   //connectivity_plus: check for cellular and wifi connection "Does not guarantee connection to Internet".
   //debounceTime temporary fixes an open issue: https://github.com/fluttercommunity/plus_plugins/issues/790
-  final connectivitySub = Connectivity()
-      .onConnectivityChanged
-      .debounceTime(const Duration(milliseconds: 300))
-      .listen(
+  final connectivitySub =
+      Connectivity().onConnectivityChanged.debounceTime(const Duration(milliseconds: 300)).listen(
     (status) {
       _log.fine('NetworkConnectivity status changed: $status');
       if (status == ConnectivityResult.none) {

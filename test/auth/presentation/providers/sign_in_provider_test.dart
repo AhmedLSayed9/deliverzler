@@ -10,7 +10,7 @@ import 'package:deliverzler/auth/infrastructure/repos/auth_repo.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
 import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
-import 'package:deliverzler/core/presentation/services/fcm_service/fcm_provider.dart';
+import 'package:deliverzler/core/infrastructure/services/fcm_service/fcm_provider.dart';
 import 'package:deliverzler/core/presentation/utils/fp_framework.dart';
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 import '../../../utils.dart';

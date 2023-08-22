@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core_features/theme/presentation/utils/app_static_colors.dart';
 import '../../core_features/theme/presentation/utils/custom_colors.dart';
 import '../helpers/localization_helper.dart';
-import '../services/connection_stream_service.dart';
+import '../../infrastructure/services/connection_stream_service.dart';
 import '../styles/styles.dart';
 import 'custom_toast.dart';
 

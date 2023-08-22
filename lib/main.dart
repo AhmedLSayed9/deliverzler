@@ -16,7 +16,7 @@ import 'core/presentation/screens/splash_screen/splash_screen.dart';
 import 'core/presentation/utils/riverpod_framework.dart';
 import 'firebase_options.dart';
 
-part 'core/presentation/services/main_initializer.dart';
+part 'core/infrastructure/services/main_initializer.dart';
 
 void main() async {
   final container = await _mainInitializer();

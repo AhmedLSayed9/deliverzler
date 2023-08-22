@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
-import '../utils/riverpod_framework.dart';
+import '../../presentation/utils/riverpod_framework.dart';
 
 part 'cache_service.g.dart';
 

@@ -1,6 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import '../../../../core/presentation/services/local_notfication_service/flutter_local_notifications_provider.dart';
+import '../../../../core/infrastructure/services/local_notfication_service/flutter_local_notifications_provider.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/app_notification.dart';
@@ -14,8 +14,7 @@ Option<AppNotification> tappedNotification(TappedNotificationRef ref) {
   ref.listen(getInitialMessageProvider, (previous, next) {
     next.whenData((message) {
       if (message is Some<RemoteMessage> && message.value.data.isNotEmpty) {
-        final ntf =
-            AppNotificationDto.fromJson(message.value.data).toDomain();
+        final ntf = AppNotificationDto.fromJson(message.value.data).toDomain();
         ref.state = Some(ntf);
       }
     });

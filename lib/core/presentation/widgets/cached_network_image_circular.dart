@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../gen/my_assets.dart';
-import '../services/cache_service.dart';
+import '../../infrastructure/services/cache_service.dart';
 import '../utils/riverpod_framework.dart';
 
 class CachedNetworkImageCircular extends ConsumerWidget {

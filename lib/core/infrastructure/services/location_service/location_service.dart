@@ -7,8 +7,8 @@ import 'package:geolocator_android/src/types/foreground_settings.dart';
 import 'package:location/location.dart' as loc;
 import 'package:logging/logging.dart';
 
-import '../../utils/location_settings.dart';
-import '../../utils/riverpod_framework.dart';
+import '../../../presentation/utils/location_settings.dart';
+import '../../../presentation/utils/riverpod_framework.dart';
 import 'i_location_service.dart';
 
 part 'location_service.g.dart';
