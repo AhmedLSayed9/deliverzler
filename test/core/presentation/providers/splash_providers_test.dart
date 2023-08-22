@@ -31,12 +31,11 @@ void main() {
         'should emit signInPath when hasInternetConnection is true',
         () async {
           // GIVEN
-          when(() => mockNetworkInfo.hasInternetConnection)
-              .thenAnswer((_) async => true);
+          when(() => mockNetworkInfo.hasInternetConnection).thenAnswer((_) async => true);
 
           final container = setUpContainer(
             overrides: [
-              networkInfoProvider.overrideWith((ref) => mockNetworkInfo)
+              networkInfoProvider.overrideWith((ref) => mockNetworkInfo),
             ],
           );
           final listener = setUpListener(container, splashTargetProvider);
@@ -62,12 +61,11 @@ void main() {
         'should emit noInternetPath when hasInternetConnection is false',
         () async {
           // GIVEN
-          when(() => mockNetworkInfo.hasInternetConnection)
-              .thenAnswer((_) async => false);
+          when(() => mockNetworkInfo.hasInternetConnection).thenAnswer((_) async => false);
 
           final container = setUpContainer(
             overrides: [
-              networkInfoProvider.overrideWith((ref) => mockNetworkInfo)
+              networkInfoProvider.overrideWith((ref) => mockNetworkInfo),
             ],
           );
           final listener = setUpListener(container, splashTargetProvider);

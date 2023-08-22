@@ -64,7 +64,7 @@ class TitledLoadingIndicator extends StatelessWidget {
               style: TextStyles.f16SemiBold(context),
               textAlign: TextAlign.center,
             ),
-          ]
+          ],
         ],
       ),
     );

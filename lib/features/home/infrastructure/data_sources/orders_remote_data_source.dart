@@ -32,21 +32,18 @@ class OrdersRemoteDataSource {
   Stream<List<OrderDto>> getUpcomingOrders() {
     final snapshots = firebaseFirestore.collectionStream(
       path: ordersCollectionPath,
-      queryBuilder: (query) => query
-          .where('pickupOption', isEqualTo: PickupOption.delivery.name)
-          .where('deliveryStatus', whereIn: [
-        DeliveryStatus.upcoming.name,
-        DeliveryStatus.onTheWay.name
-      ],).orderBy('date', descending: true),
+      queryBuilder: (query) =>
+          query.where('pickupOption', isEqualTo: PickupOption.delivery.name).where(
+        'deliveryStatus',
+        whereIn: [DeliveryStatus.upcoming.name, DeliveryStatus.onTheWay.name],
+      ).orderBy('date', descending: true),
     );
 
-    return snapshots
-        .map((snapshot) => OrderDto.parseListOfDocument(snapshot.docs));
+    return snapshots.map((snapshot) => OrderDto.parseListOfDocument(snapshot.docs));
   }
 
   Future<OrderDto> getOrder(String orderId) async {
-    final response =
-        await firebaseFirestore.getData(path: orderDocPath(orderId));
+    final response = await firebaseFirestore.getData(path: orderDocPath(orderId));
     if (response.data() != null) {
       return OrderDto.fromFirestore(response);
     } else {
