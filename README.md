@@ -19,11 +19,10 @@ Freezed, RxDart, FpDart and more.
       - presentation
         - screens
         - components
-        - widgets
-        - providers (all providers that have observable state)
+        - providers (all providers that have observable state used by the view)
       - domain
         - entities, aggregates and value objects
-        - services (encapsulate presentation and business logic, if any)
+        - services (encapsulate application and business logic, if any)
       - infrastructure
         - repos and facades
         - dtos
@@ -111,7 +110,7 @@ branches that implement TDD and Clean Architecture approach if you're interested
 - When the order arrive to the destination by (200 meter) employee responsible for the order will
   get local notification and will be able to confirm and call the client on the map.
 - If the delivery driver location changed with both (5seconds & 50meter change in distance), it'll
-  update delivery geoPoint on the backend (for all his current deliverying orders, so the clients
+  update delivery geoPoint on the backend (for all his current delivering orders, so the clients
   can listen to it) and will update map directions (for only the opened map, if any).
 - When new order is added to the backend (delivery order). All employees will get notification from
   FCM (works with app in foreground, background or terminated).
