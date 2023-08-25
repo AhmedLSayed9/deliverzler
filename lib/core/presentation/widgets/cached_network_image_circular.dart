@@ -10,7 +10,7 @@ class CachedNetworkImageCircular extends ConsumerWidget {
   const CachedNetworkImageCircular({
     required this.imageUrl,
     required this.radius,
-    this.spareImageUrl = '',
+    this.spareImageUrl = 'https://archive.org/download/placeholder-image/placeholder-image.jpg',
     this.maxHeightDiskCache = 400,
     this.maxWidthDiskCache = 400,
     super.key,
