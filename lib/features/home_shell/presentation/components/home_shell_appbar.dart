@@ -19,7 +19,7 @@ class HomeShellAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final location = GoRouterState.of(context).uri.toString();
+    final location = GoRouterState.of(context).routeLocation;
 
     /// Home Tab
     if (location == const HomeRoute().location) {
@@ -69,7 +69,7 @@ class HomeShellAppBar extends StatelessWidget {
 
 extension StatefulNavigationShellX on StatefulNavigationShell {
   bool get currentLocationHasAppBar {
-    final location = shellRouteContext.routerState.uri.toString();
+    final location = shellRouteContext.routerState.routeLocation;
     return !HomeShellAppBar._noAppBarLocations.contains(location);
   }
 }

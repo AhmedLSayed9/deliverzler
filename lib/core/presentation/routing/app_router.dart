@@ -21,7 +21,8 @@ import 'navigation_transitions.dart';
 
 part 'app_router.g.dart';
 
-part 'routes_authority.dart';
+part 'route_authority.dart';
+part 'route_extensions.dart';
 part 'routes/core_routes.dart';
 part 'routes/auth_routes.dart';
 part 'routes/home_shell_route.dart';

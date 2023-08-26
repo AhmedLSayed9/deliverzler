@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:logging/logging.dart';
 
-import '../extensions/route_extension.dart';
-
 typedef OnRouteChange<T> = void Function(Route<T>? route, Route<T>? previousRoute);
 
 typedef RoutesStackCallBack<T> = void Function(List<Route<T>> routes);
@@ -104,4 +102,8 @@ class NavigatorRouteObserver<T> extends RouteObserver<PageRoute<T>> {
       log.fine('Navigator stack: $mappedStack');
     }
   }
+}
+
+extension RouteExtension on Route<dynamic> {
+  String get routeName => settings.name ?? settings.runtimeType.toString();
 }
