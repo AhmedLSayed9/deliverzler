@@ -23,7 +23,7 @@ jobs:
         run: flutter pub get
 
       - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+        run: dart format --output=none --set-exit-if-changed --line-length=100  .
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Run flutter analyze
