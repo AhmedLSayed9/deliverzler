@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [master, main]
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+
+jobs:
+  build:
+    name: Run flutter test and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2.10.0
+        with:
+          channel: "stable"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      # Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Run flutter analyze
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
