@@ -8,7 +8,8 @@ part 'session_token_interceptor.g.dart';
 
 @Riverpod(keepAlive: true)
 SessionTokenInterceptor sessionTokenInterceptor(
-    SessionTokenInterceptorRef ref,) {
+  SessionTokenInterceptorRef ref,
+) {
   return SessionTokenInterceptor(ref);
 }
 
@@ -19,11 +20,9 @@ class SessionTokenInterceptor extends QueuedInterceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final withSessionToken =
-        options.extra[GoogleMapApiConfig.withSessionTokenExtraKey];
+    final withSessionToken = options.extra[GoogleMapApiConfig.withSessionTokenExtraKey];
     if (withSessionToken != null) {
-      options.headers[GoogleMapApiConfig.sessionTokenHeaderKey] =
-          ref.read(sessionTokenProvider);
+      options.headers[GoogleMapApiConfig.sessionTokenHeaderKey] = ref.read(sessionTokenProvider);
     }
     return handler.next(options);
   }

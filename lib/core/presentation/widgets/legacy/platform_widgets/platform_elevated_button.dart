@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../../platform_widgets/platform_base_widget.dart';
 
-class PlatformElevatedButton
-    extends PlatformBaseWidget<ElevatedButton, CupertinoTheme> {
+class PlatformElevatedButton extends PlatformBaseWidget<ElevatedButton, CupertinoTheme> {
   const PlatformElevatedButton({
-    required this.child, required this.onPressed, super.key,
+    required this.child,
+    required this.onPressed,
+    super.key,
     this.widgetKey,
     this.materialData,
     this.cupertinoData,

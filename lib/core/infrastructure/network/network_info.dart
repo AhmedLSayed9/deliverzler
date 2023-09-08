@@ -21,6 +21,5 @@ class NetworkInfo {
 
   Future<bool> get hasInternetConnection => dataConnectionChecker.hasConnection;
 
-  Future<ConnectivityResult> get hasNetworkConnectivity =>
-      connectivity.checkConnectivity();
+  Future<ConnectivityResult> get hasNetworkConnectivity => connectivity.checkConnectivity();
 }

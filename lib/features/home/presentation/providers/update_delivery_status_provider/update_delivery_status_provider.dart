@@ -9,14 +9,12 @@ part 'update_delivery_status_provider.g.dart';
 
 @riverpod
 FutureOr<UpdateDeliveryStatusState> updateDeliveryStatusState(
-    UpdateDeliveryStatusStateRef ref,) {
+  UpdateDeliveryStatusStateRef ref,
+) {
   final event = ref.watch(updateDeliveryStatusEventProvider);
   return event.match(() => const UpdateDeliveryStatusState.idle(), (event) {
     final updateDelivery = event.arg;
-    return ref
-        .watch(ordersRepoProvider)
-        .updateDeliveryStatus(updateDelivery)
-        .then(
+    return ref.watch(ordersRepoProvider).updateDeliveryStatus(updateDelivery).then(
           (_) => UpdateDeliveryStatusState.success(
             orderId: updateDelivery.orderId,
             deliveryStatus: updateDelivery.deliveryStatus,
@@ -26,8 +24,7 @@ FutureOr<UpdateDeliveryStatusState> updateDeliveryStatusState(
 }
 
 @riverpod
-class UpdateDeliveryStatusEvent extends _$UpdateDeliveryStatusEvent
-    with NotifierUpdate {
+class UpdateDeliveryStatusEvent extends _$UpdateDeliveryStatusEvent with NotifierUpdate {
   @override
   Option<Event<UpdateDeliveryStatus>> build() => const None();
 }

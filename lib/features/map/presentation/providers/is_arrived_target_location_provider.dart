@@ -6,12 +6,14 @@ part 'is_arrived_target_location_provider.g.dart';
 
 @riverpod
 bool isArrivedTargetLocation(IsArrivedTargetLocationRef ref) {
-  return ref.watch(targetLocationDirectionsProvider.select(
-    (value) {
-      return value.fold(
-        () => false,
-        (directions) => directions.distance < targetArriveDistance,
-      );
-    },
-  ),);
+  return ref.watch(
+    targetLocationDirectionsProvider.select(
+      (value) {
+        return value.fold(
+          () => false,
+          (directions) => directions.distance < targetArriveDistance,
+        );
+      },
+    ),
+  );
 }

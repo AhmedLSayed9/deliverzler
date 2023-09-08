@@ -9,8 +9,7 @@ class ContentTypeInterceptor extends Interceptor {
       options.headers[MainApiConfig.contentTypeHeaderKey] =
           MainApiConfig.multipartFormDataContentType;
     } else {
-      options.headers[MainApiConfig.contentTypeHeaderKey] =
-          MainApiConfig.emptyContentType;
+      options.headers[MainApiConfig.contentTypeHeaderKey] = MainApiConfig.emptyContentType;
     }
 
     return handler.next(options);

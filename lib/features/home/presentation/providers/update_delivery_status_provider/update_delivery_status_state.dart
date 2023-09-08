@@ -8,7 +8,8 @@ part 'update_delivery_status_state.freezed.dart';
 class UpdateDeliveryStatusState with _$UpdateDeliveryStatusState {
   const factory UpdateDeliveryStatusState.idle() = Idle;
 
-  const factory UpdateDeliveryStatusState.success(
-      {required String orderId,
-      required DeliveryStatus deliveryStatus,}) = Success;
+  const factory UpdateDeliveryStatusState.success({
+    required String orderId,
+    required DeliveryStatus deliveryStatus,
+  }) = Success;
 }

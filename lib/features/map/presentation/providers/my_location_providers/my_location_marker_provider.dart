@@ -29,6 +29,7 @@ Option<Marker> myLocationMarker(MyLocationMarkerRef ref) {
 
 @riverpod
 Future<BitmapDescriptor> myLocationMarkerIcon(
-    MyLocationMarkerIconRef ref,) async {
+  MyLocationMarkerIconRef ref,
+) async {
   return MapStyleHelper.getMyLocationMarkerIcon();
 }

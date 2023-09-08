@@ -25,11 +25,8 @@ Marker targetLocationMarker(TargetLocationMarkerRef ref) {
     position: cameraTarget,
     description: targetDescription,
     onDragEnd: (newPosition) {
-      final position =
-          Some(GeoPoint(newPosition.latitude, newPosition.longitude));
-      ref
-          .watch(targetLocationGeoPointProvider.notifier)
-          .update((_) => position);
+      final position = Some(GeoPoint(newPosition.latitude, newPosition.longitude));
+      ref.watch(targetLocationGeoPointProvider.notifier).update((_) => position);
     },
   );
   return targetMarker;
