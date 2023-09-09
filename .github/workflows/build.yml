@@ -19,6 +19,18 @@ jobs:
         with:
           channel: "stable"
 
+      - name: Setup Firebase
+        shell: bash
+        env:
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+          ANDROID_GOOGLE_SERVICE: ${{ secrets.ANDROID_GOOGLE_SERVICE }}
+          IOS_GOOGLE_SERVICE: ${{ secrets.IOS_GOOGLE_SERVICE }}
+        run: |
+          echo "$FIREBASE_OPTIONS" > lib/firebase_options.dart
+          dart format lib/firebase_options.dart --line-length=100
+          echo "$ANDROID_GOOGLE_SERVICE" > android/app/google-services.json
+          echo "$IOS_GOOGLE_SERVICE" > ios/Runner/GoogleService-Info.plist
+
       - name: Install dependencies
         run: flutter pub get
 
