@@ -65,11 +65,10 @@ branches that implement TDD and Clean Architecture approach if you're interested
 4. Configure an API project with the Google Maps Platform and enable Maps SDK for Android/iOS (FREE)
    to be able to open the map. Also, enable Directions/ Geolocation/Places APIs to enable other map
    features as search and live tracking (You have to create a billing account to use these APIs).
-5. Add your Google Map API Key to the project (search for `EnterYourAndroidGoogleMapApiKey`
-   and `EnterYourIOSGoogleMapApiKey`).
+5. Add your Google Map API Keys to the `configs.template` folder then rename the folder to `configs`.
 6. [Optional]: deploy functions within the project to Firebase Cloud Functions to receive FCM
    notifications when new order is ready to be delivered.
-7. Run the project!
+7. Run the project using the command `flutter run --dart-define-from-file=configs/{flavor}.json`, or from VSCode using the predefined launch configurations.
 
 ## Features
 

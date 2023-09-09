@@ -8,42 +8,48 @@
       "name": "Run",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main.dart"
+      "program": "lib/main.dart",
+      "args": ["--dart-define-from-file=configs/dev.json"]
     },
     {
       "name": "Run (profile mode)",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
-      "flutterMode": "profile"
+      "flutterMode": "profile",
+      "args": ["--dart-define-from-file=configs/dev.json"]
     },
     {
       "name": "Run (release mode)",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
-      "flutterMode": "release"
+      "flutterMode": "release",
+      "args": ["--dart-define-from-file=configs/prod.json"]
     },
     {
       "name": "Run Android 13 (API 33)",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
-      "deviceId": "emulator-5554"
+      "deviceId": "emulator-5554",
+      "args": ["--dart-define-from-file=configs/dev.json"]
     },
     {
       "name": "Run iPhone 14 Pro Max",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
-      "deviceId": "1F19CF3B-1BA3-484E-9EFA-8ECC2C9C4630"
+      "deviceId": "1F19CF3B-1BA3-484E-9EFA-8ECC2C9C4630",
+      "args": ["--dart-define-from-file=configs/dev.json"]
     },
     {
       "name": "Run macOS 13.4.1 (Rosetta)",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
-      "deviceId": "macos"
+      "deviceId": "macos",
+      "args": ["--dart-define-from-file=configs/dev.json"]
     }
   ],
   "compounds": [

@@ -67,5 +67,7 @@
 		<false/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
+		<key>DART_DEFINES</key>
+		<string>$(DART_DEFINES)</string>
 	</dict>
 </plist>

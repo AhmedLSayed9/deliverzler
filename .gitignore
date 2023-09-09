@@ -45,10 +45,13 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Firebase config
+# Firebase configs
 google-services.json
 GoogleService-Info.plist
 lib/firebase_options.dart
+
+# APIs configs
+configs/
 
 # Ignoring generated files "Avoid for speeding up CI/CD"
 # *.g.dart
