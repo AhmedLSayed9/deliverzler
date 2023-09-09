@@ -6,18 +6,15 @@ part of 'profile_local_data_source.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileLocalDataSourceHash() =>
-    r'ba8a00374f848f05df1073a842947f210e6ab3c0';
+String _$profileLocalDataSourceHash() => r'ba8a00374f848f05df1073a842947f210e6ab3c0';
 
 /// See also [profileLocalDataSource].
 @ProviderFor(profileLocalDataSource)
-final profileLocalDataSourceProvider =
-    Provider<ProfileLocalDataSource>.internal(
+final profileLocalDataSourceProvider = Provider<ProfileLocalDataSource>.internal(
   profileLocalDataSource,
   name: r'profileLocalDataSourceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$profileLocalDataSourceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$profileLocalDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

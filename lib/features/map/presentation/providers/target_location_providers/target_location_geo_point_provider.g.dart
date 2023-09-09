@@ -6,18 +6,16 @@ part of 'target_location_geo_point_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$targetLocationGeoPointHash() =>
-    r'4f8b2b676dd321fc747362f3ee0292a8f760a04b';
+String _$targetLocationGeoPointHash() => r'4f8b2b676dd321fc747362f3ee0292a8f760a04b';
 
 /// See also [TargetLocationGeoPoint].
 @ProviderFor(TargetLocationGeoPoint)
-final targetLocationGeoPointProvider = AutoDisposeNotifierProvider<
-    TargetLocationGeoPoint, Option<GeoPoint>>.internal(
+final targetLocationGeoPointProvider =
+    AutoDisposeNotifierProvider<TargetLocationGeoPoint, Option<GeoPoint>>.internal(
   TargetLocationGeoPoint.new,
   name: r'targetLocationGeoPointProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$targetLocationGeoPointHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$targetLocationGeoPointHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

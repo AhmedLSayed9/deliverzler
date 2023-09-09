@@ -13,9 +13,8 @@ String _$locationServiceHash() => r'656c951c27c11890bb58727952ecb6cde8a2100e';
 final locationServiceProvider = Provider<LocationService>.internal(
   locationService,
   name: r'locationServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$locationServiceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$locationServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

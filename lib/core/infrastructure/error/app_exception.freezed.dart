@@ -21,28 +21,20 @@ mixin _$AppException {
   int? get code => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            ServerExceptionType type, String message, int? code)
-        serverException,
-    required TResult Function(
-            CacheExceptionType type, String message, int? code)
-        cacheException,
+    required TResult Function(ServerExceptionType type, String message, int? code) serverException,
+    required TResult Function(CacheExceptionType type, String message, int? code) cacheException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ServerExceptionType type, String message, int? code)?
-        serverException,
-    TResult? Function(CacheExceptionType type, String message, int? code)?
-        cacheException,
+    TResult? Function(ServerExceptionType type, String message, int? code)? serverException,
+    TResult? Function(CacheExceptionType type, String message, int? code)? cacheException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ServerExceptionType type, String message, int? code)?
-        serverException,
-    TResult Function(CacheExceptionType type, String message, int? code)?
-        cacheException,
+    TResult Function(ServerExceptionType type, String message, int? code)? serverException,
+    TResult Function(CacheExceptionType type, String message, int? code)? cacheException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,14 +59,12 @@ mixin _$AppException {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AppExceptionCopyWith<AppException> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AppExceptionCopyWith<AppException> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AppExceptionCopyWith<$Res> {
-  factory $AppExceptionCopyWith(
-          AppException value, $Res Function(AppException) then) =
+  factory $AppExceptionCopyWith(AppException value, $Res Function(AppException) then) =
       _$AppExceptionCopyWithImpl<$Res, AppException>;
   @useResult
   $Res call({String message, int? code});
@@ -110,8 +100,7 @@ class _$AppExceptionCopyWithImpl<$Res, $Val extends AppException>
 }
 
 /// @nodoc
-abstract class _$$ServerExceptionCopyWith<$Res>
-    implements $AppExceptionCopyWith<$Res> {
+abstract class _$$ServerExceptionCopyWith<$Res> implements $AppExceptionCopyWith<$Res> {
   factory _$$ServerExceptionCopyWith(
           _$ServerException value, $Res Function(_$ServerException) then) =
       __$$ServerExceptionCopyWithImpl<$Res>;
@@ -124,8 +113,7 @@ abstract class _$$ServerExceptionCopyWith<$Res>
 class __$$ServerExceptionCopyWithImpl<$Res>
     extends _$AppExceptionCopyWithImpl<$Res, _$ServerException>
     implements _$$ServerExceptionCopyWith<$Res> {
-  __$$ServerExceptionCopyWithImpl(
-      _$ServerException _value, $Res Function(_$ServerException) _then)
+  __$$ServerExceptionCopyWithImpl(_$ServerException _value, $Res Function(_$ServerException) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -155,8 +143,7 @@ class __$$ServerExceptionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ServerException implements ServerException {
-  const _$ServerException(
-      {required this.type, required this.message, this.code});
+  const _$ServerException({required this.type, required this.message, this.code});
 
   @override
   final ServerExceptionType type;
@@ -192,12 +179,8 @@ class _$ServerException implements ServerException {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            ServerExceptionType type, String message, int? code)
-        serverException,
-    required TResult Function(
-            CacheExceptionType type, String message, int? code)
-        cacheException,
+    required TResult Function(ServerExceptionType type, String message, int? code) serverException,
+    required TResult Function(CacheExceptionType type, String message, int? code) cacheException,
   }) {
     return serverException(type, message, code);
   }
@@ -205,10 +188,8 @@ class _$ServerException implements ServerException {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ServerExceptionType type, String message, int? code)?
-        serverException,
-    TResult? Function(CacheExceptionType type, String message, int? code)?
-        cacheException,
+    TResult? Function(ServerExceptionType type, String message, int? code)? serverException,
+    TResult? Function(CacheExceptionType type, String message, int? code)? cacheException,
   }) {
     return serverException?.call(type, message, code);
   }
@@ -216,10 +197,8 @@ class _$ServerException implements ServerException {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ServerExceptionType type, String message, int? code)?
-        serverException,
-    TResult Function(CacheExceptionType type, String message, int? code)?
-        cacheException,
+    TResult Function(ServerExceptionType type, String message, int? code)? serverException,
+    TResult Function(CacheExceptionType type, String message, int? code)? cacheException,
     required TResult orElse(),
   }) {
     if (serverException != null) {
@@ -274,15 +253,12 @@ abstract class ServerException implements AppException {
   int? get code;
   @override
   @JsonKey(ignore: true)
-  _$$ServerExceptionCopyWith<_$ServerException> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ServerExceptionCopyWith<_$ServerException> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CacheExceptionCopyWith<$Res>
-    implements $AppExceptionCopyWith<$Res> {
-  factory _$$CacheExceptionCopyWith(
-          _$CacheException value, $Res Function(_$CacheException) then) =
+abstract class _$$CacheExceptionCopyWith<$Res> implements $AppExceptionCopyWith<$Res> {
+  factory _$$CacheExceptionCopyWith(_$CacheException value, $Res Function(_$CacheException) then) =
       __$$CacheExceptionCopyWithImpl<$Res>;
   @override
   @useResult
@@ -293,8 +269,7 @@ abstract class _$$CacheExceptionCopyWith<$Res>
 class __$$CacheExceptionCopyWithImpl<$Res>
     extends _$AppExceptionCopyWithImpl<$Res, _$CacheException>
     implements _$$CacheExceptionCopyWith<$Res> {
-  __$$CacheExceptionCopyWithImpl(
-      _$CacheException _value, $Res Function(_$CacheException) _then)
+  __$$CacheExceptionCopyWithImpl(_$CacheException _value, $Res Function(_$CacheException) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -324,8 +299,7 @@ class __$$CacheExceptionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CacheException implements CacheException {
-  const _$CacheException(
-      {required this.type, required this.message, this.code});
+  const _$CacheException({required this.type, required this.message, this.code});
 
   @override
   final CacheExceptionType type;
@@ -361,12 +335,8 @@ class _$CacheException implements CacheException {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            ServerExceptionType type, String message, int? code)
-        serverException,
-    required TResult Function(
-            CacheExceptionType type, String message, int? code)
-        cacheException,
+    required TResult Function(ServerExceptionType type, String message, int? code) serverException,
+    required TResult Function(CacheExceptionType type, String message, int? code) cacheException,
   }) {
     return cacheException(type, message, code);
   }
@@ -374,10 +344,8 @@ class _$CacheException implements CacheException {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ServerExceptionType type, String message, int? code)?
-        serverException,
-    TResult? Function(CacheExceptionType type, String message, int? code)?
-        cacheException,
+    TResult? Function(ServerExceptionType type, String message, int? code)? serverException,
+    TResult? Function(CacheExceptionType type, String message, int? code)? cacheException,
   }) {
     return cacheException?.call(type, message, code);
   }
@@ -385,10 +353,8 @@ class _$CacheException implements CacheException {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ServerExceptionType type, String message, int? code)?
-        serverException,
-    TResult Function(CacheExceptionType type, String message, int? code)?
-        cacheException,
+    TResult Function(ServerExceptionType type, String message, int? code)? serverException,
+    TResult Function(CacheExceptionType type, String message, int? code)? cacheException,
     required TResult orElse(),
   }) {
     if (cacheException != null) {
@@ -443,6 +409,5 @@ abstract class CacheException implements AppException {
   int? get code;
   @override
   @JsonKey(ignore: true)
-  _$$CacheExceptionCopyWith<_$CacheException> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CacheExceptionCopyWith<_$CacheException> get copyWith => throw _privateConstructorUsedError;
 }

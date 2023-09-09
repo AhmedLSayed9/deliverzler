@@ -22,21 +22,15 @@ mixin _$PlaceDirections {
   String get duration => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlaceDirectionsCopyWith<PlaceDirections> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PlaceDirectionsCopyWith<PlaceDirections> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PlaceDirectionsCopyWith<$Res> {
-  factory $PlaceDirectionsCopyWith(
-          PlaceDirections value, $Res Function(PlaceDirections) then) =
+  factory $PlaceDirectionsCopyWith(PlaceDirections value, $Res Function(PlaceDirections) then) =
       _$PlaceDirectionsCopyWithImpl<$Res, PlaceDirections>;
   @useResult
-  $Res call(
-      {LatLngBounds bounds,
-      List<PointLatLng> polylinePoints,
-      int distance,
-      String duration});
+  $Res call({LatLngBounds bounds, List<PointLatLng> polylinePoints, int distance, String duration});
 }
 
 /// @nodoc
@@ -79,18 +73,13 @@ class _$PlaceDirectionsCopyWithImpl<$Res, $Val extends PlaceDirections>
 }
 
 /// @nodoc
-abstract class _$$_PlaceDirectionsCopyWith<$Res>
-    implements $PlaceDirectionsCopyWith<$Res> {
+abstract class _$$_PlaceDirectionsCopyWith<$Res> implements $PlaceDirectionsCopyWith<$Res> {
   factory _$$_PlaceDirectionsCopyWith(
           _$_PlaceDirections value, $Res Function(_$_PlaceDirections) then) =
       __$$_PlaceDirectionsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {LatLngBounds bounds,
-      List<PointLatLng> polylinePoints,
-      int distance,
-      String duration});
+  $Res call({LatLngBounds bounds, List<PointLatLng> polylinePoints, int distance, String duration});
 }
 
 /// @nodoc
@@ -166,12 +155,9 @@ class _$_PlaceDirections implements _PlaceDirections {
         (other.runtimeType == runtimeType &&
             other is _$_PlaceDirections &&
             (identical(other.bounds, bounds) || other.bounds == bounds) &&
-            const DeepCollectionEquality()
-                .equals(other._polylinePoints, _polylinePoints) &&
-            (identical(other.distance, distance) ||
-                other.distance == distance) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
+            const DeepCollectionEquality().equals(other._polylinePoints, _polylinePoints) &&
+            (identical(other.distance, distance) || other.distance == distance) &&
+            (identical(other.duration, duration) || other.duration == duration));
   }
 
   @override
@@ -218,16 +204,15 @@ mixin _$PlaceDirectionsQuery {
 
 /// @nodoc
 abstract class $PlaceDirectionsQueryCopyWith<$Res> {
-  factory $PlaceDirectionsQueryCopyWith(PlaceDirectionsQuery value,
-          $Res Function(PlaceDirectionsQuery) then) =
+  factory $PlaceDirectionsQueryCopyWith(
+          PlaceDirectionsQuery value, $Res Function(PlaceDirectionsQuery) then) =
       _$PlaceDirectionsQueryCopyWithImpl<$Res, PlaceDirectionsQuery>;
   @useResult
   $Res call({Position origin, GeoPoint destination});
 }
 
 /// @nodoc
-class _$PlaceDirectionsQueryCopyWithImpl<$Res,
-        $Val extends PlaceDirectionsQuery>
+class _$PlaceDirectionsQueryCopyWithImpl<$Res, $Val extends PlaceDirectionsQuery>
     implements $PlaceDirectionsQueryCopyWith<$Res> {
   _$PlaceDirectionsQueryCopyWithImpl(this._value, this._then);
 
@@ -258,8 +243,8 @@ class _$PlaceDirectionsQueryCopyWithImpl<$Res,
 /// @nodoc
 abstract class _$$_PlaceDirectionsQueryCopyWith<$Res>
     implements $PlaceDirectionsQueryCopyWith<$Res> {
-  factory _$$_PlaceDirectionsQueryCopyWith(_$_PlaceDirectionsQuery value,
-          $Res Function(_$_PlaceDirectionsQuery) then) =
+  factory _$$_PlaceDirectionsQueryCopyWith(
+          _$_PlaceDirectionsQuery value, $Res Function(_$_PlaceDirectionsQuery) then) =
       __$$_PlaceDirectionsQueryCopyWithImpl<$Res>;
   @override
   @useResult
@@ -270,8 +255,8 @@ abstract class _$$_PlaceDirectionsQueryCopyWith<$Res>
 class __$$_PlaceDirectionsQueryCopyWithImpl<$Res>
     extends _$PlaceDirectionsQueryCopyWithImpl<$Res, _$_PlaceDirectionsQuery>
     implements _$$_PlaceDirectionsQueryCopyWith<$Res> {
-  __$$_PlaceDirectionsQueryCopyWithImpl(_$_PlaceDirectionsQuery _value,
-      $Res Function(_$_PlaceDirectionsQuery) _then)
+  __$$_PlaceDirectionsQueryCopyWithImpl(
+      _$_PlaceDirectionsQuery _value, $Res Function(_$_PlaceDirectionsQuery) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -296,8 +281,7 @@ class __$$_PlaceDirectionsQueryCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PlaceDirectionsQuery implements _PlaceDirectionsQuery {
-  const _$_PlaceDirectionsQuery(
-      {required this.origin, required this.destination});
+  const _$_PlaceDirectionsQuery({required this.origin, required this.destination});
 
   @override
   final Position origin;
@@ -315,8 +299,7 @@ class _$_PlaceDirectionsQuery implements _PlaceDirectionsQuery {
         (other.runtimeType == runtimeType &&
             other is _$_PlaceDirectionsQuery &&
             (identical(other.origin, origin) || other.origin == origin) &&
-            (identical(other.destination, destination) ||
-                other.destination == destination));
+            (identical(other.destination, destination) || other.destination == destination));
   }
 
   @override
@@ -326,8 +309,7 @@ class _$_PlaceDirectionsQuery implements _PlaceDirectionsQuery {
   @override
   @pragma('vm:prefer-inline')
   _$$_PlaceDirectionsQueryCopyWith<_$_PlaceDirectionsQuery> get copyWith =>
-      __$$_PlaceDirectionsQueryCopyWithImpl<_$_PlaceDirectionsQuery>(
-          this, _$identity);
+      __$$_PlaceDirectionsQueryCopyWithImpl<_$_PlaceDirectionsQuery>(this, _$identity);
 }
 
 abstract class _PlaceDirectionsQuery implements PlaceDirectionsQuery {

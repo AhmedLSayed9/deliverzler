@@ -6,18 +6,15 @@ part of 'orders_remote_data_source.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ordersRemoteDataSourceHash() =>
-    r'd25abd19d06c417548391095b9347f797d9bbea2';
+String _$ordersRemoteDataSourceHash() => r'd25abd19d06c417548391095b9347f797d9bbea2';
 
 /// See also [ordersRemoteDataSource].
 @ProviderFor(ordersRemoteDataSource)
-final ordersRemoteDataSourceProvider =
-    Provider<OrdersRemoteDataSource>.internal(
+final ordersRemoteDataSourceProvider = Provider<OrdersRemoteDataSource>.internal(
   ordersRemoteDataSource,
   name: r'ordersRemoteDataSourceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$ordersRemoteDataSourceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ordersRemoteDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

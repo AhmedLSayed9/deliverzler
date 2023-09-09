@@ -6,17 +6,15 @@ part of 'firebase_auth_facade.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$firebaseAuthFacadeHash() =>
-    r'b400f07751734faa3751de118b9cb730256eb8cc';
+String _$firebaseAuthFacadeHash() => r'b400f07751734faa3751de118b9cb730256eb8cc';
 
 /// See also [firebaseAuthFacade].
 @ProviderFor(firebaseAuthFacade)
 final firebaseAuthFacadeProvider = Provider<FirebaseAuthFacade>.internal(
   firebaseAuthFacade,
   name: r'firebaseAuthFacadeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$firebaseAuthFacadeHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$firebaseAuthFacadeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

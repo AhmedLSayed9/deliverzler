@@ -19,14 +19,12 @@ mixin _$PlaceDetails {
   GeoPoint get geoPoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlaceDetailsCopyWith<PlaceDetails> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PlaceDetailsCopyWith<PlaceDetails> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PlaceDetailsCopyWith<$Res> {
-  factory $PlaceDetailsCopyWith(
-          PlaceDetails value, $Res Function(PlaceDetails) then) =
+  factory $PlaceDetailsCopyWith(PlaceDetails value, $Res Function(PlaceDetails) then) =
       _$PlaceDetailsCopyWithImpl<$Res, PlaceDetails>;
   @useResult
   $Res call({GeoPoint geoPoint});
@@ -57,10 +55,8 @@ class _$PlaceDetailsCopyWithImpl<$Res, $Val extends PlaceDetails>
 }
 
 /// @nodoc
-abstract class _$$_PlaceDetailsCopyWith<$Res>
-    implements $PlaceDetailsCopyWith<$Res> {
-  factory _$$_PlaceDetailsCopyWith(
-          _$_PlaceDetails value, $Res Function(_$_PlaceDetails) then) =
+abstract class _$$_PlaceDetailsCopyWith<$Res> implements $PlaceDetailsCopyWith<$Res> {
+  factory _$$_PlaceDetailsCopyWith(_$_PlaceDetails value, $Res Function(_$_PlaceDetails) then) =
       __$$_PlaceDetailsCopyWithImpl<$Res>;
   @override
   @useResult
@@ -68,11 +64,9 @@ abstract class _$$_PlaceDetailsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlaceDetailsCopyWithImpl<$Res>
-    extends _$PlaceDetailsCopyWithImpl<$Res, _$_PlaceDetails>
+class __$$_PlaceDetailsCopyWithImpl<$Res> extends _$PlaceDetailsCopyWithImpl<$Res, _$_PlaceDetails>
     implements _$$_PlaceDetailsCopyWith<$Res> {
-  __$$_PlaceDetailsCopyWithImpl(
-      _$_PlaceDetails _value, $Res Function(_$_PlaceDetails) _then)
+  __$$_PlaceDetailsCopyWithImpl(_$_PlaceDetails _value, $Res Function(_$_PlaceDetails) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -107,8 +101,7 @@ class _$_PlaceDetails implements _PlaceDetails {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlaceDetails &&
-            (identical(other.geoPoint, geoPoint) ||
-                other.geoPoint == geoPoint));
+            (identical(other.geoPoint, geoPoint) || other.geoPoint == geoPoint));
   }
 
   @override
@@ -122,13 +115,11 @@ class _$_PlaceDetails implements _PlaceDetails {
 }
 
 abstract class _PlaceDetails implements PlaceDetails {
-  const factory _PlaceDetails({required final GeoPoint geoPoint}) =
-      _$_PlaceDetails;
+  const factory _PlaceDetails({required final GeoPoint geoPoint}) = _$_PlaceDetails;
 
   @override
   GeoPoint get geoPoint;
   @override
   @JsonKey(ignore: true)
-  _$$_PlaceDetailsCopyWith<_$_PlaceDetails> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_PlaceDetailsCopyWith<_$_PlaceDetails> get copyWith => throw _privateConstructorUsedError;
 }

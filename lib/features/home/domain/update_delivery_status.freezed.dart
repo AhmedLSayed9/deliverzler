@@ -28,8 +28,8 @@ mixin _$UpdateDeliveryStatus {
 
 /// @nodoc
 abstract class $UpdateDeliveryStatusCopyWith<$Res> {
-  factory $UpdateDeliveryStatusCopyWith(UpdateDeliveryStatus value,
-          $Res Function(UpdateDeliveryStatus) then) =
+  factory $UpdateDeliveryStatusCopyWith(
+          UpdateDeliveryStatus value, $Res Function(UpdateDeliveryStatus) then) =
       _$UpdateDeliveryStatusCopyWithImpl<$Res, UpdateDeliveryStatus>;
   @useResult
   $Res call(
@@ -40,8 +40,7 @@ abstract class $UpdateDeliveryStatusCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateDeliveryStatusCopyWithImpl<$Res,
-        $Val extends UpdateDeliveryStatus>
+class _$UpdateDeliveryStatusCopyWithImpl<$Res, $Val extends UpdateDeliveryStatus>
     implements $UpdateDeliveryStatusCopyWith<$Res> {
   _$UpdateDeliveryStatusCopyWithImpl(this._value, this._then);
 
@@ -82,8 +81,8 @@ class _$UpdateDeliveryStatusCopyWithImpl<$Res,
 /// @nodoc
 abstract class _$$_UpdateDeliveryStatusCopyWith<$Res>
     implements $UpdateDeliveryStatusCopyWith<$Res> {
-  factory _$$_UpdateDeliveryStatusCopyWith(_$_UpdateDeliveryStatus value,
-          $Res Function(_$_UpdateDeliveryStatus) then) =
+  factory _$$_UpdateDeliveryStatusCopyWith(
+          _$_UpdateDeliveryStatus value, $Res Function(_$_UpdateDeliveryStatus) then) =
       __$$_UpdateDeliveryStatusCopyWithImpl<$Res>;
   @override
   @useResult
@@ -98,8 +97,8 @@ abstract class _$$_UpdateDeliveryStatusCopyWith<$Res>
 class __$$_UpdateDeliveryStatusCopyWithImpl<$Res>
     extends _$UpdateDeliveryStatusCopyWithImpl<$Res, _$_UpdateDeliveryStatus>
     implements _$$_UpdateDeliveryStatusCopyWith<$Res> {
-  __$$_UpdateDeliveryStatusCopyWithImpl(_$_UpdateDeliveryStatus _value,
-      $Res Function(_$_UpdateDeliveryStatus) _then)
+  __$$_UpdateDeliveryStatusCopyWithImpl(
+      _$_UpdateDeliveryStatus _value, $Res Function(_$_UpdateDeliveryStatus) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -162,22 +161,20 @@ class _$_UpdateDeliveryStatus implements _UpdateDeliveryStatus {
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.deliveryStatus, deliveryStatus) ||
                 other.deliveryStatus == deliveryStatus) &&
-            (identical(other.deliveryId, deliveryId) ||
-                other.deliveryId == deliveryId) &&
+            (identical(other.deliveryId, deliveryId) || other.deliveryId == deliveryId) &&
             (identical(other.employeeCancelNote, employeeCancelNote) ||
                 other.employeeCancelNote == employeeCancelNote));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, orderId, deliveryStatus, deliveryId, employeeCancelNote);
+  int get hashCode =>
+      Object.hash(runtimeType, orderId, deliveryStatus, deliveryId, employeeCancelNote);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_UpdateDeliveryStatusCopyWith<_$_UpdateDeliveryStatus> get copyWith =>
-      __$$_UpdateDeliveryStatusCopyWithImpl<_$_UpdateDeliveryStatus>(
-          this, _$identity);
+      __$$_UpdateDeliveryStatusCopyWithImpl<_$_UpdateDeliveryStatus>(this, _$identity);
 }
 
 abstract class _UpdateDeliveryStatus implements UpdateDeliveryStatus {

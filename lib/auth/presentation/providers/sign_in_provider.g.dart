@@ -80,8 +80,7 @@ class SignInFamily extends Family<AsyncValue<User>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'signInProvider';
@@ -100,9 +99,7 @@ class SignInProvider extends AutoDisposeFutureProvider<User> {
           from: signInProvider,
           name: r'signInProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$signInHash,
+              const bool.fromEnvironment('dart.vm.product') ? null : _$signInHash,
           dependencies: SignInFamily._dependencies,
           allTransitiveDependencies: SignInFamily._allTransitiveDependencies,
         );
@@ -123,22 +120,19 @@ class SignInProvider extends AutoDisposeFutureProvider<User> {
   }
 }
 
-String _$signInWithEmailEventHash() =>
-    r'ed6e0942c8185c5719a58e5615f092db8e9bcff4';
+String _$signInWithEmailEventHash() => r'ed6e0942c8185c5719a58e5615f092db8e9bcff4';
 
 /// See also [SignInWithEmailEvent].
 @ProviderFor(SignInWithEmailEvent)
-final signInWithEmailEventProvider = AutoDisposeNotifierProvider<
-    SignInWithEmailEvent, Option<Event<SignInWithEmail>>>.internal(
+final signInWithEmailEventProvider =
+    AutoDisposeNotifierProvider<SignInWithEmailEvent, Option<Event<SignInWithEmail>>>.internal(
   SignInWithEmailEvent.new,
   name: r'signInWithEmailEventProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$signInWithEmailEventHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$signInWithEmailEventHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SignInWithEmailEvent
-    = AutoDisposeNotifier<Option<Event<SignInWithEmail>>>;
+typedef _$SignInWithEmailEvent = AutoDisposeNotifier<Option<Event<SignInWithEmail>>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

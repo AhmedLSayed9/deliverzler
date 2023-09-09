@@ -13,9 +13,8 @@ String _$locationStreamHash() => r'8a8c4a86c760e3a13cc16e9bf033392687e14028';
 final locationStreamProvider = AutoDisposeStreamProvider<Position>.internal(
   locationStream,
   name: r'locationStreamProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$locationStreamHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$locationStreamHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -81,8 +80,7 @@ class EnableLocationFamily extends Family<AsyncValue<void>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'enableLocationProvider';
@@ -101,20 +99,16 @@ class EnableLocationProvider extends AutoDisposeFutureProvider<void> {
           from: enableLocationProvider,
           name: r'enableLocationProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$enableLocationHash,
+              const bool.fromEnvironment('dart.vm.product') ? null : _$enableLocationHash,
           dependencies: EnableLocationFamily._dependencies,
-          allTransitiveDependencies:
-              EnableLocationFamily._allTransitiveDependencies,
+          allTransitiveDependencies: EnableLocationFamily._allTransitiveDependencies,
         );
 
   final LocationService locationService;
 
   @override
   bool operator ==(Object other) {
-    return other is EnableLocationProvider &&
-        other.locationService == locationService;
+    return other is EnableLocationProvider && other.locationService == locationService;
   }
 
   @override
@@ -126,8 +120,7 @@ class EnableLocationProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
-String _$requestLocationPermissionHash() =>
-    r'3b5dd8d64080eacb6bde6acf8c7c03010ec632ab';
+String _$requestLocationPermissionHash() => r'3b5dd8d64080eacb6bde6acf8c7c03010ec632ab';
 typedef RequestLocationPermissionRef = AutoDisposeFutureProviderRef<void>;
 
 /// See also [requestLocationPermission].
@@ -165,16 +158,14 @@ class RequestLocationPermissionFamily extends Family<AsyncValue<void>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'requestLocationPermissionProvider';
 }
 
 /// See also [requestLocationPermission].
-class RequestLocationPermissionProvider
-    extends AutoDisposeFutureProvider<void> {
+class RequestLocationPermissionProvider extends AutoDisposeFutureProvider<void> {
   /// See also [requestLocationPermission].
   RequestLocationPermissionProvider(
     this.locationService,
@@ -185,21 +176,18 @@ class RequestLocationPermissionProvider
           ),
           from: requestLocationPermissionProvider,
           name: r'requestLocationPermissionProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$requestLocationPermissionHash,
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$requestLocationPermissionHash,
           dependencies: RequestLocationPermissionFamily._dependencies,
-          allTransitiveDependencies:
-              RequestLocationPermissionFamily._allTransitiveDependencies,
+          allTransitiveDependencies: RequestLocationPermissionFamily._allTransitiveDependencies,
         );
 
   final LocationService locationService;
 
   @override
   bool operator ==(Object other) {
-    return other is RequestLocationPermissionProvider &&
-        other.locationService == locationService;
+    return other is RequestLocationPermissionProvider && other.locationService == locationService;
   }
 
   @override

@@ -22,14 +22,12 @@ mixin _$SignInWithEmail {
   String get password => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SignInWithEmailCopyWith<SignInWithEmail> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SignInWithEmailCopyWith<SignInWithEmail> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SignInWithEmailCopyWith<$Res> {
-  factory $SignInWithEmailCopyWith(
-          SignInWithEmail value, $Res Function(SignInWithEmail) then) =
+  factory $SignInWithEmailCopyWith(SignInWithEmail value, $Res Function(SignInWithEmail) then) =
       _$SignInWithEmailCopyWithImpl<$Res, SignInWithEmail>;
   @useResult
   $Res call({String email, String password});
@@ -65,8 +63,7 @@ class _$SignInWithEmailCopyWithImpl<$Res, $Val extends SignInWithEmail>
 }
 
 /// @nodoc
-abstract class _$$_SignInWithEmailCopyWith<$Res>
-    implements $SignInWithEmailCopyWith<$Res> {
+abstract class _$$_SignInWithEmailCopyWith<$Res> implements $SignInWithEmailCopyWith<$Res> {
   factory _$$_SignInWithEmailCopyWith(
           _$_SignInWithEmail value, $Res Function(_$_SignInWithEmail) then) =
       __$$_SignInWithEmailCopyWithImpl<$Res>;
@@ -125,8 +122,7 @@ class _$_SignInWithEmail implements _SignInWithEmail {
         (other.runtimeType == runtimeType &&
             other is _$_SignInWithEmail &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            (identical(other.password, password) || other.password == password));
   }
 
   @override
@@ -140,9 +136,8 @@ class _$_SignInWithEmail implements _SignInWithEmail {
 }
 
 abstract class _SignInWithEmail implements SignInWithEmail {
-  const factory _SignInWithEmail(
-      {required final String email,
-      required final String password}) = _$_SignInWithEmail;
+  const factory _SignInWithEmail({required final String email, required final String password}) =
+      _$_SignInWithEmail;
 
   @override // Note: You should consider using separate value object (with its validator method)
 // for these values if they're used in other entities.

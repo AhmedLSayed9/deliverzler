@@ -13,9 +13,8 @@ String _$imagePickerFacadeHash() => r'ef8b5673bd79be4a502498eee65ad137757a8a65';
 final imagePickerFacadeProvider = Provider<ImagePickerFacade>.internal(
   imagePickerFacade,
   name: r'imagePickerFacadeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$imagePickerFacadeHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$imagePickerFacadeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

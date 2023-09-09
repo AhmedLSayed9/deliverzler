@@ -6,17 +6,15 @@ part of 'firebase_firestorage_facade.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$firebaseStorageFacadeHash() =>
-    r'52d18d57a4c26a56cc7b0e8651e54300daf8c211';
+String _$firebaseStorageFacadeHash() => r'52d18d57a4c26a56cc7b0e8651e54300daf8c211';
 
 /// See also [firebaseStorageFacade].
 @ProviderFor(firebaseStorageFacade)
 final firebaseStorageFacadeProvider = Provider<FirebaseStorageFacade>.internal(
   firebaseStorageFacade,
   name: r'firebaseStorageFacadeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$firebaseStorageFacadeHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$firebaseStorageFacadeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

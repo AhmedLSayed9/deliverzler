@@ -6,17 +6,15 @@ part of 'auth_remote_data_source.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authRemoteDataSourceHash() =>
-    r'2b1dbd1ec184d93b68d1d41ce6220258dfb62201';
+String _$authRemoteDataSourceHash() => r'2b1dbd1ec184d93b68d1d41ce6220258dfb62201';
 
 /// See also [authRemoteDataSource].
 @ProviderFor(authRemoteDataSource)
 final authRemoteDataSourceProvider = Provider<AuthRemoteDataSource>.internal(
   authRemoteDataSource,
   name: r'authRemoteDataSourceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$authRemoteDataSourceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authRemoteDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

@@ -6,26 +6,21 @@ part of 'place_autocomplete_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$placeAutocompleteStateHash() =>
-    r'fb521bd99cc799def513373518ce32a31e05e9ca';
+String _$placeAutocompleteStateHash() => r'fb521bd99cc799def513373518ce32a31e05e9ca';
 
 /// See also [placeAutocompleteState].
 @ProviderFor(placeAutocompleteState)
-final placeAutocompleteStateProvider =
-    AutoDisposeFutureProvider<List<PlaceAutocomplete>>.internal(
+final placeAutocompleteStateProvider = AutoDisposeFutureProvider<List<PlaceAutocomplete>>.internal(
   placeAutocompleteState,
   name: r'placeAutocompleteStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$placeAutocompleteStateHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$placeAutocompleteStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef PlaceAutocompleteStateRef
-    = AutoDisposeFutureProviderRef<List<PlaceAutocomplete>>;
-String _$getPlaceAutocompleteHash() =>
-    r'4532d022361a837aeb77a2d7ca50761148f4012c';
+typedef PlaceAutocompleteStateRef = AutoDisposeFutureProviderRef<List<PlaceAutocomplete>>;
+String _$getPlaceAutocompleteHash() => r'4532d022361a837aeb77a2d7ca50761148f4012c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -48,16 +43,14 @@ class _SystemHash {
   }
 }
 
-typedef GetPlaceAutocompleteRef
-    = AutoDisposeFutureProviderRef<List<PlaceAutocomplete>>;
+typedef GetPlaceAutocompleteRef = AutoDisposeFutureProviderRef<List<PlaceAutocomplete>>;
 
 /// See also [getPlaceAutocomplete].
 @ProviderFor(getPlaceAutocomplete)
 const getPlaceAutocompleteProvider = GetPlaceAutocompleteFamily();
 
 /// See also [getPlaceAutocomplete].
-class GetPlaceAutocompleteFamily
-    extends Family<AsyncValue<List<PlaceAutocomplete>>> {
+class GetPlaceAutocompleteFamily extends Family<AsyncValue<List<PlaceAutocomplete>>> {
   /// See also [getPlaceAutocomplete].
   const GetPlaceAutocompleteFamily();
 
@@ -87,16 +80,14 @@ class GetPlaceAutocompleteFamily
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'getPlaceAutocompleteProvider';
 }
 
 /// See also [getPlaceAutocomplete].
-class GetPlaceAutocompleteProvider
-    extends AutoDisposeFutureProvider<List<PlaceAutocomplete>> {
+class GetPlaceAutocompleteProvider extends AutoDisposeFutureProvider<List<PlaceAutocomplete>> {
   /// See also [getPlaceAutocomplete].
   GetPlaceAutocompleteProvider(
     this.autocompleteQuery,
@@ -108,20 +99,16 @@ class GetPlaceAutocompleteProvider
           from: getPlaceAutocompleteProvider,
           name: r'getPlaceAutocompleteProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getPlaceAutocompleteHash,
+              const bool.fromEnvironment('dart.vm.product') ? null : _$getPlaceAutocompleteHash,
           dependencies: GetPlaceAutocompleteFamily._dependencies,
-          allTransitiveDependencies:
-              GetPlaceAutocompleteFamily._allTransitiveDependencies,
+          allTransitiveDependencies: GetPlaceAutocompleteFamily._allTransitiveDependencies,
         );
 
   final String autocompleteQuery;
 
   @override
   bool operator ==(Object other) {
-    return other is GetPlaceAutocompleteProvider &&
-        other.autocompleteQuery == autocompleteQuery;
+    return other is GetPlaceAutocompleteProvider && other.autocompleteQuery == autocompleteQuery;
   }
 
   @override
@@ -133,18 +120,16 @@ class GetPlaceAutocompleteProvider
   }
 }
 
-String _$placeAutocompleteQueryHash() =>
-    r'9ffe997c902e4fa64c6b002953f1e06145dfa729';
+String _$placeAutocompleteQueryHash() => r'9ffe997c902e4fa64c6b002953f1e06145dfa729';
 
 /// See also [PlaceAutocompleteQuery].
 @ProviderFor(PlaceAutocompleteQuery)
-final placeAutocompleteQueryProvider = AutoDisposeNotifierProvider<
-    PlaceAutocompleteQuery, Option<String>>.internal(
+final placeAutocompleteQueryProvider =
+    AutoDisposeNotifierProvider<PlaceAutocompleteQuery, Option<String>>.internal(
   PlaceAutocompleteQuery.new,
   name: r'placeAutocompleteQueryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$placeAutocompleteQueryHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$placeAutocompleteQueryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
