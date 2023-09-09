@@ -50,6 +50,6 @@ google-services.json
 GoogleService-Info.plist
 lib/firebase_options.dart
 
-# Ignoring generated files
-*.g.dart
-*.freezed.dart
+# Ignoring generated files "Avoid for speeding up CI/CD"
+# *.g.dart
+# *.freezed.dart
