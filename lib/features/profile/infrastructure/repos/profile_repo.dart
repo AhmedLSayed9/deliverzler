@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import '../../../../core/infrastructure/local/image_picker_facade.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/profile_details.dart';
-import '../data_sources/profile_local_data_source.dart';
 import '../data_sources/profile_remote_data_source.dart';
 import '../dtos/profile_details_dto.dart';
 
@@ -13,20 +11,13 @@ part 'profile_repo.g.dart';
 ProfileRepo profileRepo(ProfileRepoRef ref) {
   return ProfileRepo(
     remoteDataSource: ref.watch(profileRemoteDataSourceProvider),
-    localDataSource: ref.watch(profileLocalDataSourceProvider),
   );
 }
 
 class ProfileRepo {
-  ProfileRepo({required this.remoteDataSource, required this.localDataSource});
+  ProfileRepo({required this.remoteDataSource});
 
   final ProfileRemoteDataSource remoteDataSource;
-  final ProfileLocalDataSource localDataSource;
-
-  Future<File> pickProfileImage(PickSource pickSource) async {
-    final pickedFile = await localDataSource.pickProfileImage(pickSource);
-    return pickedFile;
-  }
 
   Future<String> uploadProfileImage(File imageFile) async {
     final imageUrl = await remoteDataSource.uploadProfileImage(imageFile);

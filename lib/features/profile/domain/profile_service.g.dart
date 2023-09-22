@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_local_data_source.dart';
+part of 'profile_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileLocalDataSourceHash() => r'ba8a00374f848f05df1073a842947f210e6ab3c0';
+String _$profileServiceHash() => r'93fab75483abe734dd2d0dbd352d55ff7627dcb9';
 
-/// See also [profileLocalDataSource].
-@ProviderFor(profileLocalDataSource)
-final profileLocalDataSourceProvider = Provider<ProfileLocalDataSource>.internal(
-  profileLocalDataSource,
-  name: r'profileLocalDataSourceProvider',
+/// See also [profileService].
+@ProviderFor(profileService)
+final profileServiceProvider = Provider<ProfileService>.internal(
+  profileService,
+  name: r'profileServiceProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$profileLocalDataSourceHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$profileServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef ProfileLocalDataSourceRef = ProviderRef<ProfileLocalDataSource>;
+typedef ProfileServiceRef = ProviderRef<ProfileService>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
