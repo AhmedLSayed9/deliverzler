@@ -20,6 +20,7 @@ class ProviderLogger extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
+    if (value is AsyncError) return;
     if (value.skipProviderLog) return;
 
     _logger.fine(
@@ -58,6 +59,23 @@ class ProviderCrashlytics extends ProviderObserver {
   }
 
   final Logger _logger;
+
+  //This handles when a `FutureOr` provider emits AsyncError initially.
+  @override
+  void didAddProvider(
+    ProviderBase<Object?> provider,
+    Object? value,
+    ProviderContainer container,
+  ) {
+    if (value is! AsyncError) return;
+    if (value.skipProviderLog) return;
+
+    _logger.severe(
+      '⛔️ DidAddProvider: ${provider.providerName}\n'
+      '=> error: ${value.error}\n'
+      '=> stackTrace: ${value.stackTrace}',
+    );
+  }
 
   //This is temporary until https://github.com/rrousselGit/riverpod/issues/1580 is fixed.
   @override
