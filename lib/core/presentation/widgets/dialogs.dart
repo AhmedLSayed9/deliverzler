@@ -20,13 +20,18 @@ abstract class Dialogs {
     horizontal: Sizes.dialogPaddingH20,
   );
 
+  static const _defaultMaterialActionPadding = EdgeInsets.symmetric(
+    vertical: Sizes.dialogPaddingV20,
+    horizontal: Sizes.dialogPaddingH20,
+  );
+
   static const _defaultMaterialInsetPadding = EdgeInsets.symmetric(
     horizontal: Sizes.marginH28,
   );
 
-  static RoundedRectangleBorder get _defaultMaterialShape => RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Sizes.dialogR20),
-      );
+  static final _defaultMaterialShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(Sizes.dialogR20),
+  );
 
   static Future<T?> showLoadingDialog<T extends Object?>(BuildContext context) async {
     return showPlatformAlertDialog(
@@ -36,7 +41,7 @@ abstract class Dialogs {
         vertical: Sizes.dialogPaddingV28,
         horizontal: Sizes.dialogPaddingH20,
       ),
-      content: Column(
+      content: (context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const DeliveryLoadingAnimation(
@@ -73,7 +78,7 @@ abstract class Dialogs {
         textAlign: TextAlign.center,
       ),
       contentPadding: _defaultContentPadding,
-      content: Column(
+      content: (context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Image.asset(
@@ -89,11 +94,12 @@ abstract class Dialogs {
           Text(
             message,
             style: Theme.of(context).dialogTheme.contentTextStyle,
+            textAlign: TextAlign.center,
           ),
         ],
       ),
       materialDialogData: MaterialDialogData(
-        actions: [
+        actions: (context) => [
           CustomElevatedButton(
             enableGradient: true,
             onPressed: () => NavigationService.popDialog(context),
@@ -103,12 +109,12 @@ abstract class Dialogs {
             ),
           ),
         ],
-        actionsPadding: _defaultTitlePadding,
+        actionsPadding: _defaultMaterialActionPadding,
         insetPadding: _defaultMaterialInsetPadding,
         shape: _defaultMaterialShape,
       ),
       cupertinoDialogData: CupertinoDialogData(
-        actions: [
+        actions: (context) => [
           CupertinoDialogAction(
             onPressed: () => NavigationService.popDialog(context),
             child: Text(
@@ -125,8 +131,9 @@ abstract class Dialogs {
     BuildContext context, {
     Widget? title,
     Widget? content,
-    List<Widget>? materialActions,
-    List<CupertinoDialogAction> cupertinoActions = const [],
+    Color? backgroundColor,
+    List<Widget>? Function(BuildContext context)? materialActions,
+    List<CupertinoDialogAction> Function(BuildContext context)? cupertinoActions,
   }) async {
     return showPlatformAlertDialog(
       context: context,
@@ -134,19 +141,20 @@ abstract class Dialogs {
       title: title,
       contentPadding: _defaultContentPadding,
       content: content != null
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [content],
-            )
+          ? (context) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [content],
+              )
           : null,
       materialDialogData: MaterialDialogData(
         insetPadding: _defaultMaterialInsetPadding,
         shape: _defaultMaterialShape,
-        actions: materialActions,
-        actionsPadding: _defaultTitlePadding,
+        actions: (context) => materialActions?.call(context),
+        actionsPadding: _defaultMaterialActionPadding,
+        backgroundColor: backgroundColor,
       ),
       cupertinoDialogData: CupertinoDialogData(
-        actions: cupertinoActions,
+        actions: (context) => cupertinoActions?.call(context) ?? [],
       ),
     );
   }

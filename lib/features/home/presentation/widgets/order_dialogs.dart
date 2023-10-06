@@ -23,7 +23,7 @@ abstract class OrderDialogs {
       content: OrderDetailsDialog(
         order: order,
       ),
-      materialActions: [
+      materialActions: (context) => [
         CustomElevatedButton(
           enableGradient: true,
           padding: const EdgeInsets.symmetric(
@@ -37,7 +37,7 @@ abstract class OrderDialogs {
           ),
         ),
       ],
-      cupertinoActions: [
+      cupertinoActions: (context) => [
         CupertinoDialogAction(
           onPressed: () => NavigationService.popDialog(context),
           child: Text(
@@ -61,12 +61,12 @@ abstract class OrderDialogs {
           );
         },
       ),
-      materialActions: _confirmButtonsMaterial(
+      materialActions: (context) => _confirmButtonsMaterial(
         context,
         confirmCallback: () =>
             NavigationService.popDialog(context, result: cancelNoteController.text),
       ),
-      cupertinoActions: _confirmButtonsCupertino(
+      cupertinoActions: (context) => _confirmButtonsCupertino(
         context,
         confirmCallback: () =>
             NavigationService.popDialog(context, result: cancelNoteController.text),
@@ -101,11 +101,11 @@ abstract class OrderDialogs {
           style: Theme.of(context).dialogTheme.contentTextStyle,
         ),
       ),
-      materialActions: _confirmButtonsMaterial(
+      materialActions: (context) => _confirmButtonsMaterial(
         context,
         confirmCallback: () => NavigationService.popDialog(context, result: true),
       ),
-      cupertinoActions: _confirmButtonsCupertino(
+      cupertinoActions: (context) => _confirmButtonsCupertino(
         context,
         confirmCallback: () => NavigationService.popDialog(context),
       ),

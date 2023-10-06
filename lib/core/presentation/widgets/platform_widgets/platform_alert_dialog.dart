@@ -6,25 +6,25 @@ import '../../helpers/platform_helper.dart';
 Future<T?> showPlatformAlertDialog<T extends Object?>({
   required BuildContext context,
   Widget? title,
-  Widget? content,
+  Widget Function(BuildContext context)? content,
   EdgeInsetsGeometry titlePadding = EdgeInsets.zero,
   EdgeInsetsGeometry contentPadding = EdgeInsets.zero,
   MaterialDialogData materialDialogData = const MaterialDialogData(),
   CupertinoDialogData cupertinoDialogData = const CupertinoDialogData(),
   bool barrierDismissible = true,
 }) async {
-  final reformedTitlePadding = EdgeInsets.only(
-    left: titlePadding.horizontal / 2,
-    right: titlePadding.horizontal / 2,
-    top: titlePadding.vertical / 2,
-    bottom: content == null ? titlePadding.vertical / 2 : 0,
+  final reformedContentPadding = EdgeInsets.only(
+    left: contentPadding.horizontal / 2,
+    right: contentPadding.horizontal / 2,
+    top: title == null ? contentPadding.vertical / 2 : 0,
+    bottom: contentPadding.vertical / 2,
   );
 
   if (PlatformHelper.isMaterialApp) {
     final reformedActionsPadding = EdgeInsets.only(
       left: materialDialogData.actionsPadding.horizontal / 2,
       right: materialDialogData.actionsPadding.horizontal / 2,
-      top: content == null ? materialDialogData.actionsPadding.vertical / 2 : 0,
+      top: title == null && content == null ? materialDialogData.actionsPadding.vertical / 2 : 0,
       bottom: materialDialogData.actionsPadding.vertical / 2,
     );
     return showGeneralDialog<T>(
@@ -36,19 +36,23 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
         child: WillPopScope(
           //This prevent closing the dialog when pressing device's back button
           onWillPop: () => Future.value(barrierDismissible),
-          child: Opacity(
-            opacity: a1.value,
-            child: AlertDialog(
-              title: title,
-              titlePadding: reformedTitlePadding,
-              content: content,
-              contentPadding: contentPadding,
-              actions: materialDialogData.actions,
-              actionsPadding: reformedActionsPadding,
-              actionsAlignment: MainAxisAlignment.center,
-              insetPadding: materialDialogData.insetPadding,
-              shape: materialDialogData.shape,
-              backgroundColor: materialDialogData.backgroundColor,
+
+          child: UnconstrainedBox(
+            constrainedAxis: Axis.horizontal,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: materialDialogData.maxWidth),
+              child: AlertDialog(
+                title: title,
+                titlePadding: titlePadding,
+                content: content != null ? content(context) : null,
+                contentPadding: reformedContentPadding,
+                actions: materialDialogData.actions?.call(context),
+                actionsPadding: reformedActionsPadding,
+                actionsAlignment: MainAxisAlignment.spaceAround,
+                insetPadding: materialDialogData.insetPadding,
+                shape: materialDialogData.shape,
+                backgroundColor: materialDialogData.backgroundColor,
+              ),
             ),
           ),
         ),
@@ -74,7 +78,7 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
     // & adds 1.0 vertical padding between title and content.
     builder: (context) => CupertinoAlertDialog(
       title: Padding(
-        padding: reformedTitlePadding
+        padding: titlePadding
             .subtract(
               EdgeInsets.only(
                 left: kDialogEdgePadding,
@@ -87,7 +91,7 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
         child: title,
       ),
       content: Padding(
-        padding: contentPadding
+        padding: reformedContentPadding
             .subtract(
               EdgeInsets.only(
                 left: kDialogEdgePadding,
@@ -97,9 +101,9 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
               ),
             )
             .clamp(EdgeInsets.zero, EdgeInsetsGeometry.infinity),
-        child: content,
+        child: content != null ? content(context) : null,
       ),
-      actions: cupertinoDialogData.actions,
+      actions: cupertinoDialogData.actions?.call(context) ?? [],
     ),
   );
 }
@@ -109,21 +113,23 @@ class MaterialDialogData {
     this.actions,
     this.actionsPadding = EdgeInsets.zero,
     this.insetPadding = EdgeInsets.zero,
+    this.maxWidth = 300,
     this.shape,
     this.backgroundColor,
   });
 
-  final List<Widget>? actions;
+  final List<Widget>? Function(BuildContext context)? actions;
   final EdgeInsetsGeometry actionsPadding;
   final EdgeInsets insetPadding;
+  final double maxWidth;
   final ShapeBorder? shape;
   final Color? backgroundColor;
 }
 
 class CupertinoDialogData {
   const CupertinoDialogData({
-    this.actions = const [],
+    this.actions,
   });
 
-  final List<CupertinoDialogAction> actions;
+  final List<CupertinoDialogAction> Function(BuildContext context)? actions;
 }
