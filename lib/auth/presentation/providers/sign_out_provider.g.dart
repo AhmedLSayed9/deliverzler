@@ -80,7 +80,8 @@ class SignOutFamily extends Family<AsyncValue<void>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'signOutProvider';
@@ -99,7 +100,9 @@ class SignOutProvider extends AutoDisposeFutureProvider<void> {
           from: signOutProvider,
           name: r'signOutProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$signOutHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$signOutHash,
           dependencies: SignOutFamily._dependencies,
           allTransitiveDependencies: SignOutFamily._allTransitiveDependencies,
         );

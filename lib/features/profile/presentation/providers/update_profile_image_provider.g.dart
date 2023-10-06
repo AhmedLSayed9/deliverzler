@@ -6,21 +6,26 @@ part of 'update_profile_image_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$updateProfileImageStateHash() => r'9caaec490401aadd6be1f01cc834bb2f9e160fb3';
+String _$updateProfileImageStateHash() =>
+    r'bc0eb820307c10ef5657b4c16beefb7f1864ef2c';
 
 /// See also [updateProfileImageState].
 @ProviderFor(updateProfileImageState)
-final updateProfileImageStateProvider = AutoDisposeProvider<AsyncValue<Option<String>>>.internal(
+final updateProfileImageStateProvider =
+    AutoDisposeFutureProvider<Option<String>>.internal(
   updateProfileImageState,
   name: r'updateProfileImageStateProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$updateProfileImageStateHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateProfileImageStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef UpdateProfileImageStateRef = AutoDisposeProviderRef<AsyncValue<Option<String>>>;
-String _$updateProfileImageHash() => r'2856d4bf7dfd90a96582137e00294dbcb7bcf697';
+typedef UpdateProfileImageStateRef
+    = AutoDisposeFutureProviderRef<Option<String>>;
+String _$updateProfileImageHash() =>
+    r'2856d4bf7dfd90a96582137e00294dbcb7bcf697';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -80,7 +85,8 @@ class UpdateProfileImageFamily extends Family<AsyncValue<String>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'updateProfileImageProvider';
@@ -99,9 +105,12 @@ class UpdateProfileImageProvider extends AutoDisposeFutureProvider<String> {
           from: updateProfileImageProvider,
           name: r'updateProfileImageProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$updateProfileImageHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$updateProfileImageHash,
           dependencies: UpdateProfileImageFamily._dependencies,
-          allTransitiveDependencies: UpdateProfileImageFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              UpdateProfileImageFamily._allTransitiveDependencies,
         );
 
   final Event<File> event;
@@ -120,16 +129,18 @@ class UpdateProfileImageProvider extends AutoDisposeFutureProvider<String> {
   }
 }
 
-String _$updateProfileImageEventHash() => r'b8cf870551942186749474b22449e793c9a0fdae';
+String _$updateProfileImageEventHash() =>
+    r'b8cf870551942186749474b22449e793c9a0fdae';
 
 /// See also [UpdateProfileImageEvent].
 @ProviderFor(UpdateProfileImageEvent)
-final updateProfileImageEventProvider =
-    AutoDisposeNotifierProvider<UpdateProfileImageEvent, Option<Event<File>>>.internal(
+final updateProfileImageEventProvider = AutoDisposeNotifierProvider<
+    UpdateProfileImageEvent, Option<Event<File>>>.internal(
   UpdateProfileImageEvent.new,
   name: r'updateProfileImageEventProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$updateProfileImageEventHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateProfileImageEventHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

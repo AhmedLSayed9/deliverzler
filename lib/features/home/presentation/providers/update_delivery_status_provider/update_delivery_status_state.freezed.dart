@@ -19,7 +19,8 @@ mixin _$UpdateDeliveryStatusState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String orderId, DeliveryStatus deliveryStatus) success,
+    required TResult Function(String orderId, DeliveryStatus deliveryStatus)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,13 +59,14 @@ mixin _$UpdateDeliveryStatusState {
 
 /// @nodoc
 abstract class $UpdateDeliveryStatusStateCopyWith<$Res> {
-  factory $UpdateDeliveryStatusStateCopyWith(
-          UpdateDeliveryStatusState value, $Res Function(UpdateDeliveryStatusState) then) =
+  factory $UpdateDeliveryStatusStateCopyWith(UpdateDeliveryStatusState value,
+          $Res Function(UpdateDeliveryStatusState) then) =
       _$UpdateDeliveryStatusStateCopyWithImpl<$Res, UpdateDeliveryStatusState>;
 }
 
 /// @nodoc
-class _$UpdateDeliveryStatusStateCopyWithImpl<$Res, $Val extends UpdateDeliveryStatusState>
+class _$UpdateDeliveryStatusStateCopyWithImpl<$Res,
+        $Val extends UpdateDeliveryStatusState>
     implements $UpdateDeliveryStatusStateCopyWith<$Res> {
   _$UpdateDeliveryStatusStateCopyWithImpl(this._value, this._then);
 
@@ -76,13 +78,16 @@ class _$UpdateDeliveryStatusStateCopyWithImpl<$Res, $Val extends UpdateDeliveryS
 
 /// @nodoc
 abstract class _$$IdleCopyWith<$Res> {
-  factory _$$IdleCopyWith(_$Idle value, $Res Function(_$Idle) then) = __$$IdleCopyWithImpl<$Res>;
+  factory _$$IdleCopyWith(_$Idle value, $Res Function(_$Idle) then) =
+      __$$IdleCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$IdleCopyWithImpl<$Res> extends _$UpdateDeliveryStatusStateCopyWithImpl<$Res, _$Idle>
+class __$$IdleCopyWithImpl<$Res>
+    extends _$UpdateDeliveryStatusStateCopyWithImpl<$Res, _$Idle>
     implements _$$IdleCopyWith<$Res> {
-  __$$IdleCopyWithImpl(_$Idle _value, $Res Function(_$Idle) _then) : super(_value, _then);
+  __$$IdleCopyWithImpl(_$Idle _value, $Res Function(_$Idle) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -97,7 +102,8 @@ class _$Idle implements Idle {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$Idle);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Idle);
   }
 
   @override
@@ -107,7 +113,8 @@ class _$Idle implements Idle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String orderId, DeliveryStatus deliveryStatus) success,
+    required TResult Function(String orderId, DeliveryStatus deliveryStatus)
+        success,
   }) {
     return idle();
   }
@@ -179,9 +186,11 @@ abstract class _$$SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SuccessCopyWithImpl<$Res> extends _$UpdateDeliveryStatusStateCopyWithImpl<$Res, _$Success>
+class __$$SuccessCopyWithImpl<$Res>
+    extends _$UpdateDeliveryStatusStateCopyWithImpl<$Res, _$Success>
     implements _$$SuccessCopyWith<$Res> {
-  __$$SuccessCopyWithImpl(_$Success _value, $Res Function(_$Success) _then) : super(_value, _then);
+  __$$SuccessCopyWithImpl(_$Success _value, $Res Function(_$Success) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -240,7 +249,8 @@ class _$Success implements Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String orderId, DeliveryStatus deliveryStatus) success,
+    required TResult Function(String orderId, DeliveryStatus deliveryStatus)
+        success,
   }) {
     return success(orderId, deliveryStatus);
   }
@@ -301,10 +311,12 @@ class _$Success implements Success {
 
 abstract class Success implements UpdateDeliveryStatusState {
   const factory Success(
-      {required final String orderId, required final DeliveryStatus deliveryStatus}) = _$Success;
+      {required final String orderId,
+      required final DeliveryStatus deliveryStatus}) = _$Success;
 
   String get orderId;
   DeliveryStatus get deliveryStatus;
   @JsonKey(ignore: true)
-  _$$SuccessCopyWith<_$Success> get copyWith => throw _privateConstructorUsedError;
+  _$$SuccessCopyWith<_$Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }

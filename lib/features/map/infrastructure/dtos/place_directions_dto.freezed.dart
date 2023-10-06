@@ -41,11 +41,14 @@ abstract class $PlaceDirectionsDtoCopyWith<$Res> {
       _$PlaceDirectionsDtoCopyWithImpl<$Res, PlaceDirectionsDto>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: _fromJsonBounds) LatLngBounds bounds,
+      {@JsonKey(fromJson: _fromJsonBounds)
+          LatLngBounds bounds,
       @JsonKey(name: 'overview_polyline', fromJson: _fromJsonPolylinePoints)
-      List<PointLatLng> polylinePoints,
-      @JsonKey(readValue: _readDistance) int distance,
-      @JsonKey(readValue: _readDuration) String duration});
+          List<PointLatLng> polylinePoints,
+      @JsonKey(readValue: _readDistance)
+          int distance,
+      @JsonKey(readValue: _readDuration)
+          String duration});
 }
 
 /// @nodoc
@@ -88,18 +91,22 @@ class _$PlaceDirectionsDtoCopyWithImpl<$Res, $Val extends PlaceDirectionsDto>
 }
 
 /// @nodoc
-abstract class _$$_PlaceDirectionsDtoCopyWith<$Res> implements $PlaceDirectionsDtoCopyWith<$Res> {
-  factory _$$_PlaceDirectionsDtoCopyWith(
-          _$_PlaceDirectionsDto value, $Res Function(_$_PlaceDirectionsDto) then) =
+abstract class _$$_PlaceDirectionsDtoCopyWith<$Res>
+    implements $PlaceDirectionsDtoCopyWith<$Res> {
+  factory _$$_PlaceDirectionsDtoCopyWith(_$_PlaceDirectionsDto value,
+          $Res Function(_$_PlaceDirectionsDto) then) =
       __$$_PlaceDirectionsDtoCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: _fromJsonBounds) LatLngBounds bounds,
+      {@JsonKey(fromJson: _fromJsonBounds)
+          LatLngBounds bounds,
       @JsonKey(name: 'overview_polyline', fromJson: _fromJsonPolylinePoints)
-      List<PointLatLng> polylinePoints,
-      @JsonKey(readValue: _readDistance) int distance,
-      @JsonKey(readValue: _readDuration) String duration});
+          List<PointLatLng> polylinePoints,
+      @JsonKey(readValue: _readDistance)
+          int distance,
+      @JsonKey(readValue: _readDuration)
+          String duration});
 }
 
 /// @nodoc
@@ -143,11 +150,14 @@ class __$$_PlaceDirectionsDtoCopyWithImpl<$Res>
 @JsonSerializable(createToJson: false)
 class _$_PlaceDirectionsDto extends _PlaceDirectionsDto {
   const _$_PlaceDirectionsDto(
-      {@JsonKey(fromJson: _fromJsonBounds) required this.bounds,
+      {@JsonKey(fromJson: _fromJsonBounds)
+          required this.bounds,
       @JsonKey(name: 'overview_polyline', fromJson: _fromJsonPolylinePoints)
-      required final List<PointLatLng> polylinePoints,
-      @JsonKey(readValue: _readDistance) required this.distance,
-      @JsonKey(readValue: _readDuration) required this.duration})
+          required final List<PointLatLng> polylinePoints,
+      @JsonKey(readValue: _readDistance)
+          required this.distance,
+      @JsonKey(readValue: _readDuration)
+          required this.duration})
       : _polylinePoints = polylinePoints,
         super._();
 
@@ -184,9 +194,12 @@ class _$_PlaceDirectionsDto extends _PlaceDirectionsDto {
         (other.runtimeType == runtimeType &&
             other is _$_PlaceDirectionsDto &&
             (identical(other.bounds, bounds) || other.bounds == bounds) &&
-            const DeepCollectionEquality().equals(other._polylinePoints, _polylinePoints) &&
-            (identical(other.distance, distance) || other.distance == distance) &&
-            (identical(other.duration, duration) || other.duration == duration));
+            const DeepCollectionEquality()
+                .equals(other._polylinePoints, _polylinePoints) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration));
   }
 
   @JsonKey(ignore: true)
@@ -198,19 +211,24 @@ class _$_PlaceDirectionsDto extends _PlaceDirectionsDto {
   @override
   @pragma('vm:prefer-inline')
   _$$_PlaceDirectionsDtoCopyWith<_$_PlaceDirectionsDto> get copyWith =>
-      __$$_PlaceDirectionsDtoCopyWithImpl<_$_PlaceDirectionsDto>(this, _$identity);
+      __$$_PlaceDirectionsDtoCopyWithImpl<_$_PlaceDirectionsDto>(
+          this, _$identity);
 }
 
 abstract class _PlaceDirectionsDto extends PlaceDirectionsDto {
   const factory _PlaceDirectionsDto(
-      {@JsonKey(fromJson: _fromJsonBounds) required final LatLngBounds bounds,
+      {@JsonKey(fromJson: _fromJsonBounds)
+          required final LatLngBounds bounds,
       @JsonKey(name: 'overview_polyline', fromJson: _fromJsonPolylinePoints)
-      required final List<PointLatLng> polylinePoints,
-      @JsonKey(readValue: _readDistance) required final int distance,
-      @JsonKey(readValue: _readDuration) required final String duration}) = _$_PlaceDirectionsDto;
+          required final List<PointLatLng> polylinePoints,
+      @JsonKey(readValue: _readDistance)
+          required final int distance,
+      @JsonKey(readValue: _readDuration)
+          required final String duration}) = _$_PlaceDirectionsDto;
   const _PlaceDirectionsDto._() : super._();
 
-  factory _PlaceDirectionsDto.fromJson(Map<String, dynamic> json) = _$_PlaceDirectionsDto.fromJson;
+  factory _PlaceDirectionsDto.fromJson(Map<String, dynamic> json) =
+      _$_PlaceDirectionsDto.fromJson;
 
   @override
   @JsonKey(fromJson: _fromJsonBounds)
@@ -245,8 +263,8 @@ mixin _$PlaceDirectionsQueryDto {
 
 /// @nodoc
 abstract class $PlaceDirectionsQueryDtoCopyWith<$Res> {
-  factory $PlaceDirectionsQueryDtoCopyWith(
-          PlaceDirectionsQueryDto value, $Res Function(PlaceDirectionsQueryDto) then) =
+  factory $PlaceDirectionsQueryDtoCopyWith(PlaceDirectionsQueryDto value,
+          $Res Function(PlaceDirectionsQueryDto) then) =
       _$PlaceDirectionsQueryDtoCopyWithImpl<$Res, PlaceDirectionsQueryDto>;
   @useResult
   $Res call(
@@ -255,7 +273,8 @@ abstract class $PlaceDirectionsQueryDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlaceDirectionsQueryDtoCopyWithImpl<$Res, $Val extends PlaceDirectionsQueryDto>
+class _$PlaceDirectionsQueryDtoCopyWithImpl<$Res,
+        $Val extends PlaceDirectionsQueryDto>
     implements $PlaceDirectionsQueryDtoCopyWith<$Res> {
   _$PlaceDirectionsQueryDtoCopyWithImpl(this._value, this._then);
 
@@ -286,8 +305,8 @@ class _$PlaceDirectionsQueryDtoCopyWithImpl<$Res, $Val extends PlaceDirectionsQu
 /// @nodoc
 abstract class _$$_PlaceDirectionsQueryDtoCopyWith<$Res>
     implements $PlaceDirectionsQueryDtoCopyWith<$Res> {
-  factory _$$_PlaceDirectionsQueryDtoCopyWith(
-          _$_PlaceDirectionsQueryDto value, $Res Function(_$_PlaceDirectionsQueryDto) then) =
+  factory _$$_PlaceDirectionsQueryDtoCopyWith(_$_PlaceDirectionsQueryDto value,
+          $Res Function(_$_PlaceDirectionsQueryDto) then) =
       __$$_PlaceDirectionsQueryDtoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -298,10 +317,11 @@ abstract class _$$_PlaceDirectionsQueryDtoCopyWith<$Res>
 
 /// @nodoc
 class __$$_PlaceDirectionsQueryDtoCopyWithImpl<$Res>
-    extends _$PlaceDirectionsQueryDtoCopyWithImpl<$Res, _$_PlaceDirectionsQueryDto>
+    extends _$PlaceDirectionsQueryDtoCopyWithImpl<$Res,
+        _$_PlaceDirectionsQueryDto>
     implements _$$_PlaceDirectionsQueryDtoCopyWith<$Res> {
-  __$$_PlaceDirectionsQueryDtoCopyWithImpl(
-      _$_PlaceDirectionsQueryDto _value, $Res Function(_$_PlaceDirectionsQueryDto) _then)
+  __$$_PlaceDirectionsQueryDtoCopyWithImpl(_$_PlaceDirectionsQueryDto _value,
+      $Res Function(_$_PlaceDirectionsQueryDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -348,7 +368,8 @@ class _$_PlaceDirectionsQueryDto implements _PlaceDirectionsQueryDto {
         (other.runtimeType == runtimeType &&
             other is _$_PlaceDirectionsQueryDto &&
             (identical(other.origin, origin) || other.origin == origin) &&
-            (identical(other.destination, destination) || other.destination == destination));
+            (identical(other.destination, destination) ||
+                other.destination == destination));
   }
 
   @JsonKey(ignore: true)
@@ -358,8 +379,10 @@ class _$_PlaceDirectionsQueryDto implements _PlaceDirectionsQueryDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlaceDirectionsQueryDtoCopyWith<_$_PlaceDirectionsQueryDto> get copyWith =>
-      __$$_PlaceDirectionsQueryDtoCopyWithImpl<_$_PlaceDirectionsQueryDto>(this, _$identity);
+  _$$_PlaceDirectionsQueryDtoCopyWith<_$_PlaceDirectionsQueryDto>
+      get copyWith =>
+          __$$_PlaceDirectionsQueryDtoCopyWithImpl<_$_PlaceDirectionsQueryDto>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -371,9 +394,10 @@ class _$_PlaceDirectionsQueryDto implements _PlaceDirectionsQueryDto {
 
 abstract class _PlaceDirectionsQueryDto implements PlaceDirectionsQueryDto {
   const factory _PlaceDirectionsQueryDto(
-          {@JsonKey(toJson: _toJsonOrigin) required final Position origin,
-          @JsonKey(toJson: _toJsonDestination) required final GeoPoint destination}) =
-      _$_PlaceDirectionsQueryDto;
+      {@JsonKey(toJson: _toJsonOrigin)
+          required final Position origin,
+      @JsonKey(toJson: _toJsonDestination)
+          required final GeoPoint destination}) = _$_PlaceDirectionsQueryDto;
 
   @override
   @JsonKey(toJson: _toJsonOrigin)
@@ -383,6 +407,6 @@ abstract class _PlaceDirectionsQueryDto implements PlaceDirectionsQueryDto {
   GeoPoint get destination;
   @override
   @JsonKey(ignore: true)
-  _$$_PlaceDirectionsQueryDtoCopyWith<_$_PlaceDirectionsQueryDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_PlaceDirectionsQueryDtoCopyWith<_$_PlaceDirectionsQueryDto>
+      get copyWith => throw _privateConstructorUsedError;
 }

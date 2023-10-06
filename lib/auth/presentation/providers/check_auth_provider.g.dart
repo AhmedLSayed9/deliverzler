@@ -13,7 +13,8 @@ String _$checkAuthHash() => r'f35dd6255cfdb442a36065a1752e8833d277a6ca';
 final checkAuthProvider = AutoDisposeFutureProvider<User>.internal(
   checkAuth,
   name: r'checkAuthProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$checkAuthHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$checkAuthHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

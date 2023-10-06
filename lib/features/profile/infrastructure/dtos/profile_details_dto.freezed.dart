@@ -21,7 +21,8 @@ mixin _$ProfileDetailsDto {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileDetailsDtoCopyWith<ProfileDetailsDto> get copyWith => throw _privateConstructorUsedError;
+  $ProfileDetailsDtoCopyWith<ProfileDetailsDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -63,9 +64,10 @@ class _$ProfileDetailsDtoCopyWithImpl<$Res, $Val extends ProfileDetailsDto>
 }
 
 /// @nodoc
-abstract class _$$_ProfileDetailsDtoCopyWith<$Res> implements $ProfileDetailsDtoCopyWith<$Res> {
-  factory _$$_ProfileDetailsDtoCopyWith(
-          _$_ProfileDetailsDto value, $Res Function(_$_ProfileDetailsDto) then) =
+abstract class _$$_ProfileDetailsDtoCopyWith<$Res>
+    implements $ProfileDetailsDtoCopyWith<$Res> {
+  factory _$$_ProfileDetailsDtoCopyWith(_$_ProfileDetailsDto value,
+          $Res Function(_$_ProfileDetailsDto) then) =
       __$$_ProfileDetailsDtoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -131,7 +133,8 @@ class _$_ProfileDetailsDto implements _ProfileDetailsDto {
   @override
   @pragma('vm:prefer-inline')
   _$$_ProfileDetailsDtoCopyWith<_$_ProfileDetailsDto> get copyWith =>
-      __$$_ProfileDetailsDtoCopyWithImpl<_$_ProfileDetailsDto>(this, _$identity);
+      __$$_ProfileDetailsDtoCopyWithImpl<_$_ProfileDetailsDto>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -142,8 +145,9 @@ class _$_ProfileDetailsDto implements _ProfileDetailsDto {
 }
 
 abstract class _ProfileDetailsDto implements ProfileDetailsDto {
-  const factory _ProfileDetailsDto({required final String name, required final String phone}) =
-      _$_ProfileDetailsDto;
+  const factory _ProfileDetailsDto(
+      {required final String name,
+      required final String phone}) = _$_ProfileDetailsDto;
 
   @override
   String get name;

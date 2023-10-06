@@ -6,15 +6,17 @@ part of 'my_delivering_orders_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$myDeliveringOrdersHash() => r'30af10ce4a44a05f5550005f36270ddf93b1a4f4';
+String _$myDeliveringOrdersHash() =>
+    r'30af10ce4a44a05f5550005f36270ddf93b1a4f4';
 
 /// See also [myDeliveringOrders].
 @ProviderFor(myDeliveringOrders)
 final myDeliveringOrdersProvider = AutoDisposeProvider<List<AppOrder>>.internal(
   myDeliveringOrders,
   name: r'myDeliveringOrdersProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$myDeliveringOrdersHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$myDeliveringOrdersHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

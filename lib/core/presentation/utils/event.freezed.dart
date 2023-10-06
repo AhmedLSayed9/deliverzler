@@ -20,7 +20,8 @@ mixin _$Event<T> {
   Key? get key => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $EventCopyWith<T, Event<T>> get copyWith => throw _privateConstructorUsedError;
+  $EventCopyWith<T, Event<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -32,7 +33,8 @@ abstract class $EventCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class _$EventCopyWithImpl<T, $Res, $Val extends Event<T>> implements $EventCopyWith<T, $Res> {
+class _$EventCopyWithImpl<T, $Res, $Val extends Event<T>>
+    implements $EventCopyWith<T, $Res> {
   _$EventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -61,7 +63,8 @@ class _$EventCopyWithImpl<T, $Res, $Val extends Event<T>> implements $EventCopyW
 
 /// @nodoc
 abstract class _$$_EventCopyWith<T, $Res> implements $EventCopyWith<T, $Res> {
-  factory _$$_EventCopyWith(_$_Event<T> value, $Res Function(_$_Event<T>) then) =
+  factory _$$_EventCopyWith(
+          _$_Event<T> value, $Res Function(_$_Event<T>) then) =
       __$$_EventCopyWithImpl<T, $Res>;
   @override
   @useResult
@@ -69,7 +72,8 @@ abstract class _$$_EventCopyWith<T, $Res> implements $EventCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$$_EventCopyWithImpl<T, $Res> extends _$EventCopyWithImpl<T, $Res, _$_Event<T>>
+class __$$_EventCopyWithImpl<T, $Res>
+    extends _$EventCopyWithImpl<T, $Res, _$_Event<T>>
     implements _$$_EventCopyWith<T, $Res> {
   __$$_EventCopyWithImpl(_$_Event<T> _value, $Res Function(_$_Event<T>) _then)
       : super(_value, _then);
@@ -127,7 +131,8 @@ class _$_Event<T> with DiagnosticableTreeMixin implements _Event<T> {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(arg), key);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(arg), key);
 
   @JsonKey(ignore: true)
   @override
@@ -145,5 +150,6 @@ abstract class _Event<T> implements Event<T> {
   Key? get key;
   @override
   @JsonKey(ignore: true)
-  _$$_EventCopyWith<T, _$_Event<T>> get copyWith => throw _privateConstructorUsedError;
+  _$$_EventCopyWith<T, _$_Event<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }

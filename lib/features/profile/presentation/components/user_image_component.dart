@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/infrastructure/local/image_picker_facade.dart';
 import '../../../../core/presentation/components/image_pick_component.dart';
+import '../../../../core/presentation/extensions/future_extensions.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/event.dart';
@@ -22,13 +23,13 @@ class UserImageComponent extends ConsumerWidget {
     final userImage = ref.watch(currentUserProvider.select((user) => user.image));
 
     void pickImage(PickSource pickSource, BuildContext ctx) {
-      try {
-        ref.read(pickProfileImageProvider(pickSource).future).then((image) {
+      ref.read(pickProfileImageProvider(pickSource).future).then(
+        (image) {
           ref
               .read(updateProfileImageEventProvider.notifier)
               .update((_) => Some(Event.unique(image)));
-        });
-      } catch (_) {}
+        },
+      ).suppressError();
       NavigationService.popDialog(ctx);
     }
 

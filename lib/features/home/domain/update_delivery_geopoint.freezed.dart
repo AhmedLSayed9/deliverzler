@@ -26,15 +26,16 @@ mixin _$UpdateDeliveryGeoPoint {
 
 /// @nodoc
 abstract class $UpdateDeliveryGeoPointCopyWith<$Res> {
-  factory $UpdateDeliveryGeoPointCopyWith(
-          UpdateDeliveryGeoPoint value, $Res Function(UpdateDeliveryGeoPoint) then) =
+  factory $UpdateDeliveryGeoPointCopyWith(UpdateDeliveryGeoPoint value,
+          $Res Function(UpdateDeliveryGeoPoint) then) =
       _$UpdateDeliveryGeoPointCopyWithImpl<$Res, UpdateDeliveryGeoPoint>;
   @useResult
   $Res call({String orderId, GeoPoint geoPoint});
 }
 
 /// @nodoc
-class _$UpdateDeliveryGeoPointCopyWithImpl<$Res, $Val extends UpdateDeliveryGeoPoint>
+class _$UpdateDeliveryGeoPointCopyWithImpl<$Res,
+        $Val extends UpdateDeliveryGeoPoint>
     implements $UpdateDeliveryGeoPointCopyWith<$Res> {
   _$UpdateDeliveryGeoPointCopyWithImpl(this._value, this._then);
 
@@ -65,8 +66,8 @@ class _$UpdateDeliveryGeoPointCopyWithImpl<$Res, $Val extends UpdateDeliveryGeoP
 /// @nodoc
 abstract class _$$_UpdateDeliveryGeoPointCopyWith<$Res>
     implements $UpdateDeliveryGeoPointCopyWith<$Res> {
-  factory _$$_UpdateDeliveryGeoPointCopyWith(
-          _$_UpdateDeliveryGeoPoint value, $Res Function(_$_UpdateDeliveryGeoPoint) then) =
+  factory _$$_UpdateDeliveryGeoPointCopyWith(_$_UpdateDeliveryGeoPoint value,
+          $Res Function(_$_UpdateDeliveryGeoPoint) then) =
       __$$_UpdateDeliveryGeoPointCopyWithImpl<$Res>;
   @override
   @useResult
@@ -75,10 +76,11 @@ abstract class _$$_UpdateDeliveryGeoPointCopyWith<$Res>
 
 /// @nodoc
 class __$$_UpdateDeliveryGeoPointCopyWithImpl<$Res>
-    extends _$UpdateDeliveryGeoPointCopyWithImpl<$Res, _$_UpdateDeliveryGeoPoint>
+    extends _$UpdateDeliveryGeoPointCopyWithImpl<$Res,
+        _$_UpdateDeliveryGeoPoint>
     implements _$$_UpdateDeliveryGeoPointCopyWith<$Res> {
-  __$$_UpdateDeliveryGeoPointCopyWithImpl(
-      _$_UpdateDeliveryGeoPoint _value, $Res Function(_$_UpdateDeliveryGeoPoint) _then)
+  __$$_UpdateDeliveryGeoPointCopyWithImpl(_$_UpdateDeliveryGeoPoint _value,
+      $Res Function(_$_UpdateDeliveryGeoPoint) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -103,7 +105,8 @@ class __$$_UpdateDeliveryGeoPointCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UpdateDeliveryGeoPoint implements _UpdateDeliveryGeoPoint {
-  const _$_UpdateDeliveryGeoPoint({required this.orderId, required this.geoPoint});
+  const _$_UpdateDeliveryGeoPoint(
+      {required this.orderId, required this.geoPoint});
 
   @override
   final String orderId;
@@ -121,7 +124,8 @@ class _$_UpdateDeliveryGeoPoint implements _UpdateDeliveryGeoPoint {
         (other.runtimeType == runtimeType &&
             other is _$_UpdateDeliveryGeoPoint &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
-            (identical(other.geoPoint, geoPoint) || other.geoPoint == geoPoint));
+            (identical(other.geoPoint, geoPoint) ||
+                other.geoPoint == geoPoint));
   }
 
   @override
@@ -131,7 +135,8 @@ class _$_UpdateDeliveryGeoPoint implements _UpdateDeliveryGeoPoint {
   @override
   @pragma('vm:prefer-inline')
   _$$_UpdateDeliveryGeoPointCopyWith<_$_UpdateDeliveryGeoPoint> get copyWith =>
-      __$$_UpdateDeliveryGeoPointCopyWithImpl<_$_UpdateDeliveryGeoPoint>(this, _$identity);
+      __$$_UpdateDeliveryGeoPointCopyWithImpl<_$_UpdateDeliveryGeoPoint>(
+          this, _$identity);
 }
 
 abstract class _UpdateDeliveryGeoPoint implements UpdateDeliveryGeoPoint {

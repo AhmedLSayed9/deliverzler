@@ -6,21 +6,25 @@ part of 'update_delivery_geo_point_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$updateDeliveryGeoPointStateHash() => r'175613a91e5b929a7376d930564462826f673e5f';
+String _$updateDeliveryGeoPointStateHash() =>
+    r'175613a91e5b929a7376d930564462826f673e5f';
 
 /// See also [updateDeliveryGeoPointState].
 @ProviderFor(updateDeliveryGeoPointState)
-final updateDeliveryGeoPointStateProvider = AutoDisposeFutureProvider<void>.internal(
+final updateDeliveryGeoPointStateProvider =
+    AutoDisposeFutureProvider<void>.internal(
   updateDeliveryGeoPointState,
   name: r'updateDeliveryGeoPointStateProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$updateDeliveryGeoPointStateHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateDeliveryGeoPointStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 typedef UpdateDeliveryGeoPointStateRef = AutoDisposeFutureProviderRef<void>;
-String _$updateDeliveryGeoPointHash() => r'4f01db6c2fc98d85dc92c5241c4491d21bd8d0ae';
+String _$updateDeliveryGeoPointHash() =>
+    r'4f01db6c2fc98d85dc92c5241c4491d21bd8d0ae';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -80,7 +84,8 @@ class UpdateDeliveryGeoPointFamily extends Family<AsyncValue<void>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'updateDeliveryGeoPointProvider';
@@ -99,16 +104,20 @@ class UpdateDeliveryGeoPointProvider extends AutoDisposeFutureProvider<void> {
           from: updateDeliveryGeoPointProvider,
           name: r'updateDeliveryGeoPointProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$updateDeliveryGeoPointHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$updateDeliveryGeoPointHash,
           dependencies: UpdateDeliveryGeoPointFamily._dependencies,
-          allTransitiveDependencies: UpdateDeliveryGeoPointFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              UpdateDeliveryGeoPointFamily._allTransitiveDependencies,
         );
 
   final UpdateDeliveryGeoPoint deliveryGeoPoint;
 
   @override
   bool operator ==(Object other) {
-    return other is UpdateDeliveryGeoPointProvider && other.deliveryGeoPoint == deliveryGeoPoint;
+    return other is UpdateDeliveryGeoPointProvider &&
+        other.deliveryGeoPoint == deliveryGeoPoint;
   }
 
   @override

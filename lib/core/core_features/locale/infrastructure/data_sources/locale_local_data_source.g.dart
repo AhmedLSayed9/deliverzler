@@ -6,15 +6,17 @@ part of 'locale_local_data_source.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$localeLocalDataSourceHash() => r'4f0bd71bf24999c3d9bd22f9246a6b3b9912cf1c';
+String _$localeLocalDataSourceHash() =>
+    r'4f0bd71bf24999c3d9bd22f9246a6b3b9912cf1c';
 
 /// See also [localeLocalDataSource].
 @ProviderFor(localeLocalDataSource)
 final localeLocalDataSourceProvider = Provider<LocaleLocalDataSource>.internal(
   localeLocalDataSource,
   name: r'localeLocalDataSourceProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$localeLocalDataSourceHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$localeLocalDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

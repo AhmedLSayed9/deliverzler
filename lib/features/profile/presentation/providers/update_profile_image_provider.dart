@@ -11,7 +11,7 @@ part 'update_profile_image_provider.g.dart';
 //Using [Option] to indicate idle(none)/success(some) states.
 //This is a shorthand. You can use custom states using [freezed] instead.
 @riverpod
-AsyncValue<Option<String>> updateProfileImageState(
+FutureOr<Option<String>> updateProfileImageState(
   UpdateProfileImageStateRef ref,
 ) {
   final sub = ref.listen(authStateProvider.notifier, (prev, next) {});
@@ -27,9 +27,9 @@ AsyncValue<Option<String>> updateProfileImageState(
 
   final event = ref.watch(updateProfileImageEventProvider);
   return event.match(
-    () => const AsyncData(None()),
+    None.new,
     (event) {
-      return ref.watch(updateProfileImageProvider(event)).whenData(Some.new);
+      return ref.watch(updateProfileImageProvider(event).future).then(Some.new);
     },
   );
 }

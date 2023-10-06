@@ -6,7 +6,7 @@ part of 'pick_profile_image_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pickProfileImageHash() => r'b2576e1b485906906b02b2d8b7182069b8a54571';
+String _$pickProfileImageHash() => r'd37506ef9ad3537be4016f02b4c5973f7f984545';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -66,7 +66,8 @@ class PickProfileImageFamily extends Family<AsyncValue<File>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'pickProfileImageProvider';
@@ -85,9 +86,12 @@ class PickProfileImageProvider extends AutoDisposeFutureProvider<File> {
           from: pickProfileImageProvider,
           name: r'pickProfileImageProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$pickProfileImageHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$pickProfileImageHash,
           dependencies: PickProfileImageFamily._dependencies,
-          allTransitiveDependencies: PickProfileImageFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              PickProfileImageFamily._allTransitiveDependencies,
         );
 
   final PickSource pickSource;
