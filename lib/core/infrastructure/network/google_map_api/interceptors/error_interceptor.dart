@@ -1,8 +1,10 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
-class _RejectError implements Exception {}
+@visibleForTesting
+class RejectError implements Exception {}
 
 class ErrorInterceptor extends Interceptor {
   //This is needed if your api use statusCode 200 for business errors.
@@ -11,12 +13,12 @@ class ErrorInterceptor extends Interceptor {
     final data = response.data as Map<dynamic, dynamic>;
 
     if (data['status'] != 'OK') {
-      final tError = DioError(
+      final error = DioError(
         response: response,
         requestOptions: response.requestOptions,
-        error: _RejectError(),
+        error: RejectError(),
       );
-      return handler.reject(tError, true);
+      return handler.reject(error, true);
     }
 
     return handler.next(response);
@@ -28,10 +30,23 @@ class ErrorInterceptor extends Interceptor {
     // `if (statusCode == 400 || err.error is _RejectError)`
     // Note: statusCode is 400 when thrown from backend, error is _RejectError when thrown from onResponse.
 
-    if (err.error is _RejectError) {
-      final data = err.response!.data as Map<dynamic, dynamic>;
+    if (err.error is RejectError) {
+      final response = err.response!;
+      final data = response.data as Map<dynamic, dynamic>;
       final error = data['status'];
-      final newErr = err.copyWith(error: error, type: DioErrorType.badResponse);
+      final newErr = err.copyWith(
+        response: Response(
+          statusCode: 400,
+          requestOptions: response.requestOptions,
+          statusMessage: response.statusMessage,
+          isRedirect: response.isRedirect,
+          redirects: response.redirects,
+          extra: response.extra,
+          headers: response.headers,
+        ),
+        error: error,
+        type: DioErrorType.badResponse,
+      );
       return handler.reject(newErr);
     }
 
