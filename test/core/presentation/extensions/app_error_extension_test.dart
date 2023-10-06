@@ -12,13 +12,30 @@ void main() {
     const tMessage = 'tMessage';
 
     testWidgets(
-      'should return same result of tr(context).unknownError '
-      'when AppException is CacheException',
+      'should return same error message '
+      'when AppException is CacheException and type is CacheExceptionType.general',
       (WidgetTester tester) async {
         // GIVEN
         final context = await setUpLocalizationsContext(tester);
         const AppException tException = CacheException(
           type: CacheExceptionType.general,
+          message: 'error',
+        );
+        // WHEN
+        final result = tException.errorMessage(context);
+        // THEN
+        expect(result, tException.message);
+      },
+    );
+
+    testWidgets(
+      'should return same result of tr(context).unknownError '
+      'when AppException is CacheException and type is CacheExceptionType.unknown',
+      (WidgetTester tester) async {
+        // GIVEN
+        final context = await setUpLocalizationsContext(tester);
+        const AppException tException = CacheException(
+          type: CacheExceptionType.unknown,
           message: 'error',
         );
         // WHEN

@@ -8,7 +8,19 @@ void main() {
     const tErrorMessage = 'tError';
 
     test(
-      'should return type CacheExceptionType.general with error.toString',
+      'should return same error if error is CacheException and type is CacheExceptionType.general',
+      () async {
+        // GIVEN
+        const tError = CacheException(type: CacheExceptionType.general, message: tErrorMessage);
+        // WHEN
+        final result = tError.localErrorToCacheException();
+        // THEN
+        expect(result, tError);
+      },
+    );
+
+    test(
+      'should return type CacheExceptionType.unknown with error.toString if error is random error',
       () async {
         // GIVEN
         final tError = Exception(tErrorMessage);
@@ -16,7 +28,7 @@ void main() {
         final result = tError.localErrorToCacheException();
         // THEN
         final expectedException = CacheException(
-          type: CacheExceptionType.general,
+          type: CacheExceptionType.unknown,
           message: tError.toString(),
         );
         expect(result.type, expectedException.type);

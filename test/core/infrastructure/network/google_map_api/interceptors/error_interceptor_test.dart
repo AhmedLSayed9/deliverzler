@@ -6,10 +6,13 @@ import 'package:deliverzler/core/infrastructure/network/google_map_api/intercept
 
 class MockResponseInterceptorHandler extends Mock implements ResponseInterceptorHandler {}
 
+class MockErrorInterceptorHandler extends Mock implements ErrorInterceptorHandler {}
+
 class MockDioError extends Mock implements DioError {}
 
 void main() {
   late MockResponseInterceptorHandler mockResponseInterceptorHandler;
+  late MockErrorInterceptorHandler mockErrorInterceptorHandler;
   late ErrorInterceptor errorInterceptor;
 
   setUpAll(() {
@@ -18,13 +21,15 @@ void main() {
 
   setUp(() {
     mockResponseInterceptorHandler = MockResponseInterceptorHandler();
+    mockErrorInterceptorHandler = MockErrorInterceptorHandler();
     errorInterceptor = ErrorInterceptor();
   });
 
   group('onResponse', () {
     test(
       "should call handler.reject if response.data['status'] != 'OK' "
-      'with proper DioError: [error message from backend / statusCode 400 / DioErrorType.badResponse]',
+      // `RejectError` will be handled at the onError callBack.
+      'with DioError: [same response, same response.requestOptions, RejectError]',
       () async {
         // GIVEN
         final tResponse = Response(
@@ -35,12 +40,21 @@ void main() {
         // WHEN
         errorInterceptor.onResponse(tResponse, mockResponseInterceptorHandler);
         // THEN
-        final captured = verify(() => mockResponseInterceptorHandler.reject(captureAny<DioError>()))
-            .captured
-            .single as DioError;
-        expect(captured.error, 'invalid');
-        expect(captured.response!.statusCode, 400);
-        expect(captured.type, DioErrorType.badResponse);
+        verify(
+          () => mockResponseInterceptorHandler.reject(
+            any(
+              that: isA<DioError>()
+                  .having((e) => e.response, 'response', equals(tResponse))
+                  .having(
+                    (e) => e.response?.requestOptions,
+                    'requestOptions',
+                    equals(tResponse.requestOptions),
+                  )
+                  .having((e) => e.error, 'error', isA<RejectError>()),
+            ),
+            true,
+          ),
+        ).called(1);
         verifyNoMoreInteractions(mockResponseInterceptorHandler);
       },
     );
@@ -63,33 +77,63 @@ void main() {
     );
   });
 
-  //This needed if your api throw custom statusCode for business errors..
-  /*
-    group('onError', () {
+  group('onError', () {
     const tErrorMessage = 'error_message_test';
-    const tErrorType = DioErrorType.response;
+    const resultStatusCode = 400;
+    const resultErrorType = DioErrorType.badResponse;
 
     test(
-      'should call handler.next if response.statusCode is not determined',
+      'should call handler.next if error is not RejectError',
       () async {
         // GIVEN
         final tError = DioError(
           response: Response(
-            requestOptions: RequestOptions(path: ''),
-            data: {'error_description': tErrorMessage},
+            requestOptions: RequestOptions(),
+            data: {'status': tErrorMessage},
             statusCode: 500,
           ),
-          requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.other,
+          requestOptions: RequestOptions(),
         );
         // WHEN
-        errorInterceptor.onError(tError, mockErrorInterceptorHandler);
+        await errorInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN
-        verify(()=>mockErrorInterceptorHandler.next(tError)).called(1);
+        verify(() => mockErrorInterceptorHandler.next(tError)).called(1);
         verifyNoMoreInteractions(mockErrorInterceptorHandler);
       },
     );
 
+    test(
+      'should call handler.reject if the error is RejectError '
+      'with proper DioError: [error message from backend / statusCode 400 / DioErrorType.badResponse]',
+      () async {
+        // GIVEN
+        final tError = DioError(
+          response: Response(
+            requestOptions: RequestOptions(),
+            data: {'status': tErrorMessage},
+            statusCode: 500,
+          ),
+          requestOptions: RequestOptions(),
+          error: RejectError(),
+        );
+        // WHEN
+        await errorInterceptor.onError(tError, mockErrorInterceptorHandler);
+        // THEN
+        verify(
+          () => mockErrorInterceptorHandler.reject(
+            any(
+              that: isA<DioError>()
+                  .having((e) => e.response?.statusCode, 'statusCode', equals(resultStatusCode))
+                  .having((e) => e.error, 'error', equals(tErrorMessage))
+                  .having((e) => e.type, 'type', equals(resultErrorType)),
+            ),
+          ),
+        ).called(1);
+        verifyNoMoreInteractions(mockErrorInterceptorHandler);
+      },
+    );
+
+    /*
     test(
       'should override DioError message with error message from backend '
       'and override DioError type with DioErrorType.response '
@@ -130,7 +174,7 @@ void main() {
         // WHEN
         errorInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN
-        verify(()=>mockErrorInterceptorHandler.reject(tError)).called(1);
+        verify(() => mockErrorInterceptorHandler.reject(tError)).called(1);
         verifyNoMoreInteractions(mockErrorInterceptorHandler);
       },
     );
@@ -175,9 +219,9 @@ void main() {
         // WHEN
         errorInterceptor.onError(tError, mockErrorInterceptorHandler);
         // THEN
-        verify(()=>mockErrorInterceptorHandler.reject(tError)).called(1);
+        verify(() => mockErrorInterceptorHandler.reject(tError)).called(1);
         verifyNoMoreInteractions(mockErrorInterceptorHandler);
       },
-    );
-  });*/
+    ); */
+  });
 }
