@@ -9,8 +9,7 @@ extension AppErrorExtension on Object {
     if (error is AppException) {
       return error.map(
         serverException: (ex) => ex.serverErrorMessage(context),
-        // TODO(Ahmed): handle other cache exception error messages
-        cacheException: (ex) => tr(context).unknownError,
+        cacheException: (ex) => ex.cacheErrorMessage(context),
       );
     }
     return tr(context).unknownError;
@@ -34,6 +33,15 @@ extension _ServerErrorExtension on ServerException {
       ServerExceptionType.authUserNotFound => tr(context).authUserNotFoundError,
       ServerExceptionType.authUserDisabled => tr(context).authUserDisabledError,
       ServerExceptionType.unknown => tr(context).unknownError,
+    };
+  }
+}
+
+extension _CacheErrorExtension on CacheException {
+  String cacheErrorMessage(BuildContext context) {
+    return switch (type) {
+      CacheExceptionType.general => message,
+      _ => tr(context).unknownError,
     };
   }
 }
