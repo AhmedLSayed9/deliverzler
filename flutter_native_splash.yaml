@@ -5,15 +5,13 @@ flutter_native_splash:
   # size of the app. Only one parameter can be used, color and background_image cannot both be set.
   color: "#FAFAFA"
   color_dark: "#303030"
-  #background_image: assets/native_splash/background.png
-  #background_image_dark: assets/native_splash/background_dark.png
+  # background_image: assets/native_splash/background.png
+  # background_image_dark: assets/native_splash/background_dark.png
 
   # The image parameter allows you to specify an image used in the splash screen.
   # It must be a png file and should be sized for 4x pixel density.
   # image: assets/native_splash/splash_icon.png
   # image_dark: assets/native_splash/splash_icon_dark.png
-  # image: assets/native_splash/android12_transparent_splash_icon.png
-  # image_dark: assets/native_splash/android12_transparent_splash_icon.png
 
   # Android 12 handles the splash screen differently than previous versions.
   # The image parameter sets the splash screen icon image.

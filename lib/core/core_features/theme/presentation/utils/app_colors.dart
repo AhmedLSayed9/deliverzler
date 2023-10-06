@@ -8,7 +8,6 @@ part 'app_colors_dark.dart';
 abstract class AppColors {
   ///Main
   // The background color for major parts of the app (toolbars, tab bars, etc)
-  //Color get primaryColor;
   Color get primaryColor;
 
   // The color displayed most frequently across your app’s screens and components.
