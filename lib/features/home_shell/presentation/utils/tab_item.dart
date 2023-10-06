@@ -8,9 +8,9 @@ enum TabItem {
   home,
   profile,
   settings;
-}
 
-extension TabItemExtension on TabItem {
+  const TabItem();
+
   Widget getTabItemIcon(BuildContext context) {
     return _getTabIcon(context, _getTabIconData(context));
   }

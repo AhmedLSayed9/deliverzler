@@ -8,9 +8,9 @@ import 'app_colors.dart';
 enum AppThemeMode {
   light,
   dark;
-}
 
-extension AppThemeModeX on AppThemeMode {
+  const AppThemeMode();
+
   ThemeData getThemeData(String fontFamily, {required bool supportsEdgeToEdge}) {
     return AppTheme(themeMode: this, supportsEdgeToEdge: supportsEdgeToEdge)
         .getThemeData(fontFamily);

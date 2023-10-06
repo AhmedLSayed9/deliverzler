@@ -5,10 +5,10 @@ import '../../../../core/presentation/helpers/localization_helper.dart';
 enum LocationError {
   notEnabledLocation,
   notGrantedLocationPermission,
-  getLocationTimeout,
-}
+  getLocationTimeout;
 
-extension LocationErrorExtension on LocationError {
+  const LocationError();
+
   String getErrorText(BuildContext context) {
     return switch (this) {
       LocationError.notEnabledLocation => tr(context).please_enable_location_service,

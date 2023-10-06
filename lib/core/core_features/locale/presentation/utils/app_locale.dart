@@ -13,9 +13,7 @@ enum AppLocale {
   final String code;
   final String flag;
   final String fontFamily;
-}
 
-extension LanguageExtension on AppLocale {
   String getLanguageName(BuildContext context) {
     return switch (this) {
       AppLocale.arabic => tr(context).arabic,
