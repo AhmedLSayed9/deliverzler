@@ -2,39 +2,39 @@
 
 import 'package:dio/dio.dart';
 
+class _RejectError implements Exception {}
+
 class ErrorInterceptor extends Interceptor {
-  //This needed if your api use statusCode 200 for business errors..
-  //If has error, we reject with proper DioError: [error message from backend / statusCode 400 / DioErrorType.response]
+  //This is needed if your api use statusCode 200 for business errors.
   @override
   void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
-    if (response.data?['status'] != 'OK') {
+    final data = response.data as Map<dynamic, dynamic>;
+
+    if (data['status'] != 'OK') {
       final tError = DioError(
-        error: response.data?['status'],
-        response: Response(
-          requestOptions: RequestOptions(path: response.requestOptions.path),
-          statusCode: 400,
-        ),
-        requestOptions: RequestOptions(path: response.requestOptions.path),
-        type: DioErrorType.badResponse,
+        response: response,
+        requestOptions: response.requestOptions,
+        error: _RejectError(),
       );
-      return handler.reject(tError);
+      return handler.reject(tError, true);
     }
+
     return handler.next(response);
   }
 
-//This needed if your api throw custom statusCode for business errors..
-//We override DioError message with error message from backend and DioError type with DioErrorType.response
-/*
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) async {
-    final statusCode = err.response?.statusCode;
+  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
+    // If your api throws custom statusCode i.e 400 for business errors, you can do:
+    // `if (statusCode == 400 || err.error is _RejectError)`
+    // Note: statusCode is 400 when thrown from backend, error is _RejectError when thrown from onResponse.
 
-    if (statusCode == 400 || statusCode == 424) {
-      err.error = err.response!.data['error_description'];
-      err.type = DioErrorType.response;
-      return handler.reject(err);
+    if (err.error is _RejectError) {
+      final data = err.response!.data as Map<dynamic, dynamic>;
+      final error = data['status'];
+      final newErr = err.copyWith(error: error, type: DioErrorType.badResponse);
+      return handler.reject(newErr);
     }
 
     return handler.next(err);
-  }*/
+  }
 }
