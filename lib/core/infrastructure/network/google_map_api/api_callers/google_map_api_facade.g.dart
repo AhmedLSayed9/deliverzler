@@ -6,17 +6,15 @@ part of 'google_map_api_facade.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$googleMapApiFacadeHash() =>
-    r'5a6177a2b9fac9269749bdeff56b4c117394e64c';
+String _$googleMapApiFacadeHash() => r'5a6177a2b9fac9269749bdeff56b4c117394e64c';
 
 /// See also [googleMapApiFacade].
 @ProviderFor(googleMapApiFacade)
 final googleMapApiFacadeProvider = Provider<GoogleMapApiFacade>.internal(
   googleMapApiFacade,
   name: r'googleMapApiFacadeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$googleMapApiFacadeHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$googleMapApiFacadeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

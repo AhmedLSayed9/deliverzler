@@ -13,9 +13,8 @@ String _$currentAppLocaleHash() => r'96b379da34a6e1ef7c61ee8b3d283b372813aa12';
 final currentAppLocaleProvider = Provider<AppLocale>.internal(
   currentAppLocale,
   name: r'currentAppLocaleProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$currentAppLocaleHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$currentAppLocaleHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

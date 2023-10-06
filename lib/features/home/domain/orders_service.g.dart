@@ -13,9 +13,8 @@ String _$ordersServiceHash() => r'cf8541ec75001ccd2ffe74eb4c27cab186880038';
 final ordersServiceProvider = Provider<OrdersService>.internal(
   ordersService,
   name: r'ordersServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$ordersServiceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ordersServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

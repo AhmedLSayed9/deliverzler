@@ -31,17 +31,11 @@ abstract class $AddressCopyWith<$Res> {
   factory $AddressCopyWith(Address value, $Res Function(Address) then) =
       _$AddressCopyWithImpl<$Res, Address>;
   @useResult
-  $Res call(
-      {String state,
-      String city,
-      String street,
-      String mobile,
-      GeoPoint? geoPoint});
+  $Res call({String state, String city, String street, String mobile, GeoPoint? geoPoint});
 }
 
 /// @nodoc
-class _$AddressCopyWithImpl<$Res, $Val extends Address>
-    implements $AddressCopyWith<$Res> {
+class _$AddressCopyWithImpl<$Res, $Val extends Address> implements $AddressCopyWith<$Res> {
   _$AddressCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -85,22 +79,15 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
 
 /// @nodoc
 abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
-  factory _$$_AddressCopyWith(
-          _$_Address value, $Res Function(_$_Address) then) =
+  factory _$$_AddressCopyWith(_$_Address value, $Res Function(_$_Address) then) =
       __$$_AddressCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String state,
-      String city,
-      String street,
-      String mobile,
-      GeoPoint? geoPoint});
+  $Res call({String state, String city, String street, String mobile, GeoPoint? geoPoint});
 }
 
 /// @nodoc
-class __$$_AddressCopyWithImpl<$Res>
-    extends _$AddressCopyWithImpl<$Res, _$_Address>
+class __$$_AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res, _$_Address>
     implements _$$_AddressCopyWith<$Res> {
   __$$_AddressCopyWithImpl(_$_Address _value, $Res Function(_$_Address) _then)
       : super(_value, _then);
@@ -174,13 +161,11 @@ class _$_Address implements _Address {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.street, street) || other.street == street) &&
             (identical(other.mobile, mobile) || other.mobile == mobile) &&
-            (identical(other.geoPoint, geoPoint) ||
-                other.geoPoint == geoPoint));
+            (identical(other.geoPoint, geoPoint) || other.geoPoint == geoPoint));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, state, city, street, mobile, geoPoint);
+  int get hashCode => Object.hash(runtimeType, state, city, street, mobile, geoPoint);
 
   @JsonKey(ignore: true)
   @override
@@ -209,6 +194,5 @@ abstract class _Address implements Address {
   GeoPoint? get geoPoint;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressCopyWith<_$_Address> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AddressCopyWith<_$_Address> get copyWith => throw _privateConstructorUsedError;
 }

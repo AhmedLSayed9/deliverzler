@@ -6,17 +6,15 @@ part of 'is_arrived_target_location_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$isArrivedTargetLocationHash() =>
-    r'a333e2851e9430805ac3db98881372763d70036b';
+String _$isArrivedTargetLocationHash() => r'a333e2851e9430805ac3db98881372763d70036b';
 
 /// See also [isArrivedTargetLocation].
 @ProviderFor(isArrivedTargetLocation)
 final isArrivedTargetLocationProvider = AutoDisposeProvider<bool>.internal(
   isArrivedTargetLocation,
   name: r'isArrivedTargetLocationProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$isArrivedTargetLocationHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$isArrivedTargetLocationHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

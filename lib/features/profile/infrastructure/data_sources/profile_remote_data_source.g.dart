@@ -6,18 +6,15 @@ part of 'profile_remote_data_source.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileRemoteDataSourceHash() =>
-    r'be24aee6b7e545f989f0f3cd0f9ac175f86e8e07';
+String _$profileRemoteDataSourceHash() => r'be24aee6b7e545f989f0f3cd0f9ac175f86e8e07';
 
 /// See also [profileRemoteDataSource].
 @ProviderFor(profileRemoteDataSource)
-final profileRemoteDataSourceProvider =
-    Provider<ProfileRemoteDataSource>.internal(
+final profileRemoteDataSourceProvider = Provider<ProfileRemoteDataSource>.internal(
   profileRemoteDataSource,
   name: r'profileRemoteDataSourceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$profileRemoteDataSourceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$profileRemoteDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

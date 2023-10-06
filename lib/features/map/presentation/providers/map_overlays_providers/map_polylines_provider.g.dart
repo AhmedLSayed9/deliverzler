@@ -10,8 +10,7 @@ String _$mapPolylinesHash() => r'58e63a64c0b4abdd1a0fc63d5e38d7d93558d677';
 
 /// See also [MapPolylines].
 @ProviderFor(MapPolylines)
-final mapPolylinesProvider =
-    AutoDisposeNotifierProvider<MapPolylines, Set<Polyline>>.internal(
+final mapPolylinesProvider = AutoDisposeNotifierProvider<MapPolylines, Set<Polyline>>.internal(
   MapPolylines.new,
   name: r'mapPolylinesProvider',
   debugGetCreateSourceHash:

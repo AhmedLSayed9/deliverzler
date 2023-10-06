@@ -24,19 +24,15 @@ mixin _$PlaceDetailsDto {
   GeoPoint get geoPoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlaceDetailsDtoCopyWith<PlaceDetailsDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PlaceDetailsDtoCopyWith<PlaceDetailsDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PlaceDetailsDtoCopyWith<$Res> {
-  factory $PlaceDetailsDtoCopyWith(
-          PlaceDetailsDto value, $Res Function(PlaceDetailsDto) then) =
+  factory $PlaceDetailsDtoCopyWith(PlaceDetailsDto value, $Res Function(PlaceDetailsDto) then) =
       _$PlaceDetailsDtoCopyWithImpl<$Res, PlaceDetailsDto>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint)
-          GeoPoint geoPoint});
+  $Res call({@JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint) GeoPoint geoPoint});
 }
 
 /// @nodoc
@@ -64,16 +60,13 @@ class _$PlaceDetailsDtoCopyWithImpl<$Res, $Val extends PlaceDetailsDto>
 }
 
 /// @nodoc
-abstract class _$$_PlaceDetailsDtoCopyWith<$Res>
-    implements $PlaceDetailsDtoCopyWith<$Res> {
+abstract class _$$_PlaceDetailsDtoCopyWith<$Res> implements $PlaceDetailsDtoCopyWith<$Res> {
   factory _$$_PlaceDetailsDtoCopyWith(
           _$_PlaceDetailsDto value, $Res Function(_$_PlaceDetailsDto) then) =
       __$$_PlaceDetailsDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint)
-          GeoPoint geoPoint});
+  $Res call({@JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint) GeoPoint geoPoint});
 }
 
 /// @nodoc
@@ -102,8 +95,7 @@ class __$$_PlaceDetailsDtoCopyWithImpl<$Res>
 @JsonSerializable(createToJson: false)
 class _$_PlaceDetailsDto extends _PlaceDetailsDto {
   const _$_PlaceDetailsDto(
-      {@JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint)
-          required this.geoPoint})
+      {@JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint) required this.geoPoint})
       : super._();
 
   factory _$_PlaceDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -123,8 +115,7 @@ class _$_PlaceDetailsDto extends _PlaceDetailsDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlaceDetailsDto &&
-            (identical(other.geoPoint, geoPoint) ||
-                other.geoPoint == geoPoint));
+            (identical(other.geoPoint, geoPoint) || other.geoPoint == geoPoint));
   }
 
   @JsonKey(ignore: true)
@@ -141,11 +132,10 @@ class _$_PlaceDetailsDto extends _PlaceDetailsDto {
 abstract class _PlaceDetailsDto extends PlaceDetailsDto {
   const factory _PlaceDetailsDto(
       {@JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint)
-          required final GeoPoint geoPoint}) = _$_PlaceDetailsDto;
+      required final GeoPoint geoPoint}) = _$_PlaceDetailsDto;
   const _PlaceDetailsDto._() : super._();
 
-  factory _PlaceDetailsDto.fromJson(Map<String, dynamic> json) =
-      _$_PlaceDetailsDto.fromJson;
+  factory _PlaceDetailsDto.fromJson(Map<String, dynamic> json) = _$_PlaceDetailsDto.fromJson;
 
   @override
   @JsonKey(name: 'geometry', fromJson: _fromJsonGeoPoint)

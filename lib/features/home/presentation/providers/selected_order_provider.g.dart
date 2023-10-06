@@ -13,9 +13,8 @@ String _$selectedOrderHash() => r'a75b94de387df0cb77074c1b82f554ba14555235';
 final selectedOrderProvider = AutoDisposeProvider<Option<AppOrder>>.internal(
   selectedOrder,
   name: r'selectedOrderProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedOrderHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$selectedOrderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -29,9 +28,8 @@ final selectedOrderIdProvider =
     AutoDisposeNotifierProvider<SelectedOrderId, Option<String>>.internal(
   SelectedOrderId.new,
   name: r'selectedOrderIdProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedOrderIdHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$selectedOrderIdHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

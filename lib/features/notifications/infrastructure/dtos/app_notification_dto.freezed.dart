@@ -36,8 +36,7 @@ abstract class $AppNotificationDtoCopyWith<$Res> {
           AppNotificationDto value, $Res Function(AppNotificationDto) then) =
       _$AppNotificationDtoCopyWithImpl<$Res, AppNotificationDto>;
   @useResult
-  $Res call(
-      {String tabName, String? routeLocation, Map<String, dynamic>? data});
+  $Res call({String tabName, String? routeLocation, Map<String, dynamic>? data});
 }
 
 /// @nodoc
@@ -75,15 +74,13 @@ class _$AppNotificationDtoCopyWithImpl<$Res, $Val extends AppNotificationDto>
 }
 
 /// @nodoc
-abstract class _$$_AppNotificationDtoCopyWith<$Res>
-    implements $AppNotificationDtoCopyWith<$Res> {
-  factory _$$_AppNotificationDtoCopyWith(_$_AppNotificationDto value,
-          $Res Function(_$_AppNotificationDto) then) =
+abstract class _$$_AppNotificationDtoCopyWith<$Res> implements $AppNotificationDtoCopyWith<$Res> {
+  factory _$$_AppNotificationDtoCopyWith(
+          _$_AppNotificationDto value, $Res Function(_$_AppNotificationDto) then) =
       __$$_AppNotificationDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String tabName, String? routeLocation, Map<String, dynamic>? data});
+  $Res call({String tabName, String? routeLocation, Map<String, dynamic>? data});
 }
 
 /// @nodoc
@@ -163,15 +160,14 @@ class _$_AppNotificationDto extends _AppNotificationDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, tabName, routeLocation,
-      const DeepCollectionEquality().hash(_data));
+  int get hashCode =>
+      Object.hash(runtimeType, tabName, routeLocation, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_AppNotificationDtoCopyWith<_$_AppNotificationDto> get copyWith =>
-      __$$_AppNotificationDtoCopyWithImpl<_$_AppNotificationDto>(
-          this, _$identity);
+      __$$_AppNotificationDtoCopyWithImpl<_$_AppNotificationDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -188,8 +184,7 @@ abstract class _AppNotificationDto extends AppNotificationDto {
       required final Map<String, dynamic>? data}) = _$_AppNotificationDto;
   const _AppNotificationDto._() : super._();
 
-  factory _AppNotificationDto.fromJson(Map<String, dynamic> json) =
-      _$_AppNotificationDto.fromJson;
+  factory _AppNotificationDto.fromJson(Map<String, dynamic> json) = _$_AppNotificationDto.fromJson;
 
   @override
   String get tabName;

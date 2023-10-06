@@ -6,8 +6,7 @@ part of 'show_local_notification_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$showLocalNotificationHash() =>
-    r'73cb1003341bb598c31cba9161b0af7c26c597c5';
+String _$showLocalNotificationHash() => r'73cb1003341bb598c31cba9161b0af7c26c597c5';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -67,8 +66,7 @@ class ShowLocalNotificationFamily extends Family<AsyncValue<void>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'showLocalNotificationProvider';
@@ -87,12 +85,9 @@ class ShowLocalNotificationProvider extends AutoDisposeFutureProvider<void> {
           from: showLocalNotificationProvider,
           name: r'showLocalNotificationProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$showLocalNotificationHash,
+              const bool.fromEnvironment('dart.vm.product') ? null : _$showLocalNotificationHash,
           dependencies: ShowLocalNotificationFamily._dependencies,
-          allTransitiveDependencies:
-              ShowLocalNotificationFamily._allTransitiveDependencies,
+          allTransitiveDependencies: ShowLocalNotificationFamily._allTransitiveDependencies,
         );
 
   final ShowLocalNotificationParams params;

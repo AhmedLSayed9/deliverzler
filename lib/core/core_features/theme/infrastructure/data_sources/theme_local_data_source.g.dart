@@ -6,17 +6,15 @@ part of 'theme_local_data_source.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$themeLocalDataSourceHash() =>
-    r'012b1adde3f006dd383b28df2a5da4054455e984';
+String _$themeLocalDataSourceHash() => r'012b1adde3f006dd383b28df2a5da4054455e984';
 
 /// See also [themeLocalDataSource].
 @ProviderFor(themeLocalDataSource)
 final themeLocalDataSourceProvider = Provider<ThemeLocalDataSource>.internal(
   themeLocalDataSource,
   name: r'themeLocalDataSourceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$themeLocalDataSourceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$themeLocalDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

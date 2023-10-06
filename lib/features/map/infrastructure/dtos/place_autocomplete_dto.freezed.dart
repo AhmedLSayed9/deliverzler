@@ -36,8 +36,8 @@ mixin _$PlaceAutocompleteDto {
 
 /// @nodoc
 abstract class $PlaceAutocompleteDtoCopyWith<$Res> {
-  factory $PlaceAutocompleteDtoCopyWith(PlaceAutocompleteDto value,
-          $Res Function(PlaceAutocompleteDto) then) =
+  factory $PlaceAutocompleteDtoCopyWith(
+          PlaceAutocompleteDto value, $Res Function(PlaceAutocompleteDto) then) =
       _$PlaceAutocompleteDtoCopyWithImpl<$Res, PlaceAutocompleteDto>;
   @useResult
   $Res call(
@@ -48,8 +48,7 @@ abstract class $PlaceAutocompleteDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlaceAutocompleteDtoCopyWithImpl<$Res,
-        $Val extends PlaceAutocompleteDto>
+class _$PlaceAutocompleteDtoCopyWithImpl<$Res, $Val extends PlaceAutocompleteDto>
     implements $PlaceAutocompleteDtoCopyWith<$Res> {
   _$PlaceAutocompleteDtoCopyWithImpl(this._value, this._then);
 
@@ -90,8 +89,8 @@ class _$PlaceAutocompleteDtoCopyWithImpl<$Res,
 /// @nodoc
 abstract class _$$_PlaceAutocompleteDtoCopyWith<$Res>
     implements $PlaceAutocompleteDtoCopyWith<$Res> {
-  factory _$$_PlaceAutocompleteDtoCopyWith(_$_PlaceAutocompleteDto value,
-          $Res Function(_$_PlaceAutocompleteDto) then) =
+  factory _$$_PlaceAutocompleteDtoCopyWith(
+          _$_PlaceAutocompleteDto value, $Res Function(_$_PlaceAutocompleteDto) then) =
       __$$_PlaceAutocompleteDtoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -106,8 +105,8 @@ abstract class _$$_PlaceAutocompleteDtoCopyWith<$Res>
 class __$$_PlaceAutocompleteDtoCopyWithImpl<$Res>
     extends _$PlaceAutocompleteDtoCopyWithImpl<$Res, _$_PlaceAutocompleteDto>
     implements _$$_PlaceAutocompleteDtoCopyWith<$Res> {
-  __$$_PlaceAutocompleteDtoCopyWithImpl(_$_PlaceAutocompleteDto _value,
-      $Res Function(_$_PlaceAutocompleteDto) _then)
+  __$$_PlaceAutocompleteDtoCopyWithImpl(
+      _$_PlaceAutocompleteDto _value, $Res Function(_$_PlaceAutocompleteDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -176,37 +175,30 @@ class _$_PlaceAutocompleteDto extends _PlaceAutocompleteDto {
         (other.runtimeType == runtimeType &&
             other is _$_PlaceAutocompleteDto &&
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.mainText, mainText) ||
-                other.mainText == mainText) &&
+            (identical(other.description, description) || other.description == description) &&
+            (identical(other.mainText, mainText) || other.mainText == mainText) &&
             (identical(other.secondaryText, secondaryText) ||
                 other.secondaryText == secondaryText));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, placeId, description, mainText, secondaryText);
+  int get hashCode => Object.hash(runtimeType, placeId, description, mainText, secondaryText);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_PlaceAutocompleteDtoCopyWith<_$_PlaceAutocompleteDto> get copyWith =>
-      __$$_PlaceAutocompleteDtoCopyWithImpl<_$_PlaceAutocompleteDto>(
-          this, _$identity);
+      __$$_PlaceAutocompleteDtoCopyWithImpl<_$_PlaceAutocompleteDto>(this, _$identity);
 }
 
 abstract class _PlaceAutocompleteDto extends PlaceAutocompleteDto {
   const factory _PlaceAutocompleteDto(
-      {@JsonKey(name: 'place_id')
-          required final String placeId,
-      @JsonKey(name: 'description')
-          required final String description,
-      @JsonKey(readValue: _readMainText)
-          required final String mainText,
-      @JsonKey(readValue: _readSecondaryText)
-          required final String secondaryText}) = _$_PlaceAutocompleteDto;
+          {@JsonKey(name: 'place_id') required final String placeId,
+          @JsonKey(name: 'description') required final String description,
+          @JsonKey(readValue: _readMainText) required final String mainText,
+          @JsonKey(readValue: _readSecondaryText) required final String secondaryText}) =
+      _$_PlaceAutocompleteDto;
   const _PlaceAutocompleteDto._() : super._();
 
   factory _PlaceAutocompleteDto.fromJson(Map<String, dynamic> json) =

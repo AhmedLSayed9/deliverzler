@@ -13,9 +13,8 @@ String _$profileServiceHash() => r'93fab75483abe734dd2d0dbd352d55ff7627dcb9';
 final profileServiceProvider = Provider<ProfileService>.internal(
   profileService,
   name: r'profileServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$profileServiceHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$profileServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

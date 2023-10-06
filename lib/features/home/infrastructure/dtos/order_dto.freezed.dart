@@ -39,8 +39,7 @@ mixin _$OrderDto {
   String? get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $OrderDtoCopyWith<OrderDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $OrderDtoCopyWith<OrderDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -68,8 +67,7 @@ abstract class $OrderDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderDtoCopyWithImpl<$Res, $Val extends OrderDto>
-    implements $OrderDtoCopyWith<$Res> {
+class _$OrderDtoCopyWithImpl<$Res, $Val extends OrderDto> implements $OrderDtoCopyWith<$Res> {
   _$OrderDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -170,8 +168,7 @@ class _$OrderDtoCopyWithImpl<$Res, $Val extends OrderDto>
 
 /// @nodoc
 abstract class _$$_OrderDtoCopyWith<$Res> implements $OrderDtoCopyWith<$Res> {
-  factory _$$_OrderDtoCopyWith(
-          _$_OrderDto value, $Res Function(_$_OrderDto) then) =
+  factory _$$_OrderDtoCopyWith(_$_OrderDto value, $Res Function(_$_OrderDto) then) =
       __$$_OrderDtoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -196,11 +193,9 @@ abstract class _$$_OrderDtoCopyWith<$Res> implements $OrderDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_OrderDtoCopyWithImpl<$Res>
-    extends _$OrderDtoCopyWithImpl<$Res, _$_OrderDto>
+class __$$_OrderDtoCopyWithImpl<$Res> extends _$OrderDtoCopyWithImpl<$Res, _$_OrderDto>
     implements _$$_OrderDtoCopyWith<$Res> {
-  __$$_OrderDtoCopyWithImpl(
-      _$_OrderDto _value, $Res Function(_$_OrderDto) _then)
+  __$$_OrderDtoCopyWithImpl(_$_OrderDto _value, $Res Function(_$_OrderDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -302,8 +297,7 @@ class _$_OrderDto extends _OrderDto {
       @JsonKey(includeToJson: false) this.id})
       : super._();
 
-  factory _$_OrderDto.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderDtoFromJson(json);
+  factory _$_OrderDto.fromJson(Map<String, dynamic> json) => _$$_OrderDtoFromJson(json);
 
   @override
   final int date;
@@ -348,26 +342,20 @@ class _$_OrderDto extends _OrderDto {
         (other.runtimeType == runtimeType &&
             other is _$_OrderDto &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.pickupOption, pickupOption) ||
-                other.pickupOption == pickupOption) &&
+            (identical(other.pickupOption, pickupOption) || other.pickupOption == pickupOption) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
-            (identical(other.userImage, userImage) ||
-                other.userImage == userImage) &&
-            (identical(other.userPhone, userPhone) ||
-                other.userPhone == userPhone) &&
-            (identical(other.userNote, userNote) ||
-                other.userNote == userNote) &&
+            (identical(other.userName, userName) || other.userName == userName) &&
+            (identical(other.userImage, userImage) || other.userImage == userImage) &&
+            (identical(other.userPhone, userPhone) || other.userPhone == userPhone) &&
+            (identical(other.userNote, userNote) || other.userNote == userNote) &&
             (identical(other.employeeCancelNote, employeeCancelNote) ||
                 other.employeeCancelNote == employeeCancelNote) &&
             (identical(other.deliveryStatus, deliveryStatus) ||
                 other.deliveryStatus == deliveryStatus) &&
-            (identical(other.deliveryId, deliveryId) ||
-                other.deliveryId == deliveryId) &&
+            (identical(other.deliveryId, deliveryId) || other.deliveryId == deliveryId) &&
             (identical(other.deliveryGeoPoint, deliveryGeoPoint) ||
                 other.deliveryGeoPoint == deliveryGeoPoint) &&
             (identical(other.id, id) || other.id == id));
@@ -452,8 +440,7 @@ abstract class _OrderDto extends OrderDto {
   String? get id;
   @override
   @JsonKey(ignore: true)
-  _$$_OrderDtoCopyWith<_$_OrderDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_OrderDtoCopyWith<_$_OrderDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 AddressDto _$AddressDtoFromJson(Map<String, dynamic> json) {
@@ -470,14 +457,12 @@ mixin _$AddressDto {
   GeoPoint? get geoPoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AddressDtoCopyWith<AddressDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AddressDtoCopyWith<AddressDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AddressDtoCopyWith<$Res> {
-  factory $AddressDtoCopyWith(
-          AddressDto value, $Res Function(AddressDto) then) =
+  factory $AddressDtoCopyWith(AddressDto value, $Res Function(AddressDto) then) =
       _$AddressDtoCopyWithImpl<$Res, AddressDto>;
   @useResult
   $Res call(
@@ -489,8 +474,7 @@ abstract class $AddressDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
-    implements $AddressDtoCopyWith<$Res> {
+class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto> implements $AddressDtoCopyWith<$Res> {
   _$AddressDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -533,10 +517,8 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
 }
 
 /// @nodoc
-abstract class _$$_AddressDtoCopyWith<$Res>
-    implements $AddressDtoCopyWith<$Res> {
-  factory _$$_AddressDtoCopyWith(
-          _$_AddressDto value, $Res Function(_$_AddressDto) then) =
+abstract class _$$_AddressDtoCopyWith<$Res> implements $AddressDtoCopyWith<$Res> {
+  factory _$$_AddressDtoCopyWith(_$_AddressDto value, $Res Function(_$_AddressDto) then) =
       __$$_AddressDtoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -549,11 +531,9 @@ abstract class _$$_AddressDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AddressDtoCopyWithImpl<$Res>
-    extends _$AddressDtoCopyWithImpl<$Res, _$_AddressDto>
+class __$$_AddressDtoCopyWithImpl<$Res> extends _$AddressDtoCopyWithImpl<$Res, _$_AddressDto>
     implements _$$_AddressDtoCopyWith<$Res> {
-  __$$_AddressDtoCopyWithImpl(
-      _$_AddressDto _value, $Res Function(_$_AddressDto) _then)
+  __$$_AddressDtoCopyWithImpl(_$_AddressDto _value, $Res Function(_$_AddressDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -601,8 +581,7 @@ class _$_AddressDto extends _AddressDto {
       @GeoPointConverter() required this.geoPoint})
       : super._();
 
-  factory _$_AddressDto.fromJson(Map<String, dynamic> json) =>
-      _$$_AddressDtoFromJson(json);
+  factory _$_AddressDto.fromJson(Map<String, dynamic> json) => _$$_AddressDtoFromJson(json);
 
   @override
   final String state;
@@ -630,14 +609,12 @@ class _$_AddressDto extends _AddressDto {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.street, street) || other.street == street) &&
             (identical(other.mobile, mobile) || other.mobile == mobile) &&
-            (identical(other.geoPoint, geoPoint) ||
-                other.geoPoint == geoPoint));
+            (identical(other.geoPoint, geoPoint) || other.geoPoint == geoPoint));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, state, city, street, mobile, geoPoint);
+  int get hashCode => Object.hash(runtimeType, state, city, street, mobile, geoPoint);
 
   @JsonKey(ignore: true)
   @override
@@ -655,8 +632,7 @@ abstract class _AddressDto extends AddressDto {
       @GeoPointConverter() required final GeoPoint? geoPoint}) = _$_AddressDto;
   const _AddressDto._() : super._();
 
-  factory _AddressDto.fromJson(Map<String, dynamic> json) =
-      _$_AddressDto.fromJson;
+  factory _AddressDto.fromJson(Map<String, dynamic> json) = _$_AddressDto.fromJson;
 
   @override
   String get state;
@@ -671,6 +647,5 @@ abstract class _AddressDto extends AddressDto {
   GeoPoint? get geoPoint;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressDtoCopyWith<_$_AddressDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AddressDtoCopyWith<_$_AddressDto> get copyWith => throw _privateConstructorUsedError;
 }

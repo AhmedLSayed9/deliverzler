@@ -6,8 +6,7 @@ part of 'update_delivery_status_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$$_UpdateDeliveryStatusDtoToJson(
-    _$_UpdateDeliveryStatusDto instance) {
+Map<String, dynamic> _$$_UpdateDeliveryStatusDtoToJson(_$_UpdateDeliveryStatusDto instance) {
   final val = <String, dynamic>{
     'deliveryStatus': _$DeliveryStatusEnumMap[instance.deliveryStatus]!,
   };

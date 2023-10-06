@@ -20,14 +20,12 @@ mixin _$ProfileDetails {
   String get phone => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ProfileDetailsCopyWith<ProfileDetails> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ProfileDetailsCopyWith<ProfileDetails> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ProfileDetailsCopyWith<$Res> {
-  factory $ProfileDetailsCopyWith(
-          ProfileDetails value, $Res Function(ProfileDetails) then) =
+  factory $ProfileDetailsCopyWith(ProfileDetails value, $Res Function(ProfileDetails) then) =
       _$ProfileDetailsCopyWithImpl<$Res, ProfileDetails>;
   @useResult
   $Res call({String name, String phone});
@@ -63,10 +61,9 @@ class _$ProfileDetailsCopyWithImpl<$Res, $Val extends ProfileDetails>
 }
 
 /// @nodoc
-abstract class _$$_UpdateProfileParamsCopyWith<$Res>
-    implements $ProfileDetailsCopyWith<$Res> {
-  factory _$$_UpdateProfileParamsCopyWith(_$_UpdateProfileParams value,
-          $Res Function(_$_UpdateProfileParams) then) =
+abstract class _$$_UpdateProfileParamsCopyWith<$Res> implements $ProfileDetailsCopyWith<$Res> {
+  factory _$$_UpdateProfileParamsCopyWith(
+          _$_UpdateProfileParams value, $Res Function(_$_UpdateProfileParams) then) =
       __$$_UpdateProfileParamsCopyWithImpl<$Res>;
   @override
   @useResult
@@ -77,8 +74,8 @@ abstract class _$$_UpdateProfileParamsCopyWith<$Res>
 class __$$_UpdateProfileParamsCopyWithImpl<$Res>
     extends _$ProfileDetailsCopyWithImpl<$Res, _$_UpdateProfileParams>
     implements _$$_UpdateProfileParamsCopyWith<$Res> {
-  __$$_UpdateProfileParamsCopyWithImpl(_$_UpdateProfileParams _value,
-      $Res Function(_$_UpdateProfileParams) _then)
+  __$$_UpdateProfileParamsCopyWithImpl(
+      _$_UpdateProfileParams _value, $Res Function(_$_UpdateProfileParams) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -131,14 +128,12 @@ class _$_UpdateProfileParams implements _UpdateProfileParams {
   @override
   @pragma('vm:prefer-inline')
   _$$_UpdateProfileParamsCopyWith<_$_UpdateProfileParams> get copyWith =>
-      __$$_UpdateProfileParamsCopyWithImpl<_$_UpdateProfileParams>(
-          this, _$identity);
+      __$$_UpdateProfileParamsCopyWithImpl<_$_UpdateProfileParams>(this, _$identity);
 }
 
 abstract class _UpdateProfileParams implements ProfileDetails {
-  const factory _UpdateProfileParams(
-      {required final String name,
-      required final String phone}) = _$_UpdateProfileParams;
+  const factory _UpdateProfileParams({required final String name, required final String phone}) =
+      _$_UpdateProfileParams;
 
   @override
   String get name;

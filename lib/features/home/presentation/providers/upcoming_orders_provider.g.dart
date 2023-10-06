@@ -10,13 +10,11 @@ String _$upcomingOrdersHash() => r'8b58d5e5fa96f108570f75bef58e1c5b3efda449';
 
 /// See also [upcomingOrders].
 @ProviderFor(upcomingOrders)
-final upcomingOrdersProvider =
-    AutoDisposeStreamProvider<List<AppOrder>>.internal(
+final upcomingOrdersProvider = AutoDisposeStreamProvider<List<AppOrder>>.internal(
   upcomingOrders,
   name: r'upcomingOrdersProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$upcomingOrdersHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$upcomingOrdersHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

@@ -6,18 +6,15 @@ part of 'my_location_camera_position_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$myLocationCameraPositionHash() =>
-    r'6f7dba71e6bfd69eab19d1d066b7fbda5efed032';
+String _$myLocationCameraPositionHash() => r'6f7dba71e6bfd69eab19d1d066b7fbda5efed032';
 
 /// See also [myLocationCameraPosition].
 @ProviderFor(myLocationCameraPosition)
-final myLocationCameraPositionProvider =
-    AutoDisposeProvider<CameraPosition>.internal(
+final myLocationCameraPositionProvider = AutoDisposeProvider<CameraPosition>.internal(
   myLocationCameraPosition,
   name: r'myLocationCameraPositionProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$myLocationCameraPositionHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$myLocationCameraPositionHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

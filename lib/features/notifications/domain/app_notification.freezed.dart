@@ -21,18 +21,15 @@ mixin _$AppNotification {
   Map<String, dynamic>? get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AppNotificationCopyWith<AppNotification> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AppNotificationCopyWith<AppNotification> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AppNotificationCopyWith<$Res> {
-  factory $AppNotificationCopyWith(
-          AppNotification value, $Res Function(AppNotification) then) =
+  factory $AppNotificationCopyWith(AppNotification value, $Res Function(AppNotification) then) =
       _$AppNotificationCopyWithImpl<$Res, AppNotification>;
   @useResult
-  $Res call(
-      {String tabName, String? routeLocation, Map<String, dynamic>? data});
+  $Res call({String tabName, String? routeLocation, Map<String, dynamic>? data});
 }
 
 /// @nodoc
@@ -70,15 +67,13 @@ class _$AppNotificationCopyWithImpl<$Res, $Val extends AppNotification>
 }
 
 /// @nodoc
-abstract class _$$_AppNotificationCopyWith<$Res>
-    implements $AppNotificationCopyWith<$Res> {
+abstract class _$$_AppNotificationCopyWith<$Res> implements $AppNotificationCopyWith<$Res> {
   factory _$$_AppNotificationCopyWith(
           _$_AppNotification value, $Res Function(_$_AppNotification) then) =
       __$$_AppNotificationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String tabName, String? routeLocation, Map<String, dynamic>? data});
+  $Res call({String tabName, String? routeLocation, Map<String, dynamic>? data});
 }
 
 /// @nodoc
@@ -153,8 +148,8 @@ class _$_AppNotification implements _AppNotification {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tabName, routeLocation,
-      const DeepCollectionEquality().hash(_data));
+  int get hashCode =>
+      Object.hash(runtimeType, tabName, routeLocation, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
