@@ -39,4 +39,11 @@ class AppLocaleController extends _$AppLocaleController {
     state = AsyncData(appLocale);
     await ref.read(localeRepoProvider).cacheAppLocale(appLocale.code);
   }
+
+  Future<void> reCacheLocale() async {
+    switch (state) {
+      case AsyncData(:final value):
+        await ref.read(localeRepoProvider).cacheAppLocale(value.code);
+    }
+  }
 }

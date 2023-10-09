@@ -74,7 +74,7 @@ class SharedPreferencesFacade {
     );
   }
 
-  Future<bool> clearKey({required String key}) async {
+  Future<bool> clearKey(String key) async {
     return _futureErrorHandler(
       () async {
         return sharedPrefs.remove(key);

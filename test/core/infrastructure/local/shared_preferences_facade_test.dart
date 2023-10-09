@@ -334,7 +334,7 @@ void main() {
         when(() => mockSharedPrefs.remove(tKey)).thenAnswer((_) async => tResponse);
 
         // WHEN
-        final result = await sharedPrefsFacade.clearKey(key: tKey);
+        final result = await sharedPrefsFacade.clearKey(tKey);
 
         // THEN
         verify(() => mockSharedPrefs.remove(tKey)).called(1);
@@ -351,7 +351,7 @@ void main() {
         when(() => mockSharedPrefs.remove(tKey)).thenThrow(tError);
 
         // WHEN
-        final call = sharedPrefsFacade.clearKey(key: tKey);
+        final call = sharedPrefsFacade.clearKey(tKey);
 
         // THEN
         await expectLater(

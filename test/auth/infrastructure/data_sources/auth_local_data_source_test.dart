@@ -131,9 +131,7 @@ void main() {
         () async {
           // GIVEN
           when(
-            () => mockSharedPrefs.clearKey(
-              key: any(named: 'key'),
-            ),
+            () => mockSharedPrefs.clearKey(any(named: 'key')),
           ).thenAnswer((_) async => true);
 
           final container = setUpSharedPrefsContainer();
@@ -145,9 +143,7 @@ void main() {
           // THEN
           verifyOnly(
             mockSharedPrefs,
-            () => mockSharedPrefs.clearKey(
-              key: AuthLocalDataSource.userDataKey,
-            ),
+            () => mockSharedPrefs.clearKey(AuthLocalDataSource.userDataKey),
           );
         },
       );

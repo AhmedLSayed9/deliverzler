@@ -20,4 +20,11 @@ class AppThemeController extends _$AppThemeController {
     state = AsyncData(appTheme);
     await ref.watch(themeRepoProvider).cacheAppThemeMode(appTheme.name);
   }
+
+  Future<void> reCacheTheme() async {
+    switch (state) {
+      case AsyncData(:final value):
+        await ref.read(themeRepoProvider).cacheAppThemeMode(value.name);
+    }
+  }
 }
