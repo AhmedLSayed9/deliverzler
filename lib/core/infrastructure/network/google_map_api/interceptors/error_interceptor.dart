@@ -37,6 +37,7 @@ class ErrorInterceptor extends Interceptor {
       final newErr = err.copyWith(
         response: Response(
           statusCode: 400,
+          data: data,
           requestOptions: response.requestOptions,
           statusMessage: response.statusMessage,
           isRedirect: response.isRedirect,
