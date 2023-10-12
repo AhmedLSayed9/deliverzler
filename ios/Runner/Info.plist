@@ -31,7 +31,7 @@
 		<key>NSCameraUsageDescription</key>
 		<string>This app requires access to the camera to update user profile image.</string>
 		<key>NSLocationAlwaysUsageDescription</key>
-		<string>This app needs access to location to determine Delivery's location..</string>
+		<string>This app needs access to location to determine Delivery's location.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This app needs access to location to determine Delivery's location.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
