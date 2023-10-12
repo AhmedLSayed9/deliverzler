@@ -28,7 +28,8 @@ class LocationService {
   }
 
   Future<bool> isWhileInUsePermissionGranted() async {
-    return await Geolocator.checkPermission() == LocationPermission.whileInUse;
+    final permission = await Geolocator.checkPermission();
+    return [LocationPermission.whileInUse, LocationPermission.always].any((p) => p == permission);
   }
 
   Future<bool> isAlwaysPermissionGranted() async {
