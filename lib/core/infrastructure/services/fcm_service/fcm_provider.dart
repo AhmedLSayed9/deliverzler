@@ -35,10 +35,8 @@ Future<AuthorizationStatus> _grantFCMPermission(
 ) async {
   // On iOS, macOS & web, before FCM payloads can be received on your device
   // you must first ask the user's permission.
-  // Android applications are not required to request permission.
-  final settings = await FirebaseMessaging.instance.requestPermission(
-    provisional: true,
-  );
+  // Older Androids are not required to request permission.
+  final settings = await FirebaseMessaging.instance.requestPermission();
   return settings.authorizationStatus;
 }
 
