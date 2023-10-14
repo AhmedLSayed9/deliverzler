@@ -39,6 +39,8 @@ class MapFloatingSearchBar extends HookConsumerWidget {
       onQueryChanged: (query) {
         if (query.isNotEmpty) {
           ref.read(placeAutocompleteQueryProvider.notifier).update((_) => Some(query));
+        } else {
+          ref.read(placeAutocompleteQueryProvider.notifier).update((_) => const None());
         }
       },
       actions: [
