@@ -29,9 +29,9 @@ class PlaceAutocompleteDto with _$PlaceAutocompleteDto {
   factory PlaceAutocompleteDto.fromJson(Map<String, dynamic> json) =>
       _$PlaceAutocompleteDtoFromJson(json);
 
-  static List<PlaceAutocompleteDto> parseListOfMap(List<Map<String, dynamic>> data) {
+  static List<PlaceAutocompleteDto> parseListOfMap(List<dynamic> data) {
     return List<PlaceAutocompleteDto>.from(
-      data.map(PlaceAutocompleteDto.fromJson),
+      data.map((p) => PlaceAutocompleteDto.fromJson(p as Map<String, dynamic>)),
     );
   }
 

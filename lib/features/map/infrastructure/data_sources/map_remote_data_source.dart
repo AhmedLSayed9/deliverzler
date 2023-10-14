@@ -47,9 +47,7 @@ class MapRemoteDataSource {
       ),
       cancelToken: cancelToken,
     );
-    return PlaceAutocompleteDto.parseListOfMap(
-      response.data!['predictions']! as List<Map<String, dynamic>>,
-    );
+    return PlaceAutocompleteDto.parseListOfMap(response.data!['predictions'] as List<dynamic>);
   }
 
   Future<PlaceDetailsDto> getPlaceDetails(
