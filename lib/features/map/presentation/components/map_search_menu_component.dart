@@ -5,6 +5,7 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import '../../../../core/presentation/styles/styles.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
+import '../../domain/place_autocomplete.dart';
 import '../providers/place_autocomplete_provider.dart';
 import '../providers/place_details_provider.dart';
 import '../widgets/map_search_menu_item.dart';
@@ -19,7 +20,10 @@ class MapSearchMenuComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final placeSearchList = ref.watch(placeAutocompleteStateProvider).valueOrNull ?? [];
+    final placeSearchList = switch (ref.watch(placeAutocompleteStateProvider)) {
+      AsyncData(:final value) => value,
+      _ => <PlaceAutocomplete>[],
+    };
 
     return placeSearchList.isNotEmpty
         ? Card(
