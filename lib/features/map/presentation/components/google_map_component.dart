@@ -12,18 +12,25 @@ import '../providers/map_overlays_providers/map_markers_providers.dart';
 import '../providers/map_overlays_providers/map_polylines_provider.dart';
 import '../providers/my_location_providers/my_location_camera_position_provider.dart';
 
-class GoogleMapComponent extends HookConsumerWidget {
+class GoogleMapComponent extends StatefulHookConsumerWidget {
   const GoogleMapComponent({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<GoogleMapComponent> createState() => _GoogleMapComponentState();
+}
+
+class _GoogleMapComponentState extends ConsumerState<GoogleMapComponent> {
+  late final sub = ref.listenManual(myLocationCameraPositionProvider, (prev, next) {});
+
+  @override
+  Widget build(BuildContext context) {
     ref.listen<GoogleMapController?>(
       mapControllerProvider,
       (previous, next) {},
     );
 
     return GoogleMap(
-      initialCameraPosition: ref.watch(myLocationCameraPositionProvider),
+      initialCameraPosition: sub.read(),
       markers: ref.watch(mapMarkersProvider),
       circles: ref.watch(mapCirclesProvider),
       polylines: ref.watch(mapPolylinesProvider),
