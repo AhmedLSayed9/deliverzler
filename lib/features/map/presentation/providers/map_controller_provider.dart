@@ -9,6 +9,7 @@ import '../../domain/place_directions.dart';
 import '../helpers/map_style_helper.dart';
 import '../utils/constants.dart';
 import 'my_location_providers/my_location_camera_position_provider.dart';
+import 'place_details_provider.dart';
 import 'target_location_providers/target_location_directions_provider.dart';
 
 part 'map_controller_provider.g.dart';
@@ -31,19 +32,27 @@ class MapController extends _$MapController {
         await state?.setMapStyle(await MapStyleHelper.getMapStyle(isDarkMode: isDark));
       },
     );
-    ref.listen<Option<PlaceDirections>>(
-      targetLocationDirectionsProvider,
-      (previous, next) {
-        if (next is Some<PlaceDirections>) {
-          state?.animateCamera(
-            CameraUpdate.newLatLngBounds(
-              next.value.bounds,
-              defaultBoundsPadding,
-            ),
-          );
-        }
-      },
-    );
+
+    final hasTargetPlace = ref.watch(currentPlaceDetailsProvider.select((value) => value.isSome()));
+    if (hasTargetPlace) {
+      ref.listen<Option<PlaceDirections>>(
+        targetLocationDirectionsProvider,
+        (previous, next) {
+          if (next is Some<PlaceDirections>) {
+            _animateToBounds(next.value.bounds);
+          }
+        },
+        fireImmediately: true,
+      );
+    } else {
+      ref.listen<CameraPosition>(
+        myLocationCameraPositionProvider,
+        (previous, next) {
+          centerFocus();
+        },
+        fireImmediately: true,
+      );
+    }
     return state;
   }
 
