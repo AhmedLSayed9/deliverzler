@@ -42,7 +42,6 @@ class MapController extends _$MapController {
             _animateToBounds(next.value.bounds);
           }
         },
-        fireImmediately: true,
       );
     } else {
       ref.listen<CameraPosition>(
@@ -50,7 +49,6 @@ class MapController extends _$MapController {
         (previous, next) {
           centerFocus();
         },
-        fireImmediately: true,
       );
     }
     return state;
