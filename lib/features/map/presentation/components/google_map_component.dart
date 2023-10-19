@@ -37,10 +37,10 @@ class _GoogleMapComponentState extends ConsumerState<GoogleMapComponent> {
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
       onMapCreated: (controller) async {
+        ref.read(currentMapControllerProvider.notifier).update((_) => controller);
         final isDark = ref.read(currentAppThemeModeProvider) == AppThemeMode.dark;
         final mapStyle = await MapStyleHelper.getMapStyle(isDarkMode: isDark);
         await controller.setMapStyle(mapStyle);
-        ref.read(currentMapControllerProvider.notifier).update((_) => controller);
       },
     );
   }
