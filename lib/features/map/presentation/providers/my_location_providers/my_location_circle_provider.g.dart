@@ -13,9 +13,8 @@ String _$myLocationCircleHash() => r'85b741861ef23a18cbf15e191e7e74f658a6681f';
 final myLocationCircleProvider = AutoDisposeProvider<Circle>.internal(
   myLocationCircle,
   name: r'myLocationCircleProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$myLocationCircleHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$myLocationCircleHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

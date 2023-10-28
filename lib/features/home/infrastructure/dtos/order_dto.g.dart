@@ -19,8 +19,7 @@ _$_OrderDto _$$_OrderDtoFromJson(Map<String, dynamic> json) => _$_OrderDto(
       userPhone: json['userPhone'] as String,
       userNote: json['userNote'] as String,
       employeeCancelNote: json['employeeCancelNote'] as String?,
-      deliveryStatus:
-          $enumDecode(_$DeliveryStatusEnumMap, json['deliveryStatus']),
+      deliveryStatus: $enumDecode(_$DeliveryStatusEnumMap, json['deliveryStatus']),
       deliveryId: json['deliveryId'] as String?,
       deliveryGeoPoint: _$JsonConverterFromJson<GeoPoint, GeoPoint>(
           json['deliveryGeoPoint'], const GeoPointConverter().fromJson),
@@ -47,8 +46,7 @@ Value? _$JsonConverterFromJson<Json, Value>(
 ) =>
     json == null ? null : fromJson(json as Json);
 
-_$_AddressDto _$$_AddressDtoFromJson(Map<String, dynamic> json) =>
-    _$_AddressDto(
+_$_AddressDto _$$_AddressDtoFromJson(Map<String, dynamic> json) => _$_AddressDto(
       state: json['state'] as String,
       city: json['city'] as String,
       street: json['street'] as String,

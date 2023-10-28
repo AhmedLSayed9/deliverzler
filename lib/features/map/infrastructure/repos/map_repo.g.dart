@@ -13,8 +13,7 @@ String _$mapRepoHash() => r'c0af75795d380568335df61562170a6c1336169b';
 final mapRepoProvider = Provider<MapRepo>.internal(
   mapRepo,
   name: r'mapRepoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$mapRepoHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$mapRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

@@ -10,8 +10,7 @@ String _$signInStateHash() => r'1317a154fbe741f4ffd0f0da904a0462dee96a32';
 
 /// See also [SignInState].
 @ProviderFor(SignInState)
-final signInStateProvider =
-    AutoDisposeAsyncNotifierProvider<SignInState, Option<User>>.internal(
+final signInStateProvider = AutoDisposeAsyncNotifierProvider<SignInState, Option<User>>.internal(
   SignInState.new,
   name: r'signInStateProvider',
   debugGetCreateSourceHash:

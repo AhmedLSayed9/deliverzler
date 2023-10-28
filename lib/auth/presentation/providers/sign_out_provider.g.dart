@@ -10,8 +10,7 @@ String _$signOutStateHash() => r'7ccf8acfa8cc048c2dc98f05ae9c9714bdc92fb5';
 
 /// See also [SignOutState].
 @ProviderFor(SignOutState)
-final signOutStateProvider =
-    AutoDisposeAsyncNotifierProvider<SignOutState, Option<Unit>>.internal(
+final signOutStateProvider = AutoDisposeAsyncNotifierProvider<SignOutState, Option<Unit>>.internal(
   SignOutState.new,
   name: r'signOutStateProvider',
   debugGetCreateSourceHash:

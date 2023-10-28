@@ -13,8 +13,7 @@ String _$authRepoHash() => r'52a02e4350daf00425eb2e1313c853db41b75c71';
 final authRepoProvider = Provider<AuthRepo>.internal(
   authRepo,
   name: r'authRepoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$authRepoHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$authRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

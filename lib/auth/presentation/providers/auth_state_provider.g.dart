@@ -13,9 +13,8 @@ String _$currentUserStateHash() => r'd16e022b3657f254a8e901a431c52311b73da818';
 final currentUserStateProvider = AutoDisposeFutureProvider<User>.internal(
   currentUserState,
   name: r'currentUserStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$currentUserStateHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$currentUserStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -42,8 +41,7 @@ String _$authStateHash() => r'1009ba3f81452f2e5b7062ad2709ebc8cacc8375';
 final authStateProvider = NotifierProvider<AuthState, Option<User>>.internal(
   AuthState.new,
   name: r'authStateProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$authStateHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$authStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

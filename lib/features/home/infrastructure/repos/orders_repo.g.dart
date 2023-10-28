@@ -13,8 +13,7 @@ String _$ordersRepoHash() => r'a3af2ff4115634d27721350105031065bbf2ca24';
 final ordersRepoProvider = Provider<OrdersRepo>.internal(
   ordersRepo,
   name: r'ordersRepoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$ordersRepoHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$ordersRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
