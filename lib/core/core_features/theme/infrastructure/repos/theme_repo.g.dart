@@ -13,7 +13,8 @@ String _$themeRepoHash() => r'677a73456eba192e4bcd301d37547e952eb3b58c';
 final themeRepoProvider = Provider<ThemeRepo>.internal(
   themeRepo,
   name: r'themeRepoProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$themeRepoHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$themeRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

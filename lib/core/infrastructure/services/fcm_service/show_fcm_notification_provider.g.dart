@@ -6,7 +6,8 @@ part of 'show_fcm_notification_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$showFCMNotificationHash() => r'8c07c4812546458ecb57e9b4abf816026b2e4032';
+String _$showFCMNotificationHash() =>
+    r'8c07c4812546458ecb57e9b4abf816026b2e4032';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -66,7 +67,8 @@ class ShowFCMNotificationFamily extends Family<AsyncValue<void>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'showFCMNotificationProvider';
@@ -85,9 +87,12 @@ class ShowFCMNotificationProvider extends AutoDisposeFutureProvider<void> {
           from: showFCMNotificationProvider,
           name: r'showFCMNotificationProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$showFCMNotificationHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$showFCMNotificationHash,
           dependencies: ShowFCMNotificationFamily._dependencies,
-          allTransitiveDependencies: ShowFCMNotificationFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              ShowFCMNotificationFamily._allTransitiveDependencies,
         );
 
   final RemoteMessage message;

@@ -22,7 +22,7 @@ class OrdersService {
     if (userId != orderDeliveryId) {
       return (canProceed: false, isEnabled: false);
     }
-    if (ref.read(updateDeliveryStatusStateProvider).isLoading) {
+    if (ref.read(updateDeliveryStatusControllerProvider).isLoading) {
       return (canProceed: true, isEnabled: false);
     }
 

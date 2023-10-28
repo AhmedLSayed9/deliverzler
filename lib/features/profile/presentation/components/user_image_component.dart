@@ -6,8 +6,6 @@ import '../../../../core/presentation/components/image_pick_component.dart';
 import '../../../../core/presentation/extensions/future_extensions.dart';
 import '../../../../core/presentation/routing/navigation_service.dart';
 import '../../../../core/presentation/styles/styles.dart';
-import '../../../../core/presentation/utils/event.dart';
-import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/cached_network_image_circular.dart';
 import '../providers/pick_profile_image_provider.dart';
@@ -25,9 +23,7 @@ class UserImageComponent extends ConsumerWidget {
     void pickImage(PickSource pickSource, BuildContext ctx) {
       ref.read(pickProfileImageProvider(pickSource).future).then(
         (image) {
-          ref
-              .read(updateProfileImageEventProvider.notifier)
-              .update((_) => Some(Event.unique(image)));
+          ref.read(updateProfileImageStateProvider.notifier).updateProfileImage(image);
         },
       ).suppressError();
       NavigationService.popDialog(ctx);

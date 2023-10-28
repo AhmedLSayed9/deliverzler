@@ -29,7 +29,8 @@ extension $SplashRouteExtension on SplashRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -40,7 +41,8 @@ RouteBase get $noInternetRoute => GoRouteData.$route(
     );
 
 extension $NoInternetRouteExtension on NoInternetRoute {
-  static NoInternetRoute _fromState(GoRouterState state) => const NoInternetRoute();
+  static NoInternetRoute _fromState(GoRouterState state) =>
+      const NoInternetRoute();
 
   String get location => GoRouteData.$location(
         '/no_internet',
@@ -50,7 +52,8 @@ extension $NoInternetRouteExtension on NoInternetRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -71,7 +74,8 @@ extension $SignInRouteExtension on SignInRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -123,7 +127,8 @@ RouteBase get $homeShellRouteData => StatefulShellRouteData.$route(
     );
 
 extension $HomeShellRouteDataExtension on HomeShellRouteData {
-  static HomeShellRouteData _fromState(GoRouterState state) => const HomeShellRouteData();
+  static HomeShellRouteData _fromState(GoRouterState state) =>
+      const HomeShellRouteData();
 }
 
 extension $HomeRouteExtension on HomeRoute {
@@ -137,7 +142,8 @@ extension $HomeRouteExtension on HomeRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -153,7 +159,8 @@ extension $MapRouteExtension on MapRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -169,7 +176,8 @@ extension $ProfileRouteExtension on ProfileRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -185,7 +193,8 @@ extension $SettingsRouteExtension on SettingsRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -201,7 +210,8 @@ extension $LanguageRouteExtension on LanguageRoute {
 
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
 }
@@ -210,14 +220,15 @@ extension $LanguageRouteExtension on LanguageRoute {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'48d2ee4f0e08efe973bb8a0773f60c1becaaf5aa';
+String _$goRouterHash() => r'cbc33c7f768920a91906a6c993a1fe68c700f5a0';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)
 final goRouterProvider = AutoDisposeProvider<GoRouter>.internal(
   goRouter,
   name: r'goRouterProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$goRouterHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$goRouterHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

@@ -13,8 +13,9 @@ String _$sharedPrefsAsyncHash() => r'4936c9d0c359581788200656aa350e7ab5c3ee38';
 final sharedPrefsAsyncProvider = FutureProvider<SharedPreferences>.internal(
   sharedPrefsAsync,
   name: r'sharedPrefsAsyncProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$sharedPrefsAsyncHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sharedPrefsAsyncHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -34,15 +35,18 @@ final _sharedPrefsProvider = Provider<SharedPreferences>.internal(
 );
 
 typedef _SharedPrefsRef = ProviderRef<SharedPreferences>;
-String _$sharedPreferencesFacadeHash() => r'72adcc6265431ab4aeea928a93fe53bb839e70a4';
+String _$sharedPreferencesFacadeHash() =>
+    r'72adcc6265431ab4aeea928a93fe53bb839e70a4';
 
 /// See also [sharedPreferencesFacade].
 @ProviderFor(sharedPreferencesFacade)
-final sharedPreferencesFacadeProvider = Provider<SharedPreferencesFacade>.internal(
+final sharedPreferencesFacadeProvider =
+    Provider<SharedPreferencesFacade>.internal(
   sharedPreferencesFacade,
   name: r'sharedPreferencesFacadeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$sharedPreferencesFacadeHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sharedPreferencesFacadeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

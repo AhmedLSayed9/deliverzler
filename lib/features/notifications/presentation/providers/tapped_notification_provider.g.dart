@@ -6,15 +6,18 @@ part of 'tapped_notification_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tappedNotificationHash() => r'284c2f10aa92811f95a79f30b31471f75194bd8a';
+String _$tappedNotificationHash() =>
+    r'284c2f10aa92811f95a79f30b31471f75194bd8a';
 
 /// See also [tappedNotification].
 @ProviderFor(tappedNotification)
-final tappedNotificationProvider = AutoDisposeProvider<Option<AppNotification>>.internal(
+final tappedNotificationProvider =
+    AutoDisposeProvider<Option<AppNotification>>.internal(
   tappedNotification,
   name: r'tappedNotificationProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$tappedNotificationHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$tappedNotificationHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

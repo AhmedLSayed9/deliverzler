@@ -1,3 +1,4 @@
+import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -5,9 +6,7 @@ import 'package:deliverzler/auth/domain/user.dart';
 import 'package:deliverzler/auth/infrastructure/repos/auth_repo.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/auth/presentation/providers/check_auth_provider.dart';
-import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
 import 'package:deliverzler/core/infrastructure/network/network_info.dart';
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/core/presentation/utils/fp_framework.dart';
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 import '../../../utils.dart';
@@ -16,11 +15,17 @@ class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 class MockAuthRepo extends Mock implements AuthRepo {}
 
+class MockSignOutState extends AutoDisposeAsyncNotifier<Option<Unit>>
+    with Mock
+    implements SignOutState {}
+
 void main() {
   late MockAuthRepo mockAuthRepo;
+  late MockSignOutState mockSignOutState;
 
   setUp(() {
     mockAuthRepo = MockAuthRepo();
+    mockSignOutState = MockSignOutState();
   });
 
   const tUser = User(
@@ -92,12 +97,15 @@ void main() {
       );
       when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
 
-      const signOutEvent = Event(arg: unit);
       var calledSignOut = false;
+      when(() => mockSignOutState.signOut()).thenAnswer((_) async {
+        calledSignOut = true;
+      });
+
       final container = setUpContainer(
         overrides: [
           authRepoProvider.overrideWithValue(mockAuthRepo),
-          signOutProvider(signOutEvent).overrideWith((ref) => calledSignOut = true),
+          signOutStateProvider.overrideWith(() => mockSignOutState),
         ],
       );
       final checkAuthListener = setUpListener(container, checkAuthProvider);
@@ -139,12 +147,15 @@ void main() {
       );
       when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
 
-      const signOutEvent = Event(arg: unit);
       var calledSignOut = false;
+      when(() => mockSignOutState.signOut()).thenAnswer((_) async {
+        calledSignOut = true;
+      });
+
       final container = setUpContainer(
         overrides: [
           authRepoProvider.overrideWithValue(mockAuthRepo),
-          signOutProvider(signOutEvent).overrideWith((ref) => calledSignOut = true),
+          signOutStateProvider.overrideWith(() => mockSignOutState),
         ],
       );
       final checkAuthListener = setUpListener(container, checkAuthProvider);

@@ -4,8 +4,6 @@ import '../../../auth/domain/user.dart';
 import '../../../auth/infrastructure/repos/auth_repo.dart';
 import '../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../auth/presentation/providers/sign_out_provider.dart';
-import '../../../core/presentation/utils/event.dart';
-import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 
 part 'check_auth_provider.g.dart';
@@ -16,7 +14,7 @@ Future<User> checkAuth(CheckAuthRef ref) async {
   ref.listenSelf((previous, next) {
     next.whenOrNull(
       data: (user) => sub.read().authenticateUser(user),
-      error: (err, st) => ref.read(signOutProvider(const Event(arg: unit))),
+      error: (err, st) => ref.read(signOutStateProvider.notifier).signOut(),
     );
   });
 

@@ -6,15 +6,18 @@ part of 'session_token_interceptor.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sessionTokenInterceptorHash() => r'03441f20b0eab46cc22b55bf50c54771455b2148';
+String _$sessionTokenInterceptorHash() =>
+    r'03441f20b0eab46cc22b55bf50c54771455b2148';
 
 /// See also [sessionTokenInterceptor].
 @ProviderFor(sessionTokenInterceptor)
-final sessionTokenInterceptorProvider = Provider<SessionTokenInterceptor>.internal(
+final sessionTokenInterceptorProvider =
+    Provider<SessionTokenInterceptor>.internal(
   sessionTokenInterceptor,
   name: r'sessionTokenInterceptorProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$sessionTokenInterceptorHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sessionTokenInterceptorHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

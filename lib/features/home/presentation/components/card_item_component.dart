@@ -4,7 +4,6 @@ import '../../../../auth/presentation/providers/auth_state_provider.dart';
 import '../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../core/presentation/routing/app_router.dart';
 import '../../../../core/presentation/styles/styles.dart';
-import '../../../../core/presentation/utils/event.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/order.dart';
@@ -68,9 +67,7 @@ class CardItemComponent extends ConsumerWidget {
                   orderId: order.id,
                   deliveryStatus: DeliveryStatus.delivered,
                 );
-                ref
-                    .read(updateDeliveryStatusEventProvider.notifier)
-                    .update((_) => Some(Event.unique(params)));
+                ref.read(updateDeliveryStatusControllerProvider.notifier).updateStatus(params);
               }
             },
           );
@@ -96,9 +93,7 @@ class CardItemComponent extends ConsumerWidget {
               deliveryStatus: DeliveryStatus.onTheWay,
               deliveryId: userId,
             );
-            ref
-                .read(updateDeliveryStatusEventProvider.notifier)
-                .update((_) => Some(Event.unique(params)));
+            await ref.read(updateDeliveryStatusControllerProvider.notifier).updateStatus(params);
           }
         case _:
           return;
@@ -118,9 +113,7 @@ class CardItemComponent extends ConsumerWidget {
                   deliveryStatus: DeliveryStatus.canceled,
                   employeeCancelNote: cancelNote,
                 );
-                ref
-                    .read(updateDeliveryStatusEventProvider.notifier)
-                    .update((_) => Some(Event.unique(params)));
+                ref.read(updateDeliveryStatusControllerProvider.notifier).updateStatus(params);
               }
             },
           );

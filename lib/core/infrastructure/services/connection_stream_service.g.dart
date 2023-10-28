@@ -10,11 +10,13 @@ String _$connectionStreamHash() => r'7d66399ff4287a7b5f0a1f0c976f987fb401a20d';
 
 /// See also [connectionStream].
 @ProviderFor(connectionStream)
-final connectionStreamProvider = AutoDisposeStreamProvider<ConnectionStatus>.internal(
+final connectionStreamProvider =
+    AutoDisposeStreamProvider<ConnectionStatus>.internal(
   connectionStream,
   name: r'connectionStreamProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$connectionStreamHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$connectionStreamHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

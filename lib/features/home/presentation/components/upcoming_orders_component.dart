@@ -21,7 +21,7 @@ class UpcomingOrdersComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.easyListen(
-      updateDeliveryStatusStateProvider,
+      updateDeliveryStatusControllerProvider,
       whenData: (state) {
         state.whenOrNull(
           success: (orderId, deliveryStatus) async {

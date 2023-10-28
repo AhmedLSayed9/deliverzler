@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/presentation/helpers/localization_helper.dart';
 import '../../../core/presentation/styles/styles.dart';
-import '../../../core/presentation/utils/event.dart';
-import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../core/presentation/widgets/custom_elevated_button.dart';
 import '../../../core/presentation/widgets/platform_widgets/platform_icons.dart';
@@ -25,7 +23,7 @@ class LoginFormComponent extends HookConsumerWidget {
           email: emailController.text,
           password: passwordController.text,
         );
-        ref.read(signInWithEmailEventProvider.notifier).update((_) => Some(Event.unique(params)));
+        ref.read(signInStateProvider.notifier).signIn(params);
       }
     }
 

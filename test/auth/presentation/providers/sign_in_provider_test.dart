@@ -9,7 +9,6 @@ import 'package:deliverzler/auth/domain/user.dart';
 import 'package:deliverzler/auth/infrastructure/repos/auth_repo.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
-import 'package:deliverzler/core/presentation/providers/provider_utils.dart';
 import 'package:deliverzler/core/infrastructure/services/fcm_service/fcm_provider.dart';
 import 'package:deliverzler/core/presentation/utils/fp_framework.dart';
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
@@ -19,24 +18,22 @@ class MockAuthRepo extends Mock implements AuthRepo {}
 
 class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
 
-class MockSignInWithEmailEvent extends AutoDisposeNotifier<Option<Event<SignInWithEmail>>>
+class MockSignInState extends AutoDisposeAsyncNotifier<Option<User>>
     with Mock
-    implements SignInWithEmailEvent {}
+    implements SignInState {}
 
 void main() {
-  late MockSignInWithEmailEvent mockSignInWithEmailEvent;
   late MockAuthRepo mockAuthRepo;
   late MockFirebaseMessaging mockFcm;
 
   setUp(() {
-    mockSignInWithEmailEvent = MockSignInWithEmailEvent();
     mockAuthRepo = MockAuthRepo();
     mockFcm = MockFirebaseMessaging();
     registerFallbackValue(const AsyncLoading<Option<User>>());
+    registerFallbackValue(const SignInWithEmail(email: '', password: ''));
   });
 
   const tParams = SignInWithEmail(email: 'tEmail', password: 'tPass');
-  final tEvent = Event.unique(tParams);
   const tUser = User(
     id: '1',
     email: 'testEmail@gmail.com',
@@ -49,139 +46,36 @@ void main() {
   const unauthenticatedState = None();
 
   final tException = Exception('test_exception');
-  final tStackTrace = StackTrace.current;
+
+  T loadingState<T>() => any(that: isA<AsyncLoading<Option<User>>>());
+  const idleState = AsyncData<Option<User>>(None());
+  T errorState<T>() => any(
+        that: isA<AsyncError<Option<User>>>().having((e) => e.error, 'error', equals(tException)),
+      );
+  const successState = AsyncData<Option<User>>(Some(tUser));
 
   group(
-    'signInStateProvider',
-    () {
-      const loadingState = AsyncLoading<Option<User>>();
-      const idleState = AsyncData<Option<User>>(None());
-      const successState = AsyncData<Option<User>>(Some(tUser));
-
-      test(
-        'should emit signInWithEmailProvider state when signInWithEmailEventProvider is some',
-        () async {
-          // GIVEN
-          when(mockSignInWithEmailEvent.build).thenReturn(Some(tEvent));
-
-          final container = setUpContainer(
-            overrides: [
-              signInWithEmailEventProvider.overrideWith(() => mockSignInWithEmailEvent),
-              signInProvider(tEvent).overrideWith((ref) => tUser),
-            ],
-          );
-          final listener = setUpListener(container, signInStateProvider);
-
-          // WHEN
-          final call = container.read(signInStateProvider.future);
-
-          // THEN
-          await expectLater(call, completion(const Some(tUser)));
-
-          verifyInOrder([
-            () => listener(null, loadingState),
-            () => listener(loadingState, successState),
-          ]);
-          verifyNoMoreInteractions(listener);
-        },
-      );
-
-      test(
-        'should emit idleState when signInWithEmailEventProvider is none',
-        () async {
-          // GIVEN
-          when(mockSignInWithEmailEvent.build).thenReturn(const None());
-
-          final container = setUpContainer(
-            overrides: [
-              signInWithEmailEventProvider.overrideWith(() => mockSignInWithEmailEvent),
-            ],
-          );
-          final listener = setUpListener(container, signInStateProvider);
-
-          // WHEN
-          await container.read(signInStateProvider.future);
-
-          // THEN
-          verifyOnly(listener, () => listener(null, idleState));
-        },
-      );
-
-      test(
-        'should authenticate user when next state is success (some)',
-        () async {
-          // GIVEN
-          final container = setUpContainer(
-            overrides: [
-              signInProvider(tEvent).overrideWith((ref) => tUser),
-            ],
-          );
-          final authListener = setUpListener(container, authStateProvider);
-          final signInStateListener = setUpListener(container, signInStateProvider);
-
-          // WHEN
-          verifyOnly(
-            authListener,
-            () => authListener(null, unauthenticatedState),
-          );
-
-          verifyOnly(
-            signInStateListener,
-            () => signInStateListener(null, idleState),
-          );
-
-          container.read(signInWithEmailEventProvider.notifier).update((_) => Some(tEvent));
-          await container.read(signInStateProvider.future);
-
-          // THEN
-          verifyInOrder([
-            () => signInStateListener(idleState, any(that: isA<AsyncLoading<Option<User>>>())),
-            () => authListener(unauthenticatedState, authenticatedState),
-            () => signInStateListener(
-                  any(that: isA<AsyncLoading<Option<User>>>()),
-                  successState,
-                ),
-          ]);
-          verifyNoMoreInteractions(authListener);
-          verifyNoMoreInteractions(signInStateListener);
-        },
-      );
-    },
-  );
-
-  group(
-    'signInWithEmailEventProvider',
+    'build',
     () {
       test(
-        'initial state should be none',
+        'initial state should be idleState',
         () async {
           // GIVEN
           final container = setUpContainer();
 
           // THEN
-          expect(container.read(signInWithEmailEventProvider), const None());
+          expect(container.read(signInStateProvider), idleState);
         },
       );
     },
   );
 
   group(
-    'signInWithEmailProvider',
+    'signIn',
     () {
-      const loadingState = AsyncLoading<User>();
-      final errorState = AsyncError<User>(tException, tStackTrace);
-      const dataState = AsyncData<User>(tUser);
-
-      setUp(() {
-        registerFallbackValue(const AsyncLoading<User>());
-        registerFallbackValue(
-          const SignInWithEmail(email: '', password: ''),
-        );
-      });
-
       test(
-        'should emit AsyncData(user) when AuthRepo.signInWithEmail, AuthRepo.getUserData '
-        'and fcm.subscribeToTopic("general") return normally',
+        'should authenticate user and emit successState '
+        'when AuthRepo.signInWithEmail, AuthRepo.getUserData and fcm.subscribeToTopic("general") return normally',
         () async {
           // GIVEN
           when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer((_) => Future.value(tUser));
@@ -194,91 +88,144 @@ void main() {
               fcmProvider.overrideWith((ref) => mockFcm),
             ],
           );
-          final listener = setUpListener(container, signInProvider(tEvent));
+          final listener = setUpListener(container, signInStateProvider);
+          final authListener = setUpListener(container, authStateProvider);
 
           // WHEN
-          verifyOnly(listener, () => listener(null, loadingState));
+          verifyOnly(listener, () => listener(null, idleState));
 
-          final call = container.read(signInProvider(tEvent).future);
+          verifyOnly(authListener, () => authListener(null, unauthenticatedState));
+
+          final call = container.read(signInStateProvider.notifier).signIn(tParams);
 
           // THEN
-          await expectLater(call, completion(tUser));
+          await expectLater(call, completes);
 
           verifyInOrder([
+            () => listener(idleState, loadingState()),
             () => mockAuthRepo.signInWithEmail(tParams),
             () => mockAuthRepo.getUserData(tUser.id),
             () => mockFcm.subscribeToTopic('general'),
-            () => listener(loadingState, dataState),
+            () => authListener(unauthenticatedState, authenticatedState),
+            () => listener(loadingState(), successState),
           ]);
           verifyNoMoreInteractions(mockAuthRepo);
           verifyNoMoreInteractions(mockFcm);
           verifyNoMoreInteractions(listener);
+          verifyNoMoreInteractions(authListener);
         },
       );
 
       test(
-        'should emit AsyncError when AuthRepo.signInWithEmail throws',
+        'should not authenticate user and should emit errorState '
+        'when AuthRepo.signInWithEmail throws',
         () async {
           // GIVEN
-          when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer(
-            (_) => Error.throwWithStackTrace(tException, tStackTrace),
-          );
+          when(() => mockAuthRepo.signInWithEmail(any())).thenThrow(tException);
 
           final container = setUpContainer(
             overrides: [
               authRepoProvider.overrideWith((ref) => mockAuthRepo),
             ],
           );
-          final listener = setUpListener(container, signInProvider(tEvent));
+          final listener = setUpListener(container, signInStateProvider);
+          final authListener = setUpListener(container, authStateProvider);
 
           // WHEN
-          verifyOnly(listener, () => listener(null, loadingState));
+          verifyOnly(listener, () => listener(null, idleState));
+          verifyOnly(authListener, () => authListener(null, unauthenticatedState));
 
-          final call = container.read(signInProvider(tEvent).future);
+          final call = container.read(signInStateProvider.notifier).signIn(tParams);
 
           // THEN
-          await expectLater(call, throwsA(tException));
+          await expectLater(call, completes);
 
           verifyInOrder([
+            () => listener(idleState, loadingState()),
             () => mockAuthRepo.signInWithEmail(tParams),
-            () => listener(loadingState, errorState),
+            () => listener(loadingState(), errorState()),
           ]);
           verifyNoMoreInteractions(mockAuthRepo);
           verifyNoMoreInteractions(listener);
+          verifyNoMoreInteractions(authListener);
         },
       );
 
       test(
-        'should emit AsyncError when AuthRepo.getUserData throws',
+        'should not authenticate user and should emit errorState '
+        'when AuthRepo.getUserData throws',
         () async {
           // GIVEN
           when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer((_) => Future.value(tUser));
-          when(() => mockAuthRepo.getUserData(any())).thenAnswer(
-            (_) => Error.throwWithStackTrace(tException, tStackTrace),
-          );
+          when(() => mockAuthRepo.getUserData(any())).thenThrow(tException);
 
           final container = setUpContainer(
             overrides: [
               authRepoProvider.overrideWith((ref) => mockAuthRepo),
             ],
           );
-          final listener = setUpListener(container, signInProvider(tEvent));
+          final listener = setUpListener(container, signInStateProvider);
+          final authListener = setUpListener(container, authStateProvider);
 
           // WHEN
-          verifyOnly(listener, () => listener(null, loadingState));
+          verifyOnly(listener, () => listener(null, idleState));
+          verifyOnly(authListener, () => authListener(null, unauthenticatedState));
 
-          final call = container.read(signInProvider(tEvent).future);
+          final call = container.read(signInStateProvider.notifier).signIn(tParams);
 
           // THEN
-          await expectLater(call, throwsA(tException));
+          await expectLater(call, completes);
 
           verifyInOrder([
+            () => listener(idleState, loadingState()),
             () => mockAuthRepo.signInWithEmail(tParams),
             () => mockAuthRepo.getUserData(tUser.id),
-            () => listener(loadingState, errorState),
+            () => listener(loadingState(), errorState()),
           ]);
           verifyNoMoreInteractions(mockAuthRepo);
           verifyNoMoreInteractions(listener);
+          verifyNoMoreInteractions(authListener);
+        },
+      );
+
+      test(
+        'should not authenticate user and should emit errorState '
+        'when fcm.subscribeToTopic("general") throws',
+        () async {
+          // GIVEN
+          when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer((_) => Future.value(tUser));
+          when(() => mockAuthRepo.getUserData(any())).thenAnswer((_) => Future.value(tUser));
+          when(() => mockFcm.subscribeToTopic(any())).thenThrow(tException);
+
+          final container = setUpContainer(
+            overrides: [
+              authRepoProvider.overrideWith((ref) => mockAuthRepo),
+              fcmProvider.overrideWith((ref) => mockFcm),
+            ],
+          );
+          final listener = setUpListener(container, signInStateProvider);
+          final authListener = setUpListener(container, authStateProvider);
+
+          // WHEN
+          verifyOnly(listener, () => listener(null, idleState));
+          verifyOnly(authListener, () => authListener(null, unauthenticatedState));
+
+          final call = container.read(signInStateProvider.notifier).signIn(tParams);
+
+          // THEN
+          await expectLater(call, completes);
+
+          verifyInOrder([
+            () => listener(idleState, loadingState()),
+            () => mockAuthRepo.signInWithEmail(tParams),
+            () => mockAuthRepo.getUserData(tUser.id),
+            () => mockFcm.subscribeToTopic('general'),
+            () => listener(loadingState(), errorState()),
+          ]);
+          verifyNoMoreInteractions(mockAuthRepo);
+          verifyNoMoreInteractions(mockFcm);
+          verifyNoMoreInteractions(listener);
+          verifyNoMoreInteractions(authListener);
         },
       );
     },

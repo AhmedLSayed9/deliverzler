@@ -6,15 +6,17 @@ part of 'target_location_marker_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$targetLocationMarkerHash() => r'667825a9d6dfbd21862bd3a82278956dd9e6f837';
+String _$targetLocationMarkerHash() =>
+    r'667825a9d6dfbd21862bd3a82278956dd9e6f837';
 
 /// See also [targetLocationMarker].
 @ProviderFor(targetLocationMarker)
 final targetLocationMarkerProvider = AutoDisposeProvider<Marker>.internal(
   targetLocationMarker,
   name: r'targetLocationMarkerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$targetLocationMarkerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$targetLocationMarkerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

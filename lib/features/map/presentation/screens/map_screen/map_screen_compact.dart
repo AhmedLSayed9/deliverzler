@@ -57,7 +57,7 @@ class MapScreenCompact extends HookConsumerWidget {
     ref.easyListen(
       mapConfirmOrderStatusProvider,
       whenData: (state) {
-        if (state == MapConfirmOrderState.success) {
+        if (state.isSome()) {
           const HomeRoute().go(context);
         }
       },

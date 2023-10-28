@@ -36,11 +36,13 @@ abstract class $UserDtoCopyWith<$Res> {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) then) =
       _$UserDtoCopyWithImpl<$Res, UserDto>;
   @useResult
-  $Res call({String id, String email, String? name, String? phone, String? image});
+  $Res call(
+      {String id, String email, String? name, String? phone, String? image});
 }
 
 /// @nodoc
-class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto> implements $UserDtoCopyWith<$Res> {
+class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
+    implements $UserDtoCopyWith<$Res> {
   _$UserDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -84,15 +86,18 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto> implements $UserDtoCopyW
 
 /// @nodoc
 abstract class _$$_UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
-  factory _$$_UserDtoCopyWith(_$_UserDto value, $Res Function(_$_UserDto) then) =
+  factory _$$_UserDtoCopyWith(
+          _$_UserDto value, $Res Function(_$_UserDto) then) =
       __$$_UserDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email, String? name, String? phone, String? image});
+  $Res call(
+      {String id, String email, String? name, String? phone, String? image});
 }
 
 /// @nodoc
-class __$$_UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res, _$_UserDto>
+class __$$_UserDtoCopyWithImpl<$Res>
+    extends _$UserDtoCopyWithImpl<$Res, _$_UserDto>
     implements _$$_UserDtoCopyWith<$Res> {
   __$$_UserDtoCopyWithImpl(_$_UserDto _value, $Res Function(_$_UserDto) _then)
       : super(_value, _then);
@@ -142,7 +147,8 @@ class _$_UserDto extends _UserDto {
       required this.image})
       : super._();
 
-  factory _$_UserDto.fromJson(Map<String, dynamic> json) => _$$_UserDtoFromJson(json);
+  factory _$_UserDto.fromJson(Map<String, dynamic> json) =>
+      _$$_UserDtoFromJson(json);
 
   @override
   final String id;
@@ -213,5 +219,6 @@ abstract class _UserDto extends UserDto {
   String? get image;
   @override
   @JsonKey(ignore: true)
-  _$$_UserDtoCopyWith<_$_UserDto> get copyWith => throw _privateConstructorUsedError;
+  _$$_UserDtoCopyWith<_$_UserDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }

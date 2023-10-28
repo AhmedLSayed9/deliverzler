@@ -66,7 +66,8 @@ class PickProfileImageFamily extends Family<AsyncValue<File>> {
   static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'pickProfileImageProvider';
@@ -85,9 +86,12 @@ class PickProfileImageProvider extends AutoDisposeFutureProvider<File> {
           from: pickProfileImageProvider,
           name: r'pickProfileImageProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$pickProfileImageHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$pickProfileImageHash,
           dependencies: PickProfileImageFamily._dependencies,
-          allTransitiveDependencies: PickProfileImageFamily._allTransitiveDependencies,
+          allTransitiveDependencies:
+              PickProfileImageFamily._allTransitiveDependencies,
         );
 
   final PickSource pickSource;

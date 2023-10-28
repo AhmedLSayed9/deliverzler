@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:fpdart/fpdart.dart';
-
 import '../../../../../auth/presentation/providers/sign_out_provider.dart';
 import '../../../../../core/presentation/helpers/localization_helper.dart';
 import '../../../../../core/presentation/styles/styles.dart';
-import '../../../../../core/presentation/utils/event.dart';
 import '../../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../../core/presentation/widgets/platform_widgets/platform_widget.dart';
 
@@ -15,7 +12,7 @@ class LogoutComponent extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void signOut() {
-      ref.read(signOutEventProvider.notifier).update((_) => Some(Event.unique(unit)));
+      ref.read(signOutStateProvider.notifier).signOut();
     }
 
     return PlatformWidget(

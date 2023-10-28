@@ -6,15 +6,18 @@ part of 'app_theme_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appThemeControllerHash() => r'b1cc092cac895080587a23298a2767693f6419b7';
+String _$appThemeControllerHash() =>
+    r'50a05dd013f2a51478223855e29394811f73ba0d';
 
 /// See also [AppThemeController].
 @ProviderFor(AppThemeController)
-final appThemeControllerProvider = AsyncNotifierProvider<AppThemeController, AppThemeMode>.internal(
+final appThemeControllerProvider =
+    AsyncNotifierProvider<AppThemeController, AppThemeMode>.internal(
   AppThemeController.new,
   name: r'appThemeControllerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appThemeControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appThemeControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
