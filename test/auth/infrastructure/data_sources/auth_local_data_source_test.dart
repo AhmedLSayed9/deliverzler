@@ -1,5 +1,11 @@
+// ignore_for_file: invalid_use_of_visible_for_overriding_member
+
 import 'dart:convert';
 
+import 'package:deliverzler/core/core_features/locale/presentation/providers/app_locale_provider.dart';
+import 'package:deliverzler/core/core_features/locale/presentation/utils/app_locale.dart';
+import 'package:deliverzler/core/core_features/theme/presentation/providers/app_theme_provider.dart';
+import 'package:deliverzler/core/core_features/theme/presentation/utils/app_theme.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -13,6 +19,14 @@ import '../../../utils.dart';
 
 class MockSharedPreferencesFacade extends Mock implements SharedPreferencesFacade {}
 
+class MockAppLocaleController extends AsyncNotifier<AppLocale>
+    with Mock
+    implements AppLocaleController {}
+
+class MockAppThemeController extends AsyncNotifier<AppThemeMode>
+    with Mock
+    implements AppThemeController {}
+
 void main() {
   late MockSharedPreferencesFacade mockSharedPrefs;
 
@@ -20,10 +34,11 @@ void main() {
     mockSharedPrefs = MockSharedPreferencesFacade();
   });
 
-  ProviderContainer setUpSharedPrefsContainer() {
+  ProviderContainer setUpSharedPrefsContainer({List<Override> overrides = const []}) {
     return setUpContainer(
       overrides: [
         sharedPreferencesFacadeProvider.overrideWithValue(mockSharedPrefs),
+        ...overrides,
       ],
     );
   }
@@ -126,25 +141,50 @@ void main() {
   group(
     'clearUserData',
     () {
+      late MockAppLocaleController mockAppLocaleController;
+      late MockAppThemeController mockAppThemeController;
+      setUp(() {
+        mockAppLocaleController = MockAppLocaleController();
+        mockAppThemeController = MockAppThemeController();
+      });
+
       test(
-        'should call LocalStorageCaller.clearKey with the proper params',
+        'should call LocalStorageCaller.clearAll then re-cache current locale and theme',
         () async {
           // GIVEN
+          const tLocale = AppLocale.english;
+          const tTheme = AppThemeMode.light;
+
+          when(mockAppLocaleController.build).thenReturn(tLocale);
+          when(mockAppLocaleController.reCacheLocale).thenAnswer((_) async {});
+          when(mockAppThemeController.build).thenReturn(tTheme);
+          when(mockAppThemeController.reCacheTheme).thenAnswer((_) async {});
+
           when(
-            () => mockSharedPrefs.clearKey(any(named: 'key')),
+            () => mockSharedPrefs.clearAll(),
+          ).thenAnswer((_) async => true);
+          when(
+            () => mockSharedPrefs.saveData(key: any(named: 'key'), value: any(named: 'value')),
           ).thenAnswer((_) async => true);
 
-          final container = setUpSharedPrefsContainer();
+          final container = setUpSharedPrefsContainer(
+            overrides: [
+              appLocaleControllerProvider.overrideWith(() => mockAppLocaleController),
+              appThemeControllerProvider.overrideWith(() => mockAppThemeController),
+            ],
+          );
 
           // WHEN
           final authLocalDataSource = container.read(authLocalDataSourceProvider);
           await authLocalDataSource.clearUserData();
 
           // THEN
-          verifyOnly(
-            mockSharedPrefs,
-            () => mockSharedPrefs.clearKey(AuthLocalDataSource.userDataKey),
-          );
+          verifyInOrder([
+            () => mockSharedPrefs.clearAll(),
+            () => mockAppLocaleController.reCacheLocale(),
+            () => mockAppThemeController.reCacheTheme(),
+          ]);
+          verifyNoMoreInteractions(mockSharedPrefs);
         },
       );
     },
