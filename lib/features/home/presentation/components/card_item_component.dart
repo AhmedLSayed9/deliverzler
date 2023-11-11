@@ -31,7 +31,7 @@ class CardItemComponent extends ConsumerWidget {
     final userId = ref.watch(currentUserProvider.select((user) => user.id));
     final isUpcomingOrder = order.deliveryStatus == DeliveryStatus.upcoming;
 
-    ({bool canProceed, bool isEnabled}) fetchOrderAuthority() {
+    ({bool canProceed, bool isLoading}) fetchOrderAuthority() {
       return ref.read(ordersServiceProvider).orderAuthority(
             userId: userId,
             orderDeliveryId: order.deliveryId,
@@ -42,10 +42,10 @@ class CardItemComponent extends ConsumerWidget {
       final authority = fetchOrderAuthority();
 
       switch (authority) {
-        case (canProceed: true, isEnabled: true):
+        case (canProceed: true, isLoading: false):
           ref.read(selectedOrderIdProvider.notifier).update((_) => Some(order.id));
           const MapRoute().go(context);
-        case (canProceed: false, isEnabled: _):
+        case (canProceed: false, isLoading: false):
           OrderDialogs.showCanNotProceedDialog(context);
         case _:
           return;
@@ -56,7 +56,7 @@ class CardItemComponent extends ConsumerWidget {
       final authority = fetchOrderAuthority();
 
       switch (authority) {
-        case (canProceed: true, isEnabled: true):
+        case (canProceed: true, isLoading: false):
           return OrderDialogs.confirmChoiceDialog(
             context,
             tr(context).doYouWantToConfirmTheOrder,
@@ -71,7 +71,7 @@ class CardItemComponent extends ConsumerWidget {
               }
             },
           );
-        case (canProceed: false, isEnabled: _):
+        case (canProceed: false, isLoading: false):
           OrderDialogs.showCanNotProceedDialog(context);
         case _:
           return;
@@ -82,7 +82,7 @@ class CardItemComponent extends ConsumerWidget {
       final authority = fetchOrderAuthority();
 
       switch (authority) {
-        case (canProceed: _, isEnabled: true):
+        case (canProceed: _, isLoading: false):
           final confirmChoice = await OrderDialogs.confirmChoiceDialog(
             context,
             tr(context).doYouWantToDeliverTheOrder,
@@ -104,7 +104,7 @@ class CardItemComponent extends ConsumerWidget {
       final authority = fetchOrderAuthority();
 
       switch (authority) {
-        case (canProceed: true, isEnabled: true):
+        case (canProceed: true, isLoading: false):
           return OrderDialogs.showCancelOrderDialog(context).then(
             (cancelNote) {
               if (cancelNote != null) {
@@ -117,7 +117,7 @@ class CardItemComponent extends ConsumerWidget {
               }
             },
           );
-        case (canProceed: false, isEnabled: _):
+        case (canProceed: false, isLoading: false):
           OrderDialogs.showCanNotProceedDialog(context);
         case _:
           return;

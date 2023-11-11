@@ -15,17 +15,12 @@ class OrdersService {
 
   final OrdersServiceRef ref;
 
-  ({bool canProceed, bool isEnabled}) orderAuthority({
+  ({bool canProceed, bool isLoading}) orderAuthority({
     required String userId,
     required String? orderDeliveryId,
   }) {
-    if (userId != orderDeliveryId) {
-      return (canProceed: false, isEnabled: false);
-    }
-    if (ref.read(updateDeliveryStatusControllerProvider).isLoading) {
-      return (canProceed: true, isEnabled: false);
-    }
-
-    return (canProceed: true, isEnabled: true);
+    final canProceed = userId == orderDeliveryId;
+    final isLoading = ref.read(updateDeliveryStatusControllerProvider).isLoading;
+    return (canProceed: canProceed, isLoading: isLoading);
   }
 }
