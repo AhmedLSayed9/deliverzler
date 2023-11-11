@@ -4,6 +4,7 @@ import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/order.dart';
 import '../../domain/update_delivery_geopoint.dart';
 import '../../domain/update_delivery_status.dart';
+import '../../domain/value_objects.dart';
 import '../data_sources/orders_remote_data_source.dart';
 import '../dtos/update_delivery_geo_point_dto.dart';
 import '../dtos/update_delivery_status_dto.dart';
@@ -12,21 +13,27 @@ part 'orders_repo.g.dart';
 
 @Riverpod(keepAlive: true)
 OrdersRepo ordersRepo(OrdersRepoRef ref) {
-  return OrdersRepo(
-    remoteDataSource: ref.watch(ordersRemoteDataSourceProvider),
-  );
+  return OrdersRepo(ref);
 }
 
 class OrdersRepo {
-  OrdersRepo({
-    required this.remoteDataSource,
-  });
+  OrdersRepo(this.ref);
 
-  final OrdersRemoteDataSource remoteDataSource;
+  final Ref ref;
+  OrdersRemoteDataSource get remoteDataSource => ref.read(ordersRemoteDataSourceProvider);
 
-  Stream<List<AppOrder>> getUpcomingOrders() {
+  Stream<List<AppOrder>> getUpcomingOrders(String userId) {
     return remoteDataSource.getUpcomingOrders().map(
-          (orders) => orders.map((o) => o.toDomain()).toList(),
+          (orders) => orders
+              .where(
+                (order) {
+                  final status = order.deliveryStatus;
+                  return status == DeliveryStatus.upcoming ||
+                      (status == DeliveryStatus.onTheWay && order.deliveryId == userId);
+                },
+              )
+              .map((o) => o.toDomain())
+              .toList(),
         );
   }
 
