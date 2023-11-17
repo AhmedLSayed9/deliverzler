@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -39,29 +41,36 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
           onWillPop: () => Future.value(barrierDismissible),
           child: Opacity(
             opacity: a1.value,
-            child: UnconstrainedBox(
-              constrainedAxis: Axis.vertical,
-              child: ConstrainedBox(
-                // A workaround until https://github.com/flutter/flutter/issues/44570 is fixed.
-                constraints: BoxConstraints(
-                  maxWidth:
-                      materialDialogData.maxWidth + materialDialogData.insetPadding.horizontal,
-                ),
-                child: AlertDialog(
-                  scrollable: true,
-                  title: title,
-                  titlePadding: titlePadding,
-                  content: content != null ? content(context) : null,
-                  contentPadding: reformedContentPadding,
-                  actions: materialDialogData.actions?.call(context),
-                  actionsPadding: reformedActionsPadding,
-                  buttonPadding: EdgeInsets.symmetric(horizontal: horizontalActionPadding / 2),
-                  actionsAlignment: MainAxisAlignment.center,
-                  insetPadding: materialDialogData.insetPadding,
-                  shape: materialDialogData.shape,
-                  backgroundColor: materialDialogData.backgroundColor,
-                ),
-              ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                // This prioritizes insetPadding over preferred maxWidth.
+                // It's A workaround until https://github.com/flutter/flutter/issues/44570 is fixed.
+                final hInsetPadding = materialDialogData.insetPadding.horizontal;
+                final maxWidth = min(
+                  constraints.maxWidth - hInsetPadding,
+                  materialDialogData.maxWidth + hInsetPadding,
+                );
+                return UnconstrainedBox(
+                  constrainedAxis: Axis.vertical,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxWidth),
+                    child: AlertDialog(
+                      scrollable: true,
+                      title: title,
+                      titlePadding: titlePadding,
+                      content: content != null ? content(context) : null,
+                      contentPadding: reformedContentPadding,
+                      actions: materialDialogData.actions?.call(context),
+                      actionsPadding: reformedActionsPadding,
+                      buttonPadding: EdgeInsets.symmetric(horizontal: horizontalActionPadding / 2),
+                      actionsAlignment: MainAxisAlignment.center,
+                      insetPadding: materialDialogData.insetPadding,
+                      shape: materialDialogData.shape,
+                      backgroundColor: materialDialogData.backgroundColor,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ),
