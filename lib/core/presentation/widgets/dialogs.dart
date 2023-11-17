@@ -156,8 +156,14 @@ abstract class Dialogs {
     String? description,
     Widget Function(BuildContext context)? content,
   }) {
-    assert(description != null || content != null, 'One of description or content must be specified');
-    assert(description == null || content == null, 'Only one of description or content may be specified');
+    assert(
+      description != null || content != null,
+      'One of description or content must be specified',
+    );
+    assert(
+      description == null || content == null,
+      'Only one of description or content may be specified',
+    );
 
     return showCustomDialog(
       context,
