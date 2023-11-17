@@ -13,17 +13,18 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
   CupertinoDialogData cupertinoDialogData = const CupertinoDialogData(),
   bool barrierDismissible = true,
 }) async {
-  final reformedContentPadding = EdgeInsets.only(
-    left: contentPadding.horizontal / 2,
-    right: contentPadding.horizontal / 2,
+  final reformedContentPadding = EdgeInsets.symmetric(
+    horizontal: contentPadding.horizontal / 2,
+  ).copyWith(
     top: title == null ? contentPadding.vertical / 2 : 0,
     bottom: contentPadding.vertical / 2,
   );
 
   if (PlatformHelper.isMaterialApp) {
-    final reformedActionsPadding = EdgeInsets.only(
-      left: materialDialogData.actionsPadding.horizontal / 2,
-      right: materialDialogData.actionsPadding.horizontal / 2,
+    final horizontalActionPadding = materialDialogData.actionsPadding.horizontal / 2;
+    final reformedActionsPadding = EdgeInsets.symmetric(
+      horizontal: horizontalActionPadding,
+    ).copyWith(
       top: title == null && content == null ? materialDialogData.actionsPadding.vertical / 2 : 0,
       bottom: materialDialogData.actionsPadding.vertical / 2,
     );
@@ -36,22 +37,30 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
         child: WillPopScope(
           //This prevent closing the dialog when pressing device's back button
           onWillPop: () => Future.value(barrierDismissible),
-
-          child: UnconstrainedBox(
-            constrainedAxis: Axis.horizontal,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: materialDialogData.maxWidth),
-              child: AlertDialog(
-                title: title,
-                titlePadding: titlePadding,
-                content: content != null ? content(context) : null,
-                contentPadding: reformedContentPadding,
-                actions: materialDialogData.actions?.call(context),
-                actionsPadding: reformedActionsPadding,
-                actionsAlignment: MainAxisAlignment.spaceAround,
-                insetPadding: materialDialogData.insetPadding,
-                shape: materialDialogData.shape,
-                backgroundColor: materialDialogData.backgroundColor,
+          child: Opacity(
+            opacity: a1.value,
+            child: UnconstrainedBox(
+              constrainedAxis: Axis.vertical,
+              child: ConstrainedBox(
+                // A workaround until https://github.com/flutter/flutter/issues/44570 is fixed.
+                constraints: BoxConstraints(
+                  maxWidth:
+                      materialDialogData.maxWidth + materialDialogData.insetPadding.horizontal,
+                ),
+                child: AlertDialog(
+                  scrollable: true,
+                  title: title,
+                  titlePadding: titlePadding,
+                  content: content != null ? content(context) : null,
+                  contentPadding: reformedContentPadding,
+                  actions: materialDialogData.actions?.call(context),
+                  actionsPadding: reformedActionsPadding,
+                  buttonPadding: EdgeInsets.symmetric(horizontal: horizontalActionPadding / 2),
+                  actionsAlignment: MainAxisAlignment.center,
+                  insetPadding: materialDialogData.insetPadding,
+                  shape: materialDialogData.shape,
+                  backgroundColor: materialDialogData.backgroundColor,
+                ),
               ),
             ),
           ),

@@ -102,6 +102,7 @@
   "reasonForCancelingTheOrder": "Reason for canceling the order",
   "typeYourNote": "Type your note",
   "areYouSure": "Are you sure?",
+  "cancelTheOrder": "Cancel the order?",
   "doYouWantToDeliverTheOrder": "Do you want to Deliver the order?",
   "doYouWantToConfirmTheOrder": "Do you want to Confirm the order?",
   "youCanNotProceedThisOrder": "You can\"t proceed this order!",

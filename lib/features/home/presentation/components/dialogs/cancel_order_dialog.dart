@@ -20,6 +20,7 @@ class CancelOrderDialog extends StatelessWidget {
           Text(
             '${tr(context).reasonForCancelingTheOrder}:',
             style: TextStyles.f16(context),
+            textAlign: TextAlign.start,
           ),
           const SizedBox(
             height: Sizes.marginV12,
