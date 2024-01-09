@@ -27,7 +27,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
           );
 
       switch (authority) {
-        case (canProceed: true, isEnabled: true):
+        case (canProceed: true, isLoading: true):
           return OrderDialogs.confirmChoiceDialog(
             context,
             tr(context).doYouWantToConfirmTheOrder,
@@ -46,7 +46,7 @@ class MapConfirmButtonComponent extends ConsumerWidget {
               );
             }
           });
-        case (canProceed: false, isEnabled: _):
+        case (canProceed: false, isLoading: _):
           OrderDialogs.showCanNotProceedDialog(context);
         case _:
           return;
