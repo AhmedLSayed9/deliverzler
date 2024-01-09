@@ -36,9 +36,9 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
       barrierLabel: '',
       transitionBuilder: (context, a1, a2, widget) => Transform.scale(
         scale: a1.value,
-        child: WillPopScope(
+        child: PopScope(
           //This prevent closing the dialog when pressing device's back button
-          onWillPop: () => Future.value(barrierDismissible),
+          canPop: barrierDismissible,
           child: Opacity(
             opacity: a1.value,
             child: LayoutBuilder(
@@ -84,6 +84,7 @@ Future<T?> showPlatformAlertDialog<T extends Object?>({
     );
   }
 
+  // ignore: deprecated_member_use
   final textScaleFactor = MediaQuery.textScaleFactorOf(context);
   const kDialogEdgePadding = 20.0;
 

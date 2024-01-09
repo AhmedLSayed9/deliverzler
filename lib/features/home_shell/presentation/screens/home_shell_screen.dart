@@ -75,15 +75,14 @@ class HomeShellScreen extends HookConsumerWidget {
       },
     );
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: selectedTab.value == TabItem.home,
+      onPopInvoked: (canPop) {
         //This prevent popping when tab isn't (Home) & instead will back to home.
-        if (selectedTab.value != TabItem.home) {
+        if (canPop) {
           selectedTab.value = TabItem.home;
           navigationShell.goBranch(TabItem.home.index);
-          return false;
         }
-        return true;
       },
       child: Scaffold(
         // Using single persistent AppBar for all tabs and update it according to current location.

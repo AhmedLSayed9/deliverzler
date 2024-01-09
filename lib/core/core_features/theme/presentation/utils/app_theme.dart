@@ -182,6 +182,8 @@ class AppTheme {
   // TODO(AHMED): useMaterial3
   ThemeData getThemeData(String fontFamily) {
     return _baseTheme.copyWith(
+      // ignore: deprecated_member_use
+      useMaterial3: false,
       primaryColor: _primaryColor,
       colorScheme: _colorScheme,
       appBarTheme: _appBarTheme,

@@ -10,11 +10,9 @@ class NoInternetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return WillPopScope(
-      onWillPop: () {
-        const SplashRoute().go(context);
-        return Future.value(false);
-      },
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (_) => const SplashRoute().go(context),
       child: WindowClassLayout(
         compact: (_) => OrientationLayout(
           portrait: (_) => const NoInternetScreenCompact(),

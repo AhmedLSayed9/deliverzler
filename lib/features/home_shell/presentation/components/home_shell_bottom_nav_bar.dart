@@ -18,6 +18,7 @@ class HomeShellBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       // TODO(AHMED): remove when migrating the whole app to material3.
+      // ignore: deprecated_member_use
       data: Theme.of(context).copyWith(useMaterial3: true),
       child: PlatformNavBar(
         height: Sizes.navBarHeight60,
