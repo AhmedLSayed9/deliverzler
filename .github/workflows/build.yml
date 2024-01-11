@@ -38,7 +38,14 @@ jobs:
         run: flutter pub get
 
       - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed --line-length=100 .
+        run: |
+          find . -name "*.dart" \
+          ! -name "*.g.dart" \
+          ! -name "*.freezed.dart" \
+          ! -name "app_localizations*.dart" \
+          ! -path "*/gen/*" \
+          ! -name "firebase_options*.dart" \
+          | xargs dart format --output=none --set-exit-if-changed --line-length=100
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Run flutter analyze
