@@ -6,16 +6,18 @@ part of 'map_controller_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentMapControllerHash() => r'6fe8d265e49b7b34075643822528405db96a7459';
+String _$currentMapControllerHash() =>
+    r'6fe8d265e49b7b34075643822528405db96a7459';
 
 /// See also [CurrentMapController].
 @ProviderFor(CurrentMapController)
-final currentMapControllerProvider =
-    AutoDisposeNotifierProvider<CurrentMapController, GoogleMapController?>.internal(
+final currentMapControllerProvider = AutoDisposeNotifierProvider<
+    CurrentMapController, GoogleMapController?>.internal(
   CurrentMapController.new,
   name: r'currentMapControllerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$currentMapControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$currentMapControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -29,8 +31,9 @@ final mapControllerProvider =
     AutoDisposeNotifierProvider<MapController, GoogleMapController?>.internal(
   MapController.new,
   name: r'mapControllerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$mapControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$mapControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

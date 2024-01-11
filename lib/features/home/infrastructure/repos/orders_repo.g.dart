@@ -6,14 +6,15 @@ part of 'orders_repo.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ordersRepoHash() => r'a3af2ff4115634d27721350105031065bbf2ca24';
+String _$ordersRepoHash() => r'aa2fe6dc819895da4cc70029b5ec9d64e16e793d';
 
 /// See also [ordersRepo].
 @ProviderFor(ordersRepo)
 final ordersRepoProvider = Provider<OrdersRepo>.internal(
   ordersRepo,
   name: r'ordersRepoProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$ordersRepoHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ordersRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

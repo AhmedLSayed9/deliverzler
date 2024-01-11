@@ -40,7 +40,7 @@ class CachedNetworkImageCircular extends ConsumerWidget {
       ),
       errorWidget: (context, url, error) => CircleAvatar(
         radius: radius,
-        backgroundImage: const AssetImage(MyAssets.ASSETS_IMAGES_CORE_NO_INTERNET_JPG),
+        backgroundImage: const AssetImage(MyAssets.ASSETS_IMAGES_CORE_NO_INTERNET_PNG),
       ),
     );
   }

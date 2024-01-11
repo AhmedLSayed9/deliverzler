@@ -32,8 +32,8 @@ mixin _$UpdateDeliveryStatusDto {
 
 /// @nodoc
 abstract class $UpdateDeliveryStatusDtoCopyWith<$Res> {
-  factory $UpdateDeliveryStatusDtoCopyWith(
-          UpdateDeliveryStatusDto value, $Res Function(UpdateDeliveryStatusDto) then) =
+  factory $UpdateDeliveryStatusDtoCopyWith(UpdateDeliveryStatusDto value,
+          $Res Function(UpdateDeliveryStatusDto) then) =
       _$UpdateDeliveryStatusDtoCopyWithImpl<$Res, UpdateDeliveryStatusDto>;
   @useResult
   $Res call(
@@ -44,7 +44,8 @@ abstract class $UpdateDeliveryStatusDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateDeliveryStatusDtoCopyWithImpl<$Res, $Val extends UpdateDeliveryStatusDto>
+class _$UpdateDeliveryStatusDtoCopyWithImpl<$Res,
+        $Val extends UpdateDeliveryStatusDto>
     implements $UpdateDeliveryStatusDtoCopyWith<$Res> {
   _$UpdateDeliveryStatusDtoCopyWithImpl(this._value, this._then);
 
@@ -85,8 +86,8 @@ class _$UpdateDeliveryStatusDtoCopyWithImpl<$Res, $Val extends UpdateDeliverySta
 /// @nodoc
 abstract class _$$_UpdateDeliveryStatusDtoCopyWith<$Res>
     implements $UpdateDeliveryStatusDtoCopyWith<$Res> {
-  factory _$$_UpdateDeliveryStatusDtoCopyWith(
-          _$_UpdateDeliveryStatusDto value, $Res Function(_$_UpdateDeliveryStatusDto) then) =
+  factory _$$_UpdateDeliveryStatusDtoCopyWith(_$_UpdateDeliveryStatusDto value,
+          $Res Function(_$_UpdateDeliveryStatusDto) then) =
       __$$_UpdateDeliveryStatusDtoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -99,10 +100,11 @@ abstract class _$$_UpdateDeliveryStatusDtoCopyWith<$Res>
 
 /// @nodoc
 class __$$_UpdateDeliveryStatusDtoCopyWithImpl<$Res>
-    extends _$UpdateDeliveryStatusDtoCopyWithImpl<$Res, _$_UpdateDeliveryStatusDto>
+    extends _$UpdateDeliveryStatusDtoCopyWithImpl<$Res,
+        _$_UpdateDeliveryStatusDto>
     implements _$$_UpdateDeliveryStatusDtoCopyWith<$Res> {
-  __$$_UpdateDeliveryStatusDtoCopyWithImpl(
-      _$_UpdateDeliveryStatusDto _value, $Res Function(_$_UpdateDeliveryStatusDto) _then)
+  __$$_UpdateDeliveryStatusDtoCopyWithImpl(_$_UpdateDeliveryStatusDto _value,
+      $Res Function(_$_UpdateDeliveryStatusDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -168,21 +170,24 @@ class _$_UpdateDeliveryStatusDto implements _UpdateDeliveryStatusDto {
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.deliveryStatus, deliveryStatus) ||
                 other.deliveryStatus == deliveryStatus) &&
-            (identical(other.deliveryId, deliveryId) || other.deliveryId == deliveryId) &&
+            (identical(other.deliveryId, deliveryId) ||
+                other.deliveryId == deliveryId) &&
             (identical(other.employeeCancelNote, employeeCancelNote) ||
                 other.employeeCancelNote == employeeCancelNote));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, orderId, deliveryStatus, deliveryId, employeeCancelNote);
+  int get hashCode => Object.hash(
+      runtimeType, orderId, deliveryStatus, deliveryId, employeeCancelNote);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdateDeliveryStatusDtoCopyWith<_$_UpdateDeliveryStatusDto> get copyWith =>
-      __$$_UpdateDeliveryStatusDtoCopyWithImpl<_$_UpdateDeliveryStatusDto>(this, _$identity);
+  _$$_UpdateDeliveryStatusDtoCopyWith<_$_UpdateDeliveryStatusDto>
+      get copyWith =>
+          __$$_UpdateDeliveryStatusDtoCopyWithImpl<_$_UpdateDeliveryStatusDto>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -213,6 +218,6 @@ abstract class _UpdateDeliveryStatusDto implements UpdateDeliveryStatusDto {
   String? get employeeCancelNote;
   @override
   @JsonKey(ignore: true)
-  _$$_UpdateDeliveryStatusDtoCopyWith<_$_UpdateDeliveryStatusDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_UpdateDeliveryStatusDtoCopyWith<_$_UpdateDeliveryStatusDto>
+      get copyWith => throw _privateConstructorUsedError;
 }

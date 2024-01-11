@@ -42,20 +42,20 @@ dependencies:
   dio: ^5.1.2
 
   # Firebase
-  firebase_core: ^2.14.0
-  cloud_firestore: ^4.1.0
-  firebase_auth: ^4.1.5
-  firebase_storage: ^11.0.6
-  firebase_messaging: ^14.1.4
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.14.0
+  firebase_auth: ^4.16.0
+  firebase_storage: ^11.6.0
+  firebase_messaging: ^14.7.10
 
   # LocalStorage
   shared_preferences: ^2.1.1
   sqflite: ^2.2.8+4
-  flutter_cache_manager: ^3.3.0
+  flutter_cache_manager: ^3.3.1
   image_picker: ^0.8.7+5
 
   # Images
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.1
   lottie: ^2.3.2
 
   # Utils
@@ -65,11 +65,11 @@ dependencies:
   flutter_fadein: ^2.0.0
   uuid: ^3.0.7
   url_launcher: ^6.1.11
-  flutter_local_notifications: ^9.3.1
+  flutter_local_notifications: ^16.3.0
   timeago: ^3.4.0
 
   # Widgets
-  flutter_platform_widgets: ^4.0.0-beta.3
+  flutter_platform_widgets: ^6.0.2
   flutter_adaptive_scaffold: ^0.1.6
   fluttertoast: ^8.2.2
   qr_flutter: ^4.1.0

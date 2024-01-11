@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_use_of_visible_for_overriding_member
 
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:deliverzler/core/infrastructure/notification/notification_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -8,22 +8,21 @@ import 'package:deliverzler/auth/domain/user.dart';
 import 'package:deliverzler/auth/infrastructure/repos/auth_repo.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_out_provider.dart';
-import 'package:deliverzler/core/infrastructure/services/fcm_service/fcm_provider.dart';
 import 'package:deliverzler/core/presentation/utils/fp_framework.dart';
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 import '../../../utils.dart';
 
 class MockAuthRepo extends Mock implements AuthRepo {}
 
-class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
+class MockNotificationService extends Mock implements NotificationService {}
 
 void main() {
   late MockAuthRepo mockAuthRepo;
-  late MockFirebaseMessaging mockFcm;
+  late MockNotificationService mockNotificationService;
 
   setUp(() {
     mockAuthRepo = MockAuthRepo();
-    mockFcm = MockFirebaseMessaging();
+    mockNotificationService = MockNotificationService();
     registerFallbackValue(const AsyncLoading<Option<Unit>>());
   });
 
@@ -70,12 +69,12 @@ void main() {
         () async {
           // GIVEN
           when(() => mockAuthRepo.signOut()).thenAnswer((_) async {});
-          when(() => mockFcm.unsubscribeFromTopic(any())).thenAnswer((_) async {});
+          when(() => mockNotificationService.unsubscribeFromTopic(any())).thenAnswer((_) async {});
 
           final container = setUpContainer(
             overrides: [
               authRepoProvider.overrideWith((ref) => mockAuthRepo),
-              fcmProvider.overrideWith((ref) => mockFcm),
+              notificationServiceProvider.overrideWith((ref) => mockNotificationService),
             ],
           );
           final listener = setUpListener(container, signOutStateProvider);
@@ -96,12 +95,12 @@ void main() {
           verifyInOrder([
             () => listener(idleState, loadingState()),
             () => mockAuthRepo.signOut(),
-            () => mockFcm.unsubscribeFromTopic('general'),
+            () => mockNotificationService.unsubscribeFromTopic('general'),
             () => authListener(authenticatedState, unauthenticatedState),
             () => listener(loadingState(), successState),
           ]);
           verifyNoMoreInteractions(mockAuthRepo);
-          verifyNoMoreInteractions(mockFcm);
+          verifyNoMoreInteractions(mockNotificationService);
           verifyNoMoreInteractions(listener);
           verifyNoMoreInteractions(authListener);
         },
@@ -114,14 +113,14 @@ void main() {
           when(() => mockAuthRepo.signOut()).thenAnswer(
             (_) async => Error.throwWithStackTrace(tException, tStackTrace),
           );
-          when(() => mockFcm.unsubscribeFromTopic(any())).thenAnswer(
+          when(() => mockNotificationService.unsubscribeFromTopic(any())).thenAnswer(
             (_) async => Error.throwWithStackTrace(tException, tStackTrace),
           );
 
           final container = setUpContainer(
             overrides: [
               authRepoProvider.overrideWith((ref) => mockAuthRepo),
-              fcmProvider.overrideWith((ref) => mockFcm),
+              notificationServiceProvider.overrideWith((ref) => mockNotificationService),
             ],
           );
           final listener = setUpListener(container, signOutStateProvider);

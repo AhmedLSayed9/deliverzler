@@ -6,15 +6,17 @@ part of 'auth_local_data_source.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authLocalDataSourceHash() => r'260491b9fbde58c18c6fc9a5918855df1cb5639d';
+String _$authLocalDataSourceHash() =>
+    r'260491b9fbde58c18c6fc9a5918855df1cb5639d';
 
 /// See also [authLocalDataSource].
 @ProviderFor(authLocalDataSource)
 final authLocalDataSourceProvider = Provider<AuthLocalDataSource>.internal(
   authLocalDataSource,
   name: r'authLocalDataSourceProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$authLocalDataSourceHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authLocalDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

@@ -6,11 +6,12 @@ part of 'sign_out_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signOutStateHash() => r'7ccf8acfa8cc048c2dc98f05ae9c9714bdc92fb5';
+String _$signOutStateHash() => r'd1b4fbd3ef503d01c59434da6e6bb8906a1374fe';
 
 /// See also [SignOutState].
 @ProviderFor(SignOutState)
-final signOutStateProvider = AutoDisposeAsyncNotifierProvider<SignOutState, Option<Unit>>.internal(
+final signOutStateProvider =
+    AutoDisposeAsyncNotifierProvider<SignOutState, Option<Unit>>.internal(
   SignOutState.new,
   name: r'signOutStateProvider',
   debugGetCreateSourceHash:

@@ -6,11 +6,12 @@ part of 'sign_in_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInStateHash() => r'1317a154fbe741f4ffd0f0da904a0462dee96a32';
+String _$signInStateHash() => r'a6152107d3ac5f641c2ab4b01bb8db523897d4c6';
 
 /// See also [SignInState].
 @ProviderFor(SignInState)
-final signInStateProvider = AutoDisposeAsyncNotifierProvider<SignInState, Option<User>>.internal(
+final signInStateProvider =
+    AutoDisposeAsyncNotifierProvider<SignInState, Option<User>>.internal(
   SignInState.new,
   name: r'signInStateProvider',
   debugGetCreateSourceHash:

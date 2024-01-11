@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../../core/infrastructure/services/fcm_service/fcm_provider.dart';
+import '../../../core/infrastructure/notification/notification_service.dart';
 import '../../../core/presentation/extensions/future_extensions.dart';
 import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
@@ -18,7 +18,9 @@ class SignOutState extends _$SignOutState {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       unawaited(ref.read(authRepoProvider).signOut().suppressError());
-      unawaited(ref.read(fcmProvider).unsubscribeFromTopic('general').suppressError());
+      unawaited(
+        ref.read(notificationServiceProvider).unsubscribeFromTopic('general').suppressError(),
+      );
 
       ref.read(authStateProvider.notifier).unAuthenticateUser();
 

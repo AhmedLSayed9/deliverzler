@@ -1,4 +1,3 @@
-/*
 // This is legacy and not needed anymore.
 
 import 'package:flutter/foundation.dart';
@@ -21,4 +20,3 @@ class Event<T> with _$Event<T> {
         arg: arg,
       );
 }
-*/

@@ -32,7 +32,8 @@ mixin _$AppOrder {
   GeoPoint? get deliveryGeoPoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AppOrderCopyWith<AppOrder> get copyWith => throw _privateConstructorUsedError;
+  $AppOrderCopyWith<AppOrder> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -60,7 +61,8 @@ abstract class $AppOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppOrderCopyWithImpl<$Res, $Val extends AppOrder> implements $AppOrderCopyWith<$Res> {
+class _$AppOrderCopyWithImpl<$Res, $Val extends AppOrder>
+    implements $AppOrderCopyWith<$Res> {
   _$AppOrderCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -161,7 +163,8 @@ class _$AppOrderCopyWithImpl<$Res, $Val extends AppOrder> implements $AppOrderCo
 
 /// @nodoc
 abstract class _$$_AppOrderCopyWith<$Res> implements $AppOrderCopyWith<$Res> {
-  factory _$$_AppOrderCopyWith(_$_AppOrder value, $Res Function(_$_AppOrder) then) =
+  factory _$$_AppOrderCopyWith(
+          _$_AppOrder value, $Res Function(_$_AppOrder) then) =
       __$$_AppOrderCopyWithImpl<$Res>;
   @override
   @useResult
@@ -186,9 +189,11 @@ abstract class _$$_AppOrderCopyWith<$Res> implements $AppOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AppOrderCopyWithImpl<$Res> extends _$AppOrderCopyWithImpl<$Res, _$_AppOrder>
+class __$$_AppOrderCopyWithImpl<$Res>
+    extends _$AppOrderCopyWithImpl<$Res, _$_AppOrder>
     implements _$$_AppOrderCopyWith<$Res> {
-  __$$_AppOrderCopyWithImpl(_$_AppOrder _value, $Res Function(_$_AppOrder) _then)
+  __$$_AppOrderCopyWithImpl(
+      _$_AppOrder _value, $Res Function(_$_AppOrder) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -379,5 +384,6 @@ abstract class _AppOrder extends AppOrder {
   GeoPoint? get deliveryGeoPoint;
   @override
   @JsonKey(ignore: true)
-  _$$_AppOrderCopyWith<_$_AppOrder> get copyWith => throw _privateConstructorUsedError;
+  _$$_AppOrderCopyWith<_$_AppOrder> get copyWith =>
+      throw _privateConstructorUsedError;
 }

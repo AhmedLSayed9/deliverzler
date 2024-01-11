@@ -40,9 +40,7 @@ void _setupLogger() {
 }
 
 Future<void> _initFirebase() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // Set the background messaging handler early on, as a named top-level function
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 }
@@ -53,9 +51,9 @@ Future<void> _precacheAssets(BuildContext context) async {
   ].wait.suppressError();
 }
 
-//This provided handler must be a top-level function.
-//It works outside the scope of the app in its own isolate.
-//More details: https://firebase.google.com/docs/cloud-messaging/flutter/receive#background_messages
+/// This provided handler must be a top-level function.
+/// It works outside the scope of the app in its own isolate.
+/// More details: https://firebase.google.com/docs/cloud-messaging/flutter/receive#background_messages
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,

@@ -1,4 +1,4 @@
-import '../../../core/infrastructure/services/fcm_service/fcm_provider.dart';
+import '../../../core/infrastructure/notification/notification_service.dart';
 import '../../../core/presentation/utils/fp_framework.dart';
 import '../../../core/presentation/utils/riverpod_framework.dart';
 import '../../domain/sign_in_with_email.dart';
@@ -21,7 +21,7 @@ class SignInState extends _$SignInState {
       final authRepo = ref.read(authRepoProvider);
       final userFromCredential = await authRepo.signInWithEmail(params);
       final user = await authRepo.getUserData(userFromCredential.id);
-      await ref.read(fcmProvider).subscribeToTopic('general');
+      await ref.read(notificationServiceProvider).subscribeToTopic('general');
 
       ref.read(authStateProvider.notifier).authenticateUser(user);
 

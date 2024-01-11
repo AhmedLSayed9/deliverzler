@@ -22,7 +22,8 @@ mixin _$PlaceAutocomplete {
   String get secondaryText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlaceAutocompleteCopyWith<PlaceAutocomplete> get copyWith => throw _privateConstructorUsedError;
+  $PlaceAutocompleteCopyWith<PlaceAutocomplete> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -31,7 +32,11 @@ abstract class $PlaceAutocompleteCopyWith<$Res> {
           PlaceAutocomplete value, $Res Function(PlaceAutocomplete) then) =
       _$PlaceAutocompleteCopyWithImpl<$Res, PlaceAutocomplete>;
   @useResult
-  $Res call({String placeId, String description, String mainText, String secondaryText});
+  $Res call(
+      {String placeId,
+      String description,
+      String mainText,
+      String secondaryText});
 }
 
 /// @nodoc
@@ -74,13 +79,18 @@ class _$PlaceAutocompleteCopyWithImpl<$Res, $Val extends PlaceAutocomplete>
 }
 
 /// @nodoc
-abstract class _$$_PlaceAutocompleteCopyWith<$Res> implements $PlaceAutocompleteCopyWith<$Res> {
-  factory _$$_PlaceAutocompleteCopyWith(
-          _$_PlaceAutocomplete value, $Res Function(_$_PlaceAutocomplete) then) =
+abstract class _$$_PlaceAutocompleteCopyWith<$Res>
+    implements $PlaceAutocompleteCopyWith<$Res> {
+  factory _$$_PlaceAutocompleteCopyWith(_$_PlaceAutocomplete value,
+          $Res Function(_$_PlaceAutocomplete) then) =
       __$$_PlaceAutocompleteCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String placeId, String description, String mainText, String secondaryText});
+  $Res call(
+      {String placeId,
+      String description,
+      String mainText,
+      String secondaryText});
 }
 
 /// @nodoc
@@ -149,20 +159,24 @@ class _$_PlaceAutocomplete implements _PlaceAutocomplete {
         (other.runtimeType == runtimeType &&
             other is _$_PlaceAutocomplete &&
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
-            (identical(other.description, description) || other.description == description) &&
-            (identical(other.mainText, mainText) || other.mainText == mainText) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.mainText, mainText) ||
+                other.mainText == mainText) &&
             (identical(other.secondaryText, secondaryText) ||
                 other.secondaryText == secondaryText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, placeId, description, mainText, secondaryText);
+  int get hashCode =>
+      Object.hash(runtimeType, placeId, description, mainText, secondaryText);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_PlaceAutocompleteCopyWith<_$_PlaceAutocomplete> get copyWith =>
-      __$$_PlaceAutocompleteCopyWithImpl<_$_PlaceAutocomplete>(this, _$identity);
+      __$$_PlaceAutocompleteCopyWithImpl<_$_PlaceAutocomplete>(
+          this, _$identity);
 }
 
 abstract class _PlaceAutocomplete implements PlaceAutocomplete {

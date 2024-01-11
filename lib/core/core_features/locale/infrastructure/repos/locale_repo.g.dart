@@ -13,7 +13,8 @@ String _$localeRepoHash() => r'3f6413ec283394b7f058444fe25c87a554118a99';
 final localeRepoProvider = Provider<LocaleRepo>.internal(
   localeRepo,
   name: r'localeRepoProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$localeRepoHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$localeRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

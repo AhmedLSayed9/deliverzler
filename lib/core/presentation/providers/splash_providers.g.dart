@@ -6,15 +6,17 @@ part of 'splash_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$splashServicesWarmupHash() => r'1b9f63c77c1ad8f5503543b25c9ef77872ed58bb';
+String _$splashServicesWarmupHash() =>
+    r'a5b200293f98d9bb2fb4772908fe78c7258abab8';
 
 /// See also [splashServicesWarmup].
 @ProviderFor(splashServicesWarmup)
 final splashServicesWarmupProvider = AutoDisposeFutureProvider<void>.internal(
   splashServicesWarmup,
   name: r'splashServicesWarmupProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$splashServicesWarmupHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$splashServicesWarmupHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

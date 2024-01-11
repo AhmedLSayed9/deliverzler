@@ -6,15 +6,17 @@ part of 'upcoming_orders_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$upcomingOrdersHash() => r'8b58d5e5fa96f108570f75bef58e1c5b3efda449';
+String _$upcomingOrdersHash() => r'263412a666da0f2c408b38fec2b52d537ead128b';
 
 /// See also [upcomingOrders].
 @ProviderFor(upcomingOrders)
-final upcomingOrdersProvider = AutoDisposeStreamProvider<List<AppOrder>>.internal(
+final upcomingOrdersProvider =
+    AutoDisposeStreamProvider<List<AppOrder>>.internal(
   upcomingOrders,
   name: r'upcomingOrdersProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$upcomingOrdersHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$upcomingOrdersHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

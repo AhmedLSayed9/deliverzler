@@ -40,7 +40,7 @@
             android:value="${ANDROID_GOOGLE_MAPS_API_KEY}" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="firebase_push_notification" />
+            android:value="high_importance_channel" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/notification_icon" />

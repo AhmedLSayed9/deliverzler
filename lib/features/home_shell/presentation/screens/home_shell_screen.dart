@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../auth/presentation/providers/sign_out_provider.dart';
+import '../../../../core/infrastructure/notification/notification.dart';
+import '../../../../core/infrastructure/notification/notification_service.dart';
+import '../../../../core/infrastructure/notification/fcm_remote_message_providers.dart';
 import '../../../../core/infrastructure/services/connection_stream_service.dart';
-import '../../../../core/infrastructure/services/fcm_service/show_fcm_notification_provider.dart';
 import '../../../../core/presentation/utils/fp_framework.dart';
 import '../../../../core/presentation/utils/riverpod_framework.dart';
 import '../../../../core/presentation/widgets/toasts.dart';
 import '../../../../core/presentation/widgets/platform_widgets/platform_appbar.dart';
-import '../../../notifications/domain/app_notification.dart';
-import '../../../notifications/presentation/providers/fcm_remote_message_providers.dart';
-import '../../../notifications/presentation/providers/tapped_notification_provider.dart';
 import '../components/home_shell_bottom_nav_bar.dart';
 import '../components/home_shell_appbar.dart';
 import '../utils/tab_item.dart';
@@ -40,15 +39,22 @@ class HomeShellScreen extends HookConsumerWidget {
     ref.listen(onMessageProvider, (previous, next) {
       next.whenData(
         (message) {
-          ref.read(showFCMNotificationProvider(message));
+          ref.read(notificationServiceProvider).showRemoteNotification(message);
         },
       );
     });
 
-    final selectedTab = useState<TabItem>(TabItem.values[navigationShell.currentIndex]);
+    ref.listen(
+      tappedNotificationProvider,
+      (previous, next) {
+        if (next is Some<NotificationPayload>) {
+          final notification = next.value;
+          if (notification.routeLocation case final location?) context.go(location);
+        }
+      },
+    );
 
     void onSelectTab(TabItem tab) {
-      selectedTab.value = tab;
       // When navigating to a new branch, it's recommended to use the goBranch
       // method, as doing so makes sure the last navigation state of the
       // Navigator for the branch is restored.
@@ -62,25 +68,12 @@ class HomeShellScreen extends HookConsumerWidget {
       );
     }
 
-    ref.listen<Option<AppNotification>>(
-      tappedNotificationProvider,
-      (previous, next) {
-        if (next is Some<AppNotification>) {
-          final notification = next.value;
-          selectedTab.value = TabItem.values.firstWhere((tab) => tab.name == notification.tabName);
-
-          final location = notification.routeLocation;
-          if (location != null) context.go(location);
-        }
-      },
-    );
-
     return PopScope(
-      canPop: selectedTab.value == TabItem.home,
+      canPop: TabItem.values[navigationShell.currentIndex] == TabItem.home,
       onPopInvoked: (canPop) {
         //This prevent popping when tab isn't (Home) & instead will back to home.
         if (canPop) {
-          selectedTab.value = TabItem.home;
+          TabItem.values[navigationShell.currentIndex] = TabItem.home;
           navigationShell.goBranch(TabItem.home.index);
         }
       },
@@ -95,7 +88,7 @@ class HomeShellScreen extends HookConsumerWidget {
             : null,
         body: navigationShell,
         bottomNavigationBar: HomeShellBottomNavBar(
-          currentTab: selectedTab.value,
+          currentTab: TabItem.values[navigationShell.currentIndex],
           onSelectTab: onSelectTab,
         ),
         // TODO(Ahmed): Migrate to AdaptiveLayout HomeShell when the bottomNavigation displacement

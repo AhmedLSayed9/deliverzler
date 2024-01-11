@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_use_of_visible_for_overriding_member
 
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:deliverzler/core/infrastructure/notification/notification_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -9,14 +9,13 @@ import 'package:deliverzler/auth/domain/user.dart';
 import 'package:deliverzler/auth/infrastructure/repos/auth_repo.dart';
 import 'package:deliverzler/auth/presentation/providers/auth_state_provider.dart';
 import 'package:deliverzler/auth/presentation/providers/sign_in_provider.dart';
-import 'package:deliverzler/core/infrastructure/services/fcm_service/fcm_provider.dart';
 import 'package:deliverzler/core/presentation/utils/fp_framework.dart';
 import 'package:deliverzler/core/presentation/utils/riverpod_framework.dart';
 import '../../../utils.dart';
 
 class MockAuthRepo extends Mock implements AuthRepo {}
 
-class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
+class MockNotificationService extends Mock implements NotificationService {}
 
 class MockSignInState extends AutoDisposeAsyncNotifier<Option<User>>
     with Mock
@@ -24,11 +23,11 @@ class MockSignInState extends AutoDisposeAsyncNotifier<Option<User>>
 
 void main() {
   late MockAuthRepo mockAuthRepo;
-  late MockFirebaseMessaging mockFcm;
+  late MockNotificationService mockNotificationService;
 
   setUp(() {
     mockAuthRepo = MockAuthRepo();
-    mockFcm = MockFirebaseMessaging();
+    mockNotificationService = MockNotificationService();
     registerFallbackValue(const AsyncLoading<Option<User>>());
     registerFallbackValue(const SignInWithEmail(email: '', password: ''));
   });
@@ -80,12 +79,12 @@ void main() {
           // GIVEN
           when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer((_) => Future.value(tUser));
           when(() => mockAuthRepo.getUserData(any())).thenAnswer((_) => Future.value(tUser));
-          when(() => mockFcm.subscribeToTopic(any())).thenAnswer((_) async {});
+          when(() => mockNotificationService.subscribeToTopic(any())).thenAnswer((_) async {});
 
           final container = setUpContainer(
             overrides: [
               authRepoProvider.overrideWith((ref) => mockAuthRepo),
-              fcmProvider.overrideWith((ref) => mockFcm),
+              notificationServiceProvider.overrideWith((ref) => mockNotificationService),
             ],
           );
           final listener = setUpListener(container, signInStateProvider);
@@ -105,12 +104,12 @@ void main() {
             () => listener(idleState, loadingState()),
             () => mockAuthRepo.signInWithEmail(tParams),
             () => mockAuthRepo.getUserData(tUser.id),
-            () => mockFcm.subscribeToTopic('general'),
+            () => mockNotificationService.subscribeToTopic('general'),
             () => authListener(unauthenticatedState, authenticatedState),
             () => listener(loadingState(), successState),
           ]);
           verifyNoMoreInteractions(mockAuthRepo);
-          verifyNoMoreInteractions(mockFcm);
+          verifyNoMoreInteractions(mockNotificationService);
           verifyNoMoreInteractions(listener);
           verifyNoMoreInteractions(authListener);
         },
@@ -195,12 +194,12 @@ void main() {
           // GIVEN
           when(() => mockAuthRepo.signInWithEmail(any())).thenAnswer((_) => Future.value(tUser));
           when(() => mockAuthRepo.getUserData(any())).thenAnswer((_) => Future.value(tUser));
-          when(() => mockFcm.subscribeToTopic(any())).thenThrow(tException);
+          when(() => mockNotificationService.subscribeToTopic(any())).thenThrow(tException);
 
           final container = setUpContainer(
             overrides: [
               authRepoProvider.overrideWith((ref) => mockAuthRepo),
-              fcmProvider.overrideWith((ref) => mockFcm),
+              notificationServiceProvider.overrideWith((ref) => mockNotificationService),
             ],
           );
           final listener = setUpListener(container, signInStateProvider);
@@ -219,11 +218,11 @@ void main() {
             () => listener(idleState, loadingState()),
             () => mockAuthRepo.signInWithEmail(tParams),
             () => mockAuthRepo.getUserData(tUser.id),
-            () => mockFcm.subscribeToTopic('general'),
+            () => mockNotificationService.subscribeToTopic('general'),
             () => listener(loadingState(), errorState()),
           ]);
           verifyNoMoreInteractions(mockAuthRepo);
-          verifyNoMoreInteractions(mockFcm);
+          verifyNoMoreInteractions(mockNotificationService);
           verifyNoMoreInteractions(listener);
           verifyNoMoreInteractions(authListener);
         },

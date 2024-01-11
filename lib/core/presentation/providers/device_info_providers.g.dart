@@ -10,11 +10,13 @@ String _$androidDeviceInfoHash() => r'ba85ac2c175503b984868b5857c0f20b6d8e87cc';
 
 /// See also [androidDeviceInfo].
 @ProviderFor(androidDeviceInfo)
-final androidDeviceInfoProvider = FutureProvider<Option<AndroidDeviceInfo>>.internal(
+final androidDeviceInfoProvider =
+    FutureProvider<Option<AndroidDeviceInfo>>.internal(
   androidDeviceInfo,
   name: r'androidDeviceInfoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$androidDeviceInfoHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$androidDeviceInfoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

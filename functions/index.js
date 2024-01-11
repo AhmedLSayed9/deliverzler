@@ -23,7 +23,7 @@ exports.senddevices = functions.firestore
                 title: "New Order!",
                 body: "New Delivery Order from \"" + userName + "\" has been added.",
               },
-              data: {"tabName": "home"},
+              data: {"routeLocation": "/home"},
             };
 
         return fcm.sendToTopic(topic, message);
