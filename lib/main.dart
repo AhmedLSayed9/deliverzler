@@ -21,8 +21,8 @@ part 'core/infrastructure/services/main_initializer.dart';
 void main() async {
   final container = await _mainInitializer();
   runApp(
-    ProviderScope(
-      parent: container,
+    UncontrolledProviderScope(
+      container: container,
       child: const MyApp(),
     ),
   );

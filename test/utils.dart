@@ -27,12 +27,10 @@ Future<BuildContext> setUpLocalizationsContext(WidgetTester t) async {
 }
 
 ProviderContainer setUpContainer({
-  ProviderContainer? parent,
   List<Override> overrides = const [],
   List<ProviderObserver>? observers,
 }) {
   final container = ProviderContainer(
-    parent: parent,
     overrides: overrides,
     observers: observers,
   );
