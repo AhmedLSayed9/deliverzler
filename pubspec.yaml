@@ -16,9 +16,9 @@ dependencies:
   logging: ^1.2.0
 
   # StateManagement & DI
-  hooks_riverpod: ^2.3.6
-  riverpod_annotation: ^2.1.1
-  flutter_hooks: ^0.18.6
+  hooks_riverpod: ^2.4.6
+  riverpod_annotation: ^2.3.0
+  flutter_hooks: ^0.20.3
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
@@ -30,7 +30,7 @@ dependencies:
   connectivity_plus: ^4.0.1
 
   # Routing
-  go_router: ^10.1.0
+  go_router: ^12.1.1
 
   # Location
   location: ^5.0.2+1
@@ -85,16 +85,16 @@ dev_dependencies:
   import_sorter: ^4.6.0
 
   # Lints
-  very_good_analysis: ^5.0.0+1
-  custom_lint: ^0.4.0
-  riverpod_lint: ^1.3.2
+  very_good_analysis: ^5.1.0
+  custom_lint: ^0.5.6
+  riverpod_lint: ^2.3.4
 
   # Code gen
-  build_runner: ^2.4.5
-  riverpod_generator: ^2.2.3
+  build_runner: ^2.4.8
+  riverpod_generator: ^2.3.6
   freezed: ^2.4.1
   json_serializable: ^6.7.0
-  go_router_builder: ^2.3.0
+  go_router_builder: ^2.3.4
 
 import_sorter:
   comments: false
