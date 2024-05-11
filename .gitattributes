@@ -1,6 +1,5 @@
-# https://twitter.com/mkobuolys/status/1489610640335515648
-*.chopper.dart -diff
-*.freezed.dart -diff
-*.g.dart -diff
-*.gen.dart -diff
-*.gr.dart -diff
+*.freezed.dart linguist-generated=true
+*.g.dart linguist-generated=true
+*.mapper.dart linguist-generated=true
+*.gen.dart linguist-generated=true
+*.gr.dart linguist-generated=true
