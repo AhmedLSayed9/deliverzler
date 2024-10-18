@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:logging/logging.dart';
 
 import '../../../gen/my_assets.dart';
 import '../../infrastructure/services/cache_service.dart';
 import '../utils/riverpod_framework.dart';
+
+void _reportImageError(WidgetRef ref, Object error) {
+  // You can also report to Crashlytics as non-fatal error.
+  Logger.root.severe(error, StackTrace.current);
+}
 
 class CachedNetworkImageCircular extends ConsumerWidget {
   const CachedNetworkImageCircular({
@@ -27,8 +33,10 @@ class CachedNetworkImageCircular extends ConsumerWidget {
     final cacheService = ref.watch(cacheServiceProvider);
 
     return CachedNetworkImage(
-      key: UniqueKey(),
       cacheManager: cacheService.customCacheManager,
+      errorListener: (error) {
+        _reportImageError(ref, error);
+      },
       imageUrl: imageUrl != null && imageUrl!.contains('http') ? imageUrl! : spareImageUrl,
       imageBuilder: (context, imageProvider) => CircleAvatar(
         radius: radius,

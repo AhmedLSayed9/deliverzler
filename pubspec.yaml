@@ -12,7 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.1
+  intl: ^0.19.0
   logging: ^1.2.0
 
   # StateManagement & DI
@@ -36,7 +36,7 @@ dependencies:
   location: ^5.0.2+1
   geolocator: ^9.0.2
   google_maps_flutter: ^2.2.8
-  flutter_polyline_points: ^1.0.0
+  flutter_polyline_points: ^2.1.0
 
   # Apis
   dio: ^5.1.2
@@ -51,11 +51,11 @@ dependencies:
   # LocalStorage
   shared_preferences: ^2.1.1
   sqflite: ^2.2.8+4
-  flutter_cache_manager: ^3.3.1
+  flutter_cache_manager: ^3.4.1
   image_picker: ^0.8.7+5
 
   # Images
-  cached_network_image: ^3.3.1
+  cached_network_image: ^3.4.1
   lottie: ^2.3.2
 
   # Utils
@@ -63,7 +63,7 @@ dependencies:
   device_info_plus: ^9.0.3
   fast_immutable_collections: ^9.1.5
   flutter_fadein: ^2.0.0
-  uuid: ^3.0.7
+  uuid: ^4.4.2
   url_launcher: ^6.1.11
   flutter_local_notifications: ^16.3.0
   timeago: ^3.4.0
