@@ -114,7 +114,7 @@ class AppTheme {
     surfaceTintColor: Colors.transparent,
     shadowColor: _appColors.navBarColor,
     indicatorColor: _appColors.navBarIndicatorColor,
-    labelTextStyle: MaterialStatePropertyAll(
+    labelTextStyle: WidgetStatePropertyAll(
       TextStyles.navigationLabel(_appColors.customColors.font12Color!),
     ),
     elevation: Sizes.navBarElevation,

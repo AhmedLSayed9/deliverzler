@@ -14,7 +14,7 @@ class RouteErrorScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (_) => const SplashRoute().go(context),
+      onPopInvokedWithResult: (_, __) => const SplashRoute().go(context),
       child: WindowClassLayout(
         compact: (_) => OrientationLayout(
           portrait: (_) => const ErrorScreenCompact(),

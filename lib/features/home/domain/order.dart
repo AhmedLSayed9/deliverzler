@@ -35,7 +35,7 @@ class AppOrder with _$AppOrder {
   //Use custom equality implementation to ignore deliveryGeoPoint value
   //this helps [upcomingOrdersProvider] to ignore deliveryGeoPoint in deep equality of distinct method
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppOrder &&
