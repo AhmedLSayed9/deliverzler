@@ -70,7 +70,7 @@ class HomeShellScreen extends HookConsumerWidget {
 
     return PopScope(
       canPop: TabItem.values[navigationShell.currentIndex] == TabItem.home,
-      onPopInvoked: (canPop) {
+      onPopInvokedWithResult: (canPop, __) {
         //This prevent popping when tab isn't (Home) & instead will back to home.
         if (canPop) {
           navigationShell.goBranch(TabItem.home.index);
