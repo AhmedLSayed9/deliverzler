@@ -105,7 +105,7 @@ class LocationService {
         timeLimit: const Duration(seconds: AppLocationSettings.getLocationTimeLimit),
       );
     } catch (e) {
-      Logger.root.shout(e.toString());
+      Logger.root.severe(e, StackTrace.current);
       return null;
     }
   }

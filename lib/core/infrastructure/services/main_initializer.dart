@@ -37,6 +37,11 @@ Future<ProviderContainer> _mainInitializer() async {
 void _setupLogger() {
   hierarchicalLoggingEnabled = true;
   Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((LogRecord r) {
+    if (r.loggerName.isEmpty) {
+      loggerOnDataCallback()?.call(r);
+    }
+  });
 }
 
 Future<void> _initFirebase() async {
