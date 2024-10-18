@@ -48,7 +48,7 @@ class NoInternetErrorComponent extends StatelessWidget {
               await networkInfo.hasInternetConnection.then(
                 (value) {
                   if (value) {
-                    const SplashRoute().go(context);
+                    if (context.mounted) const SplashRoute().go(context);
                   }
                 },
               );
