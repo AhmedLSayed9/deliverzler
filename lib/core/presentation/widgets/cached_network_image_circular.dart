@@ -27,7 +27,6 @@ class CachedNetworkImageCircular extends ConsumerWidget {
     final cacheService = ref.watch(cacheServiceProvider);
 
     return CachedNetworkImage(
-      key: UniqueKey(),
       cacheManager: cacheService.customCacheManager,
       imageUrl: imageUrl != null && imageUrl!.contains('http') ? imageUrl! : spareImageUrl,
       imageBuilder: (context, imageProvider) => CircleAvatar(
