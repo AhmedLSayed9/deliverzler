@@ -110,13 +110,14 @@ class NotificationService {
   }
 
   /// Update the iOS foreground notification presentation options to allow heads up notifications.
-  /// Disable alert if you're using flutterLocalNotification to handle foreground notifications
-  /// instead of FCM, otherwise, you'll get duplicated heads up notification.
+  /// Avoid this if you're using flutterLocalNotification to handle foreground notifications
+  /// instead of FCM, otherwise, you'll receive duplicate heads-up notifications.
   Future<void> _setupIOSHeadsUp() async {
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    /* await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+      alert: true,
       sound: true,
       badge: true,
-    );
+    ); */
   }
 
   Future<AuthorizationStatus> _requestPermissions() async {
