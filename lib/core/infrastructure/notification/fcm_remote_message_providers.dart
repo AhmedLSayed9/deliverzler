@@ -21,8 +21,8 @@ part 'fcm_remote_message_providers.g.dart';
 /// If the application is in the foreground, the Firebase SDK will block displaying any FCM notification
 /// for android/iOS no matter what Notification Channel has been set. We can however still handle incoming notifications
 /// via the onMessage stream and display a custom local notification using flutter_local_notifications.
-/// Note: FCM can handle foreground for iOS by using `setForegroundNotificationPresentationOptions` but if you
-/// want to use custom notification instead then avoid using it (or disable alert) as done in [_setupIOSHeadsUp].
+/// Note: FCM can handle foreground for iOS by using `setForegroundNotificationPresentationOptions`
+/// but if you intend to use a custom notification, avoid using it to prevent duplicate heads-up notifications.
 ///
 /// Using custom notification display for iOS in foreground is necessary to be able to
 /// handle notification interaction using `onDidReceiveNotificationResponse` from flutter_local_notifications
