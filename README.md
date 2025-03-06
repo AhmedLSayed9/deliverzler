@@ -123,3 +123,5 @@ Also, ResoCoder’s DDD course (outdated) was a helpful start point to get some 
 implementing DDD Layered architecture in Flutter.
 
 Give a ⭐️ if you like the project.. Thanks!
+
+<p align="right"><a href="#top"><img src="https://cdn-icons-png.flaticon.com/512/892/892692.png" height="50px"></a></p>
